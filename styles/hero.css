@@ -1,0 +1,142 @@
+/* ============================================================
+   HERO.CSS — Компонент C-02 · HeroSection
+   Hotel Investment Passport
+   ============================================================ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ── Фоновое фото ───────────────────────────── */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+
+/* Лёгкий overlay по всему изображению (не гасит всё) */
+.hero-overlay-base {
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay-base);
+  z-index: 1;
+}
+
+/* Градиент только под зоной текста — снизу вверх */
+.hero-overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(
+    to top,
+    rgba(18, 33, 59, 0.88) 0%,
+    rgba(18, 33, 59, 0.50) 45%,
+    rgba(18, 33, 59, 0.00) 100%
+  );
+  z-index: 2;
+}
+
+/* ── Контент ────────────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+  padding-bottom: var(--space-20);
+}
+
+/* Kicker */
+.hero-kicker {
+  color: rgba(237, 233, 224, 0.60);
+  margin-bottom: var(--space-5);
+}
+
+/* H1 */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink-on-dark);
+  margin-bottom: var(--space-6);
+  max-width: 9ch;
+}
+
+/* Подзаголовок */
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.5vw, var(--text-md));
+  font-weight: var(--fw-regular);
+  line-height: 1.55;
+  color: rgba(237, 233, 224, 0.72);
+  margin-bottom: var(--space-10);
+  max-width: 52ch;
+}
+
+/* CTA группа */
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* ── Орнамент (правый нижний угол) ─────────── */
+.hero-ornament {
+  position: absolute;
+  bottom: var(--space-10);
+  right: var(--grid-margin-desktop);
+  z-index: 3;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* ── Полоска-разделитель снизу (hairline) ──── */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-hairline-dark);
+  z-index: 4;
+}
+
+/* ── Адаптив ────────────────────────────────── */
+@media (max-width: 1200px) {
+  .hero-content { padding: 0 var(--grid-margin-tablet) var(--space-16); }
+  .hero-ornament { right: var(--grid-margin-tablet); }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 560px;
+    align-items: flex-end;
+  }
+  .hero-content {
+    padding: 0 var(--grid-margin-mobile) var(--space-12);
+  }
+  .hero-ornament { display: none; }
+  .hero-subtitle-br { display: none; }
+  .hero-cta-group { flex-direction: column; align-items: flex-start; }
+}

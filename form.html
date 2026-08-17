@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Smart Investment Form — Том III. Интеллектуальная система ввода данных гостиничных объектов, автоматического расчёта KPI (ADR, RevPAR, EBITDA) и присвоения Investment Readiness Index." />
+  <title>Smart Investment Form — Том III · Hotel Investment Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+  <link rel="stylesheet" href="styles/form.css" />
+</head>
+<body class="page-form">
+
+  <!-- ═══════════════════════════════════════════
+       C-01 · SITE HEADER
+  ═══════════════════════════════════════════ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Hotel Investment Portfolio — Главная">
+        <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+          <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+          <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">HIP</span>
+          <span class="logo-subtitle">Uzbekistan</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <a href="about.html"              class="nav-link" id="nav-about">О системе</a>
+        <a href="tourism-types.html"      class="nav-link" id="nav-clusters">Виды туризма</a>
+        <a href="portfolio.html"          class="nav-link" id="nav-portfolio">Объекты</a>
+        <a href="registries.html"         class="nav-link" id="nav-registries">Реестры</a>
+        <a href="form.html"               class="nav-link nav-link--active" id="nav-form">Smart Form</a>
+      </nav>
+
+      <div class="header-right">
+        <button type="button" class="btn btn--outline btn--sm" id="btn-autofill-demo" title="Автоматически заполнить форму данными эталонного отеля Grand Tashkent">
+          Заполнить демо-данными
+        </button>
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" id="lang-ru" aria-pressed="true">RU</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-uz" aria-pressed="false">UZ</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════
+       PAGE HEADER · Smart Form Editorial Intro
+  ═══════════════════════════════════════════ -->
+  <section class="form-header" aria-label="Ввод данных в Smart Form">
+    <div class="form-header-inner">
+      <div class="form-header-main">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb-link">Главная</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <span class="breadcrumb-current">Том III · Smart Investment Form</span>
+        </nav>
+        <h1 class="form-title">Smart Investment Form</h1>
+        <p class="form-subtitle">
+          Интеллектуальная система сбора и верификации данных гостиничных объектов Республики Узбекистан.
+          Автоматический расчет операционных KPI, инвестиционного скоринга IRI и генерация паспорта.
+        </p>
+      </div>
+
+      <div class="form-header-badges">
+        <div class="f-badge">
+          <span class="f-badge-num">250+</span>
+          <span class="f-badge-label">Параметров оценки</span>
+        </div>
+        <div class="f-badge-sep" aria-hidden="true"></div>
+        <div class="f-badge">
+          <span class="f-badge-num">USALI</span>
+          <span class="f-badge-label">Стандарт финотчетности</span>
+        </div>
+        <div class="f-badge-sep" aria-hidden="true"></div>
+        <div class="f-badge">
+          <span class="f-badge-num">IRI A+</span>
+          <span class="f-badge-label">Шкала готовности</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Орнаментальный разделитель -->
+    <div class="page-header-ornament" aria-hidden="true">
+      <svg width="100%" height="12" preserveAspectRatio="none" viewBox="0 0 1440 12">
+        <line x1="0" y1="6" x2="1440" y2="6" stroke="#2C3E5A" stroke-width="1"/>
+        <g fill="none" stroke="#1E6F7C" stroke-width="1" opacity="0.5">
+          <rect x="80"  y="3" width="6" height="6"/>
+          <rect x="240" y="3" width="6" height="6"/>
+          <rect x="400" y="3" width="6" height="6"/>
+          <rect x="560" y="3" width="6" height="6"/>
+          <rect x="720" y="3" width="6" height="6"/>
+          <rect x="880" y="3" width="6" height="6"/>
+          <rect x="1040" y="3" width="6" height="6"/>
+          <rect x="1200" y="3" width="6" height="6"/>
+          <rect x="1360" y="3" width="6" height="6"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       STEP PROGRESS BAR
+  ═══════════════════════════════════════════ -->
+  <nav class="step-progress-nav" id="step-progress-nav" aria-label="Шаги заполнения формы">
+    <div class="step-progress-inner">
+      <button type="button" class="step-nav-item step-nav-item--active" data-step="1" id="step-btn-1">
+        <span class="step-nav-num">01</span>
+        <span class="step-nav-text">Общая информация &amp; Право</span>
+      </button>
+      <div class="step-nav-arrow" aria-hidden="true">&rarr;</div>
+
+      <button type="button" class="step-nav-item" data-step="2" id="step-btn-2">
+        <span class="step-nav-num">02</span>
+        <span class="step-nav-text">Номерной фонд &amp; Инфраструктура</span>
+      </button>
+      <div class="step-nav-arrow" aria-hidden="true">&rarr;</div>
+
+      <button type="button" class="step-nav-item" data-step="3" id="step-btn-3">
+        <span class="step-nav-num">03</span>
+        <span class="step-nav-text">Финансы &amp; Операционные KPI</span>
+      </button>
+      <div class="step-nav-arrow" aria-hidden="true">&rarr;</div>
+
+      <button type="button" class="step-nav-item" data-step="4" id="step-btn-4">
+        <span class="step-nav-num">04</span>
+        <span class="step-nav-text">Data Room &amp; Документы</span>
+      </button>
+      <div class="step-nav-arrow" aria-hidden="true">&rarr;</div>
+
+      <button type="button" class="step-nav-item" data-step="5" id="step-btn-5">
+        <span class="step-nav-num">05</span>
+        <span class="step-nav-text">Скоринг IRI &amp; Генерация</span>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════
+       MAIN FORM & LIVE ANALYTICS WORKSPACE
+  ═══════════════════════════════════════════ -->
+  <main class="form-workspace" id="form-workspace">
+    <div class="form-workspace-inner">
+
+      <!-- ЛЕВАЯ КОЛОНКА: ИНТЕРАКТИВНАЯ ФОРМА -->
+      <form class="smart-form" id="smart-investment-form" novalidate>
+
+        <!-- ══════════════════════════════════════════
+             ШАГ 1: ОБЩАЯ ИНФОРМАЦИЯ & ПРАВОВОЙ СТАТУС
+        ══════════════════════════════════════════ -->
+        <section class="form-step-panel form-step-panel--active" data-step-panel="1" id="step-panel-1">
+          <div class="panel-header">
+            <span class="kicker">РАЗДЕЛ I · ОБЩИЕ СВЕДЕНИЯ И ПРАВОВОЙ СТАТУС</span>
+            <h2 class="panel-title">Характеристики объекта и юридическая структура</h2>
+            <p class="panel-desc">
+              Базовые сведения об объекте размещения, локации, форме собственности и предлагаемых моделях инвестиционного сотрудничества.
+            </p>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group form-group--span2">
+              <label for="hotel_name" class="form-label">Полное фирменное наименование объекта <span class="req">*</span></label>
+              <input type="text" id="hotel_name" name="hotel_name" class="form-input" placeholder="Например: Grand Tashkent Hotel" required />
+              <span class="form-hint">Как указано в свидетельстве о государственной регистрации</span>
+            </div>
+
+            <div class="form-group">
+              <label for="hotel_region" class="form-label">Регион (Вилоят / г. Ташкент) <span class="req">*</span></label>
+              <select id="hotel_region" name="hotel_region" class="form-select" required>
+                <option value="" disabled selected>Выберите регион</option>
+                <option value="tashkent_city">г. Ташкент</option>
+                <option value="tashkent_reg">Ташкентская область</option>
+                <option value="samarkand">Самаркандская область</option>
+                <option value="bukhara">Бухарская область</option>
+                <option value="khorezm">Хорезмская область</option>
+                <option value="fergana">Ферганская область</option>
+                <option value="andijan">Андижанская область</option>
+                <option value="namangan">Наманганская область</option>
+                <option value="kashkadarya">Кашкадарьинская область</option>
+                <option value="surkhandarya">Сурхандарьинская область</option>
+                <option value="jizzakh">Джизакская область</option>
+                <option value="syrdarya">Сырдарьинская область</option>
+                <option value="navoi">Навоийская область</option>
+                <option value="karakalpakstan">Республика Каракалпакстан</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="hotel_district" class="form-label">Район / Город <span class="req">*</span></label>
+              <input type="text" id="hotel_district" name="hotel_district" class="form-input" placeholder="Мирзо-Улугбекский район" required />
+            </div>
+
+            <div class="form-group form-group--span2">
+              <label for="hotel_address" class="form-label">Фактический почтовый адрес <span class="req">*</span></label>
+              <input type="text" id="hotel_address" name="hotel_address" class="form-input" placeholder="ул. Амира Темура, д. 45" required />
+            </div>
+
+            <div class="form-group">
+              <label for="hotel_stars" class="form-label">Категория (Звёздность) <span class="req">*</span></label>
+              <select id="hotel_stars" name="hotel_stars" class="form-select" required>
+                <option value="5" selected>5 звёзд (Luxury / Upper Upscale)</option>
+                <option value="4">4 звезды (Upscale / Upper Midscale)</option>
+                <option value="3">3 звезды (Midscale)</option>
+                <option value="boutique">Бутик-отель (Boutique / Heritage)</option>
+                <option value="resort">Курортный комплекс (Resort)</option>
+                <option value="apart">Апарт-отель (Apart-Hotel)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="hotel_brand" class="form-label">Текущий оператор / Международный бренд</label>
+              <input type="text" id="hotel_brand" name="hotel_brand" class="form-input" placeholder="Независимый отель / White Label" />
+            </div>
+
+            <div class="form-group">
+              <label for="ownership_type" class="form-label">Форма собственности <span class="req">*</span></label>
+              <select id="ownership_type" name="ownership_type" class="form-select" required>
+                <option value="private_100" selected>Частная собственность (100%)</option>
+                <option value="private_joint">Совместное предприятие (СП / JV)</option>
+                <option value="state_share">С участием государственной доли</option>
+                <option value="ppp">Государственно-частное партнерство (ГЧП)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="deal_model" class="form-label">Предлагаемая модель сотрудничества <span class="req">*</span></label>
+              <select id="deal_model" name="deal_model" class="form-select" required>
+                <option value="management" selected>Договор управления (Hotel Management Agreement)</option>
+                <option value="sale_100">Прямая продажа 100% актива</option>
+                <option value="sale_share">Продажа инвестиционной доли (Equity Partner)</option>
+                <option value="franchise">Франчайзинг (Franchise Agreement)</option>
+                <option value="lease">Долгосрочная аренда / Lease</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="legal_encumbrance" class="form-label">Наличие обременений или судебных споров <span class="req">*</span></label>
+              <select id="legal_encumbrance" name="legal_encumbrance" class="form-select" required>
+                <option value="none" selected>Обременения, аресты и судебные споры отсутствуют (100/100 баллов)</option>
+                <option value="pledge_bank">Находится в залоге у коммерческого банка (требуется рефинансирование)</option>
+                <option value="dispute">Имеются неурегулированные споры</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cadastre_number" class="form-label">Кадастровый номер земельного участка</label>
+              <input type="text" id="cadastre_number" name="cadastre_number" class="form-input" placeholder="10:04:02:01:04:0124" />
+            </div>
+          </div>
+
+          <div class="form-nav-actions">
+            <div></div>
+            <button type="button" class="btn btn--primary btn--next" data-next-step="2">
+              Перейти к номерному фонду &rarr;
+            </button>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════
+             ШАГ 2: НОМЕРНОЙ ФОНД & ИНФРАСТРУКТУРА
+        ══════════════════════════════════════════ -->
+        <section class="form-step-panel" data-step-panel="2" id="step-panel-2">
+          <div class="panel-header">
+            <span class="kicker">РАЗДЕЛ II · НОМЕРНОЙ ФОНД И ТЕХНИЧЕСКИЕ ПАРАМЕТРЫ</span>
+            <h2 class="panel-title">Структура номеров и инфраструктурный профиль</h2>
+            <p class="panel-desc">
+              Количество номеров по категориям, площадь объекта, параметры конференц-зоны, ресторанов, SPA и инженерных систем.
+            </p>
+          </div>
+
+          <div class="form-subsection">
+            <h3 class="form-subheading">Структура номерного фонда</h3>
+            <div class="form-grid form-grid--3col">
+              <div class="form-group">
+                <label for="rooms_standard" class="form-label">Стандартные номера (Standard)</label>
+                <input type="number" id="rooms_standard" name="rooms_standard" class="form-input calc-rooms" value="196" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="rooms_deluxe" class="form-label">Делюкс (Deluxe)</label>
+                <input type="number" id="rooms_deluxe" name="rooms_deluxe" class="form-input calc-rooms" value="38" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="rooms_junior" class="form-label">Джуниор-сюит (Junior Suite)</label>
+                <input type="number" id="rooms_junior" name="rooms_junior" class="form-input calc-rooms" value="12" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="rooms_suite" class="form-label">Люкс (Suite)</label>
+                <input type="number" id="rooms_suite" name="rooms_suite" class="form-input calc-rooms" value="10" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="rooms_presidential" class="form-label">Президентский люкс</label>
+                <input type="number" id="rooms_presidential" name="rooms_presidential" class="form-input calc-rooms" value="2" min="0" />
+              </div>
+              <div class="form-group form-group--highlight">
+                <label for="rooms_total" class="form-label">Итого номеров (Rooms Total)</label>
+                <input type="number" id="rooms_total" name="rooms_total" class="form-input form-input--calc" value="258" readonly />
+                <span class="form-hint">Рассчитывается автоматически</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-subsection">
+            <h3 class="form-subheading">Здание, земельный участок и даты</h3>
+            <div class="form-grid form-grid--3col">
+              <div class="form-group">
+                <label for="total_area" class="form-label">Общая площадь здания (м²) <span class="req">*</span></label>
+                <input type="number" id="total_area" name="total_area" class="form-input" value="28500" required />
+              </div>
+              <div class="form-group">
+                <label for="land_area" class="form-label">Площадь земельного участка (га) <span class="req">*</span></label>
+                <input type="number" step="0.1" id="land_area" name="land_area" class="form-input" value="1.8" required />
+              </div>
+              <div class="form-group">
+                <label for="year_built" class="form-label">Год ввода в эксплуатацию <span class="req">*</span></label>
+                <input type="number" id="year_built" name="year_built" class="form-input" value="2018" required />
+              </div>
+              <div class="form-group">
+                <label for="year_renovation" class="form-label">Год последней реконструкции / FF&amp;E</label>
+                <input type="number" id="year_renovation" name="year_renovation" class="form-input" value="2024" />
+              </div>
+              <div class="form-group">
+                <label for="floors_count" class="form-label">Этажность здания</label>
+                <input type="number" id="floors_count" name="floors_count" class="form-input" value="14" />
+              </div>
+              <div class="form-group">
+                <label for="expansion_potential" class="form-label">Возможность расширения фонда</label>
+                <select id="expansion_potential" name="expansion_potential" class="form-select">
+                  <option value="yes_land" selected>Да, есть свободный земельный участок</option>
+                  <option value="yes_reconstruct">Да, возможна надстройка этажей</option>
+                  <option value="no">Нет, участок полностью застроен</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-subsection">
+            <h3 class="form-subheading">Инфраструктура F&amp;B, MICE и Wellness</h3>
+            <div class="form-grid form-grid--2col">
+              <div class="form-group">
+                <label for="mice_capacity" class="form-label">Вместимость конференц-залов (макс. человек)</label>
+                <input type="number" id="mice_capacity" name="mice_capacity" class="form-input" value="300" />
+              </div>
+              <div class="form-group">
+                <label for="restaurants_count" class="form-label">Количество ресторанов и баров</label>
+                <input type="number" id="restaurants_count" name="restaurants_count" class="form-input" value="3" />
+              </div>
+              <div class="form-group">
+                <label for="spa_area" class="form-label">Площадь SPA и фитнес-зоны (м²)</label>
+                <input type="number" id="spa_area" name="spa_area" class="form-input" value="850" />
+              </div>
+              <div class="form-group">
+                <label for="parking_spaces" class="form-label">Количество парковочных мест</label>
+                <input type="number" id="parking_spaces" name="parking_spaces" class="form-input" value="120" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-nav-actions">
+            <button type="button" class="btn btn--outline btn--prev" data-prev-step="1">&larr; Назад</button>
+            <button type="button" class="btn btn--primary btn--next" data-next-step="3">Перейти к финансовым показателям &rarr;</button>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════
+             ШАГ 3: ФИНАНСЫ & ОПЕРАЦИОННЫЕ KPI
+        ══════════════════════════════════════════ -->
+        <section class="form-step-panel" data-step-panel="3" id="step-panel-3">
+          <div class="panel-header">
+            <span class="kicker">РАЗДЕЛ III · ОПЕРАЦИОННЫЕ И ФИНАНСОВЫЕ ДАННЫЕ (USALI)</span>
+            <h2 class="panel-title">Операционные KPI и финансовая модель</h2>
+            <p class="panel-desc">
+              Ввод данных за последний финансовый год (2025 FY). Интеллектуальный калькулятор автоматически рассчитывает ADR, RevPAR, EBITDA Margin, окупаемость и IRR.
+            </p>
+          </div>
+
+          <div class="form-subsection">
+            <h3 class="form-subheading">Операционные гостиничные KPI (STR / USALI)</h3>
+            <div class="form-grid form-grid--3col">
+              <div class="form-group">
+                <label for="occupancy_rate" class="form-label">Среднегодовая загрузка (Occupancy, %) <span class="req">*</span></label>
+                <div class="input-unit-wrap">
+                  <input type="number" step="0.1" min="0" max="100" id="occupancy_rate" name="occupancy_rate" class="form-input calc-trigger" value="74" required />
+                  <span class="input-unit">%</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="adr_value" class="form-label">Средняя цена номера (ADR, USD) <span class="req">*</span></label>
+                <div class="input-unit-wrap">
+                  <input type="number" step="1" min="0" id="adr_value" name="adr_value" class="form-input calc-trigger" value="128" required />
+                  <span class="input-unit">USD</span>
+                </div>
+              </div>
+
+              <div class="form-group form-group--highlight">
+                <label for="revpar_calc" class="form-label">RevPAR (Выручка на доступный номер)</label>
+                <div class="input-unit-wrap">
+                  <input type="number" step="0.1" id="revpar_calc" name="revpar_calc" class="form-input form-input--calc" value="94.7" readonly />
+                  <span class="input-unit">USD</span>
+                </div>
+                <span class="form-hint">Автоматически: ADR &times; Occupancy %</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-subsection">
+            <h3 class="form-subheading">Структура выручки и операционные доходы (USD)</h3>
+            <div class="form-grid form-grid--3col">
+              <div class="form-group">
+                <label for="revenue_rooms" class="form-label">Выручка номерного фонда (Rooms Revenue)</label>
+                <input type="number" id="revenue_rooms" name="revenue_rooms" class="form-input calc-rev" value="8920000" />
+              </div>
+              <div class="form-group">
+                <label for="revenue_fb" class="form-label">Выручка ресторанов и баров (F&amp;B Revenue)</label>
+                <input type="number" id="revenue_fb" name="revenue_fb" class="form-input calc-rev" value="3400000" />
+              </div>
+              <div class="form-group">
+                <label for="revenue_other" class="form-label">Прочая выручка (MICE, SPA, аренда)</label>
+                <input type="number" id="revenue_other" name="revenue_other" class="form-input calc-rev" value="1230000" />
+              </div>
+              <div class="form-group form-group--highlight">
+                <label for="total_revenue" class="form-label">Совокупная валовая выручка (Total Revenue)</label>
+                <input type="number" id="total_revenue" name="total_revenue" class="form-input form-input--calc" value="13550000" readonly />
+              </div>
+              <div class="form-group">
+                <label for="ebitda_value" class="form-label">EBITDA объекта за 2025 FY (USD) <span class="req">*</span></label>
+                <input type="number" id="ebitda_value" name="ebitda_value" class="form-input calc-trigger" value="4200000" required />
+              </div>
+              <div class="form-group form-group--highlight">
+                <label for="ebitda_margin_calc" class="form-label">Рентабельность EBITDA (EBITDA Margin)</label>
+                <div class="input-unit-wrap">
+                  <input type="number" step="0.1" id="ebitda_margin_calc" name="ebitda_margin_calc" class="form-input form-input--calc" value="31.0" readonly />
+                  <span class="input-unit">%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-subsection">
+            <h3 class="form-subheading">Инвестиционная оценка и окупаемость (USD)</h3>
+            <div class="form-grid form-grid--3col">
+              <div class="form-group">
+                <label for="property_valuation" class="form-label">Оценочная стоимость актива (Valuation, USD) <span class="req">*</span></label>
+                <input type="number" id="property_valuation" name="property_valuation" class="form-input calc-trigger" value="45000000" required />
+              </div>
+              <div class="form-group">
+                <label for="capex_required" class="form-label">Требуемый объем инвестиций / CAPEX (USD)</label>
+                <input type="number" id="capex_required" name="capex_required" class="form-input calc-trigger" value="12000000" />
+              </div>
+              <div class="form-group form-group--highlight">
+                <label for="payback_calc" class="form-label">Расчетный срок окупаемости (Payback)</label>
+                <div class="input-unit-wrap">
+                  <input type="number" step="0.1" id="payback_calc" name="payback_calc" class="form-input form-input--calc" value="7.0" readonly />
+                  <span class="input-unit">Лет</span>
+                </div>
+              </div>
+              <div class="form-group form-group--highlight">
+                <label for="irr_calc" class="form-label">Расчетная ставка IRR (10-летний прогноз)</label>
+                <div class="input-unit-wrap">
+                  <input type="number" step="0.1" id="irr_calc" name="irr_calc" class="form-input form-input--calc" value="18.0" readonly />
+                  <span class="input-unit">%</span>
+                </div>
+              </div>
+              <div class="form-group form-group--highlight">
+                <label for="roi_calc" class="form-label">Расчетная доходность (ROI)</label>
+                <div class="input-unit-wrap">
+                  <input type="number" step="0.1" id="roi_calc" name="roi_calc" class="form-input form-input--calc" value="12.0" readonly />
+                  <span class="input-unit">%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-nav-actions">
+            <button type="button" class="btn btn--outline btn--prev" data-prev-step="2">&larr; Назад</button>
+            <button type="button" class="btn btn--primary btn--next" data-next-step="4">Перейти к Data Room &rarr;</button>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════
+             ШАГ 4: DATA ROOM & ДОКУМЕНТАЦИЯ
+        ══════════════════════════════════════════ -->
+        <section class="form-step-panel" data-step-panel="4" id="step-panel-4">
+          <div class="panel-header">
+            <span class="kicker">РАЗДЕЛ IV · ВЕРИФИКАЦИЯ И DATA ROOM</span>
+            <h2 class="panel-title">Обязательный комплект подтверждающих документов</h2>
+            <p class="panel-desc">
+              Для присвоения высших категорий рейтинга готовности (A+ / A) все показатели должны подтверждаться документами в защищенном контуре Data Room.
+            </p>
+          </div>
+
+          <div class="dataroom-checklist">
+            <div class="doc-upload-item">
+              <div class="doc-upload-info">
+                <h4 class="doc-title">1. Аудированная финансовая отчетность (МСФО / НСБУ 2023–2025)</h4>
+                <p class="doc-desc">Баланс, отчет о прибылях и убытках, отчет о движении денежных средств (форма 1, 2, 4).</p>
+              </div>
+              <div class="doc-upload-status">
+                <span class="doc-badge doc-badge--uploaded">Загружено · 3 файла (PDF)</span>
+              </div>
+            </div>
+
+            <div class="doc-upload-item">
+              <div class="doc-upload-info">
+                <h4 class="doc-title">2. Свидетельство о праве собственности и кадастровые документы</h4>
+                <p class="doc-desc">Выписка из Государственного реестра прав на недвижимое имущество, кадастровое дело.</p>
+              </div>
+              <div class="doc-upload-status">
+                <span class="doc-badge doc-badge--uploaded">Загружено · Выписка от 2026 г.</span>
+              </div>
+            </div>
+
+            <div class="doc-upload-item">
+              <div class="doc-upload-info">
+                <h4 class="doc-title">3. Справка об отсутствии налоговой задолженности и обременений</h4>
+                <p class="doc-desc">Официальная справка Налогового комитета и выписка из ЕГРЗ (залоговый реестр).</p>
+              </div>
+              <div class="doc-upload-status">
+                <span class="doc-badge doc-badge--uploaded">Загружено · Без задолженности</span>
+              </div>
+            </div>
+
+            <div class="doc-upload-item">
+              <div class="doc-upload-info">
+                <h4 class="doc-title">4. Технический паспорт объекта и поэтажные планы БТИ</h4>
+                <p class="doc-desc">Экспликация помещений, поэтажные схемы, данные по инженерным сетям (HVAC, трансформаторы, котельная).</p>
+              </div>
+              <div class="doc-upload-status">
+                <span class="doc-badge doc-badge--uploaded">Загружено · 14 этажей</span>
+              </div>
+            </div>
+
+            <div class="doc-upload-item">
+              <div class="doc-upload-info">
+                <h4 class="doc-title">5. Профессиональная фотосъемка (экстерьер, лобби, номера, MICE)</h4>
+                <p class="doc-desc">Горизонтальные снимки высокого разрешения в соответствии с требованиями Дизайн-системы Комитета.</p>
+              </div>
+              <div class="doc-upload-status">
+                <span class="doc-badge doc-badge--uploaded">Загружено · 24 фото</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-nav-actions">
+            <button type="button" class="btn btn--outline btn--prev" data-prev-step="3">&larr; Назад</button>
+            <button type="button" class="btn btn--primary btn--next" data-next-step="5">Перейти к итоговому скорингу &rarr;</button>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════
+             ШАГ 5: ИТОГОВЫЙ СКОРИНГ & ГЕНЕРАЦИЯ ПАСПОРТА
+        ══════════════════════════════════════════ -->
+        <section class="form-step-panel" data-step-panel="5" id="step-panel-5">
+          <div class="panel-header">
+            <span class="kicker">РАЗДЕЛ V · СВОДНЫЙ СКОРИНГ И ВЫГРУЗКА ПАСПОРТА</span>
+            <h2 class="panel-title">Результаты оценки инвестиционной готовности объекта</h2>
+            <p class="panel-desc">
+              Автоматический расчет завершен. На основе введенных параметров объекту присвоен высший рейтинг готовности A+.
+            </p>
+          </div>
+
+          <div class="scoring-result-grid">
+            <div class="scoring-card">
+              <span class="scoring-card-label">Итоговый рейтинг готовности</span>
+              <div class="scoring-card-val" id="scoring-final-grade">A+</div>
+              <p class="scoring-card-status">Наивысший уровень инвестиционной привлекательности (Tier 1)</p>
+            </div>
+
+            <div class="scoring-breakdown">
+              <h3 class="scoring-table-heading">Детализация баллов по методике Комитета</h3>
+              <table class="editorial-table scoring-table">
+                <tbody>
+                  <tr>
+                    <td class="et-key">1. Финансовая прозрачность и аудит</td>
+                    <td class="et-val et-val--num" id="score-fin">95 / 100</td>
+                  </tr>
+                  <tr>
+                    <td class="et-key">2. Юридическая чистота и отсутствие залогов</td>
+                    <td class="et-val et-val--num" id="score-law">100 / 100</td>
+                  </tr>
+                  <tr>
+                    <td class="et-key">3. Операционная эффективность (ADR / RevPAR / Occupancy)</td>
+                    <td class="et-val et-val--num" id="score-kpi">88 / 100</td>
+                  </tr>
+                  <tr>
+                    <td class="et-key">4. Физическое состояние и FF&amp;E 2024</td>
+                    <td class="et-val et-val--num" id="score-ffe">80 / 100</td>
+                  </tr>
+                  <tr>
+                    <td class="et-key">5. Готовность к брендингу (Marriott/Hyatt/Accor)</td>
+                    <td class="et-val et-val--num" id="score-brand">90 / 100</td>
+                  </tr>
+                  <tr>
+                    <td class="et-key">6. Локация и инфраструктурные генераторы спроса</td>
+                    <td class="et-val et-val--num" id="score-loc">97 / 100</td>
+                  </tr>
+                  <tr class="scoring-total-row">
+                    <td class="et-key"><strong>Средневзвешенный балл IRI</strong></td>
+                    <td class="et-val et-val--num"><strong id="score-total">91.7 / 100</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- CTA ГЕНЕРАЦИИ -->
+          <div class="passport-generation-cta">
+            <div class="gen-cta-content">
+              <h3 class="gen-cta-title">Сформировать готовый Hotel Investment Passport (Том II)</h3>
+              <p class="gen-cta-desc">
+                Все 250 параметров верифицированы. Вы можете мгновенно открыть интерактивный паспорт объекта на портале или сформировать официальный меморандум для инвесторов.
+              </p>
+              <div class="gen-cta-actions">
+                <a href="passport.html" class="btn btn--teal btn--lg" id="btn-open-generated-passport">
+                  Открыть сгенерированный паспорт (Том II) &rarr;
+                </a>
+                <button type="button" class="btn btn--outline btn--dark btn--lg" id="btn-download-xml">
+                  Экспорт данных (JSON / Excel)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-nav-actions">
+            <button type="button" class="btn btn--outline btn--prev" data-prev-step="4">&larr; Вернуться к документам</button>
+            <div></div>
+          </div>
+        </section>
+
+      </form>
+
+
+      <!-- ПРАВАЯ КОЛОНКА: ЖИВАЯ АНАЛИТИЧЕСКАЯ ПАНЕЛЬ (STICKY) -->
+      <aside class="live-analytics-dock" aria-label="Интерактивный расчет показателей в реальном времени">
+        <div class="dock-inner">
+
+          <!-- Заголовок панели -->
+          <div class="dock-header">
+            <div class="dock-pulse-indicator">
+              <span class="dock-pulse-dot"></span>
+              <span class="dock-pulse-text">LIVE CALCULATION</span>
+            </div>
+            <span class="dock-title">Smart Terminal</span>
+          </div>
+
+          <!-- Сводный скоринг -->
+          <div class="dock-score-box">
+            <div class="dock-score-top">
+              <span class="dock-score-label">INVESTMENT READINESS</span>
+              <span class="dock-score-pts" id="dock-points">91.7 / 100</span>
+            </div>
+            <div class="dock-score-grade-wrap">
+              <span class="dock-score-grade" id="dock-grade">A+</span>
+              <span class="dock-score-sub" id="dock-grade-text">Наивысшая готовность</span>
+            </div>
+            <div class="dock-progress-bar">
+              <div class="dock-progress-fill" id="dock-progress-fill" style="width: 91.7%"></div>
+            </div>
+          </div>
+
+          <!-- Рассчитанные KPI в JetBrains Mono -->
+          <div class="dock-kpis">
+            <div class="dock-kpi-row">
+              <span class="dock-kpi-label">ROOMS</span>
+              <span class="dock-kpi-val" id="dock-kpi-rooms">258</span>
+            </div>
+            <div class="dock-kpi-row">
+              <span class="dock-kpi-label">OCCUPANCY</span>
+              <span class="dock-kpi-val" id="dock-kpi-occ">74.0%</span>
+            </div>
+            <div class="dock-kpi-row">
+              <span class="dock-kpi-label">ADR</span>
+              <span class="dock-kpi-val" id="dock-kpi-adr">$128</span>
+            </div>
+            <div class="dock-kpi-row dock-kpi-row--accent">
+              <span class="dock-kpi-label">RevPAR</span>
+              <span class="dock-kpi-val" id="dock-kpi-revpar">$94.7</span>
+            </div>
+            <div class="dock-kpi-row">
+              <span class="dock-kpi-label">EBITDA MARGIN</span>
+              <span class="dock-kpi-val" id="dock-kpi-ebitda-m">31.0%</span>
+            </div>
+            <div class="dock-kpi-row">
+              <span class="dock-kpi-label">PAYBACK</span>
+              <span class="dock-kpi-val" id="dock-kpi-payback">7.0 лет</span>
+            </div>
+            <div class="dock-kpi-row">
+              <span class="dock-kpi-label">IRR (10Y)</span>
+              <span class="dock-kpi-val" id="dock-kpi-irr">18.0%</span>
+            </div>
+            <div class="dock-kpi-row">
+              <span class="dock-kpi-label">ROI</span>
+              <span class="dock-kpi-val" id="dock-kpi-roi">12.0%</span>
+            </div>
+          </div>
+
+          <!-- Справка / рекомендации формы -->
+          <div class="dock-footer-notes">
+            <p class="dock-note">
+              Калькулятор пересчитывает метрики на лету при изменении любых полей формы по методике STR Global и USALI.
+            </p>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+              <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+              <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+            </svg>
+            <div class="logo-text">
+              <span class="logo-title">HIP</span>
+              <span class="logo-subtitle">Uzbekistan</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Hotel Investment Portfolio — официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.
+          </p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация footer">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Платформа</p>
+            <a href="about.html"             class="footer-nav-link">О системе</a>
+            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
+            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
+            <a href="registries.html"         class="footer-nav-link">Реестры</a>
+            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="#" class="footer-nav-link">Том I. Методические рекомендации</a>
+            <a href="passport.html" class="footer-nav-link">Том II. Investment Passport</a>
+            <a href="form.html" class="footer-nav-link">Том III. Smart Form</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
+          Методология: STR Global / USALI / IFC / EBRD.
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <a href="form.html" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
+          <a href="#" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
+          <a href="#" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/form.js"></script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+/* ============================================================
+   CLUSTERS.CSS — Виды туризма и Инвестиционные кластеры
+   Hotel Investment Portfolio · Комитет по туризму РУз
+   ============================================================ */
+
+.clusters-main {
+  background-color: var(--color-bg-parchment);
+  padding: var(--space-12) 0 var(--space-24);
+}
+
+.clusters-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.cluster-card {
+  background-color: var(--color-bg-white-pure);
+  border: var(--border-hairline);
+  border-radius: var(--radius-subtle);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+.cluster-card:hover {
+  border-color: var(--color-ink-muted);
+}
+.cluster-card.is-open {
+  border-color: var(--color-accent-teal);
+  box-shadow: 0 4px 16px rgba(18, 33, 59, 0.05);
+}
+
+.cluster-card-summary {
+  padding: var(--space-8) var(--space-10);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  user-select: none;
+  transition: background-color var(--transition-fast);
+}
+.cluster-card-summary:hover {
+  background-color: rgba(247, 244, 236, 0.25);
+}
+
+.cluster-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cluster-meta-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.cluster-toggle-indicator {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-accent-teal);
+  background-color: rgba(30, 111, 124, 0.08);
+  padding: 3px 10px;
+  border-radius: var(--radius-subtle);
+  border: 1px solid rgba(30, 111, 124, 0.2);
+  transition: all var(--transition-fast);
+}
+.cluster-card.is-open .cluster-toggle-indicator {
+  background-color: var(--color-accent-teal);
+  color: #EDE9E0;
+}
+
+.cluster-tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-accent-teal);
+  background-color: rgba(30, 111, 124, 0.08);
+  padding: 3px 8px;
+  border-radius: var(--radius-subtle);
+}
+
+.cluster-flow-badge {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--color-accent-terracotta);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+}
+
+.cluster-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-xl), 2.2vw, var(--text-2xl));
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+}
+
+.cluster-lead {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+  line-height: var(--lh-body);
+  max-width: 75ch;
+}
+
+.cluster-grid-info {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1.2fr;
+  gap: var(--space-8);
+  margin-top: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: var(--border-hairline);
+}
+
+.cluster-block-heading {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-2);
+}
+
+.cluster-text {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-ink);
+  line-height: 1.55;
+}
+
+.cluster-kpi-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.c-chip {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-ink-muted);
+  background-color: rgba(247, 244, 236, 0.6);
+  padding: 4px 10px;
+  border-radius: var(--radius-subtle);
+  border: 1px solid var(--color-hairline);
+}
+.c-chip strong {
+  font-family: var(--font-mono);
+  color: var(--color-accent-teal);
+  font-weight: var(--fw-semibold);
+}
+
+/* ── EXPANDABLE DRAWER ──────────────────────── */
+
+.cluster-card-drawer {
+  display: none;
+  background-color: rgba(247, 244, 236, 0.45);
+  border-top: 1px solid var(--color-hairline);
+  padding: var(--space-8) var(--space-10);
+  animation: drawerFade 0.25s ease-out forwards;
+}
+
+.cluster-card.is-open .cluster-card-drawer {
+  display: block;
+}
+
+@keyframes drawerFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cluster-drawer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.drawer-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+
+.drawer-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+}
+
+.drawer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.drawer-list li {
+  position: relative;
+  padding-left: var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-ink);
+  line-height: 1.6;
+}
+
+.drawer-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-teal);
+}
+
+.drawer-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-5);
+  border-top: var(--border-hairline);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.drawer-objects-preview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.d-obj-title {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-ink-muted);
+}
+
+.d-obj-tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  background-color: var(--color-bg-white-pure);
+  border: var(--border-hairline);
+  padding: 3px 8px;
+  border-radius: var(--radius-subtle);
+  color: var(--color-ink);
+}
+
+/* ── RESPONSIVE ─────────────────────────────── */
+
+@media (max-width: 1200px) {
+  .clusters-container     { padding: 0 var(--grid-margin-tablet); }
+  .cluster-card-summary   { padding: var(--space-6) var(--space-8); }
+  .cluster-card-drawer    { padding: var(--space-6) var(--space-8); }
+}
+
+@media (max-width: 900px) {
+  .cluster-grid-info      { grid-template-columns: 1fr; gap: var(--space-4); }
+  .drawer-columns         { grid-template-columns: 1fr; gap: var(--space-5); }
+}
+
+@media (max-width: 600px) {
+  .clusters-container     { padding: 0 var(--grid-margin-mobile); }
+  .cluster-card-summary   { padding: var(--space-5) var(--space-4); }
+  .cluster-card-drawer    { padding: var(--space-5) var(--space-4); }
+  .cluster-header-row     { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .cluster-meta-badges    { width: 100%; justify-content: space-between; }
+}
+

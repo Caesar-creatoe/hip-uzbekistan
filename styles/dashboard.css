@@ -1,0 +1,239 @@
+/* ============================================================
+   DASHBOARD.CSS — Компонент C-03 · Investment Dashboard
+   Hotel Investment Passport
+   ============================================================ */
+
+.dashboard {
+  background-color: var(--color-bg-dark);
+  padding: var(--space-16) 0 var(--space-20);
+}
+
+/* ── Шапка секции ───────────────────────────── */
+.dashboard-header {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+  margin-bottom: var(--space-12);
+}
+
+.dashboard-header .kicker {
+  color: var(--color-accent-teal);
+  margin-bottom: var(--space-4);
+}
+
+.dashboard-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.dashboard-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink-on-dark);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Бейдж Investment Readiness */
+.dashboard-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 2px solid var(--color-accent-terracotta);
+  padding-left: var(--space-4);
+}
+
+.badge-label {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: rgba(237, 233, 224, 0.50);
+  line-height: 1;
+}
+
+.badge-value {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-accent-terracotta);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+/* Мета-информация под заголовком */
+.dashboard-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.dashboard-meta-item {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-ink-on-dark-muted);
+  font-weight: var(--fw-medium);
+}
+
+.dashboard-meta-sep {
+  color: var(--color-hairline-dark);
+  user-select: none;
+}
+
+/* ── Сетка stat-блоков ──────────────────────── */
+.stat-grid {
+  display: grid;
+  /* Асимметричная сетка: не равные колонки — первые 4 крупнее */
+  grid-template-columns: 1.15fr 1.15fr 1.15fr 1.15fr 1fr 1fr 1fr 1fr;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  border-top: var(--border-hairline-dark);
+  border-bottom: var(--border-hairline-dark);
+}
+
+/* ── Один stat-блок ─────────────────────────── */
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-10) var(--space-8) var(--space-8);
+  border-right: var(--border-hairline-dark);
+  position: relative;
+
+  /* Плавное появление */
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+.stat-block:first-child {
+  padding-left: var(--grid-margin-desktop);
+}
+.stat-block:last-child {
+  border-right: none;
+  padding-right: var(--grid-margin-desktop);
+}
+.stat-block.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Небольшой teal-акцент вверху первого блока */
+.stat-block:first-child::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--grid-margin-desktop);
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-accent-teal);
+}
+
+/* ── Число KPI ──────────────────────────────── */
+.stat-number {
+  font-family: var(--font-mono);
+  font-size: clamp(36px, 3.8vw, 64px);
+  font-weight: var(--fw-medium);
+  color: var(--color-ink-on-dark);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+
+  /* Count-up плавность */
+  transition: none;
+}
+
+/* ── Лейбл (uppercase, разрядка) ────────────── */
+.stat-label {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-accent-teal);
+  line-height: 1;
+}
+
+/* ── Примечание ─────────────────────────────── */
+.stat-note {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(155, 170, 187, 0.70);
+  line-height: 1.4;
+  font-weight: var(--fw-regular);
+}
+
+/* ── Footnote ───────────────────────────────── */
+.dashboard-footnote {
+  max-width: var(--container-max);
+  margin: var(--space-8) auto 0;
+  padding: 0 var(--grid-margin-desktop);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(155, 170, 187, 0.50);
+  line-height: 1.5;
+  border-top: var(--border-hairline-dark);
+  padding-top: var(--space-6);
+}
+
+/* ── Адаптив: планшет ───────────────────────── */
+@media (max-width: 1200px) {
+  .dashboard-header,
+  .dashboard-footnote {
+    padding-left: var(--grid-margin-tablet);
+    padding-right: var(--grid-margin-tablet);
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .stat-block:first-child { padding-left: var(--grid-margin-tablet); }
+  .stat-block:last-child  { padding-right: var(--grid-margin-tablet); }
+
+  /* Убираем правую границу у 4-го и 8-го (конец строки) */
+  .stat-block:nth-child(4n) { border-right: none; }
+
+  /* Добавляем разделитель снизу первой строки */
+  .stat-block:nth-child(-n+4) {
+    border-bottom: var(--border-hairline-dark);
+  }
+  /* Убираем padding-left у 5-го (новая строка) */
+  .stat-block:nth-child(5) { padding-left: var(--grid-margin-tablet); }
+  .stat-block:nth-child(8) { padding-right: var(--grid-margin-tablet); }
+  .stat-block:first-child::before { left: var(--grid-margin-tablet); }
+}
+
+/* ── Адаптив: мобильный ─────────────────────── */
+@media (max-width: 768px) {
+  .dashboard-header,
+  .dashboard-footnote {
+    padding-left: var(--grid-margin-mobile);
+    padding-right: var(--grid-margin-mobile);
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-block { padding: var(--space-8) var(--space-6) var(--space-6); }
+  .stat-block:first-child { padding-left: var(--grid-margin-mobile); }
+  .stat-block:last-child  { padding-right: var(--grid-margin-mobile); }
+  .stat-block:first-child::before { left: var(--grid-margin-mobile); }
+
+  .stat-block:nth-child(4n) { border-right: var(--border-hairline-dark); }
+  .stat-block:nth-child(2n) { border-right: none; }
+  .stat-block:nth-child(-n+4) { border-bottom: none; }
+  .stat-block:nth-child(-n+6) { border-bottom: var(--border-hairline-dark); }
+
+  .dashboard-title-row { gap: var(--space-5); }
+  .dashboard-badge { margin-top: var(--space-2); }
+}

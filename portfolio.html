@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Каталог инвестиционных паспортов гостиничных объектов Республики Узбекистан. Фильтр по региону, категории, модели сотрудничества и Investment Readiness Index." />
+  <title>Каталог объектов — Hotel Investment Portfolio · Комитет по туризму РУз</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+  <link rel="stylesheet" href="styles/catalog.css" />
+</head>
+<body class="page-portfolio">
+
+  <!-- ═══ C-01 · SITE HEADER ════════════════════ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Hotel Investment Portfolio — Главная">
+        <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+          <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+          <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">HIP</span>
+          <span class="logo-subtitle">Uzbekistan</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <a href="about.html"              class="nav-link" id="nav-about">О системе</a>
+        <a href="tourism-types.html"      class="nav-link" id="nav-clusters">Виды туризма</a>
+        <a href="portfolio.html"          class="nav-link nav-link--active" id="nav-portfolio">Объекты</a>
+        <a href="registries.html"         class="nav-link" id="nav-registries">Реестры</a>
+        <a href="form.html"               class="nav-link" id="nav-form">Smart Form</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" id="lang-ru" aria-pressed="true">RU</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-uz" aria-pressed="false">UZ</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-en" aria-pressed="false">EN</button>
+        </div>
+        <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ═══ PAGE HEADER (compact editorial, not fullscreen) ══ -->
+  <section class="page-header" aria-label="Каталог инвестиционных объектов">
+    <div class="page-header-inner">
+
+      <!-- Левый блок: навигация + заголовок -->
+      <div class="page-header-main">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb-link">Главная</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <span class="breadcrumb-current">Каталог объектов</span>
+        </nav>
+        <h1 class="page-title">Инвестиционный портфель</h1>
+        <p class="page-subtitle">
+          Стандартизированные паспорта гостиничных объектов Республики Узбекистан,
+          подготовленные по методологии Комитета по туризму
+        </p>
+      </div>
+
+      <!-- Правый блок: сводные KPI каталога -->
+      <div class="page-header-stats">
+        <div class="ph-stat">
+          <span class="ph-stat-num">156</span>
+          <span class="ph-stat-label">Объектов</span>
+        </div>
+        <div class="ph-stat-sep" aria-hidden="true"></div>
+        <div class="ph-stat">
+          <span class="ph-stat-num">14</span>
+          <span class="ph-stat-label">Регионов</span>
+        </div>
+        <div class="ph-stat-sep" aria-hidden="true"></div>
+        <div class="ph-stat">
+          <span class="ph-stat-num">A–B+</span>
+          <span class="ph-stat-label">Средний IRI</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Культурный разделитель (hairline орнамент) -->
+    <div class="page-header-ornament" aria-hidden="true">
+      <svg width="100%" height="12" preserveAspectRatio="none" viewBox="0 0 1440 12">
+        <line x1="0" y1="6" x2="1440" y2="6" stroke="#2C3E5A" stroke-width="1"/>
+        <!-- Геометрический акцент: повторяющийся мотив -->
+        <g fill="none" stroke="#1E6F7C" stroke-width="1" opacity="0.5">
+          <rect x="80"  y="3" width="6" height="6"/>
+          <rect x="200" y="3" width="6" height="6"/>
+          <rect x="320" y="3" width="6" height="6"/>
+          <rect x="440" y="3" width="6" height="6"/>
+          <rect x="560" y="3" width="6" height="6"/>
+          <rect x="680" y="3" width="6" height="6"/>
+          <rect x="800" y="3" width="6" height="6"/>
+          <rect x="920" y="3" width="6" height="6"/>
+          <rect x="1040" y="3" width="6" height="6"/>
+          <rect x="1160" y="3" width="6" height="6"/>
+          <rect x="1280" y="3" width="6" height="6"/>
+          <rect x="1360" y="3" width="6" height="6"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ═══ FILTER BAR ════════════════════════════ -->
+  <div class="filter-bar" id="filter-bar" role="search" aria-label="Фильтр объектов">
+    <div class="filter-bar-inner">
+
+      <!-- Группа фильтров -->
+      <div class="filter-groups" role="group" aria-label="Параметры фильтрации">
+
+        <!-- Регион -->
+        <div class="filter-group" id="filter-region-group">
+          <span class="filter-group-label" id="label-region">Регион</span>
+          <div class="filter-chips" role="group" aria-labelledby="label-region">
+            <button class="filter-chip filter-chip--active" data-filter="region" data-value="all" id="r-all">Все</button>
+            <button class="filter-chip" data-filter="region" data-value="tashkent"   id="r-tashkent">Ташкент</button>
+            <button class="filter-chip" data-filter="region" data-value="samarkand"  id="r-samarkand">Самарканд</button>
+            <button class="filter-chip" data-filter="region" data-value="bukhara"    id="r-bukhara">Бухара</button>
+            <button class="filter-chip" data-filter="region" data-value="khorezm"    id="r-khorezm">Хорезм</button>
+            <button class="filter-chip" data-filter="region" data-value="fergana"    id="r-fergana">Фергана</button>
+          </div>
+        </div>
+
+        <div class="filter-bar-sep" aria-hidden="true"></div>
+
+        <!-- Категория -->
+        <div class="filter-group" id="filter-stars-group">
+          <span class="filter-group-label" id="label-stars">Категория</span>
+          <div class="filter-chips" role="group" aria-labelledby="label-stars">
+            <button class="filter-chip filter-chip--active" data-filter="stars" data-value="all" id="s-all">Все</button>
+            <button class="filter-chip" data-filter="stars" data-value="5"  id="s-5">5★</button>
+            <button class="filter-chip" data-filter="stars" data-value="4"  id="s-4">4★</button>
+            <button class="filter-chip" data-filter="stars" data-value="3"  id="s-3">3★</button>
+          </div>
+        </div>
+
+        <div class="filter-bar-sep" aria-hidden="true"></div>
+
+        <!-- Модель -->
+        <div class="filter-group" id="filter-model-group">
+          <span class="filter-group-label" id="label-model">Модель</span>
+          <div class="filter-chips" role="group" aria-labelledby="label-model">
+            <button class="filter-chip filter-chip--active" data-filter="model" data-value="all"       id="m-all">Все</button>
+            <button class="filter-chip" data-filter="model" data-value="sale"       id="m-sale">Продажа</button>
+            <button class="filter-chip" data-filter="model" data-value="management" id="m-mgmt">Управление</button>
+            <button class="filter-chip" data-filter="model" data-value="franchise"  id="m-fran">Франчайзинг</button>
+            <button class="filter-chip" data-filter="model" data-value="jv"         id="m-jv">СП&nbsp;/ JV</button>
+          </div>
+        </div>
+
+        <div class="filter-bar-sep" aria-hidden="true"></div>
+
+        <!-- IRI -->
+        <div class="filter-group" id="filter-iri-group">
+          <span class="filter-group-label" id="label-iri">IRI</span>
+          <div class="filter-chips" role="group" aria-labelledby="label-iri">
+            <button class="filter-chip filter-chip--active" data-filter="iri" data-value="all" id="i-all">Все</button>
+            <button class="filter-chip" data-filter="iri" data-value="Aplus" id="i-aplus">A+</button>
+            <button class="filter-chip" data-filter="iri" data-value="A"     id="i-a">A</button>
+            <button class="filter-chip" data-filter="iri" data-value="Bplus" id="i-bplus">B+</button>
+            <button class="filter-chip" data-filter="iri" data-value="B"     id="i-b">B</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Правый блок: сброс + счётчик -->
+      <div class="filter-bar-right">
+        <button class="filter-reset" id="filter-reset" aria-label="Сбросить все фильтры">
+          Сбросить
+        </button>
+        <span class="filter-count" id="filter-count" aria-live="polite">
+          <span class="filter-count-num" id="filter-count-num">6</span> объектов
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══ CATALOG GRID ══════════════════════════ -->
+  <main class="catalog-main" id="main-content" aria-label="Список объектов">
+    <div class="catalog-section">
+      <div class="catalog-main-inner">
+
+        <!-- Сортировка -->
+        <div class="results-bar">
+          <p class="results-meta">
+            Показано: <strong id="results-shown">6</strong> из
+            <span class="results-total">156</span>
+            <span class="results-disclaimer">· иллюстративные данные</span>
+          </p>
+          <div class="sort-group" role="group" aria-label="Сортировка">
+            <span class="sort-label">Сортировать:</span>
+            <button class="sort-btn sort-btn--active" id="sort-iri">IRI</button>
+            <button class="sort-btn" id="sort-occ">Occupancy</button>
+            <button class="sort-btn" id="sort-rooms">Rooms</button>
+          </div>
+        </div>
+
+        <!-- Сетка карточек -->
+        <div class="hotel-full-grid" id="hotel-grid" role="list">
+
+          <!-- ── Карточка 1: Grand Tashkent ─── -->
+          <article class="hotel-card hotel-card--catalog appear"
+            role="listitem"
+            data-region="tashkent"
+            data-stars="5"
+            data-model="management"
+            data-iri="Aplus"
+            aria-label="Grand Tashkent Hotel — Investment Passport">
+            <a href="passport.html" class="hotel-card-link" id="card1-link">
+              <div class="hotel-card-photo-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80&fit=crop&crop=center"
+                  alt="Grand Tashkent Hotel — фасад городского бизнес-отеля 5 звёзд"
+                  class="hotel-card-photo" loading="lazy"
+                />
+                <div class="hotel-card-overlay" aria-hidden="true"></div>
+                <div class="hotel-card-iri" aria-label="Investment Readiness A+">A+</div>
+              </div>
+              <div class="hotel-card-body">
+                <div class="hotel-card-meta">
+                  <span class="hotel-card-region">Ташкент</span>
+                  <span class="hotel-card-stars" aria-label="5 звёзд">
+                    <svg width="60" height="9" viewBox="0 0 60 9" fill="none" aria-hidden="true"><g fill="#A9673E"><polygon points="5,0 6.18,3.27 10,3.27 6.9,5.31 8.09,8.59 5,6.54 1.91,8.59 3.09,5.31 0,3.27 3.82,3.27"/><polygon points="17,0 18.18,3.27 22,3.27 18.9,5.31 20.09,8.59 17,6.54 13.91,8.59 15.09,5.31 12,3.27 15.82,3.27"/><polygon points="29,0 30.18,3.27 34,3.27 30.9,5.31 32.09,8.59 29,6.54 25.91,8.59 27.09,5.31 24,3.27 27.82,3.27"/><polygon points="41,0 42.18,3.27 46,3.27 42.9,5.31 44.09,8.59 41,6.54 37.91,8.59 39.09,5.31 36,3.27 39.82,3.27"/><polygon points="53,0 54.18,3.27 58,3.27 54.9,5.31 56.09,8.59 53,6.54 49.91,8.59 51.09,5.31 48,3.27 51.82,3.27"/></g></svg>
+                  </span>
+                </div>
+                <h2 class="hotel-card-name">Grand Tashkent Hotel</h2>
+                <div class="hotel-card-kpi">
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">258</span><span class="hotel-card-kpi-label">Rooms</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">74%</span><span class="hotel-card-kpi-label">Occupancy</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">$128</span><span class="hotel-card-kpi-label">ADR</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">18%</span><span class="hotel-card-kpi-label">IRR</span></div>
+                </div>
+                <div class="hotel-card-footer">
+                  <span class="hotel-card-model">Управление</span>
+                  <span class="hotel-card-cta">Открыть паспорт &rarr;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ── Карточка 2: Samarkand Palace ─── -->
+          <article class="hotel-card hotel-card--catalog appear"
+            role="listitem"
+            data-region="samarkand"
+            data-stars="5"
+            data-model="sale"
+            data-iri="A"
+            aria-label="Samarkand Palace — Investment Passport">
+            <a href="passport.html" class="hotel-card-link" id="card2-link">
+              <div class="hotel-card-photo-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80&fit=crop"
+                  alt="Samarkand Palace — отель 5 звёзд в историческом центре Самарканда"
+                  class="hotel-card-photo" loading="lazy"
+                />
+                <div class="hotel-card-overlay" aria-hidden="true"></div>
+                <div class="hotel-card-iri hotel-card-iri--a" aria-label="Investment Readiness A">A</div>
+              </div>
+              <div class="hotel-card-body">
+                <div class="hotel-card-meta">
+                  <span class="hotel-card-region">Самарканд</span>
+                  <span class="hotel-card-stars" aria-label="5 звёзд">
+                    <svg width="60" height="9" viewBox="0 0 60 9" fill="none" aria-hidden="true"><g fill="#A9673E"><polygon points="5,0 6.18,3.27 10,3.27 6.9,5.31 8.09,8.59 5,6.54 1.91,8.59 3.09,5.31 0,3.27 3.82,3.27"/><polygon points="17,0 18.18,3.27 22,3.27 18.9,5.31 20.09,8.59 17,6.54 13.91,8.59 15.09,5.31 12,3.27 15.82,3.27"/><polygon points="29,0 30.18,3.27 34,3.27 30.9,5.31 32.09,8.59 29,6.54 25.91,8.59 27.09,5.31 24,3.27 27.82,3.27"/><polygon points="41,0 42.18,3.27 46,3.27 42.9,5.31 44.09,8.59 41,6.54 37.91,8.59 39.09,5.31 36,3.27 39.82,3.27"/><polygon points="53,0 54.18,3.27 58,3.27 54.9,5.31 56.09,8.59 53,6.54 49.91,8.59 51.09,5.31 48,3.27 51.82,3.27"/></g></svg>
+                  </span>
+                </div>
+                <h2 class="hotel-card-name">Samarkand Palace</h2>
+                <div class="hotel-card-kpi">
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">185</span><span class="hotel-card-kpi-label">Rooms</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">68%</span><span class="hotel-card-kpi-label">Occupancy</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">$115</span><span class="hotel-card-kpi-label">ADR</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">15%</span><span class="hotel-card-kpi-label">IRR</span></div>
+                </div>
+                <div class="hotel-card-footer">
+                  <span class="hotel-card-model">Продажа 100%</span>
+                  <span class="hotel-card-cta">Открыть паспорт &rarr;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ── Карточка 3: Bukhara Heritage ─── -->
+          <article class="hotel-card hotel-card--catalog appear"
+            role="listitem"
+            data-region="bukhara"
+            data-stars="4"
+            data-model="franchise"
+            data-iri="Bplus"
+            aria-label="Bukhara Heritage Hotel — Investment Passport">
+            <a href="passport.html" class="hotel-card-link" id="card3-link">
+              <div class="hotel-card-photo-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80&fit=crop"
+                  alt="Bukhara Heritage — бутик-отель в историческом квартале Бухары"
+                  class="hotel-card-photo" loading="lazy"
+                />
+                <div class="hotel-card-overlay" aria-hidden="true"></div>
+                <div class="hotel-card-iri hotel-card-iri--b" aria-label="Investment Readiness B+">B+</div>
+              </div>
+              <div class="hotel-card-body">
+                <div class="hotel-card-meta">
+                  <span class="hotel-card-region">Бухара</span>
+                  <span class="hotel-card-stars" aria-label="4 звезды">
+                    <svg width="48" height="9" viewBox="0 0 48 9" fill="none" aria-hidden="true"><g fill="#A9673E"><polygon points="5,0 6.18,3.27 10,3.27 6.9,5.31 8.09,8.59 5,6.54 1.91,8.59 3.09,5.31 0,3.27 3.82,3.27"/><polygon points="17,0 18.18,3.27 22,3.27 18.9,5.31 20.09,8.59 17,6.54 13.91,8.59 15.09,5.31 12,3.27 15.82,3.27"/><polygon points="29,0 30.18,3.27 34,3.27 30.9,5.31 32.09,8.59 29,6.54 25.91,8.59 27.09,5.31 24,3.27 27.82,3.27"/><polygon points="41,0 42.18,3.27 46,3.27 42.9,5.31 44.09,8.59 41,6.54 37.91,8.59 39.09,5.31 36,3.27 39.82,3.27"/></g></svg>
+                  </span>
+                </div>
+                <h2 class="hotel-card-name">Bukhara Heritage</h2>
+                <div class="hotel-card-kpi">
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">120</span><span class="hotel-card-kpi-label">Rooms</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">71%</span><span class="hotel-card-kpi-label">Occupancy</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">$92</span><span class="hotel-card-kpi-label">ADR</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">13%</span><span class="hotel-card-kpi-label">IRR</span></div>
+                </div>
+                <div class="hotel-card-footer">
+                  <span class="hotel-card-model">Франчайзинг</span>
+                  <span class="hotel-card-cta">Открыть паспорт &rarr;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ── Карточка 4: Khiva Silk Road ─── -->
+          <article class="hotel-card hotel-card--catalog appear"
+            role="listitem"
+            data-region="khorezm"
+            data-stars="4"
+            data-model="jv"
+            data-iri="B"
+            aria-label="Khiva Silk Road Hotel — Investment Passport">
+            <a href="passport.html" class="hotel-card-link" id="card4-link">
+              <div class="hotel-card-photo-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80&fit=crop"
+                  alt="Khiva Silk Road Hotel — отель в историческом центре Хивы, Хорезмский вилоят"
+                  class="hotel-card-photo" loading="lazy"
+                />
+                <div class="hotel-card-overlay" aria-hidden="true"></div>
+                <div class="hotel-card-iri hotel-card-iri--b" aria-label="Investment Readiness B">B</div>
+              </div>
+              <div class="hotel-card-body">
+                <div class="hotel-card-meta">
+                  <span class="hotel-card-region">Хорезм</span>
+                  <span class="hotel-card-stars" aria-label="4 звезды">
+                    <svg width="48" height="9" viewBox="0 0 48 9" fill="none" aria-hidden="true"><g fill="#A9673E"><polygon points="5,0 6.18,3.27 10,3.27 6.9,5.31 8.09,8.59 5,6.54 1.91,8.59 3.09,5.31 0,3.27 3.82,3.27"/><polygon points="17,0 18.18,3.27 22,3.27 18.9,5.31 20.09,8.59 17,6.54 13.91,8.59 15.09,5.31 12,3.27 15.82,3.27"/><polygon points="29,0 30.18,3.27 34,3.27 30.9,5.31 32.09,8.59 29,6.54 25.91,8.59 27.09,5.31 24,3.27 27.82,3.27"/><polygon points="41,0 42.18,3.27 46,3.27 42.9,5.31 44.09,8.59 41,6.54 37.91,8.59 39.09,5.31 36,3.27 39.82,3.27"/></g></svg>
+                  </span>
+                </div>
+                <h2 class="hotel-card-name">Khiva Silk Road</h2>
+                <div class="hotel-card-kpi">
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">96</span><span class="hotel-card-kpi-label">Rooms</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">63%</span><span class="hotel-card-kpi-label">Occupancy</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">$78</span><span class="hotel-card-kpi-label">ADR</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">11%</span><span class="hotel-card-kpi-label">IRR</span></div>
+                </div>
+                <div class="hotel-card-footer">
+                  <span class="hotel-card-model">Совместное предприятие</span>
+                  <span class="hotel-card-cta">Открыть паспорт &rarr;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ── Карточка 5: Fergana Grand ─── -->
+          <article class="hotel-card hotel-card--catalog appear"
+            role="listitem"
+            data-region="fergana"
+            data-stars="4"
+            data-model="management"
+            data-iri="Bplus"
+            aria-label="Fergana Grand Hotel — Investment Passport">
+            <a href="passport.html" class="hotel-card-link" id="card5-link">
+              <div class="hotel-card-photo-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?w=800&q=80&fit=crop"
+                  alt="Fergana Grand Hotel — деловой отель в центре Ферганской долины"
+                  class="hotel-card-photo" loading="lazy"
+                />
+                <div class="hotel-card-overlay" aria-hidden="true"></div>
+                <div class="hotel-card-iri hotel-card-iri--b" aria-label="Investment Readiness B+">B+</div>
+              </div>
+              <div class="hotel-card-body">
+                <div class="hotel-card-meta">
+                  <span class="hotel-card-region">Ферганская долина</span>
+                  <span class="hotel-card-stars" aria-label="4 звезды">
+                    <svg width="48" height="9" viewBox="0 0 48 9" fill="none" aria-hidden="true"><g fill="#A9673E"><polygon points="5,0 6.18,3.27 10,3.27 6.9,5.31 8.09,8.59 5,6.54 1.91,8.59 3.09,5.31 0,3.27 3.82,3.27"/><polygon points="17,0 18.18,3.27 22,3.27 18.9,5.31 20.09,8.59 17,6.54 13.91,8.59 15.09,5.31 12,3.27 15.82,3.27"/><polygon points="29,0 30.18,3.27 34,3.27 30.9,5.31 32.09,8.59 29,6.54 25.91,8.59 27.09,5.31 24,3.27 27.82,3.27"/><polygon points="41,0 42.18,3.27 46,3.27 42.9,5.31 44.09,8.59 41,6.54 37.91,8.59 39.09,5.31 36,3.27 39.82,3.27"/></g></svg>
+                  </span>
+                </div>
+                <h2 class="hotel-card-name">Fergana Grand Hotel</h2>
+                <div class="hotel-card-kpi">
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">148</span><span class="hotel-card-kpi-label">Rooms</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">67%</span><span class="hotel-card-kpi-label">Occupancy</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">$88</span><span class="hotel-card-kpi-label">ADR</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">12%</span><span class="hotel-card-kpi-label">IRR</span></div>
+                </div>
+                <div class="hotel-card-footer">
+                  <span class="hotel-card-model">Управление</span>
+                  <span class="hotel-card-cta">Открыть паспорт &rarr;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- ── Карточка 6: Tashkent City Business ─── -->
+          <article class="hotel-card hotel-card--catalog appear"
+            role="listitem"
+            data-region="tashkent"
+            data-stars="5"
+            data-model="sale"
+            data-iri="Aplus"
+            aria-label="Tashkent City Business Hotel — Investment Passport">
+            <a href="passport.html" class="hotel-card-link" id="card6-link">
+              <div class="hotel-card-photo-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800&q=80&fit=crop"
+                  alt="Tashkent City Business Hotel — современный бизнес-отель в деловом квартале"
+                  class="hotel-card-photo" loading="lazy"
+                />
+                <div class="hotel-card-overlay" aria-hidden="true"></div>
+                <div class="hotel-card-iri" aria-label="Investment Readiness A+">A+</div>
+              </div>
+              <div class="hotel-card-body">
+                <div class="hotel-card-meta">
+                  <span class="hotel-card-region">Ташкент</span>
+                  <span class="hotel-card-stars" aria-label="5 звёзд">
+                    <svg width="60" height="9" viewBox="0 0 60 9" fill="none" aria-hidden="true"><g fill="#A9673E"><polygon points="5,0 6.18,3.27 10,3.27 6.9,5.31 8.09,8.59 5,6.54 1.91,8.59 3.09,5.31 0,3.27 3.82,3.27"/><polygon points="17,0 18.18,3.27 22,3.27 18.9,5.31 20.09,8.59 17,6.54 13.91,8.59 15.09,5.31 12,3.27 15.82,3.27"/><polygon points="29,0 30.18,3.27 34,3.27 30.9,5.31 32.09,8.59 29,6.54 25.91,8.59 27.09,5.31 24,3.27 27.82,3.27"/><polygon points="41,0 42.18,3.27 46,3.27 42.9,5.31 44.09,8.59 41,6.54 37.91,8.59 39.09,5.31 36,3.27 39.82,3.27"/><polygon points="53,0 54.18,3.27 58,3.27 54.9,5.31 56.09,8.59 53,6.54 49.91,8.59 51.09,5.31 48,3.27 51.82,3.27"/></g></svg>
+                  </span>
+                </div>
+                <h2 class="hotel-card-name">Tashkent City Business</h2>
+                <div class="hotel-card-kpi">
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">312</span><span class="hotel-card-kpi-label">Rooms</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">79%</span><span class="hotel-card-kpi-label">Occupancy</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">$142</span><span class="hotel-card-kpi-label">ADR</span></div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item"><span class="hotel-card-kpi-val">21%</span><span class="hotel-card-kpi-label">IRR</span></div>
+                </div>
+                <div class="hotel-card-footer">
+                  <span class="hotel-card-model">Продажа 100%</span>
+                  <span class="hotel-card-cta">Открыть паспорт &rarr;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+        </div><!-- /.hotel-full-grid -->
+
+        <!-- Пустое состояние (скрыто по умолчанию) -->
+        <div class="empty-state" id="empty-state" aria-live="polite" hidden>
+          <p class="empty-state-title">Объекты не найдены</p>
+          <p class="empty-state-desc">Попробуйте изменить параметры фильтрации</p>
+          <button class="btn btn--outline btn--dark" id="empty-reset">Сбросить фильтры</button>
+        </div>
+
+        <!-- Load more -->
+        <div class="load-more-bar" id="load-more-bar">
+          <div class="load-more-info">
+            <span>Показано 6 из 156 объектов</span>
+            <span class="load-more-disclaimer">· иллюстративные данные</span>
+          </div>
+          <button class="btn btn--outline btn--dark load-more-btn" id="load-more-btn">
+            Показать ещё 12 объектов
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ═══ FOOTER ════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+              <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+              <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+            </svg>
+            <div class="logo-text">
+              <span class="logo-title">HIP</span>
+              <span class="logo-subtitle">Uzbekistan</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Hotel Investment Portfolio&nbsp;— официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.
+          </p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация footer">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Платформа</p>
+            <a href="about.html"             class="footer-nav-link">О системе</a>
+            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
+            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
+            <a href="registries.html"         class="footer-nav-link">Реестры</a>
+            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
+            <a href="passport.html"  class="footer-nav-link">Том II. Investment Passport</a>
+            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
+          Данные носят иллюстративный характер. Методология: STR Global / USALI / IFC.
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <a href="portfolio.html" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
+          <a href="#" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
+          <a href="#" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>

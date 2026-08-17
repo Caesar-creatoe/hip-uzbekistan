@@ -1,0 +1,149 @@
+/* ============================================================
+   HEADER.CSS — Компонент C-01 · SiteHeader
+   Hotel Investment Passport
+   ============================================================ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background-color: var(--header-bg);
+  border-bottom: var(--border-hairline-dark);
+  transition: background-color var(--transition-base);
+}
+
+/* Внутренняя обёртка — флекс на всю ширину с боковыми полями */
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  height: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+}
+
+/* ── Логотип ────────────────────────────────── */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logo-emblem {
+  flex-shrink: 0;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.logo-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink-on-dark);
+  letter-spacing: var(--tracking-wide);
+  line-height: 1;
+}
+
+.logo-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-ink-on-dark-muted);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ── Навигация ──────────────────────────────── */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-on-dark-muted);
+  text-decoration: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-subtle);
+  transition: color var(--transition-base);
+}
+.nav-link:hover {
+  color: var(--color-ink-on-dark);
+}
+
+/* ── Правый блок: язык + CTA ────────────────── */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex-shrink: 0;
+}
+
+/* Переключатель языка */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.lang-sep {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-hairline-dark);
+  user-select: none;
+}
+
+.lang-btn {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-on-dark-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  transition: color var(--transition-fast);
+  border-radius: var(--radius-subtle);
+}
+.lang-btn:hover {
+  color: var(--color-ink-on-dark);
+}
+.lang-btn--active {
+  color: var(--color-accent-teal);
+}
+
+/* ── Прозрачный хедер на самом верху ─────────── */
+.site-header--scrolled {
+  background-color: rgba(18, 33, 59, 0.97);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Адаптив ────────────────────────────────── */
+@media (max-width: 1200px) {
+  .header-inner { padding: 0 var(--grid-margin-tablet); }
+}
+
+@media (max-width: 900px) {
+  .header-nav { display: none; }
+  .header-inner { padding: 0 var(--grid-margin-mobile); }
+}

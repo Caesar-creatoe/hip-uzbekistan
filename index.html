@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Официальный инвестиционный портал гостиничного сектора Республики Узбекистан. Комитет по туризму. Стандартизированные Investment Passport для иностранных и отечественных инвесторов." />
+  <title>Hotel Investment Portfolio — Комитет по туризму Республики Узбекистан</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/hero.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       C-01 · SITE HEADER
+  ═══════════════════════════════════════════ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+
+      <a href="/" class="header-logo" aria-label="Hotel Investment Portfolio — Главная">
+        <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+          <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+          <line x1="14" y1="1" x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">HIP</span>
+          <span class="logo-subtitle">Uzbekistan</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <a href="about.html"              class="nav-link" id="nav-about">О системе</a>
+        <a href="tourism-types.html"      class="nav-link" id="nav-clusters">Виды туризма</a>
+        <a href="portfolio.html"          class="nav-link" id="nav-portfolio">Объекты</a>
+        <a href="registries.html"         class="nav-link" id="nav-registries">Реестры</a>
+        <a href="form.html"               class="nav-link" id="nav-form">Smart Form</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" id="lang-ru" aria-pressed="true">RU</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-uz" aria-pressed="false">UZ</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-en" aria-pressed="false">EN</button>
+        </div>
+        <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════
+       C-02 · HERO — Портал (не паспорт объекта)
+  ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero" aria-label="Официальный инвестиционный портал">
+
+    <div class="hero-bg" role="img" aria-label="Фасад городского 5-звёздочного отеля">
+      <!--
+        PLACEHOLDER: Для боевого запуска заменить на официальное фото
+        Комитета по туризму (конкретный объект или репрезентативный кадр страны).
+        Текущее фото: Ethan Hu / Unsplash (Unsplash License — free for commercial use)
+        Описание: Фасад городского отеля класса люкс в ночной подсветке
+        URL: https://unsplash.com/photos/1542314831-068cd1dbfeeb
+      -->
+      <img
+        src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1920&q=85&fit=crop&crop=center"
+        alt="Grand urban luxury hotel facade at night — placeholder for official Uzbekistan hotel photography"
+        class="hero-photo"
+      />
+      <div class="hero-overlay-base" aria-hidden="true"></div>
+      <div class="hero-overlay-text" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="kicker hero-kicker">
+        КОМИТЕТ ПО ТУРИЗМУ&nbsp;·&nbsp;РЕСПУБЛИКА УЗБЕКИСТАН
+      </p>
+      <h1 class="hero-title">
+        Hotel Investment<br />Portfolio
+      </h1>
+      <p class="hero-subtitle">
+        Официальная цифровая платформа стандартизированных
+        инвестиционных паспортов гостиничных объектов&nbsp;—
+        для международных инвесторов, операторов и фондов
+      </p>
+      <div class="hero-cta-group">
+        <a href="#portfolio" class="btn btn--primary btn--lg" id="hero-cta-primary">
+          Смотреть объекты
+        </a>
+        <a href="#about" class="btn btn--outline btn--lg" id="hero-cta-secondary">
+          О системе
+        </a>
+      </div>
+      <p class="hero-photo-credit">
+        Photo: Junlang Huang&nbsp;/ Unsplash&nbsp;— placeholder for production photography
+      </p>
+    </div>
+
+    <div class="hero-ornament" aria-hidden="true">
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+        <rect x="0.5"  y="0.5"  width="119" height="119" stroke="white" stroke-opacity="0.18"/>
+        <rect x="14.5" y="14.5" width="91"  height="91"  stroke="white" stroke-opacity="0.12"/>
+        <rect x="28.5" y="28.5" width="63"  height="63"  stroke="white" stroke-opacity="0.08"/>
+        <line x1="60" y1="0"   x2="60" y2="30"  stroke="white" stroke-opacity="0.18"/>
+        <line x1="60" y1="90"  x2="60" y2="120" stroke="white" stroke-opacity="0.18"/>
+        <line x1="0"  y1="60"  x2="30" y2="60"  stroke="white" stroke-opacity="0.18"/>
+        <line x1="90" y1="60"  x2="120" y2="60" stroke="white" stroke-opacity="0.18"/>
+      </svg>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       ПЛАТФОРМЕННЫЕ KPI — 4 показателя системы
+       (не показатели конкретного отеля)
+  ═══════════════════════════════════════════ -->
+  <section class="platform-stats" id="about" aria-label="Показатели платформы">
+    <div class="platform-stats-inner">
+
+      <div class="pstat-block appear" role="listitem" aria-label="Объектов в базе: 150 плюс">
+        <div class="pstat-number js-counter" data-target="150" data-suffix="+">150+</div>
+        <div class="pstat-label">ОБЪЕКТОВ В БАЗЕ</div>
+        <div class="pstat-note">Гостиничных объектов на стадии оценки и публикации</div>
+      </div>
+
+      <div class="pstat-block appear" role="listitem" aria-label="14 регионов охвачено">
+        <div class="pstat-number js-counter" data-target="14" data-suffix="">14</div>
+        <div class="pstat-label">РЕГИОНОВ СТРАНЫ</div>
+        <div class="pstat-note">Все вилояты и г. Ташкент охвачены платформой</div>
+      </div>
+
+      <div class="pstat-block appear" role="listitem" aria-label="Инвестиционный потенциал: 4.2 миллиарда долларов">
+        <div class="pstat-number pstat-number--sm">$4.2B</div>
+        <div class="pstat-label">ИНВЕСТ. ПОТЕНЦИАЛ</div>
+        <div class="pstat-note">Совокупная оценка портфеля по методологии IFC/EBRD</div>
+      </div>
+
+      <div class="pstat-block appear" role="listitem" aria-label="250 полей в Smart Form">
+        <div class="pstat-number js-counter" data-target="250" data-suffix="+">250+</div>
+        <div class="pstat-label">ПОЛЕЙ SMART FORM</div>
+        <div class="pstat-note">Структурированных параметров для оценки каждого объекта</div>
+      </div>
+
+    </div>
+
+    <!-- Сноска об иллюстративном характере данных -->
+    <p class="platform-stats-footnote">
+      Данные носят иллюстративный характер.
+      Источник: предварительная оценка Комитета по туризму Республики Узбекистан, 2026.
+      Фактические показатели уточняются по мере наполнения базы данных платформы.
+    </p>
+
+  </section>
+
+
+
+  <!-- ═══════════════════════════════════════════
+       КАК РАБОТАЕТ СИСТЕМА — 4 шага
+  ═══════════════════════════════════════════ -->
+  <section class="process-section" id="how-it-works" aria-label="Как работает система">
+    <div class="process-inner">
+
+      <div class="process-header appear">
+        <p class="kicker">КАК РАБОТАЕТ СИСТЕМА</p>
+        <h2 class="process-title">От данных гостиницы&nbsp;—<br />к паспорту инвестора</h2>
+      </div>
+
+      <ol class="process-steps" role="list">
+
+        <li class="process-step appear">
+          <div class="step-num" aria-hidden="true">01</div>
+          <div class="step-body">
+            <h3 class="step-title">Заполнение Smart Form</h3>
+            <p class="step-desc">
+              Гостиница вносит данные в Smart Investment Form (250+ полей):
+              характеристики объекта, финансовые показатели, правовой статус,
+              инфраструктуру и фотоматериалы. Система автоматически проверяет
+              полноту и качество данных.
+            </p>
+          </div>
+        </li>
+
+        <li class="process-step appear">
+          <div class="step-num" aria-hidden="true">02</div>
+          <div class="step-body">
+            <h3 class="step-title">Расчёт KPI и Investment Readiness Index</h3>
+            <p class="step-desc">
+              На основе введённых данных платформа автоматически рассчитывает
+              ключевые гостиничные KPI (ADR, RevPAR, Occupancy, EBITDA, IRR)
+              и присваивает объекту рейтинг инвестиционной готовности
+              по шкале A+&nbsp;/ A&nbsp;/ B+&nbsp;/ B&nbsp;/ C.
+            </p>
+          </div>
+        </li>
+
+        <li class="process-step appear">
+          <div class="step-num" aria-hidden="true">03</div>
+          <div class="step-body">
+            <h3 class="step-title">Формирование Investment Passport</h3>
+            <p class="step-desc">
+              Система автоматически формирует стандартизированный
+              Hotel Investment Passport (25–30 страниц) в формате PDF/Word
+              в едином дизайне — по уровню качества JLL Hotels&nbsp;&amp;&nbsp;Hospitality,
+              без ручной вёрстки.
+            </p>
+          </div>
+        </li>
+
+        <li class="process-step appear">
+          <div class="step-num" aria-hidden="true">04</div>
+          <div class="step-body">
+            <h3 class="step-title">Публикация на платформе</h3>
+            <p class="step-desc">
+              Паспорт размещается в общем каталоге платформы и становится
+              доступен институциональным инвесторам, международным операторам
+              (Marriott, Hyatt, Accor) и банкам развития.
+              Обновление — не реже одного раза в шесть месяцев.
+            </p>
+          </div>
+        </li>
+
+      </ol>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       МЕТОДОЛОГИЯ — 6 принципов Тома I
+  ═══════════════════════════════════════════ -->
+  <section class="methodology-section" id="methodology" aria-label="Методология — принципы Тома I">
+    <div class="methodology-inner">
+
+      <div class="methodology-header appear">
+        <p class="kicker kicker--light">МЕТОДОЛОГИЯ&nbsp;·&nbsp;ТОМ&nbsp;I</p>
+        <div class="methodology-title-block">
+          <h2 class="methodology-title">
+            Методические рекомендации по подготовке инвестиционного портфеля
+          </h2>
+          <p class="methodology-desc">
+            Стандарт разработан в соответствии с практикой Всемирного банка,
+            IFC, EBRD и международных консультантов, адаптирован к законодательству
+            и инвестиционной практике Республики Узбекистан.
+          </p>
+        </div>
+      </div>
+
+      <div class="principles-grid">
+
+        <article class="principle-item appear">
+          <div class="principle-num" aria-hidden="true">I</div>
+          <div class="principle-body">
+            <h3 class="principle-title">Полнота</h3>
+            <p class="principle-desc">
+              Информация обеспечивает потенциальному инвестору
+              всестороннее представление об объекте — включая юридические,
+              финансовые и операционные аспекты.
+            </p>
+          </div>
+        </article>
+
+        <article class="principle-item appear">
+          <div class="principle-num" aria-hidden="true">II</div>
+          <div class="principle-body">
+            <h3 class="principle-title">Достоверность</h3>
+            <p class="principle-desc">
+              Все сведения подтверждаются официальными документами:
+              финансовой отчётностью, правоустанавливающими документами
+              и данными органов статистики.
+            </p>
+          </div>
+        </article>
+
+        <article class="principle-item appear">
+          <div class="principle-num" aria-hidden="true">III</div>
+          <div class="principle-body">
+            <h3 class="principle-title">Актуальность</h3>
+            <p class="principle-desc">
+              Информация обновляется не реже одного раза в шесть месяцев
+              либо незамедлительно при возникновении существенных изменений
+              в характеристиках объекта.
+            </p>
+          </div>
+        </article>
+
+        <article class="principle-item appear">
+          <div class="principle-num" aria-hidden="true">IV</div>
+          <div class="principle-body">
+            <h3 class="principle-title">Сопоставимость</h3>
+            <p class="principle-desc">
+              Все гостиничные объекты представляются по единой структуре
+              и единым правилам заполнения, что обеспечивает
+              корректное сравнение активов между собой.
+            </p>
+          </div>
+        </article>
+
+        <article class="principle-item appear">
+          <div class="principle-num" aria-hidden="true">V</div>
+          <div class="principle-body">
+            <h3 class="principle-title">Прозрачность</h3>
+            <p class="principle-desc">
+              Не допускается сокрытие сведений, способных повлиять
+              на инвестиционное решение. Требования к раскрытию информации
+              соответствуют стандартам IFC и EBRD.
+            </p>
+          </div>
+        </article>
+
+        <article class="principle-item appear">
+          <div class="principle-num" aria-hidden="true">VI</div>
+          <div class="principle-body">
+            <h3 class="principle-title">Проверяемость</h3>
+            <p class="principle-desc">
+              Все ключевые показатели имеют подтверждающие документы
+              и доступны для независимой верификации инвестором
+              или уполномоченным аудитором.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       ВИТРИНА ОБЪЕКТОВ — 3 карточки каталога
+  ═══════════════════════════════════════════ -->
+  <section class="catalog-preview" id="portfolio" aria-label="Витрина объектов">
+    <div class="catalog-inner">
+
+      <div class="catalog-header appear">
+        <div class="catalog-header-left">
+          <p class="kicker">ОБЪЕКТЫ НА ПЛАТФОРМЕ</p>
+          <h2 class="catalog-title">Инвестиционный портфель</h2>
+        </div>
+        <a href="portfolio.html" class="btn btn--outline btn--dark" id="catalog-view-all">
+          Смотреть весь каталог
+        </a>
+      </div>
+
+      <!-- Асимметричная сетка: 1 большая карточка + 2 малых -->
+      <div class="catalog-grid">
+
+        <!-- Карточка 1 — крупная (7 / 12 колонок) -->
+        <article class="hotel-card hotel-card--large appear" aria-label="Grand Tashkent Hotel — Investment Passport">
+          <a href="passport.html" class="hotel-card-link" id="card-grand-tashkent">
+            <div class="hotel-card-photo-wrap">
+              <!--
+                Photo: GooDriss Too / Unsplash
+                https://unsplash.com/photos/illuminated-building-with-parked-cars-at-night-7ejY9A5nNQw
+              -->
+              <img
+                src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=900&q=80&fit=crop"
+                alt="Grand Tashkent Hotel — городской бизнес-отель 5 звёзд, Ташкент"
+                class="hotel-card-photo"
+                loading="lazy"
+              />
+              <div class="hotel-card-overlay" aria-hidden="true"></div>
+              <div class="hotel-card-iri" aria-label="Investment Readiness: A плюс">A+</div>
+            </div>
+            <div class="hotel-card-body">
+              <div class="hotel-card-meta">
+                <span class="hotel-card-region">Ташкент</span>
+                <span class="hotel-card-stars" aria-label="5 звёзд">
+                  <svg width="60" height="10" viewBox="0 0 60 10" fill="none" aria-hidden="true">
+                    <g fill="#A9673E">
+                      <polygon points="5,0 6.18,3.64 10,3.64 6.9,5.9 8.09,9.54 5,7.28 1.91,9.54 3.09,5.9 0,3.64 3.82,3.64"/>
+                      <polygon points="17,0 18.18,3.64 22,3.64 18.9,5.9 20.09,9.54 17,7.28 13.91,9.54 15.09,5.9 12,3.64 15.82,3.64"/>
+                      <polygon points="29,0 30.18,3.64 34,3.64 30.9,5.9 32.09,9.54 29,7.28 25.91,9.54 27.09,5.9 24,3.64 27.82,3.64"/>
+                      <polygon points="41,0 42.18,3.64 46,3.64 42.9,5.9 44.09,9.54 41,7.28 37.91,9.54 39.09,5.9 36,3.64 39.82,3.64"/>
+                      <polygon points="53,0 54.18,3.64 58,3.64 54.9,5.9 56.09,9.54 53,7.28 49.91,9.54 51.09,5.9 48,3.64 51.82,3.64"/>
+                    </g>
+                  </svg>
+                </span>
+              </div>
+              <h3 class="hotel-card-name">Grand Tashkent Hotel</h3>
+              <div class="hotel-card-kpi">
+                <div class="hotel-card-kpi-item">
+                  <span class="hotel-card-kpi-val">258</span>
+                  <span class="hotel-card-kpi-label">Rooms</span>
+                </div>
+                <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                <div class="hotel-card-kpi-item">
+                  <span class="hotel-card-kpi-val">74%</span>
+                  <span class="hotel-card-kpi-label">Occupancy</span>
+                </div>
+                <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                <div class="hotel-card-kpi-item">
+                  <span class="hotel-card-kpi-val">$128</span>
+                  <span class="hotel-card-kpi-label">ADR</span>
+                </div>
+              </div>
+              <div class="hotel-card-footer">
+                <span class="hotel-card-model">Управление</span>
+                <span class="hotel-card-cta">Открыть паспорт &rarr;</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Правая колонка: 2 малых карточки -->
+        <div class="catalog-col-right">
+
+          <!-- Карточка 2 -->
+          <article class="hotel-card hotel-card--small appear" aria-label="Samarkand Palace — Investment Passport">
+            <a href="passport.html" class="hotel-card-link" id="card-samarkand">
+              <div class="hotel-card-photo-wrap">
+                <!--
+                  Photo: Bhanu Singh / Unsplash
+                  https://unsplash.com/photos/modern-white-hotel-building-against-clear-blue-sky-Pj7j384f23U
+                -->
+                <img
+                  src="https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?w=700&q=80&fit=crop"
+                  alt="Samarkand Palace Hotel — исторический центр Самарканда, 5 звёзд"
+                  class="hotel-card-photo"
+                  loading="lazy"
+                />
+                <div class="hotel-card-overlay" aria-hidden="true"></div>
+                <div class="hotel-card-iri hotel-card-iri--sm" aria-label="Investment Readiness: A">A</div>
+              </div>
+              <div class="hotel-card-body">
+                <div class="hotel-card-meta">
+                  <span class="hotel-card-region">Самарканд</span>
+                  <span class="hotel-card-stars" aria-label="5 звёзд">
+                    <svg width="60" height="10" viewBox="0 0 60 10" fill="none" aria-hidden="true">
+                      <g fill="#A9673E">
+                        <polygon points="5,0 6.18,3.64 10,3.64 6.9,5.9 8.09,9.54 5,7.28 1.91,9.54 3.09,5.9 0,3.64 3.82,3.64"/>
+                        <polygon points="17,0 18.18,3.64 22,3.64 18.9,5.9 20.09,9.54 17,7.28 13.91,9.54 15.09,5.9 12,3.64 15.82,3.64"/>
+                        <polygon points="29,0 30.18,3.64 34,3.64 30.9,5.9 32.09,9.54 29,7.28 25.91,9.54 27.09,5.9 24,3.64 27.82,3.64"/>
+                        <polygon points="41,0 42.18,3.64 46,3.64 42.9,5.9 44.09,9.54 41,7.28 37.91,9.54 39.09,5.9 36,3.64 39.82,3.64"/>
+                        <polygon points="53,0 54.18,3.64 58,3.64 54.9,5.9 56.09,9.54 53,7.28 49.91,9.54 51.09,5.9 48,3.64 51.82,3.64"/>
+                      </g>
+                    </svg>
+                  </span>
+                </div>
+                <h3 class="hotel-card-name">Samarkand Palace</h3>
+                <div class="hotel-card-kpi hotel-card-kpi--compact">
+                  <div class="hotel-card-kpi-item">
+                    <span class="hotel-card-kpi-val">185</span>
+                    <span class="hotel-card-kpi-label">Rooms</span>
+                  </div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item">
+                    <span class="hotel-card-kpi-val">68%</span>
+                    <span class="hotel-card-kpi-label">Occupancy</span>
+                  </div>
+                </div>
+                <div class="hotel-card-footer">
+                  <span class="hotel-card-model">Продажа 100%</span>
+                  <span class="hotel-card-cta">Паспорт &rarr;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Карточка 3 -->
+          <article class="hotel-card hotel-card--small appear" aria-label="Bukhara Heritage Hotel — Investment Passport">
+            <a href="passport.html" class="hotel-card-link" id="card-bukhara">
+              <div class="hotel-card-photo-wrap">
+                <!--
+                  Photo: Tanya Barrow / Unsplash
+                  https://unsplash.com/photos/the-londoner-hotel-entrance-with-union-jack-flag-cfH3E93Sq6w
+                -->
+                <img
+                  src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=700&q=80&fit=crop"
+                  alt="Bukhara Heritage Hotel — бутик-отель 4 звезды в историческом центре Бухары"
+                  class="hotel-card-photo"
+                  loading="lazy"
+                />
+                <div class="hotel-card-overlay" aria-hidden="true"></div>
+                <div class="hotel-card-iri hotel-card-iri--sm" aria-label="Investment Readiness: B плюс">B+</div>
+              </div>
+              <div class="hotel-card-body">
+                <div class="hotel-card-meta">
+                  <span class="hotel-card-region">Бухара</span>
+                  <span class="hotel-card-stars" aria-label="4 звезды">
+                    <svg width="48" height="10" viewBox="0 0 48 10" fill="none" aria-hidden="true">
+                      <g fill="#A9673E">
+                        <polygon points="5,0 6.18,3.64 10,3.64 6.9,5.9 8.09,9.54 5,7.28 1.91,9.54 3.09,5.9 0,3.64 3.82,3.64"/>
+                        <polygon points="17,0 18.18,3.64 22,3.64 18.9,5.9 20.09,9.54 17,7.28 13.91,9.54 15.09,5.9 12,3.64 15.82,3.64"/>
+                        <polygon points="29,0 30.18,3.64 34,3.64 30.9,5.9 32.09,9.54 29,7.28 25.91,9.54 27.09,5.9 24,3.64 27.82,3.64"/>
+                        <polygon points="41,0 42.18,3.64 46,3.64 42.9,5.9 44.09,9.54 41,7.28 37.91,9.54 39.09,5.9 36,3.64 39.82,3.64"/>
+                      </g>
+                    </svg>
+                  </span>
+                </div>
+                <h3 class="hotel-card-name">Bukhara Heritage</h3>
+                <div class="hotel-card-kpi hotel-card-kpi--compact">
+                  <div class="hotel-card-kpi-item">
+                    <span class="hotel-card-kpi-val">120</span>
+                    <span class="hotel-card-kpi-label">Rooms</span>
+                  </div>
+                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
+                  <div class="hotel-card-kpi-item">
+                    <span class="hotel-card-kpi-val">71%</span>
+                    <span class="hotel-card-kpi-label">Occupancy</span>
+                  </div>
+                </div>
+                <div class="hotel-card-footer">
+                  <span class="hotel-card-model">Франчайзинг</span>
+                  <span class="hotel-card-cta">Паспорт &rarr;</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+        </div><!-- /.catalog-col-right -->
+
+      </div><!-- /.catalog-grid -->
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       CTA — Smart Investment Form
+  ═══════════════════════════════════════════ -->
+  <section class="form-cta-section" id="submit" aria-label="Разместить объект на платформе">
+    <div class="form-cta-inner">
+
+      <!-- Орнамент-акцент -->
+      <div class="form-cta-ornament" aria-hidden="true">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <rect x="0.5" y="0.5" width="79" height="79" stroke="#1E6F7C" stroke-opacity="0.4"/>
+          <rect x="10.5" y="10.5" width="59" height="59" stroke="#1E6F7C" stroke-opacity="0.25"/>
+          <rect x="20.5" y="20.5" width="39" height="39" stroke="#1E6F7C" stroke-opacity="0.15"/>
+        </svg>
+      </div>
+
+      <div class="form-cta-content appear">
+        <p class="kicker kicker--light">ТОМ III&nbsp;·&nbsp;SMART INVESTMENT FORM</p>
+        <h2 class="form-cta-title">
+          Ваш объект ещё не представлен<br />на платформе?
+        </h2>
+        <p class="form-cta-desc">
+          Заполните Smart Investment Form&nbsp;— единую форму ввода данных
+          на 250+ полей. Система автоматически рассчитает KPI, присвоит
+          Investment Readiness Index и сформирует готовый паспорт
+          в формате PDF для публикации.
+        </p>
+        <div class="form-cta-actions">
+          <a href="form.html" class="btn btn--teal btn--lg" id="form-cta-primary">
+            Заполнить Smart Form
+          </a>
+          <a href="#methodology" class="btn btn--ghost btn--lg" id="form-cta-secondary">
+            Читать методологию
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="site-footer" id="contact" role="contentinfo">
+    <div class="footer-inner">
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="header-logo footer-logo" aria-label="Главная">
+            <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+              <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+              <line x1="14" y1="1" x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+            </svg>
+            <div class="logo-text">
+              <span class="logo-title">HIP</span>
+              <span class="logo-subtitle">Uzbekistan</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Hotel Investment Portfolio&nbsp;— официальная цифровая платформа
+            инвестиционных паспортов гостиничных объектов
+            Республики Узбекистан.
+          </p>
+        </div>
+
+        <nav class="footer-nav-grid" aria-label="Навигация footer">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Платформа</p>
+            <a href="about.html"             class="footer-nav-link">О системе</a>
+            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
+            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
+            <a href="registries.html"         class="footer-nav-link">Реестры</a>
+            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
+            <a href="passport.html"  class="footer-nav-link">Том II. Investment Passport</a>
+            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <p class="footer-contact-item">Ташкент, Узбекистан</p>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан.
+          Версия 1.0 (Проект).&nbsp;
+          Данные носят иллюстративный характер. Методология соответствует стандартам STR Global&nbsp;/ USALI&nbsp;/ IFC.
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <a href="/" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
+          <a href="/uz" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
+          <a href="/en" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

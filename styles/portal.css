@@ -1,0 +1,871 @@
+/* ============================================================
+   PORTAL.CSS — Все секции главной страницы портала
+   Hotel Investment Portfolio · Комитет по туризму РУз
+   ============================================================
+   Sections:
+     1. Platform Stats (тёмный, 4 показателя платформы)
+     2. Process Section (пергамент, 4 шага)
+     3. Methodology Section (тёмный, 6 принципов Тома I)
+     4. Catalog Preview (пергамент, асимметричные карточки)
+     5. Form CTA (тёмный с бирюзовым акцентом)
+     6. Site Footer (тёмный)
+   ============================================================ */
+
+
+/* ═══════════════════════════════════════════════════════════
+   1. PLATFORM STATS — 4 показателя платформы
+   ═══════════════════════════════════════════════════════════ */
+
+.platform-stats {
+  background-color: var(--color-bg-dark);
+  border-bottom: var(--border-hairline-dark);
+}
+
+.platform-stats-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  border-top: var(--border-hairline-dark);
+}
+
+.pstat-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-12) var(--space-10) var(--space-10);
+  border-right: var(--border-hairline-dark);
+  position: relative;
+}
+.pstat-block:first-child {
+  padding-left: var(--grid-margin-desktop);
+}
+.pstat-block:last-child {
+  border-right: none;
+  padding-right: var(--grid-margin-desktop);
+}
+
+/* Bирюзовая черта в первом блоке */
+.pstat-block:first-child::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--grid-margin-desktop);
+  width: 32px;
+  height: 2px;
+  background-color: var(--color-accent-teal);
+}
+
+.pstat-number {
+  font-family: var(--font-mono);
+  font-size: clamp(36px, 3.8vw, 60px);
+  font-weight: var(--fw-medium);
+  color: var(--color-ink-on-dark);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Для текстовых значений ($4.2B) — чуть меньший размер */
+.pstat-number--sm {
+  font-size: clamp(32px, 3.2vw, 52px);
+}
+
+.pstat-label {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-accent-teal);
+  line-height: 1;
+  margin-top: var(--space-1);
+}
+
+.pstat-note {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(155, 170, 187, 0.65);
+  line-height: 1.45;
+  font-weight: var(--fw-regular);
+  max-width: 28ch;
+}
+
+/* Сноска об иллюстративном характере данных */
+.platform-stats-footnote {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-5) var(--grid-margin-desktop);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(155, 170, 187, 0.45);
+  line-height: 1.5;
+  border-top: var(--border-hairline-dark);
+}
+
+/* Адаптив платформенных KPI */
+@media (max-width: 1200px) {
+  .pstat-block:first-child  { padding-left: var(--grid-margin-tablet); }
+  .pstat-block:last-child   { padding-right: var(--grid-margin-tablet); }
+  .pstat-block:first-child::before { left: var(--grid-margin-tablet); }
+  .pstat-block { padding: var(--space-10) var(--space-8) var(--space-8); }
+}
+
+@media (max-width: 800px) {
+  .platform-stats-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pstat-block { padding: var(--space-8) var(--space-6); }
+  .pstat-block:first-child  { padding-left: var(--grid-margin-mobile); }
+  .pstat-block:last-child   { padding-right: var(--grid-margin-mobile); }
+  .pstat-block:first-child::before { left: var(--grid-margin-mobile); }
+  .pstat-block:nth-child(2) { border-right: none; }
+  .pstat-block:nth-child(3) { border-right: var(--border-hairline-dark); border-top: var(--border-hairline-dark); }
+  .pstat-block:nth-child(4) { border-right: none; border-top: var(--border-hairline-dark); }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   2. PROCESS SECTION — «Как работает система»
+   ═══════════════════════════════════════════════════════════ */
+
+.process-section {
+  background-color: var(--color-bg-parchment);
+  padding: var(--space-20) 0;
+  border-bottom: var(--border-hairline);
+}
+
+.process-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+}
+
+.process-header {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: var(--space-16);
+  align-items: start;
+  margin-bottom: var(--space-16);
+  padding-bottom: var(--space-12);
+  border-bottom: var(--border-hairline);
+}
+
+.process-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl));
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Шаги */
+.process-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-left: var(--border-hairline);
+}
+
+.process-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-8) var(--space-8) var(--space-8) var(--space-8);
+  border-right: var(--border-hairline);
+  position: relative;
+}
+
+/* Номер шага */
+.step-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-medium);
+  color: var(--color-hairline);
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  transition: color var(--transition-base);
+}
+
+.process-step:hover .step-num {
+  color: var(--color-accent-teal);
+}
+
+.step-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+}
+
+.step-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+  line-height: var(--lh-body);
+}
+
+@media (max-width: 1200px) {
+  .process-inner { padding: 0 var(--grid-margin-tablet); }
+  .process-header { grid-template-columns: 1fr; gap: var(--space-6); }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .process-step:nth-child(2) { border-right: none; }
+  .process-step:nth-child(3),
+  .process-step:nth-child(4) { border-top: var(--border-hairline); }
+  .process-step:nth-child(4) { border-right: none; }
+}
+
+@media (max-width: 680px) {
+  .process-inner { padding: 0 var(--grid-margin-mobile); }
+  .process-steps { grid-template-columns: 1fr; border-left: none; }
+  .process-step { border-right: none; border-top: var(--border-hairline); padding: var(--space-6) 0; }
+  .process-step:last-child { border-bottom: var(--border-hairline); }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   3. METHODOLOGY — 6 принципов Тома I
+   ═══════════════════════════════════════════════════════════ */
+
+.methodology-section {
+  background-color: var(--color-bg-dark);
+  padding: var(--space-20) 0;
+  border-bottom: var(--border-hairline-dark);
+}
+
+.methodology-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+}
+
+.methodology-header {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  gap: var(--space-16);
+  align-items: start;
+  margin-bottom: var(--space-16);
+  padding-bottom: var(--space-12);
+  border-bottom: var(--border-hairline-dark);
+}
+
+.methodology-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-xl), 2.4vw, var(--text-2xl));
+  font-weight: var(--fw-bold);
+  color: var(--color-ink-on-dark);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+}
+
+.methodology-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink-on-dark-muted);
+  line-height: var(--lh-body);
+  max-width: 64ch;
+  margin-top: var(--space-4);
+}
+
+/* Сетка принципов — 2 колонки × 3 строки */
+.principles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.principle-item {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+  padding: var(--space-8) var(--space-6);
+  border-top: var(--border-hairline-dark);
+  border-right: var(--border-hairline-dark);
+  transition: background-color var(--transition-base);
+}
+.principle-item:nth-child(even) {
+  border-right: none;
+  padding-right: 0;
+}
+.principle-item:nth-child(odd) {
+  padding-left: 0;
+}
+/* Нет фона при ховере — только легкий tint */
+.principle-item:hover {
+  background-color: rgba(30, 111, 124, 0.05);
+}
+
+/* Римские цифры */
+.principle-num {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-accent-teal);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+  padding-top: 3px;
+  letter-spacing: var(--tracking-tight);
+}
+
+.principle-title {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink-on-dark);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-2);
+}
+
+.principle-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink-on-dark-muted);
+  line-height: var(--lh-body);
+}
+
+@media (max-width: 1200px) {
+  .methodology-inner { padding: 0 var(--grid-margin-tablet); }
+  .methodology-header { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+
+@media (max-width: 680px) {
+  .methodology-inner { padding: 0 var(--grid-margin-mobile); }
+  .principles-grid { grid-template-columns: 1fr; }
+  .principle-item { border-right: none; padding: var(--space-6) 0; }
+  .principle-item:nth-child(even) { padding-right: 0; padding-left: 0; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   4. CATALOG PREVIEW — витрина объектов (асимметричная)
+   ═══════════════════════════════════════════════════════════ */
+
+.catalog-preview {
+  background-color: var(--color-bg-parchment);
+  padding: var(--space-20) 0;
+  border-bottom: var(--border-hairline);
+}
+
+.catalog-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+}
+
+/* Заголовок с CTA справа */
+.catalog-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+  padding-bottom: var(--space-8);
+  border-bottom: var(--border-hairline);
+}
+
+.catalog-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 2.8vw, var(--text-3xl));
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+  margin-top: var(--space-3);
+}
+
+/* Outline кнопка на пергаментном фоне */
+.btn--dark {
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+  background: transparent;
+}
+.btn--dark:hover {
+  background-color: var(--color-ink);
+  color: var(--color-ink-on-dark);
+}
+
+/* Асимметричная сетка: большая карточка слева (7 col) + 2 малых справа (5 col) */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: 58.33% 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.catalog-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── HOTEL CARD ──────────────────────────────── */
+.hotel-card {
+  border: var(--border-hairline);
+  border-radius: var(--radius-none);  /* Без скруглений — только hairline */
+  overflow: hidden;
+  background-color: var(--color-bg-white-pure);
+  transition: border-color var(--transition-base);
+}
+.hotel-card:hover {
+  border-color: var(--color-ink-muted);
+}
+
+.hotel-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+/* Фото-обёртка */
+.hotel-card-photo-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.hotel-card--large .hotel-card-photo-wrap {
+  height: 340px;
+}
+.hotel-card--small .hotel-card-photo-wrap {
+  height: 200px;
+}
+
+.hotel-card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  /* Увеличение при ховере — не исчезновение */
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hotel-card:hover .hotel-card-photo {
+  transform: scale(1.04);
+}
+
+/* Тонкое затемнение — только для читаемости бейджа */
+.hotel-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(18, 33, 59, 0.30) 100%
+  );
+  pointer-events: none;
+}
+
+/* Бейдж Investment Readiness (в углу фото) */
+.hotel-card-iri {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-bg-white-pure);
+  background-color: var(--color-accent-terracotta);
+  line-height: 1;
+  padding: 6px 10px;
+  letter-spacing: var(--tracking-tight);
+  border-radius: var(--radius-subtle);
+}
+.hotel-card-iri--sm {
+  font-size: var(--text-base);
+  padding: 5px 9px;
+}
+
+/* Тело карточки */
+.hotel-card-body {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Мета (регион + звёзды) */
+.hotel-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hotel-card-region {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+/* Название */
+.hotel-card-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  border-top: var(--border-hairline);
+  padding-top: var(--space-4);
+}
+.hotel-card--small .hotel-card-name {
+  font-size: var(--text-lg);
+}
+
+/* KPI-строка */
+.hotel-card-kpi {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.hotel-card-kpi--compact {
+  gap: var(--space-3);
+}
+
+.hotel-card-kpi-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hotel-card-kpi-val {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-medium);
+  color: var(--color-ink);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.hotel-card--small .hotel-card-kpi-val {
+  font-size: var(--text-base);
+}
+
+.hotel-card-kpi-label {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  line-height: 1;
+}
+
+.hotel-card-kpi-sep {
+  width: 1px;
+  height: 32px;
+  background-color: var(--color-hairline);
+  flex-shrink: 0;
+}
+
+/* Footer карточки: модель + CTA */
+.hotel-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-4);
+  border-top: var(--border-hairline);
+  margin-top: auto;
+}
+
+.hotel-card-model {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent-teal);
+}
+
+.hotel-card-cta {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-ink-muted);
+  text-transform: uppercase;
+  transition: color var(--transition-fast);
+}
+.hotel-card:hover .hotel-card-cta {
+  color: var(--color-ink);
+}
+
+/* Адаптив каталога */
+@media (max-width: 1200px) {
+  .catalog-inner { padding: 0 var(--grid-margin-tablet); }
+  .catalog-grid {
+    grid-template-columns: 55% 1fr;
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 900px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+  .catalog-col-right {
+    flex-direction: row;
+  }
+  .catalog-col-right .hotel-card { flex: 1; }
+  .hotel-card--large .hotel-card-photo-wrap { height: 280px; }
+  .hotel-card--small .hotel-card-photo-wrap { height: 200px; }
+  .catalog-header { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 600px) {
+  .catalog-inner { padding: 0 var(--grid-margin-mobile); }
+  .catalog-col-right { flex-direction: column; }
+  .hotel-card--small .hotel-card-photo-wrap { height: 180px; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   5. FORM CTA SECTION
+   ═══════════════════════════════════════════════════════════ */
+
+.form-cta-section {
+  background-color: var(--color-bg-dark);
+  padding: var(--space-20) 0;
+  border-top: var(--border-hairline-dark);
+  border-bottom: var(--border-hairline-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-cta-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+/* Орнамент слева */
+.form-cta-ornament {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* Контент */
+.form-cta-content {
+  max-width: 680px;
+}
+
+.form-cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl));
+  font-weight: var(--fw-bold);
+  color: var(--color-ink-on-dark);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--tracking-tight);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.form-cta-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-ink-on-dark-muted);
+  line-height: var(--lh-body);
+  margin-bottom: var(--space-8);
+  max-width: 58ch;
+}
+
+.form-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* Teal-кнопка */
+.btn--teal {
+  background-color: var(--color-accent-teal);
+  color: var(--color-bg-white-pure);
+  border-color: var(--color-accent-teal);
+}
+.btn--teal:hover {
+  background-color: #175f6a;
+  border-color: #175f6a;
+}
+
+/* Ghost (прозрачная на тёмном) */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-ink-on-dark-muted);
+  border-color: var(--color-hairline-dark);
+}
+.btn--ghost:hover {
+  color: var(--color-ink-on-dark);
+  border-color: rgba(237, 233, 224, 0.35);
+}
+
+@media (max-width: 1200px) {
+  .form-cta-inner { padding: 0 var(--grid-margin-tablet); gap: var(--space-10); }
+}
+@media (max-width: 768px) {
+  .form-cta-inner {
+    padding: 0 var(--grid-margin-mobile);
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .form-cta-ornament { display: none; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   6. SITE FOOTER
+   ═══════════════════════════════════════════════════════════ */
+
+.site-footer {
+  background-color: #0C1828;   /* глубже, чем #12213B — создаёт ощущение «дна» */
+  border-top: var(--border-hairline-dark);
+  padding: var(--space-16) 0 var(--space-10);
+}
+
+.footer-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+}
+
+/* Верхняя часть: бренд + навигация */
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  gap: var(--space-20);
+  padding-bottom: var(--space-12);
+  border-bottom: var(--border-hairline-dark);
+  margin-bottom: var(--space-8);
+}
+
+/* Бренд-блок */
+.footer-logo {
+  margin-bottom: var(--space-5);
+}
+
+.footer-brand-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink-on-dark-muted);
+  line-height: var(--lh-body);
+  max-width: 34ch;
+}
+
+/* Навигационная сетка footer */
+.footer-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-10);
+}
+
+.footer-nav-heading {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-accent-teal);
+  margin-bottom: var(--space-4);
+}
+
+.footer-nav-link {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink-on-dark-muted);
+  text-decoration: none;
+  margin-bottom: var(--space-2);
+  transition: color var(--transition-fast);
+  line-height: 1.5;
+}
+.footer-nav-link:hover {
+  color: var(--color-ink-on-dark);
+}
+
+.footer-contact-item {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-ink-on-dark-muted);
+  line-height: 1.5;
+  margin-bottom: var(--space-2);
+}
+
+/* Нижняя часть: копирайт + языки */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.footer-legal {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(155, 170, 187, 0.45);
+  line-height: 1.5;
+  max-width: 68ch;
+}
+
+.footer-lang-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.footer-lang-link {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: rgba(155, 170, 187, 0.45);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.footer-lang-link:hover,
+.footer-lang-link--active {
+  color: var(--color-ink-on-dark);
+}
+
+/* Адаптив footer */
+@media (max-width: 1200px) {
+  .footer-inner   { padding: 0 var(--grid-margin-tablet); }
+  .footer-top     { grid-template-columns: 1fr; gap: var(--space-12); }
+  .footer-nav-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 680px) {
+  .footer-inner   { padding: 0 var(--grid-margin-mobile); }
+  .footer-nav-grid { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  .footer-bottom  { flex-direction: column; align-items: flex-start; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   УТИЛИТА: кириллический kicker на тёмном фоне
+   ═══════════════════════════════════════════════════════════ */
+.kicker--light {
+  color: rgba(30, 111, 124, 0.80);
+}
+
+/* Атрибуция фото в hero */
+.hero-photo-credit {
+  margin-top: var(--space-8);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(237, 233, 224, 0.30);
+  letter-spacing: 0;
+  line-height: 1;
+}

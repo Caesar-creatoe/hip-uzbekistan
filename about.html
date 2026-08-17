@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Том I. Методические рекомендации по подготовке инвестиционного портфеля гостиничных объектов Республики Узбекистан. Официальный стандарт раскрытия информации, расчет гостиничных KPI (USALI / STR) и шкала Investment Readiness Index (IRI)." />
+  <title>Том I. Методические рекомендации — Hotel Investment Portfolio · Комитет по туризму РУз</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+  <link rel="stylesheet" href="styles/methodology.css" />
+</head>
+<body class="page-about">
+
+  <!-- ═══════════════════════════════════════════
+       C-01 · SITE HEADER
+  ═══════════════════════════════════════════ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Hotel Investment Portfolio — Главная">
+        <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+          <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+          <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">HIP</span>
+          <span class="logo-subtitle">Uzbekistan</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <a href="about.html"              class="nav-link nav-link--active" id="nav-about">О системе</a>
+        <a href="tourism-types.html"      class="nav-link" id="nav-clusters">Виды туризма</a>
+        <a href="portfolio.html"          class="nav-link" id="nav-portfolio">Объекты</a>
+        <a href="registries.html"         class="nav-link" id="nav-registries">Реестры</a>
+        <a href="form.html"               class="nav-link" id="nav-form">Smart Form</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" id="lang-ru" aria-pressed="true">RU</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-uz" aria-pressed="false">UZ</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-en" aria-pressed="false">EN</button>
+        </div>
+        <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════
+       EDITORIAL HERO · Том I: Методические рекомендации
+  ═══════════════════════════════════════════ -->
+  <section class="methodology-hero" aria-label="Титульный раздел Методических рекомендаций">
+    <div class="methodology-hero-inner">
+      <div class="methodology-hero-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb-link">Главная</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <span class="breadcrumb-current">Том I · Методические рекомендации</span>
+        </nav>
+        <p class="kicker kicker--light">КОМИТЕТ ПО ТУРИЗМУ РЕСПУБЛИКИ УЗБЕКИСТАН · ВЕРСИЯ 1.0 (ПРОЕКТ 2026)</p>
+        <h1 class="methodology-hero-title">
+          Методические рекомендации по подготовке инвестиционного портфеля гостиничных объектов
+        </h1>
+        <p class="methodology-hero-subtitle">
+          Единый государственный стандарт структурирования информации, верификации данных, расчета гостиничных показателей по системе USALI / STR Global и оценки инвестиционной готовности (Investment Readiness Index).
+        </p>
+        <div class="methodology-hero-actions">
+          <a href="#sec-1" class="btn btn--teal btn--lg" id="btn-read-methodology">
+            Читать документ &darr;
+          </a>
+          <a href="form.html" class="btn btn--ghost btn--lg" id="btn-open-smartform">
+            Заполнить Smart Form (Том III) &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Мета-карточка документа -->
+      <div class="doc-official-card">
+        <div class="doc-official-header">
+          <span class="doc-official-emblem">УЗБЕКИСТАН</span>
+          <span class="doc-official-status">Официальный проект</span>
+        </div>
+        <div class="doc-official-body">
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Разработчик</span>
+            <span class="doc-meta-value">Комитет по туризму при Министерстве экологии, охраны окружающей среды и изменения климата РУз</span>
+          </div>
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Международная гармонизация</span>
+            <span class="doc-meta-value">IFC / EBRD / World Bank / STR Global / USALI 11th Edition</span>
+          </div>
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Периодичность обновления</span>
+            <span class="doc-meta-value">Не реже 1 раза в 6 месяцев</span>
+          </div>
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Применяемость</span>
+            <span class="doc-meta-value">Все регионы РУз · 14 вилоятов</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Орнаментальный разделитель -->
+    <div class="page-header-ornament" aria-hidden="true">
+      <svg width="100%" height="12" preserveAspectRatio="none" viewBox="0 0 1440 12">
+        <line x1="0" y1="6" x2="1440" y2="6" stroke="#2C3E5A" stroke-width="1"/>
+        <g fill="none" stroke="#1E6F7C" stroke-width="1" opacity="0.5">
+          <rect x="80"  y="3" width="6" height="6"/>
+          <rect x="240" y="3" width="6" height="6"/>
+          <rect x="400" y="3" width="6" height="6"/>
+          <rect x="560" y="3" width="6" height="6"/>
+          <rect x="720" y="3" width="6" height="6"/>
+          <rect x="880" y="3" width="6" height="6"/>
+          <rect x="1040" y="3" width="6" height="6"/>
+          <rect x="1200" y="3" width="6" height="6"/>
+          <rect x="1360" y="3" width="6" height="6"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       LONGREAD WORKSPACE (SPLIT: TOC SIDEBAR + ARTICLE)
+  ═══════════════════════════════════════════ -->
+  <main class="longread-workspace" id="main-content">
+    <div class="longread-inner">
+
+      <!-- ЛЕВАЯ КОЛОНКА: ОГЛАВЛЕНИЕ С ДОК-НАВИГАЦИЕЙ (STICKY TOC) -->
+      <aside class="longread-sidebar" aria-label="Оглавление документа">
+        <div class="sidebar-sticky-box">
+          <h2 class="sidebar-toc-title">Структура Тома I</h2>
+          <nav class="sidebar-nav" role="navigation">
+            <a href="#sec-1" class="sidebar-nav-link sidebar-nav-link--active">1. Общие положения и цели</a>
+            <a href="#sec-2" class="sidebar-nav-link">2. Область применения</a>
+            <a href="#sec-3" class="sidebar-nav-link">3. 7 Фундаментальных принципов</a>
+            <a href="#sec-4" class="sidebar-nav-link">4. Глоссарий и расчет KPI (USALI)</a>
+            <a href="#sec-5" class="sidebar-nav-link">5. Методика оценки IRI (A+–C)</a>
+            <a href="#sec-6" class="sidebar-nav-link">6. Регламент верификации и Data Room</a>
+            <a href="#sec-7" class="sidebar-nav-link">7. Модели инвестиционных сделок</a>
+          </nav>
+
+          <div class="sidebar-doc-download">
+            <span class="sidebar-doc-label">Официальный релиз</span>
+            <p class="sidebar-doc-desc">Полный текст рекомендаций для печати и внутреннего документооборота.</p>
+            <button type="button" class="btn btn--outline btn--sm" id="btn-download-tom1">
+              Скачать Том I (PDF)
+            </button>
+          </div>
+        </div>
+      </aside>
+
+
+      <!-- ПРАВАЯ КОЛОНКА: ПОЛНЫЙ РЕДАКЦИОННЫЙ ТЕКСТ РЕКОМЕНДАЦИЙ -->
+      <article class="longread-article" role="article">
+
+        <!-- ── РАЗДЕЛ 1 ─────────────────────────────── -->
+        <section class="doc-section" id="sec-1">
+          <span class="kicker">РАЗДЕЛ 1</span>
+          <h2 class="doc-heading">1. Общие положения и назначение документа</h2>
+          
+          <div class="doc-lead">
+            Настоящие Методические рекомендации определяют единые требования к подготовке и структурированию инвестиционных материалов гостиничных предприятий Республики Узбекистан, предназначенных для институциональных инвесторов, международных гостиничных операторов, финансовых институтов развития и инвестиционных фондов.
+          </div>
+
+          <p class="doc-p">
+            Целью настоящего документа является создание стандартизированного, транспарентного и сопоставимого формата представления активов гостиничного сектора страны. Внедрение единого формата позволяет сократить сроки проведения предварительного аудита (Pre-Due Diligence), повысить прозрачность предложений и сформировать единую базу гостиничных активов Республики Узбекистан.
+          </p>
+
+          <div class="doc-quote-callout">
+            <h3 class="callout-title">Ключевой результат внедрения:</h3>
+            <p class="callout-text">
+              Переход от разрозненных неструктурированных презентаций к институциональному инвестиционному меморандуму уровня <strong>JLL Hotels &amp; Hospitality, CBRE, Colliers</strong> с автоматическим расчетом индекса инвестиционной готовности (Investment Readiness Index).
+            </p>
+          </div>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 2 ─────────────────────────────── -->
+        <section class="doc-section" id="sec-2">
+          <span class="kicker">РАЗДЕЛ 2</span>
+          <h2 class="doc-heading">2. Область применения и классификация активов</h2>
+
+          <p class="doc-p">
+            Методические рекомендации распространяются на все типы средств размещения и девелоперских проектов гостиничного профиля независимо от формы собственности, расположенных на территории Республики Узбекистан:
+          </p>
+
+          <div class="scope-grid">
+            <div class="scope-card">
+              <span class="scope-num">01</span>
+              <h4 class="scope-title">Городские бизнес-отели</h4>
+              <p class="scope-desc">Объекты категорий 3★, 4★, 5★ в областных центрах и г. Ташкенте с фокусом на деловой и MICE-туризм.</p>
+            </div>
+            <div class="scope-card">
+              <span class="scope-num">02</span>
+              <h4 class="scope-title">Бутик- и Heritage-отели</h4>
+              <p class="scope-desc">Исторические объекты размещения в Самарканде, Бухаре, Хиве и Шахрисабзе с выраженным национальным колоритом.</p>
+            </div>
+            <div class="scope-card">
+              <span class="scope-num">03</span>
+              <h4 class="scope-title">Курортные комплексы &amp; SPA</h4>
+              <p class="scope-desc">Рекреационные объекты в предгорных и озерных кластерах (Заамин, Бостанлык, Чимган, Айдаркуль).</p>
+            </div>
+            <div class="scope-card">
+              <span class="scope-num">04</span>
+              <h4 class="scope-title">Апарт-отели &amp; Сервисные апартаменты</h4>
+              <p class="scope-desc">Комплексы длительного проживания (Extended Stay) и доходная недвижимость с гостиничным сервисом.</p>
+            </div>
+            <div class="scope-card">
+              <span class="scope-num">05</span>
+              <h4 class="scope-title">Эко-отели &amp; Глэмпинги</h4>
+              <p class="scope-desc">Быстровозводимые модульные средства размещения в природных заповедниках и туристических зонах.</p>
+            </div>
+            <div class="scope-card">
+              <span class="scope-num">06</span>
+              <h4 class="scope-title">Проекты строительства и редевелопмента</h4>
+              <p class="scope-desc">Земельные участки с выданным АПЗ и объекты незавершенного строительства (Greenfield / Brownfield).</p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 3 ─────────────────────────────── -->
+        <section class="doc-section" id="sec-3">
+          <span class="kicker">РАЗДЕЛ 3</span>
+          <h2 class="doc-heading">3. Семь фундаментальных принципов подготовки паспорта</h2>
+
+          <p class="doc-p">
+            Каждый инвестиционный паспорт (Том II) и профиль объекта в системе формируется в строгом соответствии со следующими семью принципами:
+          </p>
+
+          <ol class="doc-numbered-principles" role="list">
+            <li class="principle-entry">
+              <div class="principle-entry-header">
+                <span class="principle-roman">I</span>
+                <h3 class="principle-entry-title">Полнота раскрытия (Completeness)</h3>
+              </div>
+              <p class="principle-entry-desc">
+                Информация должна обеспечивать потенциальному инвестору исчерпывающее понимание объекта: от правового статуса земли и номерного фонда до 3-летней исторической выручки и детальной структуры расходов.
+              </p>
+            </li>
+
+            <li class="principle-entry">
+              <div class="principle-entry-header">
+                <span class="principle-roman">II</span>
+                <h3 class="principle-entry-title">Документальная достоверность (Authenticity)</h3>
+              </div>
+              <p class="principle-entry-desc">
+                Все приводимые цифры и факты должны подтверждаться выписками из кадастра, аудированной финансовой отчётностью (МСФО/НСБУ), техническими паспортами БТИ и справками налоговых органов.
+              </p>
+            </li>
+
+            <li class="principle-entry">
+              <div class="principle-entry-header">
+                <span class="principle-roman">III</span>
+                <h3 class="principle-entry-title">Регулярная актуальность (Currency)</h3>
+              </div>
+              <p class="principle-entry-desc">
+                Сведения обновляются не реже одного раза в полугодие (либо незамедлительно при возникновении существенных фактов: смена собственника, привлечение кредита, завершение реновации).
+              </p>
+            </li>
+
+            <li class="principle-entry">
+              <div class="principle-entry-header">
+                <span class="principle-roman">IV</span>
+                <h3 class="principle-entry-title">Сопоставимость (Comparability)</h3>
+              </div>
+              <p class="principle-entry-desc">
+                Все гостиничные активы представлены по единой структуре и единым метрикам. Инвестор имеет возможность сопоставить гостиницу в Бухаре с отелем в Ташкенте по единому базису.
+              </p>
+            </li>
+
+            <li class="principle-entry">
+              <div class="principle-entry-header">
+                <span class="principle-roman">V</span>
+                <h3 class="principle-entry-title">Прозрачность и добросовестность (Transparency)</h3>
+              </div>
+              <p class="principle-entry-desc">
+                Не допускается сокрытие сведений об обременениях, кредитных обязательствах, судебных разбирательствах или технических дефектах инженерных систем.
+              </p>
+            </li>
+
+            <li class="principle-entry">
+              <div class="principle-entry-header">
+                <span class="principle-roman">VI</span>
+                <h3 class="principle-entry-title">Независимая проверяемость (Verifiability)</h3>
+              </div>
+              <p class="principle-entry-desc">
+                Все ключевые индикаторы сопровождаются реестром Data Room и доступны для независимой аудиторской проверки уполномоченными консультантами.
+              </p>
+            </li>
+
+            <li class="principle-entry">
+              <div class="principle-entry-header">
+                <span class="principle-roman">VII</span>
+                <h3 class="principle-entry-title">Цифровая интеграция (Digital Integration)</h3>
+              </div>
+              <p class="principle-entry-desc">
+                Ввод данных через Smart Form (Том III) автоматически обновляет витрину каталога, карточку объекта и генерирует печатную версию паспорта без ручной верстки.
+              </p>
+            </li>
+          </ol>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 4 ─────────────────────────────── -->
+        <section class="doc-section" id="sec-4">
+          <span class="kicker">РАЗДЕЛ 4</span>
+          <h2 class="doc-heading">4. Глоссарий и стандарты расчёта гостиничных KPI (USALI / STR Global)</h2>
+
+          <p class="doc-p">
+            В соответствии с 11-й редакцией международного стандарта <em>Uniform System of Accounts for the Lodging Industry (USALI)</em> в инвестиционном паспорте применяются следующие стандартизированные формулы:
+          </p>
+
+          <div class="kpi-glossary-table-wrap">
+            <table class="editorial-table kpi-glossary-table">
+              <thead>
+                <tr>
+                  <th class="et-key et-head" scope="col">Показатель</th>
+                  <th class="et-val et-head" scope="col">Определение и экономический смысл</th>
+                  <th class="et-val et-head" scope="col">Формула расчёта</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="et-key"><strong>ADR</strong><br/><span class="kpi-sub">Average Daily Rate</span></td>
+                  <td class="et-val">Средняя цена проданного номера за период (без учета НДС и завтраков).</td>
+                  <td class="et-val et-val--num"><code>Rooms Revenue / Sold Rooms</code></td>
+                </tr>
+                <tr>
+                  <td class="et-key"><strong>Occupancy</strong><br/><span class="kpi-sub">Загрузка фонда</span></td>
+                  <td class="et-val">Процент занятых номеров от общего числа доступных номеро-ночей за календарный период.</td>
+                  <td class="et-val et-val--num"><code>(Sold Rooms / Available Rooms) &times; 100%</code></td>
+                </tr>
+                <tr>
+                  <td class="et-key"><strong>RevPAR</strong><br/><span class="kpi-sub">Rev. Per Available Room</span></td>
+                  <td class="et-val">Выручка номерного фонда в пересчёте на один доступный номер в отеле. Главный индикатор эффективности продаж.</td>
+                  <td class="et-val et-val--num"><code>ADR &times; Occupancy %</code><br/>или <code>Rooms Rev / Available Rooms</code></td>
+                </tr>
+                <tr>
+                  <td class="et-key"><strong>TrevPAR</strong><br/><span class="kpi-sub">Total RevPAR</span></td>
+                  <td class="et-val">Совокупная выручка отеля (номера + F&amp;B + SPA + MICE) на один доступный номер.</td>
+                  <td class="et-val et-val--num"><code>Total Revenue / Available Rooms</code></td>
+                </tr>
+                <tr>
+                  <td class="et-key"><strong>GOP</strong><br/><span class="kpi-sub">Gross Operating Profit</span></td>
+                  <td class="et-val">Валовая операционная прибыль после вычета всех прямых и распределяемых операционных расходов до уплаты налогов, процентов и аренды.</td>
+                  <td class="et-val et-val--num"><code>Total Revenue &minus; Total Operating Expenses</code></td>
+                </tr>
+                <tr>
+                  <td class="et-key"><strong>EBITDA Margin</strong><br/><span class="kpi-sub">Рентабельность EBITDA</span></td>
+                  <td class="et-val">Доля чистой операционной прибыли до амортизации в совокупной выручке объекта.</td>
+                  <td class="et-val et-val--num"><code>(EBITDA / Total Revenue) &times; 100%</code></td>
+                </tr>
+                <tr>
+                  <td class="et-key"><strong>Payback Period</strong><br/><span class="kpi-sub">Срок окупаемости</span></td>
+                  <td class="et-val">Расчетное количество лет, необходимое для возврата совокупных инвестиций за счет генерируемой EBITDA.</td>
+                  <td class="et-val et-val--num"><code>Property Valuation / Annual EBITDA</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 5 ─────────────────────────────── -->
+        <section class="doc-section" id="sec-5">
+          <span class="kicker">РАЗДЕЛ 5</span>
+          <h2 class="doc-heading">5. Методика оценки Investment Readiness Index (IRI Uzbekistan)</h2>
+
+          <p class="doc-p">
+            <strong>Investment Readiness Index (IRI)</strong> — скоринговая модель, разработанная для объективного ранжирования объектов по степени их юридической, финансовой и технической готовности к сделке.
+          </p>
+
+          <div class="iri-grades-breakdown">
+            <div class="iri-grade-card iri-grade-card--aplus">
+              <div class="iri-badge-top">
+                <span class="iri-grade-title">A+</span>
+                <span class="iri-grade-range">90 – 100 баллов</span>
+              </div>
+              <h4 class="iri-grade-name">Наивысшая инвестиционная готовность (Tier 1)</h4>
+              <p class="iri-grade-text">
+                Аудит Big 4 / аккредитованных компаний, отсутствие залогов и споров, RevPAR выше среднерыночного, 100% готовность к приходу международного бренда (HMA/Franchise).
+              </p>
+            </div>
+
+            <div class="iri-grade-card iri-grade-card--a">
+              <div class="iri-badge-top">
+                <span class="iri-grade-title">A</span>
+                <span class="iri-grade-range">80 – 89 баллов</span>
+              </div>
+              <h4 class="iri-grade-name">Высокая готовность (Tier 1 Institutional)</h4>
+              <p class="iri-grade-text">
+                Полная прозрачность, подтвержденная финансовая история за 3 года, минимальные требования к доработке технической документации.
+              </p>
+            </div>
+
+            <div class="iri-grade-card iri-grade-card--bplus">
+              <div class="iri-badge-top">
+                <span class="iri-grade-title">B+ / B</span>
+                <span class="iri-grade-range">60 – 79 баллов</span>
+              </div>
+              <h4 class="iri-grade-name">Хорошая / Удовлетворительная готовность (Tier 2)</h4>
+              <p class="iri-grade-text">
+                Действующий прибыльный объект. Требуется рефинансирование банковского залога либо реновация номерного фонда (FF&amp;E).
+              </p>
+            </div>
+
+            <div class="iri-grade-card iri-grade-card--c">
+              <div class="iri-badge-top">
+                <span class="iri-grade-title">C</span>
+                <span class="iri-grade-range">&lt; 60 баллов</span>
+              </div>
+              <h4 class="iri-grade-name">Базовый уровень (Требуется предподготовка)</h4>
+              <p class="iri-grade-text">
+                Объект на стадии проектирования/строительства, либо требуется юридическая реструктуризация перед выходом к инвесторам.
+              </p>
+            </div>
+          </div>
+
+          <h3 class="subsection-title">Структура весовых коэффициентов IRI:</h3>
+          <div class="criteria-weight-list">
+            <div class="weight-item">
+              <span class="weight-pct">20%</span>
+              <span class="weight-label">Финансовая прозрачность и аудированная отчётность (USALI / МСФО)</span>
+            </div>
+            <div class="weight-item">
+              <span class="weight-pct">20%</span>
+              <span class="weight-label">Юридическая чистота актива, прав на землю и отсутствие обременений</span>
+            </div>
+            <div class="weight-item">
+              <span class="weight-pct">20%</span>
+              <span class="weight-label">Операционная эффективность и устойчивость KPI (ADR, RevPAR, Occupancy)</span>
+            </div>
+            <div class="weight-item">
+              <span class="weight-pct">15%</span>
+              <span class="weight-label">Техническое состояние здания, инженерии и дата последней реновации FF&amp;E</span>
+            </div>
+            <div class="weight-item">
+              <span class="weight-pct">15%</span>
+              <span class="weight-label">Соответствие требованиям международных операторов (Brand Standards)</span>
+            </div>
+            <div class="weight-item">
+              <span class="weight-pct">10%</span>
+              <span class="weight-label">Локация, транспортная доступность и внешние генераторы спроса</span>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 6 ─────────────────────────────── -->
+        <section class="doc-section" id="sec-6">
+          <span class="kicker">РАЗДЕЛ 6</span>
+          <h2 class="doc-heading">6. Регламент верификации, состав Data Room и публикация</h2>
+
+          <p class="doc-p">
+            Для обеспечения доверия международных фондов публикация паспорта объекта на платформе осуществляется в четыре последовательных этапа:
+          </p>
+
+          <div class="workflow-steps-vertical">
+            <div class="wf-step">
+              <span class="wf-step-idx">Этап 1</span>
+              <div class="wf-step-content">
+                <h4 class="wf-step-title">Заполнение электронной формы Smart Form (Том III)</h4>
+                <p class="wf-step-text">Собственник или уполномоченный менеджер объекта вносит свыше 250 структурированных параметров через закрытый кабинет платформы.</p>
+              </div>
+            </div>
+
+            <div class="wf-step">
+              <span class="wf-step-idx">Этап 2</span>
+              <div class="wf-step-content">
+                <h4 class="wf-step-title">Загрузка подтверждающих документов в виртуальный Data Room</h4>
+                <p class="wf-step-text">Формируется обязательный комплект документов: кадастровое дело, баланс за 3 года, справка налогового комитета, поэтажные планы БТИ, профессиональный фотосет.</p>
+              </div>
+            </div>
+
+            <div class="wf-step">
+              <span class="wf-step-idx">Этап 3</span>
+              <div class="wf-step-content">
+                <h4 class="wf-step-title">Камеральная проверка и расчет скоринга IRI</h4>
+                <p class="wf-step-text">Экспертная группа Комитета по туризму проводит верификацию корректности данных, автоматический алгоритм присваивает рейтинг готовности.</p>
+              </div>
+            </div>
+
+            <div class="wf-step">
+              <span class="wf-step-idx">Этап 4</span>
+              <div class="wf-step-content">
+                <h4 class="wf-step-title">Генерация Hotel Investment Passport и размещение на портале</h4>
+                <p class="wf-step-text">Автоматически формируется веб-паспорт (Том II) и печатная PDF-версия на русском, узбекском и английском языках для иностранных инвесторов.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 7 ─────────────────────────────── -->
+        <section class="doc-section" id="sec-7">
+          <span class="kicker">РАЗДЕЛ 7</span>
+          <h2 class="doc-heading">7. Стандартизированные модели инвестиционного сотрудничества</h2>
+
+          <p class="doc-p">
+            На платформе поддерживаются шесть типовых моделей взаимодействия собственников и инвесторов:
+          </p>
+
+          <div class="deal-models-grid">
+            <div class="deal-card">
+              <h4 class="deal-title">Прямая продажа 100% актива</h4>
+              <p class="deal-desc">Полная передача прав собственности на здание и земельный участок новому инвестору (Asset Sale / Share Deal).</p>
+            </div>
+            <div class="deal-card">
+              <h4 class="deal-title">Продажа инвестиционной доли</h4>
+              <p class="deal-desc">Привлечение миноритарного или мажоритарного соинвестора (Equity Partner) для расширения бизнеса или редевелопмента.</p>
+            </div>
+            <div class="deal-card">
+              <h4 class="deal-title">Договор управления (HMA)</h4>
+              <p class="deal-desc">Привлечение профессионального гостиничного оператора (Marriott, Accor, Radisson, Hilton) с сохранением прав за собственником.</p>
+            </div>
+            <div class="deal-card">
+              <h4 class="deal-title">Франчайзинг (Franchise)</h4>
+              <p class="deal-desc">Использование международной торговой марки и глобальной системы бронирования при самостоятельном управлении отелем.</p>
+            </div>
+            <div class="deal-card">
+              <h4 class="deal-title">Совместное предприятие (JV)</h4>
+              <p class="deal-desc">Создание СП между собственником здания и инвестором/девелопером с распределением операционных прибылей.</p>
+            </div>
+            <div class="deal-card">
+              <h4 class="deal-title">Долгосрочная аренда (Lease)</h4>
+              <p class="deal-desc">Передача отеля в операционную аренду оператору на срок от 10 до 25 лет с гарантированной ставкой доходности.</p>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+    </div>
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+              <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+              <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+            </svg>
+            <div class="logo-text">
+              <span class="logo-title">HIP</span>
+              <span class="logo-subtitle">Uzbekistan</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Hotel Investment Portfolio — официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.
+          </p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация footer">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Платформа</p>
+            <a href="about.html"             class="footer-nav-link">О системе</a>
+            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
+            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
+            <a href="registries.html"         class="footer-nav-link">Реестры</a>
+            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
+            <a href="passport.html"  class="footer-nav-link">Том II. Investment Passport</a>
+            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
+          Методология соответствует стандартам STR Global / USALI / IFC / EBRD.
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <a href="about.html" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
+          <a href="#" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
+          <a href="#" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/methodology.js"></script>
+</body>
+</html>

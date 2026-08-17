@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Том IV. Technical Specification — Техническое задание и системная архитектура цифровой платформы Hotel Investment Portfolio. Спецификация API, схема базы данных 250+ параметров и протоколы интеграции." />
+  <title>Том IV. Technical Specification — Hotel Investment Portfolio · Комитет по туризму РУз</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+  <link rel="stylesheet" href="styles/methodology.css" />
+  <link rel="stylesheet" href="styles/techspec.css" />
+</head>
+<body class="page-techspec">
+
+  <!-- ═══════════════════════════════════════════
+       C-01 · SITE HEADER
+  ═══════════════════════════════════════════ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Hotel Investment Portfolio — Главная">
+        <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+          <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+          <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">HIP</span>
+          <span class="logo-subtitle">Uzbekistan</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <a href="about.html"              class="nav-link" id="nav-about">О системе</a>
+        <a href="tourism-types.html"      class="nav-link" id="nav-clusters">Виды туризма</a>
+        <a href="portfolio.html"          class="nav-link" id="nav-portfolio">Объекты</a>
+        <a href="registries.html"         class="nav-link" id="nav-registries">Реестры</a>
+        <a href="form.html"               class="nav-link" id="nav-form">Smart Form</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" id="lang-ru" aria-pressed="true">RU</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-uz" aria-pressed="false">UZ</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-en" aria-pressed="false">EN</button>
+        </div>
+        <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════
+       TECH SPEC HERO
+  ═══════════════════════════════════════════ -->
+  <section class="methodology-hero tech-hero" aria-label="Техническая спецификация">
+    <div class="methodology-hero-inner">
+      <div class="methodology-hero-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb-link">Главная</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <span class="breadcrumb-current">Том IV · Technical Specification</span>
+        </nav>
+        <p class="kicker kicker--light">ТЕХНИЧЕСКОЕ ЗАДАНИЕ · СИСТЕМНАЯ АРХИТЕКТУРА (2026)</p>
+        <h1 class="methodology-hero-title">
+          Техническая спецификация цифровой платформы Hotel Investment Portfolio
+        </h1>
+        <p class="methodology-hero-subtitle">
+          Архитектура программного комплекса, схема реляционной базы данных (250+ параметров), алгоритмы скоринга IRI, OpenAPI-спецификация и интеграции с государственными реестрами.
+        </p>
+        <div class="methodology-hero-actions">
+          <a href="#ts-arch" class="btn btn--teal btn--lg">
+            Архитектура системы &darr;
+          </a>
+          <a href="#ts-api" class="btn btn--ghost btn--lg">
+            Спецификация API &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="doc-official-card">
+        <div class="doc-official-header">
+          <span class="doc-official-emblem">TECH SPEC · V1.0</span>
+          <span class="doc-official-status">Production Ready</span>
+        </div>
+        <div class="doc-official-body">
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Стек технологий</span>
+            <span class="doc-meta-value">PostgreSQL / Node.js / Headless Chromium (Puppeteer) / HTML5 &amp; CSS Tokens</span>
+          </div>
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Стандарт API</span>
+            <span class="doc-meta-value">RESTful JSON / OpenAPI 3.1 / GraphQL</span>
+          </div>
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Безопасность</span>
+            <span class="doc-meta-value">AES-256 Data Room Encryption / RBAC / ЭЦП E-IMZO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-header-ornament" aria-hidden="true">
+      <svg width="100%" height="12" preserveAspectRatio="none" viewBox="0 0 1440 12">
+        <line x1="0" y1="6" x2="1440" y2="6" stroke="#2C3E5A" stroke-width="1"/>
+        <g fill="none" stroke="#1E6F7C" stroke-width="1" opacity="0.5">
+          <rect x="80"  y="3" width="6" height="6"/>
+          <rect x="240" y="3" width="6" height="6"/>
+          <rect x="400" y="3" width="6" height="6"/>
+          <rect x="560" y="3" width="6" height="6"/>
+          <rect x="720" y="3" width="6" height="6"/>
+          <rect x="880" y="3" width="6" height="6"/>
+          <rect x="1040" y="3" width="6" height="6"/>
+          <rect x="1200" y="3" width="6" height="6"/>
+          <rect x="1360" y="3" width="6" height="6"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       LONGREAD WORKSPACE (TOC SIDEBAR + SPECS)
+  ═══════════════════════════════════════════ -->
+  <main class="longread-workspace" id="main-content">
+    <div class="longread-inner">
+
+      <!-- STICKY TOC -->
+      <aside class="longread-sidebar" aria-label="Оглавление ТЗ">
+        <div class="sidebar-sticky-box">
+          <h2 class="sidebar-toc-title">Разделы Тома IV</h2>
+          <nav class="sidebar-nav" role="navigation">
+            <a href="#ts-arch" class="sidebar-nav-link sidebar-nav-link--active">1. Архитектура платформы</a>
+            <a href="#ts-db"   class="sidebar-nav-link">2. Схема базы данных (ER)</a>
+            <a href="#ts-api"  class="sidebar-nav-link">3. REST API Спецификация</a>
+            <a href="#ts-calc" class="sidebar-nav-link">4. Алгоритмический калькулятор</a>
+            <a href="#ts-pdf"  class="sidebar-nav-link">5. Пайплайн генерации PDF</a>
+            <a href="#ts-sec"  class="sidebar-nav-link">6. Защита данных и Data Room</a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- ТЕКСТ СПЕЦИФИКАЦИИ -->
+      <article class="longread-article" role="article">
+
+        <!-- ── РАЗДЕЛ 1 ─────────────────────────────── -->
+        <section class="doc-section" id="ts-arch">
+          <span class="kicker">РАЗДЕЛ 1</span>
+          <h2 class="doc-heading">1. Архитектура программного комплекса</h2>
+          
+          <p class="doc-p">
+            Цифровая платформа <strong>Hotel Investment Portfolio</strong> спроектирована по модульной сервис-ориентированной архитектуре (SOA), объединяющей открытый инвестиционный портал, закрытый контур Smart Investment Form, калькулятор андеррайтинга и защищенный виртуальный Data Room.
+          </p>
+
+          <div class="tech-diagram-box">
+            <div class="diagram-title">Схема взаимодействия компонентов системы:</div>
+            <pre class="tech-ascii-diagram"><code>┌─────────────────────────────────────────────────────────────────────────┐
+│                       ПОЛЬЗОВАТЕЛЬСКИЙ СЛОЙ (FRONTEND)                  │
+├───────────────────────┬─────────────────────────┬───────────────────────┤
+│  Инвестиционный портал│   Каталог и Фильтры     │ Smart Investment Form │
+│     (index.html)      │    (portfolio.html)     │      (form.html)      │
+└───────────┬───────────┴────────────┬────────────┴───────────┬───────────┘
+            │                        │                        │
+            ▼                        ▼                        ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           API GATEWAY / MIDDLEWARE                      │
+│      JWT Authentication · Role-Based Access Control · Rate Limiting     │
+├──────────────────────────┬──────────────────────────┬───────────────────┤
+│   Scoring & KPI Engine   │  Data Room Secure Vault  │ PDF/Word Renderer │
+│   (ADR, RevPAR, IRI)     │  (AES-256 Object Store)  │(Chromium Cluster) │
+└───────────┬──────────────┴─────────────┬────────────┴───────────┬───────┘
+            │                            │                        │
+            ▼                            ▼                        ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           БАЗА ДАННЫХ (POSTGRESQL)                      │
+│   Hotels · Room_Inventory · Financials_USALI · Documents · IRI_Scores   │
+└─────────────────────────────────────────────────────────────────────────┘</code></pre>
+          </div>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 2 ─────────────────────────────── -->
+        <section class="doc-section" id="ts-db">
+          <span class="kicker">РАЗДЕЛ 2</span>
+          <h2 class="doc-heading">2. Схема реляционной базы данных (250+ параметров)</h2>
+
+          <p class="doc-p">
+            База данных нормализована по 3-й нормальной форме (3NF) и разделена на 6 ключевых сущностей для поддержки всей структуры Тома II и Тома III:
+          </p>
+
+          <div class="db-schema-tables">
+            <div class="schema-table-block">
+              <h4 class="schema-table-name">1. Таблица <code>hotels</code> (Основные сведения)</h4>
+              <table class="editorial-table code-table">
+                <thead>
+                  <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>id</code></td><td>UUID (PK)</td><td>Уникальный идентификатор объекта</td></tr>
+                  <tr><td><code>name</code></td><td>VARCHAR(255)</td><td>Фирменное наименование гостиницы</td></tr>
+                  <tr><td><code>region_code</code></td><td>VARCHAR(50)</td><td>Код региона (tashkent, samarkand и др.)</td></tr>
+                  <tr><td><code>stars_category</code></td><td>INT (1..5)</td><td>Официальная категория звездности</td></tr>
+                  <tr><td><code>deal_model</code></td><td>ENUM</td><td>management, sale_100, sale_share, franchise, jv</td></tr>
+                  <tr><td><code>cadastre_number</code></td><td>VARCHAR(64)</td><td>Кадастровый номер земельного участка</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="schema-table-block">
+              <h4 class="schema-table-name">2. Таблица <code>financials_usali</code> (Финансовые показатели 2023–2025)</h4>
+              <table class="editorial-table code-table">
+                <thead>
+                  <tr><th>Поле</th><th>Тип</th><th>Описание</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>hotel_id</code></td><td>UUID (FK)</td><td>Ссылка на объект гостиницы</td></tr>
+                  <tr><td><code>fiscal_year</code></td><td>INT</td><td>Отчетный финансовый год (напр. 2025)</td></tr>
+                  <tr><td><code>occupancy_rate</code></td><td>DECIMAL(5,2)</td><td>Среднегодовая загрузка в %</td></tr>
+                  <tr><td><code>adr_usd</code></td><td>DECIMAL(10,2)</td><td>Average Daily Rate в USD</td></tr>
+                  <tr><td><code>revpar_usd</code></td><td>DECIMAL(10,2)</td><td>Revenue Per Available Room в USD</td></tr>
+                  <tr><td><code>ebitda_usd</code></td><td>DECIMAL(14,2)</td><td>EBITDA за финансовый год в USD</td></tr>
+                  <tr><td><code>property_valuation</code></td><td>DECIMAL(14,2)</td><td>Оценочная стоимость актива в USD</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 3 ─────────────────────────────── -->
+        <section class="doc-section" id="ts-api">
+          <span class="kicker">РАЗДЕЛ 3</span>
+          <h2 class="doc-heading">3. REST API Спецификация (OpenAPI 3.1)</h2>
+
+          <p class="doc-p">
+            Платформа предоставляет защищенный REST API с форматом ответов JSON и строгой валидацией типов:
+          </p>
+
+          <div class="api-endpoints-list">
+            <div class="api-endpoint-card">
+              <div class="api-endpoint-header">
+                <span class="http-badge http-badge--get">GET</span>
+                <code class="api-path">/api/v1/hotels</code>
+              </div>
+              <p class="api-desc">Получение каталога объектов с поддержкой фильтрации по <code>region</code>, <code>stars</code>, <code>model</code>, <code>iri_grade</code>.</p>
+            </div>
+
+            <div class="api-endpoint-card">
+              <div class="api-endpoint-header">
+                <span class="http-badge http-badge--get">GET</span>
+                <code class="api-path">/api/v1/hotels/{id}/passport</code>
+              </div>
+              <p class="api-desc">Возвращает полный структурированный JSON инвестиционного паспорта (Том II) с вычисленными KPI и метаданными Data Room.</p>
+            </div>
+
+            <div class="api-endpoint-card">
+              <div class="api-endpoint-header">
+                <span class="http-badge http-badge--post">POST</span>
+                <code class="api-path">/api/v1/smartform/calculate</code>
+              </div>
+              <p class="api-desc">Принимает параметры отеля, выполняет калькуляцию USALI-показателей и возвращает интегральный скоринг IRI с детализацией по 6 критериям.</p>
+            </div>
+
+            <div class="api-endpoint-card">
+              <div class="api-endpoint-header">
+                <span class="http-badge http-badge--post">POST</span>
+                <code class="api-path">/api/v1/export/pdf/{hotel_id}</code>
+              </div>
+              <p class="api-desc">Запускает генерацию официального PDF-меморандума формата A4 (300 DPI) на выбранном языке (RU/UZ/EN).</p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 4 ─────────────────────────────── -->
+        <section class="doc-section" id="ts-calc">
+          <span class="kicker">РАЗДЕЛ 4</span>
+          <h2 class="doc-heading">4. Алгоритмический калькулятор и скоринг IRI</h2>
+
+          <p class="doc-p">
+            Математическая модель расчета скоринга готовности $S_{\text{IRI}}$ вычисляется как взвешенная сумма баллов:
+          </p>
+
+          <div class="formula-box">
+            $$S_{\text{IRI}} = \sum_{i=1}^{6} (w_i \cdot c_i) = 0.20 \cdot c_{\text{fin}} + 0.20 \cdot c_{\text{law}} + 0.20 \cdot c_{\text{kpi}} + 0.15 \cdot c_{\text{ffe}} + 0.15 \cdot c_{\text{brand}} + 0.10 \cdot c_{\text{loc}}$$
+          </div>
+
+          <p class="doc-p">
+            где $c_i \in [0, 100]$ — балльная оценка по соответствующему критерию проверки. При значении $S_{\text{IRI}} \ge 90$ объекту автоматически присваивается высшая категория **A+ (Tier 1)**.
+          </p>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 5 ─────────────────────────────── -->
+        <section class="doc-section" id="ts-pdf">
+          <span class="kicker">РАЗДЕЛ 5</span>
+          <h2 class="doc-heading">5. Пайплайн генерации печатного паспорта (PDF)</h2>
+
+          <p class="doc-p">
+            Генерация печатного меморандума реализована на базе единой дизайн-системы токенов [`design-tokens.css`](file:///Users/macbook/Desktop/Miragzam's%20project%20/design-tokens.css). Рендеринг осуществляется без расхождений между веб-версией и печатным документом через `@media print` с принудительной разбивкой страниц A4.
+          </p>
+        </section>
+
+
+        <!-- ── РАЗДЕЛ 6 ─────────────────────────────── -->
+        <section class="doc-section" id="ts-sec">
+          <span class="kicker">РАЗДЕЛ 6</span>
+          <h2 class="doc-heading">6. Безопасность и защищенный контур Data Room</h2>
+
+          <p class="doc-p">
+            Доступ к конфиденциальным аудированным финансовым отчетам и юридическим правоустанавливающим документам предоставляется инвесторам после верификации профиля и подписания цифрового соглашения о неразглашении (NDA). Все файлы в хранилище шифруются по стандарту AES-256 с динамическим водяным знаком (Watermark) инвестора.
+          </p>
+        </section>
+
+      </article>
+
+    </div>
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+              <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+              <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+            </svg>
+            <div class="logo-text">
+              <span class="logo-title">HIP</span>
+              <span class="logo-subtitle">Uzbekistan</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">Hotel Investment Portfolio — официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.</p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация footer">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Платформа</p>
+            <a href="about.html"             class="footer-nav-link">О системе</a>
+            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
+            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
+            <a href="registries.html"         class="footer-nav-link">Реестры</a>
+            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
+            <a href="passport.html"  class="footer-nav-link">Том II. Investment Passport</a>
+            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <a href="tech-spec.html" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
+          <a href="#" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
+          <a href="#" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/methodology.js"></script>
+</body>
+</html>

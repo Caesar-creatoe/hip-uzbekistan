@@ -1,0 +1,215 @@
+/* ============================================================
+   REGISTRIES.CSS — Государственные реестры и открытые данные
+   Hotel Investment Portfolio · Комитет по туризму РУз
+   ============================================================ */
+
+.registries-workspace {
+  background-color: var(--color-bg-parchment);
+  padding: var(--space-10) 0 var(--space-24);
+}
+
+.registries-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* ── TABS BAR ───────────────────────────────── */
+
+.reg-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-bottom: var(--border-hairline);
+  padding-bottom: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.reg-tabs-bar::-webkit-scrollbar { display: none; }
+
+.reg-tab-btn {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  background: none;
+  border: 1px solid transparent;
+  padding: 10px 16px;
+  border-radius: var(--radius-subtle);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+.reg-tab-btn:hover {
+  color: var(--color-ink);
+  background-color: rgba(27, 27, 26, 0.04);
+}
+.reg-tab-btn--active {
+  color: var(--color-ink);
+  background-color: var(--color-bg-white-pure);
+  border-color: var(--color-hairline);
+  border-bottom-color: var(--color-bg-white-pure);
+  box-shadow: 0 2px 6px rgba(18, 33, 59, 0.04);
+}
+
+/* ── TAB PANELS ─────────────────────────────── */
+
+.reg-tab-panel {
+  display: none;
+  background-color: var(--color-bg-white-pure);
+  border: var(--border-hairline);
+  border-radius: var(--radius-subtle);
+  padding: var(--space-8);
+}
+.reg-tab-panel--active {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  animation: regFade 0.2s ease forwards;
+}
+
+@keyframes regFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reg-panel-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: var(--space-4);
+  border-bottom: var(--border-hairline);
+}
+
+.panel-subtitle {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+}
+
+.panel-subtext {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-ink-muted);
+}
+
+/* ── CONTROLS & SEARCH ──────────────────────── */
+
+.reg-panel-controls {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.reg-search-input {
+  width: 100%;
+}
+
+.reg-filter-select {
+  width: 100%;
+}
+
+/* ── REGISTRY TABLE ─────────────────────────── */
+
+.reg-table-wrap {
+  overflow-x: auto;
+}
+
+.reg-table {
+  width: 100%;
+}
+
+.reg-status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-subtle);
+  white-space: nowrap;
+}
+.reg-status--valid {
+  background-color: rgba(26, 92, 58, 0.12);
+  color: #1A5C3A;
+  border: 1px solid rgba(26, 92, 58, 0.25);
+}
+
+.reg-link {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-accent-teal);
+  text-decoration: none;
+}
+.reg-link:hover {
+  text-decoration: underline;
+}
+
+.stars-gold {
+  color: var(--color-accent-terracotta);
+  letter-spacing: 2px;
+  font-size: 11px;
+}
+
+/* ── SUBSIDIES GRID ─────────────────────────── */
+
+.subsidies-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.subsidy-card {
+  border: var(--border-hairline);
+  padding: var(--space-6);
+  border-radius: var(--radius-subtle);
+  background-color: rgba(247, 244, 236, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.subsidy-val {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-accent-teal);
+}
+
+.subsidy-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink);
+}
+
+.subsidy-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-ink-muted);
+  line-height: 1.6;
+}
+
+/* ── RESPONSIVE ─────────────────────────────── */
+
+@media (max-width: 1200px) {
+  .registries-container { padding: 0 var(--grid-margin-tablet); }
+}
+
+@media (max-width: 900px) {
+  .reg-panel-controls   { grid-template-columns: 1fr; }
+  .subsidies-grid       { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .registries-container { padding: 0 var(--grid-margin-mobile); }
+  .reg-tab-panel        { padding: var(--space-5) var(--space-4); }
+}

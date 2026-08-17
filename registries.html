@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Государственные реестры и открытые данные Комитета по туризму Республики Узбекистан. Реестр средств размещения (1★–5★), реестр инвестиционных земельных лотов и льгот ПКМ № 308." />
+  <title>Государственные реестры — Hotel Investment Portfolio · Узбекистан</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+  <link rel="stylesheet" href="styles/methodology.css" />
+  <link rel="stylesheet" href="styles/registries.css" />
+</head>
+<body class="page-registries">
+
+  <!-- ═══════════════════════════════════════════
+       C-01 · SITE HEADER
+  ═══════════════════════════════════════════ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Hotel Investment Portfolio — Главная">
+        <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+          <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+          <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">HIP</span>
+          <span class="logo-subtitle">Uzbekistan</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <a href="about.html"              class="nav-link" id="nav-about">О системе</a>
+        <a href="tourism-types.html"      class="nav-link" id="nav-clusters">Виды туризма</a>
+        <a href="portfolio.html"          class="nav-link" id="nav-portfolio">Объекты</a>
+        <a href="registries.html"         class="nav-link nav-link--active" id="nav-registries">Реестры</a>
+        <a href="form.html"               class="nav-link" id="nav-form">Smart Form</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" id="lang-ru" aria-pressed="true">RU</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-uz" aria-pressed="false">UZ</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" id="lang-en" aria-pressed="false">EN</button>
+        </div>
+        <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════
+       REGISTRIES HERO
+  ═══════════════════════════════════════════ -->
+  <section class="methodology-hero registries-hero" aria-label="Единые государственные реестры">
+    <div class="methodology-hero-inner">
+      <div class="methodology-hero-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb-link">Главная</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <span class="breadcrumb-current">Государственные реестры</span>
+        </nav>
+        <p class="kicker kicker--light">ОТКРЫТЫЕ ДАННЫЕ · КОМИТЕТ ПО ТУРИЗМУ РЕСПУБЛИКИ УЗБЕКИСТАН</p>
+        <h1 class="methodology-hero-title">
+          Единые государственные реестры гостиничного сектора
+        </h1>
+        <p class="methodology-hero-subtitle">
+          Официальные открытые базы данных сертифицированных средств размещения, свободных инвестиционных земельных участков (лотов), государственных преференций и аккредитованных операторов.
+        </p>
+      </div>
+
+      <div class="doc-official-card">
+        <div class="doc-official-header">
+          <span class="doc-official-emblem">ОТКРЫТЫЙ КОНТУР</span>
+          <span class="doc-official-status">Синхронизировано</span>
+        </div>
+        <div class="doc-official-body">
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Сертифицированных отелей</span>
+            <span class="doc-meta-value">1 850+ действующих объектов в базе</span>
+          </div>
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Свободных земельных лотов</span>
+            <span class="doc-meta-value">84 участка под строительство отелей</span>
+          </div>
+          <div class="doc-meta-item">
+            <span class="doc-meta-label">Интеграция</span>
+            <span class="doc-meta-value">Единый кадастр &middot; ЕГРЗ &middot; Налоговый комитет</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-header-ornament" aria-hidden="true">
+      <svg width="100%" height="12" preserveAspectRatio="none" viewBox="0 0 1440 12">
+        <line x1="0" y1="6" x2="1440" y2="6" stroke="#2C3E5A" stroke-width="1"/>
+        <g fill="none" stroke="#1E6F7C" stroke-width="1" opacity="0.5">
+          <rect x="80"  y="3" width="6" height="6"/>
+          <rect x="240" y="3" width="6" height="6"/>
+          <rect x="400" y="3" width="6" height="6"/>
+          <rect x="560" y="3" width="6" height="6"/>
+          <rect x="720" y="3" width="6" height="6"/>
+          <rect x="880" y="3" width="6" height="6"/>
+          <rect x="1040" y="3" width="6" height="6"/>
+          <rect x="1200" y="3" width="6" height="6"/>
+          <rect x="1360" y="3" width="6" height="6"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       REGISTRIES TABS & WORKSPACE
+  ═══════════════════════════════════════════ -->
+  <main class="registries-workspace">
+    <div class="registries-container">
+
+      <!-- TABS NAVIGATION -->
+      <div class="reg-tabs-bar" role="tablist">
+        <button type="button" class="reg-tab-btn reg-tab-btn--active" role="tab" id="tab-hotels-btn" data-tab="tab-hotels">
+          01. Реестр средств размещения (1★–5★)
+        </button>
+        <button type="button" class="reg-tab-btn" role="tab" id="tab-lots-btn" data-tab="tab-lots">
+          02. Свободные земельные участки (Лоты)
+        </button>
+        <button type="button" class="reg-tab-btn" role="tab" id="tab-subsidies-btn" data-tab="tab-subsidies">
+          03. Реестр субсидий и льгот (ПКМ № 308)
+        </button>
+        <button type="button" class="reg-tab-btn" role="tab" id="tab-auditors-btn" data-tab="tab-auditors">
+          04. Аккредитованные операторы &amp; Оценщики
+        </button>
+      </div>
+
+
+      <!-- ── TAB 1: РЕЕСТР СРЕДСТВ РАЗМЕЩЕНИЯ ─────────────────── -->
+      <section class="reg-tab-panel reg-tab-panel--active" id="tab-hotels" role="tabpanel">
+        <div class="reg-panel-controls">
+          <div class="reg-search-wrap">
+            <input type="text" id="hotels-search-input" class="form-input reg-search-input" placeholder="Поиск по названию, региону или номеру сертификата..." />
+          </div>
+          <div class="reg-filter-select-wrap">
+            <select id="hotels-category-filter" class="form-select reg-filter-select">
+              <option value="all">Все категории (1★–5★)</option>
+              <option value="5">5 звёзд (Luxury)</option>
+              <option value="4">4 звезды (Upscale)</option>
+              <option value="3">3 звезды (Midscale)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="reg-table-wrap">
+          <table class="editorial-table reg-table" id="hotels-table">
+            <thead>
+              <tr>
+                <th class="et-key et-head">Наименование объекта</th>
+                <th class="et-val et-head">Регион</th>
+                <th class="et-val et-head">Категория</th>
+                <th class="et-val et-head">Фонд</th>
+                <th class="et-val et-head">Сертификат</th>
+                <th class="et-val et-head">Статус</th>
+                <th class="et-val et-head">Паспорт</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-cat="5">
+                <td class="et-key"><strong>Grand Tashkent Hotel</strong></td>
+                <td class="et-val">г. Ташкент</td>
+                <td class="et-val"><span class="stars-gold">★★★★★</span></td>
+                <td class="et-val et-val--num">258 комн.</td>
+                <td class="et-val et-val--num">UZ.TR.001.2024</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · A+</span></td>
+                <td class="et-val"><a href="passport.html" class="reg-link">Открыть &rarr;</a></td>
+              </tr>
+              <tr data-cat="5">
+                <td class="et-key"><strong>Samarkand Palace Hotel</strong></td>
+                <td class="et-val">Самаркандская обл.</td>
+                <td class="et-val"><span class="stars-gold">★★★★★</span></td>
+                <td class="et-val et-val--num">192 комн.</td>
+                <td class="et-val et-val--num">UZ.TR.004.2024</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · A</span></td>
+                <td class="et-val"><a href="passport.html" class="reg-link">Открыть &rarr;</a></td>
+              </tr>
+              <tr data-cat="4">
+                <td class="et-key"><strong>Bukhara Heritage Hotel</strong></td>
+                <td class="et-val">Бухарская обл.</td>
+                <td class="et-val"><span class="stars-gold">★★★★</span></td>
+                <td class="et-val et-val--num">86 комн.</td>
+                <td class="et-val et-val--num">UZ.TR.018.2023</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · A</span></td>
+                <td class="et-val"><a href="passport.html" class="reg-link">Открыть &rarr;</a></td>
+              </tr>
+              <tr data-cat="4">
+                <td class="et-key"><strong>Silk Road Resort &amp; Spa</strong></td>
+                <td class="et-val">Ташкентская обл. (Чарвак)</td>
+                <td class="et-val"><span class="stars-gold">★★★★</span></td>
+                <td class="et-val et-val--num">140 комн.</td>
+                <td class="et-val et-val--num">UZ.TR.022.2024</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · B+</span></td>
+                <td class="et-val"><a href="passport.html" class="reg-link">Открыть &rarr;</a></td>
+              </tr>
+              <tr data-cat="4">
+                <td class="et-key"><strong>Khiva Palace Hotel</strong></td>
+                <td class="et-val">Хорезмская обл.</td>
+                <td class="et-val"><span class="stars-gold">★★★★</span></td>
+                <td class="et-val et-val--num">74 комн.</td>
+                <td class="et-val et-val--num">UZ.TR.035.2023</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · B+</span></td>
+                <td class="et-val"><a href="passport.html" class="reg-link">Открыть &rarr;</a></td>
+              </tr>
+              <tr data-cat="4">
+                <td class="et-key"><strong>Zaamin Mountain Resort</strong></td>
+                <td class="et-val">Джизакская обл. (Заамин)</td>
+                <td class="et-val"><span class="stars-gold">★★★★</span></td>
+                <td class="et-val et-val--num">110 комн.</td>
+                <td class="et-val et-val--num">UZ.TR.041.2025</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · A</span></td>
+                <td class="et-val"><a href="passport.html" class="reg-link">Открыть &rarr;</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- ── TAB 2: СВОБОДНЫЕ ЗЕМЕЛЬНЫЕ УЧАСТКИ (ЛОТЫ) ──────────── -->
+      <section class="reg-tab-panel" id="tab-lots" role="tabpanel">
+        <div class="reg-panel-intro">
+          <h3 class="panel-subtitle">Инвестиционные лоты под строительство гостиничных объектов (Аукцион E-AUKSION / ГЧП)</h3>
+          <p class="panel-subtext">Все участки обеспечены точками подключения к магистральным сетям (газ, вода, электроэнергия) с утвержденным АПЗ.</p>
+        </div>
+
+        <div class="reg-table-wrap">
+          <table class="editorial-table reg-table">
+            <thead>
+              <tr>
+                <th class="et-key et-head">Лот / Локация</th>
+                <th class="et-val et-head">Площадь</th>
+                <th class="et-val et-head">Целевое назначение</th>
+                <th class="et-val et-head">Кадастровый номер</th>
+                <th class="et-val et-head">Форма передачи</th>
+                <th class="et-val et-head">Инфраструктура</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="et-key"><strong>Лот #UZ-TAS-04</strong><br/>г. Ташкент, Юнусабадский р-н</td>
+                <td class="et-val et-val--num">1.4 га</td>
+                <td class="et-val">Городской бизнес-отель 4★/5★ (до 220 комн.)</td>
+                <td class="et-val et-val--num">10:07:01:02:03:0084</td>
+                <td class="et-val">Право аренды на 49 лет</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">100% Сети подведены</span></td>
+              </tr>
+              <tr>
+                <td class="et-key"><strong>Лот #UZ-SAM-12</strong><br/>Самарканд, ТРЗ «Шелковый путь»</td>
+                <td class="et-val et-val--num">2.8 га</td>
+                <td class="et-val">Heritage / Бутик-отель (до 150 комн.)</td>
+                <td class="et-val et-val--num">18:01:04:02:01:0412</td>
+                <td class="et-val">Прямой инвестдоговор / ГЧП</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">100% Сети подведены</span></td>
+              </tr>
+              <tr>
+                <td class="et-key"><strong>Лот #UZ-ZAA-07</strong><br/>Джизак, ТРЗ «Заамин» (плато)</td>
+                <td class="et-val et-val--num">3.5 га</td>
+                <td class="et-val">Всесезонный горный курорт / Шале</td>
+                <td class="et-val et-val--num">13:04:08:01:02:0195</td>
+                <td class="et-val">Льготная аренда / E-Auksion</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Газ, Э/Э 10 кВ, Дорога</span></td>
+              </tr>
+              <tr>
+                <td class="et-key"><strong>Лот #UZ-BUK-03</strong><br/>Бухара, Исторический буферный пояс</td>
+                <td class="et-val et-val--num">0.8 га</td>
+                <td class="et-val">Этнографический бутик-отель 4★</td>
+                <td class="et-val et-val--num">20:02:01:01:04:0061</td>
+                <td class="et-val">Приватизация с инвестобязательствами</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Городские коммуникации</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- ── TAB 3: РЕЕСТР СУБСИДИЙ И ЛЬГОТ (ПКМ № 308) ───────── -->
+      <section class="reg-tab-panel" id="tab-subsidies" role="tabpanel">
+        <div class="reg-panel-intro">
+          <h3 class="panel-subtitle">Государственные меры стимулирования гостиничных инвестиций</h3>
+          <p class="panel-subtext">Нормативная база: Постановления Кабинета Министров и Указы Президента Республики Узбекистан.</p>
+        </div>
+
+        <div class="subsidies-grid">
+          <div class="subsidy-card">
+            <span class="subsidy-val">40 – 100 млн сум</span>
+            <h4 class="subsidy-title">Единовременная субсидия на каждый номер отеля</h4>
+            <p class="subsidy-desc">Выделяется из Госбюджета при вводе в эксплуатацию новых гостиниц: 40 млн сум за номер (3★), 65 млн сум за номер (4★), 100 млн сум за номер (5★).</p>
+          </div>
+
+          <div class="subsidy-card">
+            <span class="subsidy-val">До $25 000 / год</span>
+            <h4 class="subsidy-title">Компенсация расходов на роялти по франшизе</h4>
+            <p class="subsidy-desc">Частичное возмещение затрат инвесторов на выплату роялти международным гостиничным брендам (входящим в топ-50 мировых сетей) в течение первых 3 лет.</p>
+          </div>
+
+          <div class="subsidy-card">
+            <span class="subsidy-val">0% Пошлины</span>
+            <h4 class="subsidy-title">Освобождение от таможенных платежей</h4>
+            <p class="subsidy-desc">Беспошлинный ввоз гостиничного оборудования, мебели, инвентаря, сантехники и строительных материалов премиум-класса (FF&amp;E), не производимых в РУз.</p>
+          </div>
+
+          <div class="subsidy-card">
+            <span class="subsidy-val">-50% Налог</span>
+            <h4 class="subsidy-title">Снижение ставок налога на прибыль и налога на имущество</h4>
+            <p class="subsidy-desc">Льготный налоговый режим для гостиничных объектов, вводимых в туристско-рекреационных зонах сроком до 5 лет.</p>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ── TAB 4: АККРЕДИТОВАННЫЕ ОПЕРАТОРЫ И ОЦЕНЩИКИ ──────── -->
+      <section class="reg-tab-panel" id="tab-auditors" role="tabpanel">
+        <div class="reg-panel-intro">
+          <h3 class="panel-subtitle">Реестр аккредитованных операторов, консалтинговых групп и оценщиков</h3>
+          <p class="panel-subtext">Официальные партнеры Комитета по туризму для подготовки инвестиционных меморандумов и аудита Data Room.</p>
+        </div>
+
+        <div class="reg-table-wrap">
+          <table class="editorial-table reg-table">
+            <thead>
+              <tr>
+                <th class="et-key et-head">Организация / Компания</th>
+                <th class="et-val et-head">Профиль аккредитации</th>
+                <th class="et-val et-head">Международный статус</th>
+                <th class="et-val et-head">Контакты</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="et-key"><strong>JLL Hotels &amp; Hospitality</strong></td>
+                <td class="et-val">Инвестиционный консалтинг, M&amp;A, Операторский поиск</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Global Tier 1</span></td>
+                <td class="et-val">hotels.uzbekistan@jll.com</td>
+              </tr>
+              <tr>
+                <td class="et-key"><strong>CBRE Capital Markets</strong></td>
+                <td class="et-val">Оценка гостиничных активов (RICS), Андеррайтинг</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Global Tier 1</span></td>
+                <td class="et-val">tashkent@cbre.com</td>
+              </tr>
+              <tr>
+                <td class="et-key"><strong>KPMG / PwC Uzbekistan</strong></td>
+                <td class="et-val">Финансовый аудит USALI / МСФО, Налоговое структурирование</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Big 4 Partner</span></td>
+                <td class="et-val">audit@uz.pwc.com</td>
+              </tr>
+              <tr>
+                <td class="et-key"><strong>Marriott International / Hyatt / Accor</strong></td>
+                <td class="et-val">Гостиничные операторы (HMA &amp; Franchise аккредитация)</td>
+                <td class="et-val"><span class="reg-status reg-status--valid">Global Brand Operator</span></td>
+                <td class="et-val">emea.development@marriott.com</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+              <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+              <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
+              <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+            </svg>
+            <div class="logo-text">
+              <span class="logo-title">HIP</span>
+              <span class="logo-subtitle">Uzbekistan</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">Hotel Investment Portfolio — официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.</p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация footer">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Платформа</p>
+            <a href="about.html"             class="footer-nav-link">О системе</a>
+            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
+            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
+            <a href="registries.html"         class="footer-nav-link">Реестры</a>
+            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
+            <a href="passport.html"  class="footer-nav-link">Том II. Investment Passport</a>
+            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <a href="registries.html" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
+          <a href="#" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
+          <a href="#" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/registries.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* ============================================================
+   BASE.CSS — Глобальные стили и типографика
+   Hotel Investment Passport
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--lh-body);
+  color: var(--color-ink);
+  background-color: var(--color-bg-parchment);
+}
+
+/* ── Глобальная доступность ─────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent-teal);
+  outline-offset: 3px;
+}
+
+/* ── Текстовые элементы ─────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+p { line-height: var(--lh-body); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Kicker (uppercase-подпись над заголовками) ── */
+.kicker {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-accent-teal);
+  line-height: 1;
+}
+
+/* ── Кнопки ─────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--btn-radius);
+  padding: var(--btn-pad-y) var(--btn-pad-x);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base);
+  white-space: nowrap;
+}
+
+/* Primary: тёмный фон */
+.btn--primary {
+  background-color: var(--color-bg-dark);
+  color: var(--color-ink-on-dark);
+  border-color: var(--color-bg-dark);
+}
+.btn--primary:hover {
+  background-color: #0e1a2e;
+  border-color: #0e1a2e;
+}
+
+/* Outline: контур */
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-ink-on-dark);
+  border-color: rgba(237, 233, 224, 0.45);
+}
+.btn--outline:hover {
+  background-color: rgba(237, 233, 224, 0.1);
+  border-color: rgba(237, 233, 224, 0.7);
+}
+
+/* Размер Large */
+.btn--lg {
+  font-size: var(--text-xs);
+  padding: 15px 36px;
+}
+
+/* ── Утилиты анимации появления ─────────────── */
+.appear {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--transition-slow),
+    transform var(--transition-slow);
+}
+.appear.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .appear { transition: none; opacity: 1; transform: none; }
+}
+
+/* ── Активная ссылка в навигации ────────────── */
+.nav-link--active {
+  color: var(--color-ink-on-dark) !important;
+}
