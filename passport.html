@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="design-tokens.css" />
   <link rel="stylesheet" href="styles/base.css" />
   <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/megamenu.css" />
   <link rel="stylesheet" href="styles/portal.css" />
   <link rel="stylesheet" href="styles/passport.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -22,13 +23,17 @@
   <!-- ═══════════════════════════════════════════
        C-01 · SITE HEADER
   ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════
+       C-01 · SITE HEADER — Мегаменю
+  ═══════════════════════════════════════════ -->
   <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
+
       <a href="index.html" class="header-logo" aria-label="Hotel Investment Portfolio — Главная">
         <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
           <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
           <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
-          <line x1="14" y1="1"  x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="14" y1="1" x2="14" y2="7"  stroke="#EDE9E0" stroke-width="1"/>
           <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
           <line x1="1"  y1="14" x2="7"  y2="14" stroke="#EDE9E0" stroke-width="1"/>
           <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
@@ -38,25 +43,171 @@
           <span class="logo-subtitle">Uzbekistan</span>
         </div>
       </a>
+
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
-        <a href="about.html"              class="nav-link" id="nav-about">О системе</a>
-        <a href="tourism-types.html"      class="nav-link" id="nav-clusters">Виды туризма</a>
-        <a href="portfolio.html"          class="nav-link" id="nav-portfolio">Объекты</a>
-        <a href="registries.html"         class="nav-link" id="nav-registries">Реестры</a>
-        <a href="form.html"               class="nav-link" id="nav-form">Smart Form</a>
+        <div class="nav-item" data-mega="investors">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Для инвесторов
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <span class="mega-group-title">Инвестиционные возможности</span>
+            <a href="portfolio.html" class="mega-link">
+              <span class="mega-icon">🏨</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Каталог объектов</span>
+                <span class="mega-link-desc">150+ гостиничных проектов с фильтрами</span>
+              </span>
+            </a>
+            <a href="form.html" class="mega-link">
+              <span class="mega-icon">⚡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Smart Investment Form</span>
+                <span class="mega-link-desc">Расчёт ADR, RevPAR, EBITDA, IRR онлайн</span>
+              </span>
+            </a>
+            <a href="b2b.html" class="mega-link">
+              <span class="mega-icon">🤝</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">B2B Cooperation</span>
+                <span class="mega-link-desc">Партнёрство с операторами и фондами</span>
+              </span>
+            </a>
+            <a href="cabinet-investor.html" class="mega-link">
+              <span class="mega-icon">👤</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Кабинет инвестора</span>
+                <span class="mega-link-desc">Избранное, заявки, Data Room доступ</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item" data-mega="hotels">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Для отелей
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <span class="mega-group-title">Управление объектом</span>
+            <a href="passport.html" class="mega-link">
+              <span class="mega-icon">📄</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Инвестиционный паспорт</span>
+                <span class="mega-link-desc">Стандарт USALI · Leaflet-карта · PDF</span>
+              </span>
+            </a>
+            <a href="quality.html" class="mega-link">
+              <span class="mega-icon">⭐</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Quality Management</span>
+                <span class="mega-link-desc">KQI чек-лист · 80 критериев · рейтинг</span>
+              </span>
+            </a>
+            <a href="cabinet-hotel.html" class="mega-link">
+              <span class="mega-icon">🏨</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Кабинет отеля</span>
+                <span class="mega-link-desc">Мои объекты, заявки от инвесторов</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item" data-mega="regulatory">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Регуляторика
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <span class="mega-group-title">Нормативная база</span>
+            <a href="registries.html" class="mega-link">
+              <span class="mega-icon">📋</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Реестры и НПА</span>
+                <span class="mega-link-desc">Сертифицированные отели, субсидии, законы</span>
+              </span>
+            </a>
+            <a href="tourism-types.html" class="mega-link">
+              <span class="mega-icon">🗺️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Виды туризма</span>
+                <span class="mega-link-desc">5 инвестиционных кластеров Узбекистана</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="nav-item" data-mega="platform">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            О платформе
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <span class="mega-group-title">Документация системы</span>
+            <a href="about.html" class="mega-link">
+              <span class="mega-icon">📖</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">О системе</span>
+                <span class="mega-link-desc">Методические рекомендации · Том I</span>
+              </span>
+            </a>
+            <a href="tech-spec.html" class="mega-link">
+              <span class="mega-icon">🛠️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Tech Specification</span>
+                <span class="mega-link-desc">Архитектура, ER-схема, API · Том IV</span>
+              </span>
+            </a>
+          </div>
+        </div>
       </nav>
+
       <div class="header-right">
         <div class="lang-switcher" role="group" aria-label="Выбор языка">
-          <button class="lang-btn lang-btn--active" id="lang-ru" aria-pressed="true">RU</button>
+          <button class="lang-btn lang-btn--active" data-lang="ru" aria-pressed="true">RU</button>
           <span class="lang-sep" aria-hidden="true">/</span>
-          <button class="lang-btn" id="lang-uz" aria-pressed="false">UZ</button>
+          <button class="lang-btn" data-lang="uz" aria-pressed="false">UZ</button>
           <span class="lang-sep" aria-hidden="true">/</span>
-          <button class="lang-btn" id="lang-en" aria-pressed="false">EN</button>
+          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
         </div>
-        <a href="#download" class="btn btn--primary" id="header-cta">Скачать PDF</a>
+        <a href="cabinet-investor.html" class="btn-login" id="header-login">
+          <span class="btn-login-icon">⚿</span> Войти
+        </a>
+        <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
       </div>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для инвесторов</span>
+      <a href="portfolio.html">🏨 Каталог объектов</a>
+      <a href="form.html">⚡ Smart Investment Form</a>
+      <a href="b2b.html">🤝 B2B Cooperation</a>
+      <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для отелей</span>
+      <a href="passport.html">📄 Инвестиционный паспорт</a>
+      <a href="quality.html">⭐ Quality Management</a>
+      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Регуляторика</span>
+      <a href="registries.html">📋 Реестры и НПА</a>
+      <a href="tourism-types.html">🗺️ Виды туризма</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">О платформе</span>
+      <a href="about.html">📖 О системе</a>
+      <a href="tech-spec.html">🛠️ Tech Specification</a>
+    </div>
+  </div>
 
 
   <!-- ═══════════════════════════════════════════
@@ -757,5 +908,6 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
   <script src="js/passport.js"></script>
+  <script src="js/megamenu.js"></script>
 </body>
 </html>

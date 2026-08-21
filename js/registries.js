@@ -58,4 +58,25 @@ document.addEventListener('DOMContentLoaded', () => {
     categoryFilter.addEventListener('change', filterHotels);
   }
 
+  /* ─────────────────────────────────────────────
+     3. NPA TAB — LIVE SEARCH
+     ───────────────────────────────────────────── */
+  const npaSearch = document.getElementById('npa-search');
+  if (npaSearch) {
+    npaSearch.addEventListener('input', () => {
+      const q = npaSearch.value.toLowerCase().trim();
+      document.querySelectorAll('.npa-row').forEach(row => {
+        const kw   = (row.dataset.keywords || '').toLowerCase();
+        const text = row.textContent.toLowerCase();
+        row.style.display = (!q || kw.includes(q) || text.includes(q)) ? '' : 'none';
+      });
+      // Show/hide entire npa-category blocks if all rows hidden
+      document.querySelectorAll('.npa-category').forEach(cat => {
+        const visible = cat.querySelectorAll('.npa-row:not([style*="none"])').length;
+        cat.style.display = visible === 0 && q ? 'none' : '';
+      });
+    });
+  }
+
 });
+

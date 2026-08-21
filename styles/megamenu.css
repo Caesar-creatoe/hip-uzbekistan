@@ -1,0 +1,358 @@
+/* ============================================================
+   MEGAMENU.CSS — Новая навигация с группировкой по аудитории
+   Hotel Investment Portfolio · Uzbekistan
+   ============================================================ */
+
+/* ── Шапка ──────────────────────────────────────────────── */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: var(--header-height);
+  background-color: var(--color-bg-dark);
+  border-bottom: 1px solid var(--color-hairline-dark);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.site-header--scrolled {
+  background-color: rgba(18, 33, 59, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  height: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+}
+
+/* ── Логотип ─────────────────────────────────────────────── */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.logo-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-ink-on-dark);
+  letter-spacing: var(--tracking-wide);
+  line-height: 1;
+}
+.logo-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-ink-on-dark-muted);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.logo-text { display: flex; flex-direction: column; gap: 1px; }
+
+/* ── Навигация ───────────────────────────────────────────── */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  height: 100%;
+}
+
+/* Верхний уровень — простые ссылки и триггеры мегаменю */
+.nav-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link, .nav-trigger {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-on-dark-muted);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 14px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-trigger:hover,
+.nav-item:hover > .nav-trigger,
+.nav-item:hover > .nav-link {
+  color: var(--color-ink-on-dark);
+}
+.nav-item.active > .nav-link,
+.nav-item.active > .nav-trigger {
+  color: var(--color-accent-teal);
+}
+
+/* Стрелка-шеврон */
+.nav-trigger .chevron {
+  width: 10px;
+  height: 10px;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+.nav-item:hover .chevron,
+.nav-item.open .chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ── Выпадающая панель мегаменю ──────────────────────────── */
+.mega-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0d1a2e;
+  border: 1px solid var(--color-hairline-dark);
+  border-top: 2px solid var(--color-accent-teal);
+  border-radius: 0 0 8px 8px;
+  padding: 28px 32px 24px;
+  min-width: 560px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 32px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-8px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  z-index: 300;
+}
+
+/* Широкая панель для «Для инвесторов» */
+.mega-panel--wide {
+  min-width: 480px;
+  grid-template-columns: 1fr;
+}
+
+.nav-item:hover .mega-panel,
+.nav-item.open .mega-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Заголовок группы */
+.mega-group-title {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent-teal);
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(44, 62, 90, 0.6);
+  grid-column: 1 / -1;
+}
+
+/* Пункт мегаменю */
+.mega-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.mega-link:hover {
+  background: rgba(30, 111, 124, 0.12);
+}
+.mega-link .mega-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  line-height: 1;
+}
+.mega-link-text {}
+.mega-link-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: var(--fw-semibold);
+  color: var(--color-ink-on-dark);
+  line-height: 1.3;
+  display: block;
+}
+.mega-link-desc {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-ink-on-dark-muted);
+  line-height: 1.4;
+  margin-top: 2px;
+  display: block;
+}
+
+/* Разделитель между колонками */
+.mega-divider {
+  height: 1px;
+  background: var(--color-hairline-dark);
+  grid-column: 1 / -1;
+  margin: 4px 0;
+}
+
+/* ── Правый блок: язык + кнопки ─────────────────────────── */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+  margin-left: var(--space-4);
+}
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.lang-sep {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-hairline-dark);
+  user-select: none;
+}
+.lang-btn {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-on-dark-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color 0.15s;
+  border-radius: 3px;
+}
+.lang-btn:hover { color: var(--color-ink-on-dark); }
+.lang-btn--active { color: var(--color-accent-teal); }
+
+/* ── Кнопка «Войти» ─────────────────────────────────────── */
+.btn-login {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-ink-on-dark-muted);
+  background: none;
+  border: 1px solid var(--color-hairline-dark);
+  border-radius: 4px;
+  padding: 6px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.btn-login:hover {
+  color: var(--color-ink-on-dark);
+  border-color: var(--color-ink-on-dark-muted);
+  background: rgba(255,255,255,0.05);
+}
+.btn-login .btn-login-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ── CTA «Подать заявку» ────────────────────────────────── */
+.btn.btn--primary {
+  font-size: 11px;
+  padding: 7px 16px;
+  white-space: nowrap;
+}
+
+/* ── Мобильное меню (гамбургер) ─────────────────────────── */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  color: var(--color-ink-on-dark);
+}
+.mobile-menu-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  margin: 4px 0;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Мобильное выпадающее меню */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: var(--header-height);
+  left: 0; right: 0;
+  background: #0d1a2e;
+  border-bottom: 1px solid var(--color-hairline-dark);
+  padding: 20px;
+  z-index: 199;
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+}
+.mobile-nav.open { display: block; }
+
+.mobile-nav-section { margin-bottom: 20px; }
+.mobile-nav-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent-teal);
+  margin-bottom: 8px;
+  display: block;
+}
+.mobile-nav a {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-ink-on-dark);
+  text-decoration: none;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(44,62,90,0.4);
+}
+.mobile-nav a:last-child { border-bottom: none; }
+
+/* ── Адаптив ─────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .header-inner { padding: 0 var(--grid-margin-tablet); }
+  .nav-link, .nav-trigger { padding: 0 10px; }
+}
+
+@media (max-width: 900px) {
+  .header-nav { display: none; }
+  .btn.btn--primary { display: none; }
+  .mobile-menu-btn { display: block; }
+  .header-inner { padding: 0 var(--grid-margin-mobile); }
+}

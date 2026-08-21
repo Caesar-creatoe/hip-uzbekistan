@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Кабинет отеля — Hotel Investment Portfolio. Управление объектом, заявки от инвесторов, KQI-оценка, Data Room." />
+  <title>Кабинет отеля — HIP Uzbekistan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/megamenu.css" />
+  <link rel="stylesheet" href="styles/cabinet.css" />
+</head>
+<body class="cabinet-page">
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Hotel Investment Portfolio — Главная">
+        <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="26" height="26" stroke="#EDE9E0" stroke-width="1"/>
+          <rect x="7" y="7" width="14" height="14" stroke="#1E6F7C" stroke-width="1"/>
+          <line x1="14" y1="1" x2="14" y2="7" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="14" y1="21" x2="14" y2="27" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="1" y1="14" x2="7" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+          <line x1="21" y1="14" x2="27" y2="14" stroke="#EDE9E0" stroke-width="1"/>
+        </svg>
+        <div class="logo-text"><span class="logo-title">HIP</span><span class="logo-subtitle">Uzbekistan</span></div>
+      </a>
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <div class="nav-item" data-mega="investors"><button class="nav-trigger" aria-haspopup="true" aria-expanded="false">Для инвесторов <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="mega-panel"><span class="mega-group-title">Инвестиционные возможности</span>
+            <a href="portfolio.html" class="mega-link"><span class="mega-icon">🏨</span><span class="mega-link-text"><span class="mega-link-label">Каталог объектов</span><span class="mega-link-desc">150+ гостиничных проектов</span></span></a>
+            <a href="form.html" class="mega-link"><span class="mega-icon">⚡</span><span class="mega-link-text"><span class="mega-link-label">Smart Investment Form</span><span class="mega-link-desc">Расчёт ADR, RevPAR, EBITDA, IRR</span></span></a>
+            <a href="b2b.html" class="mega-link"><span class="mega-icon">🤝</span><span class="mega-link-text"><span class="mega-link-label">B2B Cooperation</span><span class="mega-link-desc">Партнёрство с операторами и фондами</span></span></a>
+            <a href="cabinet-investor.html" class="mega-link"><span class="mega-icon">👤</span><span class="mega-link-text"><span class="mega-link-label">Кабинет инвестора</span><span class="mega-link-desc">Избранное, заявки, Data Room</span></span></a>
+          </div>
+        </div>
+        <div class="nav-item active" data-mega="hotels"><button class="nav-trigger" aria-haspopup="true" aria-expanded="false">Для отелей <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="mega-panel"><span class="mega-group-title">Управление объектом</span>
+            <a href="passport.html" class="mega-link"><span class="mega-icon">📄</span><span class="mega-link-text"><span class="mega-link-label">Инвестиционный паспорт</span><span class="mega-link-desc">Стандарт USALI · Leaflet-карта · PDF</span></span></a>
+            <a href="quality.html" class="mega-link"><span class="mega-icon">⭐</span><span class="mega-link-text"><span class="mega-link-label">Quality Management</span><span class="mega-link-desc">KQI чек-лист · 80 критериев</span></span></a>
+            <a href="cabinet-hotel.html" class="mega-link"><span class="mega-icon">🏨</span><span class="mega-link-text"><span class="mega-link-label">Кабинет отеля</span><span class="mega-link-desc">Мои объекты, заявки от инвесторов</span></span></a>
+          </div>
+        </div>
+        <div class="nav-item" data-mega="regulatory"><button class="nav-trigger" aria-haspopup="true" aria-expanded="false">Регуляторика <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="mega-panel"><span class="mega-group-title">Нормативная база</span>
+            <a href="registries.html" class="mega-link"><span class="mega-icon">📋</span><span class="mega-link-text"><span class="mega-link-label">Реестры и НПА</span><span class="mega-link-desc">Сертифицированные отели, субсидии, законы</span></span></a>
+            <a href="tourism-types.html" class="mega-link"><span class="mega-icon">🗺️</span><span class="mega-link-text"><span class="mega-link-label">Виды туризма</span><span class="mega-link-desc">5 инвестиционных кластеров</span></span></a>
+          </div>
+        </div>
+        <div class="nav-item" data-mega="platform"><button class="nav-trigger" aria-haspopup="true" aria-expanded="false">О платформе <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+          <div class="mega-panel"><span class="mega-group-title">Документация системы</span>
+            <a href="about.html" class="mega-link"><span class="mega-icon">📖</span><span class="mega-link-text"><span class="mega-link-label">О системе</span><span class="mega-link-desc">Методические рекомендации · Том I</span></span></a>
+            <a href="tech-spec.html" class="mega-link"><span class="mega-icon">🛠️</span><span class="mega-link-text"><span class="mega-link-label">Tech Specification</span><span class="mega-link-desc">Архитектура, ER-схема, API</span></span></a>
+          </div>
+        </div>
+      </nav>
+      <div class="header-right">
+        <div class="lang-switcher" role="group"><button class="lang-btn lang-btn--active" data-lang="ru">RU</button><span class="lang-sep">/</span><button class="lang-btn" data-lang="uz">UZ</button><span class="lang-sep">/</span><button class="lang-btn" data-lang="en">EN</button></div>
+        <button class="btn-login" id="header-signout-btn" style="display:none" onclick="handleSignOut()"><span class="btn-login-icon">⎋</span> Выйти</button>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ═══ AUTH GATE ═══ -->
+  <div class="auth-gate" id="auth-gate">
+    <div class="auth-card">
+      <div class="setup-banner" id="setup-banner">
+        <span class="setup-banner-icon">⚙️</span>
+        <div>
+          <h3>Настройка авторизации</h3>
+          <p>Для полноценной работы подключите Supabase: вставьте <code>Project URL</code> и <code>Anon Key</code> в <code>js/supabase.js</code>. Доступен демо-режим.</p>
+        </div>
+      </div>
+      <div class="auth-logo">
+        <span class="auth-logo-icon">🏨</span>
+        <h1 class="auth-title">Кабинет отеля</h1>
+        <p class="auth-subtitle">Управляйте объектом, отвечайте на заявки инвесторов, отслеживайте KQI</p>
+      </div>
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab-btn active" data-tab="signin">Войти</button>
+        <button class="auth-tab-btn" data-tab="signup">Регистрация</button>
+      </div>
+      <div id="signin-form-wrap">
+        <form class="auth-form" id="signin-form" novalidate>
+          <div class="auth-form-group"><label class="auth-label" for="signin-email">Email</label><input type="email" id="signin-email" class="auth-input" placeholder="manager@hotel.uz" required /></div>
+          <div class="auth-form-group"><label class="auth-label" for="signin-password">Пароль</label><input type="password" id="signin-password" class="auth-input" placeholder="••••••••" required /></div>
+          <div class="auth-error" id="signin-error"></div>
+          <button type="submit" class="btn btn--teal auth-submit" id="signin-submit">Войти в кабинет</button>
+          <p class="auth-divider">— или —</p>
+          <button type="button" class="btn btn--outline auth-submit" id="demo-login-btn">🎭 Войти в демо-режиме</button>
+        </form>
+      </div>
+      <div id="signup-form-wrap" style="display:none">
+        <form class="auth-form" id="signup-form" novalidate>
+          <div class="auth-form-group"><label class="auth-label" for="signup-name">Название отеля</label><input type="text" id="signup-name" class="auth-input" placeholder="Grand Tashkent Hotel" required /></div>
+          <div class="auth-form-group"><label class="auth-label" for="signup-email">Email управляющего</label><input type="email" id="signup-email" class="auth-input" placeholder="manager@hotel.uz" required /></div>
+          <div class="auth-form-group"><label class="auth-label" for="signup-password">Пароль (мин. 6 символов)</label><input type="password" id="signup-password" class="auth-input" placeholder="••••••••" required minlength="6" /></div>
+          <div class="auth-form-group"><label class="auth-label" for="signup-stars">Категория ★</label>
+            <select id="signup-stars" class="auth-input"><option value="">Выбрать...</option><option value="5">5★</option><option value="4">4★</option><option value="3">3★</option><option value="2">2★</option><option value="1">1★</option></select>
+          </div>
+          <div class="auth-error" id="signup-error"></div>
+          <button type="submit" class="btn btn--teal auth-submit" id="signup-submit">Зарегистрировать объект</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ DASHBOARD ═══ -->
+  <div class="cabinet-layout" id="cabinet-layout">
+    <aside class="cabinet-sidebar" role="navigation">
+      <div class="cabinet-user-info">
+        <div class="cabinet-user-avatar" id="user-avatar">🏨</div>
+        <span class="cabinet-user-name" id="user-name">Загрузка...</span>
+        <span class="cabinet-user-role">Управляющий · HIP Platform</span>
+      </div>
+      <nav class="cabinet-nav">
+        <button class="cabinet-nav-item active" data-section="dashboard" id="nav-dashboard"><span class="cabinet-nav-icon">📊</span> Дашборд</button>
+        <button class="cabinet-nav-item" data-section="myobject" id="nav-myobject"><span class="cabinet-nav-icon">🏨</span> Мой объект</button>
+        <button class="cabinet-nav-item" data-section="investor-requests" id="nav-requests">
+          <span class="cabinet-nav-icon">📥</span> Заявки инвесторов
+          <span style="margin-left:auto;background:var(--color-accent-teal);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;" id="req-badge">2</span>
+        </button>
+        <button class="cabinet-nav-item" data-section="kqi" id="nav-kqi"><span class="cabinet-nav-icon">⭐</span> KQI Самооценка</button>
+        <button class="cabinet-nav-item" data-section="documents" id="nav-documents"><span class="cabinet-nav-icon">📁</span> Документы</button>
+        <button class="cabinet-nav-item" data-section="notifications" id="nav-notifications">
+          <span class="cabinet-nav-icon">🔔</span> Уведомления
+          <span style="margin-left:auto;background:var(--color-accent-teal);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;">2</span>
+        </button>
+        <div class="cabinet-nav-divider"></div>
+        <button class="cabinet-nav-item" data-section="profile" id="nav-profile"><span class="cabinet-nav-icon">⚙️</span> Профиль</button>
+        <button class="cabinet-nav-item" onclick="handleSignOut()"><span class="cabinet-nav-icon">⎋</span> Выйти</button>
+      </nav>
+    </aside>
+
+    <main class="cabinet-main">
+
+      <!-- DASHBOARD -->
+      <section class="cabinet-section active" id="section-dashboard">
+        <h2 class="cabinet-section-title">Дашборд отеля: <span id="dash-name">—</span></h2>
+        <p class="cabinet-section-desc">Статус вашего объекта на платформе HIP Uzbekistan</p>
+        <div class="cabinet-kpi-row">
+          <div class="cabinet-kpi-card">
+            <div class="cabinet-kpi-num" id="kpi-kqi">—</div>
+            <div class="cabinet-kpi-label">KQI Score</div>
+            <div class="cabinet-kpi-trend" id="kpi-kqi-grade">Заполните чек-лист</div>
+          </div>
+          <div class="cabinet-kpi-card">
+            <div class="cabinet-kpi-num">2</div>
+            <div class="cabinet-kpi-label">Заявок от инвесторов</div>
+            <div class="cabinet-kpi-trend" style="color:#e6c040">↑ Требуют ответа</div>
+          </div>
+          <div class="cabinet-kpi-card">
+            <div class="cabinet-kpi-num" id="kpi-status">Черновик</div>
+            <div class="cabinet-kpi-label">Статус в реестре</div>
+          </div>
+          <div class="cabinet-kpi-card">
+            <div class="cabinet-kpi-num" id="kpi-views">148</div>
+            <div class="cabinet-kpi-label">Просмотров паспорта</div>
+            <div class="cabinet-kpi-trend">За последние 30 дней</div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <h3 style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:var(--fw-semibold);color:var(--color-ink-on-dark-muted);text-transform:uppercase;letter-spacing:0.1em;margin:0 0 16px">Быстрые действия</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <a href="passport.html" style="background:rgba(255,255,255,0.04);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:20px;text-decoration:none;display:block;transition:background 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:24px;margin-bottom:8px">📄</div>
+            <div style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;color:var(--color-ink-on-dark)">Открыть паспорт</div>
+            <div style="font-family:var(--font-body);font-size:11px;color:var(--color-ink-on-dark-muted);margin-top:4px">Инвестиционный паспорт объекта</div>
+          </a>
+          <a href="quality.html" style="background:rgba(255,255,255,0.04);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:20px;text-decoration:none;display:block;transition:background 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:24px;margin-bottom:8px">⭐</div>
+            <div style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;color:var(--color-ink-on-dark)">KQI чек-лист</div>
+            <div style="font-family:var(--font-body);font-size:11px;color:var(--color-ink-on-dark-muted);margin-top:4px">Пройти оценку качества</div>
+          </a>
+          <a href="form.html" style="background:rgba(255,255,255,0.04);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:20px;text-decoration:none;display:block;transition:background 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+            <div style="font-size:24px;margin-bottom:8px">⚡</div>
+            <div style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;color:var(--color-ink-on-dark)">Заполнить Smart Form</div>
+            <div style="font-family:var(--font-body);font-size:11px;color:var(--color-ink-on-dark-muted);margin-top:4px">Обновить данные объекта</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- МОЙ ОБЪЕКТ -->
+      <section class="cabinet-section" id="section-myobject">
+        <h2 class="cabinet-section-title">Мой объект</h2>
+        <p class="cabinet-section-desc">Основные данные отеля на платформе HIP</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:700px">
+          <div style="background:rgba(255,255,255,0.04);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px">
+            <div style="font-family:var(--font-body);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-ink-on-dark-muted);margin-bottom:16px">Идентификация</div>
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)">Название</td><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark);text-align:right;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)" id="obj-name">—</td></tr>
+              <tr><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)">Категория</td><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark);text-align:right;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)" id="obj-stars">—</td></tr>
+              <tr><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);padding:6px 0">HIP ID</td><td style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent-teal);text-align:right;padding:6px 0" id="obj-id">—</td></tr>
+            </table>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px">
+            <div style="font-family:var(--font-body);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-ink-on-dark-muted);margin-bottom:16px">Статус платформы</div>
+            <div style="margin-bottom:12px"><span class="status-badge status-badge--review">На верификации</span></div>
+            <div style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);line-height:1.6">Ваш объект проходит верификацию Комитетом по туризму. Ожидаемый срок: 5 рабочих дней.</div>
+          </div>
+        </div>
+        <div style="margin-top:24px"><a href="passport.html" class="btn btn--teal">📄 Открыть инвестиционный паспорт</a></div>
+      </section>
+
+      <!-- ЗАЯВКИ ИНВЕСТОРОВ -->
+      <section class="cabinet-section" id="section-investor-requests">
+        <h2 class="cabinet-section-title">Заявки от инвесторов</h2>
+        <p class="cabinet-section-desc">Запросы от зарегистрированных инвесторов по вашему объекту</p>
+        <div class="cabinet-table-wrap">
+          <table class="cabinet-table">
+            <thead>
+              <tr><th>Инвестор</th><th>Тип запроса</th><th>AUM</th><th>Дата</th><th>Статус</th><th>Действия</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Gulf Capital Partners</strong><br><span style="font-size:11px;color:var(--color-ink-on-dark-muted)">ОАЭ · PE Fund</span></td>
+                <td>Due Diligence + Data Room</td>
+                <td style="font-family:var(--font-mono);font-size:12px">$200M+</td>
+                <td style="font-family:var(--font-mono);font-size:12px">2026-08-18</td>
+                <td><span class="status-badge status-badge--pending">Ожидает NDA</span></td>
+                <td>
+                  <button class="btn btn--outline" style="font-size:12px;padding:5px 14px" onclick="approveRequest(this)">✓ Одобрить</button>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Alibek Family Office</strong><br><span style="font-size:11px;color:var(--color-ink-on-dark-muted)">Казахстан · HNI</span></td>
+                <td>Запрос IM (Information Memorandum)</td>
+                <td style="font-family:var(--font-mono);font-size:12px">$50M–200M</td>
+                <td style="font-family:var(--font-mono);font-size:12px">2026-08-20</td>
+                <td><span class="status-badge status-badge--pending">Новая</span></td>
+                <td>
+                  <button class="btn btn--outline" style="font-size:12px;padding:5px 14px" onclick="approveRequest(this)">✓ Одобрить</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- KQI -->
+      <section class="cabinet-section" id="section-kqi">
+        <h2 class="cabinet-section-title">KQI Самооценка</h2>
+        <p class="cabinet-section-desc">Пройдите интерактивный чек-лист для получения QI Score вашего объекта</p>
+        <div style="background:rgba(30,111,124,0.1);border:1px solid rgba(30,111,124,0.3);border-radius:12px;padding:24px;margin-bottom:24px;display:flex;gap:20px;align-items:center">
+          <span style="font-size:32px">⭐</span>
+          <div>
+            <div style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;color:var(--color-ink-on-dark);margin-bottom:6px">Перейдите на страницу Quality Management</div>
+            <div style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);margin-bottom:16px">Интерактивный KQI чек-лист с 80 критериями и автоматическим расчётом QI Score доступен на отдельной странице.</div>
+            <a href="quality.html" class="btn btn--teal" style="font-size:13px">Открыть KQI чек-лист →</a>
+          </div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.04);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px">
+          <div style="font-family:var(--font-body);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-ink-on-dark-muted);margin-bottom:16px">История оценок</div>
+          <table class="cabinet-table">
+            <thead><tr><th>Дата</th><th>QI Score</th><th>Рейтинг</th><th>Инспектор</th></tr></thead>
+            <tbody>
+              <tr>
+                <td style="font-family:var(--font-mono);font-size:12px">2026-03-15</td>
+                <td><strong style="font-family:var(--font-mono)">86</strong> / 100</td>
+                <td><span class="status-badge status-badge--approved">A</span></td>
+                <td>Комитет по туризму</td>
+              </tr>
+              <tr>
+                <td style="font-family:var(--font-mono);font-size:12px">2025-09-10</td>
+                <td><strong style="font-family:var(--font-mono)">79</strong> / 100</td>
+                <td><span class="status-badge status-badge--review">B+</span></td>
+                <td>Комитет по туризму</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ДОКУМЕНТЫ -->
+      <section class="cabinet-section" id="section-documents">
+        <h2 class="cabinet-section-title">Документы объекта</h2>
+        <p class="cabinet-section-desc">Загруженные документы для Data Room и верификации</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px">
+          <div style="background:rgba(255,255,255,0.04);border:1px solid var(--color-hairline-dark);border-radius:10px;padding:20px">
+            <div style="font-size:24px;margin-bottom:10px">📋</div>
+            <div style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;color:var(--color-ink-on-dark);margin-bottom:4px">Свидетельство категории</div>
+            <div style="font-family:var(--font-body);font-size:11px;color:var(--color-ink-on-dark-muted)">★★★★★ · 2025</div>
+            <span class="status-badge status-badge--approved" style="margin-top:12px;display:inline-block">Загружен</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid var(--color-hairline-dark);border-radius:10px;padding:20px">
+            <div style="font-size:24px;margin-bottom:10px">🔥</div>
+            <div style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;color:var(--color-ink-on-dark);margin-bottom:4px">Заключение пожарной инспекции</div>
+            <div style="font-family:var(--font-body);font-size:11px;color:var(--color-ink-on-dark-muted)">2026 · Действует</div>
+            <span class="status-badge status-badge--approved" style="margin-top:12px;display:inline-block">Загружен</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px dashed rgba(155,170,187,0.3);border-radius:10px;padding:20px;cursor:pointer" onclick="uploadDoc()">
+            <div style="font-size:24px;margin-bottom:10px">➕</div>
+            <div style="font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;color:var(--color-ink-on-dark-muted)">Добавить документ</div>
+            <div style="font-family:var(--font-body);font-size:11px;color:var(--color-ink-on-dark-muted);margin-top:4px">PDF, DOCX · до 50MB</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- УВЕДОМЛЕНИЯ -->
+      <section class="cabinet-section" id="section-notifications">
+        <h2 class="cabinet-section-title">Уведомления</h2>
+        <div class="notification-list">
+          <div class="notification-item">
+            <span class="notification-icon">📥</span>
+            <div class="notification-text">
+              <span class="notification-title">Новый запрос от Gulf Capital Partners</span>
+              <span class="notification-meta">Due Diligence · Data Room · $200M — 18 авг 2026</span>
+            </div>
+          </div>
+          <div class="notification-item">
+            <span class="notification-icon">⭐</span>
+            <div class="notification-text">
+              <span class="notification-title">Обновление стандартов KQI — версия 1.2</span>
+              <span class="notification-meta">Комитет по туризму · 2 новых критерия добавлено — 15 авг 2026</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ПРОФИЛЬ -->
+      <section class="cabinet-section" id="section-profile">
+        <h2 class="cabinet-section-title">Профиль управляющего</h2>
+        <p class="cabinet-section-desc">Данные объекта и контактного лица на платформе HIP</p>
+        <div class="profile-form">
+          <div class="profile-form-group"><label class="profile-label" for="ph-name">Название отеля</label><input type="text" id="ph-name" class="profile-input" placeholder="Grand Tashkent" /></div>
+          <div class="profile-form-group"><label class="profile-label" for="ph-email">Email</label><input type="email" id="ph-email" class="profile-input" readonly /></div>
+          <div class="profile-form-group"><label class="profile-label" for="ph-manager">Имя управляющего</label><input type="text" id="ph-manager" class="profile-input" placeholder="Иван Иванов" /></div>
+          <div class="profile-form-group"><label class="profile-label" for="ph-phone">Телефон</label><input type="tel" id="ph-phone" class="profile-input" placeholder="+998 90 000 00 00" /></div>
+          <div class="profile-form-group"><label class="profile-label" for="ph-address">Адрес объекта</label><input type="text" id="ph-address" class="profile-input" placeholder="ул. Навои, 1, Ташкент" /></div>
+          <div class="profile-form-group"><label class="profile-label" for="ph-stars">Категория ★</label>
+            <select id="ph-stars" class="profile-input"><option value="5">5★</option><option value="4">4★</option><option value="3">3★</option><option value="2">2★</option></select>
+          </div>
+          <div class="profile-form-group full" style="margin-top:8px">
+            <button class="btn btn--teal" id="profile-save-btn" onclick="saveHotelProfile()">Сохранить изменения</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/megamenu.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/cabinet-hotel.js"></script>
+</body>
+</html>
