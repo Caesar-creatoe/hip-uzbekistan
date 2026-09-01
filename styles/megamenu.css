@@ -1,6 +1,7 @@
 /* ============================================================
-   MEGAMENU.CSS — Новая навигация с группировкой по аудитории
+   MEGAMENU.CSS — Навигация с группировкой по аудитории
    Hotel Investment Portfolio · Uzbekistan
+   Новая бежево-кофейная палитра
    ============================================================ */
 
 /* ── Шапка ──────────────────────────────────────────────── */
@@ -9,15 +10,13 @@
   top: 0; left: 0; right: 0;
   z-index: 200;
   height: var(--header-height);
-  background-color: var(--color-bg-dark);
-  border-bottom: 1px solid var(--color-hairline-dark);
+  background-color: var(--color-header-bg);
+  border-bottom: 1px solid var(--color-border);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .site-header--scrolled {
-  background-color: rgba(18, 33, 59, 0.97);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+  background-color: var(--color-header-bg);
+  box-shadow: 0 4px 20px rgba(59, 42, 32, 0.08);
 }
 
 .header-inner {
@@ -42,7 +41,7 @@
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--fw-bold);
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
   letter-spacing: var(--tracking-wide);
   line-height: 1;
 }
@@ -50,7 +49,7 @@
   font-family: var(--font-body);
   font-size: var(--text-2xs);
   font-weight: var(--fw-medium);
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   line-height: 1;
@@ -80,7 +79,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-primary);
   text-decoration: none;
   background: none;
   border: none;
@@ -96,11 +95,11 @@
 .nav-link:hover, .nav-trigger:hover,
 .nav-item:hover > .nav-trigger,
 .nav-item:hover > .nav-link {
-  color: var(--color-ink-on-dark);
+  color: var(--color-accent);
 }
 .nav-item.active > .nav-link,
 .nav-item.active > .nav-trigger {
-  color: var(--color-accent-teal);
+  color: var(--color-accent);
 }
 
 /* Стрелка-шеврон */
@@ -109,7 +108,7 @@
   height: 10px;
   transition: transform 0.2s;
   flex-shrink: 0;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 .nav-item:hover .chevron,
 .nav-item.open .chevron {
@@ -123,9 +122,9 @@
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: #0d1a2e;
-  border: 1px solid var(--color-hairline-dark);
-  border-top: 2px solid var(--color-accent-teal);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-accent);
   border-radius: 0 0 8px 8px;
   padding: 28px 32px 24px;
   min-width: 560px;
@@ -137,7 +136,7 @@
   pointer-events: none;
   transform: translateX(-50%) translateY(-8px);
   transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  box-shadow: 0 16px 48px rgba(59, 42, 32, 0.12);
   z-index: 300;
 }
 
@@ -162,10 +161,10 @@
   font-weight: var(--fw-semibold);
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-accent-teal);
+  color: var(--color-accent);
   padding-bottom: 8px;
   margin-bottom: 4px;
-  border-bottom: 1px solid rgba(44, 62, 90, 0.6);
+  border-bottom: 1px solid var(--color-border);
   grid-column: 1 / -1;
 }
 
@@ -181,7 +180,7 @@
   cursor: pointer;
 }
 .mega-link:hover {
-  background: rgba(30, 111, 124, 0.12);
+  background: var(--color-surface);
 }
 .mega-link .mega-icon {
   font-size: 18px;
@@ -194,14 +193,14 @@
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: var(--fw-semibold);
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
   line-height: 1.3;
   display: block;
 }
 .mega-link-desc {
   font-family: var(--font-body);
   font-size: 11px;
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   line-height: 1.4;
   margin-top: 2px;
   display: block;
@@ -210,7 +209,7 @@
 /* Разделитель между колонками */
 .mega-divider {
   height: 1px;
-  background: var(--color-hairline-dark);
+  background: var(--color-border);
   grid-column: 1 / -1;
   margin: 4px 0;
 }
@@ -232,7 +231,7 @@
 .lang-sep {
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: var(--color-hairline-dark);
+  color: var(--color-border);
   user-select: none;
 }
 .lang-btn {
@@ -241,7 +240,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   background: none;
   border: none;
   cursor: pointer;
@@ -249,8 +248,11 @@
   transition: color 0.15s;
   border-radius: 3px;
 }
-.lang-btn:hover { color: var(--color-ink-on-dark); }
-.lang-btn--active { color: var(--color-accent-teal); }
+.lang-btn:hover { color: var(--color-text-primary); }
+.lang-btn--active {
+  color: var(--color-text-primary);
+  font-weight: var(--fw-bold);
+}
 
 /* ── Кнопка «Войти» ─────────────────────────────────────── */
 .btn-login {
@@ -259,9 +261,9 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-primary);
   background: none;
-  border: 1px solid var(--color-hairline-dark);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 6px 14px;
   cursor: pointer;
@@ -273,9 +275,9 @@
   white-space: nowrap;
 }
 .btn-login:hover {
-  color: var(--color-ink-on-dark);
-  border-color: var(--color-ink-on-dark-muted);
-  background: rgba(255,255,255,0.05);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent);
+  background: var(--color-surface);
 }
 .btn-login .btn-login-icon {
   font-size: 14px;
@@ -296,7 +298,7 @@
   border: none;
   cursor: pointer;
   padding: var(--space-2);
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
 }
 .mobile-menu-btn span {
   display: block;
@@ -313,8 +315,8 @@
   position: fixed;
   top: var(--header-height);
   left: 0; right: 0;
-  background: #0d1a2e;
-  border-bottom: 1px solid var(--color-hairline-dark);
+  background: var(--color-header-bg);
+  border-bottom: 1px solid var(--color-border);
   padding: 20px;
   z-index: 199;
   max-height: calc(100vh - var(--header-height));
@@ -329,7 +331,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-accent-teal);
+  color: var(--color-accent);
   margin-bottom: 8px;
   display: block;
 }
@@ -337,10 +339,10 @@
   display: block;
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
   text-decoration: none;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(44,62,90,0.4);
+  border-bottom: 1px solid var(--color-border);
 }
 .mobile-nav a:last-child { border-bottom: none; }
 

@@ -1,24 +1,16 @@
 /* ============================================================
    PORTAL.CSS — Все секции главной страницы портала
    Hotel Investment Portfolio · Комитет по туризму РУз
-   ============================================================
-   Sections:
-     1. Platform Stats (тёмный, 4 показателя платформы)
-     2. Process Section (пергамент, 4 шага)
-     3. Methodology Section (тёмный, 6 принципов Тома I)
-     4. Catalog Preview (пергамент, асимметричные карточки)
-     5. Form CTA (тёмный с бирюзовым акцентом)
-     6. Site Footer (тёмный)
+   Новая бежево-кофейная палитра
    ============================================================ */
-
 
 /* ═══════════════════════════════════════════════════════════
    1. PLATFORM STATS — 4 показателя платформы
    ═══════════════════════════════════════════════════════════ */
 
 .platform-stats {
-  background-color: var(--color-bg-dark);
-  border-bottom: var(--border-hairline-dark);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .platform-stats-inner {
@@ -26,7 +18,7 @@
   grid-template-columns: repeat(4, 1fr);
   max-width: var(--container-max);
   margin: 0 auto;
-  border-top: var(--border-hairline-dark);
+  border-top: 1px solid var(--color-border);
 }
 
 .pstat-block {
@@ -34,7 +26,7 @@
   flex-direction: column;
   gap: var(--space-2);
   padding: var(--space-12) var(--space-10) var(--space-10);
-  border-right: var(--border-hairline-dark);
+  border-right: 1px solid var(--color-border);
   position: relative;
 }
 .pstat-block:first-child {
@@ -45,7 +37,7 @@
   padding-right: var(--grid-margin-desktop);
 }
 
-/* Bирюзовая черта в первом блоке */
+/* Кофейная черта в первом блоке */
 .pstat-block:first-child::before {
   content: '';
   position: absolute;
@@ -53,20 +45,19 @@
   left: var(--grid-margin-desktop);
   width: 32px;
   height: 2px;
-  background-color: var(--color-accent-teal);
+  background-color: var(--color-accent);
 }
 
 .pstat-number {
   font-family: var(--font-mono);
   font-size: clamp(36px, 3.8vw, 60px);
   font-weight: var(--fw-medium);
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
   line-height: 1;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
 }
 
-/* Для текстовых значений ($4.2B) — чуть меньший размер */
 .pstat-number--sm {
   font-size: clamp(32px, 3.2vw, 52px);
 }
@@ -77,7 +68,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-accent-teal);
+  color: var(--color-accent);
   line-height: 1;
   margin-top: var(--space-1);
 }
@@ -85,7 +76,7 @@
 .pstat-note {
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: rgba(155, 170, 187, 0.65);
+  color: var(--color-text-muted);
   line-height: 1.45;
   font-weight: var(--fw-regular);
   max-width: 28ch;
@@ -98,9 +89,9 @@
   padding: var(--space-5) var(--grid-margin-desktop);
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: rgba(155, 170, 187, 0.45);
+  color: var(--color-text-muted);
   line-height: 1.5;
-  border-top: var(--border-hairline-dark);
+  border-top: 1px solid var(--color-border);
 }
 
 /* Адаптив платформенных KPI */
@@ -120,8 +111,8 @@
   .pstat-block:last-child   { padding-right: var(--grid-margin-mobile); }
   .pstat-block:first-child::before { left: var(--grid-margin-mobile); }
   .pstat-block:nth-child(2) { border-right: none; }
-  .pstat-block:nth-child(3) { border-right: var(--border-hairline-dark); border-top: var(--border-hairline-dark); }
-  .pstat-block:nth-child(4) { border-right: none; border-top: var(--border-hairline-dark); }
+  .pstat-block:nth-child(3) { border-right: 1px solid var(--color-border); border-top: 1px solid var(--color-border); }
+  .pstat-block:nth-child(4) { border-right: none; border-top: 1px solid var(--color-border); }
 }
 
 
@@ -130,9 +121,9 @@
    ═══════════════════════════════════════════════════════════ */
 
 .process-section {
-  background-color: var(--color-bg-parchment);
+  background-color: var(--color-surface);
   padding: var(--space-20) 0;
-  border-bottom: var(--border-hairline);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .process-inner {
@@ -148,14 +139,14 @@
   align-items: start;
   margin-bottom: var(--space-16);
   padding-bottom: var(--space-12);
-  border-bottom: var(--border-hairline);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .process-title {
   font-family: var(--font-display);
   font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl));
   font-weight: var(--fw-bold);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: var(--lh-heading);
   letter-spacing: var(--tracking-tight);
 }
@@ -166,15 +157,15 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
-  border-left: var(--border-hairline);
+  border-left: 1px solid var(--color-border);
 }
 
 .process-step {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
-  padding: var(--space-8) var(--space-8) var(--space-8) var(--space-8);
-  border-right: var(--border-hairline);
+  padding: var(--space-8);
+  border-right: 1px solid var(--color-border);
   position: relative;
 }
 
@@ -183,21 +174,21 @@
   font-family: var(--font-mono);
   font-size: var(--text-3xl);
   font-weight: var(--fw-medium);
-  color: var(--color-hairline);
+  color: var(--color-border);
   line-height: 1;
   letter-spacing: var(--tracking-tight);
   transition: color var(--transition-base);
 }
 
 .process-step:hover .step-num {
-  color: var(--color-accent-teal);
+  color: var(--color-accent);
 }
 
 .step-title {
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--fw-bold);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: var(--lh-heading);
   letter-spacing: var(--tracking-tight);
 }
@@ -205,7 +196,7 @@
 .step-desc {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-ink-muted);
+  color: var(--color-text-muted);
   line-height: var(--lh-body);
 }
 
@@ -215,15 +206,15 @@
   .process-steps { grid-template-columns: 1fr 1fr; }
   .process-step:nth-child(2) { border-right: none; }
   .process-step:nth-child(3),
-  .process-step:nth-child(4) { border-top: var(--border-hairline); }
+  .process-step:nth-child(4) { border-top: 1px solid var(--color-border); }
   .process-step:nth-child(4) { border-right: none; }
 }
 
 @media (max-width: 680px) {
   .process-inner { padding: 0 var(--grid-margin-mobile); }
   .process-steps { grid-template-columns: 1fr; border-left: none; }
-  .process-step { border-right: none; border-top: var(--border-hairline); padding: var(--space-6) 0; }
-  .process-step:last-child { border-bottom: var(--border-hairline); }
+  .process-step { border-right: none; border-top: 1px solid var(--color-border); padding: var(--space-6) 0; }
+  .process-step:last-child { border-bottom: 1px solid var(--color-border); }
 }
 
 
@@ -232,9 +223,9 @@
    ═══════════════════════════════════════════════════════════ */
 
 .methodology-section {
-  background-color: var(--color-bg-dark);
+  background-color: var(--color-surface);
   padding: var(--space-20) 0;
-  border-bottom: var(--border-hairline-dark);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .methodology-inner {
@@ -250,14 +241,14 @@
   align-items: start;
   margin-bottom: var(--space-16);
   padding-bottom: var(--space-12);
-  border-bottom: var(--border-hairline-dark);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .methodology-title {
   font-family: var(--font-display);
   font-size: clamp(var(--text-xl), 2.4vw, var(--text-2xl));
   font-weight: var(--fw-bold);
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
   line-height: var(--lh-heading);
   letter-spacing: var(--tracking-tight);
 }
@@ -265,7 +256,7 @@
 .methodology-desc {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   line-height: var(--lh-body);
   max-width: 64ch;
   margin-top: var(--space-4);
@@ -283,8 +274,8 @@
   gap: var(--space-6);
   align-items: flex-start;
   padding: var(--space-8) var(--space-6);
-  border-top: var(--border-hairline-dark);
-  border-right: var(--border-hairline-dark);
+  border-top: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
   transition: background-color var(--transition-base);
 }
 .principle-item:nth-child(even) {
@@ -294,9 +285,8 @@
 .principle-item:nth-child(odd) {
   padding-left: 0;
 }
-/* Нет фона при ховере — только легкий tint */
 .principle-item:hover {
-  background-color: rgba(30, 111, 124, 0.05);
+  background-color: var(--color-card-bg);
 }
 
 /* Римские цифры */
@@ -304,7 +294,7 @@
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--fw-bold);
-  color: var(--color-accent-teal);
+  color: var(--color-accent);
   line-height: 1;
   flex-shrink: 0;
   width: 28px;
@@ -316,7 +306,7 @@
   font-family: var(--font-display);
   font-size: var(--text-md);
   font-weight: var(--fw-bold);
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
   line-height: var(--lh-heading);
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-2);
@@ -325,7 +315,7 @@
 .principle-desc {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   line-height: var(--lh-body);
 }
 
@@ -343,13 +333,13 @@
 
 
 /* ═══════════════════════════════════════════════════════════
-   4. CATALOG PREVIEW — витрина объектов (асимметричная)
+   4. CATALOG PREVIEW — витрина объектов
    ═══════════════════════════════════════════════════════════ */
 
 .catalog-preview {
-  background-color: var(--color-bg-parchment);
+  background-color: var(--color-surface);
   padding: var(--space-20) 0;
-  border-bottom: var(--border-hairline);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .catalog-inner {
@@ -366,14 +356,14 @@
   gap: var(--space-8);
   margin-bottom: var(--space-12);
   padding-bottom: var(--space-8);
-  border-bottom: var(--border-hairline);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .catalog-title {
   font-family: var(--font-display);
   font-size: clamp(var(--text-2xl), 2.8vw, var(--text-3xl));
   font-weight: var(--fw-bold);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: var(--lh-heading);
   letter-spacing: var(--tracking-tight);
   margin-top: var(--space-3);
@@ -381,16 +371,16 @@
 
 /* Outline кнопка на пергаментном фоне */
 .btn--dark {
-  color: var(--color-ink);
-  border-color: var(--color-ink);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent);
   background: transparent;
 }
 .btn--dark:hover {
-  background-color: var(--color-ink);
-  color: var(--color-ink-on-dark);
+  background-color: var(--color-text-primary);
+  color: var(--color-card-bg);
 }
 
-/* Асимметричная сетка: большая карточка слева (7 col) + 2 малых справа (5 col) */
+/* Асимметричная сетка */
 .catalog-grid {
   display: grid;
   grid-template-columns: 58.33% 1fr;
@@ -406,14 +396,15 @@
 
 /* ── HOTEL CARD ──────────────────────────────── */
 .hotel-card {
-  border: var(--border-hairline);
-  border-radius: var(--radius-none);  /* Без скруглений — только hairline */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-none);
   overflow: hidden;
-  background-color: var(--color-bg-white-pure);
-  transition: border-color var(--transition-base);
+  background-color: var(--color-card-bg);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 .hotel-card:hover {
-  border-color: var(--color-ink-muted);
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 24px rgba(59, 42, 32, 0.08);
 }
 
 .hotel-card-link {
@@ -442,26 +433,24 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  /* Увеличение при ховере — не исчезновение */
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .hotel-card:hover .hotel-card-photo {
   transform: scale(1.04);
 }
 
-/* Тонкое затемнение — только для читаемости бейджа */
 .hotel-card-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
     transparent 50%,
-    rgba(18, 33, 59, 0.30) 100%
+    rgba(59, 42, 32, 0.20) 100%
   );
   pointer-events: none;
 }
 
-/* Бейдж Investment Readiness (в углу фото) */
+/* Бейдж Investment Readiness (A+ эспрессо, B+ кофе, B серый) */
 .hotel-card-iri {
   position: absolute;
   top: var(--space-4);
@@ -469,12 +458,18 @@
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--fw-bold);
-  color: var(--color-bg-white-pure);
-  background-color: var(--color-accent-terracotta);
+  color: #FFFFFF;
+  background-color: var(--color-text-primary);
   line-height: 1;
   padding: 6px 10px;
   letter-spacing: var(--tracking-tight);
   border-radius: var(--radius-subtle);
+}
+.hotel-card-iri--bplus {
+  background-color: var(--color-accent);
+}
+.hotel-card-iri--b {
+  background-color: var(--color-text-muted);
 }
 .hotel-card-iri--sm {
   font-size: var(--text-base);
@@ -502,7 +497,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--color-text-muted);
 }
 
 /* Название */
@@ -510,10 +505,10 @@
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: var(--fw-bold);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: var(--lh-tight);
   letter-spacing: var(--tracking-tight);
-  border-top: var(--border-hairline);
+  border-top: 1px solid var(--color-border);
   padding-top: var(--space-4);
 }
 .hotel-card--small .hotel-card-name {
@@ -540,7 +535,7 @@
   font-family: var(--font-mono);
   font-size: var(--text-lg);
   font-weight: var(--fw-medium);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
@@ -554,14 +549,14 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--color-text-muted);
   line-height: 1;
 }
 
 .hotel-card-kpi-sep {
   width: 1px;
   height: 32px;
-  background-color: var(--color-hairline);
+  background-color: var(--color-border);
   flex-shrink: 0;
 }
 
@@ -571,7 +566,7 @@
   align-items: center;
   justify-content: space-between;
   padding-top: var(--space-4);
-  border-top: var(--border-hairline);
+  border-top: 1px solid var(--color-border);
   margin-top: auto;
 }
 
@@ -581,7 +576,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--color-accent-teal);
+  color: var(--color-accent);
 }
 
 .hotel-card-cta {
@@ -589,12 +584,12 @@
   font-size: var(--text-xs);
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-wide);
-  color: var(--color-ink-muted);
+  color: var(--color-text-muted);
   text-transform: uppercase;
   transition: color var(--transition-fast);
 }
 .hotel-card:hover .hotel-card-cta {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 /* Адаптив каталога */
@@ -631,10 +626,10 @@
    ═══════════════════════════════════════════════════════════ */
 
 .form-cta-section {
-  background-color: var(--color-bg-dark);
+  background-color: var(--color-header-bg);
   padding: var(--space-20) 0;
-  border-top: var(--border-hairline-dark);
-  border-bottom: var(--border-hairline-dark);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   position: relative;
   overflow: hidden;
 }
@@ -664,7 +659,7 @@
   font-family: var(--font-display);
   font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl));
   font-weight: var(--fw-bold);
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
   line-height: var(--lh-heading);
   letter-spacing: var(--tracking-tight);
   margin-top: var(--space-4);
@@ -674,7 +669,7 @@
 .form-cta-desc {
   font-family: var(--font-body);
   font-size: var(--text-md);
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   line-height: var(--lh-body);
   margin-bottom: var(--space-8);
   max-width: 58ch;
@@ -685,28 +680,6 @@
   align-items: center;
   gap: var(--space-4);
   flex-wrap: wrap;
-}
-
-/* Teal-кнопка */
-.btn--teal {
-  background-color: var(--color-accent-teal);
-  color: var(--color-bg-white-pure);
-  border-color: var(--color-accent-teal);
-}
-.btn--teal:hover {
-  background-color: #175f6a;
-  border-color: #175f6a;
-}
-
-/* Ghost (прозрачная на тёмном) */
-.btn--ghost {
-  background: transparent;
-  color: var(--color-ink-on-dark-muted);
-  border-color: var(--color-hairline-dark);
-}
-.btn--ghost:hover {
-  color: var(--color-ink-on-dark);
-  border-color: rgba(237, 233, 224, 0.35);
 }
 
 @media (max-width: 1200px) {
@@ -727,8 +700,8 @@
    ═══════════════════════════════════════════════════════════ */
 
 .site-footer {
-  background-color: #0C1828;   /* глубже, чем #12213B — создаёт ощущение «дна» */
-  border-top: var(--border-hairline-dark);
+  background-color: var(--color-header-bg);
+  border-top: 1px solid var(--color-border);
   padding: var(--space-16) 0 var(--space-10);
 }
 
@@ -744,7 +717,7 @@
   grid-template-columns: 2fr 5fr;
   gap: var(--space-20);
   padding-bottom: var(--space-12);
-  border-bottom: var(--border-hairline-dark);
+  border-bottom: 1px solid var(--color-border);
   margin-bottom: var(--space-8);
 }
 
@@ -756,7 +729,7 @@
 .footer-brand-desc {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   line-height: var(--lh-body);
   max-width: 34ch;
 }
@@ -774,7 +747,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-accent-teal);
+  color: var(--color-accent);
   margin-bottom: var(--space-4);
 }
 
@@ -782,20 +755,20 @@
   display: block;
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   text-decoration: none;
   margin-bottom: var(--space-2);
   transition: color var(--transition-fast);
   line-height: 1.5;
 }
 .footer-nav-link:hover {
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
 }
 
 .footer-contact-item {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   line-height: 1.5;
   margin-bottom: var(--space-2);
 }
@@ -812,7 +785,7 @@
 .footer-legal {
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: rgba(155, 170, 187, 0.45);
+  color: var(--color-text-muted);
   line-height: 1.5;
   max-width: 68ch;
 }
@@ -830,13 +803,13 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: rgba(155, 170, 187, 0.45);
+  color: var(--color-text-muted);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 .footer-lang-link:hover,
 .footer-lang-link--active {
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
 }
 
 /* Адаптив footer */
@@ -852,20 +825,12 @@
   .footer-bottom  { flex-direction: column; align-items: flex-start; }
 }
 
-
-/* ═══════════════════════════════════════════════════════════
-   УТИЛИТА: кириллический kicker на тёмном фоне
-   ═══════════════════════════════════════════════════════════ */
-.kicker--light {
-  color: rgba(30, 111, 124, 0.80);
-}
-
 /* Атрибуция фото в hero */
 .hero-photo-credit {
   margin-top: var(--space-8);
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: rgba(237, 233, 224, 0.30);
+  color: var(--color-text-muted);
   letter-spacing: 0;
   line-height: 1;
 }

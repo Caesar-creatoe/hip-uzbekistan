@@ -1,6 +1,7 @@
 /* ============================================================
    BASE.CSS — Глобальные стили и типографика
    Hotel Investment Passport
+   Новая бежево-кофейная палитра
    ============================================================ */
 
 *, *::before, *::after {
@@ -20,13 +21,13 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--lh-body);
-  color: var(--color-ink);
-  background-color: var(--color-bg-parchment);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
 }
 
 /* ── Глобальная доступность ─────────────────── */
 :focus-visible {
-  outline: 2px solid var(--color-accent-teal);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
@@ -36,14 +37,22 @@ h1, h2, h3, h4 {
   font-weight: var(--fw-bold);
   line-height: var(--lh-tight);
   letter-spacing: var(--tracking-tight);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
-p { line-height: var(--lh-body); }
+p {
+  line-height: var(--lh-body);
+  color: var(--color-text-primary);
+}
 
 a {
-  color: inherit;
+  color: var(--color-accent);
   text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-text-primary);
 }
 
 img {
@@ -59,8 +68,12 @@ img {
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-accent-teal);
+  color: var(--color-accent);
   line-height: 1;
+}
+
+.kicker--light {
+  color: var(--color-text-muted);
 }
 
 /* ── Кнопки ─────────────────────────────────── */
@@ -86,26 +99,32 @@ img {
   white-space: nowrap;
 }
 
-/* Primary: тёмный фон */
-.btn--primary {
-  background-color: var(--color-bg-dark);
-  color: var(--color-ink-on-dark);
-  border-color: var(--color-bg-dark);
+/* Primary / Teal: тёмный эспрессо фон, белый текст */
+.btn--primary,
+.btn--teal {
+  background-color: var(--color-text-primary);
+  color: var(--color-card-bg);
+  border-color: var(--color-text-primary);
 }
-.btn--primary:hover {
-  background-color: #0e1a2e;
-  border-color: #0e1a2e;
+.btn--primary:hover,
+.btn--teal:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #FFFFFF;
 }
 
-/* Outline: контур */
-.btn--outline {
+/* Outline / Ghost: контур кофе, текст кофе */
+.btn--outline,
+.btn--ghost {
   background-color: transparent;
-  color: var(--color-ink-on-dark);
-  border-color: rgba(237, 233, 224, 0.45);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
-.btn--outline:hover {
-  background-color: rgba(237, 233, 224, 0.1);
-  border-color: rgba(237, 233, 224, 0.7);
+.btn--outline:hover,
+.btn--ghost:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #FFFFFF;
 }
 
 /* Размер Large */
@@ -133,5 +152,5 @@ img {
 
 /* ── Активная ссылка в навигации ────────────── */
 .nav-link--active {
-  color: var(--color-ink-on-dark) !important;
+  color: var(--color-text-primary) !important;
 }

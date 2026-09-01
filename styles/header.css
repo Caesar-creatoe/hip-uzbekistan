@@ -1,6 +1,7 @@
 /* ============================================================
    HEADER.CSS — Компонент C-01 · SiteHeader
    Hotel Investment Passport
+   Новая бежево-кофейная палитра
    ============================================================ */
 
 .site-header {
@@ -10,9 +11,9 @@
   right: 0;
   z-index: 100;
   height: var(--header-height);
-  background-color: var(--header-bg);
-  border-bottom: var(--border-hairline-dark);
-  transition: background-color var(--transition-base);
+  background-color: var(--color-header-bg);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 /* Внутренняя обёртка — флекс на всю ширину с боковыми полями */
@@ -49,7 +50,7 @@
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: var(--fw-bold);
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
   letter-spacing: var(--tracking-wide);
   line-height: 1;
 }
@@ -58,7 +59,7 @@
   font-family: var(--font-body);
   font-size: var(--text-2xs);
   font-weight: var(--fw-medium);
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   line-height: 1;
@@ -78,14 +79,14 @@
   font-weight: var(--fw-medium);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-primary);
   text-decoration: none;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-subtle);
   transition: color var(--transition-base);
 }
 .nav-link:hover {
-  color: var(--color-ink-on-dark);
+  color: var(--color-accent);
 }
 
 /* ── Правый блок: язык + CTA ────────────────── */
@@ -106,7 +107,7 @@
 .lang-sep {
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: var(--color-hairline-dark);
+  color: var(--color-border);
   user-select: none;
 }
 
@@ -116,7 +117,7 @@
   font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--color-ink-on-dark-muted);
+  color: var(--color-text-muted);
   background: none;
   border: none;
   cursor: pointer;
@@ -125,17 +126,17 @@
   border-radius: var(--radius-subtle);
 }
 .lang-btn:hover {
-  color: var(--color-ink-on-dark);
+  color: var(--color-text-primary);
 }
 .lang-btn--active {
-  color: var(--color-accent-teal);
+  color: var(--color-text-primary);
+  font-weight: var(--fw-bold);
 }
 
-/* ── Прозрачный хедер на самом верху ─────────── */
+/* ── Прокрученный хедер ─────────────────────── */
 .site-header--scrolled {
-  background-color: rgba(18, 33, 59, 0.97);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: var(--color-header-bg);
+  box-shadow: 0 4px 20px rgba(59, 42, 32, 0.08);
 }
 
 /* ── Адаптив ────────────────────────────────── */

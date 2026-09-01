@@ -146,7 +146,7 @@ function initSidebarNav() {
 window.approveRequest = function(btn) {
   btn.textContent = '✓ Одобрено';
   btn.classList.remove('btn--outline');
-  btn.classList.add('btn--teal');
+  btn.classList.add('btn--primary');
   btn.disabled = true;
   // Find status badge in same row
   const row = btn.closest('tr');

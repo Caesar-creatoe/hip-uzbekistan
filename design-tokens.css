@@ -2,7 +2,7 @@
  * ============================================================
  * DESIGN TOKENS — Hotel Investment Passport
  * Комитет по туризму Республики Узбекистан
- * Version: 1.0 · 2026
+ * Новая бежево-кофейная палитра (7 токенов)
  * ============================================================
  */
 
@@ -10,21 +10,32 @@
 
 :root {
 
-  /* ── ЦВЕТА ─────────────────────────────────── */
-  --color-bg-parchment:      #F7F4EC;
-  --color-bg-dark:           #12213B;
-  --color-bg-white-pure:     #FFFFFF;
+  /* ── 7 КЛЮЧЕВЫХ ЦВЕТОВ (ЕДИНСТВЕННЫЙ ИСТОЧНИК ПРАВДЫ) ──── */
+  --color-header-bg:     #D9CBB8;  /* Бежевый — шапка/nav, hero-баннеры, футер */
+  --color-surface:       #F5EFE3;  /* Крем — фон обычных секций/тела страниц */
+  --color-card-bg:       #FFFFFF;  /* Белый — карточки, формы, попапы, таблицы */
+  --color-text-primary:  #3B2A20;  /* Эспрессо — основной текст, тёмные CTA, бейдж A+ */
+  --color-accent:        #8B6F4E;  /* Кофе — вторичные ссылки, обводка кнопок, бейдж B+ */
+  --color-text-muted:    #6B655C;  /* Серый — второстепенный текст, бейдж B */
+  --color-border:        #D6C7AE;  /* Граница — рамки карточек и блоков */
 
-  --color-ink:               #1B1B1A;
-  --color-ink-muted:         #4A4A48;
-  --color-ink-on-dark:       #EDE9E0;
-  --color-ink-on-dark-muted: #9BAABB;
+  /* ── СЕМАНТИЧЕСКИЕ АЛИАСЫ ДЛЯ СОВМЕСТИМОСТИ ────────────── */
+  --color-bg-parchment:      var(--color-surface);
+  --color-bg-dark:           var(--color-surface);
+  --color-bg-white-pure:     var(--color-card-bg);
 
-  --color-accent-teal:       #1E6F7C;
-  --color-accent-terracotta: #A9673E;
+  --color-ink:               var(--color-text-primary);
+  --color-ink-muted:         var(--color-text-muted);
+  --color-ink-on-dark:       var(--color-text-primary);
+  --color-ink-on-dark-muted: var(--color-text-muted);
 
-  --color-hairline:          #D8D2C4;
-  --color-hairline-dark:     #2C3E5A;
+  --color-accent-teal:       var(--color-accent);
+  --color-accent-terracotta: var(--color-accent);
+
+  --color-hairline:          var(--color-border);
+  --color-hairline-dark:     var(--color-border);
+
+  --header-bg:               var(--color-header-bg);
 
   /* ── ШРИФТЫ ────────────────────────────────── */
   --font-display: 'PT Serif', Georgia, serif;
@@ -88,13 +99,13 @@
   --container-max:      1440px;
 
   /* ── ГРАНИЦЫ ───────────────────────────────── */
-  --border-hairline:      1px solid #D8D2C4;
-  --border-hairline-dark: 1px solid #2C3E5A;
+  --border-hairline:      1px solid var(--color-border);
+  --border-hairline-dark: 1px solid var(--color-border);
   --radius-none:   0px;
   --radius-subtle: 2px;
 
-  /* ── ТЕНИ (только для float-элементов) ─────── */
-  --shadow-float: 0 4px 20px rgba(18, 33, 59, 0.14);
+  /* ── ТЕНИ ──────────────────────────────────── */
+  --shadow-float: 0 4px 20px rgba(59, 42, 32, 0.08);
 
   /* ── АНИМАЦИИ ──────────────────────────────── */
   --transition-fast:  150ms ease;
@@ -103,16 +114,15 @@
   --transition-kpi:  1400ms cubic-bezier(0.16, 1, 0.3, 1);
 
   /* ── АЛИАСЫ КОМПОНЕНТОВ ─────────────────────── */
-  --header-bg:     #12213B;
   --header-height:  68px;
 
-  --hero-overlay-base:   rgba(18, 33, 59, 0.25);
-  --hero-overlay-text:   rgba(18, 33, 59, 0.72);
+  --hero-overlay-base:   rgba(217, 203, 184, 0.35);
+  --hero-overlay-text:   rgba(217, 203, 184, 0.85);
 
   --stat-number-size:    var(--text-kpi);
   --stat-label-tracking: var(--tracking-widest);
 
-  --btn-radius: 2px;
+  --btn-radius: 4px;
   --btn-pad-y:  13px;
   --btn-pad-x:  28px;
 }

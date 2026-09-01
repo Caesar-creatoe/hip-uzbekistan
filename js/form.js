@@ -255,24 +255,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Grade determine
     let grade = 'C';
     let gradeLabel = 'Базовый уровень';
-    let gradeColor = '#9BAABB';
+    let gradeColor = 'var(--color-text-muted)';
 
     if (roundedComposite >= 90) {
       grade = 'A+';
       gradeLabel = 'Наивысшая готовность';
-      gradeColor = 'var(--color-accent-terracotta)';
+      gradeColor = 'var(--color-text-primary)';
     } else if (roundedComposite >= 80) {
       grade = 'A';
       gradeLabel = 'Высокая готовность';
-      gradeColor = '#1A5C3A';
+      gradeColor = 'var(--color-text-primary)';
     } else if (roundedComposite >= 70) {
       grade = 'B+';
       gradeLabel = 'Хорошая готовность';
-      gradeColor = '#2C3E5A';
+      gradeColor = 'var(--color-accent)';
     } else if (roundedComposite >= 60) {
       grade = 'B';
       gradeLabel = 'Удовлетворительно';
-      gradeColor = '#4A4A48';
+      gradeColor = 'var(--color-text-muted)';
     }
 
     // Update Dock
@@ -402,9 +402,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Visual feedback on button
       btnAutofill.textContent = '✓ Заполнено';
-      btnAutofill.style.backgroundColor = 'rgba(26, 92, 58, 0.15)';
-      btnAutofill.style.borderColor = '#1A5C3A';
-      btnAutofill.style.color = '#1A5C3A';
+      btnAutofill.style.backgroundColor = 'var(--color-surface)';
+      btnAutofill.style.borderColor = 'var(--color-accent)';
+      btnAutofill.style.color = 'var(--color-text-primary)';
 
       setTimeout(() => {
         btnAutofill.textContent = 'Заполнить демо-данными';

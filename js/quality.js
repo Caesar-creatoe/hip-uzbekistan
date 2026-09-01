@@ -167,7 +167,7 @@ function updateScore() {
   if (arc) {
     const circumference = 2 * Math.PI * 52;
     arc.style.strokeDashoffset = circumference - (circumference * qiScore / 100);
-    arc.style.stroke = qiScore >= 80 ? '#4dd68a' : qiScore >= 60 ? '#1E6F7C' : qiScore >= 40 ? '#e6c040' : '#e0706a';
+    arc.style.stroke = qiScore >= 80 ? '#3B2A20' : qiScore >= 60 ? '#8B6F4E' : qiScore >= 40 ? '#8B6F4E' : '#6B655C';
   }
 
   // Grade
