@@ -37,8 +37,10 @@
         </div>
       </a>
 
-      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
-        <div class="nav-item" data-mega="investors">
+            <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+
+        <!-- Для инвесторов -->
+        <div class="nav-item" data-mega="investors" data-page="portfolio">
           <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
             Для инвесторов
             <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -59,13 +61,6 @@
                 <span class="mega-link-desc">Расчёт ADR, RevPAR, EBITDA, IRR онлайн</span>
               </span>
             </a>
-            <a href="b2b.html" class="mega-link">
-              <span class="mega-icon">🤝</span>
-              <span class="mega-link-text">
-                <span class="mega-link-label">B2B Cooperation</span>
-                <span class="mega-link-desc">Партнёрство с операторами и фондами</span>
-              </span>
-            </a>
             <a href="cabinet-investor.html" class="mega-link">
               <span class="mega-icon">👤</span>
               <span class="mega-link-text">
@@ -76,38 +71,17 @@
           </div>
         </div>
 
-        <div class="nav-item" data-mega="hotels">
-          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
-            Для отелей
-            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </button>
-          <div class="mega-panel">
-            <span class="mega-group-title">Управление объектом</span>
-            <a href="passport.html" class="mega-link">
-              <span class="mega-icon">📄</span>
-              <span class="mega-link-text">
-                <span class="mega-link-label">Инвестиционный паспорт</span>
-                <span class="mega-link-desc">Стандарт USALI · Leaflet-карта · PDF</span>
-              </span>
-            </a>
-            <a href="quality.html" class="mega-link">
-              <span class="mega-icon">⭐</span>
-              <span class="mega-link-text">
-                <span class="mega-link-label">Quality Management</span>
-                <span class="mega-link-desc">KQI чек-лист · 80 критериев · рейтинг</span>
-              </span>
-            </a>
-            <a href="cabinet-hotel.html" class="mega-link">
-              <span class="mega-icon">🏨</span>
-              <span class="mega-link-text">
-                <span class="mega-link-label">Кабинет отеля</span>
-                <span class="mega-link-desc">Мои объекты, заявки от инвесторов</span>
-              </span>
-            </a>
-          </div>
-        </div>
+        <!-- Виды туризма -->
+        <a href="tourism-types.html" class="nav-link">Виды туризма</a>
 
-        <div class="nav-item" data-mega="regulatory">
+        <!-- B2B Cooperation -->
+        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+
+        <!-- Quality Management -->
+        <a href="quality.html" class="nav-link">Quality Management</a>
+
+        <!-- Регуляторика -->
+        <div class="nav-item" data-mega="regulatory" data-page="registries">
           <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
             Регуляторика
             <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -121,17 +95,25 @@
                 <span class="mega-link-desc">Сертифицированные отели, субсидии, законы</span>
               </span>
             </a>
-            <a href="tourism-types.html" class="mega-link">
-              <span class="mega-icon">🗺️</span>
+            <a href="passport.html" class="mega-link">
+              <span class="mega-icon">📄</span>
               <span class="mega-link-text">
-                <span class="mega-link-label">Виды туризма</span>
-                <span class="mega-link-desc">5 инвестиционных кластеров Узбекистана</span>
+                <span class="mega-link-label">Инвестиционный паспорт</span>
+                <span class="mega-link-desc">Стандарт USALI · Leaflet-карта · PDF</span>
+              </span>
+            </a>
+            <a href="cabinet-hotel.html" class="mega-link">
+              <span class="mega-icon">🏨</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Кабинет отеля</span>
+                <span class="mega-link-desc">Мои объекты, заявки от инвесторов</span>
               </span>
             </a>
           </div>
         </div>
 
-        <div class="nav-item" data-mega="platform">
+        <!-- О платформе -->
+        <div class="nav-item" data-mega="platform" data-page="about">
           <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
             О платформе
             <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -154,6 +136,7 @@
             </a>
           </div>
         </div>
+
       </nav>
 
       <div class="header-right">

@@ -70,4 +70,10 @@
       item.classList.add('active');
     }
   });
+  document.querySelectorAll('.header-nav > .nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && (href === currentPath || (currentPath && href.startsWith(currentPath)))) {
+      link.classList.add('active');
+    }
+  });
 })();
