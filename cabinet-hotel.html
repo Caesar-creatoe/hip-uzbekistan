@@ -2,9 +2,10 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Кабинет отеля — Hotel Investment Portfolio. Управление объектом, заявки от инвесторов, KQI-оценка, Data Room." />
-  <title>Кабинет отеля — HIP Uzbekistan</title>
+  <meta name="description" content="Кабинет отеля — Silk Route Invest. Управление объектом, заявки от инвесторов, KQI-оценка, Data Room." />
+  <title>Кабинет отеля — Silk Route Invest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -19,16 +20,12 @@
   <!-- HEADER -->
   <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
-      <a href="index.html" class="header-logo" aria-label="Hotel Investment Portfolio — Главная">
-        <svg class="logo-emblem" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-          <rect x="1" y="1" width="26" height="26" stroke="#3B2A20" stroke-width="1"/>
-          <rect x="7" y="7" width="14" height="14" stroke="#8B6F4E" stroke-width="1"/>
-          <line x1="14" y1="1" x2="14" y2="7" stroke="#3B2A20" stroke-width="1"/>
-          <line x1="14" y1="21" x2="14" y2="27" stroke="#3B2A20" stroke-width="1"/>
-          <line x1="1" y1="14" x2="7" y2="14" stroke="#3B2A20" stroke-width="1"/>
-          <line x1="21" y1="14" x2="27" y2="14" stroke="#3B2A20" stroke-width="1"/>
-        </svg>
-        <div class="logo-text"><span class="logo-title">HIP</span><span class="logo-subtitle">Uzbekistan</span></div>
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
       </a>
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
         <div class="nav-item" data-mega="investors"><button class="nav-trigger" aria-haspopup="true" aria-expanded="false">Для инвесторов <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
@@ -111,7 +108,7 @@
       <div class="cabinet-user-info">
         <div class="cabinet-user-avatar" id="user-avatar">🏨</div>
         <span class="cabinet-user-name" id="user-name">Загрузка...</span>
-        <span class="cabinet-user-role">Управляющий · HIP Platform</span>
+        <span class="cabinet-user-role">Управляющий · Silk Route Invest</span>
       </div>
       <nav class="cabinet-nav">
         <button class="cabinet-nav-item active" data-section="dashboard" id="nav-dashboard"><span class="cabinet-nav-icon">📊</span> Дашборд</button>
@@ -137,7 +134,7 @@
       <!-- DASHBOARD -->
       <section class="cabinet-section active" id="section-dashboard">
         <h2 class="cabinet-section-title">Дашборд отеля: <span id="dash-name">—</span></h2>
-        <p class="cabinet-section-desc">Статус вашего объекта на платформе HIP Uzbekistan</p>
+        <p class="cabinet-section-desc">Статус вашего объекта на платформе Silk Route Invest</p>
         <div class="cabinet-kpi-row">
           <div class="cabinet-kpi-card">
             <div class="cabinet-kpi-num" id="kpi-kqi">—</div>
@@ -184,14 +181,14 @@
       <!-- МОЙ ОБЪЕКТ -->
       <section class="cabinet-section" id="section-myobject">
         <h2 class="cabinet-section-title">Мой объект</h2>
-        <p class="cabinet-section-desc">Основные данные отеля на платформе HIP</p>
+        <p class="cabinet-section-desc">Основные данные отеля на платформе Silk Route Invest</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:700px">
           <div style="background:var(--color-card-bg);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px">
             <div style="font-family:var(--font-body);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-ink-on-dark-muted);margin-bottom:16px">Идентификация</div>
             <table style="width:100%;border-collapse:collapse">
               <tr><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)">Название</td><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark);text-align:right;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)" id="obj-name">—</td></tr>
               <tr><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)">Категория</td><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark);text-align:right;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)" id="obj-stars">—</td></tr>
-              <tr><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);padding:6px 0">HIP ID</td><td style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent-teal);text-align:right;padding:6px 0" id="obj-id">—</td></tr>
+              <tr><td style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);padding:6px 0">SRI ID</td><td style="font-family:var(--font-mono);font-size:11px;color:var(--color-accent-teal);text-align:right;padding:6px 0" id="obj-id">—</td></tr>
             </table>
           </div>
           <div style="background:var(--color-card-bg);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px">
@@ -322,7 +319,7 @@
       <!-- ПРОФИЛЬ -->
       <section class="cabinet-section" id="section-profile">
         <h2 class="cabinet-section-title">Профиль управляющего</h2>
-        <p class="cabinet-section-desc">Данные объекта и контактного лица на платформе HIP</p>
+        <p class="cabinet-section-desc">Данные объекта и контактного лица на платформе Silk Route Invest</p>
         <div class="profile-form">
           <div class="profile-form-group"><label class="profile-label" for="ph-name">Название отеля</label><input type="text" id="ph-name" class="profile-input" placeholder="Grand Tashkent" /></div>
           <div class="profile-form-group"><label class="profile-label" for="ph-email">Email</label><input type="email" id="ph-email" class="profile-input" readonly /></div>
