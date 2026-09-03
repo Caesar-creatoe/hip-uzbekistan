@@ -22,11 +22,11 @@
 .header-inner {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  gap: 16px;
   height: 100%;
-  max-width: var(--container-max);
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 var(--grid-margin-desktop);
+  padding: 0 28px;
 }
 
 /* ── Логотип ─────────────────────────────────────────────── */
@@ -36,6 +36,7 @@
   gap: var(--space-3);
   flex-shrink: 0;
   text-decoration: none;
+  margin-right: 8px;
 }
 .logo-title {
   font-family: var(--font-display);
@@ -56,12 +57,12 @@
 }
 .logo-text { display: flex; flex-direction: column; gap: 1px; }
 
-/* ── Навигация ───────────────────────────────────────────── */
+/* ── Навигация (прижата влево) ───────────────────────────── */
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 2px;
-  margin-left: auto;
+  gap: 0px;
+  margin-left: 0;
   height: 100%;
 }
 
@@ -77,20 +78,21 @@
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: var(--fw-semibold);
-  letter-spacing: var(--tracking-wider);
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--color-text-primary);
   text-decoration: none;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0 10px;
+  padding: 0 8px;
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   transition: color 0.2s;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .nav-link:hover, .nav-trigger:hover,
 .nav-item:hover > .nav-trigger,
@@ -218,15 +220,15 @@
 .header-right {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: 12px;
   flex-shrink: 0;
-  margin-left: var(--space-4);
+  margin-left: auto;
 }
 
 .lang-switcher {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: 2px;
 }
 .lang-sep {
   font-family: var(--font-body);
@@ -244,7 +246,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px 6px;
+  padding: 4px 5px;
   transition: color 0.15s;
   border-radius: 3px;
 }
@@ -265,14 +267,15 @@
   background: none;
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  padding: 6px 14px;
+  padding: 6px 12px;
   cursor: pointer;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .btn-login:hover {
   color: var(--color-text-primary);
@@ -280,15 +283,38 @@
   background: var(--color-surface);
 }
 .btn-login .btn-login-icon {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
 }
 
 /* ── CTA «Подать заявку» ────────────────────────────────── */
-.btn.btn--primary {
+.btn.btn--primary,
+#header-cta {
   font-size: 11px;
-  padding: 7px 16px;
+  padding: 7px 14px;
   white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1300px) {
+  .header-inner {
+    padding: 0 16px;
+    gap: 10px;
+  }
+  .nav-link, .nav-trigger {
+    font-size: 10.5px;
+    padding: 0 6px;
+  }
+  .header-right {
+    gap: 8px;
+  }
+  .btn-login {
+    padding: 5px 9px;
+  }
+  .btn.btn--primary,
+  #header-cta {
+    padding: 6px 11px;
+  }
 }
 
 /* ── Мобильное меню (гамбургер) ─────────────────────────── */
