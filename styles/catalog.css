@@ -445,3 +445,140 @@
   .filter-bar-sep { display: none; }
   .filter-group-label { display: none; }
 }
+
+/* ── Catalog cards from localStorage (admin-generated) ─── */
+.hotel-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #D9CBB8;
+}
+.hotel-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.hotel-card:hover .hotel-card-img { transform: scale(1.04); }
+.hotel-card-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(59,42,32,0.5) 100%);
+}
+.hotel-card-badges {
+  position: absolute;
+  top: 10px; left: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.hotel-card-stars {
+  font-size: 13px;
+  color: #C49A3A;
+  letter-spacing: -1px;
+  background: rgba(255,255,255,0.9);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+.hotel-card-badge {
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.9);
+  color: #3B2A20;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.hotel-card-badge--draft {
+  background: rgba(255,235,59,0.9);
+  color: #5D4037;
+}
+.hotel-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.hotel-card-region {
+  font-size: 10px;
+  font-weight: 600;
+  color: #8B6F4E;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.hotel-card-year {
+  font-size: 10px;
+  color: #6B655C;
+}
+.hotel-card-name {
+  font-family: 'PT Serif', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #3B2A20;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.hotel-card-legal {
+  font-size: 11px;
+  color: #6B655C;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hotel-card-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.hotel-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hotel-stat strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: #3B2A20;
+  line-height: 1;
+}
+.hotel-stat small {
+  font-size: 9px;
+  color: #6B655C;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+.hotel-card-amenities {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.catalog-amenity {
+  font-size: 10px;
+  background: #F0E8D9;
+  color: #6B655C;
+  padding: 2px 7px;
+  border-radius: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+.hotel-card-contact {
+  font-size: 11px;
+  color: #6B655C;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Empty state with admin link */
+.empty-state { text-align: center; padding: 80px 20px; }
+.empty-state-title { font-family: 'PT Serif',serif; font-size: 22px; color: #3B2A20; margin-bottom: 8px; }
+.empty-state-desc  { font-size: 14px; color: #6B655C; margin-bottom: 16px; }

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Adminка управления каталогом отелей — Silk Route Invest" />
+  <title>Admin — Управление каталогом · Silk Route Invest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body class="admin-body">
+
+  <!-- ═══ ADMIN HEADER ════════════════════════════════════ -->
+  <header class="admin-header">
+    <a href="index.html" class="admin-header-brand">
+      <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="admin-header-logo" />
+      <div>
+        <div class="admin-header-title">Silk Route Invest</div>
+        <div class="admin-header-subtitle">Панель администратора</div>
+      </div>
+    </a>
+    <div class="admin-header-actions">
+      <a href="portfolio.html" class="admin-header-link" target="_blank">👁 Смотреть каталог</a>
+    </div>
+  </header>
+
+  <!-- ═══ LAYOUT ══════════════════════════════════════════ -->
+  <div class="admin-layout">
+
+    <!-- ── SIDEBAR: список отелей ─────────────────────── -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-header-top">
+          <span class="sidebar-label">Каталог отелей</span>
+          <span class="sidebar-count" id="total-count">0</span>
+        </div>
+        <input type="search" class="sidebar-search" id="sidebar-search"
+               placeholder="🔍 Поиск по названию..." autocomplete="off" />
+      </div>
+      <button class="btn-new-hotel" id="btn-new-hotel" type="button">
+        ＋ Новый отель
+      </button>
+      <div class="hotel-list" id="hotel-list" role="list"></div>
+      <div class="sidebar-footer">
+        <button class="btn-export" id="btn-export" type="button">📥 Экспорт в JSON</button>
+      </div>
+    </aside>
+
+    <!-- ── MAIN: форма добавления / редактирования ──────── -->
+    <main class="admin-main" id="main-content">
+
+      <!-- Статус-сообщение -->
+      <div class="status-message" id="status-message" hidden></div>
+
+      <form id="hotel-form" novalidate autocomplete="off">
+
+        <!-- Заголовок формы -->
+        <div class="form-header">
+          <h1 class="form-title" id="form-title">Добавить новый отель</h1>
+          <div class="form-header-actions">
+            <button type="button" class="btn-delete" id="btn-delete" hidden>🗑 Удалить</button>
+            <button type="button" class="btn-cancel" id="btn-cancel" hidden>Отмена</button>
+          </div>
+        </div>
+
+        <!-- ── СЕКЦИЯ 1: Основная информация ────────────── -->
+        <div class="form-section">
+          <div class="form-section-title">Основная информация об объекте</div>
+          <div class="form-grid">
+
+            <div class="form-field col-span-2">
+              <label class="form-label" for="field-hotelName">
+                Название отеля / объекта <span class="required">*</span>
+              </label>
+              <input type="text" class="form-input" id="field-hotelName"
+                     placeholder="Например: Grand Tashkent Hotel" maxlength="200" required />
+              <span class="form-hint">Коммерческое название — именно так будет отображаться в каталоге</span>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-legalEntity">Юр. лицо (лицензиат / владелец)</label>
+              <input type="text" class="form-input" id="field-legalEntity"
+                     placeholder="Например: ООО «Group Emir BMV»" maxlength="300" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-region">Регион</label>
+              <select class="form-select" id="field-region">
+                <option value="">— Выберите регион —</option>
+                <option value="Ташкент (город)">Ташкент (город)</option>
+                <option value="Ташкентская область">Ташкентская область</option>
+                <option value="Самаркандская область">Самаркандская область</option>
+                <option value="Бухарская область">Бухарская область</option>
+                <option value="Хорезмская область">Хорезмская область</option>
+                <option value="Наманганская область">Наманганская область</option>
+                <option value="Ферганская область">Ферганская область</option>
+                <option value="Андижанская область">Андижанская область</option>
+                <option value="Кашкадарьинская область">Кашкадарьинская область</option>
+                <option value="Сурхандарьинская область">Сурхандарьинская область</option>
+                <option value="Джизакская область">Джизакская область</option>
+                <option value="Сырдарьинская область">Сырдарьинская область</option>
+                <option value="Навоийская область">Навоийская область</option>
+                <option value="Республика Каракалпакстан">Республика Каракалпакстан</option>
+              </select>
+            </div>
+
+            <div class="form-field col-span-2">
+              <label class="form-label" for="field-address">Юридический адрес</label>
+              <input type="text" class="form-input" id="field-address"
+                     placeholder="Например: г. Ташкент, ул. Себзор, 12" maxlength="400" />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── СЕКЦИЯ 2: Номерной фонд и категория ──────── -->
+        <div class="form-section">
+          <div class="form-section-title">Номерной фонд и категория</div>
+          <div class="form-grid-3">
+
+            <div class="form-field">
+              <label class="form-label" for="field-roomsCount">Количество номеров</label>
+              <input type="number" class="form-input" id="field-roomsCount"
+                     placeholder="Например: 150" min="1" max="5000" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-placesCount">Количество мест</label>
+              <input type="number" class="form-input" id="field-placesCount"
+                     placeholder="Например: 300" min="1" max="10000" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-stars">Категория (★ звёзды)</label>
+              <select class="form-select" id="field-stars">
+                <option value="">— Выберите —</option>
+                <option value="5">★★★★★ (5 звёзд)</option>
+                <option value="4">★★★★ (4 звезды)</option>
+                <option value="3">★★★ (3 звезды)</option>
+                <option value="2">★★ (2 звезды)</option>
+                <option value="1">★ (1 звезда)</option>
+                <option value="4+">★★★★+ (4+ звезды)</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── СЕКЦИЯ 3: Кадастр и площади ──────────────── -->
+        <div class="form-section">
+          <div class="form-section-title">Кадастровые данные и площади</div>
+          <div class="form-grid">
+
+            <div class="form-field">
+              <label class="form-label" for="field-landArea">Общая площадь земельного участка</label>
+              <input type="text" class="form-input" id="field-landArea"
+                     placeholder="Например: 5400 м² или 2,72 га" maxlength="100" />
+              <span class="form-hint">Из кадастрового паспорта</span>
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-buildingArea">Площадь строения / застройки</label>
+              <input type="text" class="form-input" id="field-buildingArea"
+                     placeholder="Например: 3000 м²" maxlength="100" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-floors">Этажность (кол-во этажей)</label>
+              <input type="text" class="form-input" id="field-floors"
+                     placeholder="Например: 5 или Отель 6, коттедж 3" maxlength="100" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-yearCommissioned">Год ввода в эксплуатацию</label>
+              <input type="text" class="form-input" id="field-yearCommissioned"
+                     placeholder="Например: 2021 или «незавершённое строительство»" maxlength="100" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-maxRoomArea">Макс. площадь номера (м²)</label>
+              <input type="number" class="form-input" id="field-maxRoomArea"
+                     placeholder="Например: 130" min="1" step="0.1" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-minRoomArea">Мин. площадь номера (м²)</label>
+              <input type="number" class="form-input" id="field-minRoomArea"
+                     placeholder="Например: 24" min="1" step="0.1" />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── СЕКЦИЯ 4: Дополнительная инфраструктура ──── -->
+        <div class="form-section">
+          <div class="form-section-title">Дополнительная инфраструктура</div>
+          <div class="form-grid-1">
+            <div class="form-field">
+              <label class="form-label" for="field-amenities">
+                Дополнительные объекты и удобства
+              </label>
+              <textarea class="form-textarea" id="field-amenities" rows="4"
+                placeholder="Например: открытый бассейн, spa, сауна, ресторан (3 зала), конференц-зал, лифт, фитнес-зал, детская площадка, спортивная площадка, пейзажный сад..."></textarea>
+              <span class="form-hint">По критерию Excel: outdoor/indoor pool, sports fields, scenic garden, restaurant, elevator и т.д.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── СЕКЦИЯ 5: Контакты и статус ──────────────── -->
+        <div class="form-section">
+          <div class="form-section-title">Контакты и статус объекта</div>
+          <div class="form-grid">
+
+            <div class="form-field">
+              <label class="form-label" for="field-managerContact">
+                ФИО и телефон руководителя объекта
+              </label>
+              <input type="text" class="form-input" id="field-managerContact"
+                     placeholder="Например: Мирадил ака  +998 90 513 50 02" maxlength="300" />
+            </div>
+
+            <div class="form-field">
+              <label class="form-label" for="field-status">Статус публикации</label>
+              <select class="form-select" id="field-status">
+                <option value="active">✅ Активный — виден в каталоге</option>
+                <option value="draft">📝 Черновик — не опубликован</option>
+                <option value="pending">⏳ На проверке</option>
+              </select>
+            </div>
+
+            <div class="form-field col-span-2">
+              <div class="form-check">
+                <input type="checkbox" id="field-hasPresentation" />
+                <label class="form-check-label" for="field-hasPresentation">
+                  📎 Есть презентация / QR-код по объекту
+                </label>
+              </div>
+            </div>
+
+            <div class="form-field col-span-2">
+              <label class="form-label" for="field-notes">Внутренние заметки (не видны в каталоге)</label>
+              <textarea class="form-textarea" id="field-notes" rows="2"
+                placeholder="Любые внутренние примечания..."></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── СЕКЦИЯ 6: Фотографии ──────────────────────── -->
+        <div class="form-section">
+          <div class="form-section-title">Фотографии объекта (до 10 фото)</div>
+
+          <div class="photo-drop-zone" id="photo-drop-zone" role="button" tabindex="0"
+               aria-label="Нажмите или перетащите фото сюда">
+            <span class="photo-drop-icon">🖼</span>
+            <p class="photo-drop-text">
+              <strong>Нажмите</strong> для выбора или <strong>перетащите</strong> фото сюда
+            </p>
+            <p class="photo-drop-hint">PNG, JPG, WebP — до 10 фотографий</p>
+          </div>
+          <input type="file" id="field-photos" accept="image/*" multiple />
+
+          <div class="photo-preview" id="photo-preview">
+            <p class="photo-placeholder">Фото не загружены</p>
+          </div>
+        </div>
+
+        <!-- ── Sticky Actions Bar ──────────────────────────── -->
+        <div class="form-actions">
+          <button type="submit" class="btn-save" id="btn-save">💾 Сохранить отель</button>
+          <button type="button" class="btn-cancel" id="btn-cancel" hidden>Отмена</button>
+          <button type="button" class="btn-delete" id="btn-delete" hidden>🗑 Удалить</button>
+        </div>
+
+      </form>
+    </main>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
