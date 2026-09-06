@@ -20,6 +20,11 @@ const cancelBtn    = document.getElementById('btn-cancel');
 const deleteBtn    = document.getElementById('btn-delete');
 const photoInput   = document.getElementById('field-photos');
 const photoPreview = document.getElementById('photo-preview');
+const photoLoading   = document.getElementById('photo-loading-status');
+const photoCountInfo = document.getElementById('photo-count-info');
+const photoCountText = document.getElementById('photo-count-text');
+const btnPhotoUrl    = document.getElementById('btn-add-photo-url');
+const fieldPhotoUrl  = document.getElementById('field-photo-url');
 const exportBtn    = document.getElementById('btn-export');
 const totalCounter = document.getElementById('total-count');
 const statusMsg    = document.getElementById('status-message');
@@ -177,58 +182,173 @@ function renderPhotoPreview() {
   if (!photoPreview) return;
   if (!photoFiles.length) {
     photoPreview.innerHTML = '<p class="photo-placeholder">Фото не загружены</p>';
+    if (photoCountInfo) photoCountInfo.style.display = 'none';
     return;
   }
-  photoPreview.innerHTML = photoFiles.map((src,i) => `
-    <div class="photo-thumb">
-      <img src="${src}" alt="Фото ${i+1}" loading="lazy"/>
-      <button type="button" class="photo-remove" data-idx="${i}" aria-label="Удалить фото">✕</button>
+  if (photoCountInfo) {
+    photoCountInfo.style.display = 'flex';
+    if (photoCountText) photoCountText.textContent = `Загружено: ${photoFiles.length} из 10`;
+  }
+  photoPreview.innerHTML = photoFiles.map((src, i) => `
+    <div class="photo-thumb ${i === 0 ? 'is-main' : ''}" data-idx="${i}">
+      <img src="${src}" alt="Фото ${i + 1}" loading="lazy"/>
+      ${i === 0 ? '<span class="photo-main-badge">⭐ Главное</span>' : ''}
+      <button type="button" class="photo-remove" data-idx="${i}" title="Удалить фото" aria-label="Удалить фото">✕</button>
+      ${i > 0 ? `<button type="button" class="photo-make-main" data-idx="${i}">Сделать главным</button>` : ''}
     </div>`).join('');
+
   photoPreview.querySelectorAll('.photo-remove').forEach(btn => {
-    btn.addEventListener('click', () => {
-      photoFiles.splice(parseInt(btn.dataset.idx), 1);
-      renderPhotoPreview();
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = parseInt(btn.dataset.idx, 10);
+      if (!isNaN(idx)) {
+        photoFiles.splice(idx, 1);
+        renderPhotoPreview();
+      }
+    });
+  });
+
+  photoPreview.querySelectorAll('.photo-make-main').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = parseInt(btn.dataset.idx, 10);
+      if (!isNaN(idx) && idx > 0) {
+        const item = photoFiles.splice(idx, 1)[0];
+        photoFiles.unshift(item);
+        renderPhotoPreview();
+      }
     });
   });
 }
 
-/* ── Загрузка файлов ───────────────────────────────────────── */
-function fileToBase64(file) {
-  return new Promise((res,rej) => {
-    const r = new FileReader();
-    r.onload = () => res(r.result);
-    r.onerror = rej;
-    r.readAsDataURL(file);
-  });
-}
-if (photoInput) {
-  photoInput.addEventListener('change', async () => {
-    for (const file of Array.from(photoInput.files)) {
-      if (!file.type.startsWith('image/')) continue;
-      if (photoFiles.length >= 10) break;
-      photoFiles.push(await fileToBase64(file));
-    }
-    renderPhotoPreview();
-    photoInput.value = '';
+/* ── Сжатие и обработка изображений (Canvas, до 1200x900 JPEG) ─ */
+function compressImage(file, maxWidth = 1200, maxHeight = 900, quality = 0.82) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onerror = () => resolve(null);
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = () => resolve(reader.result);
+      img.onload = () => {
+        let width = img.naturalWidth || img.width;
+        let height = img.naturalHeight || img.height;
+        if (width > maxWidth || height > maxHeight) {
+          const ratio = Math.min(maxWidth / width, maxHeight / height);
+          width = Math.round(width * ratio);
+          height = Math.round(height * ratio);
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        try {
+          const compressed = canvas.toDataURL('image/jpeg', quality);
+          resolve(compressed);
+        } catch (e) {
+          resolve(reader.result);
+        }
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
   });
 }
 
-/* ── Drag & Drop ───────────────────────────────────────────── */
-const dropZone = document.getElementById('photo-dropzone');
+async function addImageFiles(files) {
+  const list = Array.from(files).filter(f => f.type && f.type.startsWith('image/'));
+  if (!list.length) return;
+
+  const remaining = 10 - photoFiles.length;
+  if (remaining <= 0) {
+    showStatus('⚠️ Достигнут лимит: максимум 10 фотографий на отель', 'error');
+    return;
+  }
+
+  const toProcess = list.slice(0, remaining);
+  if (photoLoading) photoLoading.style.display = 'flex';
+
+  for (const file of toProcess) {
+    try {
+      const compressed = await compressImage(file);
+      if (compressed) {
+        photoFiles.push(compressed);
+      }
+    } catch (err) {
+      console.warn('Error compressing photo:', err);
+    }
+  }
+
+  if (photoLoading) photoLoading.style.display = 'none';
+  renderPhotoPreview();
+  if (list.length > remaining) {
+    showStatus(`Загружено ${remaining} фото (достигнут лимит 10)`, 'info');
+  } else {
+    showStatus(`✅ Добавлено фото: ${toProcess.length}`);
+  }
+}
+
+/* ── Выбор файлов через проводник ──────────────────────────── */
+if (photoInput) {
+  photoInput.addEventListener('change', async () => {
+    if (photoInput.files && photoInput.files.length) {
+      await addImageFiles(photoInput.files);
+      photoInput.value = '';
+    }
+  });
+}
+
+/* ── Drag & Drop и клик по зоне ────────────────────────────── */
+const dropZone = document.getElementById('photo-drop-zone') || document.getElementById('photo-dropzone');
 if (dropZone) {
-  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('click', () => {
+    if (photoInput) photoInput.click();
+  });
+  dropZone.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (photoInput) photoInput.click();
+    }
+  });
+  dropZone.addEventListener('dragover', e => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
   dropZone.addEventListener('drop', async e => {
     e.preventDefault();
     dropZone.classList.remove('drag-over');
-    for (const file of Array.from(e.dataTransfer.files)) {
-      if (!file.type.startsWith('image/')) continue;
-      if (photoFiles.length >= 10) break;
-      photoFiles.push(await fileToBase64(file));
+    if (e.dataTransfer && e.dataTransfer.files) {
+      await addImageFiles(e.dataTransfer.files);
     }
-    renderPhotoPreview();
   });
-  dropZone.addEventListener('click', () => photoInput && photoInput.click());
+}
+
+/* ── Добавление фото по ссылке ─────────────────────────────── */
+if (btnPhotoUrl && fieldPhotoUrl) {
+  const handleAddUrl = () => {
+    const url = fieldPhotoUrl.value.trim();
+    if (!url) return;
+    if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:image/')) {
+      showStatus('⚠️ Введите корректный URL изображения (https://...)', 'error');
+      return;
+    }
+    if (photoFiles.length >= 10) {
+      showStatus('⚠️ Достигнут лимит: максимум 10 фотографий на отель', 'error');
+      return;
+    }
+    photoFiles.push(url);
+    fieldPhotoUrl.value = '';
+    renderPhotoPreview();
+    showStatus('✅ Фото добавлено по ссылке');
+  };
+  btnPhotoUrl.addEventListener('click', handleAddUrl);
+  fieldPhotoUrl.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddUrl();
+    }
+  });
 }
 
 /* ── Сброс формы ───────────────────────────────────────────── */

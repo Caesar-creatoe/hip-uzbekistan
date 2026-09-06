@@ -247,8 +247,13 @@ const HotelStore = {
     try {
       localStorage.setItem(this.KEY, JSON.stringify(hotels));
       window.dispatchEvent(new CustomEvent('sri_hotels_updated', { detail: hotels }));
+      return true;
     } catch (e) {
       console.error('Error saving sri_hotels:', e);
+      if (typeof window !== 'undefined' && (e.name === 'QuotaExceededError' || e.code === 22)) {
+        alert('⚠️ Недостаточно места в памяти браузера для сохранения данных. Попробуйте удалить старые объекты или уменьшить количество фото.');
+      }
+      return false;
     }
   },
 

@@ -281,11 +281,25 @@
                aria-label="Нажмите или перетащите фото сюда">
             <span class="photo-drop-icon">🖼</span>
             <p class="photo-drop-text">
-              <strong>Нажмите</strong> для выбора или <strong>перетащите</strong> фото сюда
+              <strong>Нажмите</strong> для выбора файлов с устройства или <strong>перетащите</strong> фото сюда
             </p>
-            <p class="photo-drop-hint">PNG, JPG, WebP — до 10 фотографий</p>
+            <p class="photo-drop-hint">PNG, JPG, WebP — до 10 фотографий (автоматическая оптимизация)</p>
           </div>
-          <input type="file" id="field-photos" accept="image/*" multiple />
+          <input type="file" id="field-photos" accept="image/png, image/jpeg, image/webp, image/gif" multiple />
+
+          <div class="photo-url-row">
+            <input type="url" id="field-photo-url" class="photo-url-input" placeholder="Или вставьте прямую ссылку на фото (https://...)" />
+            <button type="button" id="btn-add-photo-url" class="btn-add-url">+ Добавить ссылку</button>
+          </div>
+
+          <div id="photo-loading-status" class="photo-loading-indicator" style="display:none;">
+            <span>⏳ Оптимизация и обработка изображений...</span>
+          </div>
+
+          <div class="photo-count-info" id="photo-count-info" style="display:none;">
+            <span id="photo-count-text">Загружено: 0 из 10</span>
+            <span style="font-weight: normal; color: #9D978E; font-size: 11px;">Первое фото — обложка в каталоге</span>
+          </div>
 
           <div class="photo-preview" id="photo-preview">
             <p class="photo-placeholder">Фото не загружены</p>
