@@ -17,10 +17,16 @@
   }
 
   /* ── Мегаменю: hover на desktop ─────────────────────────── */
-  document.querySelectorAll('.nav-item[data-mega]').forEach(item => {
+  const navItems = document.querySelectorAll('.nav-item[data-mega]');
+  navItems.forEach(item => {
     let leaveTimer;
     item.addEventListener('mouseenter', () => {
       clearTimeout(leaveTimer);
+      navItems.forEach(other => {
+        if (other !== item) {
+          other.classList.remove('open');
+        }
+      });
       item.classList.add('open');
     });
     item.addEventListener('mouseleave', () => {
@@ -63,16 +69,28 @@
   applyLang(savedLang);
 
   /* ── Активный пункт навигации ───────────────────────────── */
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPath = (window.location.pathname.split('/').pop() || 'index.html').split('?')[0];
+  
   document.querySelectorAll('.nav-item').forEach(item => {
-    const active = item.dataset.page;
-    if (active && currentPath.startsWith(active)) {
+    // Проверяем внутренние ссылки выпадающего меню
+    const internalLinks = item.querySelectorAll('a');
+    let isChildActive = false;
+    internalLinks.forEach(a => {
+      const href = (a.getAttribute('href') || '').split('?')[0];
+      if (href && href === currentPath) {
+        isChildActive = true;
+      }
+    });
+    
+    const activeKey = item.dataset.page;
+    if (isChildActive || (activeKey && currentPath.startsWith(activeKey))) {
       item.classList.add('active');
     }
   });
+
   document.querySelectorAll('.header-nav > .nav-link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href && (href === currentPath || (currentPath && href.startsWith(currentPath)))) {
+    const href = (link.getAttribute('href') || '').split('?')[0];
+    if (href && href === currentPath) {
       link.classList.add('active');
     }
   });
