@@ -43,16 +43,18 @@ function buildCard(hotel) {
   const passportUrl = `passport.html?hotel=${encodeURIComponent(hotel.slug || hotel.id)}`;
 
   return `
-  <article class="hotel-card hotel-card--catalog appear"
+  <article class="hotel-card hotel-card--catalog"
            data-region="${escHtml(hotel.regionKey||'other')}"
            data-stars="${escHtml(hotel.stars||'')}"
            data-model="${escHtml(hotel.investmentModel||'all')}"
            data-iri="${escHtml(hotel.iri||'all')}"
+           data-occ="${escHtml(hotel.occupancy||0)}"
+           data-rooms="${escHtml(hotel.roomsCount||0)}"
            data-id="${escHtml(hotel.id)}"
            role="listitem">
     <a href="${passportUrl}" class="hotel-card-link" style="text-decoration:none;color:inherit;display:block">
       <div class="hotel-card-img-wrap">
-        <img src="${photo}" alt="${escHtml(hotel.hotelName)}" class="hotel-card-img" loading="lazy" />
+        <img src="${photo}" alt="${escHtml(hotel.hotelName)}" class="hotel-card-img" loading="lazy" onerror="this.onerror=null;this.src='./assets/hotel-hero.png'" />
         <div class="hotel-card-img-overlay"></div>
         <div class="hotel-card-badges">
           ${stars}
@@ -92,8 +94,12 @@ function renderCatalog() {
     grid.innerHTML = '';
     if (emptyState) {
       emptyState.hidden = false;
-      emptyState.querySelector('.empty-state-title').textContent = 'Каталог пока пуст';
-      emptyState.querySelector('.empty-state-desc').textContent = 'Добавьте отели через панель управления';
+      emptyState.style.display = 'flex';
+      emptyState.classList.remove('is-hidden');
+      const t = emptyState.querySelector('.empty-state-title');
+      const d = emptyState.querySelector('.empty-state-desc');
+      if (t) t.textContent = 'Каталог пока пуст';
+      if (d) d.textContent = 'Добавьте отели через панель управления';
     }
     if (countEl) countEl.textContent = '0';
     if (shownEl) shownEl.textContent = '0';
@@ -102,7 +108,12 @@ function renderCatalog() {
     return;
   }
 
-  if (emptyState) emptyState.hidden = true;
+  if (emptyState) {
+    emptyState.hidden = true;
+    emptyState.style.display = 'none';
+    emptyState.classList.add('is-hidden');
+  }
+
   grid.innerHTML = hotels.map(buildCard).join('');
   applyFilters();
   updateHeaderStats(hotels.length, hotels);
@@ -132,16 +143,32 @@ function applyFilters() {
       (activeFilters.iri    === 'all' || activeFilters.iri    === card.dataset.iri);
     if (match) {
       card.hidden = false;
+      card.style.display = '';
       card.classList.remove('is-hidden');
       visible++;
     } else {
       card.classList.add('is-hidden');
-      setTimeout(() => { if (card.classList.contains('is-hidden')) card.hidden = true; }, 250);
+      card.hidden = true;
+      card.style.display = 'none';
     }
   });
   if (countEl) countEl.textContent = visible;
   if (shownEl) shownEl.textContent = visible;
-  if (emptyState) emptyState.hidden = visible > 0;
+  if (emptyState) {
+    if (visible > 0) {
+      emptyState.hidden = true;
+      emptyState.style.display = 'none';
+      emptyState.classList.add('is-hidden');
+    } else {
+      emptyState.hidden = false;
+      emptyState.style.display = 'flex';
+      emptyState.classList.remove('is-hidden');
+      const t = emptyState.querySelector('.empty-state-title');
+      const d = emptyState.querySelector('.empty-state-desc');
+      if (t) t.textContent = 'По выбранным фильтрам ничего не найдено';
+      if (d) d.textContent = 'Попробуйте сбросить фильтры или выбрать другой регион';
+    }
+  }
 }
 
 function onChipClick(chip) {
@@ -179,6 +206,35 @@ const resetBtn      = document.getElementById('filter-reset');
 const emptyResetBtn = document.getElementById('empty-reset');
 if (resetBtn)      resetBtn.addEventListener('click', resetFilters);
 if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetFilters);
+
+/* ── Сортировка ─────────────────────────────────────────────── */
+function sortCards(criteria) {
+  if (!grid) return;
+  const cards = Array.from(grid.querySelectorAll('.hotel-card--catalog'));
+  cards.sort((a, b) => {
+    if (criteria === 'occ') {
+      return (parseFloat(b.dataset.occ) || 0) - (parseFloat(a.dataset.occ) || 0);
+    }
+    if (criteria === 'rooms') {
+      return (parseInt(b.dataset.rooms) || 0) - (parseInt(a.dataset.rooms) || 0);
+    }
+    // По умолчанию: рейтинг IRI (A+, A, B+, B)
+    const order = { 'A+': 4, 'A': 3, 'B+': 2, 'B': 1 };
+    return (order[b.dataset.iri] || 0) - (order[a.dataset.iri] || 0);
+  });
+  cards.forEach(c => grid.appendChild(c));
+}
+
+const sortBtns = document.querySelectorAll('.sort-btn');
+sortBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    sortBtns.forEach(b => b.classList.remove('sort-btn--active'));
+    btn.classList.add('sort-btn--active');
+    if (btn.id === 'sort-occ') sortCards('occ');
+    else if (btn.id === 'sort-rooms') sortCards('rooms');
+    else sortCards('iri');
+  });
+});
 
 /* ── Filter bar sticky ──────────────────────────────────────── */
 const filterBar    = document.getElementById('filter-bar');
