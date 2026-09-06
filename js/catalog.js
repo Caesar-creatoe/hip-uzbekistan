@@ -1,16 +1,24 @@
 /* ============================================================
-   CATALOG.JS — Рендер и фильтрация каталога отелей
+   CATALOG.JS — Современный фильтр и каталог отелей
    Silk Route Invest · Uzbekistan
-   Каноническая схема 19 полей
+   Единый Glassmorphic Filter Hub (Поиск, Регион, Категория, Номера, Сортировка)
    ============================================================ */
 'use strict';
 
 const Store = window.HotelStore;
 
-/* ── Состояние фильтров ─────────────────────────────────────── */
-const activeFilters = { region: 'all', stars: 'all' };
+/* ── Состояние фильтрации и сортировки ─────────────────────── */
+const filterState = {
+  search: '',
+  region: 'all',
+  stars: 'all',
+  rooms: 'all',
+  sort: 'rooms-desc',
+  onlyPresentation: false,
+  onlyPremium: false
+};
 
-/* ── Escaping ──────────────────────────────────────────────── */
+/* ── Утилиты форматирования ────────────────────────────────── */
 function escHtml(str) {
   return String(str ?? '')
     .replace(/&/g, '&amp;')
@@ -36,7 +44,16 @@ function amenityBadges(txt) {
   }).join('');
 }
 
-/* ── Рендер карточек ────────────────────────────────────────── */
+function formatObjectsCountWord(n) {
+  const abs = Math.abs(n) % 100;
+  const rem = abs % 10;
+  if (abs > 10 && abs < 20) return 'объектов';
+  if (rem > 1 && rem < 5) return 'объекта';
+  if (rem === 1) return 'объект';
+  return 'объектов';
+}
+
+/* ── Рендер отдельной карточки отеля ────────────────────────── */
 function buildCard(hotel) {
   const photo = (Array.isArray(hotel.photos) && hotel.photos.length > 0 && hotel.photos[0])
     ? hotel.photos[0]
@@ -59,10 +76,6 @@ function buildCard(hotel) {
 
   return `
   <article class="hotel-card hotel-card--catalog"
-           data-region="${escHtml(hotel.regionKey || 'other')}"
-           data-stars="${escHtml(hotel.stars || '')}"
-           data-rooms="${escHtml(hotel.roomsCount || 0)}"
-           data-year="${escHtml(hotel.yearCommissioned || 0)}"
            data-id="${escHtml(hotel.id)}"
            role="listitem">
     <a href="${passportUrl}" class="hotel-card-link" style="text-decoration:none;color:inherit;display:block">
@@ -92,17 +105,99 @@ function buildCard(hotel) {
 }
 
 /* ── DOM элементы ──────────────────────────────────────────── */
-const grid       = document.getElementById('hotel-grid');
-const emptyState = document.getElementById('empty-state');
-const countEl    = document.getElementById('filter-count-num');
-const shownEl    = document.getElementById('results-shown');
-const totalEl    = document.querySelector('.results-total');
+const grid             = document.getElementById('hotel-grid');
+const emptyState       = document.getElementById('empty-state');
+const emptyResetBtn    = document.getElementById('empty-reset');
+const searchInput      = document.getElementById('catalog-search');
+const searchClearBtn   = document.getElementById('catalog-search-clear');
+const regionSelect     = document.getElementById('filter-region');
+const starsSelect      = document.getElementById('filter-stars');
+const roomsSelect      = document.getElementById('filter-rooms');
+const sortSelect       = document.getElementById('catalog-sort');
+const tagPresBtn       = document.getElementById('tag-has-presentation');
+const tagPremBtn       = document.getElementById('tag-premium-stars');
+const countNumEl       = document.getElementById('filter-count-num');
+const countLabelEl     = document.getElementById('filter-count-label');
+const resetBtn         = document.getElementById('filter-reset');
 
-function renderCatalog() {
+/* ── Главная функция фильтрации и сортировки ────────────────── */
+function applyFiltersAndSort() {
   if (!grid) return;
-  const hotels = Store ? Store.getAll().filter(h => h.status !== 'draft') : [];
+  const allHotels = Store ? Store.getAll().filter(h => h.status !== 'draft') : [];
 
-  if (hotels.length === 0) {
+  const q = filterState.search.trim().toLowerCase();
+
+  // 1. Фильтрация
+  let matched = allHotels.filter(hotel => {
+    // Поиск
+    if (q) {
+      const name = String(hotel.hotelName || '').toLowerCase();
+      const reg  = String(hotel.region || '').toLowerCase();
+      const addr = String(hotel.address || '').toLowerCase();
+      const leg  = String(hotel.legalEntity || '').toLowerCase();
+      const amen = String(hotel.amenities || '').toLowerCase();
+      if (!name.includes(q) && !reg.includes(q) && !addr.includes(q) && !leg.includes(q) && !amen.includes(q)) {
+        return false;
+      }
+    }
+
+    // Регион
+    if (filterState.region !== 'all') {
+      if (hotel.regionKey !== filterState.region) {
+        return false;
+      }
+    }
+
+    // Звёздность
+    if (filterState.stars !== 'all') {
+      const s = parseInt(hotel.stars, 10) || 0;
+      if (filterState.stars === '5' && s !== 5) return false;
+      if (filterState.stars === '4' && s !== 4) return false;
+      if (filterState.stars === '3' && s !== 3) return false;
+      if (filterState.stars === '1-2' && (s < 1 || s > 2)) return false;
+    }
+
+    // Номерной фонд
+    if (filterState.rooms !== 'all') {
+      const r = parseInt(hotel.roomsCount, 10) || 0;
+      if (filterState.rooms === 'small' && r > 50) return false;
+      if (filterState.rooms === 'medium' && (r <= 50 || r > 150)) return false;
+      if (filterState.rooms === 'large' && r <= 150) return false;
+    }
+
+    // Быстрый фильтр: Только с презентацией
+    if (filterState.onlyPresentation) {
+      if (!hotel.hasPresentation) return false;
+    }
+
+    // Быстрый фильтр: Премиум (4★-5★)
+    if (filterState.onlyPremium) {
+      const s = parseInt(hotel.stars, 10) || 0;
+      if (s < 4) return false;
+    }
+
+    return true;
+  });
+
+  // 2. Сортировка
+  matched.sort((a, b) => {
+    switch (filterState.sort) {
+      case 'rooms-asc':
+        return (parseInt(a.roomsCount, 10) || 0) - (parseInt(b.roomsCount, 10) || 0);
+      case 'stars-desc':
+        return (parseInt(b.stars, 10) || 0) - (parseInt(a.stars, 10) || 0);
+      case 'year-desc':
+        return (parseInt(b.yearCommissioned, 10) || 0) - (parseInt(a.yearCommissioned, 10) || 0);
+      case 'name-asc':
+        return (a.hotelName || '').localeCompare(b.hotelName || '', 'ru');
+      case 'rooms-desc':
+      default:
+        return (parseInt(b.roomsCount, 10) || 0) - (parseInt(a.roomsCount, 10) || 0);
+    }
+  });
+
+  // 3. Отображение карточек или пустого состояния
+  if (matched.length === 0) {
     grid.innerHTML = '';
     if (emptyState) {
       emptyState.hidden = false;
@@ -110,168 +205,141 @@ function renderCatalog() {
       emptyState.classList.remove('is-hidden');
       const t = emptyState.querySelector('.empty-state-title');
       const d = emptyState.querySelector('.empty-state-desc');
-      if (t) t.textContent = 'Каталог пока пуст';
-      if (d) d.textContent = 'Добавьте отели через панель управления';
+      if (t) t.textContent = allHotels.length === 0 ? 'Каталог пока пуст' : 'Ничего не найдено';
+      if (d) d.textContent = allHotels.length === 0 ? 'Добавьте отели через панель управления' : 'Попробуйте изменить параметры поиска или сбросить фильтры';
     }
-    if (countEl) countEl.textContent = '0';
-    if (shownEl) shownEl.textContent = '0';
-    if (totalEl) totalEl.textContent = '0';
-    updateHeaderStats(0, []);
-    return;
-  }
-
-  if (emptyState) {
-    emptyState.hidden = true;
-    emptyState.style.display = 'none';
-    emptyState.classList.add('is-hidden');
-  }
-
-  grid.innerHTML = hotels.map(buildCard).join('');
-  applyFilters();
-  updateHeaderStats(hotels.length, hotels);
-}
-
-/* ── Обновить счетчики в шапке страницы ─────────────────────── */
-function updateHeaderStats(count, hotels) {
-  const statNums = document.querySelectorAll('.ph-stat-num');
-  if (statNums[0]) statNums[0].textContent = count;
-  if (statNums[1]) {
-    const regions = new Set(hotels.map(h => h.regionKey).filter(Boolean)).size;
-    statNums[1].textContent = regions || (count > 0 ? 1 : 0);
-  }
-  if (totalEl) totalEl.textContent = count;
-}
-
-/* ── Фильтрация ─────────────────────────────────────────────── */
-function applyFilters() {
-  if (!grid) return;
-  const cards = grid.querySelectorAll('.hotel-card--catalog');
-  let visible = 0;
-
-  cards.forEach(card => {
-    const match =
-      (activeFilters.region === 'all' || activeFilters.region === card.dataset.region) &&
-      (activeFilters.stars  === 'all' || activeFilters.stars  === card.dataset.stars);
-
-    if (match) {
-      card.hidden = false;
-      card.style.display = '';
-      card.classList.remove('is-hidden');
-      visible++;
-    } else {
-      card.classList.add('is-hidden');
-      card.hidden = true;
-      card.style.display = 'none';
-    }
-  });
-
-  if (countEl) countEl.textContent = visible;
-  if (shownEl) shownEl.textContent = visible;
-
-  if (emptyState) {
-    if (visible > 0) {
+  } else {
+    if (emptyState) {
       emptyState.hidden = true;
       emptyState.style.display = 'none';
       emptyState.classList.add('is-hidden');
-    } else {
-      emptyState.hidden = false;
-      emptyState.style.display = 'flex';
-      emptyState.classList.remove('is-hidden');
-      const t = emptyState.querySelector('.empty-state-title');
-      const d = emptyState.querySelector('.empty-state-desc');
-      if (t) t.textContent = 'По выбранным фильтрам ничего не найдено';
-      if (d) d.textContent = 'Попробуйте сбросить фильтры или выбрать другой регион';
     }
+    grid.innerHTML = matched.map(buildCard).join('');
+  }
+
+  // 4. Обновление счётчиков
+  if (countNumEl) countNumEl.textContent = matched.length;
+  if (countLabelEl) countLabelEl.textContent = formatObjectsCountWord(matched.length);
+
+  updateHeaderStats(matched.length, allHotels);
+}
+
+/* ── Обновление сводных показателей в Hero ──────────────────── */
+function updateHeaderStats(count, allHotels) {
+  const statNums = document.querySelectorAll('.ph-stat-num');
+  if (statNums[0]) statNums[0].textContent = count;
+  if (statNums[1]) {
+    const regions = new Set(allHotels.map(h => h.regionKey).filter(Boolean)).size;
+    statNums[1].textContent = regions || (allHotels.length > 0 ? 1 : 0);
   }
 }
 
-function onChipClick(chip) {
-  const filterType  = chip.dataset.filter;
-  const filterValue = chip.dataset.value;
+/* ── Полный сброс параметров ────────────────────────────────── */
+function resetAllFilters() {
+  filterState.search = '';
+  filterState.region = 'all';
+  filterState.stars = 'all';
+  filterState.rooms = 'all';
+  filterState.sort = 'rooms-desc';
+  filterState.onlyPresentation = false;
+  filterState.onlyPremium = false;
 
-  document.querySelectorAll(`.filter-chip[data-filter="${filterType}"]`).forEach(c => {
-    c.classList.remove('filter-chip--active');
-    c.setAttribute('aria-pressed', 'false');
-  });
+  if (searchInput) searchInput.value = '';
+  if (searchClearBtn) searchClearBtn.hidden = true;
+  if (regionSelect) regionSelect.value = 'all';
+  if (starsSelect) starsSelect.value = 'all';
+  if (roomsSelect) roomsSelect.value = 'all';
+  if (sortSelect) sortSelect.value = 'rooms-desc';
 
-  chip.classList.add('filter-chip--active');
-  chip.setAttribute('aria-pressed', 'true');
-  activeFilters[filterType] = filterValue;
-  applyFilters();
+  if (tagPresBtn) {
+    tagPresBtn.classList.remove('is-active');
+    tagPresBtn.dataset.active = 'false';
+  }
+  if (tagPremBtn) {
+    tagPremBtn.classList.remove('is-active');
+    tagPremBtn.dataset.active = 'false';
+  }
+
+  applyFiltersAndSort();
 }
 
-document.querySelectorAll('.filter-chip').forEach(chip => {
-  chip.addEventListener('click', () => onChipClick(chip));
-});
+/* ── Подключение слушателей событий ─────────────────────────── */
+if (searchInput) {
+  searchInput.addEventListener('input', () => {
+    filterState.search = searchInput.value;
+    if (searchClearBtn) searchClearBtn.hidden = !searchInput.value;
+    applyFiltersAndSort();
+  });
+}
 
-/* ── Сброс фильтров ─────────────────────────────────────────── */
-function resetFilters() {
-  activeFilters.region = 'all';
-  activeFilters.stars = 'all';
-
-  document.querySelectorAll('.filter-chip').forEach(c => {
-    if (c.dataset.value === 'all') {
-      c.classList.add('filter-chip--active');
-      c.setAttribute('aria-pressed', 'true');
-    } else {
-      c.classList.remove('filter-chip--active');
-      c.setAttribute('aria-pressed', 'false');
+if (searchClearBtn) {
+  searchClearBtn.addEventListener('click', () => {
+    if (searchInput) {
+      searchInput.value = '';
+      searchInput.focus();
     }
+    searchClearBtn.hidden = true;
+    filterState.search = '';
+    applyFiltersAndSort();
   });
-  applyFilters();
 }
 
-const resetBtn      = document.getElementById('filter-reset');
-const emptyResetBtn = document.getElementById('empty-reset');
-if (resetBtn)      resetBtn.addEventListener('click', resetFilters);
-if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetFilters);
-
-/* ── Сортировка ─────────────────────────────────────────────── */
-function sortCards(criteria) {
-  if (!grid) return;
-  const cards = Array.from(grid.querySelectorAll('.hotel-card--catalog'));
-  cards.sort((a, b) => {
-    if (criteria === 'stars') {
-      return (parseInt(b.dataset.stars, 10) || 0) - (parseInt(a.dataset.stars, 10) || 0);
-    }
-    if (criteria === 'year') {
-      return (parseInt(b.dataset.year, 10) || 0) - (parseInt(a.dataset.year, 10) || 0);
-    }
-    // По умолчанию: по количеству номеров (rooms)
-    return (parseInt(b.dataset.rooms, 10) || 0) - (parseInt(a.dataset.rooms, 10) || 0);
+if (regionSelect) {
+  regionSelect.addEventListener('change', () => {
+    filterState.region = regionSelect.value;
+    applyFiltersAndSort();
   });
-  cards.forEach(c => grid.appendChild(c));
 }
 
-const sortBtns = document.querySelectorAll('.sort-btn');
-sortBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    sortBtns.forEach(b => b.classList.remove('sort-btn--active'));
-    btn.classList.add('sort-btn--active');
-    if (btn.id === 'sort-stars') sortCards('stars');
-    else if (btn.id === 'sort-year') sortCards('year');
-    else sortCards('rooms');
+if (starsSelect) {
+  starsSelect.addEventListener('change', () => {
+    filterState.stars = starsSelect.value;
+    applyFiltersAndSort();
   });
-});
-
-/* ── Фиксация плашки фильтров при скролле ────────────────────── */
-const filterBar    = document.getElementById('filter-bar');
-const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'), 10) || 68;
-if (filterBar) {
-  const stickObserver = new IntersectionObserver(
-    ([e]) => filterBar.classList.toggle('is-stuck', !e.isIntersecting),
-    { rootMargin: `-${headerHeight + 1}px 0px 0px 0px`, threshold: 0 }
-  );
-  stickObserver.observe(filterBar);
 }
 
-/* ── Слушатель обновления отелей ────────────────────────────── */
+if (roomsSelect) {
+  roomsSelect.addEventListener('change', () => {
+    filterState.rooms = roomsSelect.value;
+    applyFiltersAndSort();
+  });
+}
+
+if (sortSelect) {
+  sortSelect.addEventListener('change', () => {
+    filterState.sort = sortSelect.value;
+    applyFiltersAndSort();
+  });
+}
+
+if (tagPresBtn) {
+  tagPresBtn.addEventListener('click', () => {
+    filterState.onlyPresentation = !filterState.onlyPresentation;
+    tagPresBtn.classList.toggle('is-active', filterState.onlyPresentation);
+    tagPresBtn.dataset.active = String(filterState.onlyPresentation);
+    applyFiltersAndSort();
+  });
+}
+
+if (tagPremBtn) {
+  tagPremBtn.addEventListener('click', () => {
+    filterState.onlyPremium = !filterState.onlyPremium;
+    tagPremBtn.classList.toggle('is-active', filterState.onlyPremium);
+    tagPremBtn.dataset.active = String(filterState.onlyPremium);
+    applyFiltersAndSort();
+  });
+}
+
+if (resetBtn) resetBtn.addEventListener('click', resetAllFilters);
+if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAllFilters);
+
+/* ── Синхронизация и инициализация ──────────────────────────── */
 window.addEventListener('sri_hotels_updated', () => {
-  renderCatalog();
+  applyFiltersAndSort();
 });
 
-/* ── Инициализация ──────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  renderCatalog();
+  applyFiltersAndSort();
 });
-renderCatalog();
+
+applyFiltersAndSort();

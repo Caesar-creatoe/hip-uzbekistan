@@ -215,8 +215,8 @@
         </div>
         <div class="ph-stat-sep" aria-hidden="true"></div>
         <div class="ph-stat">
-          <span class="ph-stat-num">A–B+</span>
-          <span class="ph-stat-label">Средний IRI</span>
+          <span class="ph-stat-num">100%</span>
+          <span class="ph-stat-label">Верифицировано</span>
         </div>
       </div>
 
@@ -246,84 +246,117 @@
   </section>
 
 
-  <!-- ═══ FILTER BAR ════════════════════════════ -->
-  <div class="filter-bar" id="filter-bar" role="search" aria-label="Фильтр объектов">
-    <div class="filter-bar-inner">
+  <!-- ═══ GLASSMORPHIC FILTER & SEARCH HUB ════════════════════ -->
+  <section class="catalog-filter-section" id="catalog-filter-section" aria-label="Панель фильтрации объектов">
+    <div class="catalog-filter-inner">
+      <div class="glass-filter-card" id="glass-filter-card">
 
-      <!-- Группа фильтров -->
-      <div class="filter-groups" role="group" aria-label="Параметры фильтрации">
+        <!-- Верхняя строка: Поиск + Селекторы -->
+        <div class="glass-filter-primary">
 
-        <!-- Регион -->
-        <div class="filter-group" id="filter-region-group">
-          <span class="filter-group-label" id="label-region">Регион</span>
-          <div class="filter-chips" role="group" aria-labelledby="label-region">
-            <button class="filter-chip filter-chip--active" data-filter="region" data-value="all" id="r-all">Все</button>
-            <button class="filter-chip" data-filter="region" data-value="tashkent"   id="r-tashkent">Ташкент</button>
-            <button class="filter-chip" data-filter="region" data-value="tashkent-region" id="r-tashkent-reg">Ташкентская обл.</button>
-            <button class="filter-chip" data-filter="region" data-value="samarkand"  id="r-samarkand">Самарканд</button>
-            <button class="filter-chip" data-filter="region" data-value="bukhara"    id="r-bukhara">Бухара</button>
-            <button class="filter-chip" data-filter="region" data-value="khorezm"    id="r-khorezm">Хорезм</button>
-            <button class="filter-chip" data-filter="region" data-value="fergana"    id="r-fergana">Фергана</button>
-            <button class="filter-chip" data-filter="region" data-value="namangan"   id="r-namangan">Наманган</button>
-            <button class="filter-chip" data-filter="region" data-value="andijan"    id="r-andijan">Андижан</button>
-            <button class="filter-chip" data-filter="region" data-value="kashkadarya" id="r-kashkadarya">Кашкадарья</button>
-            <button class="filter-chip" data-filter="region" data-value="surkhandarya" id="r-surkhandarya">Сурхандарья</button>
-            <button class="filter-chip" data-filter="region" data-value="jizzakh"     id="r-jizzakh">Джизак</button>
-            <button class="filter-chip" data-filter="region" data-value="syrdarya"    id="r-syrdarya">Сырдарья</button>
-            <button class="filter-chip" data-filter="region" data-value="navoi"       id="r-navoi">Навои</button>
-            <button class="filter-chip" data-filter="region" data-value="karakalpakstan" id="r-karakalpakstan">Каракалпакстан</button>
+          <!-- Поиск -->
+          <div class="glass-field glass-field--search">
+            <span class="glass-field-icon" aria-hidden="true">🔍</span>
+            <input
+              type="text"
+              id="catalog-search"
+              class="glass-input"
+              placeholder="Поиск по названию или локации..."
+              aria-label="Поиск по названию или адресу"
+              autocomplete="off"
+            />
+            <button type="button" class="glass-search-clear" id="catalog-search-clear" aria-label="Очистить поиск" hidden>✕</button>
           </div>
+
+          <!-- Регион -->
+          <div class="glass-field glass-field--select">
+            <span class="glass-field-icon" aria-hidden="true">📍</span>
+            <select id="filter-region" class="glass-select" aria-label="Фильтр по региону">
+              <option value="all">Все регионы (14)</option>
+              <option value="tashkent">Ташкент (город)</option>
+              <option value="tashkent-region">Ташкентская обл.</option>
+              <option value="samarkand">Самаркандская обл.</option>
+              <option value="bukhara">Бухарская обл.</option>
+              <option value="khorezm">Хорезмская обл.</option>
+              <option value="fergana">Ферганская обл.</option>
+              <option value="namangan">Наманганская обл.</option>
+              <option value="andijan">Андижанская обл.</option>
+              <option value="kashkadarya">Кашкадарьинская обл.</option>
+              <option value="surkhandarya">Сурхандарьинская обл.</option>
+              <option value="jizzakh">Джизакская обл.</option>
+              <option value="syrdarya">Сырдарьинская обл.</option>
+              <option value="navoi">Навоийская обл.</option>
+              <option value="karakalpakstan">Каракалпакстан</option>
+            </select>
+          </div>
+
+          <!-- Звёздность -->
+          <div class="glass-field glass-field--select">
+            <span class="glass-field-icon" aria-hidden="true">⭐</span>
+            <select id="filter-stars" class="glass-select" aria-label="Фильтр по звёздности">
+              <option value="all">Все категории</option>
+              <option value="5">★★★★★ 5 звёзд</option>
+              <option value="4">★★★★ 4 звезды</option>
+              <option value="3">★★★ 3 звезды</option>
+              <option value="1-2">★ – ★★ 1-2 звезды</option>
+            </select>
+          </div>
+
+          <!-- Номерной фонд -->
+          <div class="glass-field glass-field--select">
+            <span class="glass-field-icon" aria-hidden="true">🏨</span>
+            <select id="filter-rooms" class="glass-select" aria-label="Фильтр по номерному фонду">
+              <option value="all">Любой номерной фонд</option>
+              <option value="small">До 50 номеров (Бутик)</option>
+              <option value="medium">50 – 150 номеров</option>
+              <option value="large">150+ номеров (Крупные)</option>
+            </select>
+          </div>
+
+          <!-- Сортировка -->
+          <div class="glass-field glass-field--select glass-field--sort">
+            <span class="glass-field-icon" aria-hidden="true">⇅</span>
+            <select id="catalog-sort" class="glass-select" aria-label="Сортировка объектов">
+              <option value="rooms-desc">Сначала больше номеров</option>
+              <option value="rooms-asc">Сначала меньше номеров</option>
+              <option value="stars-desc">По звёздности (сначала 5★)</option>
+              <option value="year-desc">Сначала новые (год ввода)</option>
+              <option value="name-asc">По названию (А — Я)</option>
+            </select>
+          </div>
+
         </div>
 
-        <div class="filter-bar-sep" aria-hidden="true"></div>
+        <!-- Нижняя строка: Быстрые теги + Результаты + Сброс -->
+        <div class="glass-filter-secondary">
+          <div class="glass-quick-tags" role="group" aria-label="Быстрые фильтры">
+            <button type="button" class="glass-tag-btn" id="tag-has-presentation" data-active="false">
+              <span>📎</span> Только с презентацией
+            </button>
+            <button type="button" class="glass-tag-btn" id="tag-premium-stars" data-active="false">
+              <span>✨</span> Премиум (4★ – 5★)
+            </button>
+          </div>
 
-        <!-- Категория -->
-        <div class="filter-group" id="filter-stars-group">
-          <span class="filter-group-label" id="label-stars">Категория</span>
-          <div class="filter-chips" role="group" aria-labelledby="label-stars">
-            <button class="filter-chip filter-chip--active" data-filter="stars" data-value="all" id="s-all">Все</button>
-            <button class="filter-chip" data-filter="stars" data-value="5"  id="s-5">5★</button>
-            <button class="filter-chip" data-filter="stars" data-value="4"  id="s-4">4★</button>
-            <button class="filter-chip" data-filter="stars" data-value="3"  id="s-3">3★</button>
-            <button class="filter-chip" data-filter="stars" data-value="2"  id="s-2">2★</button>
-            <button class="filter-chip" data-filter="stars" data-value="1"  id="s-1">1★</button>
+          <div class="glass-filter-status">
+            <span class="glass-count-badge">
+              Найдено: <strong id="filter-count-num">0</strong> <span id="filter-count-label">объектов</span>
+            </span>
+            <button type="button" class="glass-reset-btn" id="filter-reset" title="Сбросить все параметры фильтра">
+              Сбросить фильтры ✕
+            </button>
           </div>
         </div>
 
       </div>
-
-      <!-- Правый блок: сброс + счётчик -->
-      <div class="filter-bar-right">
-        <button class="filter-reset" id="filter-reset" aria-label="Сбросить все фильтры">
-          Сбросить
-        </button>
-        <span class="filter-count" id="filter-count" aria-live="polite">
-          <span class="filter-count-num" id="filter-count-num">0</span> объектов
-        </span>
-      </div>
-
     </div>
-  </div>
+  </section>
 
 
   <!-- ═══ CATALOG GRID ══════════════════════════ -->
   <main class="catalog-main" id="main-content" aria-label="Список объектов">
     <div class="catalog-section">
       <div class="catalog-main-inner">
-
-        <!-- Сортировка -->
-        <div class="results-bar">
-          <p class="results-meta">
-            Показано: <strong id="results-shown">0</strong> из
-            <span class="results-total">0</span>
-          </p>
-          <div class="sort-group" role="group" aria-label="Сортировка">
-            <span class="sort-label">Сортировать:</span>
-            <button class="sort-btn sort-btn--active" id="sort-rooms">Номера</button>
-            <button class="sort-btn" id="sort-stars">Категория</button>
-            <button class="sort-btn" id="sort-year">Год ввода</button>
-          </div>
-        </div>
 
         <!-- Сетка карточек — заполняется из localStorage через catalog.js -->
         <div class="hotel-full-grid" id="hotel-grid" role="list"></div>
