@@ -192,607 +192,214 @@
   ═══════════════════════════════════════════ -->
   <nav class="passport-toc" id="passport-toc" aria-label="Разделы паспорта">
     <div class="passport-toc-inner">
-      <a href="#cover"    class="toc-link toc-link--active" id="toc-cover">Обложка</a>
-      <a href="#summary"  class="toc-link" id="toc-summary">Executive Summary</a>
-      <a href="#dashboard" class="toc-link" id="toc-dashboard">Dashboard</a>
-      <a href="#location" class="toc-link" id="toc-location">Location</a>
-      <a href="#gallery"  class="toc-link" id="toc-gallery">Объект</a>
-      <a href="#iri"      class="toc-link" id="toc-iri">IRI</a>
+      <a href="#cover" class="toc-link toc-link--active" id="toc-cover">Обложка</a>
+      <a href="#summary" class="toc-link" id="toc-summary">Характеристики</a>
+      <a href="#amenities-section" class="toc-link" id="toc-amenities">Инфраструктура</a>
+      <a href="#location" class="toc-link" id="toc-location">Локация</a>
+      <a href="#gallery" class="toc-link" id="toc-gallery">Фотоматериалы</a>
       <a href="#download" class="toc-link toc-link--cta" id="toc-download">Скачать PDF</a>
     </div>
   </nav>
-
 
   <!-- ═══════════════════════════════════════════
        COVER — Обложка паспорта
   ═══════════════════════════════════════════ -->
   <section class="passport-cover" id="cover" aria-label="Обложка инвестиционного паспорта">
-
     <!-- Левая колонка: данные -->
     <div class="cover-data">
-
       <nav class="breadcrumb cover-breadcrumb" aria-label="Breadcrumb">
         <a href="index.html" class="breadcrumb-link">Главная</a>
         <span class="breadcrumb-sep" aria-hidden="true">/</span>
         <a href="portfolio.html" class="breadcrumb-link">Каталог</a>
         <span class="breadcrumb-sep" aria-hidden="true">/</span>
-        <span class="breadcrumb-current">Grand Tashkent Hotel</span>
+        <span class="breadcrumb-current" id="passport-breadcrumb-name">Отель</span>
       </nav>
 
       <p class="cover-doc-type kicker">
         HOTEL INVESTMENT PASSPORT&nbsp;·&nbsp;РЕСПУБЛИКА УЗБЕКИСТАН
       </p>
 
-      <h1 class="cover-hotel-name">Grand Tashkent Hotel</h1>
+      <h1 class="cover-hotel-name" id="passport-hotel-name">Grand Tashkent Hotel</h1>
 
       <!-- Звёзды -->
-      <div class="cover-stars" aria-label="Категория: 5 звёзд">
-        <svg width="100" height="16" viewBox="0 0 100 16" fill="none" aria-hidden="true">
-          <g fill="#8B6F4E">
-            <polygon points="8,0 9.8,5.6 16,5.6 11,9.2 12.9,14.8 8,11.2 3.1,14.8 5,9.2 0,5.6 6.2,5.6"/>
-            <polygon points="28,0 29.8,5.6 36,5.6 31,9.2 32.9,14.8 28,11.2 23.1,14.8 25,9.2 20,5.6 26.2,5.6"/>
-            <polygon points="48,0 49.8,5.6 56,5.6 51,9.2 52.9,14.8 48,11.2 43.1,14.8 45,9.2 40,5.6 46.2,5.6"/>
-            <polygon points="68,0 69.8,5.6 76,5.6 71,9.2 72.9,14.8 68,11.2 63.1,14.8 65,9.2 60,5.6 66.2,5.6"/>
-            <polygon points="88,0 89.8,5.6 96,5.6 91,9.2 92.9,14.8 88,11.2 83.1,14.8 85,9.2 80,5.6 86.2,5.6"/>
-          </g>
-        </svg>
+      <div class="cover-stars" id="passport-stars" aria-label="Категория">
+        <!-- Генерируется динамически -->
       </div>
 
-      <p class="cover-location">г. Ташкент, Узбекистан</p>
+      <p class="cover-location" id="passport-location">г. Ташкент, Узбекистан</p>
 
-      <!-- Модели сотрудничества -->
-      <div class="cover-models" aria-label="Предлагаемые модели сотрудничества">
-        <span class="cover-model-badge cover-model-badge--active">Управление</span>
-        <span class="cover-model-badge">Продажа доли</span>
-        <span class="cover-model-badge">СП / JV</span>
+      <!-- Статус публикации объекта -->
+      <div class="cover-models">
+        <span class="cover-status-badge cover-status-badge--active" id="passport-status-badge">
+          ● Активный объект
+        </span>
+        <span class="cover-model-badge" id="passport-presentation-badge" style="display:none">
+          📄 Имеется презентация
+        </span>
       </div>
 
       <!-- Ключевые характеристики -->
       <div class="cover-specs">
         <div class="cover-spec">
-          <span class="cover-spec-val">258</span>
+          <span class="cover-spec-val" id="cover-rooms-count">—</span>
           <span class="cover-spec-label">Номеров</span>
         </div>
         <div class="cover-spec-sep" aria-hidden="true"></div>
         <div class="cover-spec">
-          <span class="cover-spec-val">28 500 м²</span>
-          <span class="cover-spec-label">Общая площадь</span>
+          <span class="cover-spec-val" id="cover-places-count">—</span>
+          <span class="cover-spec-label">Мест</span>
         </div>
         <div class="cover-spec-sep" aria-hidden="true"></div>
         <div class="cover-spec">
-          <span class="cover-spec-val">2018</span>
-          <span class="cover-spec-label">Год постройки</span>
+          <span class="cover-spec-val" id="cover-floors-count">—</span>
+          <span class="cover-spec-label">Этажей</span>
         </div>
         <div class="cover-spec-sep" aria-hidden="true"></div>
         <div class="cover-spec">
-          <span class="cover-spec-val">2024</span>
-          <span class="cover-spec-label">Реконструкция</span>
+          <span class="cover-spec-val" id="cover-year-commissioned">—</span>
+          <span class="cover-spec-label">Год ввода</span>
         </div>
       </div>
 
       <!-- Метаданные документа -->
       <div class="cover-doc-meta">
         <div class="cover-meta-row">
-          <span class="cover-meta-label">Дата подготовки</span>
-          <span class="cover-meta-val">01 июля 2026</span>
+          <span class="cover-meta-label">Статус данных</span>
+          <span class="cover-meta-val">Верифицировано в реестре SRI</span>
         </div>
         <div class="cover-meta-row">
-          <span class="cover-meta-label">Версия</span>
-          <span class="cover-meta-val">1.0 (Проект)</span>
-        </div>
-        <div class="cover-meta-row">
-          <span class="cover-meta-label">Методология</span>
-          <span class="cover-meta-val">STR Global / USALI / IFC</span>
-        </div>
-        <div class="cover-meta-row cover-meta-row--disclaimer">
-          <span class="cover-meta-val cover-meta-disclaimer">
-            Данные носят иллюстративный характер и предназначены для демонстрации функциональности платформы.
-          </span>
+          <span class="cover-meta-label">Юр. лицо</span>
+          <span class="cover-meta-val" id="cover-legal-entity">—</span>
         </div>
       </div>
-
-      <!-- Официальный QR-код верификации (Том II ТЗ) -->
-      <div class="cover-qr-block" aria-label="QR-код для онлайн-верификации паспорта">
-        <svg class="cover-qr-code" width="56" height="56" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <rect width="64" height="64" fill="#1A2A44"/>
-          <rect x="6" y="6" width="16" height="16" stroke="#3B2A20" stroke-width="2" fill="none"/>
-          <rect x="10" y="10" width="8" height="8" fill="#3B2A20"/>
-          <rect x="42" y="6" width="16" height="16" stroke="#3B2A20" stroke-width="2" fill="none"/>
-          <rect x="46" y="10" width="8" height="8" fill="#3B2A20"/>
-          <rect x="6" y="42" width="16" height="16" stroke="#3B2A20" stroke-width="2" fill="none"/>
-          <rect x="10" y="46" width="8" height="8" fill="#3B2A20"/>
-          <rect x="28" y="8" width="4" height="4" fill="#D9CBB8"/>
-          <rect x="34" y="14" width="4" height="4" fill="#D9CBB8"/>
-          <rect x="28" y="24" width="8" height="8" fill="#8B6F4E"/>
-          <rect x="42" y="28" width="4" height="4" fill="#D9CBB8"/>
-          <rect x="48" y="34" width="6" height="6" fill="#D9CBB8"/>
-          <rect x="26" y="44" width="6" height="6" fill="#D9CBB8"/>
-          <rect x="36" y="48" width="8" height="8" fill="#3B2A20"/>
-          <rect x="48" y="46" width="10" height="10" stroke="#3B2A20" stroke-width="2"/>
-        </svg>
-        <div class="cover-qr-text">
-          <span class="cover-qr-title">Data Room &amp; Verification</span>
-          <span class="cover-qr-desc">Цифровая верификация паспорта на официальном портале</span>
-        </div>
-      </div>
-
     </div>
 
     <!-- Правая колонка: фото объекта -->
     <div class="cover-photo-col" role="img" aria-label="Фасад отеля" style="position:relative">
-      <div class="passport-demo-badge" style="position:absolute;top:16px;left:16px;z-index:10;background:rgba(59,42,32,0.88);backdrop-filter:blur(6px);color:#F5EFE3;border:1px solid #8B6F4E;border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;letter-spacing:0.04em;display:flex;align-items:center;gap:6px">
-        <span>📷</span> Демонстрационные фото · Макет паспорта
-      </div>
       <img
         src="./assets/hotel-hero.png"
-        alt="Отель — архитектурный ансамбль"
+        alt="Отель — фасад"
         class="cover-photo"
         id="passport-cover-photo"
       />
-      <!-- IRI бейдж поверх фото -->
-      <div class="cover-iri-badge" aria-label="Investment Readiness Index" id="passport-cover-iri">
-        <span class="cover-iri-label">Investment Readiness</span>
-        <span class="cover-iri-val" id="cover-iri-val">A+</span>
-      </div>
     </div>
-
   </section>
 
-
   <!-- ═══════════════════════════════════════════
-       EXECUTIVE SUMMARY
+       ХАРАКТЕРИСТИКИ ОБЪЕКТА
   ═══════════════════════════════════════════ -->
-  <section class="exec-summary" id="summary" aria-label="Executive Summary">
+  <section class="exec-summary" id="summary" aria-label="Основные характеристики объекта">
     <div class="exec-inner">
-
       <div class="exec-header appear">
-        <p class="kicker">EXECUTIVE SUMMARY</p>
-        <h2 class="exec-title">Краткое инвестиционное резюме</h2>
+        <p class="kicker">CANONICAL PASSPORT DATA</p>
+        <h2 class="exec-title">Основные характеристики объекта</h2>
       </div>
 
-      <div class="exec-tables appear">
-
-        <!-- Таблица 1: Общая информация -->
+      <div class="exec-tables appear" style="grid-template-columns: 1fr;">
         <div class="exec-table-block">
-          <h3 class="exec-table-heading">Общая информация</h3>
-          <table class="editorial-table" role="table" aria-label="Общая информация об объекте">
-            <tbody>
-              <tr><td class="et-key">Наименование</td><td class="et-val">Grand Tashkent Hotel</td></tr>
-              <tr><td class="et-key">Регион</td><td class="et-val">г. Ташкент, Мирзо-Улугбекский район</td></tr>
-              <tr><td class="et-key">Категория</td><td class="et-val">5 звёзд (международная классификация)</td></tr>
-              <tr><td class="et-key">Количество номеров</td><td class="et-val">258, в т.ч. 12 люкс-номеров</td></tr>
-              <tr><td class="et-key">Общая площадь</td><td class="et-val">28 500 м²</td></tr>
-              <tr><td class="et-key">Земельный участок</td><td class="et-val">1,8 га</td></tr>
-              <tr><td class="et-key">Год постройки</td><td class="et-val">2018</td></tr>
-              <tr><td class="et-key">Последняя реконструкция</td><td class="et-val">2024 (FF&amp;E обновление)</td></tr>
-              <tr><td class="et-key">Форма собственности</td><td class="et-val">Частная (100%)</td></tr>
-              <tr><td class="et-key">Международный бренд</td><td class="et-val">Независимый объект</td></tr>
+          <h3 class="exec-table-heading">Паспортные и технические параметры</h3>
+          <table class="editorial-table" role="table" aria-label="Характеристики отеля">
+            <tbody id="passport-specs-table">
+              <!-- Заполняется динамически из 19 канонических полей -->
             </tbody>
           </table>
         </div>
-
-        <!-- Таблица 2: Инвестиционные показатели -->
-        <div class="exec-table-block">
-          <h3 class="exec-table-heading">Инвестиционные показатели</h3>
-          <table class="editorial-table" role="table" aria-label="Ключевые инвестиционные показатели">
-            <tbody>
-              <tr><td class="et-key">Стоимость объекта</td><td class="et-val et-val--num">$&nbsp;45 000 000</td></tr>
-              <tr><td class="et-key">Требуемые инвестиции</td><td class="et-val et-val--num">$&nbsp;12 000 000</td></tr>
-              <tr><td class="et-key">EBITDA (2025 FY)</td><td class="et-val et-val--num">$&nbsp;4 200 000</td></tr>
-              <tr><td class="et-key">Occupancy</td><td class="et-val et-val--num">74%</td></tr>
-              <tr><td class="et-key">ADR</td><td class="et-val et-val--num">$&nbsp;128</td></tr>
-              <tr><td class="et-key">RevPAR</td><td class="et-val et-val--num">$&nbsp;<span id="exec-revpar-val">94.7</span></td></tr>
-              <tr><td class="et-key">Средний срок окупаемости</td><td class="et-val et-val--num">7 лет</td></tr>
-              <tr><td class="et-key">IRR</td><td class="et-val et-val--num">18%</td></tr>
-              <tr><td class="et-key">Предлагаемая модель</td><td class="et-val">Управление / Продажа доли / СП</td></tr>
-            </tbody>
-          </table>
-        </div>
-
       </div>
-
-      <!-- Инвестиционные преимущества -->
-      <div class="exec-advantages appear">
-        <h3 class="exec-table-heading">Инвестиционные преимущества</h3>
-        <ul class="advantages-list" role="list">
-          <li class="advantage-item">Расположение в деловом центре Ташкента, в 800 м от Министерства экономики</li>
-          <li class="advantage-item">Высокая транспортная доступность — 3 станции метро в пешей доступности</li>
-          <li class="advantage-item">Устойчивый корпоративный и туристический поток: 65% бизнес-сегмент, 35% туристы</li>
-          <li class="advantage-item">Соответствие техническим требованиям международных гостиничных брендов (Marriott Select, Hilton Garden Inn)</li>
-          <li class="advantage-item">Возможность расширения номерного фонда до 340 номеров (имеется свободный участок)</li>
-          <li class="advantage-item">Отсутствие обременений и юридических ограничений на объект</li>
-          <li class="advantage-item">Действующие налоговые льготы в рамках постановления Кабинета Министров № 308 от 2023 г.</li>
-        </ul>
-      </div>
-
     </div>
   </section>
 
-
   <!-- ═══════════════════════════════════════════
-       C-03 · INVESTMENT DASHBOARD — stat-блоки
+       УДОБСТВА И ИНФРАСТРУКТУРА
   ═══════════════════════════════════════════ -->
-  <section class="dashboard" id="dashboard" aria-label="Investment Dashboard — ключевые KPI объекта">
-    <div class="dashboard-header">
-      <p class="kicker">GRAND TASHKENT HOTEL&nbsp;·&nbsp;2025 FY</p>
-      <div class="dashboard-title-row">
-        <h2 class="dashboard-title">Investment Dashboard</h2>
-        <div class="dashboard-badge" aria-label="Рейтинг инвестиционной готовности: A+">
-          <span class="badge-label">Investment Readiness</span>
-          <span class="badge-value">A+</span>
-        </div>
+  <section class="amenities-section" id="amenities-section" aria-label="Удобства и сервисы">
+    <div class="amenities-inner">
+      <div class="amenities-header appear">
+        <p class="kicker">INFRASTRUCTURE &amp; AMENITIES</p>
+        <h2 class="amenities-title">Удобства и инфраструктура</h2>
       </div>
-      <div class="dashboard-meta">
-        <span class="dashboard-meta-item">5 Star Hotel</span>
-        <span class="dashboard-meta-sep" aria-hidden="true">·</span>
-        <span class="dashboard-meta-item">Ташкент, Узбекистан</span>
-        <span class="dashboard-meta-sep" aria-hidden="true">·</span>
-        <span class="dashboard-meta-item">258 номеров</span>
-        <span class="dashboard-meta-sep" aria-hidden="true">·</span>
-        <span class="dashboard-meta-item">Данные: 2025 (FY)</span>
+      <div class="amenities-cloud appear" id="passport-amenities-cloud">
+        <!-- Чипы удобств -->
       </div>
     </div>
-
-    <div class="stat-grid" role="list">
-      <div class="stat-block" role="listitem" aria-label="Количество номеров: 258">
-        <div class="stat-number js-counter" data-target="258" data-suffix="">258</div>
-        <div class="stat-label">ROOMS</div>
-        <div class="stat-note">Номерной фонд</div>
-      </div>
-      <div class="stat-block" role="listitem" aria-label="Загрузка: 74%">
-        <div class="stat-number js-counter" data-target="74" data-suffix="%">74%</div>
-        <div class="stat-label">OCCUPANCY</div>
-        <div class="stat-note">Загрузка номерного фонда</div>
-      </div>
-      <div class="stat-block" role="listitem" aria-label="ADR: 128 USD">
-        <div class="stat-number" data-prefix="$">$128</div>
-        <div class="stat-label">ADR</div>
-        <div class="stat-note">Средняя цена номера, USD</div>
-      </div>
-      <div class="stat-block" role="listitem" aria-label="RevPAR: 94.7 USD">
-        <div class="stat-number" id="dash-revpar-val" data-prefix="$">$94.7</div>
-        <div class="stat-label">RevPAR</div>
-        <div class="stat-note">Выручка на доступный номер</div>
-      </div>
-      <div class="stat-block" role="listitem" aria-label="EBITDA Margin: 31%">
-        <div class="stat-number js-counter" data-target="31" data-suffix="%">31%</div>
-        <div class="stat-label">EBITDA MARGIN</div>
-        <div class="stat-note">Рентабельность по EBITDA</div>
-      </div>
-      <div class="stat-block" role="listitem" aria-label="ROI: 12%">
-        <div class="stat-number js-counter" data-target="12" data-suffix="%">12%</div>
-        <div class="stat-label">ROI</div>
-        <div class="stat-note">Доходность на инвестиции</div>
-      </div>
-      <div class="stat-block" role="listitem" aria-label="IRR: 18%">
-        <div class="stat-number js-counter" data-target="18" data-suffix="%">18%</div>
-        <div class="stat-label">IRR</div>
-        <div class="stat-note">Внутренняя норма доходности</div>
-      </div>
-      <div class="stat-block" role="listitem" aria-label="Срок окупаемости: 7 лет">
-        <div class="stat-number js-counter" data-target="7" data-suffix="">7</div>
-        <div class="stat-label">PAYBACK</div>
-        <div class="stat-note">Срок окупаемости, лет</div>
-      </div>
-    </div>
-
-    <p class="dashboard-footnote">
-      Данные носят иллюстративный характер. Источник: Smart Investment Form 2025 FY.
-      Методика расчётов: STR Global / USALI. Для верификации — Data Room объекта.
-    </p>
   </section>
 
-
   <!-- ═══════════════════════════════════════════
-       LOCATION ANALYSIS
+       ЛОКАЦИЯ
   ═══════════════════════════════════════════ -->
-  <section class="location-section" id="location" aria-label="Location Analysis — анализ расположения">
+  <section class="location-section" id="location" aria-label="Location Analysis — локация объекта">
     <div class="location-inner">
-
       <div class="location-header appear">
-        <p class="kicker">LOCATION ANALYSIS</p>
-        <h2 class="location-title">Анализ расположения</h2>
+        <p class="kicker">LOCATION</p>
+        <h2 class="location-title">Расположение объекта</h2>
       </div>
 
       <div class="location-grid">
-
-        <!-- Интерактивная карта (Leaflet / Dark Matter theme) -->
+        <!-- Интерактивная карта -->
         <div class="location-map-col appear">
-          <div class="interactive-map-container" aria-label="Интерактивная карта расположения объекта — г. Ташкент">
+          <div class="interactive-map-container" aria-label="Интерактивная карта расположения объекта">
             <div id="interactive-hotel-map" class="interactive-hotel-map"></div>
-            
-            <div class="map-coord-badge">
-              <span class="map-coord-dot"></span>
-              <span class="map-coord-num">41.2995° N</span>
-              <span class="map-coord-sep" aria-hidden="true">/</span>
-              <span class="map-coord-num">69.2401° E</span>
-            </div>
-
             <div class="map-hotel-floating-tag">
-              <span class="m-tag-hotel">Grand Tashkent 5★</span>
-              <span class="m-tag-sub">Мирзо-Улугбекский р-н</span>
+              <span class="m-tag-hotel" id="map-tag-hotel-name">Отель</span>
+              <span class="m-tag-sub" id="map-tag-hotel-region">Регион</span>
             </div>
           </div>
-          <p class="map-interactive-hint">
-            Кликните на строку в таблице расстояний для перемещения к объекту инфраструктуры на карте
-          </p>
         </div>
 
-        <!-- Таблица расстояний + генераторы спроса -->
-        <div class="location-data-col">
-
-          <table class="editorial-table location-distances appear" role="table" aria-label="Расстояния до ключевых объектов">
-            <thead>
-              <tr>
-                <th class="et-key et-head" scope="col">Объект</th>
-                <th class="et-val et-head" scope="col">Расстояние</th>
-                <th class="et-val et-head" scope="col">Транспорт</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="loc-table-row" data-lat="41.2579" data-lng="69.2812" data-name="Международный аэропорт Ташкента">
-                <td class="et-key">Международный аэропорт</td><td class="et-val et-val--num">38 км</td><td class="et-val">35 мин</td>
-              </tr>
-              <tr class="loc-table-row" data-lat="41.2922" data-lng="69.2844" data-name="Центральный ж/д вокзал (Северный)">
-                <td class="et-key">Центральный ж/д вокзал</td><td class="et-val et-val--num">4,2 км</td><td class="et-val">12 мин</td>
-              </tr>
-              <tr class="loc-table-row" data-lat="41.3167" data-lng="69.2667" data-name="Площадь Мустакиллик (Центр)">
-                <td class="et-key">Центр города (пл. Мустакиллик)</td><td class="et-val et-val--num">2,1 км</td><td class="et-val">7 мин</td>
-              </tr>
-              <tr class="loc-table-row" data-lat="41.3411" data-lng="69.2831" data-name="МВЦ «Узэкспоцентр»">
-                <td class="et-key">МВЦ «Уздэхилой» (выставки)</td><td class="et-val et-val--num">6,8 км</td><td class="et-val">18 мин</td>
-              </tr>
-              <tr class="loc-table-row" data-lat="41.3111" data-lng="69.2505" data-name="Деловой квартал Tashkent City">
-                <td class="et-key">Ташкентский сити (деловой квартал)</td><td class="et-val et-val--num">1,3 км</td><td class="et-val">5 мин</td>
-              </tr>
-              <tr class="loc-table-row" data-lat="41.3280" data-lng="69.2310" data-name="АКФА-Арена">
-                <td class="et-key">АКФА-Арена (конференц-центр)</td><td class="et-val et-val--num">3,5 км</td><td class="et-val">10 мин</td>
-              </tr>
-              <tr class="loc-table-row" data-lat="41.3350" data-lng="69.2150" data-name="Медицинский кластер">
-                <td class="et-key">Ташкентский медицинский кластер</td><td class="et-val et-val--num">5,2 км</td><td class="et-val">14 мин</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="demand-generators appear">
-            <h3 class="exec-table-heading">Основные генераторы спроса</h3>
-            <div class="generators-grid">
-              <span class="generator-item">Деловой туризм</span>
-              <span class="generator-item">MICE-мероприятия</span>
-              <span class="generator-item">Дипломатические миссии</span>
-              <span class="generator-item">Государственные учреждения</span>
-              <span class="generator-item">Медицинский туризм</span>
-              <span class="generator-item">Транзитные пассажиры</span>
-              <span class="generator-item">Международные операторы</span>
-              <span class="generator-item">Культурный туризм</span>
+        <!-- Данные локации и контакты -->
+        <div class="location-data-col appear">
+          <div class="location-details-box">
+            <div class="location-field-row">
+              <span class="location-field-label">Регион</span>
+              <span class="location-field-value" id="loc-region">—</span>
+            </div>
+            <div class="location-field-row">
+              <span class="location-field-label">Юридический адрес</span>
+              <span class="location-field-value" id="loc-address">—</span>
+            </div>
+            <div class="location-field-row" id="loc-contact-row">
+              <span class="location-field-label">Контактное лицо / Управление</span>
+              <span class="location-field-value" id="loc-contact">—</span>
+            </div>
+            <div class="location-field-row" id="loc-notes-row" style="display:none">
+              <span class="location-field-label">Примечания</span>
+              <span class="location-field-value" id="loc-notes">—</span>
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
   </section>
 
-
   <!-- ═══════════════════════════════════════════
-       PHOTO GALLERY — C-06 Masonry
+       ФОТОГАЛЕРЕЯ
   ═══════════════════════════════════════════ -->
   <section class="gallery-section" id="gallery" aria-label="Фотогалерея объекта">
     <div class="gallery-inner">
-
       <div class="gallery-header appear">
-        <p class="kicker">ОБЪЕКТ&nbsp;·&nbsp;GRAND TASHKENT HOTEL</p>
+        <p class="kicker kicker-gallery">ФОТОМАТЕРИАЛЫ ОБЪЕКТА</p>
         <div class="gallery-header-row">
-          <h2 class="gallery-title">Инфраструктура и состояние</h2>
-          <div style="display:inline-flex;align-items:center;gap:6px;background:#F5EFE3;color:#3B2A20;border:1px solid #D9CBB8;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:600">
-            <span>📷</span> Демо-фотоматериалы
-          </div>
-          <p class="gallery-note" style="margin-top:8px">
-            Внимание: представленные фотоматериалы являются иллюстративной демонстрацией инвестиционного паспорта объекта. В рамках процедуры Due Diligence предоставляется независимая интерьерная и инженерная съёмка от аккредитованного сюрвейера.
+          <h2 class="gallery-title">Галерея гостиничного комплекса</h2>
+          <p class="gallery-note" id="gallery-subtitle">
+            Фактические фотоматериалы, предоставленные собственником объекта для инвестиционного паспорта.
           </p>
         </div>
       </div>
 
-      <!-- Асимметричная masonry-сетка — C-06 PhotoGallery -->
-      <div class="photo-masonry appear" role="list" aria-label="Фотографии объекта">
-
-        <!-- Большое фото: фасад (занимает 2 строки) -->
-        <figure class="photo-item photo-item--tall" role="listitem">
-          <img
-            src="./assets/hotel-hero.png"
-            alt="Grand Tashkent Hotel — вечерняя подсветка фасада"
-            class="photo-img" loading="lazy"
-          />
-          <figcaption class="photo-caption">Фасад · Вечерняя подсветка</figcaption>
-        </figure>
-
-        <!-- Лобби -->
-        <figure class="photo-item" role="listitem">
-          <img
-            src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80&fit=crop"
-            alt="Лобби Grand Tashkent Hotel — рецепция и зона ожидания"
-            class="photo-img" loading="lazy"
-          />
-          <figcaption class="photo-caption">Лобби · Рецепция</figcaption>
-        </figure>
-
-        <!-- Стандартный номер -->
-        <figure class="photo-item" role="listitem">
-          <img
-            src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&q=80&fit=crop"
-            alt="Стандартный номер — современная отделка, вид на город"
-            class="photo-img" loading="lazy"
-          />
-          <figcaption class="photo-caption">Номер · Superior Room</figcaption>
-        </figure>
-
-        <!-- Конференц-зал (широкое) -->
-        <figure class="photo-item photo-item--wide" role="listitem">
-          <img
-            src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80&fit=crop"
-            alt="Конференц-зал Grand Tashkent Hotel — вместимость 300 человек"
-            class="photo-img" loading="lazy"
-          />
-          <figcaption class="photo-caption">Конференц-зал · 300 мест</figcaption>
-        </figure>
-
-        <!-- Ресторан -->
-        <figure class="photo-item" role="listitem">
-          <img
-            src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80&fit=crop"
-            alt="Ресторан Grand Tashkent Hotel — авторская кухня"
-            class="photo-img" loading="lazy"
-          />
-          <figcaption class="photo-caption">Ресторан · À la carte</figcaption>
-        </figure>
-
-      </div>
-
-      <!-- Описание инфраструктуры -->
-      <div class="infra-grid appear">
-        <div class="infra-block">
-          <h3 class="infra-title">Номерной фонд</h3>
-          <table class="editorial-table" role="table">
-            <tbody>
-              <tr><td class="et-key">Стандарт</td><td class="et-val">196 номеров</td></tr>
-              <tr><td class="et-key">Делюкс</td><td class="et-val">38 номеров</td></tr>
-              <tr><td class="et-key">Джуниор-сюит</td><td class="et-val">12 номеров</td></tr>
-              <tr><td class="et-key">Люкс</td><td class="et-val">10 номеров</td></tr>
-              <tr><td class="et-key">Президентский люкс</td><td class="et-val">2 номера</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="infra-block">
-          <h3 class="infra-title">Инфраструктура</h3>
-          <table class="editorial-table" role="table">
-            <tbody>
-              <tr><td class="et-key">Конференц-залы</td><td class="et-val">4 зала (до 300 мест)</td></tr>
-              <tr><td class="et-key">Рестораны / бары</td><td class="et-val">2 ресторана, 1 лобби-бар</td></tr>
-              <tr><td class="et-key">Спа и фитнес</td><td class="et-val">850 м² (бассейн, тренажёры)</td></tr>
-              <tr><td class="et-key">Парковка</td><td class="et-val">120 машиномест</td></tr>
-              <tr><td class="et-key">Состояние</td><td class="et-val">Хорошее (FF&amp;E 2024)</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════
-       INVESTMENT READINESS INDEX — C-07
-  ═══════════════════════════════════════════ -->
-  <section class="iri-section" id="iri" aria-label="Investment Readiness Index">
-    <div class="iri-inner">
-
-      <div class="iri-header appear">
-        <p class="kicker kicker--light">INVESTMENT READINESS INDEX&nbsp;·&nbsp;UZBEKISTAN</p>
-        <h2 class="iri-title">Рейтинг инвестиционной готовности</h2>
-      </div>
-
-      <div class="iri-content">
-
-        <!-- Шкала IRI -->
-        <div class="iri-scale-block appear">
-          <div class="iri-scale" role="img" aria-label="Шкала IRI: объекту присвоен рейтинг A+">
-            <div class="iri-scale-track">
-              <div class="iri-grade iri-grade--active" aria-current="true">
-                <span class="iri-grade-val">A+</span>
-                <span class="iri-grade-label">Наивысший</span>
-              </div>
-              <div class="iri-grade">
-                <span class="iri-grade-val">A</span>
-                <span class="iri-grade-label">Высокий</span>
-              </div>
-              <div class="iri-grade">
-                <span class="iri-grade-val">B+</span>
-                <span class="iri-grade-label">Хороший</span>
-              </div>
-              <div class="iri-grade">
-                <span class="iri-grade-val">B</span>
-                <span class="iri-grade-label">Удовл.</span>
-              </div>
-              <div class="iri-grade">
-                <span class="iri-grade-val">C</span>
-                <span class="iri-grade-label">Базовый</span>
-              </div>
-            </div>
-            <div class="iri-scale-bar" aria-hidden="true">
-              <div class="iri-scale-fill" style="width: 100%"></div>
-            </div>
-          </div>
-
-          <div class="iri-big-badge" aria-hidden="true">
-            <span class="iri-big-label">Investment Readiness</span>
-            <span class="iri-big-val">A+</span>
-            <span class="iri-big-desc">Grand Tashkent Hotel</span>
-          </div>
-        </div>
-
-        <!-- Критерии оценки -->
-        <div class="iri-criteria appear">
-          <h3 class="exec-table-heading">Критерии оценки</h3>
-          <table class="editorial-table iri-criteria-table" role="table" aria-label="Оценка по критериям Investment Readiness Index">
-            <thead>
-              <tr>
-                <th class="et-key et-head" scope="col">Критерий</th>
-                <th class="et-val et-head" scope="col">Оценка</th>
-                <th class="et-val et-head" scope="col">Баллы</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="et-key">Качество и полнота финансовой отчётности</td>
-                <td class="et-val"><span class="iri-score iri-score--high">Отлично</span></td>
-                <td class="et-val et-val--num">95 / 100</td>
-              </tr>
-              <tr>
-                <td class="et-key">Юридическая чистота объекта</td>
-                <td class="et-val"><span class="iri-score iri-score--high">Отлично</span></td>
-                <td class="et-val et-val--num">100 / 100</td>
-              </tr>
-              <tr>
-                <td class="et-key">Операционные показатели (KPI)</td>
-                <td class="et-val"><span class="iri-score iri-score--high">Выше среднего</span></td>
-                <td class="et-val et-val--num">88 / 100</td>
-              </tr>
-              <tr>
-                <td class="et-key">Состояние и техническое соответствие</td>
-                <td class="et-val"><span class="iri-score iri-score--med">Хорошо</span></td>
-                <td class="et-val et-val--num">80 / 100</td>
-              </tr>
-              <tr>
-                <td class="et-key">Готовность к международному брендингу</td>
-                <td class="et-val"><span class="iri-score iri-score--high">Высокая</span></td>
-                <td class="et-val et-val--num">90 / 100</td>
-              </tr>
-              <tr>
-                <td class="et-key">Расположение и генераторы спроса</td>
-                <td class="et-val"><span class="iri-score iri-score--high">Отлично</span></td>
-                <td class="et-val et-val--num">97 / 100</td>
-              </tr>
-              <tr class="iri-total-row">
-                <td class="et-key"><strong>Итоговый IRI</strong></td>
-                <td class="et-val"><strong class="iri-final-grade">A+</strong></td>
-                <td class="et-val et-val--num"><strong>91,7 / 100</strong></td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="iri-footnote">
-            Данные носят иллюстративный характер. Методология Investment Readiness Index Uzbekistan разработана Комитетом по туризму РУз совместно с экспертами IFC/EBRD, 2026.
-          </p>
-        </div>
-
+      <!-- Динамическая сетка фотографий -->
+      <div class="photo-masonry appear" id="passport-gallery-masonry" role="list" aria-label="Фотографии объекта">
+        <!-- Генерируются фото из hotel.photos -->
       </div>
     </div>
   </section>
 
+  <!-- Лайтбокс для просмотра фото -->
+  <div class="passport-lightbox" id="passport-lightbox" aria-hidden="true" role="dialog">
+    <button class="passport-lightbox-close" id="btn-lightbox-close" aria-label="Закрыть">✕</button>
+    <img id="passport-lightbox-img" src="" alt="Увеличенное фото" />
+  </div>
 
   <!-- ═══════════════════════════════════════════
-       DOWNLOAD CTA — Скачать PDF-паспорт
+       СКАЧАТЬ PDF / ДЕЙСТВИЯ
   ═══════════════════════════════════════════ -->
   <section class="download-cta" id="download" aria-label="Скачать инвестиционный паспорт">
     <div class="download-inner">
@@ -807,8 +414,7 @@
         <p class="kicker kicker--light">HOTEL INVESTMENT PASSPORT&nbsp;·&nbsp;PDF</p>
         <h2 class="download-title">Скачать инвестиционный паспорт</h2>
         <p class="download-desc">
-          Полный документ в формате PDF (25–30 страниц) в едином дизайне платформы.
-          Формируется автоматически из данных Smart Investment Form.
+          Официальный паспорт гостиничного актива формируется в едином стандарте платформы Silk Route Invest на основе проверенных данных.
         </p>
         <div class="download-actions">
           <button class="btn btn--teal btn--lg" id="btn-download-pdf">
@@ -818,9 +424,6 @@
             &larr; Вернуться в каталог
           </a>
         </div>
-        <p class="download-note">
-          Функция скачивания PDF будет доступна после боевого запуска платформы.
-        </p>
       </div>
     </div>
   </section>

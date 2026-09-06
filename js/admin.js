@@ -370,17 +370,27 @@ function loadForEdit(id) {
   editingId = id;
   const fields = [
     'hotelName', 'legalEntity', 'region', 'address', 'roomsCount',
-    'placesCount', 'stars', 'floors', 'conferenceHalls', 'amenities',
-    'managerContact', 'status', 'adr', 'occupancy', 'model', 'iri',
-    'inn', 'director', 'yearCommissioned'
+    'placesCount', 'stars', 'landArea', 'buildingArea', 'floors',
+    'yearCommissioned', 'maxRoomArea', 'minRoomArea', 'amenities',
+    'managerContact', 'status', 'notes'
   ];
   fields.forEach(name => {
     const el = document.getElementById(`field-${name}`);
-    if (el && hotel[name] !== undefined) el.value = hotel[name];
+    if (el) {
+      if (name === 'amenities' && Array.isArray(hotel[name])) {
+        el.value = hotel[name].join(', ');
+      } else {
+        el.value = hotel[name] !== undefined && hotel[name] !== null ? hotel[name] : '';
+      }
+    }
   });
-  const pres = document.getElementById('field-presentation');
-  if (pres) pres.value = hotel.hasPresentation ? 'yes' : 'no';
-  photoFiles = hotel.photos ? [...hotel.photos] : [];
+
+  const presCheckbox = document.getElementById('field-hasPresentation');
+  if (presCheckbox) {
+    presCheckbox.checked = Boolean(hotel.hasPresentation);
+  }
+
+  photoFiles = Array.isArray(hotel.photos) ? [...hotel.photos] : [];
   renderPhotoPreview();
   if (formTitle) formTitle.textContent = `Редактировать: ${hotel.hotelName || ''}`;
   if (deleteBtn) deleteBtn.hidden = false;
@@ -399,34 +409,43 @@ if (hotelForm) {
       document.getElementById('field-hotelName')?.focus();
       return;
     }
+
+    // Дедупликация удобств без потери данных
+    const rawAmenities = get('amenities');
+    const parsedAmenitiesList = typeof window.parseAmenities === 'function'
+      ? window.parseAmenities(rawAmenities)
+      : rawAmenities.split(/[,;\n]+/).map(s => s.trim()).filter(Boolean);
+    const sanitizedAmenities = parsedAmenitiesList.join(', ');
+
     const hotel = {
       hotelName:        get('hotelName'),
       legalEntity:      get('legalEntity'),
       region:           get('region'),
       regionKey:        getRegionKey(get('region')),
       address:          get('address'),
-      roomsCount:       parseInt(get('roomsCount')) || 0,
-      placesCount:      parseInt(get('placesCount')) || 0,
-      stars:            parseInt(get('stars')) || 0,
-      floors:           parseInt(get('floors')) || 0,
-      conferenceHalls:  get('conferenceHalls'),
-      yearCommissioned: parseInt(get('yearCommissioned')) || 2024,
-      amenities:        get('amenities'),
+      roomsCount:       parseInt(get('roomsCount'), 10) || 0,
+      placesCount:      parseInt(get('placesCount'), 10) || 0,
+      stars:            get('stars') || '0',
+      landArea:         get('landArea') || null,
+      buildingArea:     get('buildingArea') || null,
+      floors:           parseInt(get('floors'), 10) || 0,
+      yearCommissioned: parseInt(get('yearCommissioned'), 10) || (new Date().getFullYear()),
+      maxRoomArea:      get('maxRoomArea') ? parseFloat(get('maxRoomArea')) : null,
+      minRoomArea:      get('minRoomArea') ? parseFloat(get('minRoomArea')) : null,
+      amenities:        sanitizedAmenities,
       managerContact:   get('managerContact'),
-      hasPresentation:  get('presentation') === 'yes',
       status:           get('status') || 'active',
-      adr:              parseFloat(get('adr')) || 100,
-      occupancy:        parseFloat(get('occupancy')) || 70,
-      investmentModel:  get('model') || 'management',
-      iri:              get('iri') || 'A',
+      hasPresentation:  Boolean(document.getElementById('field-hasPresentation')?.checked),
+      notes:            get('notes') || '',
       photos:           [...photoFiles],
     };
+
     if (editingId) {
       Store.update(editingId, hotel);
-      showStatus('✅ Отель обновлён');
+      showStatus('✅ Отель успешно обновлён');
     } else {
       Store.add(hotel);
-      showStatus('✅ Отель добавлен в каталог');
+      showStatus('✅ Отель добавлен в каталог и отправлен в облако');
     }
     resetForm();
   });

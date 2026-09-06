@@ -290,34 +290,6 @@
           </div>
         </div>
 
-        <div class="filter-bar-sep" aria-hidden="true"></div>
-
-        <!-- Модель -->
-        <div class="filter-group" id="filter-model-group">
-          <span class="filter-group-label" id="label-model">Модель</span>
-          <div class="filter-chips" role="group" aria-labelledby="label-model">
-            <button class="filter-chip filter-chip--active" data-filter="model" data-value="all"       id="m-all">Все</button>
-            <button class="filter-chip" data-filter="model" data-value="sale"       id="m-sale">Продажа</button>
-            <button class="filter-chip" data-filter="model" data-value="management" id="m-mgmt">Управление</button>
-            <button class="filter-chip" data-filter="model" data-value="franchise"  id="m-fran">Франчайзинг</button>
-            <button class="filter-chip" data-filter="model" data-value="jv"         id="m-jv">СП&nbsp;/ JV</button>
-          </div>
-        </div>
-
-        <div class="filter-bar-sep" aria-hidden="true"></div>
-
-        <!-- IRI -->
-        <div class="filter-group" id="filter-iri-group">
-          <span class="filter-group-label" id="label-iri">IRI</span>
-          <div class="filter-chips" role="group" aria-labelledby="label-iri">
-            <button class="filter-chip filter-chip--active" data-filter="iri" data-value="all" id="i-all">Все</button>
-            <button class="filter-chip" data-filter="iri" data-value="Aplus" id="i-aplus">A+</button>
-            <button class="filter-chip" data-filter="iri" data-value="A"     id="i-a">A</button>
-            <button class="filter-chip" data-filter="iri" data-value="Bplus" id="i-bplus">B+</button>
-            <button class="filter-chip" data-filter="iri" data-value="B"     id="i-b">B</button>
-          </div>
-        </div>
-
       </div>
 
       <!-- Правый блок: сброс + счётчик -->
@@ -326,7 +298,7 @@
           Сбросить
         </button>
         <span class="filter-count" id="filter-count" aria-live="polite">
-          <span class="filter-count-num" id="filter-count-num">6</span> объектов
+          <span class="filter-count-num" id="filter-count-num">0</span> объектов
         </span>
       </div>
 
@@ -342,15 +314,14 @@
         <!-- Сортировка -->
         <div class="results-bar">
           <p class="results-meta">
-            Показано: <strong id="results-shown">6</strong> из
-            <span class="results-total">6</span>
-            <span class="results-disclaimer">· демо-версия, каталог пополняется</span>
+            Показано: <strong id="results-shown">0</strong> из
+            <span class="results-total">0</span>
           </p>
           <div class="sort-group" role="group" aria-label="Сортировка">
             <span class="sort-label">Сортировать:</span>
-            <button class="sort-btn sort-btn--active" id="sort-iri">IRI</button>
-            <button class="sort-btn" id="sort-occ">Occupancy</button>
-            <button class="sort-btn" id="sort-rooms">Rooms</button>
+            <button class="sort-btn sort-btn--active" id="sort-rooms">Номера</button>
+            <button class="sort-btn" id="sort-stars">Категория</button>
+            <button class="sort-btn" id="sort-year">Год ввода</button>
           </div>
         </div>
 
