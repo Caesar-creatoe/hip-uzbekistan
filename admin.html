@@ -24,11 +24,35 @@
     </a>
     <div class="admin-header-actions">
       <a href="portfolio.html" class="admin-header-link" target="_blank">👁 Смотреть каталог</a>
+      <button type="button" class="btn-cancel" id="btn-admin-logout" style="padding:6px 14px;font-size:12px">Выйти</button>
     </div>
   </header>
 
+  <!-- ═══ ADMIN AUTH GATE (GUARD) ═════════════════════════ -->
+  <div class="admin-auth-gate" id="admin-auth-gate">
+    <div class="admin-auth-card">
+      <div class="admin-auth-icon">🔒</div>
+      <h2 class="admin-auth-title">Доступ ограничен</h2>
+      <p class="admin-auth-desc">Управление каталогом доступно только авторизованным администраторам Silk Route Invest</p>
+      <div class="admin-auth-error" id="admin-auth-error"></div>
+      <form class="admin-auth-form" id="admin-login-form">
+        <div class="admin-auth-field">
+          <label for="admin-email">Email администратора</label>
+          <input type="email" id="admin-email" placeholder="admin@silkroute.uz" required />
+        </div>
+        <div class="admin-auth-field">
+          <label for="admin-password">Пароль</label>
+          <input type="password" id="admin-password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="admin-auth-submit">Войти в панель</button>
+      </form>
+      <button type="button" class="admin-demo-btn" id="btn-admin-demo">Вход для демонстрации (Admin Demo)</button>
+      <a href="index.html" class="admin-auth-back">&larr; Вернуться на главную</a>
+    </div>
+  </div>
+
   <!-- ═══ LAYOUT ══════════════════════════════════════════ -->
-  <div class="admin-layout">
+  <div class="admin-layout" id="admin-layout" style="display:none">
 
     <!-- ── SIDEBAR: список отелей ─────────────────────── -->
     <aside class="admin-sidebar" id="admin-sidebar">
@@ -279,6 +303,8 @@
     </main>
   </div>
 
+  <script src="js/supabase.js"></script>
+  <script src="js/hotels-data.js"></script>
   <script src="js/admin.js"></script>
 </body>
 </html>

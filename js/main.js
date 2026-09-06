@@ -75,6 +75,16 @@ function animateCounter(el, target, duration) {
   requestAnimationFrame(step);
 }
 
+/* Динамическая синхронизация счетчика объектов из HotelStore */
+if (window.HotelStore) {
+  const heroHotelEl = document.getElementById('hero-stat-hotels');
+  if (heroHotelEl) {
+    const count = window.HotelStore.getAll().length;
+    heroHotelEl.dataset.target = count;
+    heroHotelEl.textContent = count;
+  }
+}
+
 /* Наблюдаем за Platform Stats — запускаем счётчики при входе в viewport */
 const counterEls = document.querySelectorAll('.js-counter');
 let countersAnimated = false;
@@ -102,28 +112,54 @@ if (counterEls.length) {
 /* ─────────────────────────────────────────────
    4. Language switcher (RU / UZ / EN)
    ───────────────────────────────────────────── */
-const langBtns = document.querySelectorAll('.lang-btn');
+const langBtns = document.querySelectorAll('.lang-btn, .footer-lang-link');
 const savedLang = localStorage.getItem('hip_lang') || 'ru';
 
-function applyLanguage(lang) {
+function showLangToast(lang) {
+  let toast = document.getElementById('lang-notice-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'lang-notice-toast';
+    toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#3B2A20;color:#F5EFE3;border:1px solid #8B6F4E;border-radius:10px;padding:12px 18px;font-size:13px;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,0.3);max-width:340px;line-height:1.4;transition:opacity 0.3s';
+    document.body.appendChild(toast);
+  }
+  const msg = lang === 'uz'
+    ? "O'zbekcha versiya to'ldirilmoqda. Hozirda to'liq rasmiy ruscha asl nusxa mavjud."
+    : "English localized edition is currently being compiled. Full Russian institutional documentation is active.";
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  toast.style.display = 'block';
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => { toast.style.display = 'none'; }, 300);
+  }, 4000);
+}
+
+function applyLanguage(lang, userInitiated = false) {
   langBtns.forEach((btn) => {
-    const isTarget = btn.id === `lang-${lang}` || btn.textContent.trim().toLowerCase() === lang;
+    const btnLang = btn.dataset.lang || btn.id.replace('lang-', '') || btn.textContent.trim().toLowerCase();
+    const isTarget = btnLang === lang;
     btn.classList.toggle('lang-btn--active', isTarget);
+    btn.classList.toggle('footer-lang-link--active', isTarget);
     btn.setAttribute('aria-pressed', isTarget ? 'true' : 'false');
   });
   document.documentElement.lang = lang;
   localStorage.setItem('hip_lang', lang);
+  if (userInitiated && lang !== 'ru') {
+    showLangToast(lang);
+  }
 }
 
 langBtns.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    const chosenLang = btn.id.replace('lang-', '') || btn.textContent.trim().toLowerCase();
-    applyLanguage(chosenLang);
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const chosenLang = btn.dataset.lang || btn.id.replace('lang-', '') || btn.textContent.trim().toLowerCase();
+    applyLanguage(chosenLang, true);
   });
 });
 
 if (savedLang) {
-  applyLanguage(savedLang);
+  applyLanguage(savedLang, false);
 }
 
 

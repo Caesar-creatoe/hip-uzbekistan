@@ -1,37 +1,11 @@
 /* ============================================================
    ADMIN.JS — Adminка управления каталогом отелей
    Silk Route Invest · Uzbekistan
-   Хранилище: localStorage key "sri_hotels"
+   Хранилище: единый HotelStore (localStorage key "sri_hotels")
    ============================================================ */
 'use strict';
 
-/* ── Хранилище ─────────────────────────────────────────────── */
-const HotelStore = {
-  KEY: 'sri_hotels',
-  getAll() {
-    try { return JSON.parse(localStorage.getItem(this.KEY)) || []; }
-    catch { return []; }
-  },
-  save(hotels) { localStorage.setItem(this.KEY, JSON.stringify(hotels)); },
-  add(hotel) {
-    const hotels = this.getAll();
-    hotel.id = Date.now().toString();
-    hotel.createdAt = new Date().toISOString();
-    hotels.push(hotel);
-    this.save(hotels);
-    return hotel;
-  },
-  update(id, data) {
-    const hotels = this.getAll();
-    const idx = hotels.findIndex(h => h.id === id);
-    if (idx === -1) return null;
-    hotels[idx] = { ...hotels[idx], ...data, id, updatedAt: new Date().toISOString() };
-    this.save(hotels);
-    return hotels[idx];
-  },
-  delete(id) { this.save(this.getAll().filter(h => h.id !== id)); },
-  getById(id) { return this.getAll().find(h => h.id === id) || null; }
-};
+const Store = window.HotelStore;
 
 /* ── Состояние ─────────────────────────────────────────────── */
 let editingId = null;
@@ -51,6 +25,88 @@ const totalCounter = document.getElementById('total-count');
 const statusMsg    = document.getElementById('status-message');
 const searchInput  = document.getElementById('sidebar-search');
 
+/* ── Auth Guard Элементы ───────────────────────────────────── */
+const authGate    = document.getElementById('admin-auth-gate');
+const adminLayout = document.getElementById('admin-layout');
+const loginForm   = document.getElementById('admin-login-form');
+const demoBtn     = document.getElementById('btn-admin-demo');
+const logoutBtn   = document.getElementById('btn-admin-logout');
+const authError   = document.getElementById('admin-auth-error');
+
+/* ── Проверка авторизации администратора ───────────────────── */
+function checkAdminAuth() {
+  let isAuthed = false;
+  try {
+    const adminSession = JSON.parse(localStorage.getItem('hip_admin_session') || 'null');
+    if (adminSession && adminSession.user && adminSession.user.role === 'admin') {
+      isAuthed = true;
+    }
+    const generalSession = JSON.parse(localStorage.getItem('hip_active_session') || 'null');
+    if (generalSession && generalSession.user && (generalSession.user.role === 'admin' || generalSession.user.email === 'admin@silkroute.uz')) {
+      isAuthed = true;
+    }
+  } catch (e) {
+    console.warn('Auth check error:', e);
+  }
+
+  if (isAuthed) {
+    if (authGate) authGate.style.display = 'none';
+    if (adminLayout) adminLayout.style.display = 'grid';
+    if (logoutBtn) logoutBtn.style.display = 'inline-block';
+    renderSidebar();
+    return true;
+  } else {
+    if (authGate) authGate.style.display = 'flex';
+    if (adminLayout) adminLayout.style.display = 'none';
+    if (logoutBtn) logoutBtn.style.display = 'none';
+    return false;
+  }
+}
+
+function loginAdmin(email = 'admin@silkroute.uz') {
+  const adminUser = {
+    id: 'usr_admin_01',
+    email: email.toLowerCase(),
+    role: 'admin',
+    full_name: 'Администратор платформы SRI',
+    created_at: new Date().toISOString()
+  };
+  localStorage.setItem('hip_admin_session', JSON.stringify({ user: adminUser, token: 'sri_adm_token' }));
+  localStorage.setItem('hip_active_session', JSON.stringify({ user: adminUser, access_token: 'sri_adm_token' }));
+  checkAdminAuth();
+  showStatus('Вход выполнен успешно');
+}
+
+if (loginForm) {
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = document.getElementById('admin-email')?.value.trim();
+    const pass = document.getElementById('admin-password')?.value.trim();
+    if (!email || !pass) {
+      if (authError) {
+        authError.textContent = 'Укажите email и пароль';
+        authError.style.display = 'block';
+      }
+      return;
+    }
+    loginAdmin(email);
+  });
+}
+
+if (demoBtn) {
+  demoBtn.addEventListener('click', () => {
+    loginAdmin('admin@silkroute.uz');
+  });
+}
+
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('hip_admin_session');
+    localStorage.removeItem('hip_active_session');
+    checkAdminAuth();
+  });
+}
+
 /* ── Утилиты ───────────────────────────────────────────────── */
 function escHtml(str) {
   return String(str ?? '')
@@ -63,13 +119,20 @@ function starsLabel(n) {
 function getRegionKey(name) {
   if (!name) return 'other';
   const r = name.toLowerCase();
-  if (r.includes('ташкент')) return 'tashkent';
+  if (r.includes('город') || r === 'ташкент') return 'tashkent';
+  if (r.includes('ташкентск')) return 'tashkent-region';
   if (r.includes('самарканд')) return 'samarkand';
   if (r.includes('бухар')) return 'bukhara';
   if (r.includes('хорезм') || r.includes('хива')) return 'khorezm';
   if (r.includes('ферган')) return 'fergana';
   if (r.includes('наманган')) return 'namangan';
   if (r.includes('андиж')) return 'andijan';
+  if (r.includes('кашкадар')) return 'kashkadarya';
+  if (r.includes('сурхандар')) return 'surkhandarya';
+  if (r.includes('джизак') || r.includes('заамин')) return 'jizzakh';
+  if (r.includes('сырдар')) return 'syrdarya';
+  if (r.includes('навои')) return 'navoi';
+  if (r.includes('каракалпак')) return 'karakalpakstan';
   return 'other';
 }
 function showStatus(msg, type='success') {
@@ -82,7 +145,7 @@ function showStatus(msg, type='success') {
 
 /* ── Sidebar ───────────────────────────────────────────────── */
 function renderSidebar() {
-  const hotels = HotelStore.getAll();
+  const hotels = Store.getAll();
   if (totalCounter) totalCounter.textContent = hotels.length;
   if (!hotelList) return;
   if (hotels.length === 0) {
@@ -151,7 +214,7 @@ if (photoInput) {
 }
 
 /* ── Drag & Drop ───────────────────────────────────────────── */
-const dropZone = document.getElementById('photo-drop-zone');
+const dropZone = document.getElementById('photo-dropzone');
 if (dropZone) {
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
@@ -182,18 +245,21 @@ function resetForm() {
 
 /* ── Загрузка в форму ──────────────────────────────────────── */
 function loadForEdit(id) {
-  const hotel = HotelStore.getById(id);
+  const hotel = Store.getById(id);
   if (!hotel) return;
   editingId = id;
-  const fields = ['hotelName','legalEntity','region','address','roomsCount',
-    'placesCount','stars','landArea','buildingArea','floors','maxRoomArea',
-    'minRoomArea','yearCommissioned','amenities','managerContact','status','notes'];
+  const fields = [
+    'hotelName', 'legalEntity', 'region', 'address', 'roomsCount',
+    'placesCount', 'stars', 'floors', 'conferenceHalls', 'amenities',
+    'managerContact', 'status', 'adr', 'occupancy', 'model', 'iri',
+    'inn', 'director', 'yearCommissioned'
+  ];
   fields.forEach(name => {
     const el = document.getElementById(`field-${name}`);
     if (el && hotel[name] !== undefined) el.value = hotel[name];
   });
-  const pres = document.getElementById('field-hasPresentation');
-  if (pres) pres.checked = hotel.hasPresentation;
+  const pres = document.getElementById('field-presentation');
+  if (pres) pres.value = hotel.hasPresentation ? 'yes' : 'no';
   photoFiles = hotel.photos ? [...hotel.photos] : [];
   renderPhotoPreview();
   if (formTitle) formTitle.textContent = `Редактировать: ${hotel.hotelName || ''}`;
@@ -219,30 +285,28 @@ if (hotelForm) {
       region:           get('region'),
       regionKey:        getRegionKey(get('region')),
       address:          get('address'),
-      roomsCount:       get('roomsCount'),
-      placesCount:      get('placesCount'),
-      stars:            get('stars'),
-      landArea:         get('landArea'),
-      buildingArea:     get('buildingArea'),
-      floors:           get('floors'),
-      maxRoomArea:      get('maxRoomArea'),
-      minRoomArea:      get('minRoomArea'),
-      yearCommissioned: get('yearCommissioned'),
+      roomsCount:       parseInt(get('roomsCount')) || 0,
+      placesCount:      parseInt(get('placesCount')) || 0,
+      stars:            parseInt(get('stars')) || 0,
+      floors:           parseInt(get('floors')) || 0,
+      conferenceHalls:  get('conferenceHalls'),
+      yearCommissioned: parseInt(get('yearCommissioned')) || 2024,
       amenities:        get('amenities'),
       managerContact:   get('managerContact'),
-      hasPresentation:  document.getElementById('field-hasPresentation')?.checked ?? false,
+      hasPresentation:  get('presentation') === 'yes',
       status:           get('status') || 'active',
-      notes:            get('notes'),
+      adr:              parseFloat(get('adr')) || 100,
+      occupancy:        parseFloat(get('occupancy')) || 70,
+      investmentModel:  get('model') || 'management',
+      iri:              get('iri') || 'A',
       photos:           [...photoFiles],
     };
     if (editingId) {
-      HotelStore.update(editingId, hotel);
+      Store.update(editingId, hotel);
       showStatus('✅ Отель обновлён');
     } else {
-      HotelStore.add(hotel);
+      Store.add(hotel);
       showStatus('✅ Отель добавлен в каталог');
-      resetForm();
-      return;
     }
     resetForm();
   });
@@ -254,16 +318,16 @@ if (cancelBtn)   cancelBtn.addEventListener('click', resetForm);
 if (deleteBtn) {
   deleteBtn.addEventListener('click', () => {
     if (!editingId) return;
-    const h = HotelStore.getById(editingId);
+    const h = Store.getById(editingId);
     if (!confirm(`Удалить «${h?.hotelName||editingId}»?`)) return;
-    HotelStore.delete(editingId);
+    Store.delete(editingId);
     showStatus('🗑️ Отель удалён');
     resetForm();
   });
 }
 if (exportBtn) {
   exportBtn.addEventListener('click', () => {
-    const blob = new Blob([JSON.stringify(HotelStore.getAll(),null,2)], {type:'application/json'});
+    const blob = new Blob([JSON.stringify(Store.getAll(),null,2)], {type:'application/json'});
     const a = Object.assign(document.createElement('a'), {
       href: URL.createObjectURL(blob),
       download: `sri-hotels-${new Date().toISOString().slice(0,10)}.json`
@@ -287,4 +351,5 @@ if (searchInput) {
 }
 
 /* ── Init ─────────────────────────────────────────────────────── */
+checkAdminAuth();
 resetForm();

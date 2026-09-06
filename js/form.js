@@ -141,14 +141,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elTotalRevenue) elTotalRevenue.value = totalRev;
 
     // 3. Operational KPIs (Occupancy, ADR, RevPAR)
-    const occ = parseVal(elOccupancy, 70);
-    const adr = parseVal(elAdr, 100);
-    const revpar = (adr * (occ / 100));
+    const occ = parseVal(elOccupancy, 0);
+    const adr = parseVal(elAdr, 0);
+    const revpar = (adr > 0 && occ > 0)
+      ? (window.calculateRevPAR ? window.calculateRevPAR(adr, occ) : Number((adr * (occ / 100)).toFixed(1)))
+      : 0;
 
-    if (elRevparCalc) elRevparCalc.value = revpar.toFixed(1);
-    if (dockOcc) dockOcc.textContent = occ.toFixed(1) + '%';
-    if (dockAdr) dockAdr.textContent = '$' + Math.round(adr);
-    if (dockRevpar) dockRevpar.textContent = '$' + revpar.toFixed(1);
+    if (elRevparCalc) elRevparCalc.value = revpar > 0 ? revpar.toFixed(1) : '';
+    if (dockOcc) dockOcc.textContent = occ > 0 ? occ.toFixed(1) + '%' : '—';
+    if (dockAdr) dockAdr.textContent = adr > 0 ? '$' + Math.round(adr) : '—';
+    if (dockRevpar) dockRevpar.textContent = revpar > 0 ? '$' + revpar.toFixed(1) : '—';
 
     // 4. EBITDA & Margins
     const ebitda = parseVal(elEbitda, 0);
@@ -316,9 +318,128 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ─────────────────────────────────────────────
-     5. AUTO-FILL DEMO (GRAND TASHKENT 5★)
+     5. AUTO-FILL DEMO & CLEAN FORM TOGGLE
      ───────────────────────────────────────────── */
-  const btnAutofill = document.getElementById('btn-autofill-demo');
+  const btnAutofill = document.getElementById('btn-autofill-demo') || document.getElementById('btn-load-demo-example');
+  const btnClean = document.getElementById('btn-reset-clean-form');
+  const modeBadge = document.getElementById('form-mode-badge');
+  const modeText = document.getElementById('form-mode-text');
+
+  function loadGrandTashkentDemo() {
+    // Step 1
+    const hotelName = document.getElementById('hotel_name');
+    if (hotelName) hotelName.value = 'Grand Tashkent Hotel';
+
+    const hotelRegion = document.getElementById('hotel_region');
+    if (hotelRegion) hotelRegion.value = 'tashkent_city';
+
+    const hotelDistrict = document.getElementById('hotel_district');
+    if (hotelDistrict) hotelDistrict.value = 'Мирзо-Улугбекский район';
+
+    const hotelAddress = document.getElementById('hotel_address');
+    if (hotelAddress) hotelAddress.value = 'проспект Амира Темура, д. 45';
+
+    const hotelStars = document.getElementById('hotel_stars');
+    if (hotelStars) hotelStars.value = '5';
+
+    const hotelBrand = document.getElementById('hotel_brand');
+    if (hotelBrand) hotelBrand.value = 'Независимый отель (International 5★ standard)';
+
+    const ownership = document.getElementById('ownership_type');
+    if (ownership) ownership.value = 'private_100';
+
+    const dealModel = document.getElementById('deal_model');
+    if (dealModel) dealModel.value = 'management';
+
+    const cadastre = document.getElementById('cadastre_number');
+    if (cadastre) cadastre.value = '10:04:02:01:04:0124';
+
+    const encumbrance = document.getElementById('legal_encumbrance');
+    if (encumbrance) encumbrance.value = 'none';
+
+    // Step 2
+    if (elStandard) elStandard.value = 196;
+    if (elDeluxe) elDeluxe.value = 38;
+    if (elJunior) elJunior.value = 12;
+    if (elSuite) elSuite.value = 10;
+    if (elPres) elPres.value = 2;
+
+    const totalArea = document.getElementById('total_area');
+    if (totalArea) totalArea.value = 28500;
+
+    const landArea = document.getElementById('land_area');
+    if (landArea) landArea.value = 1.8;
+
+    const yearBuilt = document.getElementById('year_built');
+    if (yearBuilt) yearBuilt.value = 2018;
+
+    const yearRenov = document.getElementById('year_renovation');
+    if (yearRenov) yearRenov.value = 2024;
+
+    const floors = document.getElementById('floors_count');
+    if (floors) floors.value = 14;
+
+    const mice = document.getElementById('mice_capacity');
+    if (mice) mice.value = 300;
+
+    const rest = document.getElementById('restaurants_count');
+    if (rest) rest.value = 3;
+
+    const spa = document.getElementById('spa_area');
+    if (spa) spa.value = 850;
+
+    const parking = document.getElementById('parking_spaces');
+    if (parking) parking.value = 120;
+
+    // Step 3
+    if (elOccupancy) elOccupancy.value = 74;
+    if (elAdr) elAdr.value = 128;
+    if (elRevRooms) elRevRooms.value = 8920000;
+    if (elRevFb) elRevFb.value = 3400000;
+    if (elRevOther) elRevOther.value = 1230000;
+    if (elEbitda) elEbitda.value = 4200000;
+    if (elValuation) elValuation.value = 45000000;
+    if (elCapex) elCapex.value = 12000000;
+
+    recalculateAll();
+
+    if (modeBadge) {
+      modeBadge.textContent = 'Пример заполнения (Grand Tashkent 5★)';
+      modeBadge.style.background = '#8B6F4E';
+    }
+    if (modeText) modeText.textContent = 'Отображаются демонстрационные данные эталонного 5-звёздочного отеля.';
+    if (btnClean) btnClean.style.display = 'inline-block';
+  }
+
+  function resetToCleanForm() {
+    const form = document.getElementById('wizard-form');
+    if (form) form.reset();
+    if (modeBadge) {
+      modeBadge.textContent = 'Новый объект';
+      modeBadge.style.background = '#3B2A20';
+    }
+    if (modeText) modeText.textContent = 'Форма открыта с чистыми полями для ввода нового объекта.';
+    if (btnClean) btnClean.style.display = 'none';
+    recalculateAll();
+  }
+
+  const demoBtn2 = document.getElementById('btn-load-demo-example');
+  if (demoBtn2) demoBtn2.addEventListener('click', loadGrandTashkentDemo);
+  const btnFillDemo = document.getElementById('btn-fill-demo');
+  if (btnFillDemo) {
+    btnFillDemo.addEventListener('click', () => {
+      loadGrandTashkentDemo();
+      btnFillDemo.textContent = '✓ Образец загружен (Grand Tashkent 5★)';
+      btnFillDemo.style.background = 'var(--color-brand-gold, #c5a059)';
+      btnFillDemo.style.color = '#fff';
+    });
+  }
+  if (btnClean) btnClean.addEventListener('click', resetToCleanForm);
+
+  // Check URL query param ?demo=1
+  if (new URLSearchParams(window.location.search).get('demo') === '1') {
+    loadGrandTashkentDemo();
+  }
 
   if (btnAutofill) {
     btnAutofill.addEventListener('click', () => {

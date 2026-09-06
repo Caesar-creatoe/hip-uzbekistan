@@ -53,7 +53,7 @@
               <span class="mega-icon">🏨</span>
               <span class="mega-link-text">
                 <span class="mega-link-label">Каталог объектов</span>
-                <span class="mega-link-desc">150+ гостиничных проектов с фильтрами</span>
+                <span class="mega-link-desc">Каталог гостиничных проектов с фильтрами</span>
               </span>
             </a>
             <a href="form.html" class="mega-link">
@@ -153,7 +153,6 @@
         <a href="cabinet-investor.html" class="btn-login" id="header-login">
           <span class="btn-login-icon">⚿</span> Войти
         </a>
-                <a href="admin.html" class="btn-login" id="header-admin-link" style="font-size:10px;padding:5px 10px">⚙️ Admin</a>
         <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
       </div>
 
@@ -262,10 +261,10 @@
   <section class="platform-stats" id="about" aria-label="Показатели платформы">
     <div class="platform-stats-inner">
 
-      <div class="pstat-block appear" role="listitem" aria-label="Объектов в базе: 150 плюс">
-        <div class="pstat-number js-counter" data-target="150" data-suffix="+">150+</div>
+      <div class="pstat-block appear" role="listitem" aria-label="Объектов в реестре">
+        <div class="pstat-number js-counter" id="hero-stat-hotels" data-target="6" data-suffix="">6</div>
         <div class="pstat-label">ОБЪЕКТОВ В БАЗЕ</div>
-        <div class="pstat-note">Гостиничных объектов на стадии оценки и публикации</div>
+        <div class="pstat-note">Верифицированных объектов (демо-версия, база пополняется)</div>
       </div>
 
       <div class="pstat-block appear" role="listitem" aria-label="14 регионов охвачено">
@@ -371,13 +370,13 @@
 
 
   <!-- ═══════════════════════════════════════════
-       МЕТОДОЛОГИЯ — 6 принципов Тома I
+       МЕТОДОЛОГИЯ — 7 принципов Тома I
   ═══════════════════════════════════════════ -->
   <section class="methodology-section" id="methodology" aria-label="Методология — принципы Тома I">
     <div class="methodology-inner">
 
       <div class="methodology-header appear">
-        <p class="kicker kicker--light">МЕТОДОЛОГИЯ&nbsp;·&nbsp;ТОМ&nbsp;I</p>
+        <p class="kicker kicker--light">МЕТОДОЛОГИЯ&nbsp;·&nbsp;ТОМ&nbsp;I&nbsp;·&nbsp;7 ПРИНЦИПОВ</p>
         <div class="methodology-title-block">
           <h2 class="methodology-title">
             Методические рекомендации по подготовке инвестиционного портфеля
@@ -464,6 +463,17 @@
           </div>
         </article>
 
+        <article class="principle-item appear">
+          <div class="principle-num" aria-hidden="true">VII</div>
+          <div class="principle-body">
+            <h3 class="principle-title">Цифровая интеграция</h3>
+            <p class="principle-desc">
+              Ввод данных через Smart Form (Том III) автоматически обновляет
+              витрину каталога, карточку объекта и формирует инвестиционный паспорт.
+            </p>
+          </div>
+        </article>
+
       </div>
 
     </div>
@@ -491,7 +501,7 @@
 
         <!-- Карточка 1 — крупная (7 / 12 колонок) -->
         <article class="hotel-card hotel-card--large appear" aria-label="Grand Tashkent Hotel — Investment Passport">
-          <a href="passport.html" class="hotel-card-link" id="card-grand-tashkent">
+          <a href="passport.html?hotel=grand-tashkent" class="hotel-card-link" id="card-grand-tashkent">
             <div class="hotel-card-photo-wrap">
               <!--
                 Photo: GooDriss Too / Unsplash
@@ -551,7 +561,7 @@
 
           <!-- Карточка 2 -->
           <article class="hotel-card hotel-card--small appear" aria-label="Samarkand Palace — Investment Passport">
-            <a href="passport.html" class="hotel-card-link" id="card-samarkand">
+            <a href="passport.html?hotel=samarkand-palace" class="hotel-card-link" id="card-samarkand">
               <div class="hotel-card-photo-wrap">
                 <!--
                   Photo: Bhanu Singh / Unsplash
@@ -603,7 +613,7 @@
 
           <!-- Карточка 3 -->
           <article class="hotel-card hotel-card--small appear" aria-label="Bukhara Heritage Hotel — Investment Passport">
-            <a href="passport.html" class="hotel-card-link" id="card-bukhara">
+            <a href="passport.html?hotel=bukhara-heritage" class="hotel-card-link" id="card-bukhara">
               <div class="hotel-card-photo-wrap">
                 <!--
                   Photo: Tanya Barrow / Unsplash
@@ -754,9 +764,9 @@
           Данные носят иллюстративный характер. Методология соответствует стандартам STR Global&nbsp;/ USALI&nbsp;/ IFC.
         </p>
         <div class="footer-lang-group" role="group" aria-label="Язык">
-          <a href="/" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
-          <a href="/uz" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
-          <a href="/en" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
         </div>
       </div>
 
@@ -764,6 +774,7 @@
   </footer>
 
   <script src="js/megamenu.js"></script>
+  <script src="js/hotels-data.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

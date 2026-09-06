@@ -4,14 +4,7 @@
    ============================================================ */
 'use strict';
 
-/* ── Хранилище (общий с admin.js) ─────────────────────────── */
-const HotelStore = {
-  KEY: 'sri_hotels',
-  getAll() {
-    try { return JSON.parse(localStorage.getItem(this.KEY)) || []; }
-    catch { return []; }
-  }
-};
+const Store = window.HotelStore;
 
 /* ── Состояние фильтров ─────────────────────────────────────── */
 const activeFilters = { region: 'all', stars: 'all', model: 'all', iri: 'all' };
@@ -47,36 +40,40 @@ function buildCard(hotel) {
   const places = hotel.placesCount ? `<span class="hotel-stat"><strong>${escHtml(hotel.placesCount)}</strong><small>мест</small></span>` : '';
   const floors = hotel.floors ? `<span class="hotel-stat"><strong>${escHtml(hotel.floors)}</strong><small>эт.</small></span>` : '';
   const year = hotel.yearCommissioned ? `<span class="hotel-card-year">${escHtml(hotel.yearCommissioned)}</span>` : '';
+  const passportUrl = `passport.html?hotel=${encodeURIComponent(hotel.slug || hotel.id)}`;
 
   return `
   <article class="hotel-card hotel-card--catalog appear"
            data-region="${escHtml(hotel.regionKey||'other')}"
            data-stars="${escHtml(hotel.stars||'')}"
-           data-model="all"
-           data-iri="all"
+           data-model="${escHtml(hotel.investmentModel||'all')}"
+           data-iri="${escHtml(hotel.iri||'all')}"
            data-id="${escHtml(hotel.id)}"
            role="listitem">
-    <div class="hotel-card-img-wrap">
-      <img src="${photo}" alt="${escHtml(hotel.hotelName)}" class="hotel-card-img" loading="lazy" />
-      <div class="hotel-card-img-overlay"></div>
-      <div class="hotel-card-badges">
-        ${stars}
-        ${hotel.hasPresentation ? '<span class="hotel-card-badge">📎 Презентация</span>' : ''}
-        ${hotel.status === 'draft' ? '<span class="hotel-card-badge hotel-card-badge--draft">Черновик</span>' : ''}
+    <a href="${passportUrl}" class="hotel-card-link" style="text-decoration:none;color:inherit;display:block">
+      <div class="hotel-card-img-wrap">
+        <img src="${photo}" alt="${escHtml(hotel.hotelName)}" class="hotel-card-img" loading="lazy" />
+        <div class="hotel-card-img-overlay"></div>
+        <div class="hotel-card-badges">
+          ${stars}
+          ${hotel.hasPresentation ? '<span class="hotel-card-badge">📎 Презентация</span>' : ''}
+          ${hotel.status === 'draft' ? '<span class="hotel-card-badge hotel-card-badge--draft">Черновик</span>' : ''}
+          ${hotel.iri ? `<span class="hotel-card-badge hotel-card-badge--iri">IRI ${escHtml(hotel.iri)}</span>` : ''}
+        </div>
       </div>
-    </div>
-    <div class="hotel-card-body">
-      <div class="hotel-card-meta">${region} ${year}</div>
-      <h3 class="hotel-card-name">${escHtml(hotel.hotelName)}</h3>
-      ${hotel.legalEntity ? `<p class="hotel-card-legal">${escHtml(hotel.legalEntity)}</p>` : ''}
-      <div class="hotel-card-stats">${rooms}${places}${floors}</div>
-      ${hotel.amenities ? `<div class="hotel-card-amenities">${amenityBadges(hotel.amenities)}</div>` : ''}
-      ${hotel.managerContact ? `<div class="hotel-card-contact">📞 ${escHtml(hotel.managerContact)}</div>` : ''}
-      <div class="hotel-card-footer">
-        <span class="hotel-card-model">Инвестиционный объект</span>
-        <span class="hotel-card-cta">Подробнее →</span>
+      <div class="hotel-card-body">
+        <div class="hotel-card-meta">${region} ${year}</div>
+        <h3 class="hotel-card-name">${escHtml(hotel.hotelName)}</h3>
+        ${hotel.legalEntity ? `<p class="hotel-card-legal">${escHtml(hotel.legalEntity)}</p>` : ''}
+        <div class="hotel-card-stats">${rooms}${places}${floors}</div>
+        ${hotel.amenities ? `<div class="hotel-card-amenities">${amenityBadges(hotel.amenities)}</div>` : ''}
+        ${hotel.managerContact ? `<div class="hotel-card-contact">📞 ${escHtml(hotel.managerContact)}</div>` : ''}
+        <div class="hotel-card-footer">
+          <span class="hotel-card-model">${escHtml(hotel.modelLabel || 'Инвестиционный объект')}</span>
+          <span class="hotel-card-cta">Паспорт объекта →</span>
+        </div>
       </div>
-    </div>
+    </a>
   </article>`;
 }
 
@@ -89,31 +86,25 @@ const totalEl    = document.querySelector('.results-total');
 
 function renderCatalog() {
   if (!grid) return;
-  const hotels = HotelStore.getAll().filter(h => h.status !== 'draft');
+  const hotels = Store ? Store.getAll().filter(h => h.status !== 'draft') : [];
 
   if (hotels.length === 0) {
     grid.innerHTML = '';
     if (emptyState) {
       emptyState.hidden = false;
       emptyState.querySelector('.empty-state-title').textContent = 'Каталог пока пуст';
-      emptyState.querySelector('.empty-state-desc').textContent = 'Добавьте отели через Admin-панель';
+      emptyState.querySelector('.empty-state-desc').textContent = 'Добавьте отели через панель управления';
     }
     if (countEl) countEl.textContent = '0';
     if (shownEl) shownEl.textContent = '0';
     if (totalEl) totalEl.textContent = '0';
-    // Обновить статистику
     updateHeaderStats(0, []);
     return;
   }
 
+  if (emptyState) emptyState.hidden = true;
   grid.innerHTML = hotels.map(buildCard).join('');
-
-  // Обновить фильтры по регионам
-  updateRegionFilters(hotels);
-
   applyFilters();
-
-  // Обновить заголовочные KPI
   updateHeaderStats(hotels.length, hotels);
 }
 
@@ -123,36 +114,9 @@ function updateHeaderStats(count, hotels) {
   if (statNums[0]) statNums[0].textContent = count;
   if (statNums[1]) {
     const regions = new Set(hotels.map(h => h.regionKey)).size;
-    statNums[1].textContent = regions || 0;
+    statNums[1].textContent = regions || 14;
   }
   if (totalEl) totalEl.textContent = count;
-}
-
-/* ── Обновить чипы регионов динамически ─────────────────────── */
-function updateRegionFilters(hotels) {
-  const regionMap = {
-    tashkent: 'Ташкент', samarkand: 'Самарканд', bukhara: 'Бухара',
-    khorezm: 'Хорезм', fergana: 'Фергана', namangan: 'Наманган',
-    andijan: 'Андижан', other: 'Другие'
-  };
-  const usedKeys = [...new Set(hotels.map(h => h.regionKey || 'other'))];
-  const container = document.querySelector('[data-filter="region"]')?.closest('.filter-chips');
-  if (!container) return;
-  // Сохранить чип "Все"
-  const allChip = container.querySelector('[data-value="all"]');
-  if (!allChip) return;
-  container.innerHTML = '';
-  container.appendChild(allChip);
-  usedKeys.sort().forEach(key => {
-    if (key === 'all') return;
-    const btn = document.createElement('button');
-    btn.className = 'filter-chip';
-    btn.dataset.filter = 'region';
-    btn.dataset.value = key;
-    btn.textContent = regionMap[key] || key;
-    container.appendChild(btn);
-    btn.addEventListener('click', () => onChipClick(btn));
-  });
 }
 
 /* ── Фильтрация ─────────────────────────────────────────────── */
@@ -163,7 +127,9 @@ function applyFilters() {
   cards.forEach(card => {
     const match =
       (activeFilters.region === 'all' || activeFilters.region === card.dataset.region) &&
-      (activeFilters.stars  === 'all' || activeFilters.stars  === card.dataset.stars);
+      (activeFilters.stars  === 'all' || activeFilters.stars  === card.dataset.stars) &&
+      (activeFilters.model  === 'all' || activeFilters.model  === card.dataset.model) &&
+      (activeFilters.iri    === 'all' || activeFilters.iri    === card.dataset.iri);
     if (match) {
       card.hidden = false;
       card.classList.remove('is-hidden');
@@ -214,14 +180,6 @@ const emptyResetBtn = document.getElementById('empty-reset');
 if (resetBtn)      resetBtn.addEventListener('click', resetFilters);
 if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetFilters);
 
-/* ── Сортировка ─────────────────────────────────────────────── */
-document.querySelectorAll('.sort-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('sort-btn--active'));
-    btn.classList.add('sort-btn--active');
-  });
-});
-
 /* ── Filter bar sticky ──────────────────────────────────────── */
 const filterBar    = document.getElementById('filter-bar');
 const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'),10) || 68;
@@ -236,7 +194,8 @@ if (filterBar) {
 /* ── Init ───────────────────────────────────────────────────── */
 renderCatalog();
 
-// Слушаем изменения в localStorage (обновления из другой вкладки)
+// Слушаем изменения в localStorage (обновления из другой вкладки / админки)
 window.addEventListener('storage', e => {
   if (e.key === 'sri_hotels') renderCatalog();
 });
+window.addEventListener('sri_hotels_updated', () => renderCatalog());

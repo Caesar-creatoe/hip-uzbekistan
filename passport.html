@@ -151,7 +151,6 @@
         <a href="cabinet-investor.html" class="btn-login" id="header-login">
           <span class="btn-login-icon">⚿</span> Войти
         </a>
-                <a href="admin.html" class="btn-login" id="header-admin-link" style="font-size:10px;padding:5px 10px">⚙️ Admin</a>
         <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
       </div>
 
@@ -320,16 +319,20 @@
     </div>
 
     <!-- Правая колонка: фото объекта -->
-    <div class="cover-photo-col" role="img" aria-label="Фасад Grand Tashkent Hotel">
+    <div class="cover-photo-col" role="img" aria-label="Фасад отеля" style="position:relative">
+      <div class="passport-demo-badge" style="position:absolute;top:16px;left:16px;z-index:10;background:rgba(59,42,32,0.88);backdrop-filter:blur(6px);color:#F5EFE3;border:1px solid #8B6F4E;border-radius:20px;padding:6px 14px;font-size:11px;font-weight:600;letter-spacing:0.04em;display:flex;align-items:center;gap:6px">
+        <span>📷</span> Демонстрационные фото · Макет паспорта
+      </div>
       <img
         src="./assets/hotel-hero.png"
-        alt="Grand Tashkent Hotel — архитектурный ансамбль отеля 5 звёзд, г. Ташкент"
+        alt="Отель — архитектурный ансамбль"
         class="cover-photo"
+        id="passport-cover-photo"
       />
       <!-- IRI бейдж поверх фото -->
-      <div class="cover-iri-badge" aria-label="Investment Readiness Index: A+">
+      <div class="cover-iri-badge" aria-label="Investment Readiness Index" id="passport-cover-iri">
         <span class="cover-iri-label">Investment Readiness</span>
-        <span class="cover-iri-val">A+</span>
+        <span class="cover-iri-val" id="cover-iri-val">A+</span>
       </div>
     </div>
 
@@ -378,7 +381,7 @@
               <tr><td class="et-key">EBITDA (2025 FY)</td><td class="et-val et-val--num">$&nbsp;4 200 000</td></tr>
               <tr><td class="et-key">Occupancy</td><td class="et-val et-val--num">74%</td></tr>
               <tr><td class="et-key">ADR</td><td class="et-val et-val--num">$&nbsp;128</td></tr>
-              <tr><td class="et-key">RevPAR</td><td class="et-val et-val--num">$&nbsp;94</td></tr>
+              <tr><td class="et-key">RevPAR</td><td class="et-val et-val--num">$&nbsp;<span id="exec-revpar-val">94.7</span></td></tr>
               <tr><td class="et-key">Средний срок окупаемости</td><td class="et-val et-val--num">7 лет</td></tr>
               <tr><td class="et-key">IRR</td><td class="et-val et-val--num">18%</td></tr>
               <tr><td class="et-key">Предлагаемая модель</td><td class="et-val">Управление / Продажа доли / СП</td></tr>
@@ -446,8 +449,8 @@
         <div class="stat-label">ADR</div>
         <div class="stat-note">Средняя цена номера, USD</div>
       </div>
-      <div class="stat-block" role="listitem" aria-label="RevPAR: 94 USD">
-        <div class="stat-number" data-prefix="$">$94</div>
+      <div class="stat-block" role="listitem" aria-label="RevPAR: 94.7 USD">
+        <div class="stat-number" id="dash-revpar-val" data-prefix="$">$94.7</div>
         <div class="stat-label">RevPAR</div>
         <div class="stat-note">Выручка на доступный номер</div>
       </div>
@@ -583,9 +586,11 @@
         <p class="kicker">ОБЪЕКТ&nbsp;·&nbsp;GRAND TASHKENT HOTEL</p>
         <div class="gallery-header-row">
           <h2 class="gallery-title">Инфраструктура и состояние</h2>
-          <p class="gallery-note">
-            PLACEHOLDER: все фото заменить на профессиональную интерьерную съёмку объекта.<br />
-            Текущие фото — Unsplash (Unsplash License), используются только для демонстрации макета.
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#F5EFE3;color:#3B2A20;border:1px solid #D9CBB8;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:600">
+            <span>📷</span> Демо-фотоматериалы
+          </div>
+          <p class="gallery-note" style="margin-top:8px">
+            Внимание: представленные фотоматериалы являются иллюстративной демонстрацией инвестиционного паспорта объекта. В рамках процедуры Due Diligence предоставляется независимая интерьерная и инженерная съёмка от аккредитованного сюрвейера.
           </p>
         </div>
       </div>
@@ -864,9 +869,9 @@
           Данные носят иллюстративный характер. Методология: STR Global / USALI / IFC.
         </p>
         <div class="footer-lang-group" role="group" aria-label="Язык">
-          <a href="passport.html" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
-          <a href="#" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
-          <a href="#" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
         </div>
       </div>
     </div>
@@ -874,6 +879,7 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/hotels-data.js"></script>
   <script src="js/passport.js"></script>
   <script src="js/megamenu.js"></script>
 </body>

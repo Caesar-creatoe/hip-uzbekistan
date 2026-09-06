@@ -150,7 +150,6 @@
         <a href="cabinet-investor.html" class="btn-login" id="header-login">
           <span class="btn-login-icon">⚿</span> Войти
         </a>
-                <a href="admin.html" class="btn-login" id="header-admin-link" style="font-size:10px;padding:5px 10px">⚙️ Admin</a>
         <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
       </div>
 
@@ -289,6 +288,16 @@
       <!-- ЛЕВАЯ КОЛОНКА: ИНТЕРАКТИВНАЯ ФОРМА -->
       <form class="smart-form" id="smart-investment-form" novalidate>
 
+        <!-- БАННЕР ОБРАЗЦА ЗАПОЛНЕНИЯ (GRAND TASHKENT HOTEL 5★) -->
+        <div class="form-demo-banner" style="background: rgba(197, 160, 89, 0.08); border: 1px dashed var(--color-brand-gold, #c5a059); border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+          <div style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.4;">
+            💡 <strong>Режим ввода:</strong> По умолчанию форма чистая для добавления нового объекта. Нажмите для быстрой демонстрации:
+          </div>
+          <button type="button" id="btn-fill-demo" class="btn-secondary" style="white-space: nowrap; font-size: 12px; font-weight: 600; padding: 8px 16px; border: 1px solid var(--color-brand-gold, #c5a059); background: rgba(197,160,89,0.12); color: var(--color-brand-gold, #c5a059); border-radius: 4px; cursor: pointer; transition: all 0.2s ease;">
+            ⚡ Заполнить образец (Grand Tashkent Hotel 5★)
+          </button>
+        </div>
+
         <!-- ══════════════════════════════════════════
              ШАГ 1: ОБЩАЯ ИНФОРМАЦИЯ & ПРАВОВОЙ СТАТУС
         ══════════════════════════════════════════ -->
@@ -344,7 +353,7 @@
               <select id="hotel_stars" name="hotel_stars" class="form-select" required>
                 <option value="5" selected>5 звёзд (Luxury / Upper Upscale)</option>
                 <option value="4">4 звезды (Upscale / Upper Midscale)</option>
-                <option value="3">3 звезды (Midscale)</option>
+                <option value="" placeholder="1">3 звезды (Midscale)</option>
                 <option value="boutique">Бутик-отель (Boutique / Heritage)</option>
                 <option value="resort">Курортный комплекс (Resort)</option>
                 <option value="apart">Апарт-отель (Apart-Hotel)</option>
@@ -418,27 +427,27 @@
             <div class="form-grid form-grid--3col">
               <div class="form-group">
                 <label for="rooms_standard" class="form-label">Стандартные номера (Standard)</label>
-                <input type="number" id="rooms_standard" name="rooms_standard" class="form-input calc-rooms" value="196" min="0" />
+                <input type="number" id="rooms_standard" name="rooms_standard" class="form-input calc-rooms" value="" placeholder="0" min="0" />
               </div>
               <div class="form-group">
                 <label for="rooms_deluxe" class="form-label">Делюкс (Deluxe)</label>
-                <input type="number" id="rooms_deluxe" name="rooms_deluxe" class="form-input calc-rooms" value="38" min="0" />
+                <input type="number" id="rooms_deluxe" name="rooms_deluxe" class="form-input calc-rooms" value="" placeholder="0" min="0" />
               </div>
               <div class="form-group">
                 <label for="rooms_junior" class="form-label">Джуниор-сюит (Junior Suite)</label>
-                <input type="number" id="rooms_junior" name="rooms_junior" class="form-input calc-rooms" value="12" min="0" />
+                <input type="number" id="rooms_junior" name="rooms_junior" class="form-input calc-rooms" value="" placeholder="0" min="0" />
               </div>
               <div class="form-group">
                 <label for="rooms_suite" class="form-label">Люкс (Suite)</label>
-                <input type="number" id="rooms_suite" name="rooms_suite" class="form-input calc-rooms" value="10" min="0" />
+                <input type="number" id="rooms_suite" name="rooms_suite" class="form-input calc-rooms" value="" placeholder="0" min="0" />
               </div>
               <div class="form-group">
                 <label for="rooms_presidential" class="form-label">Президентский люкс</label>
-                <input type="number" id="rooms_presidential" name="rooms_presidential" class="form-input calc-rooms" value="2" min="0" />
+                <input type="number" id="rooms_presidential" name="rooms_presidential" class="form-input calc-rooms" value="" placeholder="0" min="0" />
               </div>
               <div class="form-group form-group--highlight">
                 <label for="rooms_total" class="form-label">Итого номеров (Rooms Total)</label>
-                <input type="number" id="rooms_total" name="rooms_total" class="form-input form-input--calc" value="258" readonly />
+                <input type="number" id="rooms_total" name="rooms_total" class="form-input form-input--calc" value="" placeholder="0" readonly />
                 <span class="form-hint">Рассчитывается автоматически</span>
               </div>
             </div>
@@ -449,23 +458,23 @@
             <div class="form-grid form-grid--3col">
               <div class="form-group">
                 <label for="total_area" class="form-label">Общая площадь здания (м²) <span class="req">*</span></label>
-                <input type="number" id="total_area" name="total_area" class="form-input" value="28500" required />
+                <input type="number" id="total_area" name="total_area" class="form-input" value="" placeholder="Например: 12000" required />
               </div>
               <div class="form-group">
                 <label for="land_area" class="form-label">Площадь земельного участка (га) <span class="req">*</span></label>
-                <input type="number" step="0.1" id="land_area" name="land_area" class="form-input" value="1.8" required />
+                <input type="number" step="0.1" id="land_area" name="land_area" class="form-input" value="" placeholder="Например: 1.5" required />
               </div>
               <div class="form-group">
                 <label for="year_built" class="form-label">Год ввода в эксплуатацию <span class="req">*</span></label>
-                <input type="number" id="year_built" name="year_built" class="form-input" value="2018" required />
+                <input type="number" id="year_built" name="year_built" class="form-input" value="" placeholder="2022" required />
               </div>
               <div class="form-group">
                 <label for="year_renovation" class="form-label">Год последней реконструкции / FF&amp;E</label>
-                <input type="number" id="year_renovation" name="year_renovation" class="form-input" value="2024" />
+                <input type="number" id="year_renovation" name="year_renovation" class="form-input" value="" placeholder="2024" />
               </div>
               <div class="form-group">
                 <label for="floors_count" class="form-label">Этажность здания</label>
-                <input type="number" id="floors_count" name="floors_count" class="form-input" value="14" />
+                <input type="number" id="floors_count" name="floors_count" class="form-input" value="" placeholder="Например: 9" />
               </div>
               <div class="form-group">
                 <label for="expansion_potential" class="form-label">Возможность расширения фонда</label>
@@ -483,19 +492,19 @@
             <div class="form-grid form-grid--2col">
               <div class="form-group">
                 <label for="mice_capacity" class="form-label">Вместимость конференц-залов (макс. человек)</label>
-                <input type="number" id="mice_capacity" name="mice_capacity" class="form-input" value="300" />
+                <input type="number" id="mice_capacity" name="mice_capacity" class="form-input" value="" placeholder="Например: 200" />
               </div>
               <div class="form-group">
                 <label for="restaurants_count" class="form-label">Количество ресторанов и баров</label>
-                <input type="number" id="restaurants_count" name="restaurants_count" class="form-input" value="3" />
+                <input type="number" id="restaurants_count" name="restaurants_count" class="form-input" value="" placeholder="1" />
               </div>
               <div class="form-group">
                 <label for="spa_area" class="form-label">Площадь SPA и фитнес-зоны (м²)</label>
-                <input type="number" id="spa_area" name="spa_area" class="form-input" value="850" />
+                <input type="number" id="spa_area" name="spa_area" class="form-input" value="" placeholder="0" />
               </div>
               <div class="form-group">
                 <label for="parking_spaces" class="form-label">Количество парковочных мест</label>
-                <input type="number" id="parking_spaces" name="parking_spaces" class="form-input" value="120" />
+                <input type="number" id="parking_spaces" name="parking_spaces" class="form-input" value="" placeholder="Например: 50" />
               </div>
             </div>
           </div>
@@ -533,7 +542,7 @@
               <div class="form-group">
                 <label for="adr_value" class="form-label">Средняя цена номера (ADR, USD) <span class="req">*</span></label>
                 <div class="input-unit-wrap">
-                  <input type="number" step="1" min="0" id="adr_value" name="adr_value" class="form-input calc-trigger" value="128" required />
+                  <input type="number" step="1" min="0" id="adr_value" name="adr_value" class="form-input calc-trigger" value="" placeholder="100" required />
                   <span class="input-unit">USD</span>
                 </div>
               </div>
@@ -541,7 +550,7 @@
               <div class="form-group form-group--highlight">
                 <label for="revpar_calc" class="form-label">RevPAR (Выручка на доступный номер)</label>
                 <div class="input-unit-wrap">
-                  <input type="number" step="0.1" id="revpar_calc" name="revpar_calc" class="form-input form-input--calc" value="94.7" readonly />
+                  <input type="number" step="0.1" id="revpar_calc" name="revpar_calc" class="form-input form-input--calc" value="" placeholder="0.0" readonly />
                   <span class="input-unit">USD</span>
                 </div>
                 <span class="form-hint">Автоматически: ADR &times; Occupancy %</span>
@@ -554,28 +563,28 @@
             <div class="form-grid form-grid--3col">
               <div class="form-group">
                 <label for="revenue_rooms" class="form-label">Выручка номерного фонда (Rooms Revenue)</label>
-                <input type="number" id="revenue_rooms" name="revenue_rooms" class="form-input calc-rev" value="8920000" />
+                <input type="number" id="revenue_rooms" name="revenue_rooms" class="form-input calc-rev" value="" placeholder="0" />
               </div>
               <div class="form-group">
                 <label for="revenue_fb" class="form-label">Выручка ресторанов и баров (F&amp;B Revenue)</label>
-                <input type="number" id="revenue_fb" name="revenue_fb" class="form-input calc-rev" value="3400000" />
+                <input type="number" id="revenue_fb" name="revenue_fb" class="form-input calc-rev" value="" placeholder="0" />
               </div>
               <div class="form-group">
                 <label for="revenue_other" class="form-label">Прочая выручка (MICE, SPA, аренда)</label>
-                <input type="number" id="revenue_other" name="revenue_other" class="form-input calc-rev" value="1230000" />
+                <input type="number" id="revenue_other" name="revenue_other" class="form-input calc-rev" value="" placeholder="0" />
               </div>
               <div class="form-group form-group--highlight">
                 <label for="total_revenue" class="form-label">Совокупная валовая выручка (Total Revenue)</label>
-                <input type="number" id="total_revenue" name="total_revenue" class="form-input form-input--calc" value="13550000" readonly />
+                <input type="number" id="total_revenue" name="total_revenue" class="form-input form-input--calc" value="" placeholder="0" readonly />
               </div>
               <div class="form-group">
                 <label for="ebitda_value" class="form-label">EBITDA объекта за 2025 FY (USD) <span class="req">*</span></label>
-                <input type="number" id="ebitda_value" name="ebitda_value" class="form-input calc-trigger" value="4200000" required />
+                <input type="number" id="ebitda_value" name="ebitda_value" class="form-input calc-trigger" value="" placeholder="0" required />
               </div>
               <div class="form-group form-group--highlight">
                 <label for="ebitda_margin_calc" class="form-label">Рентабельность EBITDA (EBITDA Margin)</label>
                 <div class="input-unit-wrap">
-                  <input type="number" step="0.1" id="ebitda_margin_calc" name="ebitda_margin_calc" class="form-input form-input--calc" value="31.0" readonly />
+                  <input type="number" step="0.1" id="ebitda_margin_calc" name="ebitda_margin_calc" class="form-input form-input--calc" value="" placeholder="0.0" readonly />
                   <span class="input-unit">%</span>
                 </div>
               </div>
@@ -587,11 +596,11 @@
             <div class="form-grid form-grid--3col">
               <div class="form-group">
                 <label for="property_valuation" class="form-label">Оценочная стоимость актива (Valuation, USD) <span class="req">*</span></label>
-                <input type="number" id="property_valuation" name="property_valuation" class="form-input calc-trigger" value="45000000" required />
+                <input type="number" id="property_valuation" name="property_valuation" class="form-input calc-trigger" value="" placeholder="0" required />
               </div>
               <div class="form-group">
                 <label for="capex_required" class="form-label">Требуемый объем инвестиций / CAPEX (USD)</label>
-                <input type="number" id="capex_required" name="capex_required" class="form-input calc-trigger" value="12000000" />
+                <input type="number" id="capex_required" name="capex_required" class="form-input calc-trigger" value="" placeholder="0" />
               </div>
               <div class="form-group form-group--highlight">
                 <label for="payback_calc" class="form-label">Расчетный срок окупаемости (Payback)</label>
@@ -902,15 +911,16 @@
           Методология: STR Global / USALI / IFC / EBRD.
         </p>
         <div class="footer-lang-group" role="group" aria-label="Язык">
-          <a href="form.html" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
-          <a href="#" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
-          <a href="#" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
         </div>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/hotels-data.js"></script>
   <script src="js/form.js"></script>
   <script src="js/megamenu.js"></script>
 </body>

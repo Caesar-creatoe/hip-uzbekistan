@@ -148,7 +148,6 @@
         <a href="cabinet-investor.html" class="btn-login" id="header-login">
           <span class="btn-login-icon">⚿</span> Войти
         </a>
-                <a href="admin.html" class="btn-login" id="header-admin-link" style="font-size:10px;padding:5px 10px">⚙️ Admin</a>
         <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
       </div>
 
@@ -206,7 +205,7 @@
       <!-- Правый блок: сводные KPI каталога -->
       <div class="page-header-stats">
         <div class="ph-stat">
-          <span class="ph-stat-num">156</span>
+          <span class="ph-stat-num">6</span>
           <span class="ph-stat-label">Объектов</span>
         </div>
         <div class="ph-stat-sep" aria-hidden="true"></div>
@@ -260,10 +259,19 @@
           <div class="filter-chips" role="group" aria-labelledby="label-region">
             <button class="filter-chip filter-chip--active" data-filter="region" data-value="all" id="r-all">Все</button>
             <button class="filter-chip" data-filter="region" data-value="tashkent"   id="r-tashkent">Ташкент</button>
+            <button class="filter-chip" data-filter="region" data-value="tashkent-region" id="r-tashkent-reg">Ташкентская обл.</button>
             <button class="filter-chip" data-filter="region" data-value="samarkand"  id="r-samarkand">Самарканд</button>
             <button class="filter-chip" data-filter="region" data-value="bukhara"    id="r-bukhara">Бухара</button>
             <button class="filter-chip" data-filter="region" data-value="khorezm"    id="r-khorezm">Хорезм</button>
             <button class="filter-chip" data-filter="region" data-value="fergana"    id="r-fergana">Фергана</button>
+            <button class="filter-chip" data-filter="region" data-value="namangan"   id="r-namangan">Наманган</button>
+            <button class="filter-chip" data-filter="region" data-value="andijan"    id="r-andijan">Андижан</button>
+            <button class="filter-chip" data-filter="region" data-value="kashkadarya" id="r-kashkadarya">Кашкадарья</button>
+            <button class="filter-chip" data-filter="region" data-value="surkhandarya" id="r-surkhandarya">Сурхандарья</button>
+            <button class="filter-chip" data-filter="region" data-value="jizzakh"     id="r-jizzakh">Джизак</button>
+            <button class="filter-chip" data-filter="region" data-value="syrdarya"    id="r-syrdarya">Сырдарья</button>
+            <button class="filter-chip" data-filter="region" data-value="navoi"       id="r-navoi">Навои</button>
+            <button class="filter-chip" data-filter="region" data-value="karakalpakstan" id="r-karakalpakstan">Каракалпакстан</button>
           </div>
         </div>
 
@@ -277,6 +285,8 @@
             <button class="filter-chip" data-filter="stars" data-value="5"  id="s-5">5★</button>
             <button class="filter-chip" data-filter="stars" data-value="4"  id="s-4">4★</button>
             <button class="filter-chip" data-filter="stars" data-value="3"  id="s-3">3★</button>
+            <button class="filter-chip" data-filter="stars" data-value="2"  id="s-2">2★</button>
+            <button class="filter-chip" data-filter="stars" data-value="1"  id="s-1">1★</button>
           </div>
         </div>
 
@@ -333,8 +343,8 @@
         <div class="results-bar">
           <p class="results-meta">
             Показано: <strong id="results-shown">6</strong> из
-            <span class="results-total">156</span>
-            <span class="results-disclaimer">· иллюстративные данные</span>
+            <span class="results-total">6</span>
+            <span class="results-disclaimer">· демо-версия, каталог пополняется</span>
           </p>
           <div class="sort-group" role="group" aria-label="Сортировка">
             <span class="sort-label">Сортировать:</span>
@@ -411,15 +421,16 @@
           Данные носят иллюстративный характер. Методология: STR Global / USALI / IFC.
         </p>
         <div class="footer-lang-group" role="group" aria-label="Язык">
-          <a href="portfolio.html" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
-          <a href="#" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
-          <a href="#" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
         </div>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/hotels-data.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/megamenu.js"></script>
 </body>

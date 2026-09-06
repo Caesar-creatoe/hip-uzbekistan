@@ -179,7 +179,7 @@
     <aside class="cabinet-sidebar" role="navigation">
       <div class="cabinet-user-info">
         <div class="cabinet-user-avatar" id="user-avatar">🏨</div>
-        <span class="cabinet-user-name" id="user-name">Загрузка...</span>
+        <span class="cabinet-user-name" id="user-name"><span class="cabinet-skeleton-text" aria-label="Загрузка профиля"></span></span>
         <span class="cabinet-user-role">Управляющий · Silk Route Invest</span>
       </div>
       <nav class="cabinet-nav">
@@ -265,8 +265,8 @@
           </div>
           <div style="background:var(--color-card-bg);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px">
             <div style="font-family:var(--font-body);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-ink-on-dark-muted);margin-bottom:16px">Статус платформы</div>
-            <div style="margin-bottom:12px"><span class="status-badge status-badge--review">На верификации</span></div>
-            <div style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);line-height:1.6">Ваш объект проходит верификацию Комитетом по туризму. Ожидаемый срок: 5 рабочих дней.</div>
+            <div style="margin-bottom:12px" id="obj-status-badge-wrap"><span class="status-badge status-badge--draft" id="obj-status-badge">Черновик</span></div>
+            <div style="font-family:var(--font-body);font-size:12px;color:var(--color-ink-on-dark-muted);line-height:1.6" id="obj-status-desc">Объект находится в статусе черновика. Заполните данные для отправки на верификацию.</div>
           </div>
         </div>
         <div style="margin-top:24px"><a href="passport.html" class="btn btn--teal">📄 Открыть инвестиционный паспорт</a></div>
@@ -320,7 +320,7 @@
           </div>
         </div>
 
-        <div style="background:var(--color-card-bg);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px">
+        <div id="qi-history-card" style="background:var(--color-card-bg);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px;display:none">
           <div style="font-family:var(--font-body);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-ink-on-dark-muted);margin-bottom:16px">История оценок</div>
           <table class="cabinet-table">
             <thead><tr><th>Дата</th><th>QI Score</th><th>Рейтинг</th><th>Инспектор</th></tr></thead>

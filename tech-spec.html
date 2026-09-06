@@ -151,7 +151,6 @@
         <a href="cabinet-investor.html" class="btn-login" id="header-login">
           <span class="btn-login-icon">⚿</span> Войти
         </a>
-                <a href="admin.html" class="btn-login" id="header-admin-link" style="font-size:10px;padding:5px 10px">⚙️ Admin</a>
         <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
       </div>
 
@@ -435,7 +434,7 @@
           <h2 class="doc-heading">5. Пайплайн генерации печатного паспорта (PDF)</h2>
 
           <p class="doc-p">
-            Генерация печатного меморандума реализована на базе единой дизайн-системы токенов [`design-tokens.css`](file:///Users/macbook/Desktop/Miragzam's%20project%20/design-tokens.css). Рендеринг осуществляется без расхождений между веб-версией и печатным документом через `@media print` с принудительной разбивкой страниц A4.
+            Генерация печатного меморандума реализована на базе единой дизайн-системы токенов <code>design-tokens.css</code>. Рендеринг осуществляется без расхождений между веб-версией и печатным документом через <code>@media print</code> с принудительной разбивкой страниц A4.
           </p>
         </section>
 
@@ -500,9 +499,9 @@
           &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
         </p>
         <div class="footer-lang-group" role="group" aria-label="Язык">
-          <a href="tech-spec.html" class="footer-lang-link footer-lang-link--active" lang="ru">RU</a>
-          <a href="#" class="footer-lang-link" lang="uz" hreflang="uz">UZ</a>
-          <a href="#" class="footer-lang-link" lang="en" hreflang="en">EN</a>
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
         </div>
       </div>
     </div>

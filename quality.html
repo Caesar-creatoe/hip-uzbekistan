@@ -140,7 +140,6 @@
           <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
         </div>
         <a href="cabinet-investor.html" class="btn-login" id="header-login"><span class="btn-login-icon">⚿</span> Войти</a>
-                <a href="admin.html" class="btn-login" id="header-admin-link" style="font-size:10px;padding:5px 10px">⚙️ Admin</a>
         <a href="form.html" class="btn btn--primary" id="header-cta">Подать заявку</a>
       </div>
       <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -295,7 +294,7 @@
         <!-- Прогресс чек-листа -->
         <div class="q-checklist-progress" aria-label="Прогресс оценки">
           <div class="q-progress-info">
-            <span class="q-progress-label">Заполнено: <strong id="q-answered-count">0</strong> / 40 критериев</span>
+            <span class="q-progress-label">Заполнено: <strong id="q-answered-count">0</strong> / <span id="q-total-criteria">80</span> критериев</span>
             <span class="q-progress-pct" id="q-progress-pct">0%</span>
           </div>
           <div class="q-progress-bar-wrap">
@@ -370,6 +369,45 @@
             </button>
             <div class="q-check-block-body" id="q-block-digital-body" style="display:none">
               <div class="q-criteria-list" id="q-criteria-digital"></div>
+            </div>
+          </div>
+
+          <!-- БЛОК 6: ЭКОЛОГИЧЕСКИЙ СТАНДАРТ -->
+          <div class="q-check-block" data-block="eco" data-weight="0.10">
+            <button class="q-check-block-header" aria-expanded="false" id="q-block-eco-btn">
+              <span class="q-check-block-icon">🌿</span>
+              <span class="q-check-block-title">Экологический стандарт <span class="q-check-block-badge">Вес 10%</span></span>
+              <span class="q-check-block-score" id="q-score-eco">0 / 10</span>
+              <svg class="q-check-chevron" viewBox="0 0 10 10" fill="none"><path d="M2 4L5 7L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="q-check-block-body" id="q-block-eco-body" style="display:none">
+              <div class="q-criteria-list" id="q-criteria-eco"></div>
+            </div>
+          </div>
+
+          <!-- БЛОК 7: ДОСТУПНОСТЬ -->
+          <div class="q-check-block" data-block="access" data-weight="0.05">
+            <button class="q-check-block-header" aria-expanded="false" id="q-block-access-btn">
+              <span class="q-check-block-icon">♿</span>
+              <span class="q-check-block-title">Доступная среда (Inclusion) <span class="q-check-block-badge">Вес 5%</span></span>
+              <span class="q-check-block-score" id="q-score-access">0 / 8</span>
+              <svg class="q-check-chevron" viewBox="0 0 10 10" fill="none"><path d="M2 4L5 7L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="q-check-block-body" id="q-block-access-body" style="display:none">
+              <div class="q-criteria-list" id="q-criteria-access"></div>
+            </div>
+          </div>
+
+          <!-- БЛОК 8: ДОКУМЕНТООБОРОТ -->
+          <div class="q-check-block" data-block="docs" data-weight="0.05">
+            <button class="q-check-block-header" aria-expanded="false" id="q-block-docs-btn">
+              <span class="q-check-block-icon">📋</span>
+              <span class="q-check-block-title">Документооборот и сертификация <span class="q-check-block-badge">Вес 5%</span></span>
+              <span class="q-check-block-score" id="q-score-docs">0 / 7</span>
+              <svg class="q-check-chevron" viewBox="0 0 10 10" fill="none"><path d="M2 4L5 7L8 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+            <div class="q-check-block-body" id="q-block-docs-body" style="display:none">
+              <div class="q-criteria-list" id="q-criteria-docs"></div>
             </div>
           </div>
 
@@ -485,6 +523,7 @@
   </footer>
 
   <script src="js/megamenu.js"></script>
+  <script src="js/hotels-data.js"></script>
   <script src="js/quality.js"></script>
 </body>
 </html>
