@@ -591,12 +591,13 @@ if (hotelForm) {
       })),
     };
 
+    showStatus('⏳ Сохранение в облако...', 'info');
     if (editingId) {
-      Store.update(editingId, hotel);
-      showStatus('✅ Отель успешно обновлён');
+      await Store.update(editingId, hotel);
+      showStatus('✅ Отель успешно обновлён и опубликован в сети');
     } else {
-      Store.add(hotel);
-      showStatus('✅ Отель добавлен в каталог и отправлен в облако');
+      await Store.add(hotel);
+      showStatus('✅ Отель добавлен в каталог и опубликован в сети');
     }
     resetForm();
   });
@@ -606,16 +607,17 @@ if (hotelForm) {
 if (newHotelBtn) newHotelBtn.addEventListener('click', resetForm);
 if (cancelBtn)   cancelBtn.addEventListener('click', resetForm);
 if (deleteBtn) {
-  deleteBtn.addEventListener('click', () => {
+  deleteBtn.addEventListener('click', async () => {
     if (!editingId) return;
     const h = Store.getById(editingId);
     if (!confirm(`Удалить «${h?.hotelName||editingId}»?`)) return;
+    showStatus('⏳ Удаление из облачной базы...', 'info');
     if (window.SriDB) {
       window.SriDB.delete('pres_' + editingId);
       window.SriDB.delete('photos_' + editingId);
     }
-    Store.delete(editingId);
-    showStatus('🗑️ Отель удалён');
+    await Store.delete(editingId);
+    showStatus('🗑️ Отель удалён на всех устройствах');
     resetForm();
   });
 }
@@ -647,3 +649,15 @@ if (searchInput) {
 /* ── Init ─────────────────────────────────────────────────────── */
 checkAdminAuth();
 resetForm();
+
+// Слушаем синхронизацию из облака (в реальном времени)
+window.addEventListener('sri_hotels_updated', () => {
+  renderSidebar();
+});
+
+// Первичная загрузка актуальной базы с сервера
+if (Store && typeof Store.syncWithCloud === 'function') {
+  Store.syncWithCloud().then(() => {
+    renderSidebar();
+  });
+}
