@@ -491,9 +491,31 @@
 
 .photo-preview {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 12px;
   margin-top: 12px;
+}
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.photo-caption-input {
+  width: 100%;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-family: inherit;
+  border: 1px solid #D9CBB8;
+  border-radius: 6px;
+  background: #FFF;
+  color: #3B2A20;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.photo-caption-input:focus {
+  outline: none;
+  border-color: #8B6F4E;
+  box-shadow: 0 0 0 2px rgba(139,111,78,0.2);
 }
 .photo-placeholder {
   font-size: 12px;

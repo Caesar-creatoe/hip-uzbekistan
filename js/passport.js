@@ -142,16 +142,15 @@ function renderPassport(hotel) {
   // 6. Главное фото обложки (первое фото из загруженных)
   const coverImg = document.getElementById('passport-cover-photo');
   if (coverImg) {
-    if (hotel.photos && hotel.photos.length > 0 && hotel.photos[0]) {
-      coverImg.src = hotel.photos[0];
-    } else {
-      coverImg.src = './assets/hotel-hero.png';
-    }
+    const firstPhoto = hotel.photos && hotel.photos.length > 0
+      ? (typeof hotel.photos[0] === 'object' ? hotel.photos[0].src : hotel.photos[0])
+      : null;
+    coverImg.src = firstPhoto || './assets/hotel-hero.png';
     coverImg.alt = `${hotelName} — фасад и архитектура`;
   }
 
-  // 7. Таблица основных характеристик (только непустые поля для опциональных параметров)
-  renderSpecsTable(hotel);
+  // 7. Карточки характеристик (NEW: взаменяет таблицу)
+  renderSpecsCards(hotel);
 
   // 8. Раздел удобств (дедупликация и отображение чипов)
   renderAmenitiesSection(hotel);
@@ -187,64 +186,133 @@ function renderPassport(hotel) {
   renderPhotoGallery(hotel);
 }
 
-/* ── Рендеринг таблицы характеристик ────────────────────────── */
-function renderSpecsTable(hotel) {
-  const tbody = document.getElementById('passport-specs-table');
-  if (!tbody) return;
+/* ── Рендеринг карточек характеристик (взаменяет renderSpecsTable) ── */
+function renderSpecsCards(hotel) {
+  // Большие числа
+  const setTxt = (id, val, fallback) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = (val !== null && val !== undefined && val !== '') ? val : (fallback || '—');
+  };
 
-  const rows = [];
+  setTxt('spec-rooms', hotel.roomsCount);
+  setTxt('spec-places', hotel.placesCount);
+  setTxt('spec-floors', hotel.floors);
+  setTxt('spec-year', hotel.yearCommissioned);
 
-  // Обязательные базовые поля
-  rows.push(['Наименование объекта', hotel.hotelName]);
-  if (hotel.legalEntity) {
-    rows.push(['Юридическое лицо / собственник', hotel.legalEntity]);
-  }
-  rows.push(['Регион', hotel.region || 'Узбекистан']);
-  if (hotel.address) {
-    rows.push(['Юридический адрес', hotel.address]);
-  }
-  rows.push(['Категория (звёзды)', hotel.stars ? `${hotel.stars}★` : 'Без категории']);
-  rows.push(['Количество номеров', hotel.roomsCount ? `${hotel.roomsCount} номеров` : '—']);
-  rows.push(['Количество мест', hotel.placesCount ? `${hotel.placesCount} мест` : '—']);
-  rows.push(['Этажность', hotel.floors ? `${hotel.floors} этажей` : '—']);
-  rows.push(['Год ввода в эксплуатацию', hotel.yearCommissioned || '—']);
+  // Основная информация
+  setTxt('spec-name', hotel.hotelName);
+  setTxt('spec-legal', hotel.legalEntity, 'Не указано');
+  setTxt('spec-region', hotel.region, 'Узбекистан');
+  setTxt('spec-address', hotel.address, 'Не указан');
 
-  // Опциональные поля — отображаем ТОЛЬКО если указаны
-  if (hotel.landArea && String(hotel.landArea).trim()) {
-    rows.push(['Общая площадь земельного участка', String(hotel.landArea).trim()]);
-  }
-  if (hotel.buildingArea && String(hotel.buildingArea).trim()) {
-    rows.push(['Площадь строения / застройки', String(hotel.buildingArea).trim()]);
+  // Категория
+  const starsEl = document.getElementById('spec-stars');
+  if (starsEl) {
+    const num = parseInt(hotel.stars, 10);
+    starsEl.textContent = (!isNaN(num) && num > 0) ? `${num}★` : (hotel.stars || 'Без категории');
   }
 
-  // Диапазон площади номеров
+  // Статус в карточке
+  const specStatusBadge = document.getElementById('spec-status-badge');
+  if (specStatusBadge) {
+    const s = (hotel.status || 'active').toLowerCase();
+    if (s === 'active') {
+      specStatusBadge.textContent = '● Активный';
+      specStatusBadge.className = 'cover-status-badge cover-status-badge--active';
+    } else if (s === 'pending') {
+      specStatusBadge.textContent = '⏳ На проверке';
+      specStatusBadge.className = 'cover-status-badge cover-status-badge--pending';
+    } else {
+      specStatusBadge.textContent = '📝 Черновик';
+      specStatusBadge.className = 'cover-status-badge cover-status-badge--draft';
+    }
+  }
+
+  // Презентация в карточке
+  const specPresEl = document.getElementById('spec-presentation');
+  if (specPresEl) {
+    specPresEl.textContent = hotel.hasPresentation ? 'Имеется в наличии' : 'Предоставляется по запросу';
+  }
+  const specPresBadge = document.getElementById('spec-pres-badge');
+  if (specPresBadge && hotel.hasPresentation) {
+    specPresBadge.textContent = '📄 Презентация';
+    specPresBadge.className = 'cover-model-badge';
+    specPresBadge.style.display = 'inline-block';
+  }
+
+  // Контакт в карточке
+  const specContact = document.getElementById('spec-contact');
+  if (specContact) {
+    if (hotel.managerContact) {
+      specContact.innerHTML = `<a href="tel:${esc(hotel.managerContact)}" style="color:var(--color-accent);font-weight:600;text-decoration:none">📞 ${esc(hotel.managerContact)}</a>`;
+    } else {
+      specContact.textContent = 'По запросу через платформу';
+    }
+  }
+
+  // Площади
+  const showOptional = (rowId, valId, val) => {
+    const row = document.getElementById(rowId);
+    const el = document.getElementById(valId);
+    if (row && el) {
+      const str = String(val || '').trim();
+      if (str) {
+        el.textContent = str;
+        row.style.display = 'flex';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  };
+  showOptional('spec-land-row', 'spec-land', hotel.landArea);
+  showOptional('spec-building-row', 'spec-building', hotel.buildingArea);
+
   const hasMin = hotel.minRoomArea !== null && hotel.minRoomArea !== undefined && hotel.minRoomArea !== '';
   const hasMax = hotel.maxRoomArea !== null && hotel.maxRoomArea !== undefined && hotel.maxRoomArea !== '';
-  if (hasMin && hasMax) {
-    rows.push(['Площадь номеров', `от ${hotel.minRoomArea} до ${hotel.maxRoomArea} м²`]);
-  } else if (hasMin) {
-    rows.push(['Минимальная площадь номера', `${hotel.minRoomArea} м²`]);
-  } else if (hasMax) {
-    rows.push(['Максимальная площадь номера', `${hotel.maxRoomArea} м²`]);
+  const roomAreaRow = document.getElementById('spec-roomarea-row');
+  const roomAreaEl = document.getElementById('spec-roomarea');
+  if (roomAreaRow && roomAreaEl) {
+    if (hasMin && hasMax) {
+      roomAreaEl.textContent = `от ${hotel.minRoomArea} до ${hotel.maxRoomArea} м²`;
+      roomAreaRow.style.display = 'flex';
+    } else if (hasMin) {
+      roomAreaEl.textContent = `от ${hotel.minRoomArea} м²`;
+      roomAreaRow.style.display = 'flex';
+    } else if (hasMax) {
+      roomAreaEl.textContent = `до ${hotel.maxRoomArea} м²`;
+      roomAreaRow.style.display = 'flex';
+    } else {
+      roomAreaRow.style.display = 'none';
+    }
   }
-
-  // Презентация
-  rows.push(['Официальная презентация объекта', hotel.hasPresentation ? 'Имеется в наличии' : 'Предоставляется по запросу']);
-
-  // Контакты
-  if (hotel.managerContact) {
-    rows.push(['Контакт управляющего / отдела инвестиций', `<a href="tel:${esc(hotel.managerContact)}" style="color:var(--color-accent);font-weight:600;text-decoration:none">${esc(hotel.managerContact)}</a>`]);
-  }
-
-  tbody.innerHTML = rows.map(([k, v]) => `
-    <tr>
-      <td class="et-key">${esc(k)}</td>
-      <td class="et-val">${typeof v === 'string' && v.startsWith('<a') ? v : esc(v)}</td>
-    </tr>
-  `).join('');
 }
 
-/* ── Рендеринг удобств и инфраструктуры ─────────────────────── */
+/* ── Маппинг иконок для удобств ────────────────────── */
+const AMENITY_ICONS = {
+  'ресторан': '🍽️', 'restaurant': '🍽️', 'бар': '🍷', 'кафе': '☕', 'кафе-бар': '🍷',
+  'бассейн': '🏊', 'pool': '🏊', 'фитнес': '🏋️', 'спа': '🛀', 'spa': '🛀', 'сауна': '🧖',
+  'конференц': '🏢', 'конгресс': '🏢', 'conference': '🏢', 'бизнес-центр': '🏢',
+  'парков': '🅿️', 'паркинг': '🅿️', 'гараж': '🅿️', 'valet': '🚗',
+  'лифт': '🔼', 'ви-фи': '📡', 'wifi': '📡', 'интернет': '🌐',
+  'прачечная': '🏥', 'прачечное': '🏥',
+  'шопинг': '🛍️', 'магазин': '🛍️', 'бутик': '🛍️',
+  'лаундри': '🚀', 'ХИМчистка': '🚀',
+  'детский': '👶', 'клуб для детей': '👶',
+  'экскурсия': '🗺️', 'тур': '🗺️',
+  'якузи': '🍣', 'румсервис': '🍽️',
+  'терраса': '☀️', 'открытый': '☀️', 'панорам': '🌅',
+  'сейф': '🛡️', 'хранение': '🛡️',
+};
+
+function getAmenityIcon(text) {
+  const lower = text.toLowerCase();
+  for (const [key, icon] of Object.entries(AMENITY_ICONS)) {
+    if (lower.includes(key)) return icon;
+  }
+  return '✓';
+}
+
+/* ── Рендеринг удобств и инфраструктуры ───────────────── */
 function renderAmenitiesSection(hotel) {
   const section = document.getElementById('amenities-section');
   const cloud = document.getElementById('passport-amenities-cloud');
@@ -259,7 +327,6 @@ function renderAmenitiesSection(hotel) {
   const amenitiesList = parseFn(hotel.amenities);
 
   if (!amenitiesList.length) {
-    // Скрываем блок целиком, если удобства не заполнены
     section.style.display = 'none';
     if (tocLink) tocLink.style.display = 'none';
     return;
@@ -268,20 +335,44 @@ function renderAmenitiesSection(hotel) {
   section.style.display = 'block';
   if (tocLink) tocLink.style.display = 'flex';
 
-  cloud.innerHTML = amenitiesList.map(item => `
-    <div class="amenity-chip">
-      <span class="amenity-icon">✓</span>
-      <span>${esc(item)}</span>
-    </div>
-  `).join('');
+  // Чипы с иконками
+  cloud.innerHTML = amenitiesList.map(item => {
+    const icon = getAmenityIcon(item);
+    return `
+      <div class="amenity-chip">
+        <span class="amenity-icon">${icon}</span>
+        <span>${esc(item)}</span>
+      </div>`;
+  }).join('');
+
+  // Заполняем боковую карточку контактов
+  const contactEl = document.getElementById('amenities-contact-value');
+  const regionEl = document.getElementById('amenities-region-value');
+  const addressEl = document.getElementById('amenities-address-value');
+  if (contactEl) {
+    if (hotel.managerContact) {
+      contactEl.innerHTML = `<a href="tel:${esc(hotel.managerContact)}" style="color:var(--color-accent);font-weight:600;text-decoration:none">📞 ${esc(hotel.managerContact)}</a>`;
+    } else {
+      contactEl.textContent = 'По запросу через платформу';
+    }
+  }
+  if (regionEl) regionEl.textContent = hotel.region || '—';
+  if (addressEl) addressEl.textContent = hotel.address || '—';
 }
 
-/* ── Рендеринг фотогалереи ──────────────────────────────────── */
+/* ── Рендеринг фотогалереи ────────────────────────── */
 function renderPhotoGallery(hotel) {
   const masonry = document.getElementById('passport-gallery-masonry');
   if (!masonry) return;
 
-  const photos = Array.isArray(hotel.photos) ? hotel.photos.filter(Boolean) : [];
+  // Поддержка как массива строк (legacy), так и массива {src, caption}
+  const rawPhotos = Array.isArray(hotel.photos) ? hotel.photos.filter(Boolean) : [];
+  const photos = rawPhotos.map(p => {
+    if (typeof p === 'object' && p !== null && p.src) {
+      return { src: p.src, caption: p.caption || '' };
+    }
+    return { src: String(p), caption: '' };
+  });
 
   if (!photos.length) {
     masonry.innerHTML = `
@@ -293,15 +384,19 @@ function renderPhotoGallery(hotel) {
     return;
   }
 
-  masonry.innerHTML = photos.map((src, idx) => {
+  masonry.innerHTML = photos.map((p, idx) => {
     let itemClass = 'photo-item';
     if (idx === 0) itemClass += ' photo-item--tall';
     else if (idx === 3) itemClass += ' photo-item--wide';
 
+    const captionHtml = p.caption && p.caption.trim()
+      ? `<figcaption class="photo-caption">${esc(p.caption.trim())}</figcaption>`
+      : '';
+
     return `
-      <figure class="${itemClass}" role="listitem" data-src="${esc(src)}">
-        <img src="${esc(src)}" alt="${esc(hotel.hotelName)} — фото ${idx + 1}" class="photo-img" loading="lazy" />
-        <figcaption class="photo-caption">${esc(hotel.hotelName)} · Фото ${idx + 1}</figcaption>
+      <figure class="${itemClass}" role="listitem" data-src="${esc(p.src)}">
+        <img src="${esc(p.src)}" alt="${esc(p.caption || hotel.hotelName + ' — фото ' + (idx + 1))}" class="photo-img" loading="lazy" />
+        ${captionHtml}
       </figure>
     `;
   }).join('');

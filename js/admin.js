@@ -9,6 +9,7 @@ const Store = window.HotelStore;
 
 /* ── Состояние ─────────────────────────────────────────────── */
 let editingId = null;
+// photoFiles хранит объекты {src: string, caption: string}
 let photoFiles = [];
 
 /* ── DOM ───────────────────────────────────────────────────── */
@@ -161,8 +162,8 @@ function renderSidebar() {
     <div class="sidebar-item ${editingId===h.id?'sidebar-item--active':''}"
          data-id="${h.id}" role="button" tabindex="0">
       <div class="sidebar-item-photo">
-        ${h.photos&&h.photos[0]
-          ? `<img src="${h.photos[0]}" alt="${escHtml(h.hotelName)}" loading="lazy"/>`
+        ${h.photos && h.photos[0]
+          ? `<img src="${typeof h.photos[0] === 'object' ? h.photos[0].src : h.photos[0]}" alt="${escHtml(h.hotelName)}" loading="lazy"/>`
           : `<span>📷</span>`}
       </div>
       <div class="sidebar-item-info">
@@ -189,13 +190,31 @@ function renderPhotoPreview() {
     photoCountInfo.style.display = 'flex';
     if (photoCountText) photoCountText.textContent = `Загружено: ${photoFiles.length} из 10`;
   }
-  photoPreview.innerHTML = photoFiles.map((src, i) => `
-    <div class="photo-thumb ${i === 0 ? 'is-main' : ''}" data-idx="${i}">
-      <img src="${src}" alt="Фото ${i + 1}" loading="lazy"/>
-      ${i === 0 ? '<span class="photo-main-badge">⭐ Главное</span>' : ''}
-      <button type="button" class="photo-remove" data-idx="${i}" title="Удалить фото" aria-label="Удалить фото">✕</button>
-      ${i > 0 ? `<button type="button" class="photo-make-main" data-idx="${i}">Сделать главным</button>` : ''}
+  photoPreview.innerHTML = photoFiles.map(({ src, caption }, i) => `
+    <div class="photo-card" data-idx="${i}">
+      <div class="photo-thumb ${i === 0 ? 'is-main' : ''}">
+        <img src="${src}" alt="Фото ${i + 1}" loading="lazy"/>
+        ${i === 0 ? '<span class="photo-main-badge">⭐ Главное</span>' : ''}
+        <button type="button" class="photo-remove" data-idx="${i}" title="Удалить фото" aria-label="Удалить фото">✕</button>
+        ${i > 0 ? `<button type="button" class="photo-make-main" data-idx="${i}">Сделать главным</button>` : ''}
+      </div>
+      <input type="text"
+             class="photo-caption-input"
+             data-idx="${i}"
+             value="${escHtml(caption || '')}"
+             placeholder="Подпись (Фасад, Лобби...)"
+             title="Подпись к фото для паспорта объекта"
+      />
     </div>`).join('');
+
+  photoPreview.querySelectorAll('.photo-caption-input').forEach(input => {
+    input.addEventListener('input', () => {
+      const idx = parseInt(input.dataset.idx, 10);
+      if (!isNaN(idx) && photoFiles[idx]) {
+        photoFiles[idx].caption = input.value;
+      }
+    });
+  });
 
   photoPreview.querySelectorAll('.photo-remove').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -272,7 +291,7 @@ async function addImageFiles(files) {
     try {
       const compressed = await compressImage(file);
       if (compressed) {
-        photoFiles.push(compressed);
+        photoFiles.push({ src: compressed, caption: '' });
       }
     } catch (err) {
       console.warn('Error compressing photo:', err);
@@ -337,7 +356,7 @@ if (btnPhotoUrl && fieldPhotoUrl) {
       showStatus('⚠️ Достигнут лимит: максимум 10 фотографий на отель', 'error');
       return;
     }
-    photoFiles.push(url);
+    photoFiles.push({ src: url, caption: '' });
     fieldPhotoUrl.value = '';
     renderPhotoPreview();
     showStatus('✅ Фото добавлено по ссылке');
@@ -390,7 +409,15 @@ function loadForEdit(id) {
     presCheckbox.checked = Boolean(hotel.hasPresentation);
   }
 
-  photoFiles = Array.isArray(hotel.photos) ? [...hotel.photos] : [];
+  // Загружаем фото: поддержка как legacy массива строк, так и нового {src, caption}
+  photoFiles = Array.isArray(hotel.photos)
+    ? hotel.photos.filter(Boolean).map(p => {
+        if (typeof p === 'object' && p !== null && p.src) {
+          return { src: p.src, caption: p.caption || '' };
+        }
+        return { src: String(p), caption: '' };
+      })
+    : [];
   renderPhotoPreview();
   if (formTitle) formTitle.textContent = `Редактировать: ${hotel.hotelName || ''}`;
   if (deleteBtn) deleteBtn.hidden = false;
@@ -437,7 +464,10 @@ if (hotelForm) {
       status:           get('status') || 'active',
       hasPresentation:  Boolean(document.getElementById('field-hasPresentation')?.checked),
       notes:            get('notes') || '',
-      photos:           [...photoFiles],
+      photos:           photoFiles.map(p => ({
+        src: typeof p === 'object' ? (p.src || '') : String(p),
+        caption: typeof p === 'object' ? (p.caption || '') : ''
+      })),
     };
 
     if (editingId) {

@@ -317,20 +317,102 @@
   <section class="exec-summary" id="summary" aria-label="Основные характеристики объекта">
     <div class="exec-inner">
       <div class="exec-header appear">
-        <p class="kicker">CANONICAL PASSPORT DATA</p>
-        <h2 class="exec-title">Основные характеристики объекта</h2>
+        <span class="exec-kicker">ПАСПОРТ ОБЪЕКТА</span>
+        <h2 class="exec-title">Характеристики</h2>
       </div>
 
-      <div class="exec-tables appear" style="grid-template-columns: 1fr;">
-        <div class="exec-table-block">
-          <h3 class="exec-table-heading">Паспортные и технические параметры</h3>
-          <table class="editorial-table" role="table" aria-label="Характеристики отеля">
-            <tbody id="passport-specs-table">
-              <!-- Заполняется динамически из 19 канонических полей -->
-            </tbody>
-          </table>
+      <!-- Блок 1: Крупные числовые показатели -->
+      <div class="passport-stat-grid appear" id="specs-stat-grid">
+        <div class="passport-stat-item">
+          <span class="passport-stat-num" id="spec-rooms">—</span>
+          <span class="passport-stat-label">Номеров</span>
+        </div>
+        <div class="passport-stat-item">
+          <span class="passport-stat-num" id="spec-places">—</span>
+          <span class="passport-stat-label">Мест</span>
+        </div>
+        <div class="passport-stat-item">
+          <span class="passport-stat-num" id="spec-floors">—</span>
+          <span class="passport-stat-label">Этажей</span>
+        </div>
+        <div class="passport-stat-item">
+          <span class="passport-stat-num" id="spec-year">—</span>
+          <span class="passport-stat-label">Год ввода</span>
         </div>
       </div>
+
+      <!-- Блок 2: Две карточки рядом -->
+      <div class="specs-cards-grid appear" style="margin-top:var(--space-4)">
+
+        <!-- Карточка «Основное» -->
+        <div class="passport-card">
+          <div class="passport-card-header">
+            <span class="passport-card-icon">🏢</span>
+            <span class="passport-card-title">Основная информация</span>
+          </div>
+          <div class="passport-fields-grid">
+            <div class="passport-field passport-field--wide">
+              <span class="passport-field-label">Наименование объекта</span>
+              <span class="passport-field-value" id="spec-name">—</span>
+            </div>
+            <div class="passport-field passport-field--wide">
+              <span class="passport-field-label">Юридическое лицо / собственник</span>
+              <span class="passport-field-value" id="spec-legal">—</span>
+            </div>
+            <div class="passport-field">
+              <span class="passport-field-label">Регион</span>
+              <span class="passport-field-value" id="spec-region">—</span>
+            </div>
+            <div class="passport-field">
+              <span class="passport-field-label">Категория</span>
+              <span class="passport-field-value" id="spec-stars">—</span>
+            </div>
+            <div class="passport-field passport-field--wide">
+              <span class="passport-field-label">Юридический адрес</span>
+              <span class="passport-field-value" id="spec-address">—</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка «Статус и контакт» -->
+        <div class="passport-card">
+          <div class="passport-card-header">
+            <span class="passport-card-icon">📋</span>
+            <span class="passport-card-title">Статус и контакты</span>
+          </div>
+          <div class="passport-fields-grid">
+            <div class="passport-field passport-field--wide">
+              <span class="passport-field-label">Статус публикации</span>
+              <div class="passport-status-row">
+                <span id="spec-status-badge">—</span>
+                <span id="spec-pres-badge" style="display:none"></span>
+              </div>
+            </div>
+            <div class="passport-field passport-field--wide" id="spec-contact-row">
+              <span class="passport-field-label">Контакт управляющего</span>
+              <span class="passport-field-value" id="spec-contact">По запросу через платформу</span>
+            </div>
+            <div class="passport-field passport-field--wide">
+              <span class="passport-field-label">Официальная презентация</span>
+              <span class="passport-field-value" id="spec-presentation">—</span>
+            </div>
+            <!-- Площади — показываются только если есть данные -->
+            <div class="passport-field" id="spec-land-row" style="display:none">
+              <span class="passport-field-label">Площадь участка</span>
+              <span class="passport-field-value" id="spec-land">—</span>
+            </div>
+            <div class="passport-field" id="spec-building-row" style="display:none">
+              <span class="passport-field-label">Площадь строения</span>
+              <span class="passport-field-value" id="spec-building">—</span>
+            </div>
+            <div class="passport-field" id="spec-roomarea-row" style="display:none">
+              <span class="passport-field-label">Площадь номеров</span>
+              <span class="passport-field-value" id="spec-roomarea">—</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /specs-cards-grid -->
     </div>
   </section>
 
@@ -340,11 +422,30 @@
   <section class="amenities-section" id="amenities-section" aria-label="Удобства и сервисы">
     <div class="amenities-inner">
       <div class="amenities-header appear">
-        <p class="kicker">INFRASTRUCTURE &amp; AMENITIES</p>
-        <h2 class="amenities-title">Удобства и инфраструктура</h2>
+        <span class="exec-kicker">ИНФРАСТРУКТУРА</span>
+        <h2 class="amenities-title">Удобства и сервисы</h2>
       </div>
-      <div class="amenities-cloud appear" id="passport-amenities-cloud">
-        <!-- Чипы удобств -->
+      <!-- Двухколонная компоновка: чипы удобств + карточка контактов -->
+      <div class="amenities-layout appear">
+        <div class="amenities-cloud" id="passport-amenities-cloud">
+          <!-- Чипы удобств с иконками -->
+        </div>
+        <!-- Контактная карточка рядом с удобствами -->
+        <div class="amenities-contact-card" id="amenities-contact-card">
+          <div class="amenities-contact-title">Контакты объекта</div>
+          <div class="amenities-contact-row">
+            <span class="amenities-contact-label">Управляющий / отдел инвестиций</span>
+            <span class="amenities-contact-value" id="amenities-contact-value">По запросу через платформу</span>
+          </div>
+          <div class="amenities-contact-row">
+            <span class="amenities-contact-label">Регион</span>
+            <span class="amenities-contact-value" id="amenities-region-value">—</span>
+          </div>
+          <div class="amenities-contact-row">
+            <span class="amenities-contact-label">Адрес</span>
+            <span class="amenities-contact-value" id="amenities-address-value">—</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -355,7 +456,7 @@
   <section class="location-section" id="location" aria-label="Location Analysis — локация объекта">
     <div class="location-inner">
       <div class="location-header appear">
-        <p class="kicker">LOCATION</p>
+        <span class="exec-kicker">ЛОКАЦИЯ</span>
         <h2 class="location-title">Расположение объекта</h2>
       </div>
 
@@ -402,13 +503,8 @@
   <section class="gallery-section" id="gallery" aria-label="Фотогалерея объекта">
     <div class="gallery-inner">
       <div class="gallery-header appear">
-        <p class="kicker kicker-gallery">ФОТОМАТЕРИАЛЫ ОБЪЕКТА</p>
-        <div class="gallery-header-row">
-          <h2 class="gallery-title">Галерея гостиничного комплекса</h2>
-          <p class="gallery-note" id="gallery-subtitle">
-            Фактические фотоматериалы, предоставленные собственником объекта для инвестиционного паспорта.
-          </p>
-        </div>
+        <span class="exec-kicker">ФОТОМАТЕРИАЛЫ</span>
+        <h2 class="gallery-title">Галерея гостиничного комплекса</h2>
       </div>
 
       <!-- Динамическая сетка фотографий -->

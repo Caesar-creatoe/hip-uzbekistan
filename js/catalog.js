@@ -55,9 +55,10 @@ function formatObjectsCountWord(n) {
 
 /* ── Рендер отдельной карточки отеля ────────────────────────── */
 function buildCard(hotel) {
-  const photo = (Array.isArray(hotel.photos) && hotel.photos.length > 0 && hotel.photos[0])
+  const rawPhoto = (Array.isArray(hotel.photos) && hotel.photos.length > 0 && hotel.photos[0])
     ? hotel.photos[0]
     : './assets/hotel-hero.png';
+  const photo = typeof rawPhoto === 'object' && rawPhoto !== null ? (rawPhoto.src || './assets/hotel-hero.png') : rawPhoto;
 
   const stars = hotel.stars ? `<span class="hotel-card-stars">${starsHtml(hotel.stars)}</span>` : '';
   const region = hotel.region ? `<span class="hotel-card-region">📍 ${escHtml(hotel.region)}</span>` : '';
