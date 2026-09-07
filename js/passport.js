@@ -190,6 +190,21 @@ function renderPassport(hotel) {
 
   // 10. Фотогалерея
   renderPhotoGallery(hotel);
+
+  // Если фото было усечено квотой localStorage, подгружаем полную галерею из SriDB
+  if (Array.isArray(hotel.photos) && hotel.photos.length <= 1 && window.SriDB && hotel.id) {
+    window.SriDB.get('photos_' + hotel.id).then(dbPhotos => {
+      if (Array.isArray(dbPhotos) && dbPhotos.length > hotel.photos.length) {
+        hotel.photos = dbPhotos;
+        renderPhotoGallery(hotel);
+        const countBadge = document.getElementById('cover-photo-count-badge');
+        if (countBadge) {
+          countBadge.innerHTML = `<span>📷 ${dbPhotos.length} фото</span>`;
+          countBadge.style.display = 'inline-flex';
+        }
+      }
+    }).catch(console.warn);
+  }
 }
 
 /* ── Рендеринг карточек характеристик (взаменяет renderSpecsTable) ── */
@@ -237,12 +252,13 @@ function renderSpecsCards(hotel) {
   // Презентация в карточке
   const specPresEl = document.getElementById('spec-presentation');
   if (specPresEl) {
-    const presFile = hotel.presentationFile || hotel.presentationUrl;
-    if (presFile) {
-      specPresEl.innerHTML = `<a href="${esc(presFile)}" download="${esc(hotel.hotelName || 'hotel')}-presentation.pdf" target="_blank" style="color:var(--color-accent);font-weight:600;text-decoration:underline;">📄 Скачать презентацию</a>`;
-    } else if (hotel.hasPresentation) {
-      specPresEl.innerHTML = `<button type="button" class="btn-download-trigger" style="background:none;border:none;padding:0;color:var(--color-accent);font-weight:600;text-decoration:underline;cursor:pointer;">📄 Скачать презентацию</button>`;
-      specPresEl.querySelector('.btn-download-trigger')?.addEventListener('click', () => downloadPresentation());
+    const hasPres = Boolean(hotel.presentationFile || hotel.presentationUrl || hotel.hasPresentation);
+    if (hasPres) {
+      specPresEl.innerHTML = `<button type="button" class="btn-download-trigger" style="background:none;border:none;padding:0;color:var(--color-accent);font-weight:600;text-decoration:underline;cursor:pointer;font-family:inherit;font-size:inherit;">📄 Скачать презентацию</button>`;
+      specPresEl.querySelector('.btn-download-trigger')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        downloadPresentation();
+      });
     } else {
       specPresEl.textContent = 'Предоставляется по запросу';
     }
@@ -557,13 +573,30 @@ function initTocSpy() {
 }
 
 /* ── Скачивание презентации объекта ────────────────────────── */
-function downloadPresentation() {
+async function downloadPresentation() {
   const hotel = currentHotelData;
-  const file = hotel?.presentationFile || hotel?.presentationUrl;
+  if (!hotel) return;
+
+  let file = hotel.presentationFile || hotel.presentationUrl;
+  let filename = hotel.presentationFileName || `${hotel.hotelName || 'hotel'}-presentation.pdf`;
+
+  // Проверяем наличие файла в IndexedDB (SriDB)
+  if ((!file || !file.startsWith('data:')) && window.SriDB && hotel.id) {
+    try {
+      const doc = await window.SriDB.get('pres_' + hotel.id);
+      if (doc && doc.data) {
+        file = doc.data;
+        if (doc.name) filename = doc.name;
+      }
+    } catch (err) {
+      console.warn('Error reading presentation from SriDB:', err);
+    }
+  }
+
   if (file) {
     const a = document.createElement('a');
     a.href = file;
-    a.download = `${hotel?.hotelName || 'hotel'}-presentation.pdf`;
+    a.download = filename.toLowerCase().endsWith('.pdf') ? filename : `${filename}.pdf`;
     if (!file.startsWith('data:')) {
       a.target = '_blank';
     }
@@ -572,7 +605,8 @@ function downloadPresentation() {
     document.body.removeChild(a);
     return;
   }
-  // Fallback: формирование официального инвестиционного паспорта через окно печати браузера
+
+  // Fallback: формирование официального инвестиционного паспорта через печать браузера
   window.print();
 }
 
@@ -582,18 +616,21 @@ function initPdfButton() {
 
   const attachDownload = (btn) => {
     if (!btn) return;
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', async (e) => {
       e.preventDefault();
       const origHtml = btn.innerHTML;
       btn.innerHTML = '<span>⏳ Загрузка...</span>';
       btn.disabled = true;
-      setTimeout(() => {
-        downloadPresentation();
+      try {
+        await downloadPresentation();
+      } catch (err) {
+        console.warn('Download error:', err);
+      } finally {
         setTimeout(() => {
           btn.innerHTML = origHtml;
           btn.disabled = false;
-        }, 1000);
-      }, 250);
+        }, 800);
+      }
     });
   };
 

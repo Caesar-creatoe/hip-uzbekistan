@@ -240,8 +240,8 @@ function renderPhotoPreview() {
   });
 }
 
-/* ── Сжатие и обработка изображений (Canvas, до 1200x900 JPEG) ─ */
-function compressImage(file, maxWidth = 1200, maxHeight = 900, quality = 0.82) {
+/* ── Сжатие и обработка изображений (Canvas, до 1000x750 JPEG, ~40КБ) ─ */
+function compressImage(file, maxWidth = 1000, maxHeight = 750, quality = 0.72) {
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.onerror = () => resolve(null);
@@ -405,6 +405,9 @@ if (presChooseBtn && presFileInput) {
 
 if (presRemoveBtn) {
   presRemoveBtn.addEventListener('click', () => {
+    if (editingId && window.SriDB) {
+      window.SriDB.delete('pres_' + editingId);
+    }
     presentationFileData = null;
     presentationFileName = null;
     if (presFileInput) presFileInput.value = '';
@@ -444,7 +447,7 @@ function resetForm() {
 }
 
 /* ── Загрузка в форму ──────────────────────────────────────── */
-function loadForEdit(id) {
+async function loadForEdit(id) {
   const hotel = Store.getById(id);
   if (!hotel) return;
   editingId = id;
@@ -465,11 +468,24 @@ function loadForEdit(id) {
     }
   });
 
-  // Загрузка презентации
+  // Загрузка презентации (из объекта или из SriDB IndexedDB)
   presentationFileData = hotel.presentationFile || null;
   presentationFileName = hotel.presentationFileName || null;
   if (presUrlInput) presUrlInput.value = hotel.presentationUrl || '';
-  if (presentationFileData) {
+
+  if (!presentationFileData && window.SriDB && hotel.id) {
+    try {
+      const presDoc = await window.SriDB.get('pres_' + hotel.id);
+      if (presDoc && presDoc.data) {
+        presentationFileData = presDoc.data;
+        if (!presentationFileName) presentationFileName = presDoc.name || 'Презентация.pdf';
+      }
+    } catch (e) {
+      console.warn('Error fetching presentation from SriDB:', e);
+    }
+  }
+
+  if (presentationFileData || presentationFileName) {
     if (presFileNameEl) presFileNameEl.textContent = `✅ ${presentationFileName || 'Презентация загружена'}`;
     if (presRemoveBtn) presRemoveBtn.style.display = 'inline-block';
   } else {
@@ -482,14 +498,24 @@ function loadForEdit(id) {
   }
 
   // Загружаем фото: поддержка как legacy массива строк, так и нового {src, caption}
-  photoFiles = Array.isArray(hotel.photos)
-    ? hotel.photos.filter(Boolean).map(p => {
-        if (typeof p === 'object' && p !== null && p.src) {
-          return { src: p.src, caption: p.caption || '' };
-        }
-        return { src: String(p), caption: '' };
-      })
-    : [];
+  let photos = Array.isArray(hotel.photos) ? [...hotel.photos] : [];
+  if (photos.length <= 1 && window.SriDB && hotel.id) {
+    try {
+      const dbPhotos = await window.SriDB.get('photos_' + hotel.id);
+      if (Array.isArray(dbPhotos) && dbPhotos.length > photos.length) {
+        photos = dbPhotos;
+      }
+    } catch (e) {
+      console.warn('Error fetching photos from SriDB:', e);
+    }
+  }
+
+  photoFiles = photos.filter(Boolean).map(p => {
+    if (typeof p === 'object' && p !== null && p.src) {
+      return { src: p.src, caption: p.caption || '' };
+    }
+    return { src: String(p), caption: '' };
+  });
   renderPhotoPreview();
   if (formTitle) formTitle.textContent = `Редактировать: ${hotel.hotelName || ''}`;
   if (deleteBtn) deleteBtn.hidden = false;
@@ -500,7 +526,7 @@ function loadForEdit(id) {
 
 /* ── Отправка формы ────────────────────────────────────────── */
 if (hotelForm) {
-  hotelForm.addEventListener('submit', e => {
+  hotelForm.addEventListener('submit', async e => {
     e.preventDefault();
     const get = id => { const el = document.getElementById(`field-${id}`); return el ? el.value.trim() : ''; };
     if (!get('hotelName')) {
@@ -522,7 +548,18 @@ if (hotelForm) {
       (presUrlInput && presUrlInput.value.trim())
     );
 
+    const targetId = editingId || ('sri_' + Date.now().toString(36));
+
+    // Если есть файл презентации, сразу безопасно пишем в IndexedDB (SriDB)
+    if (presentationFileData && window.SriDB) {
+      await window.SriDB.set('pres_' + targetId, {
+        data: presentationFileData,
+        name: presentationFileName || 'Презентация.pdf'
+      });
+    }
+
     const hotel = {
+      id:               targetId,
       hotelName:        get('hotelName'),
       legalEntity:      get('legalEntity'),
       region:           get('region'),
@@ -570,6 +607,10 @@ if (deleteBtn) {
     if (!editingId) return;
     const h = Store.getById(editingId);
     if (!confirm(`Удалить «${h?.hotelName||editingId}»?`)) return;
+    if (window.SriDB) {
+      window.SriDB.delete('pres_' + editingId);
+      window.SriDB.delete('photos_' + editingId);
+    }
     Store.delete(editingId);
     showStatus('🗑️ Отель удалён');
     resetForm();

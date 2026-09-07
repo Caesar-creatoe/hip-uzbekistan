@@ -205,6 +205,82 @@ const DEFAULT_HOTELS = [
 ];
 
 /**
+ * SriDB — IndexedDB хранилище для тяжелых файлов (PDF презентации, тяжелые фото).
+ * Снимает 5МБ лимит localStorage раз и навсегда.
+ */
+const SriDB = {
+  DB_NAME: 'sri_media_db',
+  DB_VERSION: 1,
+  STORE_NAME: 'files',
+  _dbPromise: null,
+
+  getDB() {
+    if (this._dbPromise) return this._dbPromise;
+    this._dbPromise = new Promise((resolve) => {
+      if (typeof indexedDB === 'undefined') {
+        return resolve(null);
+      }
+      const req = indexedDB.open(this.DB_NAME, this.DB_VERSION);
+      req.onupgradeneeded = (e) => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(this.STORE_NAME)) {
+          db.createObjectStore(this.STORE_NAME);
+        }
+      };
+      req.onsuccess = (e) => resolve(e.target.result);
+      req.onerror = () => resolve(null);
+    });
+    return this._dbPromise;
+  },
+
+  async set(key, value) {
+    try {
+      const db = await this.getDB();
+      if (!db) return false;
+      return new Promise((resolve) => {
+        const tx = db.transaction(this.STORE_NAME, 'readwrite');
+        tx.objectStore(this.STORE_NAME).put(value, key);
+        tx.oncomplete = () => resolve(true);
+        tx.onerror = () => resolve(false);
+      });
+    } catch (e) {
+      return false;
+    }
+  },
+
+  async get(key) {
+    try {
+      const db = await this.getDB();
+      if (!db) return null;
+      return new Promise((resolve) => {
+        const tx = db.transaction(this.STORE_NAME, 'readonly');
+        const req = tx.objectStore(this.STORE_NAME).get(key);
+        req.onsuccess = () => resolve(req.result || null);
+        req.onerror = () => resolve(null);
+      });
+    } catch (e) {
+      return null;
+    }
+  },
+
+  async delete(key) {
+    try {
+      const db = await this.getDB();
+      if (!db) return false;
+      return new Promise((resolve) => {
+        const tx = db.transaction(this.STORE_NAME, 'readwrite');
+        tx.objectStore(this.STORE_NAME).delete(key);
+        tx.oncomplete = () => resolve(true);
+        tx.onerror = () => resolve(false);
+      });
+    } catch (e) {
+      return false;
+    }
+  }
+};
+window.SriDB = SriDB;
+
+/**
  * Единый менеджер хранилища отелей (localStorage + Cloud Sync)
  */
 const HotelStore = {
@@ -233,29 +309,59 @@ const HotelStore = {
     return DEFAULT_HOTELS;
   },
 
+  cleanForLocalStorage(hotels) {
+    return hotels.map(h => {
+      const copy = { ...h };
+      // Если файл презентации в base64 переносим в IndexedDB и удаляем из localStorage
+      if (copy.presentationFile) {
+        if (typeof copy.presentationFile === 'string' && copy.presentationFile.startsWith('data:')) {
+          if (copy.id && window.SriDB) {
+            window.SriDB.set('pres_' + copy.id, { data: copy.presentationFile, name: copy.presentationFileName || '' });
+          }
+        }
+        delete copy.presentationFile;
+      }
+      return copy;
+    });
+  },
+
   save(hotels) {
     try {
-      localStorage.setItem(this.KEY, JSON.stringify(hotels));
-      window.dispatchEvent(new CustomEvent('sri_hotels_updated', { detail: hotels }));
+      const clean = this.cleanForLocalStorage(hotels);
+      localStorage.setItem(this.KEY, JSON.stringify(clean));
+      window.dispatchEvent(new CustomEvent('sri_hotels_updated', { detail: clean }));
 
       // Асинхронная фоновая синхронизация с облачным API Vercel
       if (typeof fetch === 'function') {
         fetch('/api/hotels', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ hotels })
+          body: JSON.stringify({ hotels: clean })
         }).catch(err => {
-          // Мягкое игнорирование ошибок оффлайна
           console.debug('Cloud sync notice:', err);
         });
       }
       return true;
     } catch (e) {
-      console.error('Error saving sri_hotels:', e);
-      if (typeof window !== 'undefined' && (e.name === 'QuotaExceededError' || e.code === 22)) {
-        alert('⚠️ Недостаточно места в памяти браузера для сохранения данных. Попробуйте уменьшить количество или размер фото.');
+      console.warn('Quota warning in localStorage, offloading heavy data to IndexedDB:', e);
+      try {
+        // Автоматически отделяем тяжелые фото в IndexedDB, предотвращая любые QuotaExceededError
+        const compactHotels = hotels.map(h => {
+          const copy = { ...h };
+          delete copy.presentationFile;
+          if (Array.isArray(copy.photos) && copy.photos.length > 1 && window.SriDB && copy.id) {
+            window.SriDB.set('photos_' + copy.id, copy.photos);
+            copy.photos = copy.photos.slice(0, 1);
+          }
+          return copy;
+        });
+        localStorage.setItem(this.KEY, JSON.stringify(compactHotels));
+        window.dispatchEvent(new CustomEvent('sri_hotels_updated', { detail: compactHotels }));
+        return true;
+      } catch (innerErr) {
+        console.error('Final fallback error saving hotels:', innerErr);
+        return false;
       }
-      return false;
     }
   },
 
@@ -294,6 +400,10 @@ const HotelStore = {
 
   delete(id) {
     const hotels = this.getAll().filter(h => h.id !== id && h.slug !== id);
+    if (window.SriDB) {
+      window.SriDB.delete('pres_' + id);
+      window.SriDB.delete('photos_' + id);
+    }
     this.save(hotels);
     return hotels;
   },
