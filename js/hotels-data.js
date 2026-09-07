@@ -267,7 +267,12 @@ const SriDB = {
 };
 window.SriDB = SriDB;
 
-const API_URL = (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))
+const API_URL = (typeof window !== 'undefined' && (
+  !window.location.hostname ||
+  window.location.protocol === 'file:' ||
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1'
+))
   ? 'https://hotel-investment-portfolio-uz.vercel.app/api/hotels'
   : '/api/hotels';
 
@@ -358,14 +363,18 @@ const HotelStore = {
 
     if (syncCloud && typeof fetch === 'function') {
       try {
+        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        const timer = controller ? setTimeout(() => controller.abort(), 6000) : null;
         const res = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ hotels: clean })
+          body: JSON.stringify({ hotels: clean }),
+          signal: controller ? controller.signal : undefined
         });
+        if (timer) clearTimeout(timer);
         return res.ok;
       } catch (err) {
-        console.warn('Cloud sync error:', err);
+        console.warn('Cloud sync save notice:', err);
         return false;
       }
     }
@@ -386,8 +395,14 @@ const HotelStore = {
     const hotels = this.getAll();
     hotel.id = hotel.id || ('sri_' + Date.now().toString(36));
     hotel.slug = hotel.slug || (hotel.hotelName ? hotel.hotelName.toLowerCase().replace(/[^a-z0-9а-яё]+/g, '-').replace(/^-|-$/g, '') : hotel.id);
-    hotel.createdAt = new Date().toISOString();
-    hotels.push(hotel);
+    hotel.createdAt = hotel.createdAt || new Date().toISOString();
+
+    const existingIdx = hotels.findIndex(h => h.id === hotel.id || (h.slug && h.slug === hotel.slug));
+    if (existingIdx !== -1) {
+      hotels[existingIdx] = { ...hotels[existingIdx], ...hotel, updatedAt: new Date().toISOString() };
+    } else {
+      hotels.push(hotel);
+    }
     await this.save(hotels, true);
     return hotel;
   },
@@ -427,13 +442,28 @@ const HotelStore = {
     if (typeof fetch !== 'function') return false;
     try {
       const sep = API_URL.includes('?') ? '&' : '?';
-      const res = await fetch(API_URL + sep + '_t=' + Date.now());
+      const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      const timer = controller ? setTimeout(() => controller.abort(), 6000) : null;
+      const res = await fetch(API_URL + sep + '_t=' + Date.now(), {
+        signal: controller ? controller.signal : undefined
+      });
+      if (timer) clearTimeout(timer);
       if (!res.ok) return false;
       const data = await res.json();
       if (data && Array.isArray(data.hotels) && data.hotels.length > 0) {
-        localStorage.setItem(this.KEY, JSON.stringify(data.hotels));
-        window.dispatchEvent(new CustomEvent('sri_hotels_updated', { detail: data.hotels }));
-        return data.hotels;
+        // Гарантируем, что отель ASMALD и дефолтные отели всегда сохраняются при слиянии
+        const merged = [...data.hotels];
+        const existingIds = new Set(merged.map(h => (h.id || h.slug || '').toLowerCase()));
+        for (const def of DEFAULT_HOTELS) {
+          const defId = (def.id || def.slug || '').toLowerCase();
+          if (!existingIds.has(defId)) {
+            merged.push(def);
+            existingIds.add(defId);
+          }
+        }
+        localStorage.setItem(this.KEY, JSON.stringify(merged));
+        window.dispatchEvent(new CustomEvent('sri_hotels_updated', { detail: merged }));
+        return merged;
       }
     } catch (e) {
       console.debug('Cloud sync notice:', e);
