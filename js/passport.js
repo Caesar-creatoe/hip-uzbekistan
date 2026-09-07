@@ -139,7 +139,7 @@ function renderPassport(hotel) {
   setTxt('cover-year-commissioned', hotel.yearCommissioned);
   setTxt('cover-legal-entity', hotel.legalEntity);
 
-  // 6. Главное фото обложки (первое фото из загруженных)
+  // 6. Главное фото обложки и бейджи
   const coverImg = document.getElementById('passport-cover-photo');
   if (coverImg) {
     const firstPhoto = hotel.photos && hotel.photos.length > 0
@@ -147,6 +147,19 @@ function renderPassport(hotel) {
       : null;
     coverImg.src = firstPhoto || './assets/hotel-hero.png';
     coverImg.alt = `${hotelName} — фасад и архитектура`;
+  }
+  const coverPhotoTitle = document.getElementById('cover-photo-title');
+  if (coverPhotoTitle) coverPhotoTitle.textContent = hotelName;
+
+  const countBadge = document.getElementById('cover-photo-count-badge');
+  if (countBadge) {
+    const numPhotos = Array.isArray(hotel.photos) ? hotel.photos.filter(Boolean).length : 0;
+    if (numPhotos > 0) {
+      countBadge.innerHTML = `<span>📷 ${numPhotos} фото</span>`;
+      countBadge.style.display = 'inline-flex';
+    } else {
+      countBadge.style.display = 'none';
+    }
   }
 
   // 7. Карточки характеристик (NEW: взаменяет таблицу)

@@ -228,86 +228,102 @@
   </nav>
 
   <!-- ═══════════════════════════════════════════
-       COVER — Обложка паспорта
+       COVER — Обложка паспорта (Luxury Editorial)
   ═══════════════════════════════════════════ -->
   <section class="passport-cover" id="cover" aria-label="Обложка инвестиционного паспорта">
-    <!-- Левая колонка: данные -->
-    <div class="cover-data">
-      <nav class="breadcrumb cover-breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html" class="breadcrumb-link">Главная</a>
-        <span class="breadcrumb-sep" aria-hidden="true">/</span>
-        <a href="portfolio.html" class="breadcrumb-link">Каталог</a>
-        <span class="breadcrumb-sep" aria-hidden="true">/</span>
-        <span class="breadcrumb-current" id="passport-breadcrumb-name">Отель</span>
-      </nav>
+    <div class="passport-cover-inner">
 
-      <p class="cover-doc-type kicker">
-        HOTEL INVESTMENT PASSPORT&nbsp;·&nbsp;РЕСПУБЛИКА УЗБЕКИСТАН
-      </p>
+      <!-- Левая колонка: данные объекта -->
+      <div class="cover-data">
+        <nav class="breadcrumb cover-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" class="breadcrumb-link">Главная</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <a href="portfolio.html" class="breadcrumb-link">Каталог</a>
+          <span class="breadcrumb-sep" aria-hidden="true">/</span>
+          <span class="breadcrumb-current" id="passport-breadcrumb-name">Отель</span>
+        </nav>
 
-      <h1 class="cover-hotel-name" id="passport-hotel-name">Grand Tashkent Hotel</h1>
+        <!-- Престижный статус паспорта -->
+        <div class="cover-prestige-tag">
+          <span class="prestige-dot"></span>
+          <span class="prestige-text">HOTEL INVESTMENT PASSPORT · РЕСПУБЛИКА УЗБЕКИСТАН</span>
+          <span class="prestige-verified">✓ Реестр SRI</span>
+        </div>
 
-      <!-- Звёзды -->
-      <div class="cover-stars" id="passport-stars" aria-label="Категория">
-        <!-- Генерируется динамически -->
+        <!-- Название объекта -->
+        <h1 class="cover-hotel-name" id="passport-hotel-name">Grand Tashkent Hotel</h1>
+
+        <!-- Звёзды и адрес в единой строке -->
+        <div class="cover-meta-bar">
+          <div class="cover-stars" id="passport-stars" aria-label="Категория"></div>
+          <span class="cover-meta-divider" aria-hidden="true">·</span>
+          <span class="cover-location-tag" id="passport-location">📍 г. Ташкент, Узбекистан</span>
+        </div>
+
+        <!-- Статус публикации объекта -->
+        <div class="cover-models">
+          <span class="cover-status-badge cover-status-badge--active" id="passport-status-badge">
+            ● Активный объект
+          </span>
+          <span class="cover-model-badge" id="passport-presentation-badge" style="display:none">
+            📄 Имеется презентация
+          </span>
+        </div>
+
+        <!-- Ключевые инвестиционные показатели (Премиальная стеклянная панель) -->
+        <div class="cover-stats-glass">
+          <div class="cover-spec-card">
+            <span class="cover-spec-val" id="cover-rooms-count">—</span>
+            <span class="cover-spec-label">Номеров</span>
+          </div>
+          <div class="cover-spec-card">
+            <span class="cover-spec-val" id="cover-places-count">—</span>
+            <span class="cover-spec-label">Мест</span>
+          </div>
+          <div class="cover-spec-card">
+            <span class="cover-spec-val" id="cover-floors-count">—</span>
+            <span class="cover-spec-label">Этажей</span>
+          </div>
+          <div class="cover-spec-card">
+            <span class="cover-spec-val" id="cover-year-commissioned">—</span>
+            <span class="cover-spec-label">Год ввода</span>
+          </div>
+        </div>
+
+        <!-- Быстрые действия и инфо инвестора -->
+        <div class="cover-actions-row">
+          <a href="#download" class="btn-cover-primary">
+            <span>📥 Скачать PDF-паспорт</span>
+          </a>
+          <a href="#gallery" class="btn-cover-secondary" id="cover-btn-photos">
+            <span>📷 Фотогалерея</span>
+          </a>
+          <div class="cover-owner-chip">
+            <span class="owner-icon">🏛️</span>
+            <span class="owner-text">Собственник: <strong id="cover-legal-entity">—</strong></span>
+          </div>
+        </div>
       </div>
 
-      <p class="cover-location" id="passport-location">г. Ташкент, Узбекистан</p>
-
-      <!-- Статус публикации объекта -->
-      <div class="cover-models">
-        <span class="cover-status-badge cover-status-badge--active" id="passport-status-badge">
-          ● Активный объект
-        </span>
-        <span class="cover-model-badge" id="passport-presentation-badge" style="display:none">
-          📄 Имеется презентация
-        </span>
-      </div>
-
-      <!-- Ключевые характеристики -->
-      <div class="cover-specs">
-        <div class="cover-spec">
-          <span class="cover-spec-val" id="cover-rooms-count">—</span>
-          <span class="cover-spec-label">Номеров</span>
-        </div>
-        <div class="cover-spec-sep" aria-hidden="true"></div>
-        <div class="cover-spec">
-          <span class="cover-spec-val" id="cover-places-count">—</span>
-          <span class="cover-spec-label">Мест</span>
-        </div>
-        <div class="cover-spec-sep" aria-hidden="true"></div>
-        <div class="cover-spec">
-          <span class="cover-spec-val" id="cover-floors-count">—</span>
-          <span class="cover-spec-label">Этажей</span>
-        </div>
-        <div class="cover-spec-sep" aria-hidden="true"></div>
-        <div class="cover-spec">
-          <span class="cover-spec-val" id="cover-year-commissioned">—</span>
-          <span class="cover-spec-label">Год ввода</span>
+      <!-- Правая колонка: фото-шоукейс с элегантным обрамлением -->
+      <div class="cover-photo-col" role="img" aria-label="Фасад отеля">
+        <div class="cover-photo-frame">
+          <img
+            src="./assets/hotel-hero.png"
+            alt="Отель — фасад"
+            class="cover-photo"
+            id="passport-cover-photo"
+          />
+          <a href="#gallery" class="cover-photo-badge" id="cover-photo-count-badge">
+            <span>📷 Смотреть фото</span>
+          </a>
+          <div class="cover-photo-caption">
+            <span class="cover-photo-title" id="cover-photo-title">Отель</span>
+            <span class="cover-photo-sub">Гостиничный актив · Silk Route Invest</span>
+          </div>
         </div>
       </div>
 
-      <!-- Метаданные документа -->
-      <div class="cover-doc-meta">
-        <div class="cover-meta-row">
-          <span class="cover-meta-label">Статус данных</span>
-          <span class="cover-meta-val">Верифицировано в реестре SRI</span>
-        </div>
-        <div class="cover-meta-row">
-          <span class="cover-meta-label">Юр. лицо</span>
-          <span class="cover-meta-val" id="cover-legal-entity">—</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Правая колонка: фото объекта -->
-    <div class="cover-photo-col" role="img" aria-label="Фасад отеля" style="position:relative">
-      <img
-        src="./assets/hotel-hero.png"
-        alt="Отель — фасад"
-        class="cover-photo"
-        id="passport-cover-photo"
-      />
     </div>
   </section>
 
