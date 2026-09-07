@@ -568,6 +568,38 @@
   padding: 2px 7px;
   border-radius: 4px;
 }
+.hotel-card-badge--deal {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  color: #2b1e16;
+  border: 1px solid rgba(196, 154, 58, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.hotel-card-badge--deal.deal-sale {
+  color: #8A4F1D;
+  background: rgba(254, 247, 240, 0.96);
+  border-color: rgba(184, 115, 51, 0.35);
+}
+.hotel-card-badge--deal.deal-rent {
+  color: #1F5A48;
+  background: rgba(240, 250, 246, 0.96);
+  border-color: rgba(46, 125, 96, 0.35);
+}
+.hotel-card-badge--deal.deal-franchise {
+  color: #4A3575;
+  background: rgba(247, 244, 254, 0.96);
+  border-color: rgba(107, 70, 193, 0.35);
+}
+.hotel-card-badge--deal.deal-invest {
+  color: #1A5276;
+  background: rgba(240, 247, 255, 0.96);
+  border-color: rgba(36, 113, 163, 0.35);
+}
 .hotel-card-badge--draft {
   background: rgba(255,235,59,0.9);
   color: #5D4037;

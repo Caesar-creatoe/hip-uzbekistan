@@ -438,6 +438,8 @@ function resetForm() {
   if (presFileNameEl) presFileNameEl.textContent = 'Файл не выбран';
   if (presRemoveBtn) presRemoveBtn.style.display = 'none';
   if (presUrlInput) presUrlInput.value = '';
+  const dealSelect = document.getElementById('field-dealType');
+  if (dealSelect) dealSelect.value = 'sale';
   if (hotelForm) hotelForm.reset();
   if (photoPreview) renderPhotoPreview();
   if (formTitle) formTitle.textContent = 'Добавить новый отель';
@@ -455,7 +457,7 @@ async function loadForEdit(id) {
     'hotelName', 'legalEntity', 'region', 'address', 'roomsCount',
     'placesCount', 'stars', 'landArea', 'buildingArea', 'floors',
     'yearCommissioned', 'maxRoomArea', 'minRoomArea', 'amenities',
-    'managerContact', 'status', 'notes'
+    'managerContact', 'dealType', 'status', 'notes'
   ];
   fields.forEach(name => {
     const el = document.getElementById(`field-${name}`);
@@ -576,6 +578,7 @@ if (hotelForm) {
       minRoomArea:      get('minRoomArea') ? parseFloat(get('minRoomArea')) : null,
       amenities:        sanitizedAmenities,
       managerContact:   get('managerContact'),
+      dealType:         get('dealType') || 'sale',
       status:           get('status') || 'active',
       hasPresentation:  hasPresValue,
       presentationFile: presentationFileData,

@@ -339,6 +339,18 @@
             </select>
           </div>
 
+          <!-- Формат сделки -->
+          <div class="glass-field glass-field--select">
+            <span class="glass-field-icon" aria-hidden="true">💼</span>
+            <select id="filter-deal-type" class="glass-select" aria-label="Фильтр по формату сделки">
+              <option value="all">Все форматы сделки</option>
+              <option value="sale">💼 Прямая продажа</option>
+              <option value="rent">🔑 Долгосрочная аренда</option>
+              <option value="franchise">⭐ Франшиза / Управление</option>
+              <option value="invest">📈 Соинвестирование</option>
+            </select>
+          </div>
+
           <!-- Сортировка -->
           <div class="glass-field glass-field--select glass-field--sort">
             <span class="glass-field-icon" aria-hidden="true">⇅</span>
@@ -353,11 +365,23 @@
 
         </div>
 
-        <!-- Нижняя строка: Быстрые теги + Результаты + Сброс -->
+        <!-- Нижняя строка: Быстрые теги формата + Результаты + Сброс -->
         <div class="glass-filter-secondary">
-          <div class="glass-quick-tags" role="group" aria-label="Быстрые фильтры">
-            <button type="button" class="glass-tag-btn" id="tag-has-presentation" data-active="false">
-              <span>📎</span> Только с презентацией
+          <div class="glass-quick-tags" role="group" aria-label="Быстрые фильтры по формату">
+            <button type="button" class="glass-tag-btn is-active" data-deal="all">
+              Все форматы
+            </button>
+            <button type="button" class="glass-tag-btn" data-deal="sale">
+              <span>💼</span> Продажа
+            </button>
+            <button type="button" class="glass-tag-btn" data-deal="rent">
+              <span>🔑</span> Аренда
+            </button>
+            <button type="button" class="glass-tag-btn" data-deal="franchise">
+              <span>⭐</span> Франшиза
+            </button>
+            <button type="button" class="glass-tag-btn" data-deal="invest">
+              <span>📈</span> Соинвестирование
             </button>
             <button type="button" class="glass-tag-btn" id="tag-premium-stars" data-active="false">
               <span>✨</span> Премиум (4★ – 5★)

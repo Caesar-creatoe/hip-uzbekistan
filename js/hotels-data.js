@@ -36,6 +36,35 @@ function parseAmenities(input) {
 }
 
 /**
+ * Конфигурация форматов сделок / финансовых моделей
+ */
+const DEAL_TYPES_MAP = {
+  sale: { key: 'sale', label: 'Прямая продажа', shortLabel: 'Продажа', icon: '💼', badgeClass: 'deal-sale' },
+  rent: { key: 'rent', label: 'Долгосрочная аренда', shortLabel: 'Аренда', icon: '🔑', badgeClass: 'deal-rent' },
+  franchise: { key: 'franchise', label: 'Франшиза / Управление', shortLabel: 'Франшиза', icon: '⭐', badgeClass: 'deal-franchise' },
+  invest: { key: 'invest', label: 'Соинвестирование', shortLabel: 'Соинвестирование', icon: '📈', badgeClass: 'deal-invest' }
+};
+
+function getHotelDealConfig(hotel) {
+  if (!hotel) return DEAL_TYPES_MAP.sale;
+  let dt = hotel.dealType ? String(hotel.dealType).toLowerCase().trim() : '';
+  if (!dt) {
+    const s = ((hotel.id || '') + ' ' + (hotel.hotelName || '')).toLowerCase();
+    if (s.includes('bukhara') || s.includes('бухар')) dt = 'franchise';
+    else if (s.includes('silk') || s.includes('charvak') || s.includes('resort') || s.includes('спа')) dt = 'rent';
+    else if (s.includes('khiva') || s.includes('хива')) dt = 'invest';
+    else dt = 'sale';
+  } else {
+    if (dt.includes('аренд') || dt === 'rent') dt = 'rent';
+    else if (dt.includes('франш') || dt.includes('управ') || dt === 'franchise' || dt === 'management') dt = 'franchise';
+    else if (dt.includes('инвест') || dt.includes('доля') || dt.includes('соинвест') || dt === 'invest' || dt === 'co-investment') dt = 'invest';
+    else dt = 'sale';
+  }
+  return DEAL_TYPES_MAP[dt] || DEAL_TYPES_MAP.sale;
+}
+window.getHotelDealConfig = getHotelDealConfig;
+
+/**
  * Канонический набор гостиничных объектов платформы.
  * Исключены фиктивные метрики (ADR, RevPAR, IRR, фиктивные IRI).
  * Все объекты соответствуют 19 каноническим полям.
@@ -58,6 +87,7 @@ const DEFAULT_HOTELS = [
     yearCommissioned: 2021,
     maxRoomArea: 85,
     minRoomArea: 32,
+    dealType: 'sale',
     amenities: 'Spa-комплекс, Закрытый и открытый бассейны, Панорамный ресторан, Конференц-центр, Valet-парковка, Фитнес-клуб',
     managerContact: '+998 (71) 200-11-22',
     status: 'active',
@@ -86,6 +116,7 @@ const DEFAULT_HOTELS = [
     yearCommissioned: 2022,
     maxRoomArea: 70,
     minRoomArea: 28,
+    dealType: 'sale',
     amenities: 'Ресторан авторской кухни, Спа-салон, Бассейн, Конгресс-центр, Экскурсионный сервис, Парковка',
     managerContact: '+998 (66) 231-40-00',
     status: 'active',
@@ -113,6 +144,7 @@ const DEFAULT_HOTELS = [
     yearCommissioned: 2020,
     maxRoomArea: 55,
     minRoomArea: 24,
+    dealType: 'franchise',
     amenities: 'Ресторан традиционной кухни, Терраса на крыше, Аутентичный хаммам, Сувенирный бутик, Чайхана',
     managerContact: '+998 (65) 224-88-10',
     status: 'active',
@@ -140,6 +172,7 @@ const DEFAULT_HOTELS = [
     yearCommissioned: 2023,
     maxRoomArea: 65,
     minRoomArea: 30,
+    dealType: 'rent',
     amenities: 'Открытый и закрытый бассейны, Спа-комплекс, Частный пляж, Вертодром, Ресторан с видом на горы',
     managerContact: '+998 (71) 150-77-99',
     status: 'active',
@@ -167,6 +200,7 @@ const DEFAULT_HOTELS = [
     yearCommissioned: 2019,
     maxRoomArea: 48,
     minRoomArea: 22,
+    dealType: 'invest',
     amenities: 'Внутренний восточный дворик, Чайхана, Экскурсионное бюро, Арт-галерея',
     managerContact: '+998 (62) 375-12-34',
     status: 'active',
@@ -193,6 +227,7 @@ const DEFAULT_HOTELS = [
     yearCommissioned: 2024,
     maxRoomArea: 60,
     minRoomArea: 26,
+    dealType: 'invest',
     amenities: 'Горнолыжный спуск, Канатная дорога, Климатолечение, Спа-центр, Панорамный ресторан',
     managerContact: '+998 (72) 226-55-40',
     status: 'active',

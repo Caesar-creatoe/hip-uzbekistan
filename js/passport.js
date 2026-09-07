@@ -121,6 +121,15 @@ function renderPassport(hotel) {
     }
   }
 
+  // Бейдж формата сделки в обложке
+  const deal = typeof window.getHotelDealConfig === 'function'
+    ? window.getHotelDealConfig(hotel)
+    : { label: 'Прямая продажа', icon: '💼' };
+  const dealBadge = document.getElementById('passport-deal-badge');
+  if (dealBadge) {
+    dealBadge.textContent = `${deal.icon} ${deal.label}`;
+  }
+
   // 5. Ключевые показатели в обложке (номера, места, этажи, год ввода)
   const setTxt = (id, val) => {
     const el = document.getElementById(id);
@@ -247,6 +256,15 @@ function renderSpecsCards(hotel) {
       specStatusBadge.textContent = '📝 Черновик';
       specStatusBadge.className = 'cover-status-badge cover-status-badge--draft';
     }
+  }
+
+  // Формат сделки в карточке
+  const specDealEl = document.getElementById('spec-deal-type');
+  if (specDealEl) {
+    const d = typeof window.getHotelDealConfig === 'function'
+      ? window.getHotelDealConfig(hotel)
+      : { label: 'Прямая продажа', icon: '💼' };
+    specDealEl.textContent = `${d.icon} ${d.label}`;
   }
 
   // Презентация в карточке

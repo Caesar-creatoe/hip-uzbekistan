@@ -13,8 +13,8 @@ const filterState = {
   region: 'all',
   stars: 'all',
   rooms: 'all',
+  dealType: 'all',
   sort: 'rooms-desc',
-  onlyPresentation: false,
   onlyPremium: false
 };
 
@@ -61,6 +61,11 @@ function buildCard(hotel) {
   const photo = typeof rawPhoto === 'object' && rawPhoto !== null ? (rawPhoto.src || './assets/hotel-hero.png') : rawPhoto;
 
   const stars = hotel.stars ? `<span class="hotel-card-stars">${starsHtml(hotel.stars)}</span>` : '';
+  const deal = typeof window.getHotelDealConfig === 'function'
+    ? window.getHotelDealConfig(hotel)
+    : { label: 'Прямая продажа', icon: '💼', badgeClass: 'deal-sale' };
+  const dealBadge = `<span class="hotel-card-badge hotel-card-badge--deal ${deal.badgeClass}">${deal.icon} ${deal.label}</span>`;
+
   const region = hotel.region ? `<span class="hotel-card-region">📍 ${escHtml(hotel.region)}</span>` : '';
   const rooms = hotel.roomsCount ? `<span class="hotel-stat"><strong>${escHtml(hotel.roomsCount)}</strong><small>номеров</small></span>` : '';
   const places = hotel.placesCount ? `<span class="hotel-stat"><strong>${escHtml(hotel.placesCount)}</strong><small>мест</small></span>` : '';
@@ -85,7 +90,7 @@ function buildCard(hotel) {
         <div class="hotel-card-img-overlay"></div>
         <div class="hotel-card-badges">
           ${stars}
-          ${hotel.hasPresentation ? '<span class="hotel-card-badge">📎 Презентация</span>' : ''}
+          ${dealBadge}
           ${statusBadge}
         </div>
       </div>
@@ -114,8 +119,9 @@ const searchClearBtn   = document.getElementById('catalog-search-clear');
 const regionSelect     = document.getElementById('filter-region');
 const starsSelect      = document.getElementById('filter-stars');
 const roomsSelect      = document.getElementById('filter-rooms');
+const dealSelect       = document.getElementById('filter-deal-type');
 const sortSelect       = document.getElementById('catalog-sort');
-const tagPresBtn       = document.getElementById('tag-has-presentation');
+const dealButtons      = document.querySelectorAll('button[data-deal]');
 const tagPremBtn       = document.getElementById('tag-premium-stars');
 const countNumEl       = document.getElementById('filter-count-num');
 const countLabelEl     = document.getElementById('filter-count-label');
@@ -129,24 +135,23 @@ function applyFiltersAndSort() {
   const q = filterState.search.trim().toLowerCase();
 
   // 1. Фильтрация
-  let matched = allHotels.filter(hotel => {
-    // Поиск
+  const matched = allHotels.filter(hotel => {
+    // Поисковый запрос
     if (q) {
-      const name = String(hotel.hotelName || '').toLowerCase();
-      const reg  = String(hotel.region || '').toLowerCase();
-      const addr = String(hotel.address || '').toLowerCase();
-      const leg  = String(hotel.legalEntity || '').toLowerCase();
-      const amen = String(hotel.amenities || '').toLowerCase();
-      if (!name.includes(q) && !reg.includes(q) && !addr.includes(q) && !leg.includes(q) && !amen.includes(q)) {
+      const matchName = (hotel.hotelName || '').toLowerCase().includes(q);
+      const matchRegion = (hotel.region || '').toLowerCase().includes(q);
+      const matchAddress = (hotel.address || '').toLowerCase().includes(q);
+      const matchAmenities = (hotel.amenities || '').toLowerCase().includes(q);
+      const matchEntity = (hotel.legalEntity || '').toLowerCase().includes(q);
+      if (!matchName && !matchRegion && !matchAddress && !matchAmenities && !matchEntity) {
         return false;
       }
     }
 
     // Регион
     if (filterState.region !== 'all') {
-      if (hotel.regionKey !== filterState.region) {
-        return false;
-      }
+      const regKey = hotel.regionKey || (typeof getRegionKey === 'function' ? getRegionKey(hotel.region) : '');
+      if (regKey !== filterState.region) return false;
     }
 
     // Звёздность
@@ -166,9 +171,12 @@ function applyFiltersAndSort() {
       if (filterState.rooms === 'large' && r <= 150) return false;
     }
 
-    // Быстрый фильтр: Только с презентацией
-    if (filterState.onlyPresentation) {
-      if (!hotel.hasPresentation) return false;
+    // Формат сделки / Инвестиционная ситуация
+    if (filterState.dealType !== 'all') {
+      const deal = typeof window.getHotelDealConfig === 'function'
+        ? window.getHotelDealConfig(hotel)
+        : null;
+      if (!deal || deal.key !== filterState.dealType) return false;
     }
 
     // Быстрый фильтр: Премиум (4★-5★)
@@ -241,8 +249,8 @@ function resetAllFilters() {
   filterState.region = 'all';
   filterState.stars = 'all';
   filterState.rooms = 'all';
+  filterState.dealType = 'all';
   filterState.sort = 'rooms-desc';
-  filterState.onlyPresentation = false;
   filterState.onlyPremium = false;
 
   if (searchInput) searchInput.value = '';
@@ -250,12 +258,14 @@ function resetAllFilters() {
   if (regionSelect) regionSelect.value = 'all';
   if (starsSelect) starsSelect.value = 'all';
   if (roomsSelect) roomsSelect.value = 'all';
+  if (dealSelect) dealSelect.value = 'all';
   if (sortSelect) sortSelect.value = 'rooms-desc';
 
-  if (tagPresBtn) {
-    tagPresBtn.classList.remove('is-active');
-    tagPresBtn.dataset.active = 'false';
-  }
+  const dealBtns = document.querySelectorAll('button[data-deal]');
+  dealBtns.forEach(b => {
+    b.classList.toggle('is-active', b.dataset.deal === 'all');
+  });
+
   if (tagPremBtn) {
     tagPremBtn.classList.remove('is-active');
     tagPremBtn.dataset.active = 'false';
@@ -306,18 +316,32 @@ if (roomsSelect) {
   });
 }
 
-if (sortSelect) {
-  sortSelect.addEventListener('change', () => {
-    filterState.sort = sortSelect.value;
+if (dealSelect) {
+  dealSelect.addEventListener('change', () => {
+    filterState.dealType = dealSelect.value;
+    const dealBtns = document.querySelectorAll('button[data-deal]');
+    dealBtns.forEach(b => {
+      b.classList.toggle('is-active', b.dataset.deal === filterState.dealType);
+    });
     applyFiltersAndSort();
   });
 }
 
-if (tagPresBtn) {
-  tagPresBtn.addEventListener('click', () => {
-    filterState.onlyPresentation = !filterState.onlyPresentation;
-    tagPresBtn.classList.toggle('is-active', filterState.onlyPresentation);
-    tagPresBtn.dataset.active = String(filterState.onlyPresentation);
+document.querySelectorAll('button[data-deal]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = btn.dataset.deal || 'all';
+    filterState.dealType = val;
+    if (dealSelect) dealSelect.value = val;
+    document.querySelectorAll('button[data-deal]').forEach(b => {
+      b.classList.toggle('is-active', b.dataset.deal === val);
+    });
+    applyFiltersAndSort();
+  });
+});
+
+if (sortSelect) {
+  sortSelect.addEventListener('change', () => {
+    filterState.sort = sortSelect.value;
     applyFiltersAndSort();
   });
 }
