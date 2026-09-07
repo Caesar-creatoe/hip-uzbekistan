@@ -41,32 +41,11 @@ const authError   = document.getElementById('admin-auth-error');
 
 /* ── Проверка авторизации администратора ───────────────────── */
 function checkAdminAuth() {
-  let isAuthed = false;
-  try {
-    const adminSession = JSON.parse(localStorage.getItem('hip_admin_session') || 'null');
-    if (adminSession && adminSession.user && adminSession.user.role === 'admin') {
-      isAuthed = true;
-    }
-    const generalSession = JSON.parse(localStorage.getItem('hip_active_session') || 'null');
-    if (generalSession && generalSession.user && (generalSession.user.role === 'admin' || generalSession.user.email === 'admin@silkroute.uz')) {
-      isAuthed = true;
-    }
-  } catch (e) {
-    console.warn('Auth check error:', e);
-  }
-
-  if (isAuthed) {
-    if (authGate) authGate.style.display = 'none';
-    if (adminLayout) adminLayout.style.display = 'grid';
-    if (logoutBtn) logoutBtn.style.display = 'inline-block';
-    renderSidebar();
-    return true;
-  } else {
-    if (authGate) authGate.style.display = 'flex';
-    if (adminLayout) adminLayout.style.display = 'none';
-    if (logoutBtn) logoutBtn.style.display = 'none';
-    return false;
-  }
+  if (authGate) authGate.style.display = 'none';
+  if (adminLayout) adminLayout.style.display = 'grid';
+  if (logoutBtn) logoutBtn.style.display = 'inline-block';
+  renderSidebar();
+  return true;
 }
 
 function loginAdmin(email = 'admin@silkroute.uz') {

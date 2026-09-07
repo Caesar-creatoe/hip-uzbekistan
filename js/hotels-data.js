@@ -267,6 +267,10 @@ const SriDB = {
 };
 window.SriDB = SriDB;
 
+const API_URL = (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'))
+  ? 'https://hotel-investment-portfolio-uz.vercel.app/api/hotels'
+  : '/api/hotels';
+
 /**
  * Единый менеджер хранилища отелей (localStorage + Cloud Sync)
  */
@@ -289,9 +293,25 @@ const HotelStore = {
   getAll() {
     const raw = this.getAllRaw();
     if (raw.length > 0) {
+      // Гарантируем, что отель ASMALD и актуальные канонические отели всегда присутствуют в каталоге
+      const existingIds = new Set(raw.map(h => (h.id || h.slug || '').toLowerCase()));
+      let updated = false;
+      for (const def of DEFAULT_HOTELS) {
+        const defId = (def.id || def.slug || '').toLowerCase();
+        if (!existingIds.has(defId)) {
+          raw.push(def);
+          existingIds.add(defId);
+          updated = true;
+        }
+      }
+      if (updated) {
+        try {
+          localStorage.setItem(this.KEY, JSON.stringify(raw));
+        } catch (e) {}
+      }
       return raw;
     }
-    // Локальная инициализация каноническими отелями без перезаписи облачной базы
+    // Первичная инициализация
     try {
       localStorage.setItem(this.KEY, JSON.stringify(DEFAULT_HOTELS));
     } catch (e) {}
@@ -338,7 +358,7 @@ const HotelStore = {
 
     if (syncCloud && typeof fetch === 'function') {
       try {
-        const res = await fetch('/api/hotels', {
+        const res = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ hotels: clean })
@@ -406,11 +426,11 @@ const HotelStore = {
   async syncWithCloud() {
     if (typeof fetch !== 'function') return false;
     try {
-      const res = await fetch('/api/hotels?_t=' + Date.now());
+      const sep = API_URL.includes('?') ? '&' : '?';
+      const res = await fetch(API_URL + sep + '_t=' + Date.now());
       if (!res.ok) return false;
       const data = await res.json();
       if (data && Array.isArray(data.hotels) && data.hotels.length > 0) {
-        // Облачная база — единственный авторитетный источник
         localStorage.setItem(this.KEY, JSON.stringify(data.hotels));
         window.dispatchEvent(new CustomEvent('sri_hotels_updated', { detail: data.hotels }));
         return data.hotels;
