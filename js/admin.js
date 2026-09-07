@@ -31,65 +31,14 @@ const totalCounter = document.getElementById('total-count');
 const statusMsg    = document.getElementById('status-message');
 const searchInput  = document.getElementById('sidebar-search');
 
-/* ── Auth Guard Элементы ───────────────────────────────────── */
-const authGate    = document.getElementById('admin-auth-gate');
+/* ── Layout & UI ───────────────────────────────────────────── */
 const adminLayout = document.getElementById('admin-layout');
-const loginForm   = document.getElementById('admin-login-form');
-const demoBtn     = document.getElementById('btn-admin-demo');
-const logoutBtn   = document.getElementById('btn-admin-logout');
-const authError   = document.getElementById('admin-auth-error');
+if (adminLayout) adminLayout.style.display = 'grid';
 
-/* ── Проверка авторизации администратора ───────────────────── */
 function checkAdminAuth() {
-  if (authGate) authGate.style.display = 'none';
   if (adminLayout) adminLayout.style.display = 'grid';
-  if (logoutBtn) logoutBtn.style.display = 'inline-block';
   renderSidebar();
   return true;
-}
-
-function loginAdmin(email = 'admin@silkroute.uz') {
-  const adminUser = {
-    id: 'usr_admin_01',
-    email: email.toLowerCase(),
-    role: 'admin',
-    full_name: 'Администратор платформы SRI',
-    created_at: new Date().toISOString()
-  };
-  localStorage.setItem('hip_admin_session', JSON.stringify({ user: adminUser, token: 'sri_adm_token' }));
-  localStorage.setItem('hip_active_session', JSON.stringify({ user: adminUser, access_token: 'sri_adm_token' }));
-  checkAdminAuth();
-  showStatus('Вход выполнен успешно');
-}
-
-if (loginForm) {
-  loginForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const email = document.getElementById('admin-email')?.value.trim();
-    const pass = document.getElementById('admin-password')?.value.trim();
-    if (!email || !pass) {
-      if (authError) {
-        authError.textContent = 'Укажите email и пароль';
-        authError.style.display = 'block';
-      }
-      return;
-    }
-    loginAdmin(email);
-  });
-}
-
-if (demoBtn) {
-  demoBtn.addEventListener('click', () => {
-    loginAdmin('admin@silkroute.uz');
-  });
-}
-
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('hip_admin_session');
-    localStorage.removeItem('hip_active_session');
-    checkAdminAuth();
-  });
 }
 
 /* ── Утилиты ───────────────────────────────────────────────── */
