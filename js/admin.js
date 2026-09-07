@@ -370,10 +370,71 @@ if (btnPhotoUrl && fieldPhotoUrl) {
   });
 }
 
+/* ── Загрузка презентации ──────────────────────────────────── */
+let presentationFileData = null;
+let presentationFileName = null;
+
+const presFileInput   = document.getElementById('field-presentation-file');
+const presChooseBtn   = document.getElementById('btn-choose-presentation');
+const presFileNameEl  = document.getElementById('presentation-filename');
+const presRemoveBtn   = document.getElementById('btn-remove-presentation');
+const presUrlInput    = document.getElementById('field-presentation-url');
+const presCheckbox    = document.getElementById('field-hasPresentation');
+
+if (presChooseBtn && presFileInput) {
+  presChooseBtn.addEventListener('click', () => presFileInput.click());
+  presFileInput.addEventListener('change', (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    if (file.size > 20 * 1024 * 1024) {
+      showStatus('⚠️ Размер файла презентации превышает 20 МБ. Используйте ссылку или оптимизируйте файл.', 'error');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      presentationFileData = reader.result;
+      presentationFileName = file.name;
+      if (presFileNameEl) presFileNameEl.textContent = `✅ ${file.name}`;
+      if (presRemoveBtn) presRemoveBtn.style.display = 'inline-block';
+      if (presCheckbox) presCheckbox.checked = true;
+      showStatus(`✅ Презентация «${file.name}» загружена`);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+if (presRemoveBtn) {
+  presRemoveBtn.addEventListener('click', () => {
+    presentationFileData = null;
+    presentationFileName = null;
+    if (presFileInput) presFileInput.value = '';
+    if (presFileNameEl) presFileNameEl.textContent = 'Файл не выбран';
+    presRemoveBtn.style.display = 'none';
+    if (!presUrlInput?.value.trim() && presCheckbox) {
+      presCheckbox.checked = false;
+    }
+    showStatus('Файл презентации удален');
+  });
+}
+
+if (presUrlInput) {
+  presUrlInput.addEventListener('input', () => {
+    if (presUrlInput.value.trim() && presCheckbox) {
+      presCheckbox.checked = true;
+    }
+  });
+}
+
 /* ── Сброс формы ───────────────────────────────────────────── */
 function resetForm() {
   editingId = null;
   photoFiles = [];
+  presentationFileData = null;
+  presentationFileName = null;
+  if (presFileInput) presFileInput.value = '';
+  if (presFileNameEl) presFileNameEl.textContent = 'Файл не выбран';
+  if (presRemoveBtn) presRemoveBtn.style.display = 'none';
+  if (presUrlInput) presUrlInput.value = '';
   if (hotelForm) hotelForm.reset();
   if (photoPreview) renderPhotoPreview();
   if (formTitle) formTitle.textContent = 'Добавить новый отель';
@@ -404,9 +465,20 @@ function loadForEdit(id) {
     }
   });
 
-  const presCheckbox = document.getElementById('field-hasPresentation');
+  // Загрузка презентации
+  presentationFileData = hotel.presentationFile || null;
+  presentationFileName = hotel.presentationFileName || null;
+  if (presUrlInput) presUrlInput.value = hotel.presentationUrl || '';
+  if (presentationFileData) {
+    if (presFileNameEl) presFileNameEl.textContent = `✅ ${presentationFileName || 'Презентация загружена'}`;
+    if (presRemoveBtn) presRemoveBtn.style.display = 'inline-block';
+  } else {
+    if (presFileNameEl) presFileNameEl.textContent = 'Файл не выбран';
+    if (presRemoveBtn) presRemoveBtn.style.display = 'none';
+  }
+
   if (presCheckbox) {
-    presCheckbox.checked = Boolean(hotel.hasPresentation);
+    presCheckbox.checked = Boolean(hotel.hasPresentation || presentationFileData || hotel.presentationUrl);
   }
 
   // Загружаем фото: поддержка как legacy массива строк, так и нового {src, caption}
@@ -444,6 +516,12 @@ if (hotelForm) {
       : rawAmenities.split(/[,;\n]+/).map(s => s.trim()).filter(Boolean);
     const sanitizedAmenities = parsedAmenitiesList.join(', ');
 
+    const hasPresValue = Boolean(
+      document.getElementById('field-hasPresentation')?.checked ||
+      presentationFileData ||
+      (presUrlInput && presUrlInput.value.trim())
+    );
+
     const hotel = {
       hotelName:        get('hotelName'),
       legalEntity:      get('legalEntity'),
@@ -462,7 +540,10 @@ if (hotelForm) {
       amenities:        sanitizedAmenities,
       managerContact:   get('managerContact'),
       status:           get('status') || 'active',
-      hasPresentation:  Boolean(document.getElementById('field-hasPresentation')?.checked),
+      hasPresentation:  hasPresValue,
+      presentationFile: presentationFileData,
+      presentationFileName: presentationFileName,
+      presentationUrl:  presUrlInput ? presUrlInput.value.trim() : '',
       notes:            get('notes') || '',
       photos:           photoFiles.map(p => ({
         src: typeof p === 'object' ? (p.src || '') : String(p),

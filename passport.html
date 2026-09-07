@@ -223,7 +223,7 @@
       <a href="#amenities-section" class="toc-link" id="toc-amenities">Инфраструктура</a>
       <a href="#location" class="toc-link" id="toc-location">Локация</a>
       <a href="#gallery" class="toc-link" id="toc-gallery">Фотоматериалы</a>
-      <a href="#download" class="toc-link toc-link--cta" id="toc-download">Скачать PDF</a>
+      <a href="#download" class="toc-link toc-link--cta" id="toc-download">Скачать презентацию</a>
     </div>
   </nav>
 
@@ -265,9 +265,6 @@
           <span class="cover-status-badge cover-status-badge--active" id="passport-status-badge">
             ● Активный объект
           </span>
-          <span class="cover-model-badge" id="passport-presentation-badge" style="display:none">
-            📄 Имеется презентация
-          </span>
         </div>
 
         <!-- Ключевые инвестиционные показатели (Премиальная стеклянная панель) -->
@@ -292,9 +289,9 @@
 
         <!-- Быстрые действия и инфо инвестора -->
         <div class="cover-actions-row">
-          <a href="#download" class="btn-cover-primary">
-            <span>📥 Скачать PDF-паспорт</span>
-          </a>
+          <button type="button" class="btn-cover-primary" id="btn-cover-download" style="border:none;cursor:pointer;">
+            <span>📥 Скачать презентацию</span>
+          </button>
           <a href="#gallery" class="btn-cover-secondary" id="cover-btn-photos">
             <span>📷 Фотогалерея</span>
           </a>
@@ -549,14 +546,14 @@
         </svg>
       </div>
       <div class="download-content appear">
-        <p class="kicker kicker--light">HOTEL INVESTMENT PASSPORT&nbsp;·&nbsp;PDF</p>
-        <h2 class="download-title">Скачать инвестиционный паспорт</h2>
+        <p class="kicker kicker--light">HOTEL INVESTMENT PRESENTATION · PDF</p>
+        <h2 class="download-title">Скачать презентацию объекта</h2>
         <p class="download-desc">
-          Официальный паспорт гостиничного актива формируется в едином стандарте платформы Silk Route Invest на основе проверенных данных.
+          Официальная презентация гостиничного актива сформирована для квалифицированных инвесторов и содержит подробные технико-экономические показатели.
         </p>
         <div class="download-actions">
-          <button class="btn btn--teal btn--lg" id="btn-download-pdf">
-            Скачать PDF-паспорт
+          <button type="button" class="btn btn--teal btn--lg" id="btn-download-pdf">
+            Скачать презентацию
           </button>
           <a href="portfolio.html" class="btn btn--ghost btn--lg" id="btn-back-catalog">
             &larr; Вернуться в каталог

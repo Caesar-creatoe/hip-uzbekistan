@@ -5,6 +5,8 @@
    ============================================================ */
 'use strict';
 
+let currentHotelData = null;
+
 document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const hotelParam = urlParams.get('hotel');
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (hotel) {
+    currentHotelData = hotel;
     renderPassport(hotel);
     initPassportMap(hotel);
   } else {
@@ -115,16 +118,6 @@ function renderPassport(hotel) {
     } else {
       statusBadge.textContent = '📝 Черновик';
       statusBadge.className = 'cover-status-badge cover-status-badge--draft';
-    }
-  }
-
-  // Наличие презентации
-  const presBadge = document.getElementById('passport-presentation-badge');
-  if (presBadge) {
-    if (hotel.hasPresentation) {
-      presBadge.style.display = 'inline-block';
-    } else {
-      presBadge.style.display = 'none';
     }
   }
 
@@ -244,13 +237,15 @@ function renderSpecsCards(hotel) {
   // Презентация в карточке
   const specPresEl = document.getElementById('spec-presentation');
   if (specPresEl) {
-    specPresEl.textContent = hotel.hasPresentation ? 'Имеется в наличии' : 'Предоставляется по запросу';
-  }
-  const specPresBadge = document.getElementById('spec-pres-badge');
-  if (specPresBadge && hotel.hasPresentation) {
-    specPresBadge.textContent = '📄 Презентация';
-    specPresBadge.className = 'cover-model-badge';
-    specPresBadge.style.display = 'inline-block';
+    const presFile = hotel.presentationFile || hotel.presentationUrl;
+    if (presFile) {
+      specPresEl.innerHTML = `<a href="${esc(presFile)}" download="${esc(hotel.hotelName || 'hotel')}-presentation.pdf" target="_blank" style="color:var(--color-accent);font-weight:600;text-decoration:underline;">📄 Скачать презентацию</a>`;
+    } else if (hotel.hasPresentation) {
+      specPresEl.innerHTML = `<button type="button" class="btn-download-trigger" style="background:none;border:none;padding:0;color:var(--color-accent);font-weight:600;text-decoration:underline;cursor:pointer;">📄 Скачать презентацию</button>`;
+      specPresEl.querySelector('.btn-download-trigger')?.addEventListener('click', () => downloadPresentation());
+    } else {
+      specPresEl.textContent = 'Предоставляется по запросу';
+    }
   }
 
   // Контакт в карточке
@@ -561,20 +556,47 @@ function initTocSpy() {
   passportSections.forEach((s) => tocObserver.observe(s));
 }
 
-/* ── Кнопка PDF ─────────────────────────────────────────────── */
+/* ── Скачивание презентации объекта ────────────────────────── */
+function downloadPresentation() {
+  const hotel = currentHotelData;
+  const file = hotel?.presentationFile || hotel?.presentationUrl;
+  if (file) {
+    const a = document.createElement('a');
+    a.href = file;
+    a.download = `${hotel?.hotelName || 'hotel'}-presentation.pdf`;
+    if (!file.startsWith('data:')) {
+      a.target = '_blank';
+    }
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    return;
+  }
+  // Fallback: формирование официального инвестиционного паспорта через окно печати браузера
+  window.print();
+}
+
 function initPdfButton() {
   const btnPdf = document.getElementById('btn-download-pdf');
-  if (btnPdf) {
-    btnPdf.addEventListener('click', () => {
-      btnPdf.textContent = 'Подготовка паспорта...';
-      btnPdf.disabled = true;
+  const btnCover = document.getElementById('btn-cover-download');
+
+  const attachDownload = (btn) => {
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const origHtml = btn.innerHTML;
+      btn.innerHTML = '<span>⏳ Загрузка...</span>';
+      btn.disabled = true;
       setTimeout(() => {
-        window.print();
+        downloadPresentation();
         setTimeout(() => {
-          btnPdf.textContent = 'Скачать PDF-паспорт';
-          btnPdf.disabled = false;
-        }, 1200);
-      }, 300);
+          btn.innerHTML = origHtml;
+          btn.disabled = false;
+        }, 1000);
+      }, 250);
     });
-  }
+  };
+
+  attachDownload(btnPdf);
+  attachDownload(btnCover);
 }

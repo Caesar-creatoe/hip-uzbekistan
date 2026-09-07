@@ -256,11 +256,25 @@
             </div>
 
             <div class="form-field col-span-2">
-              <div class="form-check">
-                <input type="checkbox" id="field-hasPresentation" />
-                <label class="form-check-label" for="field-hasPresentation">
-                  📎 Есть презентация / QR-код по объекту
-                </label>
+              <label class="form-label">Инвестиционная презентация объекта</label>
+              <div class="presentation-upload-card" style="background:#FAF8F5;border:1px dashed #D9CBB8;border-radius:8px;padding:16px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+                  <button type="button" class="btn-secondary" id="btn-choose-presentation" style="padding:9px 18px;background:#3B2A20;color:#FFF;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">
+                    📄 Загрузить PDF-файл презентации
+                  </button>
+                  <input type="file" id="field-presentation-file" accept=".pdf,application/pdf" style="display:none" />
+                  <span id="presentation-filename" style="font-size:12px;color:#666;font-weight:500;">Файл не выбран</span>
+                  <button type="button" id="btn-remove-presentation" style="display:none;background:none;border:none;color:#C62828;cursor:pointer;font-size:12px;font-weight:600;">✕ Удалить</button>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <input type="url" id="field-presentation-url" class="form-input" style="width:100%;font-size:12px;padding:8px 12px;" placeholder="Или укажите прямую ссылку на презентацию (https://...)" />
+                </div>
+                <div class="form-check" style="margin-top:10px;">
+                  <input type="checkbox" id="field-hasPresentation" />
+                  <label class="form-check-label" for="field-hasPresentation">
+                    Включить статус «Имеется презентация»
+                  </label>
+                </div>
               </div>
             </div>
 
