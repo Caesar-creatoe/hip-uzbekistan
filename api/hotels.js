@@ -1,5 +1,13 @@
 // Vercel Serverless Function: /api/hotels
-// Provides shared multi-device storage for hotels catalog
+// Persistent storage via GitHub API — changes are visible to ALL users worldwide
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+const GITHUB_OWNER = 'Caesar-creatoe';
+const GITHUB_REPO = 'hip-uzbekistan';
+const GITHUB_FILE = 'data/hotels.json';
+const GITHUB_BRANCH = 'main';
+const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}`;
+const API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
 const CANONICAL_HOTELS = [
   {
@@ -123,97 +131,109 @@ const CANONICAL_HOTELS = [
   }
 ];
 
-let memoryHotels = [...CANONICAL_HOTELS];
+// Read hotels from GitHub (source of truth for ALL users)
+async function readFromGitHub() {
+  try {
+    // Use raw URL with cache-busting to always get fresh data
+    const ts = Date.now();
+    const resp = await fetch(`${RAW_URL}?t=${ts}`, {
+      headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      if (Array.isArray(data) && data.length > 0) return data;
+    }
+  } catch (e) {
+    console.warn('GitHub raw read failed:', e.message);
+  }
+  return null;
+}
 
-export default async function handler(req, res) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+// Write hotels to GitHub (updates the shared database)
+async function writeToGitHub(hotels) {
+  // 1. Get current SHA of the file (required for update)
+  const shaResp = await fetch(API_URL, {
+    headers: {
+      'Authorization': `token ${GITHUB_TOKEN}`,
+      'Accept': 'application/vnd.github.v3+json'
+    }
+  });
 
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+  let sha = null;
+  if (shaResp.ok) {
+    const fileInfo = await shaResp.json();
+    sha = fileInfo.sha;
   }
 
-  // Supabase sync if credentials provided in environment
-  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  // 2. Encode content as base64
+  const content = Buffer.from(JSON.stringify(hotels, null, 2)).toString('base64');
 
+  // 3. Commit the updated file
+  const body = {
+    message: `Update hotels catalog [${new Date().toISOString()}]`,
+    content,
+    branch: GITHUB_BRANCH
+  };
+  if (sha) body.sha = sha;
+
+  const putResp = await fetch(API_URL, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/vnd.github.v3+json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!putResp.ok) {
+    const err = await putResp.text();
+    throw new Error(`GitHub write failed: ${putResp.status} – ${err}`);
+  }
+  return true;
+}
+
+export default async function handler(req, res) {
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST,PUT,DELETE,PATCH');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  // ─── GET ─────────────────────────────────────────────────────────────────
+  if (req.method === 'GET') {
+    const hotels = await readFromGitHub();
+    if (hotels) {
+      return res.status(200).json({ hotels, source: 'github' });
+    }
+    // Fallback to canonical list
+    return res.status(200).json({ hotels: CANONICAL_HOTELS, source: 'canonical' });
+  }
+
+  // ─── POST (save full list) ────────────────────────────────────────────────
   if (req.method === 'POST') {
     try {
       const data = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-      const list = Array.isArray(data) ? data : (data && Array.isArray(data.hotels) ? data.hotels : null);
+      let list = Array.isArray(data) ? data : (data && Array.isArray(data.hotels) ? data.hotels : null);
 
-      if (Array.isArray(list)) {
-        // Гарантируем, что канонические отели не теряются при сохранении
-        const merged = [...list];
-        const existingIds = new Set(merged.map(h => (h.id || h.slug || '').toLowerCase()));
-        for (const def of CANONICAL_HOTELS) {
-          const defId = (def.id || def.slug || '').toLowerCase();
-          if (!existingIds.has(defId)) {
-            merged.push(def);
-            existingIds.add(defId);
-          }
-        }
-
-        memoryHotels = merged;
-
-        if (supabaseUrl && supabaseKey) {
-          try {
-            await fetch(`${supabaseUrl}/rest/v1/hotels_store`, {
-              method: 'POST',
-              headers: {
-                'apikey': supabaseKey,
-                'Authorization': `Bearer ${supabaseKey}`,
-                'Content-Type': 'application/json',
-                'Prefer': 'resolution=merge-duplicates'
-              },
-              body: JSON.stringify({ id: 'catalog', data: memoryHotels, updated_at: new Date().toISOString() })
-            });
-          } catch (sbErr) {
-            console.warn('Supabase sync error in API:', sbErr);
-          }
-        }
-
-        return res.status(200).json({ success: true, count: memoryHotels.length, hotels: memoryHotels });
+      if (!Array.isArray(list)) {
+        return res.status(400).json({ error: 'Expected array of hotels or { hotels: [...] }' });
       }
-      return res.status(400).json({ error: 'Expected array of hotels or { hotels: [...] }' });
+
+      // Write to GitHub — this makes changes visible to ALL users immediately
+      await writeToGitHub(list);
+
+      return res.status(200).json({ success: true, count: list.length, hotels: list, source: 'github' });
     } catch (err) {
+      console.error('POST /api/hotels error:', err);
       return res.status(500).json({ error: err.message });
     }
   }
 
-  // GET method
-  if (supabaseUrl && supabaseKey) {
-    try {
-      const sbRes = await fetch(`${supabaseUrl}/rest/v1/hotels_store?id=eq.catalog&select=data`, {
-        headers: {
-          'apikey': supabaseKey,
-          'Authorization': `Bearer ${supabaseKey}`
-        }
-      });
-      if (sbRes.ok) {
-        const rows = await sbRes.json();
-        if (rows && rows.length > 0 && Array.isArray(rows[0].data) && rows[0].data.length > 0) {
-          memoryHotels = rows[0].data;
-          return res.status(200).json({ hotels: memoryHotels });
-        }
-      }
-    } catch (sbErr) {
-      console.warn('Supabase read error:', sbErr);
-    }
-  }
-
-  if (memoryHotels && Array.isArray(memoryHotels) && memoryHotels.length > 0) {
-    return res.status(200).json({ hotels: memoryHotels });
-  }
-
-  // Fallback: всегда возвращаем канонический список отелей (включая ASMALD)
-  memoryHotels = [...CANONICAL_HOTELS];
-  return res.status(200).json({ hotels: memoryHotels });
+  return res.status(405).json({ error: 'Method not allowed' });
 }

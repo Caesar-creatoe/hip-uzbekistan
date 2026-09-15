@@ -78,8 +78,7 @@ function showStatus(msg, type='success') {
 }
 
 /* ── Sidebar ───────────────────────────────────────────────── */
-function renderSidebar() {
-  const hotels = Store.getAll();
+function renderSidebarWithHotels(hotels) {
   if (totalCounter) totalCounter.textContent = hotels.length;
   if (!hotelList) return;
   if (hotels.length === 0) {
@@ -104,6 +103,16 @@ function renderSidebar() {
     el.addEventListener('click', () => loadForEdit(el.dataset.id));
     el.addEventListener('keydown', e => { if(e.key==='Enter') loadForEdit(el.dataset.id); });
   });
+}
+
+function renderSidebar() {
+  renderSidebarWithHotels(Store.getAll());
+}
+
+async function renderSidebarFromCloud() {
+  if (hotelList) hotelList.innerHTML = '<div class="sidebar-empty"><span>⏳</span><p>Загрузка из облака...</p></div>';
+  const hotels = await Store.getAllAsync();
+  renderSidebarWithHotels(hotels);
 }
 
 /* ── Фото превью ───────────────────────────────────────────── */
@@ -378,7 +387,10 @@ function resetForm() {
 
 /* ── Загрузка в форму ──────────────────────────────────────── */
 async function loadForEdit(id) {
-  const hotel = Store.getById(id);
+  // Берём из облака если возможно, иначе из кеша
+  const allHotels = await Store.getAllAsync();
+  const q = String(id).toLowerCase();
+  const hotel = allHotels.find(h => (h.id && String(h.id).toLowerCase() === q) || (h.slug && String(h.slug).toLowerCase() === q)) || Store.getById(id);
   if (!hotel) return;
   editingId = id;
   const fields = [
@@ -578,14 +590,14 @@ if (searchInput) {
 checkAdminAuth();
 resetForm();
 
-// Слушаем синхронизацию из облака (в реальном времени)
-window.addEventListener('sri_hotels_updated', () => {
-  renderSidebar();
+// Слушаем обновления из облака — автоматически перерисовываем сайдбар
+window.addEventListener('sri_hotels_updated', (e) => {
+  if (e.detail && Array.isArray(e.detail)) {
+    renderSidebarWithHotels(e.detail);
+  } else {
+    renderSidebar();
+  }
 });
 
-// Первичная загрузка актуальной базы с сервера
-if (Store && typeof Store.syncWithCloud === 'function') {
-  Store.syncWithCloud().then(() => {
-    renderSidebar();
-  });
-}
+// При загрузке — сразу получаем актуальный список с GitHub
+renderSidebarFromCloud();
