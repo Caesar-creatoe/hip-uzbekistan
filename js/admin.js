@@ -41,6 +41,48 @@ function checkAdminAuth() {
   return true;
 }
 
+/* ── Кастомный диалог подтверждения (вместо window.confirm) ── */
+function showConfirmDialog(message) {
+  return new Promise(resolve => {
+    // Удаляем старый диалог если есть
+    const old = document.getElementById('custom-confirm-dialog');
+    if (old) old.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'custom-confirm-dialog';
+    overlay.style.cssText = `
+      position:fixed;inset:0;background:rgba(0,0,0,0.6);
+      display:flex;align-items:center;justify-content:center;
+      z-index:99999;backdrop-filter:blur(4px);
+    `;
+    overlay.innerHTML = `
+      <div style="background:#1e1e2e;border:1px solid #3d3d5c;border-radius:16px;
+                  padding:28px 32px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.5);
+                  font-family:inherit;color:#e2e2f0;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:12px;">⚠️</div>
+        <p style="margin:0 0 24px;font-size:1rem;line-height:1.5;color:#c9c9e0;">${message}</p>
+        <div style="display:flex;gap:12px;justify-content:center;">
+          <button id="confirm-no" style="padding:10px 24px;border-radius:8px;border:1px solid #4a4a6a;
+            background:transparent;color:#c9c9e0;cursor:pointer;font-size:0.9rem;transition:all 0.2s;"
+            onmouseover="this.style.background='#2d2d4e'" onmouseout="this.style.background='transparent'">
+            Отмена
+          </button>
+          <button id="confirm-yes" style="padding:10px 24px;border-radius:8px;border:none;
+            background:#e74c3c;color:#fff;cursor:pointer;font-size:0.9rem;font-weight:600;transition:all 0.2s;"
+            onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
+            Удалить
+          </button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('#confirm-yes').onclick = () => { overlay.remove(); resolve(true); };
+    overlay.querySelector('#confirm-no').onclick = () => { overlay.remove(); resolve(false); };
+    overlay.onclick = (e) => { if (e.target === overlay) { overlay.remove(); resolve(false); } };
+  });
+}
+
 /* ── Утилиты ───────────────────────────────────────────────── */
 function escHtml(str) {
   return String(str ?? '')
@@ -553,7 +595,8 @@ if (deleteBtn) {
   deleteBtn.addEventListener('click', async () => {
     if (!editingId) return;
     const h = Store.getById(editingId);
-    if (!confirm(`Удалить «${h?.hotelName||editingId}»?`)) return;
+    const confirmed = await showConfirmDialog(`Удалить «${h?.hotelName||editingId}»?<br><small style="color:#aaa">Это действие нельзя отменить — отель пропадёт у всех пользователей.</small>`);
+    if (!confirmed) return;
     showStatus('⏳ Удаление из облачной базы...', 'info');
     if (window.SriDB) {
       window.SriDB.delete('pres_' + editingId);
