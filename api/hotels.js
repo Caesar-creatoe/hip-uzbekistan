@@ -131,20 +131,28 @@ const CANONICAL_HOTELS = [
   }
 ];
 
-// Read hotels from GitHub (source of truth for ALL users)
+// Read hotels from GitHub API (not raw URL — raw has CDN cache up to 5 min!)
 async function readFromGitHub() {
   try {
-    // Use raw URL with cache-busting to always get fresh data
-    const ts = Date.now();
-    const resp = await fetch(`${RAW_URL}?t=${ts}`, {
-      headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+    // Use API endpoint which is NOT cached by CDN
+    const resp = await fetch(API_URL, {
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Cache-Control': 'no-cache'
+      }
     });
     if (resp.ok) {
-      const data = await resp.json();
-      if (Array.isArray(data) && data.length > 0) return data;
+      const fileInfo = await resp.json();
+      if (fileInfo && fileInfo.content) {
+        // GitHub API returns base64-encoded content
+        const decoded = Buffer.from(fileInfo.content, 'base64').toString('utf8');
+        const data = JSON.parse(decoded);
+        if (Array.isArray(data) && data.length > 0) return data;
+      }
     }
   } catch (e) {
-    console.warn('GitHub raw read failed:', e.message);
+    console.warn('GitHub API read failed:', e.message);
   }
   return null;
 }

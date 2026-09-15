@@ -532,14 +532,17 @@ if (hotelForm) {
     };
 
     showStatus('⏳ Сохранение в облако...', 'info');
+    let ok = false;
     if (editingId) {
-      await Store.update(editingId, hotel);
-      showStatus('✅ Отель успешно обновлён и опубликован в сети');
+      ok = await Store.update(editingId, hotel);
+      if (ok) showStatus('✅ Отель успешно обновлён — видно всем');
+      else showStatus('❌ Ошибка сохранения. Откройте DevTools (F12) и проверьте Console.', 'error');
     } else {
-      await Store.add(hotel);
-      showStatus('✅ Отель добавлен в каталог и опубликован в сети');
+      ok = await Store.add(hotel);
+      if (ok) showStatus('✅ Отель добавлен в каталог — видно всем');
+      else showStatus('❌ Ошибка сохранения. Откройте DevTools (F12) и проверьте Console.', 'error');
     }
-    resetForm();
+    if (ok) resetForm();
   });
 }
 
@@ -556,8 +559,9 @@ if (deleteBtn) {
       window.SriDB.delete('pres_' + editingId);
       window.SriDB.delete('photos_' + editingId);
     }
-    await Store.delete(editingId);
-    showStatus('🗑️ Отель удалён на всех устройствах');
+    const ok = await Store.delete(editingId);
+    if (ok !== false) showStatus('🗑️ Отель удалён на всех устройствах');
+    else showStatus('❌ Ошибка удаления. Откройте DevTools (F12) и проверьте Console.', 'error');
     resetForm();
   });
 }

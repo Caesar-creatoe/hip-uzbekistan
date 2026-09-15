@@ -266,29 +266,32 @@ const HotelStore = {
   async add(hotel) {
     const hotels = await this.getAllAsync();
     hotel.id = hotel.id || ('sri_' + Date.now().toString(36));
-    hotel.slug = hotel.slug || (hotel.hotelName ? hotel.hotelName.toLowerCase().replace(/[^a-z0-9а-яё]+/g, '-').replace(/^-|-$/g, '') : hotel.id);
+    hotel.slug = hotel.slug || (hotel.hotelName ? hotel.hotelName.toLowerCase().replace(/[^a-z0-9\u0430-\u044f\u0451]+/g, '-').replace(/^-|-$/g, '') : hotel.id);
     hotel.createdAt = hotel.createdAt || new Date().toISOString();
     const idx = hotels.findIndex(h => h.id === hotel.id || (h.slug && h.slug === hotel.slug));
     if (idx !== -1) hotels[idx] = { ...hotels[idx], ...hotel, updatedAt: new Date().toISOString() };
     else hotels.push(hotel);
-    await this.save(hotels);
-    return hotel;
+    const ok = await this.save(hotels);
+    return ok; // true = saved to GitHub, false = error
   },
 
   async update(id, data) {
     const hotels = await this.getAllAsync();
     const idx = hotels.findIndex(h => h.id === id || h.slug === id);
-    if (idx === -1) return null;
+    if (idx === -1) return false;
     hotels[idx] = { ...hotels[idx], ...data, updatedAt: new Date().toISOString() };
-    await this.save(hotels);
-    return hotels[idx];
+    const ok = await this.save(hotels);
+    return ok; // true = saved to GitHub, false = error
   },
 
   async delete(id) {
     const hotels = (await this.getAllAsync()).filter(h => h.id !== id && h.slug !== id);
-    if (window.SriDB) { window.SriDB.delete('pres_' + id); window.SriDB.delete('photos_' + id); }
-    await this.save(hotels);
-    return hotels;
+    if (typeof window !== 'undefined' && window.SriDB) {
+      window.SriDB.delete('pres_' + id);
+      window.SriDB.delete('photos_' + id);
+    }
+    const ok = await this.save(hotels);
+    return ok; // true = deleted from GitHub, false = error
   },
 
   async resetToDefaults() {
