@@ -93,5 +93,34 @@
       "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80&fit=crop"
     ],
     "notes": "Премиальный гостиничный комплекс в Ташкенте."
+  },
+  {
+    "id": "sri_mu1zidt6",
+    "hotelName": "hotel uzbek",
+    "legalEntity": "",
+    "region": "",
+    "regionKey": "other",
+    "address": "",
+    "roomsCount": 0,
+    "placesCount": 0,
+    "stars": "0",
+    "landArea": null,
+    "buildingArea": null,
+    "floors": 0,
+    "yearCommissioned": 2026,
+    "maxRoomArea": null,
+    "minRoomArea": null,
+    "amenities": "",
+    "managerContact": "",
+    "dealType": "sale",
+    "status": "active",
+    "hasPresentation": false,
+    "presentationFile": null,
+    "presentationFileName": null,
+    "presentationUrl": "",
+    "notes": "",
+    "photos": [],
+    "slug": "hotel-uzbek",
+    "createdAt": "2026-09-15T01:19:51.380Z"
   }
 ]
