@@ -187,8 +187,17 @@ const HotelStore = {
       const res = await fetch(API_URL + '?_t=' + Date.now(), {
         headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
       });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      if (!res.ok) {
+        // 503 = GitHub unavailable — do NOT fall back to localStorage
+        // Using old data could cause overwrite of cloud with stale list
+        console.warn('fetchFromCloud: server returned', res.status, '— will NOT use cache for writes');
+        return null; // signal failure
+      }
       const data = await res.json();
+      if (data && data.source === 'error') {
+        console.warn('fetchFromCloud: GitHub unavailable (source=error)');
+        return null;
+      }
       if (data && Array.isArray(data.hotels) && data.hotels.length > 0) {
         _memoryCache = data.hotels;
         try { localStorage.setItem(this.KEY, JSON.stringify(data.hotels)); } catch(e) {}
@@ -248,14 +257,21 @@ const HotelStore = {
       const res = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ hotels: clean })
+        body: JSON.stringify({ hotels: clean, _confirmed: true }) // _confirmed bypasses safety guard for explicit saves
       });
       if (!res.ok) {
-        const err = await res.text();
+        const err = await res.json().catch(() => ({ error: res.statusText }));
+        if (err.error === 'SAFETY_BLOCK') {
+          console.error('SAFETY_BLOCK:', err.message);
+          // Reload actual data from cloud so local cache is correct
+          await this.fetchFromCloud();
+          return false;
+        }
         console.error('Save to GitHub failed:', res.status, err);
         return false;
       }
-      console.log('✅ Данные сохранены в GitHub — видны всем пользователям');
+      const result = await res.json();
+      console.log('✅ Данные сохранены в GitHub:', result.count, 'отелей — видны всем пользователям');
       return true;
     } catch(e) {
       console.error('Save cloud error:', e);

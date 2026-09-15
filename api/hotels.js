@@ -217,10 +217,10 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     const hotels = await readFromGitHub();
     if (hotels) {
-      return res.status(200).json({ hotels, source: 'github' });
+      return res.status(200).json({ hotels, source: 'github', count: hotels.length });
     }
-    // Fallback to canonical list
-    return res.status(200).json({ hotels: CANONICAL_HOTELS, source: 'canonical' });
+    // NEVER fall back to hardcoded list — return error so client doesn't overwrite with stale data
+    return res.status(503).json({ error: 'GitHub unavailable', hotels: [], source: 'error', count: 0 });
   }
 
   // ─── POST (save full list) ────────────────────────────────────────────────
@@ -231,6 +231,23 @@ export default async function handler(req, res) {
 
       if (!Array.isArray(list)) {
         return res.status(400).json({ error: 'Expected array of hotels or { hotels: [...] }' });
+      }
+
+      // Safety guard: if new list is much smaller than current, verify it's intentional
+      // This prevents accidental overwrites from stale cache
+      if (list.length > 0) {
+        const current = await readFromGitHub();
+        if (current && current.length > list.length + 3) {
+          // New list would delete 4+ hotels at once — require explicit confirm flag
+          if (!data._confirmed) {
+            return res.status(409).json({
+              error: 'SAFETY_BLOCK',
+              message: `Попытка сохранить ${list.length} отелей, но в базе ${current.length}. Используйте _confirmed:true для принудительной перезаписи.`,
+              currentCount: current.length,
+              newCount: list.length
+            });
+          }
+        }
       }
 
       // Write to GitHub — this makes changes visible to ALL users immediately
