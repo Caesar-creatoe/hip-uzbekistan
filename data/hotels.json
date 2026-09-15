@@ -9,7 +9,7 @@
     "address": "г. Самарканд, ул. Регистан, 18",
     "roomsCount": 279,
     "placesCount": 800,
-    "stars": "5",
+    "stars": 5,
     "floors": 9,
     "yearCommissioned": 2022,
     "dealType": "sale",
@@ -18,48 +18,10 @@
     "status": "active",
     "hasPresentation": true,
     "photos": [
-      {
-        "src": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80&fit=crop",
-        "caption": ""
-      },
-      {
-        "src": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80&fit=crop",
-        "caption": ""
-      }
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80&fit=crop",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80&fit=crop"
     ],
-    "notes": "Крупнейший инвестиционный комплекс в Самарканде.",
-    "landArea": null,
-    "buildingArea": null,
-    "maxRoomArea": null,
-    "minRoomArea": null,
-    "presentationFile": null,
-    "presentationFileName": null,
-    "presentationUrl": "",
-    "updatedAt": "2026-09-15T01:15:37.919Z"
-  },
-  {
-    "id": "silk-road-resort",
-    "slug": "silk-road-resort",
-    "hotelName": "Silk Road Resort & Spa",
-    "legalEntity": "ИП ООО «Charvak Lakes Hospitality»",
-    "region": "Ташкентская область",
-    "regionKey": "tashkent-region",
-    "address": "Ташкентская обл., Бостанлыкский р-н, побережье Чарвака",
-    "roomsCount": 140,
-    "placesCount": 310,
-    "stars": 4,
-    "floors": 5,
-    "yearCommissioned": 2023,
-    "dealType": "rent",
-    "amenities": "Открытый и закрытый бассейны, Спа-комплекс, Частный пляж, Вертодром",
-    "managerContact": "+998 (71) 150-77-99",
-    "status": "active",
-    "hasPresentation": true,
-    "photos": [
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80&fit=crop",
-      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80&fit=crop"
-    ],
-    "notes": "Курортный объект на Чарвакском водохранилище."
+    "notes": "Крупнейший инвестиционный комплекс в Самарканде."
   },
   {
     "id": "bukhara-heritage",
