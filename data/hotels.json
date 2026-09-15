@@ -23,29 +23,6 @@
     "notes": "Крупнейший инвестиционный комплекс в Самарканде."
   },
   {
-    "id": "silk-road-resort",
-    "hotelName": "Silk Road Resort & Spa",
-    "slug": "silk-road-resort",
-    "legalEntity": "ИП ООО «Charvak Lakes Hospitality»",
-    "region": "Ташкентская область",
-    "regionKey": "tashkent-region",
-    "address": "Ташкентская обл., Бостанлыкский р-н, побережье Чарвака",
-    "roomsCount": 140,
-    "placesCount": 310,
-    "stars": 4,
-    "floors": 5,
-    "yearCommissioned": 2023,
-    "dealType": "rent",
-    "amenities": "Открытый и закрытый бассейны, Спа-комплекс, Частный пляж, Вертодром",
-    "managerContact": "+998 (71) 150-77-99",
-    "status": "active",
-    "hasPresentation": true,
-    "photos": [
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80&fit=crop"
-    ],
-    "notes": "Курортный объект на Чарвакском водохранилище."
-  },
-  {
     "id": "bukhara-heritage",
     "hotelName": "Bukhara Heritage Hotel",
     "slug": "bukhara-heritage",
