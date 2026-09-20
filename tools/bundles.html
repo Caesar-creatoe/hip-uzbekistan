@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Комплекты — SRI Toolkit</title>
+  <meta name="description" content="Комплекты цифровых инструментов для отельеров со скидкой до $88. Старт, Инвестор, Всё включено.">
+  <link rel="stylesheet" href="../design-tokens.css">
+  <link rel="stylesheet" href="../styles/toolkit.css">
+</head>
+<body class="tk-page">
+
+  <header class="tk-header">
+    <div class="tk-container tk-header__inner">
+      <a href="/tools/" class="tk-logo">
+        <div class="tk-logo__icon">SRI</div>
+        <div class="tk-logo__text">
+          <span class="tk-logo__name">Toolkit</span>
+          <span class="tk-logo__sub">by Silk Route Invest</span>
+        </div>
+      </a>
+      <a href="/tools/" class="tk-nav__back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Все продукты
+      </a>
+    </div>
+  </header>
+
+  <div class="tk-container">
+    <div class="tk-store-hero">
+      <p class="tk-store-hero__eyebrow">Экономия до $88</p>
+      <h1 class="tk-store-hero__title">Комплекты инструментов</h1>
+      <p class="tk-store-hero__desc">Готовые наборы под конкретные задачи. Каждый комплект дешевле, чем покупать продукты по отдельности.</p>
+    </div>
+
+    <div class="tk-bundles-grid" id="bundles-grid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <!-- Comparison table -->
+    <div style="margin-top:80px;">
+      <p class="tk-section-label">Сравнение</p>
+      <h2 class="tk-section-title" style="margin-bottom:32px;">Что входит в каждый комплект</h2>
+      <div id="compare-table" style="overflow-x:auto;"></div>
+    </div>
+
+    <!-- FAQ -->
+    <div style="margin-top:80px;margin-bottom:96px;">
+      <p class="tk-section-label">Вопросы</p>
+      <h2 class="tk-section-title" style="margin-bottom:24px;">Частые вопросы о комплектах</h2>
+      <div class="tk-faq">
+        <div class="tk-faq__item">
+          <button class="tk-faq__q">Как я получу файлы после оплаты?
+            <svg class="tk-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="tk-faq__a"><div class="tk-faq__a-inner">Сразу после оплаты Lemon Squeezy отправит на ваш email защищённую ссылку. Все файлы комплекта доступны в одном архиве.</div></div>
+        </div>
+        <div class="tk-faq__item">
+          <button class="tk-faq__q">Можно ли позже купить только один продукт из комплекта?
+            <svg class="tk-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="tk-faq__a"><div class="tk-faq__a-inner">Да. Все продукты доступны по отдельности на странице магазина. Комплект выгоднее, если нужны несколько инструментов сразу.</div></div>
+        </div>
+        <div class="tk-faq__item">
+          <button class="tk-faq__q">Есть ли возврат?
+            <svg class="tk-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="tk-faq__a"><div class="tk-faq__a-inner">Если в течение 7 дней после покупки вы столкнётесь с технической проблемой, которую мы не сможем решить — оформим возврат через Lemon Squeezy.</div></div>
+        </div>
+        <div class="tk-faq__item">
+          <button class="tk-faq__q">Обновляются ли продукты в комплекте?
+            <svg class="tk-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="tk-faq__a"><div class="tk-faq__a-inner">Да. Все обновления в течение 12 месяцев — бесплатно. Вы получите уведомление на email при выходе новой версии.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="tk-footer">
+    <div class="tk-container">
+      <div class="tk-footer__inner">
+        <div class="tk-footer__disclaimer">
+          <strong>SRI Toolkit — коммерческий сервис</strong>
+          Коммерческий сервис. Не является услугой Комитета по туризму Республики Узбекистан.<br>
+          Продажи осуществляются через платформу Lemon Squeezy. © 2024 SRI Toolkit.
+        </div>
+        <div class="tk-footer__links">
+          <a href="/tools/">Все продукты</a>
+          <a href="/">Silk Route Invest</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+  <script>
+  const BUNDLES = [
+    {
+      id: 'starter',
+      name: 'Старт',
+      description: 'Базовый набор для оперативного управления отелем и контроля показателей.',
+      price: 79,
+      full_price: 88,
+      saving: 9,
+      checkout_url: 'https://checkout.lemonsqueezy.com/buy/PLACEHOLDER_BUNDLE_STARTER',
+      products: ['ai-hotel-manager', 'hotel-owner-dashboard'],
+      featured: false
+    },
+    {
+      id: 'investor',
+      name: 'Инвестор',
+      description: 'Полный комплект для оценки объекта, финансового моделирования и подготовки презентаций для инвесторов.',
+      price: 199,
+      full_price: 287,
+      saving: 88,
+      checkout_url: 'https://checkout.lemonsqueezy.com/buy/PLACEHOLDER_BUNDLE_INVESTOR',
+      products: ['hotel-investment-toolkit', 'luxury-presentation-templates', 'hotel-business-plan'],
+      featured: true
+    },
+    {
+      id: 'complete',
+      name: 'Всё включено',
+      description: 'Все семь продуктов SRI Toolkit по одной цене. Максимальная экономия для команд и консультантов.',
+      price: 399,
+      full_price: 553,
+      saving: 154,
+      checkout_url: 'https://checkout.lemonsqueezy.com/buy/PLACEHOLDER_BUNDLE_COMPLETE',
+      products: ['ai-hotel-manager','hotel-owner-dashboard','hotel-investment-toolkit','luxury-presentation-templates','hotel-business-plan','quality-audit-toolkit','hotel-pre-opening-kit'],
+      featured: false
+    }
+  ];
+
+  (async () => {
+    let products = [];
+    try {
+      const resp = await fetch('../data/products.json');
+      products = await resp.json();
+    } catch(e) {}
+
+    const productMap = {};
+    products.forEach(p => { productMap[p.slug] = p; });
+
+    const grid = document.getElementById('bundles-grid');
+
+    grid.innerHTML = BUNDLES.map(b => {
+      const items = b.products.map(slug => {
+        const p = productMap[slug];
+        return p ? `<li><strong>${p.name}</strong> <span style="color:var(--color-text-muted);font-size:12px;">$${p.price_usd}</span></li>` : '';
+      }).join('');
+
+      return `
+      <div class="tk-bundle-card ${b.featured ? 'tk-bundle-card--featured' : ''}">
+        ${b.featured ? '<div class="tk-bundle-badge" style="position:absolute;top:16px;right:16px;">Популярный</div>' : ''}
+        <div>
+          <h2 class="tk-bundle-card__name">${b.name}</h2>
+          <span class="tk-bundle-card__saving">Экономия $${b.saving}</span>
+        </div>
+        <p style="font-size:13px;color:var(--color-text-muted);line-height:1.6;margin:0;">${b.description}</p>
+        <ul class="tk-bundle-card__items">${items}</ul>
+        <div style="border-top:var(--border-hairline);padding-top:20px;margin-top:4px;">
+          <div class="tk-price" style="margin-bottom:4px;">
+            <span class="tk-price__current">$${b.price}</span>
+            <span class="tk-price__compare">$${b.full_price}</span>
+          </div>
+          <p style="font-size:11px;color:var(--color-text-muted);margin:0 0 16px;">Единоразовая оплата · Все файлы сразу</p>
+          <a href="${b.checkout_url}" class="tk-btn tk-btn--${b.featured?'buy':'outline'} lemonsqueezy-button" style="width:100%;justify-content:center;">
+            Купить комплект · $${b.price}
+          </a>
+          <div style="margin-top:8px;padding:8px;border:1px dashed var(--color-border);border-radius:4px;text-align:center;font-size:11px;color:var(--color-text-muted);">
+            🇺🇿 Оплата через Payme/Click — скоро
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Comparison table
+    const allProductNames = [...new Set(BUNDLES.flatMap(b => b.products))];
+    const tableRows = allProductNames.map(slug => {
+      const p = productMap[slug];
+      if (!p) return '';
+      return `<tr>
+        <td style="padding:10px 0;font-size:13px;border-bottom:var(--border-hairline);max-width:240px;">${p.name} <span style="color:var(--color-text-muted);font-size:11px;">$${p.price_usd}</span></td>
+        ${BUNDLES.map(b => `<td style="text-align:center;padding:10px;border-bottom:var(--border-hairline);">
+          ${b.products.includes(slug) ? '<span style="color:var(--tk-accent);font-size:16px;font-weight:700;">✓</span>' : '<span style="color:var(--color-border);">–</span>'}
+        </td>`).join('')}
+      </tr>`;
+    }).join('');
+
+    document.getElementById('compare-table').innerHTML = `
+      <table style="width:100%;border-collapse:collapse;background:var(--color-card-bg);border-radius:8px;overflow:hidden;border:var(--border-hairline);">
+        <thead>
+          <tr style="background:var(--color-header-bg);">
+            <th style="text-align:left;padding:12px 16px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-muted);font-weight:600;border-bottom:var(--border-hairline);">Продукт</th>
+            ${BUNDLES.map(b => `<th style="text-align:center;padding:12px 16px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-muted);font-weight:600;border-bottom:var(--border-hairline);">
+              ${b.name}<br><span style="font-family:var(--font-mono);color:var(--tk-accent);font-size:14px;font-weight:700;">$${b.price}</span>
+            </th>`).join('')}
+          </tr>
+        </thead>
+        <tbody style="padding:0 16px;">${tableRows}</tbody>
+      </table>`;
+
+    // FAQ accordion
+    document.querySelectorAll('.tk-faq__q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.tk-faq__item');
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.tk-faq__item').forEach(i => i.classList.remove('is-open'));
+        if (!isOpen) item.classList.add('is-open');
+      });
+    });
+
+    if (window.createLemonSqueezy) window.createLemonSqueezy();
+  })();
+  </script>
+</body>
+</html>

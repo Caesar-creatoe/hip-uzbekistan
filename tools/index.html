@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRI Toolkit — Инструменты для отельеров</title>
+  <meta name="description" content="Профессиональные цифровые инструменты для управления гостиницей: Excel-модели, чек-листы, шаблоны презентаций, AI-промпты. Основаны на методологии рынка Узбекистана.">
+  <link rel="canonical" href="https://hotel-investment-portfolio-uz.vercel.app/tools/">
+  <link rel="stylesheet" href="../design-tokens.css">
+  <link rel="stylesheet" href="../styles/toolkit.css">
+</head>
+<body class="tk-page">
+
+  <!-- HEADER -->
+  <header class="tk-header">
+    <div class="tk-container tk-header__inner">
+      <a href="/tools/" class="tk-logo">
+        <div class="tk-logo__icon">SRI</div>
+        <div class="tk-logo__text">
+          <span class="tk-logo__name">Toolkit</span>
+          <span class="tk-logo__sub">by Silk Route Invest</span>
+        </div>
+      </a>
+      <nav class="tk-nav">
+        <a href="/tools/bundles.html">Комплекты</a>
+        <a href="/">← Основной сайт</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- STORE HERO -->
+  <div class="tk-container">
+    <div class="tk-store-hero">
+      <p class="tk-store-hero__eyebrow">Коммерческий сервис · Партнёр Silk Route Invest</p>
+      <h1 class="tk-store-hero__title">Профессиональные инструменты для гостиничного бизнеса</h1>
+      <p class="tk-store-hero__desc">Excel-модели, операционные шаблоны и AI-инструменты, созданные специально для рынка Узбекистана. Основаны на методологии Комитета по туризму РУз и международных стандартах STR.</p>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="tk-filters" id="filters">
+      <button class="tk-filter-btn is-active" data-filter="all">Все продукты</button>
+      <button class="tk-filter-btn" data-filter="financial">Финансовые модели</button>
+      <button class="tk-filter-btn" data-filter="operations">Операционные шаблоны</button>
+      <button class="tk-filter-btn" data-filter="ai">AI-инструменты</button>
+      <button class="tk-filter-btn" data-filter="presentations">Презентации</button>
+    </div>
+
+    <!-- PRODUCT GRID — rendered by JS -->
+    <div id="store-grid" class="tk-grid"></div>
+
+    <!-- BUNDLES CTA -->
+    <div style="margin-top: 80px; padding: 48px; background: var(--color-card-bg); border: var(--border-hairline); border-radius: 8px; text-align: center;">
+      <p style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--color-text-muted); margin: 0 0 16px; font-weight: 600;">Экономия до $88</p>
+      <h2 style="font-family: var(--font-display); font-size: 28px; margin: 0 0 12px; letter-spacing: -0.02em;">Купить комплектом</h2>
+      <p style="font-size: 14px; color: var(--color-text-muted); margin: 0 0 28px;">Три готовых набора под разные задачи: от $79 до $399.</p>
+      <a href="/tools/bundles.html" class="tk-btn tk-btn--outline">Смотреть комплекты →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="tk-footer" style="margin-top: 96px;">
+    <div class="tk-container">
+      <div class="tk-footer__inner">
+        <div class="tk-footer__disclaimer">
+          <strong>SRI Toolkit — коммерческий сервис</strong>
+          Коммерческий сервис. Не является услугой Комитета по туризму Республики Узбекистан.<br>
+          Продажи осуществляются через платформу Lemon Squeezy. © 2024 SRI Toolkit.
+        </div>
+        <div class="tk-footer__links">
+          <a href="/">Silk Route Invest</a>
+          <a href="/tools/bundles.html">Комплекты</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (async () => {
+    const grid = document.getElementById('store-grid');
+    let products = [];
+
+    try {
+      const resp = await fetch('../data/products.json');
+      products = await resp.json();
+      products.sort((a, b) => (a.sort_order || 99) - (b.sort_order || 99));
+    } catch(e) {
+      grid.innerHTML = '<p style="color:var(--color-text-muted);padding:40px 0;">Не удалось загрузить продукты.</p>';
+      return;
+    }
+
+    const formatBadge = (f) => {
+      const map = { 'Excel': 'excel', 'PDF': 'pdf', 'PPTX': 'pptx', 'Word': 'word',
+                    'Google Sheets': 'excel', 'Interactive': 'ai' };
+      return `<span class="tk-format-badge tk-format-badge--${map[f]||''}">${f}</span>`;
+    };
+
+    const tierLabel = { starter: 'Starter', essential: 'Essential', professional: 'Professional', enterprise: 'Enterprise', tiered: 'Несколько тарифов' };
+
+    function renderCard(p, size = 'normal') {
+      const imgUrl = p.preview_images?.[0] || 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80&fit=crop';
+      const compareHtml = p.price_compare ? `<span class="tk-card__price-compare-sm">$${p.price_compare}</span>` : '';
+      const includes3 = (p.includes || []).slice(0, 3);
+
+      if (size === 'flagship') {
+        return `
+        <a href="product.html?id=${p.slug}" class="tk-card tk-card--flagship" data-category="${p.category}">
+          <div>
+            <div style="margin-bottom:12px;">
+              <span class="tk-tier-badge tk-tier-badge--${p.tier}">${tierLabel[p.tier]||p.tier}</span>
+              <span class="tk-card__category" style="margin-left:12px;">${p.category_label}</span>
+            </div>
+            <h2 class="tk-card__name">${p.name}</h2>
+            <p class="tk-card__tagline">${p.tagline}</p>
+            <ul class="tk-card__includes" style="margin-top:16px;">
+              ${includes3.map(i => `<li>${i}</li>`).join('')}
+            </ul>
+            <div class="tk-card__footer" style="margin-top:24px;">
+              <div>
+                <div class="tk-price">
+                  <span class="tk-price__current">$${p.price_usd}</span>
+                  ${p.price_compare ? `<span class="tk-price__compare">$${p.price_compare}</span>` : ''}
+                </div>
+                <div class="tk-card__formats" style="margin-top:8px;">
+                  ${(p.format||[]).map(formatBadge).join('')}
+                  <span class="tk-card__file-count" style="margin-left:8px;">${p.file_count} файл${p.file_count>4?'ов':p.file_count>1?'а':''}</span>
+                </div>
+              </div>
+              <span class="tk-btn tk-btn--buy">Подробнее →</span>
+            </div>
+          </div>
+          <div class="tk-card__preview">
+            <img src="${imgUrl}" alt="${p.name}" loading="lazy">
+          </div>
+        </a>`;
+      }
+
+      if (size === 'compact') {
+        return `
+        <a href="product.html?id=${p.slug}" class="tk-card" data-category="${p.category}">
+          <span class="tk-card__category">${p.category_label}</span>
+          <h3 class="tk-card__name" style="font-size:20px;">${p.name}</h3>
+          <p class="tk-card__tagline" style="font-size:13px;">${p.tagline}</p>
+          <div class="tk-card__footer">
+            <div>
+              <span class="tk-card__price-sm">$${p.price_usd}</span>${compareHtml}
+              <div class="tk-card__formats" style="margin-top:6px;">
+                ${(p.format||[]).slice(0,2).map(formatBadge).join('')}
+              </div>
+            </div>
+            <span class="tk-btn tk-btn--ghost" style="font-size:13px;">→</span>
+          </div>
+        </a>`;
+      }
+
+      // normal
+      return `
+      <a href="product.html?id=${p.slug}" class="tk-card" data-category="${p.category}">
+        <span class="tk-card__category">${p.category_label}</span>
+        <h3 class="tk-card__name">${p.name}</h3>
+        <p class="tk-card__tagline">${p.tagline}</p>
+        <ul class="tk-card__includes">
+          ${includes3.map(i => `<li>${i}</li>`).join('')}
+        </ul>
+        <div class="tk-card__footer">
+          <div>
+            <span class="tk-card__price-sm">$${p.price_usd}</span>${compareHtml}
+            <div class="tk-card__formats" style="margin-top:6px;">
+              ${(p.format||[]).map(formatBadge).join('')}
+              <span class="tk-card__file-count" style="margin-left:6px;">${p.file_count} файл${p.file_count>4?'ов':p.file_count>1?'а':''}</span>
+            </div>
+          </div>
+          <span class="tk-btn tk-btn--ghost">→</span>
+        </div>
+      </a>`;
+    }
+
+    function renderGrid(filtered) {
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p style="color:var(--color-text-muted);padding:40px 0;text-align:center;">Нет продуктов в этой категории.</p>';
+        return;
+      }
+
+      const [flagship, ...rest] = filtered;
+      let html = renderCard(flagship, 'flagship');
+
+      // row of 2
+      const row2 = rest.slice(0, 2);
+      if (row2.length) {
+        html += `<div class="tk-grid-row-2">${row2.map(p => renderCard(p, 'normal')).join('')}</div>`;
+      }
+
+      // row of 3
+      const row3 = rest.slice(2, 5);
+      if (row3.length) {
+        html += `<div class="tk-grid-row-3">${row3.map(p => renderCard(p, 'compact')).join('')}</div>`;
+      }
+
+      // remaining
+      const remaining = rest.slice(5);
+      if (remaining.length) {
+        html += `<div class="tk-grid-row-${Math.min(3,remaining.length)}">${remaining.map(p => renderCard(p, 'compact')).join('')}</div>`;
+      }
+
+      grid.innerHTML = html;
+    }
+
+    renderGrid(products);
+
+    // Filter logic
+    document.getElementById('filters').addEventListener('click', e => {
+      const btn = e.target.closest('.tk-filter-btn');
+      if (!btn) return;
+      document.querySelectorAll('.tk-filter-btn').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const cat = btn.dataset.filter;
+      const filtered = cat === 'all' ? products : products.filter(p => p.category === cat);
+      renderGrid(filtered);
+    });
+  })();
+  </script>
+</body>
+</html>
