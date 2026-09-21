@@ -21,7 +21,10 @@
     "managerContact": "Мирагзам 77-448-77-88",
     "status": "active",
     "hasPresentation": true,
-    "photos": [],
+    "photos": [
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/683453848.jpg?k=f37111a7304891acacb978d6afd296d6d9eea8837b1cc360def87e6023ca2003&o="
+    ],
     "notes": "Лицензия до 2030 года. 5 этажей, 50 номеров."
   },
   {
@@ -121,7 +124,9 @@
     "managerContact": "Мирагзам 77-448-77-88",
     "status": "active",
     "hasPresentation": true,
-    "photos": [],
+    "photos": [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/17/26/4b/farovon-khiva-hotel.jpg?w=900&h=-1&s=1"
+    ],
     "notes": "5★ отель, 2021 год. 106 номеров, 2.72 га."
   },
   {
@@ -696,7 +701,10 @@
     "managerContact": "Мирагзам 77-448-77-88",
     "status": "active",
     "hasPresentation": true,
-    "photos": [],
+    "photos": [
+      "https://kumushkonresort.uz/wp-content/uploads/2025/06/KUMUSHKON_RESORT-Photoroom.png",
+      "https://kumushkonresort.uz/wp-content/uploads/2025/08/photo_2025-07-20_17-17-24.jpg"
+    ],
     "notes": "2026 год. 98 номеров. Горный р-н Паркент."
   },
   {
@@ -721,7 +729,9 @@
     "managerContact": "Мирагзам 77-448-77-88",
     "status": "active",
     "hasPresentation": true,
-    "photos": [],
+    "photos": [
+      "https://www.silkroad-samarkand.com/upload/heads/al-buhari-0-head.jpg"
+    ],
     "notes": "2026 год. 124 номера. Комплекс Имам аль-Бухари."
   },
   {
