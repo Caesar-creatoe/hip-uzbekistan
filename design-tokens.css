@@ -125,4 +125,37 @@
   --btn-radius: 4px;
   --btn-pad-y:  13px;
   --btn-pad-x:  28px;
+
+  /* ── ВЕРТИКАЛЬНЫЕ АКЦЕНТЫ ───────────────────── */
+  /* Отели — кофе/золото (существующий акцент) */
+  --v-hotels:        #8B6F4E;
+  --v-hotels-bg:     #F5EFE3;
+  --v-hotels-light:  rgba(139, 111, 78, 0.12);
+
+  /* Рестораны — терракота/специи */
+  --v-restaurants:      #8B3A2F;
+  --v-restaurants-bg:   #FBF2F0;
+  --v-restaurants-light: rgba(139, 58, 47, 0.12);
+
+  /* Земельные участки — изумрудный */
+  --v-land:        #2E5E3F;
+  --v-land-bg:     #F0F5F1;
+  --v-land-light:  rgba(46, 94, 63, 0.12);
+
+  /* Государственная поддержка — государственный синий */
+  --v-support:       #1E3A6E;
+  --v-support-bg:    #EFF3FA;
+  --v-support-light: rgba(30, 58, 110, 0.12);
+
+  /* Активная вертикаль (по умолчанию — Отели) */
+  --v-active:       var(--v-hotels);
+  --v-active-bg:    var(--v-hotels-bg);
+  --v-active-light: var(--v-hotels-light);
 }
+
+/* ── ВЕРТИКАЛЬНЫЕ ТЕМЫ НА body ──────────────────── */
+body[data-vertical="hotels"]      { --v-active: var(--v-hotels);      --v-active-bg: var(--v-hotels-bg);      --v-active-light: var(--v-hotels-light); }
+body[data-vertical="restaurants"] { --v-active: var(--v-restaurants);  --v-active-bg: var(--v-restaurants-bg); --v-active-light: var(--v-restaurants-light); }
+body[data-vertical="land"]        { --v-active: var(--v-land);         --v-active-bg: var(--v-land-bg);        --v-active-light: var(--v-land-light); }
+body[data-vertical="support"]     { --v-active: var(--v-support);      --v-active-bg: var(--v-support-bg);     --v-active-light: var(--v-support-light); }
+

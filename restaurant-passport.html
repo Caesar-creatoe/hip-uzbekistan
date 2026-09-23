@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Investment Passport — Silk Route Invest</title>
+  <meta name="description" content="Restaurant Investment Passport — стандартизированный инвестиционный паспорт ресторанного объекта Комитета по туризму РУз.">
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/verticals.css">
+  <link rel="stylesheet" href="styles/passport.css">
+</head>
+<body data-vertical="restaurants">
+
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38">
+        <div class="logo-text"><span class="logo-title">SILK ROUTE</span><span class="logo-subtitle">INVEST</span></div>
+      </a>
+      <nav class="header-nav">
+        <a href="restaurants.html" style="font-size:13px;font-weight:600;color:var(--v-restaurants);text-decoration:none;padding:0 14px;">← Все рестораны</a>
+        <a href="cabinet-investor.html" class="btn btn--primary btn--sm" style="margin-left:8px;">Подать заявку</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div style="background:var(--color-header-bg);border-bottom:1px solid var(--color-border);padding:10px 0;">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop);font-size:12px;color:var(--color-text-muted);">
+      <a href="index.html" style="color:var(--color-text-muted);text-decoration:none;">Главная</a>
+      <span style="margin:0 8px;">·</span>
+      <a href="restaurants.html" style="color:var(--color-text-muted);text-decoration:none;">Рестораны</a>
+      <span style="margin:0 8px;">·</span>
+      <span id="breadcrumb-name" style="color:var(--v-restaurants);">Restaurant Investment Passport</span>
+    </div>
+  </div>
+
+  <!-- PASSPORT HEADER -->
+  <section id="passport-header" style="background:var(--v-restaurants-bg);border-bottom:1px solid var(--color-border);padding:var(--space-12) 0;">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop);">
+      <div style="display:flex;align-items:flex-start;gap:var(--space-10);flex-wrap:wrap;">
+        <div style="flex:1;min-width:300px;">
+          <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--v-restaurants);margin:0 0 8px;">🍽 Restaurant Investment Passport · Том VI</p>
+          <h1 id="passport-name" style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,48px);font-weight:700;color:var(--color-text-primary);line-height:1.15;margin:0 0 8px;">Загрузка…</h1>
+          <p id="passport-region" style="font-size:14px;color:var(--color-text-muted);margin:0 0 16px;">—</p>
+          <div id="passport-badges" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+        </div>
+        <div id="passport-kpi-block" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--color-border);border:1px solid var(--color-border);flex-shrink:0;min-width:340px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <div style="max-width:var(--container-max);margin:0 auto;padding:var(--space-10) var(--grid-margin-desktop);display:grid;grid-template-columns:1fr 320px;gap:var(--space-10);">
+
+    <div>
+      <!-- Overview -->
+      <section style="margin-bottom:var(--space-10);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--v-restaurants);margin-bottom:8px;">Описание объекта</p>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 12px;">Инвестиционное резюме</h2>
+        <p id="passport-desc" style="font-size:15px;color:var(--color-text-muted);line-height:1.7;"></p>
+      </section>
+
+      <!-- F&B KPI Table -->
+      <section style="margin-bottom:var(--space-10);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--v-restaurants);margin-bottom:8px;">F&B Метрики</p>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 16px;">Ключевые показатели</h2>
+        <div id="passport-fbkpi" style="background:var(--color-card-bg);border:1px solid var(--color-border);overflow:hidden;"></div>
+      </section>
+
+      <!-- Comp-Set -->
+      <section style="margin-bottom:var(--space-10);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--v-restaurants);margin-bottom:8px;">Конкурентная позиция</p>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 12px;">Comp-Set анализ</h2>
+        <div id="passport-compset" style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:20px;font-size:14px;color:var(--color-text-muted);line-height:1.7;"></div>
+      </section>
+
+      <!-- Certifications -->
+      <section>
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--v-restaurants);margin-bottom:8px;">Соответствие стандартам</p>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 16px;">Сертификаты и лицензии</h2>
+        <div id="passport-certs" style="display:flex;gap:12px;flex-wrap:wrap;"></div>
+      </section>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div>
+      <!-- Deal Card -->
+      <div id="passport-deal" style="background:var(--color-card-bg);border:1px solid var(--color-border);border-top:3px solid var(--v-restaurants);padding:var(--space-6);margin-bottom:var(--space-6);"></div>
+
+      <!-- Contact -->
+      <div style="background:var(--v-restaurants-bg);border:1px solid rgba(139,58,47,0.15);padding:var(--space-6);margin-bottom:var(--space-6);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--v-restaurants);margin:0 0 8px;">Контакт</p>
+        <p style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-text-primary);margin:0 0 4px;">Мирагзам</p>
+        <p style="font-family:var(--font-mono);font-size:16px;color:var(--v-restaurants);margin:0 0 12px;">77-448-77-88</p>
+        <a href="cabinet-investor.html" class="btn btn--primary btn--sm" style="width:100%;text-align:center;background:var(--v-restaurants);border-color:var(--v-restaurants);display:block;">Подать заявку</a>
+      </div>
+
+      <!-- Standards notice -->
+      <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-4);font-size:11px;color:var(--color-text-muted);line-height:1.6;">
+        <strong style="color:var(--color-text-primary);">Стандарт паспорта:</strong> Том VI «Restaurant Investment Passport» · Комитет по туризму РУз · Данные верифицированы · UNWTO F&B Standards 2024
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--color-header-bg);border-top:1px solid var(--color-border);padding:var(--space-8) 0;">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop);font-size:12px;color:var(--color-text-muted);">
+      © 2024–2026 Комитет по туризму Республики Узбекистан · Silk Route Invest · <a href="restaurants.html" style="color:var(--v-restaurants);">Все рестораны</a>
+    </div>
+  </footer>
+
+  <script>
+  (async () => {
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id');
+    let rests = [];
+    try { const r = await fetch('./data/restaurants.json'); rests = await r.json(); } catch(e) {}
+    const item = rests.find(r => r.id === id) || rests[0];
+    if (!item) return;
+
+    document.title = item.name + ' — Restaurant Investment Passport';
+    document.getElementById('breadcrumb-name').textContent = item.name;
+    document.getElementById('passport-name').textContent = item.name;
+    document.getElementById('passport-region').textContent = '📍 ' + item.region + ' · ' + item.district;
+    document.getElementById('passport-desc').textContent = item.description;
+
+    const ratingKey = item.rating === 'A+' ? 'ap' : item.rating === 'A' ? 'a' : item.rating === 'B+' ? 'bp' : 'b';
+    document.getElementById('passport-badges').innerHTML = `
+      <span class="rating-badge rating-badge--${ratingKey}">${item.rating}</span>
+      <span class="deal-badge" style="--v-active:var(--v-restaurants);--v-active-light:var(--v-restaurants-light);">${item.deal_type_label}</span>
+      <span class="deal-badge" style="--v-active:var(--v-restaurants);--v-active-light:var(--v-restaurants-light);">${item.cluster_label}</span>`;
+
+    // KPI Block
+    const kpis = [
+      { label:'Посадочных мест', val: item.seats },
+      { label:'Средний чек ($)', val: '$' + item.avg_check_usd },
+      { label:'Оборачиваемость/день', val: item.table_turns_day + 'x' },
+      { label:'Выручка/место/год', val: '$' + item.revenue_per_seat_usd.toLocaleString() },
+      { label:'EBITDA margin', val: item.ebitda_margin_pct + '%' },
+      { label:'Доля банкета/event', val: item.banquet_share_pct + '%' },
+    ];
+    document.getElementById('passport-kpi-block').innerHTML = kpis.map(k => `
+      <div style="background:var(--color-card-bg);padding:16px 20px;">
+        <div style="font-family:var(--font-mono);font-size:22px;font-weight:600;color:var(--v-restaurants);line-height:1;">${k.val}</div>
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-muted);margin-top:4px;">${k.label}</div>
+      </div>`).join('');
+
+    // F&B table
+    const fbRows = [
+      ['Формат', item.format_label],
+      ['Кухня', item.cuisine_label],
+      ['Площадь', item.area_sqm + ' м²'],
+      ['Посадочных мест', item.seats],
+      ['Средний чек', '$' + item.avg_check_usd],
+      ['Оборачиваемость стола/день', item.table_turns_day + 'x'],
+      ['Выручка на посадочное место/год', '$' + item.revenue_per_seat_usd.toLocaleString()],
+      ['EBITDA margin', item.ebitda_margin_pct + '%'],
+      ['Доля банкета в выручке', item.banquet_share_pct + '%'],
+      ['IRR', item.irr_pct + '%'],
+      ['Срок окупаемости', item.payback_years + ' лет'],
+      ['Объём инвестиций', '$' + item.investment_usd.toLocaleString()],
+      ['Индекс локации', item.location_score + '/10'],
+    ];
+    document.getElementById('passport-fbkpi').innerHTML = '<table style="width:100%;border-collapse:collapse;">' +
+      fbRows.map((r, i) => `<tr style="border-bottom:1px solid var(--color-border);background:${i%2===0 ? 'var(--color-card-bg)' : 'var(--color-surface)'};">
+        <td style="padding:12px 16px;font-size:13px;color:var(--color-text-muted);width:55%;">${r[0]}</td>
+        <td style="padding:12px 16px;font-size:13px;font-weight:600;color:var(--color-text-primary);">${r[1]}</td>
+      </tr>`).join('') + '</table>';
+
+    document.getElementById('passport-compset').textContent = item.competition_note;
+
+    document.getElementById('passport-certs').innerHTML = item.certifications.map(c =>
+      `<div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:10px 16px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--color-text-primary);">✅ ${c}</div>`
+    ).join('');
+
+    document.getElementById('passport-deal').innerHTML = `
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--v-restaurants);margin:0 0 8px;">Условия сделки</p>
+      <p style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-text-primary);margin:0 0 4px;">${item.deal_type}</p>
+      <p style="font-size:13px;color:var(--color-text-muted);margin:0 0 12px;">${item.format_label}</p>
+      <div style="border-top:1px solid var(--color-border);padding-top:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:12px;color:var(--color-text-muted);">Объём инвестиций</span>
+          <span style="font-family:var(--font-mono);font-size:16px;font-weight:600;color:var(--v-restaurants);">$${item.investment_usd.toLocaleString()}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:12px;color:var(--color-text-muted);">IRR</span>
+          <span style="font-family:var(--font-mono);font-size:16px;font-weight:600;color:var(--v-restaurants);">${item.irr_pct}%</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;color:var(--color-text-muted);">Окупаемость</span>
+          <span style="font-family:var(--font-mono);font-size:16px;font-weight:600;color:var(--v-restaurants);">${item.payback_years} лет</span>
+        </div>
+      </div>`;
+  })();
+  </script>
+  <script src="js/verticals.js"></script>
+</body>
+</html>

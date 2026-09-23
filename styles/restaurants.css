@@ -1,0 +1,134 @@
+/* ============================================================
+   RESTAURANTS.CSS — Стили ресторанной вертикали (F&B)
+   Silk Route Invest · Комитет по туризму РУз
+   ============================================================ */
+
+/* ── Hero Card ────────────────────────────────────────────── */
+.rest-hero-card {
+  flex-shrink: 0;
+  max-width: 360px;
+  width: 100%;
+}
+
+.rest-hero-card__inner {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--v-restaurants);
+  border-radius: 4px;
+  padding: var(--space-6);
+  box-shadow: 0 4px 20px rgba(139, 58, 47, 0.08);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.rest-hero-card__inner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(139, 58, 47, 0.14);
+}
+
+/* ── Restaurant Card Enhancements ────────────────────────── */
+.v-card[data-format] {
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.v-card[data-format]:hover {
+  border-color: var(--v-restaurants);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(139, 58, 47, 0.12);
+}
+
+.v-card__img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--transition-base);
+}
+
+.v-card:hover .v-card__img-placeholder {
+  transform: scale(1.05);
+}
+
+/* ── Passport specific styles ────────────────────────────── */
+.rest-passport-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.rest-metric-box {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.rest-metric-box__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rest-kpi-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-xs);
+}
+
+.rest-kpi-table th,
+.rest-kpi-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rest-kpi-table th {
+  color: var(--color-text-muted);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  font-size: var(--text-2xs);
+  background: var(--color-surface);
+}
+
+.rest-kpi-table td:last-child {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-medium);
+}
+
+/* ── Badges ──────────────────────────────────────────────── */
+.badge-halal {
+  background: rgba(46, 94, 63, 0.12);
+  color: #2E5E3F;
+  border: 1px solid rgba(46, 94, 63, 0.3);
+}
+
+.badge-haccp {
+  background: rgba(30, 58, 110, 0.12);
+  color: #1E3A6E;
+  border: 1px solid rgba(30, 58, 110, 0.3);
+}
+
+.badge-wine {
+  background: rgba(139, 58, 47, 0.12);
+  color: var(--v-restaurants);
+  border: 1px solid rgba(139, 58, 47, 0.3);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .rest-passport-grid {
+    grid-template-columns: 1fr;
+  }
+  .rest-hero-card {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Земельный инвестиционный паспорт — Silk Route Invest</title>
+  <meta name="description" content="Земельный инвестиционный паспорт лота: кадастровые данные, инфраструктура, условия торгов и карта.">
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/verticals.css">
+  <link rel="stylesheet" href="styles/passport.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body data-vertical="land">
+
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38">
+        <div class="logo-text"><span class="logo-title">SILK ROUTE</span><span class="logo-subtitle">INVEST</span></div>
+      </a>
+      <nav class="header-nav">
+        <a href="land.html" style="font-size:13px;font-weight:600;color:var(--v-land);text-decoration:none;padding:0 14px;">← Все лоты</a>
+        <a href="cabinet-investor.html" class="btn btn--primary btn--sm" style="margin-left:8px;">Подать заявку на лот</a>
+      </nav>
+    </div>
+  </header>
+
+  <div style="background:var(--color-header-bg);border-bottom:1px solid var(--color-border);padding:10px 0;">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop);font-size:12px;color:var(--color-text-muted);">
+      <a href="index.html" style="color:var(--color-text-muted);text-decoration:none;">Главная</a>
+      <span style="margin:0 8px;">·</span>
+      <a href="land.html" style="color:var(--color-text-muted);text-decoration:none;">Земельные участки</a>
+      <span style="margin:0 8px;">·</span>
+      <span id="breadcrumb-name" style="color:var(--v-land);">Земельный паспорт</span>
+    </div>
+  </div>
+
+  <!-- PASSPORT HEADER -->
+  <section style="background:var(--v-land-bg);border-bottom:1px solid var(--color-border);padding:var(--space-12) 0;">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop);">
+      <div style="display:flex;align-items:flex-start;gap:var(--space-10);flex-wrap:wrap;">
+        <div style="flex:1;min-width:300px;">
+          <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--v-land);margin:0 0 8px;">🗺 Земельный инвестиционный паспорт · Том V</p>
+          <h1 id="lot-name" style="font-family:var(--font-display);font-size:clamp(24px,3vw,42px);font-weight:700;color:var(--color-text-primary);line-height:1.2;margin:0 0 8px;">Загрузка…</h1>
+          <p id="lot-region" style="font-size:14px;color:var(--color-text-muted);margin:0 0 16px;">—</p>
+          <div id="lot-badges" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+        </div>
+        <div id="lot-kpi-block" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--color-border);border:1px solid var(--color-border);flex-shrink:0;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <div style="max-width:var(--container-max);margin:0 auto;padding:var(--space-10) var(--grid-margin-desktop);display:grid;grid-template-columns:1fr 300px;gap:var(--space-10);">
+    <div>
+      <!-- Description -->
+      <section style="margin-bottom:var(--space-10);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--v-land);margin-bottom:8px;">Описание лота</p>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 12px;">Инвестиционное резюме</h2>
+        <p id="lot-desc" style="font-size:15px;color:var(--color-text-muted);line-height:1.7;"></p>
+      </section>
+
+      <!-- Cadastral data -->
+      <section style="margin-bottom:var(--space-10);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--v-land);margin-bottom:8px;">Кадастровые данные</p>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 16px;">Юридический профиль</h2>
+        <div id="lot-cadastral" style="background:var(--color-card-bg);border:1px solid var(--color-border);overflow:hidden;"></div>
+      </section>
+
+      <!-- Infrastructure -->
+      <section style="margin-bottom:var(--space-10);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--v-land);margin-bottom:8px;">Инженерные сети</p>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 16px;">Наличие инфраструктуры</h2>
+        <div id="lot-infra" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;"></div>
+      </section>
+
+      <!-- Map -->
+      <section style="margin-bottom:var(--space-10);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--v-land);margin-bottom:8px;">Геолокация</p>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 16px;">Карта участка</h2>
+        <div id="lot-map" style="height:320px;border:1px solid var(--color-border);border-radius:2px;overflow:hidden;background:var(--color-header-bg);"></div>
+        <p id="lot-coords" style="font-size:11px;color:var(--color-text-muted);margin-top:6px;font-family:var(--font-mono);"></p>
+      </section>
+
+      <!-- Documents -->
+      <section>
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--v-land);margin-bottom:8px;">Документация</p>
+        <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 16px;">Приложенные документы</h2>
+        <div id="lot-docs" style="display:flex;flex-direction:column;gap:8px;"></div>
+      </section>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div>
+      <div id="lot-deal-card" style="background:var(--color-card-bg);border:1px solid var(--color-border);border-top:3px solid var(--v-land);padding:var(--space-6);margin-bottom:var(--space-6);"></div>
+
+      <div style="background:var(--v-land-bg);border:1px solid rgba(46,94,63,0.2);padding:var(--space-6);margin-bottom:var(--space-6);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--v-land);margin:0 0 8px;">Контакт</p>
+        <p style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-text-primary);margin:0 0 4px;">Мирагзам</p>
+        <p style="font-family:var(--font-mono);font-size:16px;color:var(--v-land);margin:0 0 12px;">77-448-77-88</p>
+        <a href="cabinet-investor.html" class="btn btn--primary btn--sm" style="width:100%;text-align:center;background:var(--v-land);border-color:var(--v-land);display:block;">Подать заявку на лот</a>
+      </div>
+
+      <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-4);font-size:11px;color:var(--color-text-muted);line-height:1.6;">
+        <strong style="color:var(--color-text-primary);">Синхронизировано:</strong> Единый кадастр РУз · Госкомземгеодезкадастр · Данные актуальны на 2025 г.
+        <div style="margin-top:6px;color:var(--v-land);">● Открытый контур</div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--color-header-bg);border-top:1px solid var(--color-border);padding:var(--space-8) 0;">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop);font-size:12px;color:var(--color-text-muted);">
+      © 2024–2026 Комитет по туризму · <a href="land.html" style="color:var(--v-land);">Земельные участки</a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+  (async () => {
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id');
+    let lots = [];
+    try { const r = await fetch('./data/land-lots.json'); lots = await r.json(); } catch(e) {}
+    const lot = lots.find(l => l.id === id) || lots[0];
+    if (!lot) return;
+
+    document.title = lot.name + ' — Земельный паспорт';
+    document.getElementById('breadcrumb-name').textContent = lot.name;
+    document.getElementById('lot-name').textContent = lot.name;
+    document.getElementById('lot-region').textContent = '📍 ' + lot.region + ' · ' + lot.district;
+    document.getElementById('lot-desc').textContent = lot.description;
+
+    const ratingKey = lot.rating === 'A+' ? 'ap' : lot.rating === 'A' ? 'a' : lot.rating === 'B+' ? 'bp' : 'b';
+    document.getElementById('lot-badges').innerHTML = `
+      <span class="rating-badge rating-badge--${ratingKey}">${lot.rating}</span>
+      <span class="deal-badge" style="--v-active:var(--v-land);--v-active-light:var(--v-land-light);">${lot.transfer_label}</span>
+      <span class="deal-badge" style="--v-active:var(--v-land);--v-active-light:var(--v-land-light);">${lot.cluster_label}</span>`;
+
+    // KPI block
+    const formatPrice = n => n >= 1e6 ? '$' + (n/1e6).toFixed(1) + 'M' : '$' + Math.round(n/1000) + 'K';
+    const kpis = [
+      { l:'Площадь', v: lot.area_ha + ' га' },
+      { l:'Нач. цена', v: formatPrice(lot.start_price_usd) },
+      { l:'Мин. CAPEX', v: formatPrice(lot.investment_min_usd) },
+    ];
+    document.getElementById('lot-kpi-block').innerHTML = kpis.map(k => `
+      <div style="background:var(--color-card-bg);padding:16px 20px;">
+        <div style="font-family:var(--font-mono);font-size:22px;font-weight:600;color:var(--v-land);line-height:1;">${k.v}</div>
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-muted);margin-top:4px;">${k.l}</div>
+      </div>`).join('');
+
+    // Cadastral table
+    const rows = [
+      ['Кадастровый номер', lot.cadastral],
+      ['Категория земель', lot.land_category],
+      ['Разрешённое использование', lot.permitted_use],
+      ['Форма передачи', lot.transfer_label],
+      ['Туристический кластер', lot.cluster_label],
+      ['Срок подачи заявки', lot.deadline],
+    ];
+    document.getElementById('lot-cadastral').innerHTML = '<table style="width:100%;border-collapse:collapse;">' +
+      rows.map((r,i) => `<tr style="border-bottom:1px solid var(--color-border);background:${i%2===0?'var(--color-card-bg)':'var(--color-surface)'};">
+        <td style="padding:12px 16px;font-size:13px;color:var(--color-text-muted);width:45%;">${r[0]}</td>
+        <td style="padding:12px 16px;font-size:13px;font-weight:600;color:var(--color-text-primary);">${r[1]}</td>
+      </tr>`).join('') + '</table>';
+
+    // Infrastructure
+    const infraData = { electricity:'⚡', water:'💧', gas:'🔥', road:'🛣', sewage:'🚿' };
+    const infraLabels = { electricity:'Электричество', water:'Водоснабжение', gas:'Газ', road:'Дорога', sewage:'Канализация' };
+    document.getElementById('lot-infra').innerHTML = Object.entries(lot.infrastructure).map(([k, v]) => `
+      <div style="text-align:center;background:${v ? 'var(--v-land-light)' : 'var(--color-header-bg)'};border:1px solid ${v ? 'rgba(46,94,63,0.2)' : 'var(--color-border)'};padding:16px 8px;border-radius:2px;">
+        <div style="font-size:24px;margin-bottom:6px;">${infraData[k]}</div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:${v ? 'var(--v-land)' : 'var(--color-text-muted)'};">${infraLabels[k]}</div>
+        <div style="font-size:10px;color:${v ? 'var(--v-land)' : 'var(--color-text-muted)'};margin-top:2px;">${v ? '✓ Есть' : '✗ Нет'}</div>
+      </div>`).join('');
+
+    // Map
+    if (lot.coordinates && typeof L !== 'undefined') {
+      const map = L.map('lot-map').setView(lot.coordinates, 13);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+      L.marker(lot.coordinates).addTo(map).bindPopup(lot.name).openPopup();
+      document.getElementById('lot-coords').textContent = 'Координаты: ' + lot.coordinates.join(', ');
+    }
+
+    // Documents
+    document.getElementById('lot-docs').innerHTML = lot.documents.map(d => `
+      <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:13px;">
+        <span style="color:var(--v-land);">📄</span> ${d}
+        <span style="margin-left:auto;font-size:11px;color:var(--color-text-muted);">Верифицировано</span>
+      </div>`).join('');
+
+    // Deal card
+    document.getElementById('lot-deal-card').innerHTML = `
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--v-land);margin:0 0 8px;">Условия сделки</p>
+      <p style="font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--color-text-primary);margin:0 0 4px;">${lot.transfer_label}</p>
+      <p style="font-size:13px;color:var(--color-text-muted);margin:0 0 12px;">${lot.purpose_label}</p>
+      <div style="border-top:1px solid var(--color-border);padding-top:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:12px;color:var(--color-text-muted);">Нач. цена</span>
+          <span style="font-family:var(--font-mono);font-size:16px;font-weight:600;color:var(--v-land);">${formatPrice(lot.start_price_usd)}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:12px;color:var(--color-text-muted);">Площадь</span>
+          <span style="font-family:var(--font-mono);font-size:16px;font-weight:600;color:var(--v-land);">${lot.area_ha} га</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:12px;color:var(--color-text-muted);">Дедлайн заявки</span>
+          <span style="font-size:13px;font-weight:600;color:var(--color-text-primary);">${lot.deadline}</span>
+        </div>
+      </div>`;
+  })();
+  </script>
+  <script src="js/verticals.js"></script>
+</body>
+</html>

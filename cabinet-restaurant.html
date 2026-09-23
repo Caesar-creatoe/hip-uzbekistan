@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кабинет ресторатора — Silk Route Invest</title>
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/verticals.css">
+  <link rel="stylesheet" href="styles/cabinet.css">
+</head>
+<body data-vertical="restaurants">
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38">
+        <div class="logo-text"><span class="logo-title">SILK ROUTE</span><span class="logo-subtitle">INVEST</span></div>
+      </a>
+      <nav class="header-nav">
+        <a href="restaurants.html" style="font-size:13px;font-weight:600;color:var(--v-restaurants);text-decoration:none;padding:0 14px;">🍽 Каталог ресторанов</a>
+        <a href="restaurant-form.html" class="btn btn--primary btn--sm" style="background:var(--v-restaurants);border-color:var(--v-restaurants);">+ Добавить ресторан</a>
+      </nav>
+    </div>
+  </header>
+  <nav class="vertical-switcher">
+    <div class="vertical-switcher__inner">
+      <a href="portfolio.html" class="vs-tab" data-v="hotels">🏨 Отели</a>
+      <a href="restaurants.html" class="vs-tab is-active" data-v="restaurants">🍽 Рестораны</a>
+      <a href="land.html" class="vs-tab" data-v="land">🗺 Земля</a>
+      <a href="support.html" class="vs-tab" data-v="support">🏛 Господдержка</a>
+    </div>
+  </nav>
+
+  <div style="background:var(--v-restaurants-bg);border-bottom:1px solid var(--color-border);padding:var(--space-10) 0;">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+      <div>
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--v-restaurants);margin:0 0 4px;">Кабинет ресторатора</p>
+        <h1 style="font-family:var(--font-display);font-size:clamp(24px,2.5vw,36px);font-weight:700;color:var(--color-text-primary);margin:0;">Управление объектом</h1>
+      </div>
+      <a href="restaurant-form.html" class="btn btn--primary" style="background:var(--v-restaurants);border-color:var(--v-restaurants);">+ Подать новую заявку</a>
+    </div>
+  </div>
+
+  <div style="max-width:var(--container-max);margin:0 auto;padding:var(--space-10) var(--grid-margin-desktop);display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-6);">
+    <div style="background:var(--color-card-bg);border:1px solid var(--color-border);border-top:3px solid var(--v-restaurants);padding:var(--space-6);">
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--v-restaurants);margin:0 0 8px;">Статус заявки</p>
+      <div style="font-family:var(--font-mono);font-size:24px;font-weight:600;color:var(--color-text-primary);">На рассмотрении</div>
+      <p style="font-size:12px;color:var(--color-text-muted);margin:8px 0 0;">Заявка подана. Ожидайте ответа в течение 14 рабочих дней.</p>
+    </div>
+    <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-6);">
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--v-restaurants);margin:0 0 8px;">Рейтинг готовности</p>
+      <div style="font-family:var(--font-mono);font-size:24px;font-weight:600;color:var(--color-accent);">B+</div>
+      <p style="font-size:12px;color:var(--color-text-muted);margin:8px 0 0;">Требуется дополнить финансовую отчётность.</p>
+    </div>
+    <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-6);">
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--v-restaurants);margin:0 0 8px;">Заявки от инвесторов</p>
+      <div style="font-family:var(--font-mono);font-size:24px;font-weight:600;color:var(--color-text-primary);">3</div>
+      <p style="font-size:12px;color:var(--color-text-muted);margin:8px 0 0;">Инвесторы проявили интерес к вашему объекту.</p>
+    </div>
+  </div>
+
+  <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop) var(--space-16);display:grid;grid-template-columns:2fr 1fr;gap:var(--space-8);">
+    <div>
+      <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 var(--space-4);">Требуемые документы</h2>
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+        <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-4) var(--space-5);display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:13px;">✅ Санитарно-эпидемиологическое заключение</span>
+          <span style="font-size:11px;color:var(--v-land);font-weight:600;">Загружено</span>
+        </div>
+        <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-4) var(--space-5);display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:13px;">✅ Свидетельство о регистрации</span>
+          <span style="font-size:11px;color:var(--v-land);font-weight:600;">Загружено</span>
+        </div>
+        <div style="background:var(--color-card-bg);border:1px solid rgba(139,58,47,0.3);padding:var(--space-4) var(--space-5);display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:13px;">⚠️ Финансовая отчётность за 2023–2024</span>
+          <a href="restaurant-form.html" style="font-size:11px;color:var(--v-restaurants);font-weight:600;text-decoration:none;">Загрузить →</a>
+        </div>
+        <div style="background:var(--color-card-bg);border:1px solid rgba(139,58,47,0.3);padding:var(--space-4) var(--space-5);display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:13px;">⚠️ Halal-сертификат</span>
+          <a href="restaurant-form.html" style="font-size:11px;color:var(--v-restaurants);font-weight:600;text-decoration:none;">Загрузить →</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--color-text-primary);margin:0 0 var(--space-4);">Быстрые действия</h2>
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+        <a href="restaurant-form.html" class="btn btn--primary" style="background:var(--v-restaurants);border-color:var(--v-restaurants);text-align:center;">Редактировать заявку</a>
+        <a href="restaurant-passport.html" class="btn btn--outline" style="border-color:var(--v-restaurants);color:var(--v-restaurants);text-align:center;">Предпросмотр паспорта</a>
+        <a href="support.html" class="btn btn--outline" style="text-align:center;">Калькулятор льгот</a>
+        <a href="cabinet-investor.html" class="btn btn--outline" style="text-align:center;">Кабинет инвестора</a>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background:var(--color-header-bg);border-top:1px solid var(--color-border);padding:var(--space-8) 0;">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop);font-size:12px;color:var(--color-text-muted);">
+    </div>
+  </footer>
+  <script src="js/verticals.js"></script>
+</body>
+</html>

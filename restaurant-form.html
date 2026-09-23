@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Smart Form — Silk Route Invest</title>
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/verticals.css">
+  <link rel="stylesheet" href="styles/form.css">
+</head>
+<body data-vertical="restaurants">
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38">
+        <div class="logo-text"><span class="logo-title">SILK ROUTE</span><span class="logo-subtitle">INVEST</span></div>
+      </a>
+      <nav class="header-nav">
+        <a href="restaurants.html" style="font-size:13px;font-weight:600;color:var(--v-restaurants);text-decoration:none;padding:0 14px;">← Каталог ресторанов</a>
+      </nav>
+    </div>
+  </header>
+  <nav class="vertical-switcher">
+    <div class="vertical-switcher__inner">
+      <a href="portfolio.html" class="vs-tab" data-v="hotels">🏨 Отели</a>
+      <a href="restaurants.html" class="vs-tab is-active" data-v="restaurants">🍽 Рестораны</a>
+      <a href="land.html" class="vs-tab" data-v="land">🗺 Земля</a>
+      <a href="support.html" class="vs-tab" data-v="support">🏛 Господдержка</a>
+    </div>
+  </nav>
+  <div style="background:var(--v-restaurants-bg);border-bottom:1px solid var(--color-border);padding:var(--space-12) 0;">
+    <div style="max-width:780px;margin:0 auto;padding:0 var(--grid-margin-desktop);">
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--v-restaurants);margin:0 0 8px;">🍽 Restaurant Smart Form · Том VI</p>
+      <h1 style="font-family:var(--font-display);font-size:clamp(28px,3vw,42px);font-weight:700;color:var(--color-text-primary);margin:0 0 8px;">Подать заявку на включение<br>ресторана в реестр</h1>
+      <p style="font-size:15px;color:var(--color-text-muted);margin:0;">Заполните форму — и ваш объект получит инвестиционный паспорт по стандарту Тома VI и будет опубликован в каталоге для международных инвесторов.</p>
+    </div>
+  </div>
+  <div style="max-width:780px;margin:var(--space-10) auto var(--space-16);padding:0 var(--grid-margin-desktop);">
+    <form id="restaurant-form" style="display:flex;flex-direction:column;gap:var(--space-8);">
+      <!-- Step indicators -->
+      <div style="display:flex;gap:0;margin-bottom:var(--space-4);">
+        <div class="form-step-tab is-active" data-step="1" style="flex:1;text-align:center;padding:10px;background:var(--v-restaurants);color:#fff;font-size:12px;font-weight:700;">01 Локация</div>
+        <div class="form-step-tab" data-step="2" style="flex:1;text-align:center;padding:10px;background:var(--color-header-bg);color:var(--color-text-muted);font-size:12px;font-weight:700;">02 Формат</div>
+        <div class="form-step-tab" data-step="3" style="flex:1;text-align:center;padding:10px;background:var(--color-header-bg);color:var(--color-text-muted);font-size:12px;font-weight:700;">03 Финансы</div>
+        <div class="form-step-tab" data-step="4" style="flex:1;text-align:center;padding:10px;background:var(--color-header-bg);color:var(--color-text-muted);font-size:12px;font-weight:700;">04 Документы</div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="form-step-content" data-step="1">
+        <h2 style="font-family:var(--font-display);font-size:22px;margin:0 0 var(--space-6);">01. Локация и контакт</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);">
+          <div class="form-group"><label class="form-label">Название ресторана *</label><input type="text" class="form-input" required placeholder="Например: Plov Centre Tashkent"></div>
+          <div class="form-group"><label class="form-label">Регион / Вилоят *</label><select class="form-input" required><option value="">Выбрать</option><option>Ташкент (город)</option><option>Ташкентская область</option><option>Самаркандская область</option><option>Бухарская область</option><option>Хорезмская область</option><option>Ферганская область</option><option>Андижанская область</option><option>Навоийская область</option><option>Другое</option></select></div>
+          <div class="form-group"><label class="form-label">Адрес</label><input type="text" class="form-input" placeholder="Улица, дом, ориентир"></div>
+          <div class="form-group"><label class="form-label">Контактное лицо *</label><input type="text" class="form-input" required placeholder="ФИО"></div>
+          <div class="form-group"><label class="form-label">Телефон *</label><input type="tel" class="form-input" required placeholder="+998 XX XXX-XX-XX"></div>
+          <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="email@example.com"></div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="form-step-content" data-step="2" style="display:none;">
+        <h2 style="font-family:var(--font-display);font-size:22px;margin:0 0 var(--space-6);">02. Формат и концепция</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);">
+          <div class="form-group"><label class="form-label">Формат заведения *</label>
+            <select class="form-input" required>
+              <option value="">Выбрать</option><option>Fine Dining</option><option>Casual Dining</option><option>Фастфуд / QSR</option><option>Этнокухня</option><option>Банкетный / MICE</option><option>Фудкорт / Стрит-фуд</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Концепция кухни *</label><select class="form-input" required><option value="">Выбрать</option><option>Национальная узбекская</option><option>Fusion / Авторская</option><option>Европейская</option><option>Итальянская</option><option>Международная</option><option>Другая</option></select></div>
+          <div class="form-group"><label class="form-label">Количество посадочных мест *</label><input type="number" class="form-input" required min="1" placeholder="Например: 120"></div>
+          <div class="form-group"><label class="form-label">Площадь помещения (м²)</label><input type="number" class="form-input" min="1" placeholder="Например: 450"></div>
+          <div class="form-group"><label class="form-label">Туристический кластер</label><select class="form-input"><option value="">Выбрать</option><option>Гастрономический туризм</option><option>Культурный туризм</option><option>Горный туризм</option><option>MICE / Деловой туризм</option><option>Оздоровительный туризм</option><option>Экотуризм</option></select></div>
+          <div class="form-group"><label class="form-label">Наличие алкогольной лицензии</label><select class="form-input"><option value="no">Нет</option><option value="yes">Есть</option><option value="applied">Заявка подана</option></select></div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="form-step-content" data-step="3" style="display:none;">
+        <h2 style="font-family:var(--font-display);font-size:22px;margin:0 0 var(--space-6);">03. Финансовые показатели</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);">
+          <div class="form-group"><label class="form-label">Средний чек (USD) *</label><input type="number" class="form-input" required min="1" placeholder="Например: 25"></div>
+          <div class="form-group"><label class="form-label">Оборачиваемость стола/день</label><input type="number" class="form-input" step="0.1" min="0" placeholder="Например: 2.5"></div>
+          <div class="form-group"><label class="form-label">Годовая выручка (USD)</label><input type="number" class="form-input" min="0" placeholder="Например: 500000"></div>
+          <div class="form-group"><label class="form-label">EBITDA margin (%)</label><input type="number" class="form-input" min="0" max="100" placeholder="Например: 28"></div>
+          <div class="form-group"><label class="form-label">Доля банкетной/event выручки (%)</label><input type="number" class="form-input" min="0" max="100" placeholder="Например: 30"></div>
+          <div class="form-group"><label class="form-label">Объём инвестиций (USD) *</label><input type="number" class="form-input" required min="0" placeholder="Например: 350000"></div>
+          <div class="form-group"><label class="form-label">Желаемый формат сделки *</label><select class="form-input" required><option value="">Выбрать</option><option>Продажа доли</option><option>Франшиза</option><option>Аренда помещения</option><option>ГЧП</option></select></div>
+          <div class="form-group"><label class="form-label">Ожидаемый срок окупаемости (лет)</label><input type="number" class="form-input" min="1" max="20" step="0.5" placeholder="Например: 4"></div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="form-step-content" data-step="4" style="display:none;">
+        <h2 style="font-family:var(--font-display);font-size:22px;margin:0 0 var(--space-6);">04. Документы и сертификаты</h2>
+        <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+          <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-5);">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;"><input type="checkbox"> Санитарно-эпидемиологическое заключение</label>
+          </div>
+          <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-5);">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;"><input type="checkbox"> Halal-сертификат</label>
+          </div>
+          <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-5);">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;"><input type="checkbox"> Muslim Friendly-сертификат</label>
+          </div>
+          <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-5);">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;"><input type="checkbox"> Свидетельство о государственной регистрации юр. лица</label>
+          </div>
+          <div style="background:var(--color-card-bg);border:1px solid var(--color-border);padding:var(--space-5);">
+            <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;"><input type="checkbox"> Финансовая отчётность за последние 2 года</label>
+          </div>
+          <div class="form-group" style="margin-top:var(--space-4);"><label class="form-label">Дополнительные комментарии</label><textarea class="form-input" rows="4" placeholder="Уникальные особенности вашего объекта, дополнительная информация…" style="resize:vertical;"></textarea></div>
+          <div style="background:var(--v-restaurants-bg);border:1px solid rgba(139,58,47,0.2);padding:var(--space-5);font-size:13px;color:var(--color-text-muted);line-height:1.6;">
+            <strong style="color:var(--v-restaurants);">Конфиденциальность:</strong> Все данные передаются в зашифрованном виде и доступны только верифицированным инвесторам через кабинет Data Room. Публикация возможна только с вашего письменного согласия.
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <div style="display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-6);border-top:1px solid var(--color-border);">
+        <button type="button" id="form-back" style="display:none;" class="btn btn--outline">← Назад</button>
+        <button type="button" id="form-next" class="btn btn--primary" style="background:var(--v-restaurants);border-color:var(--v-restaurants);margin-left:auto;">Далее →</button>
+        <button type="submit" id="form-submit" style="display:none;" class="btn btn--primary" style="background:var(--v-restaurants);border-color:var(--v-restaurants);">Отправить заявку</button>
+      </div>
+    </form>
+  </div>
+  <script>
+  let step = 1; const total = 4;
+  const tabs = document.querySelectorAll('.form-step-tab');
+  const contents = document.querySelectorAll('.form-step-content');
+  const nextBtn = document.getElementById('form-next');
+  const backBtn = document.getElementById('form-back');
+  const submitBtn = document.getElementById('form-submit');
+
+  function showStep(n) {
+    step = n;
+    tabs.forEach((t, i) => { t.style.background = i+1===n ? 'var(--v-restaurants)' : 'var(--color-header-bg)'; t.style.color = i+1===n ? '#fff' : 'var(--color-text-muted)'; });
+    contents.forEach(c => c.style.display = +c.dataset.step === n ? '' : 'none');
+    backBtn.style.display = n > 1 ? '' : 'none';
+    nextBtn.style.display = n < total ? '' : 'none';
+    submitBtn.style.display = n === total ? '' : 'none';
+  }
+
+  nextBtn.addEventListener('click', () => { if (step < total) showStep(step + 1); });
+  backBtn.addEventListener('click', () => { if (step > 1) showStep(step - 1); });
+  document.getElementById('restaurant-form').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('✅ Заявка принята! Комитет по туризму рассмотрит её в течение 14 рабочих дней.');
+    window.location.href = 'restaurants.html';
+  });
+  </script>
+  <script src="js/verticals.js"></script>
+</body>
+</html>

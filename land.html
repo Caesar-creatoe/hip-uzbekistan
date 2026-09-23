@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Земельные участки для туризма — Silk Route Invest</title>
+  <meta name="description" content="Каталог земельных инвестиционных лотов для строительства отелей, ресторанов и туристической инфраструктуры в Узбекистане.">
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/megamenu.css">
+  <link rel="stylesheet" href="styles/verticals.css">
+  <link rel="stylesheet" href="styles/land.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body data-vertical="land">
+
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38">
+        <div class="logo-text"><span class="logo-title">SILK ROUTE</span><span class="logo-subtitle">INVEST</span></div>
+      </a>
+      <nav class="header-nav">
+        <a href="portfolio.html" class="nav-trigger" style="padding:0 14px;font-size:13px;font-weight:600;color:var(--color-text-muted);text-decoration:none;">🏨 Отели</a>
+        <a href="restaurants.html" class="nav-trigger" style="padding:0 14px;font-size:13px;font-weight:600;color:var(--color-text-muted);text-decoration:none;">🍽 Рестораны</a>
+        <a href="land.html" class="nav-trigger" style="padding:0 14px;font-size:13px;font-weight:600;color:var(--v-land);text-decoration:none;">🗺 Земля</a>
+        <a href="support.html" class="nav-trigger" style="padding:0 14px;font-size:13px;font-weight:600;color:var(--color-text-muted);text-decoration:none;">🏛 Господдержка</a>
+        <a href="cabinet-investor.html" class="btn btn--primary btn--sm" style="margin-left:8px;">Кабинет инвестора</a>
+      </nav>
+    </div>
+  </header>
+
+  <nav class="vertical-switcher">
+    <div class="vertical-switcher__inner">
+      <a href="portfolio.html" class="vs-tab" data-v="hotels"><span class="vs-tab__icon">🏨</span> Отели <span class="vs-tab__count">32</span></a>
+      <a href="restaurants.html" class="vs-tab" data-v="restaurants"><span class="vs-tab__icon">🍽</span> Рестораны <span class="vs-tab__count">6</span></a>
+      <a href="land.html" class="vs-tab is-active" data-v="land"><span class="vs-tab__icon">🗺</span> Земельные участки <span class="vs-tab__count">8</span></a>
+      <a href="support.html" class="vs-tab" data-v="support"><span class="vs-tab__icon">🏛</span> Господдержка <span class="vs-tab__count">7</span></a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="v-hero" style="background:var(--v-land-bg);">
+    <div class="v-hero__inner">
+      <div>
+        <p class="v-hero__kicker" style="color:var(--v-land);">🗺 Земельные участки · Инвестиционные лоты</p>
+        <h1 class="v-hero__title">Земельный банк<br>туристической отрасли</h1>
+        <p class="v-hero__desc">Верифицированные участки под строительство отелей, ресторанов, курортов и эко-объектов. Аукционы, прямые инвестдоговоры, ГЧП — все форматы в одном каталоге.</p>
+        <div class="v-hero__stats">
+          <div class="v-hstat"><span class="v-hstat__num" style="color:var(--v-land);">8</span><span class="v-hstat__label">Лотов в базе</span></div>
+          <div class="v-hstat"><span class="v-hstat__num" style="color:var(--v-land);">33 га</span><span class="v-hstat__label">Совокупная площадь</span></div>
+          <div class="v-hstat"><span class="v-hstat__num" style="color:var(--v-land);">5</span><span class="v-hstat__label">Регионов страны</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0;">
+        <div class="land-view-toggle">
+          <button class="land-view-btn is-active" id="view-list">☰ Список</button>
+          <button class="land-view-btn" id="view-map">🗺 Карта</button>
+        </div>
+        <div style="font-size:11px;color:var(--color-text-muted);text-align:center;">Переключение режима просмотра</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="v-filter-bar">
+    <div class="v-filter-bar__inner" style="--v-active:var(--v-land);--v-active-light:var(--v-land-light);">
+      <button class="v-filter is-active" data-filter-type="region" data-filter="all">Все регионы</button>
+      <button class="v-filter" data-filter-type="region" data-filter="Ташкентская область">Ташкент</button>
+      <button class="v-filter" data-filter-type="region" data-filter="Самаркандская область">Самарканд</button>
+      <button class="v-filter" data-filter-type="region" data-filter="Бухарская область">Бухара</button>
+      <button class="v-filter" data-filter-type="region" data-filter="Хорезмская область">Хива</button>
+      <div style="width:1px;background:var(--color-border);margin:0 8px;"></div>
+      <button class="v-filter" data-filter-type="transfer" data-filter="all">Все форматы</button>
+      <button class="v-filter" data-filter-type="transfer" data-filter="lease49">Аренда 49 лет</button>
+      <button class="v-filter" data-filter-type="transfer" data-filter="auction">Аукцион</button>
+      <button class="v-filter" data-filter-type="transfer" data-filter="ppp">ГЧП</button>
+      <button class="v-filter" data-filter-type="transfer" data-filter="direct_agreement">Прямой договор</button>
+    </div>
+  </div>
+
+  <!-- LIST VIEW -->
+  <div id="land-list-view">
+    <div class="v-catalog-grid" id="land-grid"></div>
+  </div>
+
+  <!-- MAP VIEW -->
+  <div id="land-map-view" style="display:none;">
+    <div id="uz-map" style="height:560px;background:var(--color-header-bg);"></div>
+  </div>
+
+  <!-- CTA -->
+  <section class="v-cta-block">
+    <div class="v-cta-block__inner">
+      <div class="v-cta-block__text">
+        <span class="v-cta-block__kicker" style="color:rgba(112,200,150,0.8);">Подать заявку</span>
+        <h2 class="v-cta-block__title">Заявка на участие<br>в торгах или инвестдоговор</h2>
+        <p class="v-cta-block__desc">Комитет по туризму рассматривает заявки в течение 21 рабочего дня. Синхронизация с Единым кадастром Узбекистана.</p>
+      </div>
+      <div class="v-cta-block__actions">
+        <a href="cabinet-investor.html" class="btn btn--primary btn--lg">Подать заявку на лот</a>
+        <a href="support.html" class="btn btn--outline btn--lg" style="border-color:rgba(245,239,227,0.3);color:var(--color-surface);">Льготы для земли →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:var(--color-header-bg);border-top:1px solid var(--color-border);padding:var(--space-10) 0;">
+    <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--grid-margin-desktop);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-4);">
+      <div style="font-size:12px;color:var(--color-text-muted);">© 2024–2026 Комитет по туризму Республики Узбекистан · Silk Route Invest</div>
+      <div style="display:flex;gap:var(--space-6);font-size:12px;">
+        <a href="index.html" style="color:var(--color-text-muted);text-decoration:none;">Главная</a>
+        <a href="portfolio.html" style="color:var(--color-text-muted);text-decoration:none;">Отели</a>
+        <a href="restaurants.html" style="color:var(--color-text-muted);text-decoration:none;">Рестораны</a>
+        <a href="support.html" style="color:var(--color-text-muted);text-decoration:none;">Господдержка</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/verticals.js"></script>
+  <script src="js/land.js"></script>
+</body>
+</html>
