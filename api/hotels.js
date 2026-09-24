@@ -1,5 +1,7 @@
 // Vercel Serverless Function: /api/hotels
-// Persistent storage via GitHub API — changes are visible to ALL users worldwide
+// Persistent storage via GitHub API + local static snapshot fallback
+import fs from 'fs';
+import path from 'path';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
 const GITHUB_OWNER = 'Caesar-creatoe';
@@ -9,161 +11,75 @@ const GITHUB_BRANCH = 'main';
 const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}`;
 const API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
-const CANONICAL_HOTELS = [
-  {
-    id: 'samarqand-universal-bouilding',
-    slug: 'samarqand-universal-bouilding',
-    hotelName: 'Samarqand Universal Bouilding',
-    legalEntity: 'Samarqand Universal Bouilding MCHJ',
-    region: 'Самаркандская область',
-    regionKey: 'samarkand',
-    address: 'г. Самарканд, ул. Регистан, 18',
-    roomsCount: 279,
-    placesCount: 800,
-    stars: 5,
-    floors: 9,
-    yearCommissioned: 2022,
-    dealType: 'sale',
-    amenities: '2 ta restoran, 2 ta basseyn, sport zali, klub',
-    managerContact: '+998 (77) 448 77 88',
-    status: 'active',
-    hasPresentation: true,
-    photos: [
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80&fit=crop',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80&fit=crop'
-    ],
-    notes: 'Крупнейший инвестиционный комплекс в Самарканде.'
-  },
-  {
-    id: 'silk-road-resort',
-    slug: 'silk-road-resort',
-    hotelName: 'Silk Road Resort & Spa',
-    legalEntity: 'ИП ООО «Charvak Lakes Hospitality»',
-    region: 'Ташкентская область',
-    regionKey: 'tashkent-region',
-    address: 'Ташкентская обл., Бостанлыкский р-н, побережье Чарвака',
-    roomsCount: 140,
-    placesCount: 310,
-    stars: 4,
-    floors: 5,
-    yearCommissioned: 2023,
-    dealType: 'rent',
-    amenities: 'Открытый и закрытый бассейны, Спа-комплекс, Частный пляж, Вертодром',
-    managerContact: '+998 (71) 150-77-99',
-    status: 'active',
-    hasPresentation: true,
-    photos: [
-      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80&fit=crop',
-      'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80&fit=crop'
-    ],
-    notes: 'Курортный объект на Чарвакском водохранилище.'
-  },
-  {
-    id: 'bukhara-heritage',
-    slug: 'bukhara-heritage',
-    hotelName: 'Bukhara Heritage Hotel',
-    legalEntity: 'ООО «Bukhara Heritage Hospitality»',
-    region: 'Бухарская область',
-    regionKey: 'bukhara',
-    address: 'г. Бухара, ул. Бахауддина Накшбанда, 28',
-    roomsCount: 120,
-    placesCount: 240,
-    stars: 4,
-    floors: 4,
-    yearCommissioned: 2020,
-    dealType: 'franchise',
-    amenities: 'Ресторан традиционной кухни, Терраса на крыше, Аутентичный хаммам, Сувенирный бутик',
-    managerContact: '+998 (65) 224-88-10',
-    status: 'active',
-    hasPresentation: true,
-    photos: [
-      'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80&fit=crop',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80&fit=crop'
-    ],
-    notes: 'Историческая зона старой Бухары.'
-  },
-  {
-    id: 'khiva-palace',
-    slug: 'khiva-palace',
-    hotelName: 'Khiva Palace Hotel',
-    legalEntity: 'ООО «Ichan Qala Invest»',
-    region: 'Хорезмская область',
-    regionKey: 'khorezm',
-    address: 'г. Хива, ул. Пахлаван Махмуда, 11 (Ичан-Кала)',
-    roomsCount: 74,
-    placesCount: 152,
-    stars: 4,
-    floors: 3,
-    yearCommissioned: 2019,
-    dealType: 'invest',
-    amenities: 'Внутренний восточный дворик, Чайхана, Экскурсионное бюро, Арт-галерея',
-    managerContact: '+998 (62) 375-12-34',
-    status: 'active',
-    hasPresentation: true,
-    photos: [
-      'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80&fit=crop'
-    ],
-    notes: 'Отель в крепости Ичан-Кала.'
-  },
-  {
-    id: 'asmald',
-    slug: 'asmald',
-    hotelName: 'ASMALD',
-    legalEntity: 'СП ООО «ASMALD Hospitality»',
-    region: 'Ташкент (город)',
-    regionKey: 'tashkent',
-    address: 'г. Ташкент, Яккасарайский р-н, ул. Мукими, 12',
-    roomsCount: 96,
-    placesCount: 192,
-    stars: 4,
-    floors: 5,
-    yearCommissioned: 2023,
-    dealType: 'sale',
-    amenities: 'Ресторан авторской кухни, Конференц-зал, Спа-комплекс, Фитнес-центр, Парковка',
-    managerContact: '+998 (71) 203-00-55',
-    status: 'active',
-    hasPresentation: true,
-    photos: [
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80&fit=crop',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80&fit=crop'
-    ],
-    notes: 'Премиальный гостиничный комплекс в Ташкенте.'
-  }
-];
-
-// Read hotels from GitHub API (not raw URL — raw has CDN cache up to 5 min!)
-async function readFromGitHub() {
+// Read hotels with 3-tier fallback (Raw URL -> GitHub API -> Local Bundled File)
+async function readHotels() {
+  // Tier 1: Fetch from GitHub Raw URL with cache-busting (never hits 1MB API limit)
   try {
-    // Use API endpoint which is NOT cached by CDN
-    const resp = await fetch(API_URL, {
-      headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Cache-Control': 'no-cache'
-      }
-    });
+    const rawHeaders = { 'User-Agent': 'Vercel-Serverless', 'Cache-Control': 'no-cache, no-store' };
+    if (GITHUB_TOKEN) rawHeaders['Authorization'] = `token ${GITHUB_TOKEN}`;
+    const rawResp = await fetch(RAW_URL + '?_t=' + Date.now(), { headers: rawHeaders });
+    if (rawResp.ok) {
+      const data = await rawResp.json();
+      if (Array.isArray(data) && data.length >= 10) return data;
+    }
+  } catch (e) {
+    console.warn('Raw GitHub read failed:', e.message);
+  }
+
+  // Tier 2: GitHub Contents API (handles download_url or content)
+  try {
+    const headers = {
+      'Accept': 'application/vnd.github.v3+json',
+      'User-Agent': 'Vercel-Serverless',
+      'Cache-Control': 'no-cache'
+    };
+    if (GITHUB_TOKEN) headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+
+    const resp = await fetch(API_URL, { headers });
     if (resp.ok) {
       const fileInfo = await resp.json();
       if (fileInfo && fileInfo.content) {
-        // GitHub API returns base64-encoded content
         const decoded = Buffer.from(fileInfo.content, 'base64').toString('utf8');
         const data = JSON.parse(decoded);
-        if (Array.isArray(data) && data.length > 0) return data;
+        if (Array.isArray(data) && data.length >= 10) return data;
+      } else if (fileInfo && fileInfo.download_url) {
+        const dlResp = await fetch(fileInfo.download_url + '?_t=' + Date.now());
+        if (dlResp.ok) {
+          const data = await dlResp.json();
+          if (Array.isArray(data) && data.length >= 10) return data;
+        }
       }
     }
   } catch (e) {
-    console.warn('GitHub API read failed:', e.message);
+    console.warn('GitHub API contents read failed:', e.message);
   }
+
+  // Tier 3: Local bundled data/hotels.json from deployment filesystem (always has 32 hotels)
+  try {
+    const localPath = path.join(process.cwd(), 'data', 'hotels.json');
+    if (fs.existsSync(localPath)) {
+      const localData = JSON.parse(fs.readFileSync(localPath, 'utf8'));
+      if (Array.isArray(localData) && localData.length >= 10) return localData;
+    }
+  } catch (e) {
+    console.warn('Local file fallback read failed:', e.message);
+  }
+
   return null;
 }
 
-// Write hotels to GitHub (updates the shared database)
+// Write hotels to GitHub (updates the shared database in git)
 async function writeToGitHub(hotels) {
+  if (!GITHUB_TOKEN) {
+    throw new Error('GITHUB_TOKEN is not configured on server');
+  }
+
   // 1. Get current SHA of the file (required for update)
   const shaResp = await fetch(API_URL, {
     headers: {
       'Authorization': `token ${GITHUB_TOKEN}`,
-      'Accept': 'application/vnd.github.v3+json'
+      'Accept': 'application/vnd.github.v3+json',
+      'User-Agent': 'Vercel-Serverless'
     }
   });
 
@@ -189,7 +105,8 @@ async function writeToGitHub(hotels) {
     headers: {
       'Authorization': `token ${GITHUB_TOKEN}`,
       'Content-Type': 'application/json',
-      'Accept': 'application/vnd.github.v3+json'
+      'Accept': 'application/vnd.github.v3+json',
+      'User-Agent': 'Vercel-Serverless'
     },
     body: JSON.stringify(body)
   });
@@ -215,12 +132,11 @@ export default async function handler(req, res) {
 
   // ─── GET ─────────────────────────────────────────────────────────────────
   if (req.method === 'GET') {
-    const hotels = await readFromGitHub();
-    if (hotels) {
-      return res.status(200).json({ hotels, source: 'github', count: hotels.length });
+    const hotels = await readHotels();
+    if (hotels && hotels.length > 0) {
+      return res.status(200).json({ hotels, source: 'cloud', count: hotels.length });
     }
-    // NEVER fall back to hardcoded list — return error so client doesn't overwrite with stale data
-    return res.status(503).json({ error: 'GitHub unavailable', hotels: [], source: 'error', count: 0 });
+    return res.status(503).json({ error: 'Hotels data temporarily unavailable', hotels: [], source: 'error', count: 0 });
   }
 
   // ─── POST (save full list) ────────────────────────────────────────────────
@@ -229,30 +145,24 @@ export default async function handler(req, res) {
       const data = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
       let list = Array.isArray(data) ? data : (data && Array.isArray(data.hotels) ? data.hotels : null);
 
-      if (!Array.isArray(list)) {
-        return res.status(400).json({ error: 'Expected array of hotels or { hotels: [...] }' });
+      if (!Array.isArray(list) || list.length === 0) {
+        return res.status(400).json({ error: 'Expected non-empty array of hotels' });
       }
 
-      // Safety guard: if new list is much smaller than current, verify it's intentional
-      // This prevents accidental overwrites from stale cache
-      if (list.length > 0) {
-        const current = await readFromGitHub();
-        if (current && current.length > list.length + 3) {
-          // New list would delete 4+ hotels at once — require explicit confirm flag
-          if (!data._confirmed) {
-            return res.status(409).json({
-              error: 'SAFETY_BLOCK',
-              message: `Попытка сохранить ${list.length} отелей, но в базе ${current.length}. Используйте _confirmed:true для принудительной перезаписи.`,
-              currentCount: current.length,
-              newCount: list.length
-            });
-          }
+      // Safety guard: if new list is smaller than 10 hotels while database has 25+, require explicit confirm
+      const current = await readHotels();
+      if (current && current.length >= 25 && list.length < 10) {
+        if (!data._confirmed) {
+          return res.status(409).json({
+            error: 'SAFETY_BLOCK',
+            message: `Попытка сохранить всего ${list.length} отелей (в базе ${current.length}). Отклонено для защиты каталога.`,
+            currentCount: current.length,
+            newCount: list.length
+          });
         }
       }
 
-      // Write to GitHub — this makes changes visible to ALL users immediately
       await writeToGitHub(list);
-
       return res.status(200).json({ success: true, count: list.length, hotels: list, source: 'github' });
     } catch (err) {
       console.error('POST /api/hotels error:', err);

@@ -363,8 +363,23 @@ window.addEventListener('sri_hotels_updated', () => {
   applyFiltersAndSort();
 });
 
+// Кросс-вкладочная синхронизация при сохранении в админке
+window.addEventListener('storage', (e) => {
+  if (e.key === 'sri_hotels_cache' || e.key === 'sri_hotels_last_updated') {
+    if (Store && typeof Store.reloadFromCache === 'function') Store.reloadFromCache();
+    applyFiltersAndSort();
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   applyFiltersAndSort();
+  if (Store && typeof Store.getAllAsync === 'function') {
+    Store.getAllAsync().then(() => applyFiltersAndSort());
+  }
 });
 
 applyFiltersAndSort();
+if (Store && typeof Store.getAllAsync === 'function') {
+  Store.getAllAsync().then(() => applyFiltersAndSort());
+}
+

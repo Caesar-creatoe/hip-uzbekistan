@@ -646,13 +646,9 @@ window.addEventListener('sri_hotels_updated', (e) => {
   }
 });
 
-// При загрузке — сразу получаем актуальный список с GitHub
-// КРИТИЧНО: очищаем локальный кеш при каждом открытии админки
-// Это предотвращает ситуацию когда стый кеш (5 отелей) перезаписывает GitHub (32 отеля)
-try { localStorage.removeItem('sri_hotels_cache'); } catch(e) {}
-window._memoryCache = null; // сбросить in-memory кеш тоже
-if (Store && Store.KEY) {
-  try { localStorage.removeItem(Store.KEY); } catch(e) {}
-}
+// При загрузке админки — сразу отображаем все объекты без задержки
+renderSidebar();
 
+// В фоне проверяем и подгружаем самые свежие данные из облака
 renderSidebarFromCloud();
+
