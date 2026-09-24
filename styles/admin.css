@@ -183,7 +183,11 @@
   margin-bottom: 4px;
   border: 1px solid transparent;
   user-select: none;
+  contain: content;
+  content-visibility: auto;
+  contain-intrinsic-size: 68px;
 }
+
 .sidebar-item:hover { background: #F5EFE3; }
 .sidebar-item--active {
   background: #FFFFFF;

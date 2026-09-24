@@ -132,7 +132,7 @@ function renderSidebarWithHotels(hotels) {
          data-id="${h.id}" role="button" tabindex="0">
       <div class="sidebar-item-photo">
         ${h.photos && h.photos[0]
-          ? `<img src="${typeof h.photos[0] === 'object' ? h.photos[0].src : h.photos[0]}" alt="${escHtml(h.hotelName)}" loading="lazy"/>`
+          ? `<img src="${typeof h.photos[0] === 'object' ? h.photos[0].src : h.photos[0]}" alt="${escHtml(h.hotelName)}" loading="lazy" decoding="async" width="48" height="48"/>`
           : `<span>📷</span>`}
       </div>
       <div class="sidebar-item-info">
@@ -152,10 +152,13 @@ function renderSidebar() {
 }
 
 async function renderSidebarFromCloud() {
-  if (hotelList) hotelList.innerHTML = '<div class="sidebar-empty"><span>⏳</span><p>Загрузка из облака...</p></div>';
+  // Тихо обновляем сайдбар в фоне без уничтожения текущего списка
   const hotels = await Store.getAllAsync();
-  renderSidebarWithHotels(hotels);
+  if (hotels && hotels.length > 0) {
+    renderSidebarWithHotels(hotels);
+  }
 }
+
 
 /* ── Фото превью ───────────────────────────────────────────── */
 function renderPhotoPreview() {
@@ -424,17 +427,29 @@ function resetForm() {
   if (formTitle) formTitle.textContent = 'Добавить новый отель';
   if (deleteBtn) deleteBtn.hidden = true;
   if (cancelBtn) cancelBtn.hidden = true;
-  renderSidebar();
+  if (hotelList) {
+    hotelList.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('sidebar-item--active'));
+  }
 }
 
-/* ── Загрузка в форму ──────────────────────────────────────── */
-async function loadForEdit(id) {
-  // Берём из облака если возможно, иначе из кеша
-  const allHotels = await Store.getAllAsync();
-  const q = String(id).toLowerCase();
-  const hotel = allHotels.find(h => (h.id && String(h.id).toLowerCase() === q) || (h.slug && String(h.slug).toLowerCase() === q)) || Store.getById(id);
+/* ── Мгновенная загрузка отеля в форму (0 ms, без задержек) ── */
+function loadForEdit(id) {
+  if (!id) return;
+  // Мгновенно берём объект из памяти браузера
+  const q = String(id).toLowerCase().trim();
+  const hotel = Store.getById(id) || Store.getAll().find(h => (h.id && String(h.id).toLowerCase() === q) || (h.slug && String(h.slug).toLowerCase() === q));
   if (!hotel) return;
-  editingId = id;
+
+  editingId = hotel.id || id;
+
+  // 1. Мгновенно подсвечиваем активный отель в сайдбаре без перерисовки всего DOM (0 ms)
+  if (hotelList) {
+    hotelList.querySelectorAll('.sidebar-item').forEach(el => {
+      el.classList.toggle('sidebar-item--active', el.dataset.id === editingId);
+    });
+  }
+
+  // 2. Мгновенно заполняем все текстовые поля и списки
   const fields = [
     'hotelName', 'legalEntity', 'region', 'address', 'roomsCount',
     'placesCount', 'stars', 'landArea', 'buildingArea', 'floors',
@@ -452,23 +467,10 @@ async function loadForEdit(id) {
     }
   });
 
-  // Загрузка презентации (из объекта или из SriDB IndexedDB)
+  // 3. Презентация
   presentationFileData = hotel.presentationFile || null;
   presentationFileName = hotel.presentationFileName || null;
   if (presUrlInput) presUrlInput.value = hotel.presentationUrl || '';
-
-  if (!presentationFileData && window.SriDB && hotel.id) {
-    try {
-      const presDoc = await window.SriDB.get('pres_' + hotel.id);
-      if (presDoc && presDoc.data) {
-        presentationFileData = presDoc.data;
-        if (!presentationFileName) presentationFileName = presDoc.name || 'Презентация.pdf';
-      }
-    } catch (e) {
-      console.warn('Error fetching presentation from SriDB:', e);
-    }
-  }
-
   if (presentationFileData || presentationFileName) {
     if (presFileNameEl) presFileNameEl.textContent = `✅ ${presentationFileName || 'Презентация загружена'}`;
     if (presRemoveBtn) presRemoveBtn.style.display = 'inline-block';
@@ -476,24 +478,12 @@ async function loadForEdit(id) {
     if (presFileNameEl) presFileNameEl.textContent = 'Файл не выбран';
     if (presRemoveBtn) presRemoveBtn.style.display = 'none';
   }
-
   if (presCheckbox) {
     presCheckbox.checked = Boolean(hotel.hasPresentation || presentationFileData || hotel.presentationUrl);
   }
 
-  // Загружаем фото: поддержка как legacy массива строк, так и нового {src, caption}
-  let photos = Array.isArray(hotel.photos) ? [...hotel.photos] : [];
-  if (photos.length <= 1 && window.SriDB && hotel.id) {
-    try {
-      const dbPhotos = await window.SriDB.get('photos_' + hotel.id);
-      if (Array.isArray(dbPhotos) && dbPhotos.length > photos.length) {
-        photos = dbPhotos;
-      }
-    } catch (e) {
-      console.warn('Error fetching photos from SriDB:', e);
-    }
-  }
-
+  // 4. Мгновенный рендер фото превью
+  const photos = Array.isArray(hotel.photos) ? hotel.photos : [];
   photoFiles = photos.filter(Boolean).map(p => {
     if (typeof p === 'object' && p !== null && p.src) {
       return { src: p.src, caption: p.caption || '' };
@@ -501,12 +491,30 @@ async function loadForEdit(id) {
     return { src: String(p), caption: '' };
   });
   renderPhotoPreview();
+
+  // 5. Заголовки и кнопки управления
   if (formTitle) formTitle.textContent = `Редактировать: ${hotel.hotelName || ''}`;
   if (deleteBtn) deleteBtn.hidden = false;
   if (cancelBtn) cancelBtn.hidden = false;
-  renderSidebar();
-  if (hotelForm) hotelForm.scrollIntoView({ behavior:'smooth', block:'start' });
+
+  // 6. Прокрутка только на узких мобильных экранах (на десктопе сайдбар и форма рядом)
+  if (window.innerWidth < 900 && hotelForm) {
+    hotelForm.scrollIntoView({ behavior: 'auto', block: 'start' });
+  }
+
+  // 7. Фоновая проверка IndexedDB без блокировки UI
+  if (!presentationFileData && window.SriDB && hotel.id) {
+    window.SriDB.get('pres_' + hotel.id).then(presDoc => {
+      if (presDoc && presDoc.data && editingId === hotel.id) {
+        presentationFileData = presDoc.data;
+        presentationFileName = presDoc.name || 'Презентация.pdf';
+        if (presFileNameEl) presFileNameEl.textContent = `✅ ${presentationFileName}`;
+        if (presRemoveBtn) presRemoveBtn.style.display = 'inline-block';
+      }
+    }).catch(() => {});
+  }
 }
+
 
 /* ── Отправка формы ────────────────────────────────────────── */
 if (hotelForm) {
@@ -573,18 +581,21 @@ if (hotelForm) {
       })),
     };
 
-    showStatus('⏳ Сохранение в облако...', 'info');
+    showStatus('⏳ Сохранение...', 'info');
     let ok = false;
     if (editingId) {
       ok = await Store.update(editingId, hotel);
-      if (ok) showStatus('✅ Отель успешно обновлён — видно всем');
-      else showStatus('❌ Ошибка сохранения. Откройте DevTools (F12) и проверьте Console.', 'error');
+      if (ok) showStatus('✅ Отель успешно обновлён — изменения сохранены');
+      else showStatus('❌ Ошибка сохранения', 'error');
     } else {
       ok = await Store.add(hotel);
-      if (ok) showStatus('✅ Отель добавлен в каталог — видно всем');
-      else showStatus('❌ Ошибка сохранения. Откройте DevTools (F12) и проверьте Console.', 'error');
+      if (ok) showStatus('✅ Отель добавлен в каталог — изменения сохранены');
+      else showStatus('❌ Ошибка сохранения', 'error');
     }
-    if (ok) resetForm();
+    if (ok) {
+      renderSidebar();
+      loadForEdit(hotel.id);
+    }
   });
 }
 
@@ -597,15 +608,16 @@ if (deleteBtn) {
     const h = Store.getById(editingId);
     const confirmed = await showConfirmDialog(`Удалить «${h?.hotelName||editingId}»?<br><small style="color:#aaa">Это действие нельзя отменить — отель пропадёт у всех пользователей.</small>`);
     if (!confirmed) return;
-    showStatus('⏳ Удаление из облачной базы...', 'info');
+    showStatus('⏳ Удаление...', 'info');
     if (window.SriDB) {
       window.SriDB.delete('pres_' + editingId);
       window.SriDB.delete('photos_' + editingId);
     }
     const ok = await Store.delete(editingId);
-    if (ok !== false) showStatus('🗑️ Отель удалён на всех устройствах');
-    else showStatus('❌ Ошибка удаления. Откройте DevTools (F12) и проверьте Console.', 'error');
+    if (ok !== false) showStatus('🗑️ Отель удалён');
+    else showStatus('❌ Ошибка удаления', 'error');
     resetForm();
+    renderSidebar();
   });
 }
 if (exportBtn) {
@@ -621,17 +633,22 @@ if (exportBtn) {
   });
 }
 
-/* ── Поиск ───────────────────────────────────────────────────── */
+/* ── Поиск (мгновенный с дебаунсом 40мс) ──────────────────────── */
 if (searchInput) {
+  let searchTimer = null;
   searchInput.addEventListener('input', () => {
-    const q = searchInput.value.toLowerCase().trim();
-    document.querySelectorAll('.sidebar-item').forEach(el => {
-      const name = el.querySelector('.sidebar-item-name')?.textContent.toLowerCase()||'';
-      const reg  = el.querySelector('.sidebar-item-region')?.textContent.toLowerCase()||'';
-      el.hidden = q ? !(name.includes(q)||reg.includes(q)) : false;
-    });
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      const q = searchInput.value.toLowerCase().trim();
+      document.querySelectorAll('.sidebar-item').forEach(el => {
+        const name = el.querySelector('.sidebar-item-name')?.textContent.toLowerCase()||'';
+        const reg  = el.querySelector('.sidebar-item-region')?.textContent.toLowerCase()||'';
+        el.hidden = q ? !(name.includes(q)||reg.includes(q)) : false;
+      });
+    }, 40);
   });
 }
+
 
 /* ── Init ─────────────────────────────────────────────────────── */
 checkAdminAuth();

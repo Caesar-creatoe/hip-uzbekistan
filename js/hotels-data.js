@@ -1138,8 +1138,14 @@ const HotelStore = {
     return this._localCache();
   },
 
-  /** Получить все отели асинхронно (с обновлением) */
+  /** Получить все отели асинхронно (мгновенно из памяти, обновление в фоне) */
   async getAllAsync() {
+    const cached = this._localCache();
+    if (cached && cached.length >= 25) {
+      // Запускаем фоновую синхронизацию без задержки UI
+      this.fetchFromCloud().catch(() => {});
+      return cached;
+    }
     const cloud = await this.fetchFromCloud();
     return (cloud && cloud.length >= 10) ? cloud : this._localCache();
   },
@@ -1192,29 +1198,27 @@ const HotelStore = {
       } catch(e) {}
     }
 
-    // 4. Отправка в GitHub через серверный API
-    try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ hotels: clean, _confirmed: true })
-      });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({ error: res.statusText }));
-        console.warn('API POST status:', res.status, err);
+    // 4. Отправка в GitHub через серверный API В ФОНЕ (не замораживая UI)
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hotels: clean, _confirmed: true })
+    }).then(async res => {
+      if (res.ok) {
+        const result = await res.json().catch(() => ({}));
+        console.log('✅ Отели успешно синхронизированы с облаком GitHub:', result.count || clean.length);
       } else {
-        const result = await res.json();
-        console.log('✅ Отели успешно синхронизированы с облаком GitHub:', result.count);
+        console.warn('Фоновый POST API вернул статус:', res.status);
       }
-    } catch(e) {
-      console.warn('API POST network issue:', e.message);
-    }
+    }).catch(e => {
+      console.warn('Фоновый POST API сетевой сбой:', e.message);
+    });
 
-    return true; // Локальное сохранение всегда успешно!
+    return true; // Мгновенный возврат!
   },
 
   async add(hotel) {
-    const hotels = [...(await this.getAllAsync())];
+    const hotels = [...this.getAll()];
     hotel.id = hotel.id || ('sri_' + Date.now().toString(36));
     hotel.slug = hotel.slug || (hotel.hotelName ? hotel.hotelName.toLowerCase().replace(/[^a-z0-9\u0430-\u044f\u0451]+/g, '-').replace(/^-|-$/g, '') : hotel.id);
     hotel.createdAt = hotel.createdAt || new Date().toISOString();
@@ -1225,7 +1229,7 @@ const HotelStore = {
   },
 
   async update(id, data) {
-    const hotels = [...(await this.getAllAsync())];
+    const hotels = [...this.getAll()];
     const idx = hotels.findIndex(h => h.id === id || h.slug === id);
     if (idx === -1) return false;
     hotels[idx] = { ...hotels[idx], ...data, updatedAt: new Date().toISOString() };
@@ -1233,7 +1237,7 @@ const HotelStore = {
   },
 
   async delete(id) {
-    const hotels = (await this.getAllAsync()).filter(h => h.id !== id && h.slug !== id);
+    const hotels = this.getAll().filter(h => h.id !== id && h.slug !== id);
     if (typeof window !== 'undefined' && window.SriDB) {
       window.SriDB.delete('pres_' + id);
       window.SriDB.delete('photos_' + id);
