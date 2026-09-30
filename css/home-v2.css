@@ -1,0 +1,1379 @@
+/*
+ * ============================================================
+ * HOME V2 — Silk Route Invest · Главная страница
+ * Modern "tech-consulting" redesign
+ * Isolated file: ТОЛЬКО главная страница index.html
+ * ============================================================
+ */
+
+/* ──────────────────────────────────────────────
+   GOOGLE FONTS (Manrope + Onest as UI sans)
+   ────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* ──────────────────────────────────────────────
+   HOME-SPECIFIC TOKENS
+   ────────────────────────────────────────────── */
+:root {
+  --hp-bg:       #F3EEE3;   /* Тёплый пергамент */
+  --hp-surface:  #FBF8F2;   /* Молочная поверхность */
+  --hp-ink:      #3A2A22;   /* Тёмное эспрессо */
+  --hp-muted:    #7A6A5E;   /* Приглушённый */
+  --hp-accent:   #D9A441;   /* Золото */
+  --hp-accent2:  #8B6F4E;   /* Кофе */
+  --hp-line:     #E0D6C4;   /* Граница */
+  --hp-hero-h:   680px;
+  --hp-r-block:  28px;
+  --hp-r-card:   20px;
+  --hp-r-pill:   999px;
+  --hp-font-ui:  'Manrope', 'Golos Text', system-ui, sans-serif;
+  --hp-font-ser: 'PT Serif', Georgia, serif;
+  --hp-font-mon: 'JetBrains Mono', monospace;
+}
+
+/* ──────────────────────────────────────────────
+   GLOBAL RESET FOR HOME PAGE
+   ────────────────────────────────────────────── */
+body.home-v2 {
+  background: var(--hp-bg);
+  font-family: var(--hp-font-ui);
+  color: var(--hp-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ──────────────────────────────────────────────
+   §1 HERO — Rounded pill-shaped hero with arc cards
+   ────────────────────────────────────────────── */
+.hv2-hero {
+  position: relative;
+  min-height: var(--hp-hero-h);
+  margin: 16px 16px 0;
+  border-radius: 32px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2A1F16 0%, #3D2B1F 40%, #5C3D2E 100%);
+  display: flex;
+  align-items: center;
+  padding: 80px 72px;
+  isolation: isolate;
+}
+
+/* Background photo overlay */
+.hv2-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hv2-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  filter: brightness(0.38) saturate(0.7);
+}
+
+/* Gradient overlays for text legibility */
+.hv2-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    rgba(42, 31, 22, 0.92) 0%,
+    rgba(42, 31, 22, 0.75) 45%,
+    rgba(42, 31, 22, 0.1) 100%
+  );
+}
+
+/* Decorative arc pattern */
+.hv2-hero__arc {
+  position: absolute;
+  right: -120px;
+  bottom: -120px;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.15);
+  z-index: 1;
+  pointer-events: none;
+}
+.hv2-hero__arc::before {
+  content: '';
+  position: absolute;
+  inset: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.1);
+}
+.hv2-hero__arc::after {
+  content: '';
+  position: absolute;
+  inset: 130px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.07);
+}
+
+/* Floating dots grid */
+.hv2-hero__dots {
+  position: absolute;
+  top: 40px;
+  right: 420px;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 14px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+.hv2-hero__dots span {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #D9A441;
+}
+
+/* Content */
+.hv2-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.hv2-hero__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--hp-font-mon);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hp-accent);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: hv2FadeUp 0.7s 0.1s ease forwards;
+}
+.hv2-hero__kicker::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--hp-accent);
+  flex-shrink: 0;
+}
+
+.hv2-hero__title {
+  font-family: var(--hp-font-ser);
+  font-size: clamp(52px, 6vw, 84px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: #FBF8F2;
+  margin: 0 0 32px;
+  opacity: 0;
+  animation: hv2FadeUp 0.8s 0.2s ease forwards;
+}
+.hv2-hero__title em {
+  font-style: italic;
+  color: var(--hp-accent);
+}
+
+.hv2-hero__sub {
+  font-family: var(--hp-font-ui);
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(251, 248, 242, 0.72);
+  max-width: 440px;
+  margin: 0 0 44px;
+  opacity: 0;
+  animation: hv2FadeUp 0.8s 0.35s ease forwards;
+}
+
+/* CTA group */
+.hv2-hero__ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: hv2FadeUp 0.8s 0.45s ease forwards;
+}
+
+.hv2-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--hp-r-pill);
+  background: var(--hp-accent);
+  color: var(--hp-ink);
+  font-family: var(--hp-font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+  box-shadow: 0 4px 20px rgba(217, 164, 65, 0.35);
+}
+.hv2-btn-primary:hover {
+  transform: translateY(-2px);
+  background: #e8b34d;
+  box-shadow: 0 8px 28px rgba(217, 164, 65, 0.45);
+}
+
+.hv2-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: var(--hp-r-pill);
+  border: 1.5px solid rgba(251, 248, 242, 0.3);
+  color: rgba(251, 248, 242, 0.85);
+  font-family: var(--hp-font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 200ms ease, background 200ms ease, color 200ms ease;
+  backdrop-filter: blur(8px);
+}
+.hv2-btn-outline:hover {
+  border-color: rgba(217, 164, 65, 0.6);
+  color: var(--hp-accent);
+  background: rgba(217, 164, 65, 0.06);
+}
+
+/* Hero Stats strip */
+.hv2-hero__stats {
+  position: absolute;
+  bottom: 48px;
+  left: 72px;
+  right: 72px;
+  z-index: 2;
+  display: flex;
+  gap: 0;
+  opacity: 0;
+  animation: hv2FadeUp 0.8s 0.6s ease forwards;
+}
+
+.hv2-hero-stat {
+  flex: 1;
+  padding: 0 32px 0 0;
+  border-right: 1px solid rgba(251, 248, 242, 0.12);
+}
+.hv2-hero-stat:last-child {
+  border-right: none;
+  padding-right: 0;
+  padding-left: 32px;
+}
+.hv2-hero-stat:not(:first-child) {
+  padding-left: 32px;
+}
+
+.hv2-hero-stat__num {
+  font-family: var(--hp-font-mon);
+  font-size: 32px;
+  font-weight: 500;
+  color: #FBF8F2;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.hv2-hero-stat__num span {
+  color: var(--hp-accent);
+  font-size: 18px;
+}
+
+.hv2-hero-stat__label {
+  font-family: var(--hp-font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(251, 248, 242, 0.45);
+  margin-top: 6px;
+}
+
+/* ──────────────────────────────────────────────
+   §2 MARQUEE — Бегущая строка
+   ────────────────────────────────────────────── */
+.hv2-marquee-wrap {
+  background: var(--hp-ink);
+  overflow: hidden;
+  margin: 0 16px;
+  border-radius: 0 0 20px 20px;
+  padding: 14px 0;
+}
+
+.hv2-marquee-track {
+  display: flex;
+  gap: 0;
+  animation: hv2Marquee 28s linear infinite;
+  width: max-content;
+}
+.hv2-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.hv2-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 32px;
+  white-space: nowrap;
+  font-family: var(--hp-font-mon);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(251, 248, 242, 0.5);
+}
+.hv2-marquee-item strong {
+  color: var(--hp-accent);
+  font-weight: 500;
+}
+.hv2-marquee-item::after {
+  content: '·';
+  color: rgba(217, 164, 65, 0.4);
+  font-size: 18px;
+}
+
+@keyframes hv2Marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ──────────────────────────────────────────────
+   §3 ARC CARDS — 4 класса активов (парящая дуга)
+   ────────────────────────────────────────────── */
+.hv2-arc {
+  padding: 100px 16px 80px;
+  position: relative;
+}
+
+.hv2-arc__label {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.hv2-section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--hp-font-mon);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hp-accent2);
+  margin-bottom: 16px;
+}
+.hv2-section-kicker::before,
+.hv2-section-kicker::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--hp-accent2);
+  flex-shrink: 0;
+}
+
+.hv2-section-title {
+  font-family: var(--hp-font-ser);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--hp-ink);
+  margin: 0;
+}
+.hv2-section-title em {
+  font-style: italic;
+  color: var(--hp-accent2);
+}
+
+.hv2-arc__cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.hv2-arc-card {
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-line);
+  border-radius: var(--hp-r-block);
+  padding: 36px 28px 32px;
+  text-decoration: none;
+  color: var(--hp-ink);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 300ms ease,
+              border-color 300ms ease;
+  will-change: transform;
+}
+.hv2-arc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-accent, var(--hp-accent2));
+  border-radius: 3px 3px 0 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease;
+}
+.hv2-arc-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 24px 48px rgba(58, 42, 34, 0.12);
+  border-color: var(--card-accent, var(--hp-accent2));
+}
+.hv2-arc-card:hover::before {
+  transform: scaleX(1);
+}
+
+.hv2-arc-card--hotels  { --card-accent: #8B6F4E; }
+.hv2-arc-card--rest    { --card-accent: #8B3A2F; }
+.hv2-arc-card--land    { --card-accent: #2E5E3F; }
+.hv2-arc-card--support { --card-accent: #1E3A6E; }
+
+.hv2-arc-card__icon {
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.hv2-arc-card__label {
+  font-family: var(--hp-font-mon);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--card-accent, var(--hp-accent2));
+  margin-bottom: 10px;
+}
+
+.hv2-arc-card__title {
+  font-family: var(--hp-font-ser);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--hp-ink);
+  margin: 0 0 12px;
+}
+
+.hv2-arc-card__desc {
+  font-family: var(--hp-font-ui);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--hp-muted);
+  margin: 0 0 28px;
+  flex: 1;
+}
+
+.hv2-arc-card__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hp-line);
+  margin-top: auto;
+}
+
+.hv2-arc-card__num {
+  font-family: var(--hp-font-mon);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--card-accent, var(--hp-accent2));
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hv2-arc-card__stat-label {
+  font-family: var(--hp-font-ui);
+  font-size: 12px;
+  color: var(--hp-muted);
+  line-height: 1.4;
+}
+
+.hv2-arc-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--hp-font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--card-accent, var(--hp-accent2));
+  margin-top: 16px;
+  letter-spacing: 0.01em;
+}
+.hv2-arc-card__cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 200ms ease;
+}
+.hv2-arc-card:hover .hv2-arc-card__cta svg {
+  transform: translateX(4px);
+}
+
+/* ──────────────────────────────────────────────
+   §4 BENTO GRID — Платформенные KPI
+   ────────────────────────────────────────────── */
+.hv2-bento {
+  padding: 0 16px 100px;
+}
+
+.hv2-bento__header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.hv2-bento__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Bento cell base */
+.hv2-bento-cell {
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-line);
+  border-radius: var(--hp-r-block);
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+.hv2-bento-cell:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(58, 42, 34, 0.09);
+}
+
+/* Grid layout */
+.hv2-bento-cell--kpi1  { grid-column: 1 / 4;  grid-row: 1; }
+.hv2-bento-cell--kpi2  { grid-column: 4 / 7;  grid-row: 1; }
+.hv2-bento-cell--kpi3  { grid-column: 7 / 10; grid-row: 1; }
+.hv2-bento-cell--kpi4  { grid-column: 10 / 13; grid-row: 1; }
+.hv2-bento-cell--wide  { grid-column: 1 / 8;  grid-row: 2; background: var(--hp-ink); border-color: transparent; }
+.hv2-bento-cell--narrow { grid-column: 8 / 13; grid-row: 2; }
+
+/* KPI cells */
+.hv2-bento-kpi__num {
+  font-family: var(--hp-font-mon);
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--hp-ink);
+  margin-bottom: 8px;
+}
+.hv2-bento-kpi__num span {
+  font-size: 24px;
+  color: var(--hp-accent2);
+}
+
+.hv2-bento-kpi__label {
+  font-family: var(--hp-font-mon);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hp-muted);
+  margin-bottom: 6px;
+}
+
+.hv2-bento-kpi__note {
+  font-family: var(--hp-font-ui);
+  font-size: 13px;
+  color: var(--hp-muted);
+  line-height: 1.55;
+}
+
+/* Wide dark cell */
+.hv2-bento-cell--wide .hv2-bento-kpi__label,
+.hv2-bento-cell--wide .hv2-bento-kpi__note {
+  color: rgba(251, 248, 242, 0.5);
+}
+.hv2-bento-cell--wide .hv2-bento-wide-title {
+  font-family: var(--hp-font-ser);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #FBF8F2;
+  margin: 0 0 16px;
+}
+.hv2-bento-cell--wide .hv2-bento-wide-title em {
+  font-style: italic;
+  color: var(--hp-accent);
+}
+.hv2-bento-cell--wide .hv2-bento-wide-desc {
+  font-family: var(--hp-font-ui);
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(251, 248, 242, 0.65);
+  max-width: 500px;
+  margin-bottom: 32px;
+}
+
+/* Decorative in wide cell */
+.hv2-bento-cell--wide::before {
+  content: '';
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.12);
+}
+.hv2-bento-cell--wide::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.08);
+}
+
+/* Narrow cell — process steps */
+.hv2-bento-narrow-title {
+  font-family: var(--hp-font-ser);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--hp-ink);
+  margin: 0 0 24px;
+  line-height: 1.2;
+}
+
+.hv2-bento-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hv2-bento-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.hv2-bento-step__num {
+  font-family: var(--hp-font-mon);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--hp-accent2);
+  letter-spacing: 0.06em;
+  width: 24px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.hv2-bento-step__text {
+  font-family: var(--hp-font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--hp-muted);
+}
+.hv2-bento-step__text strong {
+  display: block;
+  font-weight: 600;
+  color: var(--hp-ink);
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+/* ──────────────────────────────────────────────
+   §5 HIGHLIGHT PHRASE — Крупная фраза
+   ────────────────────────────────────────────── */
+.hv2-phrase {
+  padding: 80px 16px;
+  text-align: center;
+  background: var(--hp-ink);
+  margin: 0 16px;
+  border-radius: var(--hp-r-block);
+  position: relative;
+  overflow: hidden;
+}
+.hv2-phrase::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.1);
+  pointer-events: none;
+}
+.hv2-phrase::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.05);
+  pointer-events: none;
+}
+
+.hv2-phrase__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hv2-phrase__text {
+  font-family: var(--hp-font-ser);
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #FBF8F2;
+}
+.hv2-phrase__text em {
+  font-style: italic;
+  color: var(--hp-accent);
+}
+
+.hv2-phrase__sub {
+  margin-top: 24px;
+  font-family: var(--hp-font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(251, 248, 242, 0.55);
+}
+
+/* ──────────────────────────────────────────────
+   §6 CATALOG PREVIEW — Витрина объектов
+   ────────────────────────────────────────────── */
+.hv2-catalog {
+  padding: 100px 16px 80px;
+}
+
+.hv2-catalog__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.hv2-catalog__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Hotel cards in new style */
+.hv2-hotel-card {
+  border-radius: var(--hp-r-card);
+  overflow: hidden;
+  position: relative;
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-line);
+  text-decoration: none;
+  color: var(--hp-ink);
+  display: flex;
+  flex-direction: column;
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 300ms ease;
+  will-change: transform;
+}
+.hv2-hotel-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(58, 42, 34, 0.13);
+}
+
+/* Featured (wide) card */
+.hv2-hotel-card--featured {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.hv2-hotel-card__photo {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hv2-hotel-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 500ms ease;
+}
+.hv2-hotel-card:hover .hv2-hotel-card__photo img {
+  transform: scale(1.04);
+}
+.hv2-hotel-card--featured .hv2-hotel-card__photo {
+  height: 320px;
+}
+.hv2-hotel-card--small .hv2-hotel-card__photo {
+  height: 180px;
+}
+
+.hv2-hotel-card__photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(42, 31, 22, 0.6) 0%, transparent 60%);
+}
+
+.hv2-hotel-card__badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--hp-accent);
+  color: var(--hp-ink);
+  font-family: var(--hp-font-mon);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 8px;
+  letter-spacing: 0.04em;
+}
+
+.hv2-hotel-card__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.hv2-hotel-card--featured .hv2-hotel-card__body {
+  padding: 28px;
+}
+
+.hv2-hotel-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.hv2-hotel-card__region {
+  font-family: var(--hp-font-mon);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hp-accent2);
+}
+
+.hv2-hotel-card__stars {
+  display: flex;
+  gap: 2px;
+}
+.hv2-hotel-card__stars svg { width: 10px; height: 10px; }
+
+.hv2-hotel-card__name {
+  font-family: var(--hp-font-ser);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--hp-ink);
+  margin: 0 0 16px;
+}
+.hv2-hotel-card--featured .hv2-hotel-card__name {
+  font-size: 24px;
+}
+.hv2-hotel-card--small .hv2-hotel-card__name {
+  font-size: 18px;
+}
+
+.hv2-hotel-card__kpis {
+  display: flex;
+  gap: 20px;
+  padding: 16px 0;
+  border-top: 1px solid var(--hp-line);
+  border-bottom: 1px solid var(--hp-line);
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.hv2-hotel-card--small .hv2-hotel-card__kpis {
+  gap: 12px;
+}
+
+.hv2-hotel-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hv2-hotel-kpi__val {
+  font-family: var(--hp-font-mon);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--hp-ink);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.hv2-hotel-card--small .hv2-hotel-kpi__val {
+  font-size: 16px;
+}
+.hv2-hotel-kpi__key {
+  font-family: var(--hp-font-ui);
+  font-size: 11px;
+  color: var(--hp-muted);
+  font-weight: 500;
+}
+
+.hv2-hotel-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+.hv2-hotel-card__model {
+  font-family: var(--hp-font-ui);
+  font-size: 12px;
+  color: var(--hp-muted);
+  font-weight: 500;
+}
+.hv2-hotel-card__cta-link {
+  font-family: var(--hp-font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--hp-accent2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 200ms ease;
+}
+.hv2-hotel-card:hover .hv2-hotel-card__cta-link {
+  gap: 8px;
+}
+
+/* View all CTA tile */
+.hv2-catalog-cta-tile {
+  background: var(--hp-ink);
+  border-radius: var(--hp-r-card);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+  position: relative;
+  overflow: hidden;
+}
+.hv2-catalog-cta-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(58, 42, 34, 0.2);
+}
+.hv2-catalog-cta-tile::before {
+  content: '';
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.15);
+}
+.hv2-catalog-cta-tile__num {
+  font-family: var(--hp-font-mon);
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--hp-accent);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+}
+.hv2-catalog-cta-tile__label {
+  font-family: var(--hp-font-ser);
+  font-size: 18px;
+  font-weight: 700;
+  color: #FBF8F2;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+.hv2-catalog-cta-tile__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: var(--hp-r-pill);
+  border: 1.5px solid rgba(251, 248, 242, 0.25);
+  font-family: var(--hp-font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(251, 248, 242, 0.85);
+  transition: border-color 200ms ease, color 200ms ease;
+}
+.hv2-catalog-cta-tile:hover .hv2-catalog-cta-tile__cta {
+  border-color: var(--hp-accent);
+  color: var(--hp-accent);
+}
+
+/* ──────────────────────────────────────────────
+   §7 METHODOLOGY — 7 принципов
+   ────────────────────────────────────────────── */
+.hv2-method {
+  padding: 0 16px 100px;
+}
+
+.hv2-method__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.hv2-method__sticky {
+  position: sticky;
+  top: 100px;
+}
+
+.hv2-method__sticky-title {
+  font-family: var(--hp-font-ser);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--hp-ink);
+  margin: 16px 0 20px;
+  letter-spacing: -0.02em;
+}
+.hv2-method__sticky-desc {
+  font-family: var(--hp-font-ui);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--hp-muted);
+}
+
+.hv2-method__principles {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hv2-principle {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--hp-line);
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  align-items: start;
+  cursor: default;
+  transition: padding-left 250ms ease;
+}
+.hv2-principle:first-child {
+  border-top: 1px solid var(--hp-line);
+}
+.hv2-principle:hover {
+  padding-left: 8px;
+}
+
+.hv2-principle__roman {
+  font-family: var(--hp-font-mon);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--hp-accent2);
+  letter-spacing: 0.06em;
+  padding-top: 4px;
+}
+
+.hv2-principle__title {
+  font-family: var(--hp-font-ser);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--hp-ink);
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+.hv2-principle__desc {
+  font-family: var(--hp-font-ui);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--hp-muted);
+  margin: 0;
+}
+
+/* ──────────────────────────────────────────────
+   §8 CTA BANNER — Smart Form
+   ────────────────────────────────────────────── */
+.hv2-cta-banner {
+  padding: 0 16px 100px;
+}
+
+.hv2-cta-banner__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: linear-gradient(105deg, #2A1F16 0%, #3D2B1F 60%, #5C3D2E 100%);
+  border-radius: var(--hp-r-block);
+  padding: 80px 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hv2-cta-banner__inner::before {
+  content: '';
+  position: absolute;
+  right: -100px;
+  top: -100px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.12);
+  pointer-events: none;
+}
+.hv2-cta-banner__inner::after {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 1px solid rgba(217, 164, 65, 0.08);
+  pointer-events: none;
+}
+
+.hv2-cta-banner__left {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.hv2-cta-banner__kicker {
+  font-family: var(--hp-font-mon);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hp-accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.hv2-cta-banner__kicker::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--hp-accent);
+}
+
+.hv2-cta-banner__title {
+  font-family: var(--hp-font-ser);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: #FBF8F2;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+.hv2-cta-banner__title em {
+  font-style: italic;
+  color: var(--hp-accent);
+}
+
+.hv2-cta-banner__desc {
+  font-family: var(--hp-font-ui);
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(251, 248, 242, 0.6);
+  max-width: 500px;
+}
+
+.hv2-cta-banner__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────
+   §9 FOOTER OVERRIDE — minimal changes for v2
+   ────────────────────────────────────────────── */
+body.home-v2 .site-footer {
+  background: var(--hp-ink);
+  border-top: none;
+  margin-top: 0;
+}
+body.home-v2 .footer-legal,
+body.home-v2 .footer-nav-heading,
+body.home-v2 .footer-brand-desc {
+  color: rgba(251, 248, 242, 0.5);
+}
+body.home-v2 .footer-nav-link,
+body.home-v2 .footer-contact-item {
+  color: rgba(251, 248, 242, 0.65);
+}
+body.home-v2 .footer-nav-link:hover {
+  color: var(--hp-accent);
+}
+body.home-v2 .logo-title,
+body.home-v2 .logo-subtitle {
+  color: #FBF8F2;
+}
+body.home-v2 .footer-lang-link {
+  color: rgba(251, 248, 242, 0.45);
+  border-color: rgba(251, 248, 242, 0.15);
+}
+body.home-v2 .footer-lang-link--active,
+body.home-v2 .footer-lang-link:hover {
+  color: #FBF8F2;
+  border-color: rgba(251, 248, 242, 0.4);
+}
+
+/* ──────────────────────────────────────────────
+   ANIMATIONS
+   ────────────────────────────────────────────── */
+@keyframes hv2FadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll-triggered appear */
+.hv2-appear {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.hv2-appear.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hv2-appear:nth-child(2) { transition-delay: 0.1s; }
+.hv2-appear:nth-child(3) { transition-delay: 0.18s; }
+.hv2-appear:nth-child(4) { transition-delay: 0.26s; }
+
+/* ──────────────────────────────────────────────
+   RESPONSIVE — Tablet
+   ────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .hv2-arc__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hv2-bento__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hv2-bento-cell--kpi1 { grid-column: 1 / 2; grid-row: 1; }
+  .hv2-bento-cell--kpi2 { grid-column: 2 / 3; grid-row: 1; }
+  .hv2-bento-cell--kpi3 { grid-column: 1 / 2; grid-row: 2; }
+  .hv2-bento-cell--kpi4 { grid-column: 2 / 3; grid-row: 2; }
+  .hv2-bento-cell--wide  { grid-column: 1 / 3; grid-row: 3; }
+  .hv2-bento-cell--narrow { grid-column: 1 / 3; grid-row: 4; }
+  .hv2-method__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .hv2-method__sticky {
+    position: static;
+  }
+  .hv2-catalog__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hv2-hotel-card--featured {
+    grid-column: 1 / 3;
+    grid-row: auto;
+  }
+  .hv2-cta-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   RESPONSIVE — Mobile
+   ────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .hv2-hero {
+    margin: 8px 8px 0;
+    border-radius: 20px;
+    padding: 48px 24px 120px;
+    min-height: auto;
+  }
+  .hv2-hero__stats {
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .hv2-hero-stat {
+    flex: 0 0 50%;
+    padding: 12px 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(251, 248, 242, 0.12);
+  }
+  .hv2-hero-stat:nth-child(1),
+  .hv2-hero-stat:nth-child(2) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .hv2-hero__dots { display: none; }
+  .hv2-marquee-wrap { margin: 0 8px; }
+  .hv2-arc, .hv2-bento, .hv2-catalog, .hv2-method, .hv2-cta-banner {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .hv2-arc__cards {
+    grid-template-columns: 1fr;
+  }
+  .hv2-bento__grid {
+    grid-template-columns: 1fr;
+  }
+  .hv2-bento-cell--kpi1,
+  .hv2-bento-cell--kpi2,
+  .hv2-bento-cell--kpi3,
+  .hv2-bento-cell--kpi4,
+  .hv2-bento-cell--wide,
+  .hv2-bento-cell--narrow {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .hv2-catalog__grid {
+    grid-template-columns: 1fr;
+  }
+  .hv2-hotel-card--featured {
+    grid-column: 1;
+  }
+  .hv2-phrase {
+    margin: 0 8px;
+    padding: 56px 24px;
+  }
+  .hv2-cta-banner__inner {
+    padding: 48px 28px;
+  }
+  .hv2-catalog__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

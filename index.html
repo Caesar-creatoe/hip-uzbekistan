@@ -9,17 +9,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="design-tokens.css" />
   <link rel="stylesheet" href="styles/base.css" />
   <link rel="stylesheet" href="styles/header.css" />
   <link rel="stylesheet" href="styles/megamenu.css" />
-  <link rel="stylesheet" href="styles/hero.css" />
-  <link rel="stylesheet" href="styles/portal.css" />
-  <link rel="stylesheet" href="styles/verticals.css" />
+  <!-- Home V2 isolated stylesheet — does NOT affect other pages -->
+  <link rel="stylesheet" href="css/home-v2.css" />
 </head>
-<body>
+<body class="home-v2">
 
   <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
@@ -171,7 +170,7 @@
               </a>
             </div>
 
-            <!-- Партнёрский коммерческий сервис — отделён от госуслуг -->
+            <!-- Партнёрский коммерческий сервис -->
             <div style="border-top: 1px solid var(--color-border); margin-top: 8px; padding-top: 16px;">
               <span class="mega-group-title" style="display:flex;align-items:center;gap:6px;">
                 Сервис партнёра
@@ -233,7 +232,7 @@
           </div>
         </div>
 
-        <!-- 4. B2B Cooperation (в последнюю очередь) -->
+        <!-- 4. B2B Cooperation -->
         <a href="b2b.html" class="nav-link">B2B Cooperation</a>
 
       </nav>
@@ -294,276 +293,499 @@
 
 
   <!-- ═══════════════════════════════════════════
-       C-02 · HERO — Портал (не паспорт объекта)
+       §1 HERO — Скруглённый hero
   ═══════════════════════════════════════════ -->
-  <section class="hero" id="hero" aria-label="Официальный инвестиционный портал">
+  <section class="hv2-hero" id="hero" aria-label="Официальный инвестиционный портал">
 
-    <div class="hero-bg" role="img" aria-label="Фасад городского 5-звёздочного отеля">
-      <!--
-        PLACEHOLDER: Для боевого запуска заменить на официальное фото
-        Комитета по туризму (конкретный объект или репрезентативный кадр страны).
-        Текущее фото: Ethan Hu / Unsplash (Unsplash License — free for commercial use)
-        Описание: Фасад городского отеля класса люкс в ночной подсветке
-        URL: https://unsplash.com/photos/1542314831-068cd1dbfeeb
-      -->
+    <!-- Фоновое фото -->
+    <div class="hv2-hero__bg" role="img" aria-label="Архитектура отеля класса люкс">
       <img
         src="./assets/hotel-hero.png"
-        alt="Grand Tashkent Hotel — архитектурный ансамбль отеля класса люкс в тёплых тонах"
-        class="hero-photo"
+        alt="Grand Tashkent Hotel — архитектурный ансамбль отеля класса люкс"
       />
-      <div class="hero-overlay-base" aria-hidden="true"></div>
-      <div class="hero-overlay-text" aria-hidden="true"></div>
     </div>
 
-    <div class="hero-content">
-      <p class="kicker hero-kicker">
-        КОМИТЕТ ПО ТУРИЗМУ&nbsp;·&nbsp;РЕСПУБЛИКА УЗБЕКИСТАН
+    <!-- Градиентный оверлей -->
+    <div class="hv2-hero__overlay" aria-hidden="true"></div>
+
+    <!-- Декоративная дуга -->
+    <div class="hv2-hero__arc" aria-hidden="true"></div>
+
+    <!-- Сетка точек -->
+    <div class="hv2-hero__dots" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="hv2-hero__content">
+      <p class="hv2-hero__kicker">
+        Комитет по туризму · Республика Узбекистан
       </p>
-      <h1 class="hero-title">
-        Silk Route<br />Invest
+      <h1 class="hv2-hero__title">
+        Silk Route<br /><em>Invest</em>
       </h1>
-      <p class="hero-subtitle">
+      <p class="hv2-hero__sub">
         Официальная цифровая платформа инвестиционных паспортов
         туристической отрасли Узбекистана&nbsp;—
         отели, рестораны, земельные участки, господдержка
       </p>
-      <div class="hero-cta-group">
-        <a href="#asset-classes" class="btn btn--primary btn--lg" id="hero-cta-primary">
+      <div class="hv2-hero__ctas">
+        <a href="#asset-classes" class="hv2-btn-primary" id="hero-cta-primary">
           4 класса активов
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#about" class="btn btn--outline btn--lg" id="hero-cta-secondary">
+        <a href="about.html" class="hv2-btn-outline" id="hero-cta-secondary">
           О системе
         </a>
       </div>
-      <p class="hero-photo-credit">
-        Silk Route Invest · Комитет по туризму Республики Узбекистан
+    </div>
+
+    <!-- Hero KPI stats -->
+    <div class="hv2-hero__stats" aria-label="Ключевые показатели платформы">
+      <div class="hv2-hero-stat">
+        <div class="hv2-hero-stat__num">
+          <span class="hv2-counter" data-target="46" data-suffix="+">46</span><span>+</span>
+        </div>
+        <div class="hv2-hero-stat__label">Объектов в базе</div>
+      </div>
+      <div class="hv2-hero-stat">
+        <div class="hv2-hero-stat__num">
+          <span class="hv2-counter" data-target="14">14</span>
+        </div>
+        <div class="hv2-hero-stat__label">Регионов страны</div>
+      </div>
+      <div class="hv2-hero-stat">
+        <div class="hv2-hero-stat__num">$6.8<span>B</span></div>
+        <div class="hv2-hero-stat__label">Инвест. потенциал</div>
+      </div>
+      <div class="hv2-hero-stat">
+        <div class="hv2-hero-stat__num">
+          <span class="hv2-counter" data-target="7">7</span>
+        </div>
+        <div class="hv2-hero-stat__label">Программ господдержки</div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       §2 MARQUEE — Бегущая строка
+  ═══════════════════════════════════════════ -->
+  <div class="hv2-marquee-wrap" aria-hidden="true">
+    <div class="hv2-marquee-track">
+      <span class="hv2-marquee-item">Отели <strong>32 объекта</strong></span>
+      <span class="hv2-marquee-item">ADR · RevPAR · EBITDA · IRR</span>
+      <span class="hv2-marquee-item">Стандарт <strong>USALI / STR</strong></span>
+      <span class="hv2-marquee-item">Рестораны <strong>F&amp;B</strong></span>
+      <span class="hv2-marquee-item">Земельные участки <strong>49 лет</strong></span>
+      <span class="hv2-marquee-item">Господдержка <strong>7 программ</strong></span>
+      <span class="hv2-marquee-item">$6.8B <strong>Инвест. потенциал</strong></span>
+      <span class="hv2-marquee-item">IFC · EBRD · Комитет по туризму РУз</span>
+      <span class="hv2-marquee-item">Investment Readiness Index <strong>A+</strong></span>
+      <span class="hv2-marquee-item">14 регионов <strong>Узбекистана</strong></span>
+      <span class="hv2-marquee-item">Smart Investment Form <strong>250+ полей</strong></span>
+      <span class="hv2-marquee-item">Отели <strong>32 объекта</strong></span>
+      <span class="hv2-marquee-item">ADR · RevPAR · EBITDA · IRR</span>
+      <span class="hv2-marquee-item">Стандарт <strong>USALI / STR</strong></span>
+      <span class="hv2-marquee-item">Рестораны <strong>F&amp;B</strong></span>
+      <span class="hv2-marquee-item">Земельные участки <strong>49 лет</strong></span>
+      <span class="hv2-marquee-item">Господдержка <strong>7 программ</strong></span>
+      <span class="hv2-marquee-item">$6.8B <strong>Инвест. потенциал</strong></span>
+      <span class="hv2-marquee-item">IFC · EBRD · Комитет по туризму РУз</span>
+      <span class="hv2-marquee-item">Investment Readiness Index <strong>A+</strong></span>
+      <span class="hv2-marquee-item">14 регионов <strong>Узбекистана</strong></span>
+      <span class="hv2-marquee-item">Smart Investment Form <strong>250+ полей</strong></span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       §3 ARC CARDS — 4 класса активов
+  ═══════════════════════════════════════════ -->
+  <section class="hv2-arc" id="asset-classes" aria-label="4 класса активов">
+
+    <div class="hv2-arc__label">
+      <p class="hv2-section-kicker">4 класса активов — один стандарт</p>
+      <h2 class="hv2-section-title">
+        Единая инвестиционная<br /><em>экосистема</em> туристической отрасли
+      </h2>
+    </div>
+
+    <div class="hv2-arc__cards">
+
+      <a href="portfolio.html" class="hv2-arc-card hv2-arc-card--hotels hv2-appear" id="ac-hotels">
+        <span class="hv2-arc-card__icon">🏨</span>
+        <div class="hv2-arc-card__label">Отели</div>
+        <h3 class="hv2-arc-card__title">Гостиничные объекты</h3>
+        <p class="hv2-arc-card__desc">
+          Инвестиционные паспорта 3★–5★ отелей, бутик-отелей и курортов.
+          ADR, RevPAR, EBITDA, IRR по стандарту USALI/STR.
+        </p>
+        <div class="hv2-arc-card__stat">
+          <div class="hv2-arc-card__num hv2-counter" data-target="32">32</div>
+          <div class="hv2-arc-card__stat-label">объектов<br/>в каталоге</div>
+        </div>
+        <div class="hv2-arc-card__cta">
+          Смотреть каталог
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <a href="restaurants.html" class="hv2-arc-card hv2-arc-card--rest hv2-appear" id="ac-restaurants">
+        <span class="hv2-arc-card__icon">🍽</span>
+        <div class="hv2-arc-card__label">Рестораны</div>
+        <h3 class="hv2-arc-card__title">F&amp;B Инвестиции</h3>
+        <p class="hv2-arc-card__desc">
+          Ресторанные проекты с паспортами по стандарту Том VI.
+          Метрики оборачиваемости, EBITDA, comp-set анализ.
+        </p>
+        <div class="hv2-arc-card__stat">
+          <div class="hv2-arc-card__num">+42%</div>
+          <div class="hv2-arc-card__stat-label">рост F&amp;B<br/>год к году</div>
+        </div>
+        <div class="hv2-arc-card__cta">
+          Смотреть рестораны
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <a href="land.html" class="hv2-arc-card hv2-arc-card--land hv2-appear" id="ac-land">
+        <span class="hv2-arc-card__icon">🗺</span>
+        <div class="hv2-arc-card__label">Земля</div>
+        <h3 class="hv2-arc-card__title">Земельные участки</h3>
+        <p class="hv2-arc-card__desc">
+          8 лотов под строительство туристических объектов.
+          Аренда 49 лет, ГЧП, аукционы E-Auksion. Интерактивная карта.
+        </p>
+        <div class="hv2-arc-card__stat">
+          <div class="hv2-arc-card__num">33 га</div>
+          <div class="hv2-arc-card__stat-label">совокупная<br/>площадь</div>
+        </div>
+        <div class="hv2-arc-card__cta">
+          Смотреть лоты
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <a href="support.html" class="hv2-arc-card hv2-arc-card--support hv2-appear" id="ac-support">
+        <span class="hv2-arc-card__icon">🏛</span>
+        <div class="hv2-arc-card__label">Господдержка</div>
+        <h3 class="hv2-arc-card__title">Государственные программы</h3>
+        <p class="hv2-arc-card__desc">
+          7 действующих программ: субсидии, налоговые и таможенные льготы.
+          Интерактивный калькулятор экономии от CAPEX.
+        </p>
+        <div class="hv2-arc-card__stat">
+          <div class="hv2-arc-card__num">−40%</div>
+          <div class="hv2-arc-card__stat-label">экономия CAPEX<br/>с господдержкой</div>
+        </div>
+        <div class="hv2-arc-card__cta">
+          Калькулятор льгот
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       §4 BENTO GRID — KPI + Как работает система
+  ═══════════════════════════════════════════ -->
+  <section class="hv2-bento" id="about" aria-label="Показатели платформы">
+
+    <div class="hv2-bento__header">
+      <p class="hv2-section-kicker">Платформа в цифрах</p>
+      <h2 class="hv2-section-title">Ключевые показатели<br />инвестиционной системы</h2>
+    </div>
+
+    <div class="hv2-bento__grid">
+
+      <!-- KPI 1 -->
+      <div class="hv2-bento-cell hv2-bento-cell--kpi1 hv2-appear">
+        <div class="hv2-bento-kpi__label">Объектов в базе</div>
+        <div class="hv2-bento-kpi__num">
+          <span class="hv2-counter" data-target="46">46</span><span>+</span>
+        </div>
+        <div class="hv2-bento-kpi__note">Отели, рестораны и земельные лоты суммарно</div>
+      </div>
+
+      <!-- KPI 2 -->
+      <div class="hv2-bento-cell hv2-bento-cell--kpi2 hv2-appear">
+        <div class="hv2-bento-kpi__label">Регионов страны</div>
+        <div class="hv2-bento-kpi__num">
+          <span class="hv2-counter" data-target="14">14</span>
+        </div>
+        <div class="hv2-bento-kpi__note">Все вилояты и г. Ташкент охвачены платформой</div>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="hv2-bento-cell hv2-bento-cell--kpi3 hv2-appear">
+        <div class="hv2-bento-kpi__label">Инвест. потенциал</div>
+        <div class="hv2-bento-kpi__num">$6.8<span>B</span></div>
+        <div class="hv2-bento-kpi__note">Совокупная оценка · методология IFC/EBRD</div>
+      </div>
+
+      <!-- KPI 4 -->
+      <div class="hv2-bento-cell hv2-bento-cell--kpi4 hv2-appear">
+        <div class="hv2-bento-kpi__label">Программ господдержки</div>
+        <div class="hv2-bento-kpi__num">
+          <span class="hv2-counter" data-target="7">7</span>
+        </div>
+        <div class="hv2-bento-kpi__note">Действующих субсидий, льгот и преференций</div>
+      </div>
+
+      <!-- Wide dark cell: O системе -->
+      <div class="hv2-bento-cell hv2-bento-cell--wide hv2-appear" id="how-it-works">
+        <p class="hv2-bento-kpi__label" style="color:rgba(251,248,242,0.45);">Как работает система</p>
+        <h2 class="hv2-bento-wide-title">
+          От данных гостиницы —<br /><em>к паспорту инвестора</em>
+        </h2>
+        <p class="hv2-bento-wide-desc">
+          Система автоматически рассчитывает KPI, присваивает Investment Readiness Index
+          и формирует готовый паспорт в формате PDF для публикации на платформе.
+        </p>
+        <a href="form.html" class="hv2-btn-primary" id="bento-form-cta" style="align-self:flex-start;">
+          Заполнить Smart Form
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Narrow cell: Steps -->
+      <div class="hv2-bento-cell hv2-bento-cell--narrow hv2-appear">
+        <h3 class="hv2-bento-narrow-title">4 шага к паспорту</h3>
+        <ol class="hv2-bento-steps" role="list">
+          <li class="hv2-bento-step">
+            <div class="hv2-bento-step__num">01</div>
+            <div class="hv2-bento-step__text">
+              <strong>Заполнение Smart Form</strong>
+              250+ полей: характеристики, финансы, правовой статус, инфраструктура.
+            </div>
+          </li>
+          <li class="hv2-bento-step">
+            <div class="hv2-bento-step__num">02</div>
+            <div class="hv2-bento-step__text">
+              <strong>Расчёт KPI и IRI</strong>
+              ADR, RevPAR, Occupancy, EBITDA, IRR · Рейтинг A+/A/B+/B/C.
+            </div>
+          </li>
+          <li class="hv2-bento-step">
+            <div class="hv2-bento-step__num">03</div>
+            <div class="hv2-bento-step__text">
+              <strong>Формирование Investment Passport</strong>
+              25–30 страниц PDF/Word · Уровень JLL Hotels &amp; Hospitality.
+            </div>
+          </li>
+          <li class="hv2-bento-step">
+            <div class="hv2-bento-step__num">04</div>
+            <div class="hv2-bento-step__text">
+              <strong>Публикация на платформе</strong>
+              Доступ для Marriott, Hyatt, Accor и банков развития.
+            </div>
+          </li>
+        </ol>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       §5 PHRASE — Крупная цитата / фраза
+  ═══════════════════════════════════════════ -->
+  <div class="hv2-phrase" aria-hidden="true">
+    <div class="hv2-phrase__inner">
+      <p class="hv2-phrase__text">
+        Прозрачность. Достоверность.<br />
+        <em>Инвестиционная готовность.</em>
+      </p>
+      <p class="hv2-phrase__sub">
+        Стандарт платформы — по уровню качества JLL Hotels &amp; Hospitality,<br/>
+        адаптирован к законодательству Республики Узбекистан.
       </p>
     </div>
-
-    <div class="hero-ornament" aria-hidden="true">
-      <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-        <rect x="0.5"  y="0.5"  width="119" height="119" stroke="white" stroke-opacity="0.18"/>
-        <rect x="14.5" y="14.5" width="91"  height="91"  stroke="white" stroke-opacity="0.12"/>
-        <rect x="28.5" y="28.5" width="63"  height="63"  stroke="white" stroke-opacity="0.08"/>
-        <line x1="60" y1="0"   x2="60" y2="30"  stroke="white" stroke-opacity="0.18"/>
-        <line x1="60" y1="90"  x2="60" y2="120" stroke="white" stroke-opacity="0.18"/>
-        <line x1="0"  y1="60"  x2="30" y2="60"  stroke="white" stroke-opacity="0.18"/>
-        <line x1="90" y1="60"  x2="120" y2="60" stroke="white" stroke-opacity="0.18"/>
-      </svg>
-    </div>
-
-  </section>
+  </div>
 
 
   <!-- ═══════════════════════════════════════════
-       ПЛАТФОРМЕННЫЕ KPI — 4 показателя системы
-       (не показатели конкретного отеля)
+       §6 CATALOG PREVIEW — Витрина объектов
   ═══════════════════════════════════════════ -->
-  <!-- VERTICAL SWITCHER -->
-  <nav class="vertical-switcher" aria-label="Классы активов">
-    <div class="vertical-switcher__inner">
-      <a href="portfolio.html" class="vs-tab" data-v="hotels"><span class="vs-tab__icon">🏨</span> Отели <span class="vs-tab__count">32</span></a>
-      <a href="restaurants.html" class="vs-tab" data-v="restaurants"><span class="vs-tab__icon">🍽</span> Рестораны <span class="vs-tab__count">6</span></a>
-      <a href="land.html" class="vs-tab" data-v="land"><span class="vs-tab__icon">🗺</span> Земельные участки <span class="vs-tab__count">8</span></a>
-      <a href="support.html" class="vs-tab" data-v="support"><span class="vs-tab__icon">🏛</span> Господдержка <span class="vs-tab__count">7</span></a>
+  <section class="hv2-catalog" id="portfolio" aria-label="Витрина объектов">
+
+    <div class="hv2-catalog__header hv2-appear">
+      <div>
+        <p class="hv2-section-kicker">Объекты на платформе</p>
+        <h2 class="hv2-section-title">Инвестиционный портфель</h2>
+      </div>
+      <a href="portfolio.html" class="hv2-btn-primary" id="catalog-view-all">
+        Весь каталог (32 объекта)
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
-  </nav>
 
-  <section class="platform-stats" id="about" aria-label="Показатели платформы">
-    <div class="platform-stats-inner">
+    <div class="hv2-catalog__grid">
 
-      <div class="pstat-block appear" role="listitem">
-        <div class="pstat-number js-counter" data-target="46" data-suffix="+">46+</div>
-        <div class="pstat-label">ОБЪЕКТОВ В БАЗЕ</div>
-        <div class="pstat-note">Отели, рестораны и земельные лоты суммарно</div>
-      </div>
-
-      <div class="pstat-block appear" role="listitem">
-        <div class="pstat-number js-counter" data-target="14" data-suffix="">14</div>
-        <div class="pstat-label">РЕГИОНОВ СТРАНЫ</div>
-        <div class="pstat-note">Все вилояты и г. Ташкент охвачены платформой</div>
-      </div>
-
-      <div class="pstat-block appear" role="listitem">
-        <div class="pstat-number pstat-number--sm">$6.8B</div>
-        <div class="pstat-label">ИНВЕСТ. ПОТЕНЦИАЛ</div>
-        <div class="pstat-note">Совокупная оценка по 4 вертикалям · методология IFC/EBRD</div>
-      </div>
-
-      <div class="pstat-block appear" role="listitem">
-        <div class="pstat-number js-counter" data-target="7" data-suffix="">7</div>
-        <div class="pstat-label">ПРОГРАММ ГОСПОДДЕРЖКИ</div>
-        <div class="pstat-note">Действующих субсидий, льгот и преференций для инвесторов</div>
-      </div>
-
-    </div>
-    <p class="platform-stats-footnote">
-      Данные носят иллюстративный характер.
-      Источник: предварительная оценка Комитета по туризму Республики Узбекистан, 2026.
-    </p>
-  </section>
-
-  <!-- 4 КЛАССА АКТИВОВ -->
-  <section class="asset-classes" id="asset-classes">
-    <div class="asset-classes__inner">
-      <div class="asset-classes__header appear">
-        <span class="asset-classes__kicker">4 класса активов — один стандарт</span>
-        <h2 class="asset-classes__title">Единая инвестиционная<br>экосистема туристической отрасли</h2>
-      </div>
-      <div class="asset-classes__grid">
-
-        <a href="portfolio.html" class="ac-tile appear" data-v="hotels">
-          <div class="ac-tile__icon">🏨</div>
-          <div class="ac-tile__label">Отели</div>
-          <h3 class="ac-tile__title">Гостиничные объекты</h3>
-          <p class="ac-tile__desc">Инвестиционные паспорта 3★–5★ отелей, бутик-отелей и курортов. ADR, RevPAR, EBITDA, IRR по стандарту USALI/STR.</p>
-          <div class="ac-tile__stat">
-            <span class="ac-tile__stat-num">32</span>
-            <span class="ac-tile__stat-label">объектов в каталоге</span>
-          </div>
-          <span class="ac-tile__cta">Смотреть каталог →</span>
+      <!-- Карточка 1 — featured (крупная) -->
+      <article class="hv2-hotel-card hv2-hotel-card--featured hv2-appear" aria-label="Grand Tashkent Hotel — Investment Passport">
+        <a href="passport.html?hotel=grand-tashkent" class="hv2-hotel-card__photo" id="card-grand-tashkent" style="display:block;">
+          <img
+            src="./assets/hotel-hero.png"
+            alt="Grand Tashkent Hotel"
+            loading="lazy"
+          />
+          <div class="hv2-hotel-card__photo-overlay"></div>
+          <div class="hv2-hotel-card__badge" aria-label="Investment Readiness: A плюс">A+</div>
         </a>
-
-        <a href="restaurants.html" class="ac-tile appear" data-v="restaurants">
-          <div class="ac-tile__icon">🍽</div>
-          <div class="ac-tile__label">Рестораны</div>
-          <h3 class="ac-tile__title">F&amp;B Инвестиции</h3>
-          <p class="ac-tile__desc">Ресторанные проекты с паспортами по стандарту Том VI. Метрики оборачиваемости, EBITDA, comp-set анализ.</p>
-          <div class="ac-tile__stat">
-            <span class="ac-tile__stat-num">+42%</span>
-            <span class="ac-tile__stat-label">рост F&amp;B год к году</span>
+        <div class="hv2-hotel-card__body">
+          <div class="hv2-hotel-card__meta">
+            <span class="hv2-hotel-card__region">Ташкент</span>
+            <span class="hv2-hotel-card__stars" aria-label="5 звёзд">
+              <svg width="60" height="10" viewBox="0 0 60 10" fill="none"><g fill="#8B6F4E"><polygon points="5,0 6.18,3.64 10,3.64 6.9,5.9 8.09,9.54 5,7.28 1.91,9.54 3.09,5.9 0,3.64 3.82,3.64"/><polygon points="17,0 18.18,3.64 22,3.64 18.9,5.9 20.09,9.54 17,7.28 13.91,9.54 15.09,5.9 12,3.64 15.82,3.64"/><polygon points="29,0 30.18,3.64 34,3.64 30.9,5.9 32.09,9.54 29,7.28 25.91,9.54 27.09,5.9 24,3.64 27.82,3.64"/><polygon points="41,0 42.18,3.64 46,3.64 42.9,5.9 44.09,9.54 41,7.28 37.91,9.54 39.09,5.9 36,3.64 39.82,3.64"/><polygon points="53,0 54.18,3.64 58,3.64 54.9,5.9 56.09,9.54 53,7.28 49.91,9.54 51.09,5.9 48,3.64 51.82,3.64"/></g></svg>
+            </span>
           </div>
-          <span class="ac-tile__cta">Смотреть рестораны →</span>
-        </a>
-
-        <a href="land.html" class="ac-tile appear" data-v="land">
-          <div class="ac-tile__icon">🗺</div>
-          <div class="ac-tile__label">Земля</div>
-          <h3 class="ac-tile__title">Земельные участки</h3>
-          <p class="ac-tile__desc">8 лотов под строительство туристических объектов. Аренда 49 лет, ГЧП, аукционы E-Auksion. Интерактивная карта.</p>
-          <div class="ac-tile__stat">
-            <span class="ac-tile__stat-num">33 га</span>
-            <span class="ac-tile__stat-label">совокупная площадь</span>
+          <h3 class="hv2-hotel-card__name">Grand Tashkent Hotel</h3>
+          <div class="hv2-hotel-card__kpis">
+            <div class="hv2-hotel-kpi">
+              <span class="hv2-hotel-kpi__val">258</span>
+              <span class="hv2-hotel-kpi__key">Rooms</span>
+            </div>
+            <div class="hv2-hotel-kpi">
+              <span class="hv2-hotel-kpi__val">74%</span>
+              <span class="hv2-hotel-kpi__key">Occupancy</span>
+            </div>
+            <div class="hv2-hotel-kpi">
+              <span class="hv2-hotel-kpi__val">$128</span>
+              <span class="hv2-hotel-kpi__key">ADR</span>
+            </div>
           </div>
-          <span class="ac-tile__cta">Смотреть лоты →</span>
-        </a>
-
-        <a href="support.html" class="ac-tile appear" data-v="support">
-          <div class="ac-tile__icon">🏛</div>
-          <div class="ac-tile__label">Господдержка</div>
-          <h3 class="ac-tile__title">Государственные программы</h3>
-          <p class="ac-tile__desc">7 действующих программ: субсидии, налоговые и таможенные льготы. Интерактивный калькулятор экономии от CAPEX.</p>
-          <div class="ac-tile__stat">
-            <span class="ac-tile__stat-num">−40%</span>
-            <span class="ac-tile__stat-label">экономия CAPEX с господдержкой</span>
+          <div class="hv2-hotel-card__footer">
+            <span class="hv2-hotel-card__model">Управление</span>
+            <a href="passport.html?hotel=grand-tashkent" class="hv2-hotel-card__cta-link">
+              Открыть паспорт →
+            </a>
           </div>
-          <span class="ac-tile__cta">Калькулятор льгот →</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- ═══════════════════════════════════════════
-       КАК РАБОТАЕТ СИСТЕМА — 4 шага
-  ═══════════════════════════════════════════ -->
-  <section class="process-section" id="how-it-works" aria-label="Как работает система">
-    <div class="process-inner">
-
-      <div class="process-header appear">
-        <p class="kicker">КАК РАБОТАЕТ СИСТЕМА</p>
-        <h2 class="process-title">От данных гостиницы&nbsp;—<br />к паспорту инвестора</h2>
-      </div>
-
-      <ol class="process-steps" role="list">
-
-        <li class="process-step appear">
-          <div class="step-num" aria-hidden="true">01</div>
-          <div class="step-body">
-            <h3 class="step-title">Заполнение Smart Form</h3>
-            <p class="step-desc">
-              Гостиница вносит данные в Smart Investment Form (250+ полей):
-              характеристики объекта, финансовые показатели, правовой статус,
-              инфраструктуру и фотоматериалы. Система автоматически проверяет
-              полноту и качество данных.
-            </p>
-          </div>
-        </li>
-
-        <li class="process-step appear">
-          <div class="step-num" aria-hidden="true">02</div>
-          <div class="step-body">
-            <h3 class="step-title">Расчёт KPI и Investment Readiness Index</h3>
-            <p class="step-desc">
-              На основе введённых данных платформа автоматически рассчитывает
-              ключевые гостиничные KPI (ADR, RevPAR, Occupancy, EBITDA, IRR)
-              и присваивает объекту рейтинг инвестиционной готовности
-              по шкале A+&nbsp;/ A&nbsp;/ B+&nbsp;/ B&nbsp;/ C.
-            </p>
-          </div>
-        </li>
-
-        <li class="process-step appear">
-          <div class="step-num" aria-hidden="true">03</div>
-          <div class="step-body">
-            <h3 class="step-title">Формирование Investment Passport</h3>
-            <p class="step-desc">
-              Система автоматически формирует стандартизированный
-              Hotel Investment Passport (25–30 страниц) в формате PDF/Word
-              в едином дизайне — по уровню качества JLL Hotels&nbsp;&amp;&nbsp;Hospitality,
-              без ручной вёрстки.
-            </p>
-          </div>
-        </li>
-
-        <li class="process-step appear">
-          <div class="step-num" aria-hidden="true">04</div>
-          <div class="step-body">
-            <h3 class="step-title">Публикация на платформе</h3>
-            <p class="step-desc">
-              Паспорт размещается в общем каталоге платформы и становится
-              доступен институциональным инвесторам, международным операторам
-              (Marriott, Hyatt, Accor) и банкам развития.
-              Обновление — не реже одного раза в шесть месяцев.
-            </p>
-          </div>
-        </li>
-
-      </ol>
-
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════
-       МЕТОДОЛОГИЯ — 7 принципов Тома I
-  ═══════════════════════════════════════════ -->
-  <section class="methodology-section" id="methodology" aria-label="Методология — принципы Тома I">
-    <div class="methodology-inner">
-
-      <div class="methodology-header appear">
-        <p class="kicker kicker--light">МЕТОДОЛОГИЯ&nbsp;·&nbsp;ТОМ&nbsp;I&nbsp;·&nbsp;7 ПРИНЦИПОВ</p>
-        <div class="methodology-title-block">
-          <h2 class="methodology-title">
-            Методические рекомендации по подготовке инвестиционного портфеля
-          </h2>
-          <p class="methodology-desc">
-            Стандарт разработан в соответствии с практикой Всемирного банка,
-            IFC, EBRD и международных консультантов, адаптирован к законодательству
-            и инвестиционной практике Республики Узбекистан.
-          </p>
         </div>
+      </article>
+
+      <!-- Карточка 2 -->
+      <article class="hv2-hotel-card hv2-hotel-card--small hv2-appear" aria-label="Samarkand Palace — Investment Passport">
+        <a href="passport.html?hotel=samarkand-palace" class="hv2-hotel-card__photo" id="card-samarkand" style="display:block;">
+          <img
+            src="https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?w=700&q=80&fit=crop"
+            alt="Samarkand Palace Hotel — исторический центр Самарканда, 5 звёзд"
+            loading="lazy"
+          />
+          <div class="hv2-hotel-card__photo-overlay"></div>
+          <div class="hv2-hotel-card__badge hv2-hotel-card__badge--sm" aria-label="Investment Readiness: A">A</div>
+        </a>
+        <div class="hv2-hotel-card__body">
+          <div class="hv2-hotel-card__meta">
+            <span class="hv2-hotel-card__region">Самарканд</span>
+            <span class="hv2-hotel-card__stars" aria-label="5 звёзд">
+              <svg width="60" height="10" viewBox="0 0 60 10" fill="none"><g fill="#8B6F4E"><polygon points="5,0 6.18,3.64 10,3.64 6.9,5.9 8.09,9.54 5,7.28 1.91,9.54 3.09,5.9 0,3.64 3.82,3.64"/><polygon points="17,0 18.18,3.64 22,3.64 18.9,5.9 20.09,9.54 17,7.28 13.91,9.54 15.09,5.9 12,3.64 15.82,3.64"/><polygon points="29,0 30.18,3.64 34,3.64 30.9,5.9 32.09,9.54 29,7.28 25.91,9.54 27.09,5.9 24,3.64 27.82,3.64"/><polygon points="41,0 42.18,3.64 46,3.64 42.9,5.9 44.09,9.54 41,7.28 37.91,9.54 39.09,5.9 36,3.64 39.82,3.64"/><polygon points="53,0 54.18,3.64 58,3.64 54.9,5.9 56.09,9.54 53,7.28 49.91,9.54 51.09,5.9 48,3.64 51.82,3.64"/></g></svg>
+            </span>
+          </div>
+          <h3 class="hv2-hotel-card__name">Samarkand Palace</h3>
+          <div class="hv2-hotel-card__kpis">
+            <div class="hv2-hotel-kpi">
+              <span class="hv2-hotel-kpi__val">185</span>
+              <span class="hv2-hotel-kpi__key">Rooms</span>
+            </div>
+            <div class="hv2-hotel-kpi">
+              <span class="hv2-hotel-kpi__val">68%</span>
+              <span class="hv2-hotel-kpi__key">Occupancy</span>
+            </div>
+          </div>
+          <div class="hv2-hotel-card__footer">
+            <span class="hv2-hotel-card__model">Продажа 100%</span>
+            <a href="passport.html?hotel=samarkand-palace" class="hv2-hotel-card__cta-link">Паспорт →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- View all CTA tile -->
+      <a href="portfolio.html" class="hv2-catalog-cta-tile hv2-appear" id="catalog-cta-tile">
+        <div class="hv2-catalog-cta-tile__num">32</div>
+        <div class="hv2-catalog-cta-tile__label">объекта<br/>в каталоге</div>
+        <div class="hv2-catalog-cta-tile__cta">
+          Смотреть все
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <!-- Карточка 3 -->
+      <article class="hv2-hotel-card hv2-hotel-card--small hv2-appear" aria-label="Bukhara Heritage Hotel — Investment Passport">
+        <a href="passport.html?hotel=bukhara-heritage" class="hv2-hotel-card__photo" id="card-bukhara" style="display:block;">
+          <img
+            src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=700&q=80&fit=crop"
+            alt="Bukhara Heritage Hotel — бутик-отель 4 звезды в историческом центре Бухары"
+            loading="lazy"
+          />
+          <div class="hv2-hotel-card__photo-overlay"></div>
+          <div class="hv2-hotel-card__badge hv2-hotel-card__badge--sm" aria-label="Investment Readiness: B плюс">B+</div>
+        </a>
+        <div class="hv2-hotel-card__body">
+          <div class="hv2-hotel-card__meta">
+            <span class="hv2-hotel-card__region">Бухара</span>
+            <span class="hv2-hotel-card__stars" aria-label="4 звезды">
+              <svg width="48" height="10" viewBox="0 0 48 10" fill="none"><g fill="#8B6F4E"><polygon points="5,0 6.18,3.64 10,3.64 6.9,5.9 8.09,9.54 5,7.28 1.91,9.54 3.09,5.9 0,3.64 3.82,3.64"/><polygon points="17,0 18.18,3.64 22,3.64 18.9,5.9 20.09,9.54 17,7.28 13.91,9.54 15.09,5.9 12,3.64 15.82,3.64"/><polygon points="29,0 30.18,3.64 34,3.64 30.9,5.9 32.09,9.54 29,7.28 25.91,9.54 27.09,5.9 24,3.64 27.82,3.64"/><polygon points="41,0 42.18,3.64 46,3.64 42.9,5.9 44.09,9.54 41,7.28 37.91,9.54 39.09,5.9 36,3.64 39.82,3.64"/></g></svg>
+            </span>
+          </div>
+          <h3 class="hv2-hotel-card__name">Bukhara Heritage</h3>
+          <div class="hv2-hotel-card__kpis">
+            <div class="hv2-hotel-kpi">
+              <span class="hv2-hotel-kpi__val">120</span>
+              <span class="hv2-hotel-kpi__key">Rooms</span>
+            </div>
+            <div class="hv2-hotel-kpi">
+              <span class="hv2-hotel-kpi__val">71%</span>
+              <span class="hv2-hotel-kpi__key">Occupancy</span>
+            </div>
+          </div>
+          <div class="hv2-hotel-card__footer">
+            <span class="hv2-hotel-card__model">Франчайзинг</span>
+            <a href="passport.html?hotel=bukhara-heritage" class="hv2-hotel-card__cta-link">Паспорт →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       §7 METHODOLOGY — 7 принципов Тома I
+  ═══════════════════════════════════════════ -->
+  <section class="hv2-method" id="methodology" aria-label="Методология — 7 принципов Тома I">
+
+    <div class="hv2-method__inner">
+
+      <div class="hv2-method__sticky hv2-appear">
+        <p class="hv2-section-kicker">Методология · Том I</p>
+        <h2 class="hv2-method__sticky-title">7 принципов инвестиционного стандарта</h2>
+        <p class="hv2-method__sticky-desc">
+          Стандарт разработан в соответствии с практикой Всемирного банка,
+          IFC, EBRD и международных консультантов, адаптирован к законодательству
+          и инвестиционной практике Республики Узбекистан.
+        </p>
       </div>
 
-      <div class="principles-grid">
+      <div class="hv2-method__principles">
 
-        <article class="principle-item appear">
-          <div class="principle-num" aria-hidden="true">I</div>
-          <div class="principle-body">
-            <h3 class="principle-title">Полнота</h3>
-            <p class="principle-desc">
+        <article class="hv2-principle">
+          <div class="hv2-principle__roman">I</div>
+          <div>
+            <h3 class="hv2-principle__title">Полнота</h3>
+            <p class="hv2-principle__desc">
               Информация обеспечивает потенциальному инвестору
               всестороннее представление об объекте — включая юридические,
               финансовые и операционные аспекты.
@@ -571,11 +793,11 @@
           </div>
         </article>
 
-        <article class="principle-item appear">
-          <div class="principle-num" aria-hidden="true">II</div>
-          <div class="principle-body">
-            <h3 class="principle-title">Достоверность</h3>
-            <p class="principle-desc">
+        <article class="hv2-principle">
+          <div class="hv2-principle__roman">II</div>
+          <div>
+            <h3 class="hv2-principle__title">Достоверность</h3>
+            <p class="hv2-principle__desc">
               Все сведения подтверждаются официальными документами:
               финансовой отчётностью, правоустанавливающими документами
               и данными органов статистики.
@@ -583,11 +805,11 @@
           </div>
         </article>
 
-        <article class="principle-item appear">
-          <div class="principle-num" aria-hidden="true">III</div>
-          <div class="principle-body">
-            <h3 class="principle-title">Актуальность</h3>
-            <p class="principle-desc">
+        <article class="hv2-principle">
+          <div class="hv2-principle__roman">III</div>
+          <div>
+            <h3 class="hv2-principle__title">Актуальность</h3>
+            <p class="hv2-principle__desc">
               Информация обновляется не реже одного раза в шесть месяцев
               либо незамедлительно при возникновении существенных изменений
               в характеристиках объекта.
@@ -595,11 +817,11 @@
           </div>
         </article>
 
-        <article class="principle-item appear">
-          <div class="principle-num" aria-hidden="true">IV</div>
-          <div class="principle-body">
-            <h3 class="principle-title">Сопоставимость</h3>
-            <p class="principle-desc">
+        <article class="hv2-principle">
+          <div class="hv2-principle__roman">IV</div>
+          <div>
+            <h3 class="hv2-principle__title">Сопоставимость</h3>
+            <p class="hv2-principle__desc">
               Все гостиничные объекты представляются по единой структуре
               и единым правилам заполнения, что обеспечивает
               корректное сравнение активов между собой.
@@ -607,11 +829,11 @@
           </div>
         </article>
 
-        <article class="principle-item appear">
-          <div class="principle-num" aria-hidden="true">V</div>
-          <div class="principle-body">
-            <h3 class="principle-title">Прозрачность</h3>
-            <p class="principle-desc">
+        <article class="hv2-principle">
+          <div class="hv2-principle__roman">V</div>
+          <div>
+            <h3 class="hv2-principle__title">Прозрачность</h3>
+            <p class="hv2-principle__desc">
               Не допускается сокрытие сведений, способных повлиять
               на инвестиционное решение. Требования к раскрытию информации
               соответствуют стандартам IFC и EBRD.
@@ -619,11 +841,11 @@
           </div>
         </article>
 
-        <article class="principle-item appear">
-          <div class="principle-num" aria-hidden="true">VI</div>
-          <div class="principle-body">
-            <h3 class="principle-title">Проверяемость</h3>
-            <p class="principle-desc">
+        <article class="hv2-principle">
+          <div class="hv2-principle__roman">VI</div>
+          <div>
+            <h3 class="hv2-principle__title">Проверяемость</h3>
+            <p class="hv2-principle__desc">
               Все ключевые показатели имеют подтверждающие документы
               и доступны для независимой верификации инвестором
               или уполномоченным аудитором.
@@ -631,11 +853,11 @@
           </div>
         </article>
 
-        <article class="principle-item appear">
-          <div class="principle-num" aria-hidden="true">VII</div>
-          <div class="principle-body">
-            <h3 class="principle-title">Цифровая интеграция</h3>
-            <p class="principle-desc">
+        <article class="hv2-principle">
+          <div class="hv2-principle__roman">VII</div>
+          <div>
+            <h3 class="hv2-principle__title">Цифровая интеграция</h3>
+            <p class="hv2-principle__desc">
               Ввод данных через Smart Form (Том III) автоматически обновляет
               витрину каталога, карточку объекта и формирует инвестиционный паспорт.
             </p>
@@ -643,235 +865,38 @@
         </article>
 
       </div>
-
     </div>
+
   </section>
 
 
   <!-- ═══════════════════════════════════════════
-       ВИТРИНА ОБЪЕКТОВ — 3 карточки каталога
+       §8 CTA BANNER — Smart Investment Form
   ═══════════════════════════════════════════ -->
-  <section class="catalog-preview" id="portfolio" aria-label="Витрина объектов">
-    <div class="catalog-inner">
+  <section class="hv2-cta-banner" id="submit" aria-label="Разместить объект на платформе">
+    <div class="hv2-cta-banner__inner hv2-appear">
 
-      <div class="catalog-header appear">
-        <div class="catalog-header-left">
-          <p class="kicker">ОБЪЕКТЫ НА ПЛАТФОРМЕ</p>
-          <h2 class="catalog-title">Инвестиционный портфель</h2>
-        </div>
-        <a href="portfolio.html" class="btn btn--outline btn--dark" id="catalog-view-all">
-          Смотреть весь каталог
-        </a>
-      </div>
-
-      <!-- Асимметричная сетка: 1 большая карточка + 2 малых -->
-      <div class="catalog-grid">
-
-        <!-- Карточка 1 — крупная (7 / 12 колонок) -->
-        <article class="hotel-card hotel-card--large appear" aria-label="Grand Tashkent Hotel — Investment Passport">
-          <a href="passport.html?hotel=grand-tashkent" class="hotel-card-link" id="card-grand-tashkent">
-            <div class="hotel-card-photo-wrap">
-              <!--
-                Photo: GooDriss Too / Unsplash
-                https://unsplash.com/photos/illuminated-building-with-parked-cars-at-night-7ejY9A5nNQw
-              -->
-                <img
-                  src="./assets/hotel-hero.png"
-                  alt="Grand Tashkent Hotel"
-                  class="hotel-card-photo"
-                  loading="lazy"
-                />
-              <div class="hotel-card-overlay" aria-hidden="true"></div>
-              <div class="hotel-card-iri" aria-label="Investment Readiness: A плюс">A+</div>
-            </div>
-            <div class="hotel-card-body">
-              <div class="hotel-card-meta">
-                <span class="hotel-card-region">Ташкент</span>
-                <span class="hotel-card-stars" aria-label="5 звёзд">
-                  <svg width="60" height="10" viewBox="0 0 60 10" fill="none" aria-hidden="true">
-                    <g fill="#8B6F4E">
-                      <polygon points="5,0 6.18,3.64 10,3.64 6.9,5.9 8.09,9.54 5,7.28 1.91,9.54 3.09,5.9 0,3.64 3.82,3.64"/>
-                      <polygon points="17,0 18.18,3.64 22,3.64 18.9,5.9 20.09,9.54 17,7.28 13.91,9.54 15.09,5.9 12,3.64 15.82,3.64"/>
-                      <polygon points="29,0 30.18,3.64 34,3.64 30.9,5.9 32.09,9.54 29,7.28 25.91,9.54 27.09,5.9 24,3.64 27.82,3.64"/>
-                      <polygon points="41,0 42.18,3.64 46,3.64 42.9,5.9 44.09,9.54 41,7.28 37.91,9.54 39.09,5.9 36,3.64 39.82,3.64"/>
-                      <polygon points="53,0 54.18,3.64 58,3.64 54.9,5.9 56.09,9.54 53,7.28 49.91,9.54 51.09,5.9 48,3.64 51.82,3.64"/>
-                    </g>
-                  </svg>
-                </span>
-              </div>
-              <h3 class="hotel-card-name">Grand Tashkent Hotel</h3>
-              <div class="hotel-card-kpi">
-                <div class="hotel-card-kpi-item">
-                  <span class="hotel-card-kpi-val">258</span>
-                  <span class="hotel-card-kpi-label">Rooms</span>
-                </div>
-                <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
-                <div class="hotel-card-kpi-item">
-                  <span class="hotel-card-kpi-val">74%</span>
-                  <span class="hotel-card-kpi-label">Occupancy</span>
-                </div>
-                <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
-                <div class="hotel-card-kpi-item">
-                  <span class="hotel-card-kpi-val">$128</span>
-                  <span class="hotel-card-kpi-label">ADR</span>
-                </div>
-              </div>
-              <div class="hotel-card-footer">
-                <span class="hotel-card-model">Управление</span>
-                <span class="hotel-card-cta">Открыть паспорт &rarr;</span>
-              </div>
-            </div>
-          </a>
-        </article>
-
-        <!-- Правая колонка: 2 малых карточки -->
-        <div class="catalog-col-right">
-
-          <!-- Карточка 2 -->
-          <article class="hotel-card hotel-card--small appear" aria-label="Samarkand Palace — Investment Passport">
-            <a href="passport.html?hotel=samarkand-palace" class="hotel-card-link" id="card-samarkand">
-              <div class="hotel-card-photo-wrap">
-                <!--
-                  Photo: Bhanu Singh / Unsplash
-                  https://unsplash.com/photos/modern-white-hotel-building-against-clear-blue-sky-Pj7j384f23U
-                -->
-                <img
-                  src="https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?w=700&q=80&fit=crop"
-                  alt="Samarkand Palace Hotel — исторический центр Самарканда, 5 звёзд"
-                  class="hotel-card-photo"
-                  loading="lazy"
-                />
-                <div class="hotel-card-overlay" aria-hidden="true"></div>
-                <div class="hotel-card-iri hotel-card-iri--sm" aria-label="Investment Readiness: A">A</div>
-              </div>
-              <div class="hotel-card-body">
-                <div class="hotel-card-meta">
-                  <span class="hotel-card-region">Самарканд</span>
-                  <span class="hotel-card-stars" aria-label="5 звёзд">
-                    <svg width="60" height="10" viewBox="0 0 60 10" fill="none" aria-hidden="true">
-                      <g fill="#8B6F4E">
-                        <polygon points="5,0 6.18,3.64 10,3.64 6.9,5.9 8.09,9.54 5,7.28 1.91,9.54 3.09,5.9 0,3.64 3.82,3.64"/>
-                        <polygon points="17,0 18.18,3.64 22,3.64 18.9,5.9 20.09,9.54 17,7.28 13.91,9.54 15.09,5.9 12,3.64 15.82,3.64"/>
-                        <polygon points="29,0 30.18,3.64 34,3.64 30.9,5.9 32.09,9.54 29,7.28 25.91,9.54 27.09,5.9 24,3.64 27.82,3.64"/>
-                        <polygon points="41,0 42.18,3.64 46,3.64 42.9,5.9 44.09,9.54 41,7.28 37.91,9.54 39.09,5.9 36,3.64 39.82,3.64"/>
-                        <polygon points="53,0 54.18,3.64 58,3.64 54.9,5.9 56.09,9.54 53,7.28 49.91,9.54 51.09,5.9 48,3.64 51.82,3.64"/>
-                      </g>
-                    </svg>
-                  </span>
-                </div>
-                <h3 class="hotel-card-name">Samarkand Palace</h3>
-                <div class="hotel-card-kpi hotel-card-kpi--compact">
-                  <div class="hotel-card-kpi-item">
-                    <span class="hotel-card-kpi-val">185</span>
-                    <span class="hotel-card-kpi-label">Rooms</span>
-                  </div>
-                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
-                  <div class="hotel-card-kpi-item">
-                    <span class="hotel-card-kpi-val">68%</span>
-                    <span class="hotel-card-kpi-label">Occupancy</span>
-                  </div>
-                </div>
-                <div class="hotel-card-footer">
-                  <span class="hotel-card-model">Продажа 100%</span>
-                  <span class="hotel-card-cta">Паспорт &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-          <!-- Карточка 3 -->
-          <article class="hotel-card hotel-card--small appear" aria-label="Bukhara Heritage Hotel — Investment Passport">
-            <a href="passport.html?hotel=bukhara-heritage" class="hotel-card-link" id="card-bukhara">
-              <div class="hotel-card-photo-wrap">
-                <!--
-                  Photo: Tanya Barrow / Unsplash
-                  https://unsplash.com/photos/the-londoner-hotel-entrance-with-union-jack-flag-cfH3E93Sq6w
-                -->
-                <img
-                  src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=700&q=80&fit=crop"
-                  alt="Bukhara Heritage Hotel — бутик-отель 4 звезды в историческом центре Бухары"
-                  class="hotel-card-photo"
-                  loading="lazy"
-                />
-                <div class="hotel-card-overlay" aria-hidden="true"></div>
-                <div class="hotel-card-iri hotel-card-iri--sm" aria-label="Investment Readiness: B плюс">B+</div>
-              </div>
-              <div class="hotel-card-body">
-                <div class="hotel-card-meta">
-                  <span class="hotel-card-region">Бухара</span>
-                  <span class="hotel-card-stars" aria-label="4 звезды">
-                    <svg width="48" height="10" viewBox="0 0 48 10" fill="none" aria-hidden="true">
-                      <g fill="#8B6F4E">
-                        <polygon points="5,0 6.18,3.64 10,3.64 6.9,5.9 8.09,9.54 5,7.28 1.91,9.54 3.09,5.9 0,3.64 3.82,3.64"/>
-                        <polygon points="17,0 18.18,3.64 22,3.64 18.9,5.9 20.09,9.54 17,7.28 13.91,9.54 15.09,5.9 12,3.64 15.82,3.64"/>
-                        <polygon points="29,0 30.18,3.64 34,3.64 30.9,5.9 32.09,9.54 29,7.28 25.91,9.54 27.09,5.9 24,3.64 27.82,3.64"/>
-                        <polygon points="41,0 42.18,3.64 46,3.64 42.9,5.9 44.09,9.54 41,7.28 37.91,9.54 39.09,5.9 36,3.64 39.82,3.64"/>
-                      </g>
-                    </svg>
-                  </span>
-                </div>
-                <h3 class="hotel-card-name">Bukhara Heritage</h3>
-                <div class="hotel-card-kpi hotel-card-kpi--compact">
-                  <div class="hotel-card-kpi-item">
-                    <span class="hotel-card-kpi-val">120</span>
-                    <span class="hotel-card-kpi-label">Rooms</span>
-                  </div>
-                  <div class="hotel-card-kpi-sep" aria-hidden="true"></div>
-                  <div class="hotel-card-kpi-item">
-                    <span class="hotel-card-kpi-val">71%</span>
-                    <span class="hotel-card-kpi-label">Occupancy</span>
-                  </div>
-                </div>
-                <div class="hotel-card-footer">
-                  <span class="hotel-card-model">Франчайзинг</span>
-                  <span class="hotel-card-cta">Паспорт &rarr;</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-        </div><!-- /.catalog-col-right -->
-
-      </div><!-- /.catalog-grid -->
-
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════
-       CTA — Smart Investment Form
-  ═══════════════════════════════════════════ -->
-  <section class="form-cta-section" id="submit" aria-label="Разместить объект на платформе">
-    <div class="form-cta-inner">
-
-      <!-- Орнамент-акцент -->
-      <div class="form-cta-ornament" aria-hidden="true">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-          <rect x="0.5" y="0.5" width="79" height="79" stroke="#8B6F4E" stroke-opacity="0.4"/>
-          <rect x="10.5" y="10.5" width="59" height="59" stroke="#8B6F4E" stroke-opacity="0.25"/>
-          <rect x="20.5" y="20.5" width="39" height="39" stroke="#8B6F4E" stroke-opacity="0.15"/>
-        </svg>
-      </div>
-
-      <div class="form-cta-content appear">
-        <p class="kicker kicker--light">ТОМ III&nbsp;·&nbsp;SMART INVESTMENT FORM</p>
-        <h2 class="form-cta-title">
-          Ваш объект ещё не представлен<br />на платформе?
+      <div class="hv2-cta-banner__left">
+        <p class="hv2-cta-banner__kicker">Том III · Smart Investment Form</p>
+        <h2 class="hv2-cta-banner__title">
+          Ваш объект ещё не<br /><em>представлен на платформе?</em>
         </h2>
-        <p class="form-cta-desc">
+        <p class="hv2-cta-banner__desc">
           Заполните Smart Investment Form&nbsp;— единую форму ввода данных
           на 250+ полей. Система автоматически рассчитает KPI, присвоит
           Investment Readiness Index и сформирует готовый паспорт
           в формате PDF для публикации.
         </p>
-        <div class="form-cta-actions">
-          <a href="form.html" class="btn btn--teal btn--lg" id="form-cta-primary">
-            Заполнить Smart Form
-          </a>
-          <a href="#methodology" class="btn btn--ghost btn--lg" id="form-cta-secondary">
-            Читать методологию
-          </a>
-        </div>
+      </div>
+
+      <div class="hv2-cta-banner__actions">
+        <a href="form.html" class="hv2-btn-primary" id="form-cta-primary">
+          Заполнить Smart Form
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="about.html#methodology" class="hv2-btn-outline" id="form-cta-secondary">
+          Читать методологию
+        </a>
       </div>
 
     </div>
@@ -948,6 +973,7 @@
   <script src="js/hotels-data.js"></script>
   <script src="js/verticals.js"></script>
   <script src="js/main.js"></script>
+  <!-- Home V2 isolated script — does NOT affect other pages -->
+  <script src="js/home-v2.js"></script>
 </body>
 </html>
-
