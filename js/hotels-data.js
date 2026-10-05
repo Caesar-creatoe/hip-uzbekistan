@@ -1034,8 +1034,24 @@ const API_URL = (typeof window !== 'undefined' && (
   ? 'https://hotel-investment-portfolio-uz.vercel.app/api/hotels'
   : '/api/hotels';
 
+/**
+ * Получить ADMIN_SECRET из meta-тега (admin.html прописывает <meta name="admin-secret">)
+ * Или из window.ADMIN_SECRET (прописывается перед hotels-data.js)
+ */
+function getAdminSecret() {
+  if (typeof window !== 'undefined') {
+    if (window.ADMIN_SECRET) return window.ADMIN_SECRET;
+    const meta = document.querySelector('meta[name="admin-secret"]');
+    if (meta) return meta.content || '';
+  }
+  return '';
+}
+
 // In-memory кеш для текущей сессии
 let _memoryCache = null;
+// Стамп последней загрузки из облака (для авто-инвалидации кеша раз в 5 минут)
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 минут
+let _lastCloudFetch = 0;
 
 /**
  * HotelStore — единый источник истины
@@ -1138,17 +1154,35 @@ const HotelStore = {
     return this._localCache();
   },
 
-  /** Получить все отели асинхронно (мгновенно из памяти, обновление в фоне) */
+  /** Получить все отели асинхронно — всегда свежие из облака (TTL 5 мин) */
   async getAllAsync() {
+    const now = Date.now();
+    const cacheAge = now - _lastCloudFetch;
     const cached = this._localCache();
-    if (cached && cached.length >= 25) {
-      // Запускаем фоновую синхронизацию без задержки UI
-      this.fetchFromCloud().catch(() => {});
+
+    // Если кеш свежий (< 5 мин) — возвращаем его, синхронизация в фоне
+    if (cached && cached.length >= 25 && cacheAge < CACHE_TTL_MS) {
+      // Фоновое обновление: если кеш старше 2 мин — тихо обновляем
+      if (cacheAge > 2 * 60 * 1000) {
+        this.fetchFromCloud().then(fresh => {
+          if (fresh && fresh.length >= 10) {
+            window.dispatchEvent(new CustomEvent('sri_hotels_updated', { detail: fresh }));
+          }
+        }).catch(() => {});
+      }
       return cached;
     }
+
+    // Кеш устарел или пуст — загружаем из облака
     const cloud = await this.fetchFromCloud();
-    return (cloud && cloud.length >= 10) ? cloud : this._localCache();
+    if (cloud && cloud.length >= 10) {
+      _lastCloudFetch = Date.now();
+      window.dispatchEvent(new CustomEvent('sri_hotels_updated', { detail: cloud }));
+      return cloud;
+    }
+    return cached || [];
   },
+
 
   getById(idOrSlug) {
     if (!idOrSlug) return null;
@@ -1199,14 +1233,23 @@ const HotelStore = {
     }
 
     // 4. Отправка в GitHub через серверный API В ФОНЕ (не замораживая UI)
+    const secret = getAdminSecret();
+    const writeHeaders = { 'Content-Type': 'application/json' };
+    if (secret) writeHeaders['X-Admin-Secret'] = secret;
+
+    _lastCloudFetch = Date.now(); // считаем свежим — только что сохранили
     fetch(API_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: writeHeaders,
       body: JSON.stringify({ hotels: clean, _confirmed: true })
     }).then(async res => {
       if (res.ok) {
         const result = await res.json().catch(() => ({}));
-        console.log('✅ Отели успешно синхронизированы с облаком GitHub:', result.count || clean.length);
+        console.log('✅ Отели синхронизированы с GitHub:', result.count || clean.length);
+        window.dispatchEvent(new CustomEvent('sri_hotels_synced', { detail: { count: result.count || clean.length } }));
+      } else if (res.status === 401) {
+        console.error('❌ Синхронизация отклонена: неверный ADMIN_SECRET. Данные сохранены локально.');
+        window.dispatchEvent(new CustomEvent('sri_hotels_sync_error', { detail: { status: 401, message: 'Неверный ADMIN_SECRET — настройте переменную в Vercel' } }));
       } else {
         console.warn('Фоновый POST API вернул статус:', res.status);
       }
@@ -1216,6 +1259,7 @@ const HotelStore = {
 
     return true; // Мгновенный возврат!
   },
+
 
   async add(hotel) {
     const hotels = [...this.getAll()];

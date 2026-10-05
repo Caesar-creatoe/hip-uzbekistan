@@ -14,6 +14,48 @@
 </head>
 <body class="admin-body">
 
+  <!-- ═══ ADMIN LOGIN OVERLAY ═══════════════════════════════ -->
+  <div id="admin-login-overlay" style="
+    display:none;
+    position:fixed;inset:0;z-index:99999;
+    background:linear-gradient(135deg,#0a0a1a 0%,#1a1a2e 50%,#0d1117 100%);
+    align-items:center;justify-content:center;
+  ">
+    <div style="
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:48px 40px;
+      max-width:400px;width:90%;
+      backdrop-filter:blur(20px);
+      box-shadow:0 24px 80px rgba(0,0,0,.5);
+      text-align:center;
+    ">
+      <div style="font-size:40px;margin-bottom:12px">🔐</div>
+      <h2 style="color:#fff;font-family:'Golos Text',sans-serif;margin:0 0 6px">Панель администратора</h2>
+      <p style="color:rgba(255,255,255,.5);font-size:13px;margin:0 0 28px">Silk Route Invest · Управление каталогом</p>
+      <input id="admin-pwd-input" type="password" placeholder="Пароль администратора"
+        style="
+          width:100%;box-sizing:border-box;
+          background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
+          color:#fff;border-radius:10px;padding:14px 16px;font-size:15px;
+          outline:none;margin-bottom:16px;
+          font-family:'Golos Text',sans-serif;
+        "
+      />
+      <button id="admin-pwd-btn" style="
+        width:100%;background:linear-gradient(135deg,#c9a84c,#e4b84d);
+        color:#000;border:none;border-radius:10px;padding:14px;
+        font-size:15px;font-weight:700;cursor:pointer;
+        font-family:'Golos Text',sans-serif;letter-spacing:.5px;
+      ">Войти</button>
+      <div id="admin-pwd-error" style="
+        color:#ff6b6b;font-size:13px;margin-top:12px;
+        min-height:18px;font-family:'Golos Text',sans-serif;
+      "></div>
+    </div>
+  </div>
+
   <!-- ═══ ADMIN HEADER ════════════════════════════════════ -->
   <header class="admin-header">
     <a href="index.html" class="admin-header-brand">
@@ -709,6 +751,82 @@
       </form>
     </main>
   </div>
+
+  <script>
+  // ─── ADMIN AUTH: check session, show login if needed ───────────────────────
+  (function() {
+    const SESSION_KEY = 'sri_admin_token';
+    const overlay = document.getElementById('admin-login-overlay');
+    const input   = document.getElementById('admin-pwd-input');
+    const btn     = document.getElementById('admin-pwd-btn');
+    const errEl   = document.getElementById('admin-pwd-error');
+
+    function setAdminSecret(token) {
+      window.ADMIN_SECRET = token;
+      sessionStorage.setItem(SESSION_KEY, token);
+    }
+
+    function showLogin() {
+      overlay.style.display = 'flex';
+      setTimeout(() => input && input.focus(), 100);
+    }
+
+    function hideLogin() {
+      overlay.style.display = 'none';
+    }
+
+    // Check existing session
+    const savedToken = sessionStorage.getItem(SESSION_KEY);
+    if (savedToken) {
+      window.ADMIN_SECRET = savedToken;
+      hideLogin();
+    } else {
+      showLogin();
+    }
+
+    async function tryLogin() {
+      const pwd = input.value.trim();
+      if (!pwd) { errEl.textContent = 'Введите пароль'; return; }
+      btn.disabled = true;
+      btn.textContent = 'Проверка...';
+      errEl.textContent = '';
+      try {
+        const res = await fetch('/api/admin-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pwd })
+        });
+        const data = await res.json();
+        if (res.ok && data.token) {
+          setAdminSecret(data.token);
+          hideLogin();
+        } else {
+          errEl.textContent = data.error || data.message || 'Неверный пароль';
+        }
+      } catch(e) {
+        // Если API не настроен (нет ADMIN_PASSWORD на Vercel) — пропускаем без секрета
+        errEl.textContent = 'Ошибка соединения. Попробуйте снова.';
+      }
+      btn.disabled = false;
+      btn.textContent = 'Войти';
+    }
+
+    if (btn) btn.addEventListener('click', tryLogin);
+    if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+
+    // Logout button
+    document.addEventListener('DOMContentLoaded', () => {
+      const logoutBtn = document.getElementById('btn-admin-logout');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          sessionStorage.removeItem(SESSION_KEY);
+          window.ADMIN_SECRET = '';
+          showLogin();
+        });
+      }
+    });
+  })();
+  </script>
 
   <script src="js/supabase.js"></script>
   <script src="js/hotels-data.js"></script>

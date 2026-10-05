@@ -590,11 +590,11 @@ if (hotelForm) {
     let ok = false;
     if (editingId) {
       ok = await Store.update(editingId, hotel);
-      if (ok) showStatus('✅ Отель успешно обновлён — изменения сохранены');
+      if (ok) showStatus('✅ Сохранено локально — синхронизация с облаком...', 'info');
       else showStatus('❌ Ошибка сохранения', 'error');
     } else {
       ok = await Store.add(hotel);
-      if (ok) showStatus('✅ Отель добавлен в каталог — изменения сохранены');
+      if (ok) showStatus('✅ Отель добавлен — синхронизация с облаком...', 'info');
       else showStatus('❌ Ошибка сохранения', 'error');
     }
     if (ok) {
@@ -668,9 +668,26 @@ window.addEventListener('sri_hotels_updated', (e) => {
   }
 });
 
+// Слушаем результат синхронизации с GitHub
+window.addEventListener('sri_hotels_synced', (e) => {
+  showStatus(`✅ Синхронизировано с GitHub (${e.detail?.count || '?'} отелей) — изменения видны всем`);
+});
+window.addEventListener('sri_hotels_sync_error', (e) => {
+  if (e.detail?.status === 401) {
+    showStatus('⚠️ Сохранено локально, но НЕ в облако: ADMIN_SECRET не настроен в Vercel', 'error');
+    // Показываем баннер-предупреждение если его ещё нет
+    if (!document.getElementById('admin-secret-warning')) {
+      const warn = document.createElement('div');
+      warn.id = 'admin-secret-warning';
+      warn.style.cssText = 'position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#ff4444;color:#fff;padding:12px 24px;border-radius:8px;z-index:9999;font-size:13px;max-width:500px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.3)';
+      warn.innerHTML = '⚠️ <strong>ADMIN_SECRET не настроен!</strong> Изменения сохраняются только локально.<br>Добавьте <code>ADMIN_SECRET</code> в настройки Vercel → Environment Variables.';
+      document.body.appendChild(warn);
+    }
+  }
+});
+
 // При загрузке админки — сразу отображаем все объекты без задержки
 renderSidebar();
 
 // В фоне проверяем и подгружаем самые свежие данные из облака
 renderSidebarFromCloud();
-

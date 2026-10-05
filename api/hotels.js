@@ -1,171 +1,192 @@
 // Vercel Serverless Function: /api/hotels
 // Persistent storage via GitHub API + local static snapshot fallback
+// POST/DELETE requires ADMIN_SECRET header for security
 import fs from 'fs';
 import path from 'path';
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
-const GITHUB_OWNER = 'Caesar-creatoe';
-const GITHUB_REPO = 'hip-uzbekistan';
-const GITHUB_FILE = 'data/hotels.json';
+const GITHUB_TOKEN  = process.env.GITHUB_TOKEN  || '';
+const ADMIN_SECRET  = process.env.ADMIN_SECRET  || '';
+const GITHUB_OWNER  = 'Caesar-creatoe';
+const GITHUB_REPO   = 'hip-uzbekistan';
+const GITHUB_FILE   = 'data/hotels.json';
 const GITHUB_BRANCH = 'main';
 const RAW_URL = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE}`;
-const API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+const GH_API  = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
-// Read hotels with 3-tier fallback (Raw URL -> GitHub API -> Local Bundled File)
+// ─── Auth check ───────────────────────────────────────────────────────────────
+function isAuthorized(req) {
+  // If no ADMIN_SECRET configured on server, writes are BLOCKED for safety
+  if (!ADMIN_SECRET) return false;
+  const header = req.headers['x-admin-secret'] || req.headers['authorization'] || '';
+  return header === ADMIN_SECRET || header === `Bearer ${ADMIN_SECRET}`;
+}
+
+// ─── Read hotels (3-tier: GitHub Raw → GitHub API → Local file) ───────────────
 async function readHotels() {
-  // Tier 1: Fetch from GitHub Raw URL with cache-busting (never hits 1MB API limit)
+  // Tier 1: GitHub Raw URL (fastest, no auth needed)
   try {
-    const rawHeaders = { 'User-Agent': 'Vercel-Serverless', 'Cache-Control': 'no-cache, no-store' };
-    if (GITHUB_TOKEN) rawHeaders['Authorization'] = `token ${GITHUB_TOKEN}`;
-    const rawResp = await fetch(RAW_URL + '?_t=' + Date.now(), { headers: rawHeaders });
-    if (rawResp.ok) {
-      const data = await rawResp.json();
-      if (Array.isArray(data) && data.length >= 10) return data;
+    const headers = { 'User-Agent': 'Vercel-SRI', 'Cache-Control': 'no-cache, no-store' };
+    if (GITHUB_TOKEN) headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+    const res = await fetch(RAW_URL + '?_t=' + Date.now(), { headers });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length >= 10) return { hotels: data, source: 'github-raw' };
     }
-  } catch (e) {
-    console.warn('Raw GitHub read failed:', e.message);
-  }
+  } catch (e) { console.warn('Tier1 raw failed:', e.message); }
 
-  // Tier 2: GitHub Contents API (handles download_url or content)
+  // Tier 2: GitHub Contents API
   try {
     const headers = {
       'Accept': 'application/vnd.github.v3+json',
-      'User-Agent': 'Vercel-Serverless',
+      'User-Agent': 'Vercel-SRI',
       'Cache-Control': 'no-cache'
     };
     if (GITHUB_TOKEN) headers['Authorization'] = `token ${GITHUB_TOKEN}`;
-
-    const resp = await fetch(API_URL, { headers });
-    if (resp.ok) {
-      const fileInfo = await resp.json();
-      if (fileInfo && fileInfo.content) {
-        const decoded = Buffer.from(fileInfo.content, 'base64').toString('utf8');
-        const data = JSON.parse(decoded);
-        if (Array.isArray(data) && data.length >= 10) return data;
-      } else if (fileInfo && fileInfo.download_url) {
-        const dlResp = await fetch(fileInfo.download_url + '?_t=' + Date.now());
-        if (dlResp.ok) {
-          const data = await dlResp.json();
-          if (Array.isArray(data) && data.length >= 10) return data;
-        }
+    const res = await fetch(GH_API, { headers });
+    if (res.ok) {
+      const fi = await res.json();
+      if (fi && fi.content) {
+        const data = JSON.parse(Buffer.from(fi.content, 'base64').toString('utf8'));
+        if (Array.isArray(data) && data.length >= 10) return { hotels: data, source: 'github-api' };
       }
     }
-  } catch (e) {
-    console.warn('GitHub API contents read failed:', e.message);
-  }
+  } catch (e) { console.warn('Tier2 API failed:', e.message); }
 
-  // Tier 3: Local bundled data/hotels.json from deployment filesystem (always has 32 hotels)
+  // Tier 3: Bundled local file (always 32 hotels from last deploy)
   try {
     const localPath = path.join(process.cwd(), 'data', 'hotels.json');
     if (fs.existsSync(localPath)) {
-      const localData = JSON.parse(fs.readFileSync(localPath, 'utf8'));
-      if (Array.isArray(localData) && localData.length >= 10) return localData;
+      const data = JSON.parse(fs.readFileSync(localPath, 'utf8'));
+      if (Array.isArray(data) && data.length >= 10) return { hotels: data, source: 'local-bundle' };
     }
-  } catch (e) {
-    console.warn('Local file fallback read failed:', e.message);
-  }
+  } catch (e) { console.warn('Tier3 local failed:', e.message); }
 
-  return null;
+  return { hotels: null, source: 'error' };
 }
 
-// Write hotels to GitHub (updates the shared database in git)
+// ─── Write hotels to GitHub ───────────────────────────────────────────────────
 async function writeToGitHub(hotels) {
-  if (!GITHUB_TOKEN) {
-    throw new Error('GITHUB_TOKEN is not configured on server');
-  }
+  if (!GITHUB_TOKEN) throw new Error('GITHUB_TOKEN not configured');
 
-  // 1. Get current SHA of the file (required for update)
-  const shaResp = await fetch(API_URL, {
+  // Get current SHA
+  const shaRes = await fetch(GH_API, {
     headers: {
       'Authorization': `token ${GITHUB_TOKEN}`,
       'Accept': 'application/vnd.github.v3+json',
-      'User-Agent': 'Vercel-Serverless'
+      'User-Agent': 'Vercel-SRI'
     }
   });
-
   let sha = null;
-  if (shaResp.ok) {
-    const fileInfo = await shaResp.json();
-    sha = fileInfo.sha;
+  if (shaRes.ok) {
+    const fi = await shaRes.json();
+    sha = fi.sha || null;
   }
 
-  // 2. Encode content as base64
+  // Encode & commit
   const content = Buffer.from(JSON.stringify(hotels, null, 2)).toString('base64');
-
-  // 3. Commit the updated file
   const body = {
     message: `Update hotels catalog [${new Date().toISOString()}]`,
     content,
-    branch: GITHUB_BRANCH
+    branch: GITHUB_BRANCH,
+    ...(sha ? { sha } : {})
   };
-  if (sha) body.sha = sha;
 
-  const putResp = await fetch(API_URL, {
+  const putRes = await fetch(GH_API, {
     method: 'PUT',
     headers: {
       'Authorization': `token ${GITHUB_TOKEN}`,
       'Content-Type': 'application/json',
       'Accept': 'application/vnd.github.v3+json',
-      'User-Agent': 'Vercel-Serverless'
+      'User-Agent': 'Vercel-SRI'
     },
     body: JSON.stringify(body)
   });
 
-  if (!putResp.ok) {
-    const err = await putResp.text();
-    throw new Error(`GitHub write failed: ${putResp.status} – ${err}`);
+  if (!putRes.ok) {
+    const err = await putRes.text();
+    throw new Error(`GitHub write failed: ${putRes.status} – ${err.slice(0, 200)}`);
   }
   return true;
 }
 
+// ─── Main handler ─────────────────────────────────────────────────────────────
 export default async function handler(req, res) {
-  // CORS headers
+  // CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST,PUT,DELETE,PATCH');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  res.setHeader('Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Content-Type, X-Admin-Secret, Authorization');
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // ─── GET ─────────────────────────────────────────────────────────────────
+  // ── GET: public read ────────────────────────────────────────────────────────
   if (req.method === 'GET') {
-    const hotels = await readHotels();
+    const { hotels, source } = await readHotels();
     if (hotels && hotels.length > 0) {
-      return res.status(200).json({ hotels, source: 'cloud', count: hotels.length });
+      return res.status(200).json({ hotels, source, count: hotels.length });
     }
-    return res.status(503).json({ error: 'Hotels data temporarily unavailable', hotels: [], source: 'error', count: 0 });
+    return res.status(503).json({ error: 'Hotels data unavailable', hotels: [], source: 'error', count: 0 });
   }
 
-  // ─── POST (save full list) ────────────────────────────────────────────────
-  if (req.method === 'POST') {
-    try {
-      const data = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-      let list = Array.isArray(data) ? data : (data && Array.isArray(data.hotels) ? data.hotels : null);
+  // ── POST/PUT/PATCH/DELETE: requires auth ────────────────────────────────────
+  if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method)) {
+    if (!isAuthorized(req)) {
+      return res.status(401).json({
+        error: 'Unauthorized',
+        message: 'X-Admin-Secret header is required for write operations'
+      });
+    }
 
-      if (!Array.isArray(list) || list.length === 0) {
-        return res.status(400).json({ error: 'Expected non-empty array of hotels' });
+    try {
+      const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+
+      // DELETE single hotel by id
+      if (req.method === 'DELETE') {
+        const id = body.id || (req.query && req.query.id);
+        if (!id) return res.status(400).json({ error: 'id required for DELETE' });
+        const { hotels: current } = await readHotels();
+        if (!current) return res.status(503).json({ error: 'Cannot read current hotels' });
+        const filtered = current.filter(h => h.id !== id && h.slug !== id);
+        if (filtered.length === current.length) return res.status(404).json({ error: 'Hotel not found', id });
+        await writeToGitHub(filtered);
+        return res.status(200).json({ success: true, deleted: id, count: filtered.length });
       }
 
-      // Safety guard: if new list is smaller than 10 hotels while database has 25+, require explicit confirm
-      const current = await readHotels();
-      if (current && current.length >= 25 && list.length < 10) {
-        if (!data._confirmed) {
-          return res.status(409).json({
-            error: 'SAFETY_BLOCK',
-            message: `Попытка сохранить всего ${list.length} отелей (в базе ${current.length}). Отклонено для защиты каталога.`,
-            currentCount: current.length,
-            newCount: list.length
-          });
-        }
+      // POST/PUT/PATCH: save full list or single hotel
+      let list = Array.isArray(body) ? body : (Array.isArray(body.hotels) ? body.hotels : null);
+
+      // Single hotel upsert
+      if (!list && body.id) {
+        const { hotels: current } = await readHotels();
+        if (!current) return res.status(503).json({ error: 'Cannot read current hotels' });
+        const idx = current.findIndex(h => h.id === body.id || h.slug === body.slug);
+        if (idx !== -1) current[idx] = { ...current[idx], ...body, updatedAt: new Date().toISOString() };
+        else current.push({ ...body, createdAt: new Date().toISOString() });
+        list = current;
+      }
+
+      if (!Array.isArray(list) || list.length === 0) {
+        return res.status(400).json({ error: 'Expected non-empty array of hotels or single hotel object with id' });
+      }
+
+      // Safety guard: don't overwrite 25+ hotels with tiny list
+      const { hotels: current } = await readHotels();
+      if (current && current.length >= 25 && list.length < 10 && !body._confirmed) {
+        return res.status(409).json({
+          error: 'SAFETY_BLOCK',
+          message: `Попытка сохранить ${list.length} отелей при ${current.length} в базе. Добавьте _confirmed:true.`,
+          currentCount: current.length,
+          newCount: list.length
+        });
       }
 
       await writeToGitHub(list);
-      return res.status(200).json({ success: true, count: list.length, hotels: list, source: 'github' });
+      return res.status(200).json({ success: true, count: list.length, source: 'github' });
+
     } catch (err) {
-      console.error('POST /api/hotels error:', err);
+      console.error(`${req.method} /api/hotels error:`, err);
       return res.status(500).json({ error: err.message });
     }
   }
