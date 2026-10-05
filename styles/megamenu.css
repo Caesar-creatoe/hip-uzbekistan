@@ -235,6 +235,14 @@
   align-items: stretch;
 }
 
+/* ── Панель «Услуги» ────────────────────────────────────────── */
+.mega-panel--services {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 /* ── Панель «О платформе» ────────────────────────────────── */
 .mega-panel--platform {
   width: 440px;
