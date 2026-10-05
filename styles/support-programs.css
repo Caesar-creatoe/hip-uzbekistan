@@ -1,0 +1,58 @@
+/* Стили данных господдержки (support-core.js): общие для support.html и registries.html */
+/* ── Данные из support-programs.json: фильтры, бейджи, доп. блоки ── */
+.sp-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; padding-top: 12px; padding-bottom: 12px; }
+.sp-filter-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.sp-filter-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-muted); margin-right: 4px; }
+.sp-pill {
+  font-family: var(--font-body); font-size: 12px; padding: 5px 12px; border-radius: 999px;
+  border: 1px solid var(--color-border); background: var(--color-card-bg); color: var(--color-text-primary); cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.sp-pill em { font-style: normal; font-size: 10px; color: var(--color-text-muted); margin-left: 3px; }
+.sp-pill:hover, .sp-pill.is-active { background: var(--v-support-bg); border-color: var(--v-support); color: var(--v-support); }
+.sp-toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-text-muted); cursor: pointer; }
+.sp-empty { grid-column: 1 / -1; text-align: center; color: var(--color-text-muted); padding: 32px 0; }
+.sp-muted { font-size: 12px; color: var(--color-text-muted); }
+.sp-npa-line { margin-bottom: 6px; }
+.sp-npa-line:last-child { margin-bottom: 0; }
+
+.sp-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+.sp-badge--active { background: #E3F1E8; color: #1F6B3E; }
+.sp-badge--soon { background: #FBEFD5; color: #8A5A00; }
+.sp-badge--expired { background: #E6E6E6; color: #666; }
+
+.program-card__amount-num--text { font-size: 15px; line-height: 1.35; }
+.program-card__legal { font-size: 11px; color: var(--color-text-muted); line-height: 1.55; }
+.program-card__legal span { font-weight: 600; color: var(--color-text-primary); }
+.program-card__cond { font-size: 12px; color: var(--color-text-muted); }
+.program-card__cond summary { cursor: pointer; font-weight: 600; color: var(--v-support); }
+.program-card__cond ul { margin: 8px 0 0 16px; padding: 0; line-height: 1.55; }
+.program-card--expired { opacity: 0.7; filter: grayscale(0.6); }
+.sp-reg-table tr.is-expired td { opacity: 0.65; }
+.sp-reg-table td { font-size: 13px; vertical-align: top; }
+
+/* Калькулятор (форма + результаты) */
+.calc-mode { margin-bottom: var(--space-6); }
+.calc-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-6); }
+.calc-field { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: rgba(245,239,227,0.7); }
+.calc-field select, .calc-field input {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--color-surface);
+  padding: 10px 12px; border-radius: 2px; font-size: 14px; font-family: var(--font-body);
+}
+.calc-field select option { color: #222; }
+.calc-checks { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; }
+.calc-check { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--color-surface); cursor: pointer; }
+.calc-check input { margin-top: 3px; accent-color: var(--v-support); }
+.calc-sub { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(245,239,227,0.7); margin: var(--space-4) 0 0; }
+.calc-result-item--block { flex-direction: column; align-items: stretch; gap: 6px; }
+.calc-result-item__main { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.calc-result-item__meta { font-size: 11px; color: rgba(245,239,227,0.6); line-height: 1.5; }
+.calc-result-item__warn { font-size: 12px; color: #F2C14E; }
+.calc-combo, .calc-foot { font-size: 12px; color: rgba(245,239,227,0.65); line-height: 1.6; margin: 8px 0 0; }
+.calc-empty { font-size: 13px; color: rgba(245,239,227,0.7); }
+.calc-na { margin: 8px 0 0 18px; padding: 0; font-size: 12px; color: rgba(245,239,227,0.7); line-height: 1.6; }
+.calc-total > div:last-child { text-align: right; }
+@media (max-width: 640px) {
+  .calc-form { grid-template-columns: 1fr; }
+  .sp-filters { gap: 10px 14px; }
+}

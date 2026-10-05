@@ -68,7 +68,7 @@
               <span class="mega-icon-badge">🏛</span>
               <span class="mega-link-text">
                 <span class="mega-link-label">Государственная поддержка</span>
-                <span class="mega-link-desc">7 программ · Субсидии и калькулятор льгот</span>
+                <span class="mega-link-desc"><span data-support="count">—</span> мер · Субсидии, компенсации, налоговые льготы</span>
               </span>
             </a>
 
@@ -150,8 +150,8 @@
               <a href="support.html" class="mega-link">
                 <span class="mega-icon-badge" style="color:var(--v-support)">🏛</span>
                 <span class="mega-link-text">
-                  <span class="mega-link-label">Калькулятор льгот &amp; Субсидии</span>
-                  <span class="mega-link-desc">Нормативная база НПА и расчёт субсидий</span>
+                  <span class="mega-link-label">Калькулятор господдержки</span>
+                  <span class="mega-link-desc">Нормативная база НПА и расчёт мер поддержки</span>
                 </span>
               </a>
               <a href="form.html" class="mega-link">
@@ -398,7 +398,7 @@
       </div>
       <div class="hv2-hero-stat">
         <div class="hv2-hero-stat__num">
-          <span class="hv2-counter" data-target="7">7</span>
+          <span data-support="count">—</span>
         </div>
         <div class="hv2-hero-stat__label">Программ господдержки</div>
       </div>
@@ -417,7 +417,7 @@
       <span class="hv2-marquee-item">Стандарт <strong>USALI / STR</strong></span>
       <span class="hv2-marquee-item">Рестораны <strong>F&amp;B</strong></span>
       <span class="hv2-marquee-item">Земельные участки <strong>49 лет</strong></span>
-      <span class="hv2-marquee-item">Господдержка <strong>7 программ</strong></span>
+      <span class="hv2-marquee-item">Господдержка <strong><span data-support="count">—</span> мер</strong></span>
       <span class="hv2-marquee-item">$6.8B <strong>Инвест. потенциал</strong></span>
       <span class="hv2-marquee-item">IFC · EBRD · Комитет по туризму РУз</span>
       <span class="hv2-marquee-item">Investment Readiness Index <strong>A+</strong></span>
@@ -428,7 +428,7 @@
       <span class="hv2-marquee-item">Стандарт <strong>USALI / STR</strong></span>
       <span class="hv2-marquee-item">Рестораны <strong>F&amp;B</strong></span>
       <span class="hv2-marquee-item">Земельные участки <strong>49 лет</strong></span>
-      <span class="hv2-marquee-item">Господдержка <strong>7 программ</strong></span>
+      <span class="hv2-marquee-item">Господдержка <strong><span data-support="count">—</span> мер</strong></span>
       <span class="hv2-marquee-item">$6.8B <strong>Инвест. потенциал</strong></span>
       <span class="hv2-marquee-item">IFC · EBRD · Комитет по туризму РУз</span>
       <span class="hv2-marquee-item">Investment Readiness Index <strong>A+</strong></span>
@@ -511,15 +511,15 @@
         <div class="hv2-arc-card__label">Господдержка</div>
         <h3 class="hv2-arc-card__title">Государственные программы</h3>
         <p class="hv2-arc-card__desc">
-          7 действующих программ: субсидии, налоговые и таможенные льготы.
-          Интерактивный калькулятор экономии от CAPEX.
+          <span data-support="count">—</span> действующих мер: субсидии, компенсации расходов, гранты и налоговые льготы.
+          Справочный калькулятор господдержки для отелей и туроператоров.
         </p>
         <div class="hv2-arc-card__stat">
-          <div class="hv2-arc-card__num">−40%</div>
-          <div class="hv2-arc-card__stat-label">экономия CAPEX<br/>с господдержкой</div>
+          <div class="hv2-arc-card__num">до <span data-support="max">—</span></div>
+          <div class="hv2-arc-card__stat-label">за номер при строительстве<br/>новой гостиницы</div>
         </div>
         <div class="hv2-arc-card__cta">
-          Калькулятор льгот
+          Калькулятор господдержки
           <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </a>
@@ -568,11 +568,11 @@
 
       <!-- KPI 4 -->
       <div class="hv2-bento-cell hv2-bento-cell--kpi4 hv2-appear">
-        <div class="hv2-bento-kpi__label">Программ господдержки</div>
+        <div class="hv2-bento-kpi__label">Мер господдержки</div>
         <div class="hv2-bento-kpi__num">
-          <span class="hv2-counter" data-target="7">7</span>
+          <span data-support="count">—</span>
         </div>
-        <div class="hv2-bento-kpi__note">Действующих субсидий, льгот и преференций</div>
+        <div class="hv2-bento-kpi__note">Субсидии, компенсации, гранты и налоговые льготы · макс. субсидия до <span data-support="max">—</span> за номер</div>
       </div>
 
       <!-- Wide dark cell: O системе -->
@@ -1008,5 +1008,6 @@
   <script src="js/main.js"></script>
   <!-- Home V2 isolated script — does NOT affect other pages -->
   <script src="js/home-v2.js"></script>
+  <script src="js/support-core.js"></script>
 </body>
 </html>

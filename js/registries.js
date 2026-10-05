@@ -78,5 +78,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ─────────────────────────────────────────────
+     4. РЕЕСТР МЕР ГОСПОДДЕРЖКИ + НПА (data/support-programs.json)
+     ───────────────────────────────────────────── */
+  if (window.SupportData && document.getElementById('sp-reg-out')) {
+    const SD = window.SupportData;
+    SD.load().then((all) => {
+      const browser = SD.initBrowser(all, {
+        filtersEl: document.getElementById('sp-reg-filters'),
+        outEl: document.getElementById('sp-reg-out'),
+        render: 'table'
+      });
+      const npaEl = document.getElementById('sp-reg-npa');
+      const drawNpa = () => { if (npaEl) npaEl.innerHTML = SD.npaHTML(all, 'editorial-table reg-table npa-table'); };
+      drawNpa();
+      SD.onLangChange(() => { browser.redraw(); drawNpa(); });
+    });
+  }
+
 });
 

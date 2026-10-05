@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Государственная поддержка инвестиций в туризм — Silk Route Invest</title>
-  <meta name="description" content="Государственные меры стимулирования инвестиций в туристическую отрасль Узбекистана: субсидии, налоговые льготы, таможенные преференции, льготная аренда земли.">
+  <title>Государственная поддержка туризма — Silk Route Invest</title>
+  <meta name="description" content="Меры государственной поддержки туризма в Узбекистане: субсидии, компенсации расходов, гранты и налоговые льготы для отелей, туроператоров и предпринимателей.">
   <link rel="icon" type="image/png" href="./assets/logo-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="styles/megamenu.css">
   <link rel="stylesheet" href="styles/verticals.css">
   <link rel="stylesheet" href="styles/support.css">
+  <link rel="stylesheet" href="styles/support-programs.css">
 </head>
 <body data-vertical="support">
 
@@ -44,7 +45,7 @@
       <a href="portfolio.html" class="vs-tab" data-v="hotels"><span class="vs-tab__icon">🏨</span> Отели <span class="vs-tab__count">32</span></a>
       <a href="restaurants.html" class="vs-tab" data-v="restaurants"><span class="vs-tab__icon">🍽</span> Рестораны <span class="vs-tab__count">6</span></a>
       <a href="land.html" class="vs-tab" data-v="land"><span class="vs-tab__icon">🗺</span> Земельные участки <span class="vs-tab__count">8</span></a>
-      <a href="support.html" class="vs-tab is-active" data-v="support"><span class="vs-tab__icon">🏛</span> Господдержка <span class="vs-tab__count">7</span></a>
+      <a href="support.html" class="vs-tab is-active" data-v="support"><span class="vs-tab__icon">🏛</span> Господдержка <span class="vs-tab__count" data-support="count">—</span></a>
     </div>
   </nav>
 
@@ -56,29 +57,25 @@
           <span>🏛</span>
           Комитет по туризму · Республика Узбекистан
         </p>
-        <h1 class="v-hero__title">Государственные меры<br>стимулирования инвестиций<br>в туризм</h1>
-        <p class="v-hero__desc">7 действующих программ поддержки для инвесторов в отели, рестораны и туристическую инфраструктуру. Субсидии, налоговые и таможенные льготы, льготная аренда земли.</p>
+        <h1 class="v-hero__title" data-sp-i18n="hero_title" data-sp-html>Меры государственной поддержки<br>туризма в Узбекистане</h1>
+        <p class="v-hero__desc" data-sp-i18n="hero_desc">Меры поддержки отелей, туроператоров и предпринимателей: субсидии, компенсации расходов, гранты и налоговые льготы.</p>
         <div class="v-hero__stats">
           <div class="v-hstat">
-            <span class="v-hstat__num js-counter" data-target="7" data-suffix="">7</span>
-            <span class="v-hstat__label">Программ поддержки</span>
+            <span class="v-hstat__num" data-support="count">—</span>
+            <span class="v-hstat__label" data-sp-i18n="stat_count">Действующих мер</span>
           </div>
           <div class="v-hstat">
-            <span class="v-hstat__num">$2.1M</span>
-            <span class="v-hstat__label">Макс. льгот на проект</span>
-          </div>
-          <div class="v-hstat">
-            <span class="v-hstat__num">−40%</span>
-            <span class="v-hstat__label">Средняя экономия CAPEX</span>
+            <span class="v-hstat__num" id="sp-stat-max">—</span>
+            <span class="v-hstat__label" data-sp-i18n="stat_max">Макс. субсидия на новую гостиницу (A9)</span>
           </div>
         </div>
       </div>
       <div class="support-hero__badge">
         <div class="support-hero__badge-inner">
           <div class="support-hero__badge-icon">🏛</div>
-          <div class="support-hero__badge-title">Реестр программ</div>
-          <div class="support-hero__badge-desc">Актуально на 2025–2026 год</div>
-          <div class="support-hero__badge-stamp">Комитет по туризму РУз</div>
+          <div class="support-hero__badge-title" data-sp-i18n="badge_title">Реестр мер поддержки</div>
+          <div class="support-hero__badge-desc" data-sp-i18n="badge_desc">Статус рассчитывается по текущей дате</div>
+          <div class="support-hero__badge-stamp" data-sp-i18n="badge_stamp">Комитет по туризму РУз</div>
         </div>
       </div>
     </div>
@@ -86,15 +83,7 @@
 
   <!-- FILTER BAR -->
   <div class="v-filter-bar" id="filter-bar">
-    <div class="v-filter-bar__inner">
-      <span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-muted);margin-right:8px;">Тип льготы:</span>
-      <button class="v-filter is-active" data-filter="all">Все</button>
-      <button class="v-filter" data-filter="subsidy">Субсидии</button>
-      <button class="v-filter" data-filter="tax">Налоговые</button>
-      <button class="v-filter" data-filter="customs">Таможенные</button>
-      <button class="v-filter" data-filter="land">Земельные</button>
-      <button class="v-filter" data-filter="credit">Кредитные</button>
-    </div>
+    <div class="v-filter-bar__inner sp-filters" id="sp-filters"></div>
   </div>
 
   <!-- PROGRAMS GRID -->
@@ -106,157 +95,23 @@
     </div>
   </section>
 
-  <!-- КАЛЬКУЛЯТОР ЛЬГОТ -->
+  <!-- КАЛЬКУЛЯТОР ГОССУБСИДИЙ -->
   <section class="support-calc" id="calculator">
     <div class="v-section__inner">
-      <p class="v-section__kicker">Интерактивный расчёт</p>
-      <h2 class="v-section__title">Калькулятор господдержки</h2>
-      <p class="v-section__desc">Укажите параметры вашего проекта — система автоматически рассчитает совокупный размер применимых льгот и экономию в % от CAPEX.</p>
-
-      <div class="calc-wizard" id="calc-wizard">
-        <!-- Step 1 -->
-        <div class="calc-step is-active" data-step="1">
-          <div class="calc-step__header">
-            <div class="calc-step__num">01</div>
-            <div>
-              <h3 class="calc-step__title">Класс актива</h3>
-              <p class="calc-step__desc">Выберите тип инвестиционного объекта</p>
-            </div>
-          </div>
-          <div class="calc-choices">
-            <button class="calc-choice" data-value="hotels">🏨 Отель</button>
-            <button class="calc-choice" data-value="restaurants">🍽 Ресторан</button>
-            <button class="calc-choice" data-value="land">🗺 Земельный участок</button>
-          </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="calc-step" data-step="2">
-          <div class="calc-step__header">
-            <div class="calc-step__num">02</div>
-            <div>
-              <h3 class="calc-step__title">Объём CAPEX ($)</h3>
-              <p class="calc-step__desc">Ориентировочный объём капитальных инвестиций</p>
-            </div>
-          </div>
-          <div class="calc-input-group">
-            <div class="calc-range-labels">
-              <span>$500K</span><span>$10M+</span>
-            </div>
-            <input type="range" class="calc-range" id="capex-range" min="500000" max="10000000" step="100000" value="2000000">
-            <div class="calc-range-value" id="capex-display">$2 000 000</div>
-          </div>
-          <div class="calc-choices" style="margin-top:16px;">
-            <button class="calc-choice" data-value="500000">$500K</button>
-            <button class="calc-choice" data-value="1000000">$1M</button>
-            <button class="calc-choice" data-value="2000000">$2M</button>
-            <button class="calc-choice" data-value="5000000">$5M</button>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="calc-step" data-step="3">
-          <div class="calc-step__header">
-            <div class="calc-step__num">03</div>
-            <div>
-              <h3 class="calc-step__title">Параметры объекта</h3>
-              <p class="calc-step__desc" id="step3-desc">Укажите количество номеров (для отеля)</p>
-            </div>
-          </div>
-          <div class="calc-choices" id="step3-choices">
-            <!-- Populated by JS based on step 1 choice -->
-          </div>
-        </div>
-
-        <!-- Step 4 — Results -->
-        <div class="calc-step" data-step="4">
-          <div class="calc-step__header">
-            <div class="calc-step__num">04</div>
-            <div>
-              <h3 class="calc-step__title">Результат расчёта</h3>
-              <p class="calc-step__desc">Применимые льготы по вашему проекту</p>
-            </div>
-          </div>
-          <div class="calc-results" id="calc-results">
-            <!-- Populated by JS -->
-          </div>
-        </div>
-
-        <!-- Navigation -->
-        <div class="calc-nav">
-          <button class="calc-btn calc-btn--back" id="calc-back" style="display:none;">← Назад</button>
-          <div class="calc-progress">
-            <div class="calc-progress-bar" id="calc-progress"></div>
-          </div>
-          <button class="calc-btn calc-btn--next" id="calc-next">Далее →</button>
-        </div>
-      </div>
+      <p class="v-section__kicker" data-sp-i18n="calc_kicker">Справочный расчёт</p>
+      <h2 class="v-section__title" data-sp-i18n="calc_title">Калькулятор господдержки</h2>
+      <p class="v-section__desc" data-sp-i18n="calc_desc">Укажите параметры проекта — калькулятор покажет каждую применимую программу отдельной строкой по официальным формулам.</p>
+      <div class="calc-wizard" id="calc-wizard"><!-- Rendered by JS --></div>
     </div>
   </section>
 
   <!-- НПА — Нормативная база -->
   <section class="v-section" id="legal-base">
     <div class="v-section__inner">
-      <p class="v-section__kicker">Нормативная база</p>
-      <h2 class="v-section__title">Законодательные акты</h2>
-      <p class="v-section__desc">Актуальные НПА, регулирующие государственную поддержку туристической отрасли</p>
-
-      <div class="npa-table-wrap">
-        <table class="npa-table">
-          <thead>
-            <tr>
-              <th>Документ</th>
-              <th>Дата</th>
-              <th>Предмет</th>
-              <th>Ссылка</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>ПКМ № 306</strong></td>
-              <td>07.06.2019</td>
-              <td>Субсидирование строительства гостиничных объектов 3★–5★</td>
-              <td><a href="https://lex.uz/docs/4394626" target="_blank" class="npa-link">lex.uz →</a></td>
-            </tr>
-            <tr>
-              <td><strong>ПП № ПП-4938</strong></td>
-              <td>19.11.2020</td>
-              <td>Государственная программа развития туризма на 2021–2025 гг.</td>
-              <td><a href="https://lex.uz/docs/5084568" target="_blank" class="npa-link">lex.uz →</a></td>
-            </tr>
-            <tr>
-              <td><strong>ПП № ПП-5330</strong></td>
-              <td>04.10.2021</td>
-              <td>Компенсация роялти при заключении договоров с международными брендами</td>
-              <td><a href="https://lex.uz/docs/5606380" target="_blank" class="npa-link">lex.uz →</a></td>
-            </tr>
-            <tr>
-              <td><strong>ПКМ № 302</strong></td>
-              <td>20.05.2020</td>
-              <td>Перечень технологического оборудования, освобождённого от таможенных пошлин</td>
-              <td><a href="https://lex.uz/docs/4830100" target="_blank" class="npa-link">lex.uz →</a></td>
-            </tr>
-            <tr>
-              <td><strong>Налоговый кодекс, ст. 483</strong></td>
-              <td>01.01.2020</td>
-              <td>Налоговые льготы для организаций туристической инфраструктуры</td>
-              <td><a href="https://lex.uz/docs/4674902" target="_blank" class="npa-link">lex.uz →</a></td>
-            </tr>
-            <tr>
-              <td><strong>Земельный кодекс, ст. 22</strong></td>
-              <td>30.04.1998</td>
-              <td>Льготная аренда земель туристического и рекреационного назначения</td>
-              <td><a href="https://lex.uz/docs/14864" target="_blank" class="npa-link">lex.uz →</a></td>
-            </tr>
-            <tr>
-              <td><strong>ПП № ПП-3824</strong></td>
-              <td>07.03.2018</td>
-              <td>Субсидирование процентных ставок по кредитам в сфере туризма</td>
-              <td><a href="https://lex.uz/docs/3589082" target="_blank" class="npa-link">lex.uz →</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <p class="v-section__kicker" data-sp-i18n="npa_kicker">Нормативная база</p>
+      <h2 class="v-section__title" data-sp-i18n="npa_title">Законодательные акты</h2>
+      <p class="v-section__desc" data-sp-i18n="npa_desc">Нормативные акты, на основании которых действуют меры поддержки</p>
+      <div class="npa-table-wrap" id="npa-wrap"><!-- Rendered by JS --></div>
     </div>
   </section>
 
@@ -264,12 +119,12 @@
   <section class="v-cta-block">
     <div class="v-cta-block__inner">
       <div class="v-cta-block__text">
-        <span class="v-cta-block__kicker">Подать заявку</span>
-        <h2 class="v-cta-block__title">Получить господдержку<br>для вашего проекта</h2>
-        <p class="v-cta-block__desc">Заполните заявку в кабинете инвестора. Комитет по туризму рассматривает заявки в течение 14 рабочих дней.</p>
+        <span class="v-cta-block__kicker" data-sp-i18n="cta_kicker">Обращение</span>
+        <h2 class="v-cta-block__title" data-sp-i18n="cta_title" data-sp-html>Получить господдержку<br>для вашего проекта</h2>
+        <p class="v-cta-block__desc" data-sp-i18n="cta_desc">Оставьте обращение в кабинете инвестора и свяжитесь с Комитетом по туризму.</p>
       </div>
       <div class="v-cta-block__actions">
-        <a href="cabinet-investor.html" class="btn btn--primary btn--lg">Подать заявку</a>
+        <a href="cabinet-investor.html" class="btn btn--primary btn--lg" data-sp-i18n="cta_btn">Оставить обращение</a>
         <a href="form.html" class="btn btn--outline btn--lg" style="border-color:rgba(245,239,227,0.3);color:var(--color-surface);">Smart Form</a>
       </div>
     </div>
@@ -290,6 +145,7 @@
   </footer>
 
   <script src="js/verticals.js"></script>
+  <script src="js/support-core.js"></script>
   <script src="js/support.js"></script>
 </body>
 </html>

@@ -1,212 +1,600 @@
 [
   {
-    "id": "subsidy-per-room",
-    "title": "Единовременная субсидия за номер",
-    "short": "До $3 000 за каждый введённый в эксплуатацию номер (гостиница 3★–5★)",
-    "type": "subsidy",
-    "verticals": ["hotels"],
-    "amount": "$1 000–3 000 / номер",
-    "amount_note": "В зависимости от категории и региона",
-    "max_total": "$300 000",
-    "duration": "До 2030 года",
+    "id": "A1",
+    "category": "subsidy",
+    "recipient": "operators",
     "region": "all",
-    "conditions": [
-      "Объект категории 3★, 4★ или 5★",
-      "Не менее 20 номеров",
-      "Ввод в эксплуатацию после 01.01.2020",
-      "Иностранная или совместная форма собственности допускается"
-    ],
-    "documents": [
-      "Свидетельство о государственной регистрации",
-      "Акт ввода в эксплуатацию (форма КС-11/КС-14)",
-      "Сертификат классификации (1★–5★)",
-      "Банковские реквизиты для перечисления субсидии"
-    ],
-    "legal_basis": "Постановление Кабинета Министров № 306 от 07.06.2019",
-    "legal_url": "https://lex.uz/docs/4394626",
-    "calculator_coeff": 2000,
-    "calculator_unit": "rooms",
-    "cta_url": "cabinet-investor.html",
-    "icon": "🏨",
-    "highlight": true
+    "title": {
+      "ru": "Стимулы туроператорам за туристов из стран с низким турпотоком",
+      "uz": "Turistlar oqimi past bo'lgan mamlakatlardan turist olib kelgan turoperatorlarga rag'batlantirish",
+      "en": "Incentives for tour operators for tourists from low tourist-flow countries"
+    },
+    "amount_text": {
+      "ru": "от $20 до $100 за туриста",
+      "uz": "bir turist uchun $20 dan $100 gacha",
+      "en": "$20 to $100 per tourist"
+    },
+    "amount_numeric": { "currency": "USD", "min": 20, "max": 100 },
+    "description": {
+      "ru": "За каждого туриста, привезённого в Узбекистан из зарубежных стран с низким туристическим потоком, выплачивается стимулирующая субсидия в эквиваленте от $20 до $100. Источник: Государственный бюджет и Фонд развития туризма (Туризм жамғармаси), поровну.",
+      "uz": "Turistlar oqimi past bo'lgan xorij mamlakatlaridan O'zbekistonga olib kelingan har bir turist uchun ekvivalentda $20 dan $100 gacha rag'batlantiruvchi subsidiya to'lanadi. Manba: Davlat byudjeti va Turizm jamg'armasi, teng ulushda.",
+      "en": "For each tourist brought to Uzbekistan from foreign countries with a low tourist flow, an incentive subsidy of the equivalent of $20 to $100 is paid. Source: State Budget and the Tourism Development Fund (Turizm Jamg'armasi), in equal shares."
+    },
+    "conditions": null,
+    "authority": ["MEF", "COMMITTEE"],
+    "legal_basis": { "type": "PP", "number": "238", "date": "27.07.2023", "ref": { "ru": "п.1, пп. «а»", "uz": "1-band, «a» kichik band", "en": "para. 1, sub-para. (a)" } },
+    "valid_from": "2024-01-01",
+    "valid_to": null,
+    "published": true,
+    "note": null
   },
   {
-    "id": "subsidy-per-seat",
-    "title": "Единовременная субсидия за посадочное место",
-    "short": "До $200 за каждое посадочное место в ресторане в составе туристического объекта",
-    "type": "subsidy",
-    "verticals": ["restaurants"],
-    "amount": "$100–200 / место",
-    "amount_note": "Ресторан при отеле 3★–5★ или самостоятельный туристический объект",
-    "max_total": "$50 000",
-    "duration": "До 2030 года",
+    "id": "A2",
+    "category": "compensation",
+    "recipient": "operators",
     "region": "all",
-    "conditions": [
-      "Ресторан площадью не менее 200 м²",
-      "Не менее 50 посадочных мест",
-      "Наличие санитарного заключения",
-      "Концепция национальной или авторской кухни"
-    ],
-    "documents": [
-      "Разрешение на торговлю / лицензия",
-      "Санитарно-эпидемиологическое заключение",
-      "Акт ввода в эксплуатацию помещения",
-      "Перечень посадочных мест (план зала)"
-    ],
-    "legal_basis": "Постановление Президента № ПП-4938 от 19.11.2020",
-    "legal_url": "https://lex.uz/docs/5084568",
-    "calculator_coeff": 150,
-    "calculator_unit": "seats",
-    "cta_url": "cabinet-investor.html",
-    "icon": "🍽",
-    "highlight": false
+    "title": {
+      "ru": "Компенсация расходов на чартерные рейсы",
+      "uz": "Charter reyslar xarajatlarini qoplash",
+      "en": "Compensation of charter flight costs"
+    },
+    "amount_text": {
+      "ru": "$20 за туриста · $50 зимой (20.11–20.02)",
+      "uz": "bir turist uchun $20 · qishda $50 (20.11–20.02)",
+      "en": "$20 per tourist · $50 in winter (20 Nov – 20 Feb)"
+    },
+    "amount_numeric": { "currency": "USD", "rate": 20, "winter_rate": 50, "min_nights": 5, "cities": ["samarkand", "bukhara", "urgench"] },
+    "description": {
+      "ru": "Часть расходов на чартерные рейсы из зарубежных стран в международные аэропорты Самарканда, Бухары и Ургенча возмещается туроператорам и авиаперевозчикам за каждого иностранного туриста, проведшего в стране не менее 5 ночей: $20 в эквиваленте, в зимний сезон (20 ноября – 20 февраля) — $50. Источник: Государственный бюджет и Фонд развития туризма, поровну.",
+      "uz": "Xorijiy mamlakatlardan Samarqand, Buxoro va Urganch xalqaro aeroportlariga charter reyslar xarajatlarining bir qismi mamlakatda kamida 5 tun bo'lgan har bir xorijiy turist uchun turoperatorlar va aviatashuvchilarga qoplanadi: ekvivalentda $20, qish mavsumida (20-noyabr – 20-fevral) — $50. Manba: Davlat byudjeti va Turizm jamg'armasi, teng ulushda.",
+      "en": "Part of the costs of charter flights from foreign countries to the international airports of Samarkand, Bukhara and Urgench is reimbursed to tour operators and air carriers for each foreign tourist who spent at least 5 nights in the country: $20 equivalent, and $50 in the winter season (20 November – 20 February). Source: State Budget and the Tourism Development Fund, in equal shares."
+    },
+    "conditions": null,
+    "authority": ["MEF", "COMMITTEE"],
+    "legal_basis": { "type": "PP", "number": "238", "date": "27.07.2023", "ref": { "ru": "п.1, пп. «б»", "uz": "1-band, «b» kichik band", "en": "para. 1, sub-para. (b)" } },
+    "valid_from": "2024-01-01",
+    "valid_to": null,
+    "published": true,
+    "note": null
   },
   {
-    "id": "royalty-compensation",
-    "title": "Компенсация роялти по франшизе",
-    "short": "50% компенсация выплат роялти международному бренду на первые 5 лет",
-    "type": "subsidy",
-    "verticals": ["hotels", "restaurants"],
-    "amount": "50% от суммы роялти",
-    "amount_note": "Но не более $150 000 в год",
-    "max_total": "$750 000 за 5 лет",
-    "duration": "5 лет с даты подписания договора франшизы",
+    "id": "A3",
+    "category": "compensation",
+    "recipient": "inclusive",
     "region": "all",
-    "conditions": [
-      "Договор с международным брендом (Marriott, Hyatt, Accor, Hilton и др.)",
-      "Минимальный объём инвестиций $2 млн",
-      "Регистрация в Реестре инвестиционных проектов Комитета по туризму"
-    ],
-    "documents": [
-      "Договор франшизы (нотариально заверенный перевод)",
-      "Документ, подтверждающий уплату роялти",
-      "Инвестиционное соглашение с Комитетом по туризму"
-    ],
-    "legal_basis": "Постановление Президента № ПП-5330 от 04.10.2021",
-    "legal_url": "https://lex.uz/docs/5606380",
-    "calculator_coeff": 0.5,
-    "calculator_unit": "royalty_paid",
-    "cta_url": "cabinet-investor.html",
-    "icon": "🤝",
-    "highlight": true
+    "title": {
+      "ru": "Поддержка поездок людей с инвалидностью",
+      "uz": "Nogironligi bo'lgan shaxslarning sayohatlarini qo'llab-quvvatlash",
+      "en": "Support for trips of people with disabilities"
+    },
+    "amount_text": {
+      "ru": "50% расходов, не более 500 000 сум",
+      "uz": "xarajatlarning 50%, 500 000 so'mdan oshmagan holda",
+      "en": "50% of costs, up to 500,000 UZS"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "Возмещается 50% расходов на поездки по Узбекистану, но не более 500 000 сум (программа рассчитана на 1000 человек); а также 50% расходов на курсы подготовки сурдогидов.",
+      "uz": "O'zbekiston bo'ylab sayohat xarajatlarining 50% qoplanadi, biroq 500 000 so'mdan oshmagan holda (dastur 1000 kishiga mo'ljallangan); shuningdek, surdogidlarni tayyorlash kurslari xarajatlarining 50%.",
+      "en": "50% of the costs of trips around Uzbekistan are reimbursed, but not more than 500,000 UZS (the programme is designed for 1,000 people); also 50% of the costs of sign-language tour guide training courses."
+    },
+    "conditions": {
+      "ru": ["Люди с инвалидностью I и II группы (по Каракалпакстану, областям и г. Ташкенту) и люди с нарушением слуха"],
+      "uz": ["I va II guruh nogironligi bo'lgan shaxslar (Qoraqalpog'iston, viloyatlar va Toshkent shahri bo'yicha) va eshitish qobiliyati buzilgan shaxslar"],
+      "en": ["People with disabilities of group I and II (for Karakalpakstan, the regions and Tashkent city) and people with hearing impairment"]
+    },
+    "authority": ["COMMITTEE"],
+    "legal_basis": { "type": "PP", "number": "20", "date": "12.01.2024", "ref": { "ru": "п.3, пп. «г»", "uz": "3-band, «g» kichik band", "en": "para. 3, sub-para. (g)" } },
+    "valid_from": null,
+    "valid_to": "2027-01-01",
+    "published": true,
+    "note": null
   },
   {
-    "id": "customs-exemption",
-    "title": "Освобождение от таможенных пошлин",
-    "short": "Нулевая ставка таможенной пошлины и НДС на ввоз технологического оборудования",
-    "type": "customs",
-    "verticals": ["hotels", "restaurants", "land"],
-    "amount": "0% таможенная пошлина",
-    "amount_note": "Экономия 15–20% от стоимости оборудования",
-    "max_total": "Без ограничений",
-    "duration": "На весь период строительства объекта",
+    "id": "A4",
+    "category": "subsidy",
+    "recipient": "inclusive",
     "region": "all",
-    "conditions": [
-      "Оборудование включено в перечень ПКМ № 302",
-      "Объект внесён в Реестр инвестпроектов",
-      "Минимальный объём инвестиций $500 000"
-    ],
-    "documents": [
-      "Контракт на поставку оборудования",
-      "Технические характеристики (на русском/узбекском)",
-      "Инвойс поставщика",
-      "Подтверждение регистрации в Реестре"
-    ],
-    "legal_basis": "ПКМ № 302 от 20.05.2020 «Перечень технологического оборудования»",
-    "legal_url": "https://lex.uz/docs/4830100",
-    "calculator_coeff": 0.18,
-    "calculator_unit": "equipment_cost",
-    "cta_url": "cabinet-investor.html",
-    "icon": "🛃",
-    "highlight": false
+    "title": {
+      "ru": "Субсидия за оборудование номеров для людей с инвалидностью",
+      "uz": "Nogironligi bo'lgan shaxslar uchun xonalarni jihozlash uchun subsidiya",
+      "en": "Subsidy for equipping rooms for people with disabilities"
+    },
+    "amount_text": {
+      "ru": "2 млн сум / номер (со звёздами) · 1 млн сум / номер (без звёзд)",
+      "uz": "2 mln so'm / xona (yulduzli) · 1 mln so'm / xona (yulduzsiz)",
+      "en": "2 mln UZS / room (starred) · 1 mln UZS / room (non-starred)"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "За каждый оборудованный номер из Фонда развития туризма: гостиницы со звёздами — 2 млн сум; без звёзд — 1 млн сум.",
+      "uz": "Har bir jihozlangan xona uchun Turizm jamg'armasidan: yulduzli mehmonxonalar — 2 mln so'm; yulduzsiz — 1 mln so'm.",
+      "en": "For each equipped room from the Tourism Development Fund: starred hotels — 2 mln UZS; non-starred — 1 mln UZS."
+    },
+    "conditions": {
+      "ru": ["В гостинице минимум 3 номера оборудованы для людей на инвалидных колясках", "Установлены дисплеи и звуковые устройства для людей с нарушением слуха и зрения"],
+      "uz": ["Mehmonxonada kamida 3 ta xona nogironlar aravachasidagi shaxslar uchun jihozlangan", "Eshitish va ko'rish qobiliyati buzilgan shaxslar uchun displeylar va ovozli qurilmalar o'rnatilgan"],
+      "en": ["At least 3 rooms in the hotel are equipped for wheelchair users", "Displays and sound devices for people with hearing and visual impairment are installed"]
+    },
+    "authority": ["COMMITTEE"],
+    "legal_basis": { "type": "PP", "number": "20", "date": "12.01.2024", "ref": { "ru": "п.4", "uz": "4-band", "en": "para. 4" } },
+    "valid_from": "2024-04-01",
+    "valid_to": "2026-04-01",
+    "published": true,
+    "note": null
   },
   {
-    "id": "tax-benefits",
-    "title": "Льготы по налогу на прибыль и имущество",
-    "short": "Освобождение от налога на прибыль на 3 года, снижение ставки до 50% ещё на 2 года",
-    "type": "tax",
-    "verticals": ["hotels", "restaurants", "land"],
-    "amount": "0% → 50% ставка налога на прибыль",
-    "amount_note": "Первые 3 года — 0%; 4–5 годы — 50% от базовой ставки",
-    "max_total": "Зависит от прибыли объекта",
-    "duration": "5 лет с года ввода в эксплуатацию",
+    "id": "A5",
+    "category": "compensation",
+    "recipient": "inclusive",
     "region": "all",
-    "conditions": [
-      "Объект категории туристической инфраструктуры",
-      "Инвестиции не менее $1 млн",
-      "Создание не менее 10 постоянных рабочих мест"
-    ],
-    "documents": [
-      "Налоговая декларация за предыдущий период",
-      "Справка о регистрации инвестиционного проекта",
-      "Трудовые договоры (не менее 10)"
-    ],
-    "legal_basis": "Налоговый кодекс РУз, ст. 483; ПКМ № 529 от 01.09.2020",
-    "legal_url": "https://lex.uz/docs/5013457",
-    "calculator_coeff": 0.15,
-    "calculator_unit": "projected_profit",
-    "cta_url": "cabinet-investor.html",
-    "icon": "📊",
-    "highlight": false
+    "title": {
+      "ru": "Возмещение расходов на подготовку гидов-проводников",
+      "uz": "Yo'lboshchi-gidlarni tayyorlash xarajatlarini qoplash",
+      "en": "Reimbursement of costs for training guide-instructors"
+    },
+    "amount_text": {
+      "ru": "Расходы возмещаются из Фонда развития туризма",
+      "uz": "Xarajatlar Turizm jamg'armasidan qoplanadi",
+      "en": "Costs are reimbursed from the Tourism Development Fund"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "Расходы на подготовку и повышение квалификации инструкторов-проводников в туристических кластерах возмещаются из Фонда развития туризма.",
+      "uz": "Turistik klasterlarda yo'lboshchi-instruktorlarni tayyorlash va malakasini oshirish xarajatlari Turizm jamg'armasidan qoplanadi.",
+      "en": "The costs of training and advanced training of guide-instructors in tourism clusters are reimbursed from the Tourism Development Fund."
+    },
+    "conditions": null,
+    "authority": ["COMMITTEE"],
+    "legal_basis": { "type": "PP", "number": "21", "date": "12.01.2024", "ref": { "ru": "п.8, пп. «в»", "uz": "8-band, «v» kichik band", "en": "para. 8, sub-para. (c)" } },
+    "valid_from": null,
+    "valid_to": "2028-01-01",
+    "published": true,
+    "note": null
   },
   {
-    "id": "land-lease-discount",
-    "title": "Льготная аренда земельного участка",
-    "short": "Снижение арендной ставки на 50–90% для туристических объектов в приоритетных зонах",
-    "type": "land",
-    "verticals": ["hotels", "restaurants", "land"],
-    "amount": "−50%–90% к базовой ставке аренды",
-    "amount_note": "В зависимости от туристического кластера и удалённости от центра",
-    "max_total": "На весь срок инвестиционного договора",
-    "duration": "До 49 лет (срок инвестдоговора)",
-    "region": "all",
-    "conditions": [
-      "Объект входит в один из 6 туристических кластеров",
-      "Согласованный инвестиционный проект",
-      "Начало строительства не позднее чем через 12 месяцев"
-    ],
-    "documents": [
-      "Инвестиционная заявка (форма ИЗ-1)",
-      "Архитектурно-планировочное задание (АПЗ)",
-      "Технико-экономическое обоснование",
-      "Кадастровая выписка по участку"
-    ],
-    "legal_basis": "Земельный кодекс РУз, ст. 22; ПКМ № 415 от 15.07.2021",
-    "legal_url": "https://lex.uz/docs/5553210",
-    "calculator_coeff": 0.7,
-    "calculator_unit": "land_lease_annual",
-    "cta_url": "land.html",
-    "icon": "🗺",
-    "highlight": true
+    "id": "A6",
+    "category": "subsidy",
+    "recipient": "hotel_investors",
+    "region": "surkhandarya",
+    "title": {
+      "ru": "Сурхандарьинская область: строительство новых гостиниц",
+      "uz": "Surxondaryo viloyati: yangi mehmonxonalar qurilishi",
+      "en": "Surkhandarya region: construction of new hotels"
+    },
+    "amount_text": {
+      "ru": "15 / 20 / 25 млн сум за номер (без категории / 1★ / 2★)",
+      "uz": "bir xona uchun 15 / 20 / 25 mln so'm (toifasiz / 1★ / 2★)",
+      "en": "15 / 20 / 25 mln UZS per room (no category / 1★ / 2★)"
+    },
+    "amount_numeric": { "currency": "UZS", "rates": { "0": 15000000, "1": 20000000, "2": 25000000 }, "higher_stars_ref": "A9" },
+    "description": {
+      "ru": "Одноразовая субсидия из Государственного бюджета на часть расходов по строительству и оснащению новой гостиницы (реконструкция не входит). За номер: без категории — 15 млн сум; 1★ — 20 млн сум; 2★ — 25 млн сум; для 3, 4, 5★ суммы определяются по ПП-238 (см. программу A9).",
+      "uz": "Yangi mehmonxona qurilishi va jihozlanishi xarajatlarining bir qismiga Davlat byudjetidan bir martalik subsidiya (rekonstruksiya kirmaydi). Bir xona uchun: toifasiz — 15 mln so'm; 1★ — 20 mln so'm; 2★ — 25 mln so'm; 3, 4, 5★ uchun summalar PQ-238 bo'yicha belgilanadi (A9 dasturiga qarang).",
+      "en": "A one-time subsidy from the State Budget for part of the costs of construction and equipping of a new hotel (reconstruction is not included). Per room: no category — 15 mln UZS; 1★ — 20 mln UZS; 2★ — 25 mln UZS; for 3, 4, 5★ the amounts are determined under PP-238 (see programme A9)."
+    },
+    "conditions": {
+      "ru": ["У инвестора нет задолженности по налогам и сборам", "Инвестор не находится в процессе банкротства или ликвидации"],
+      "uz": ["Investorning soliq va yig'imlar bo'yicha qarzdorligi yo'q", "Investor bankrotlik yoki tugatish jarayonida emas"],
+      "en": ["The investor has no tax and fee arrears", "The investor is not undergoing bankruptcy or liquidation"]
+    },
+    "authority": ["MEF"],
+    "legal_basis": { "type": "PKM", "number": "218", "date": "18.04.2024", "ref": { "ru": "пп.1 и 2", "uz": "1 va 2-bandlar", "en": "paras. 1 and 2" } },
+    "valid_from": "2024-05-01",
+    "valid_to": "2026-12-31",
+    "published": true,
+    "note": null
   },
   {
-    "id": "interest-rate-compensation",
-    "title": "Компенсация процентной ставки по кредиту",
-    "short": "Государство компенсирует разницу между коммерческой и льготной ставкой (до 7% годовых)",
-    "type": "credit",
-    "verticals": ["hotels", "restaurants", "land"],
-    "amount": "Компенсация до 7% годовых",
-    "amount_note": "Разница между рыночной ставкой и 3% льготной",
-    "max_total": "$200 000/год на объект",
-    "duration": "До 7 лет",
+    "id": "A7",
+    "category": "subsidy",
+    "recipient": "hotel_investors",
+    "region": "karakalpakstan",
+    "title": {
+      "ru": "Каракалпакстан: перевод действующих гостиниц в категорию 3★",
+      "uz": "Qoraqalpog'iston: faoliyat yuritayotgan mehmonxonalarni 3★ toifasiga o'tkazish",
+      "en": "Karakalpakstan: upgrading existing hotels to the 3★ category"
+    },
+    "amount_text": {
+      "ru": "20 млн сум за номер",
+      "uz": "bir xona uchun 20 mln so'm",
+      "en": "20 mln UZS per room"
+    },
+    "amount_numeric": { "currency": "UZS", "rate": 20000000 },
+    "description": {
+      "ru": "Субсидия из Фонда развития туризма — 20 млн сум за каждый номер гостиницы, которая переводится в 3-звёздочную категорию.",
+      "uz": "Turizm jamg'armasidan subsidiya — 3 yulduzli toifaga o'tkazilayotgan mehmonxonaning har bir xonasi uchun 20 mln so'm.",
+      "en": "A subsidy from the Tourism Development Fund of 20 mln UZS for each room of a hotel that is upgraded to the 3-star category."
+    },
+    "conditions": null,
+    "authority": ["COMMITTEE"],
+    "legal_basis": { "type": "PKM", "number": "287", "date": "16.05.2024", "ref": { "ru": "приложение, гл.1, п.7", "uz": "ilova, 1-bob, 7-band", "en": "annex, ch. 1, para. 7" } },
+    "valid_from": null,
+    "valid_to": null,
+    "published": true,
+    "note": "Постоянная (бессрочная) мера"
+  },
+  {
+    "id": "A8",
+    "category": "compensation",
+    "recipient": "hotel_investors",
     "region": "all",
-    "conditions": [
-      "Кредит в уполномоченном банке (NBU, Asaka Bank, Uzpromstroybank)",
-      "Целевое назначение: строительство / реконструкция туробъекта",
-      "Подтверждённый план возврата инвестиций"
-    ],
-    "documents": [
-      "Кредитный договор с банком",
-      "Бизнес-план с финансовой моделью",
-      "Подтверждение целевого использования",
-      "Ежеквартальный отчёт об освоении средств"
-    ],
-    "legal_basis": "Постановление Президента № ПП-3824 от 07.03.2018 (ред. 2023)",
-    "legal_url": "https://lex.uz/docs/3589082",
-    "calculator_coeff": 0.07,
-    "calculator_unit": "loan_amount",
-    "cta_url": "cabinet-investor.html",
-    "icon": "🏦",
-    "highlight": false
+    "title": {
+      "ru": "Канатные дороги",
+      "uz": "Arqon yo'llar",
+      "en": "Cable cars"
+    },
+    "amount_text": {
+      "ru": "1 млрд сум за каждые 500 метров",
+      "uz": "har 500 metr uchun 1 mlrd so'm",
+      "en": "1 bln UZS per every 500 metres"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "Частичная компенсация расходов инвесторов на строительство и оснащение новых пассажирских канатных дорог: 1 млрд сум за каждые 500 метров. Источник: Государственный бюджет.",
+      "uz": "Investorlarning yangi yo'lovchi arqon yo'llarini qurish va jihozlash xarajatlarini qisman qoplash: har 500 metr uchun 1 mlrd so'm. Manba: Davlat byudjeti.",
+      "en": "Partial compensation of investors' costs for the construction and equipping of new passenger cable cars: 1 bln UZS per every 500 metres. Source: State Budget."
+    },
+    "conditions": {
+      "ru": ["Ввод в эксплуатацию до 31.12.2025", "Длина не менее 500 м в одну сторону", "Охвачены первые 20 проектов"],
+      "uz": ["2025-yil 31-dekabrgacha foydalanishga topshirish", "Bir yo'nalishda uzunligi kamida 500 m", "Dastlabki 20 ta loyiha qamrab olinadi"],
+      "en": ["Commissioning before 31.12.2025", "Length of at least 500 m in one direction", "The first 20 projects are covered"]
+    },
+    "authority": ["MEF"],
+    "legal_basis": { "type": "PKM", "number": "475", "date": "01.08.2024", "ref": { "ru": "приложение, п.3", "uz": "ilova, 3-band", "en": "annex, para. 3" } },
+    "valid_from": null,
+    "valid_to": "2025-12-31",
+    "published": true,
+    "note": null
+  },
+  {
+    "id": "A9",
+    "category": "subsidy",
+    "recipient": "hotel_investors",
+    "region": "all",
+    "title": {
+      "ru": "Субсидия на строительство и оснащение новых гостиниц",
+      "uz": "Yangi mehmonxonalarni qurish va jihozlash uchun subsidiya",
+      "en": "Subsidy for construction and equipping of new hotels"
+    },
+    "amount_text": {
+      "ru": "40 млн сум / номер (3★) · 65 млн сум / номер (4–5★)",
+      "uz": "40 mln so'm / xona (3★) · 65 mln so'm / xona (4–5★)",
+      "en": "40 mln UZS / room (3★) · 65 mln UZS / room (4–5★)"
+    },
+    "amount_numeric": { "currency": "UZS", "rate_3": 40000000, "rate_45": 65000000, "min_rooms_3": 60, "min_rooms_45": 120, "min_floors": 5, "uplift": 1.5, "max_per_room": 65000000 },
+    "description": {
+      "ru": "Размер за каждый номер: 3★ — 40 млн сум; 4–5★ — 65 млн сум. В районах (городах), где нет категорийных гостиниц, размер увеличивается на 50% (то есть 60 млн и 97,5 млн сум за номер) для первых 2 гостиниц 4–5★ и первых 3 гостиниц 3★.",
+      "uz": "Har bir xona uchun miqdor: 3★ — 40 mln so'm; 4–5★ — 65 mln so'm. Toifali mehmonxonalar bo'lmagan tumanlarda (shaharlarda) miqdor 50% ga oshiriladi (ya'ni xona uchun 60 mln va 97,5 mln so'm) — dastlabki 2 ta 4–5★ va dastlabki 3 ta 3★ mehmonxona uchun.",
+      "en": "Amount per room: 3★ — 40 mln UZS; 4–5★ — 65 mln UZS. In districts (cities) without categorised hotels the amount is increased by 50% (i.e. 60 mln and 97.5 mln UZS per room) for the first 2 hotels of 4–5★ and the first 3 hotels of 3★."
+    },
+    "conditions": {
+      "ru": ["Здание не менее 5 этажей", "3★ — не менее 60 номеров", "4–5★ — не менее 120 номеров"],
+      "uz": ["Bino kamida 5 qavatli", "3★ — kamida 60 ta xona", "4–5★ — kamida 120 ta xona"],
+      "en": ["Building of at least 5 floors", "3★ — at least 60 rooms", "4–5★ — at least 120 rooms"]
+    },
+    "authority": ["MEF"],
+    "legal_basis": { "type": "PKM", "number": "550", "date": "07.09.2024", "ref": { "ru": "приложение 1, пп.6 и 7", "uz": "1-ilova, 6 va 7-bandlar", "en": "annex 1, paras. 6 and 7" } },
+    "valid_from": null,
+    "valid_to": "2027-03-01",
+    "published": true,
+    "note": null
+  },
+  {
+    "id": "A10",
+    "category": "subsidy",
+    "recipient": "hotel_investors",
+    "region": "all",
+    "title": {
+      "ru": "Частичное финансирование по договору франшизы",
+      "uz": "Franshiza shartnomasi bo'yicha qisman moliyalashtirish",
+      "en": "Partial financing under a franchise agreement"
+    },
+    "amount_text": {
+      "ru": "$200 / $400 / $600 за номер в год (3★ / 4★ / 5★) на 3 года",
+      "uz": "bir xona uchun yiliga $200 / $400 / $600 (3★ / 4★ / 5★), 3 yil davomida",
+      "en": "$200 / $400 / $600 per room per year (3★ / 4★ / 5★) for 3 years"
+    },
+    "amount_numeric": { "currency": "USD", "rates": { "3": 200, "4": 400, "5": 600 }, "years": 3, "limit": 10000000 },
+    "description": {
+      "ru": "Организациям, заключившим договор франшизы с признанным международным гостиничным брендом. Финансирование из Государственного бюджета один раз в год в течение трёх лет со дня вступления договора в силу. Общий объём финансирования — не более $10 млн в эквиваленте.",
+      "uz": "Tan olingan xalqaro mehmonxona brendi bilan franshiza shartnomasi tuzgan tashkilotlarga. Davlat byudjetidan shartnoma kuchga kirgan kundan boshlab uch yil davomida yilda bir marta moliyalashtiriladi. Moliyalashtirishning umumiy hajmi — ekvivalentda $10 mlndan oshmaydi.",
+      "en": "For organisations that have concluded a franchise agreement with a recognised international hotel brand. Financing from the State Budget once a year for three years from the date the agreement enters into force. Total financing volume — not more than $10 million equivalent."
+    },
+    "conditions": {
+      "ru": [
+        "Договор вступил в силу после 05.01.2019",
+        "Бренд хотя бы один раз за три года до подачи заявки входил в топ-50 рейтинга Brand Finance или в топ-5 гостиничных сетей и числится в перечне Координационного совета по развитию туризма",
+        "Если Brand Finance прекратит деятельность, Совет выберет другое агентство",
+        "Если бренд исключён из рейтинга или перечня, финансирование прекращается со следующего года после объявления об исключении, даже если договор действует"
+      ],
+      "uz": [
+        "Shartnoma 2019-yil 5-yanvardan keyin kuchga kirgan",
+        "Brend ariza berishdan oldingi uch yil ichida kamida bir marta Brand Finance reytingining top-50 yoki mehmonxona tarmoqlarining top-5 qatoriga kirgan va Turizmni rivojlantirish bo'yicha Muvofiqlashtiruvchi kengash ro'yxatida turadi",
+        "Brand Finance faoliyatini to'xtatsa, Kengash boshqa agentlikni tanlaydi",
+        "Brend reyting yoki ro'yxatdan chiqarilsa, shartnoma amalda bo'lsa ham, moliyalashtirish chiqarilganligi e'lon qilingan kundan keyingi yildan to'xtatiladi"
+      ],
+      "en": [
+        "The agreement entered into force after 05.01.2019",
+        "At least once in the three years before application the brand was in the top 50 of the Brand Finance ranking or among the top 5 hotel chains and is included in the list of the Tourism Development Coordination Council",
+        "If Brand Finance ceases operations, the Council will select another agency",
+        "If the brand is excluded from the ranking or list, financing stops from the year following the announcement of the exclusion, even if the agreement remains in force"
+      ]
+    },
+    "authority": ["MEF"],
+    "legal_basis": { "type": "PKM", "number": "550", "date": "07.09.2024", "ref": { "ru": "приложение 1, пп.17, 18, 19", "uz": "1-ilova, 17, 18, 19-bandlar", "en": "annex 1, paras. 17, 18, 19" } },
+    "valid_from": null,
+    "valid_to": "2027-03-01",
+    "published": true,
+    "note": null
+  },
+  {
+    "id": "A11",
+    "category": "subsidy",
+    "recipient": "hotel_investors",
+    "region": "all",
+    "title": {
+      "ru": "Модульные гостиницы",
+      "uz": "Modulli mehmonxonalar",
+      "en": "Modular hotels"
+    },
+    "amount_text": {
+      "ru": "10 / 7 / 5 млн сум за место (категория I / II / III)",
+      "uz": "bir o'rin uchun 10 / 7 / 5 mln so'm (I / II / III toifa)",
+      "en": "10 / 7 / 5 mln UZS per place (category I / II / III)"
+    },
+    "amount_numeric": { "currency": "UZS", "rates": { "I": 10000000, "II": 7000000, "III": 5000000 }, "min_modules": 10 },
+    "description": {
+      "ru": "Размер за каждое созданное место: категория I — 10 млн сум; категория II — 7 млн сум; категория III — 5 млн сум.",
+      "uz": "Yaratilgan har bir o'rin uchun miqdor: I toifa — 10 mln so'm; II toifa — 7 mln so'm; III toifa — 5 mln so'm.",
+      "en": "Amount for each place created: category I — 10 mln UZS; category II — 7 mln UZS; category III — 5 mln UZS."
+    },
+    "conditions": {
+      "ru": ["Новая модульная гостиница не менее чем из 10 модулей"],
+      "uz": ["Kamida 10 ta moduldan iborat yangi modulli mehmonxona"],
+      "en": ["A new modular hotel of at least 10 modules"]
+    },
+    "authority": ["COMMITTEE"],
+    "legal_basis": { "type": "PKM", "number": "572", "date": "13.09.2024", "ref": { "ru": "п.1, абз.3", "uz": "1-band, 3-xatboshi", "en": "para. 1, sub-para. 3" } },
+    "valid_from": "2024-10-01",
+    "valid_to": "2026-12-31",
+    "published": true,
+    "note": "В английской версии документа написано «per unit», в узбекской — «за место». Единица измерения требует подтверждения владельцем."
+  },
+  {
+    "id": "A12",
+    "category": "subsidy",
+    "recipient": "hotel_investors",
+    "region": "khorezm",
+    "title": {
+      "ru": "Хорезмская область: введённые в эксплуатацию гостиницы",
+      "uz": "Xorazm viloyati: foydalanishga topshirilgan mehmonxonalar",
+      "en": "Khorezm region: hotels put into operation"
+    },
+    "amount_text": {
+      "ru": "10 / 15 / 20 млн сум за номер (без категории / 1★ / 2★)",
+      "uz": "bir xona uchun 10 / 15 / 20 mln so'm (toifasiz / 1★ / 2★)",
+      "en": "10 / 15 / 20 mln UZS per room (no category / 1★ / 2★)"
+    },
+    "amount_numeric": { "currency": "UZS", "rates": { "0": 10000000, "1": 15000000, "2": 20000000 } },
+    "description": {
+      "ru": "Одноразовая субсидия из Государственного бюджета за каждый номер: без категории — 10 млн сум; 1★ — 15 млн сум; 2★ — 20 млн сум.",
+      "uz": "Har bir xona uchun Davlat byudjetidan bir martalik subsidiya: toifasiz — 10 mln so'm; 1★ — 15 mln so'm; 2★ — 20 mln so'm.",
+      "en": "A one-time subsidy from the State Budget for each room: no category — 10 mln UZS; 1★ — 15 mln UZS; 2★ — 20 mln UZS."
+    },
+    "conditions": null,
+    "authority": ["COMMITTEE"],
+    "legal_basis": { "type": "PKM", "number": "233", "date": "17.04.2025", "ref": null },
+    "valid_from": null,
+    "valid_to": "2026-12-31",
+    "published": true,
+    "note": null
+  },
+  {
+    "id": "A13",
+    "category": "subsidy",
+    "recipient": "entrepreneurs",
+    "region": "all",
+    "title": {
+      "ru": "Зиплайн и канатные парки (экстремальный туризм в горах и пустынях)",
+      "uz": "Zipline va arqonli parklar (tog' va cho'llarda ekstremal turizm)",
+      "en": "Zipline and rope parks (extreme tourism in mountains and deserts)"
+    },
+    "amount_text": {
+      "ru": "100 млн сум (зиплайн) · 80 млн сум (роупарк)",
+      "uz": "100 mln so'm (zipline) · 80 mln so'm (roupark)",
+      "en": "100 mln UZS (zipline) · 80 mln UZS (rope park)"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "Из Фонда развития туризма: комплекс зиплайна общей протяжённостью не менее 200 м — 100 млн сум; канатный парк (роупарк) площадью не менее 150 кв. м — разово 80 млн сум.",
+      "uz": "Turizm jamg'armasidan: umumiy uzunligi kamida 200 m bo'lgan zipline majmuasi — 100 mln so'm; maydoni kamida 150 kv. m bo'lgan arqonli park (roupark) — bir martalik 80 mln so'm.",
+      "en": "From the Tourism Development Fund: a zipline complex with a total length of at least 200 m — 100 mln UZS; a rope park with an area of at least 150 sq. m — a one-time 80 mln UZS."
+    },
+    "conditions": null,
+    "authority": ["COMMITTEE"],
+    "legal_basis": { "type": "PKM", "number": "383", "date": "19.06.2025", "ref": null },
+    "valid_from": "2025-07-01",
+    "valid_to": "2027-01-01",
+    "published": true,
+    "note": null
+  },
+  {
+    "id": "A14",
+    "category": "subsidy",
+    "recipient": "hotel_investors",
+    "region": "no_hotel_districts",
+    "title": {
+      "ru": "Районы (города) без гостиниц: введённые гостиницы и малые отели",
+      "uz": "Mehmonxonasiz tumanlar (shaharlar): foydalanishga topshirilgan mehmonxonalar va kichik mehmonxonalar",
+      "en": "Districts (cities) without hotels: hotels and small hotels put into operation"
+    },
+    "amount_text": {
+      "ru": "10 / 15 / 20 млн сум за номер (от 10 / 15 / 20 номеров)",
+      "uz": "bir xona uchun 10 / 15 / 20 mln so'm (10 / 15 / 20 xonadan)",
+      "en": "10 / 15 / 20 mln UZS per room (from 10 / 15 / 20 rooms)"
+    },
+    "amount_numeric": { "currency": "UZS", "tiers": [[10, 10000000], [15, 15000000], [20, 20000000]] },
+    "description": {
+      "ru": "22 района (города) республики, где гостиниц не было. Одноразовая субсидия из Государственного бюджета за номер: не менее 10 номеров — 10 млн сум; не менее 15 номеров — 15 млн сум; не менее 20 номеров — 20 млн сум.",
+      "uz": "Respublikaning mehmonxonasi bo'lmagan 22 ta tumani (shahri). Xona uchun Davlat byudjetidan bir martalik subsidiya: kamida 10 ta xona — 10 mln so'm; kamida 15 ta xona — 15 mln so'm; kamida 20 ta xona — 20 mln so'm.",
+      "en": "22 districts (cities) of the republic where there were no hotels. A one-time subsidy from the State Budget per room: at least 10 rooms — 10 mln UZS; at least 15 rooms — 15 mln UZS; at least 20 rooms — 20 mln UZS."
+    },
+    "conditions": null,
+    "authority": ["COMMITTEE"],
+    "legal_basis": { "type": "PKM", "number": "919", "date": "30.12.2024", "ref": null },
+    "valid_from": "2025-01-01",
+    "valid_to": "2026-12-31",
+    "published": true,
+    "note": null
+  },
+  {
+    "id": "A15",
+    "category": "grant",
+    "recipient": "youth",
+    "region": "all",
+    "title": {
+      "ru": "Грант молодёжным инициативам в туризме",
+      "uz": "Turizmdagi yoshlar tashabbuslariga grant",
+      "en": "Grant for youth initiatives in tourism"
+    },
+    "amount_text": {
+      "ru": "50 млн сум",
+      "uz": "50 mln so'm",
+      "en": "50 mln UZS"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "Грант 50 млн сум из Государственного бюджета на создание современного сайта с приёмом онлайн-платежей и участие в зарубежных туристических выставках и ярмарках. Программа действует в пределах 10 млрд сум.",
+      "uz": "Onlayn to'lovlarni qabul qiluvchi zamonaviy sayt yaratish va xorijdagi turistik ko'rgazma va yarmarkalarda ishtirok etish uchun Davlat byudjetidan 50 mln so'm grant. Dastur 10 mlrd so'm doirasida amal qiladi.",
+      "en": "A grant of 50 mln UZS from the State Budget for creating a modern website with online payments and participating in foreign tourism exhibitions and fairs. The programme operates within 10 bln UZS."
+    },
+    "conditions": {
+      "ru": ["Организовать тур не менее чем для 200 иностранных туристов в Узбекистан за три года"],
+      "uz": ["Uch yil ichida O'zbekistonga kamida 200 nafar xorijiy turist uchun tur tashkil etish"],
+      "en": ["Organise a tour for at least 200 foreign tourists to Uzbekistan within three years"]
+    },
+    "authority": ["COMMITTEE"],
+    "legal_basis": { "type": "PF", "number": "52", "date": "15.01.2022", "ref": null },
+    "valid_from": "2022-05-01",
+    "valid_to": null,
+    "published": true,
+    "note": "Действует в пределах 10 млрд сум"
+  },
+  {
+    "id": "B1",
+    "category": "tax",
+    "recipient": "hotel_investors",
+    "region": "all",
+    "title": {
+      "ru": "Земельный налог и налог на имущество",
+      "uz": "Yer solig'i va mol-mulk solig'i",
+      "en": "Land tax and property tax"
+    },
+    "amount_text": {
+      "ru": "Ставки снижены на 90% на 5 лет",
+      "uz": "Stavkalar 90% ga kamaytirilgan, 5 yil davomida",
+      "en": "Rates reduced by 90% for 5 years"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "Новые гостиницы и крупные торговые комплексы в туристической сфере вправе платить налог на землю и налог на имущество юридических лиц по ставкам, сниженным на 90%, в течение 5 лет со месяца ввода в эксплуатацию.",
+      "uz": "Turizm sohasidagi yangi mehmonxonalar va yirik savdo majmualari foydalanishga topshirilgan oydan boshlab 5 yil davomida yer solig'i va yuridik shaxslarning mol-mulk solig'ini 90% ga kamaytirilgan stavkalar bo'yicha to'lash huquqiga ega.",
+      "en": "New hotels and large trade complexes in the tourism sector may pay land tax and property tax of legal entities at rates reduced by 90% for 5 years from the month of commissioning."
+    },
+    "conditions": null,
+    "authority": [],
+    "legal_basis": null,
+    "valid_from": null,
+    "valid_to": null,
+    "published": true,
+    "note": null
+  },
+  {
+    "id": "B2",
+    "category": "tax",
+    "recipient": "entrepreneurs",
+    "region": "all",
+    "title": {
+      "ru": "Кемпинги и сафари в труднодоступных местах",
+      "uz": "Yetib borish qiyin joylardagi kempinglar va safari",
+      "en": "Camping and safari in hard-to-reach places"
+    },
+    "amount_text": {
+      "ru": "1% от исчисленных сумм налогов",
+      "uz": "hisoblangan soliq summalarining 1%",
+      "en": "1% of the calculated tax amounts"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "Юридические лица, организующие кемпинг и сафари в труднодоступных местах, платят только 1% от исчисленных сумм земельного налога, налога на имущество и налога на прибыль.",
+      "uz": "Yetib borish qiyin joylarda kemping va safari tashkil etuvchi yuridik shaxslar yer solig'i, mol-mulk solig'i va foyda solig'ining hisoblangan summalaridan faqat 1% to'laydilar.",
+      "en": "Legal entities organising camping and safari in hard-to-reach places pay only 1% of the calculated amounts of land tax, property tax and profit tax."
+    },
+    "conditions": null,
+    "authority": [],
+    "legal_basis": null,
+    "valid_from": null,
+    "valid_to": null,
+    "published": true,
+    "note": null
+  },
+  {
+    "id": "B3",
+    "category": "tax",
+    "recipient": "hotel_investors",
+    "region": "all",
+    "title": {
+      "ru": "НДС: порог и упрощённый порядок",
+      "uz": "QQS: chegara va soddalashtirilgan tartib",
+      "en": "VAT: threshold and simplified procedure"
+    },
+    "amount_text": {
+      "ru": "Порог НДС 12 000 БРВ · упрощённый порядок: 6% НДС и 0% налога на прибыль",
+      "uz": "QQS chegarasi 12 000 BHM · soddalashtirilgan tartib: 6% QQS va 0% foyda solig'i",
+      "en": "VAT threshold 12,000 BCU · simplified procedure: 6% VAT and 0% profit tax"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "С 01.06.2026 порог обязательного перехода на общий порядок НДС повышен с 1 млрд сум до 12 000 БРВ (примерно 5,0 млрд сум). Субъекты, чья основная деятельность относится к сфере услуг, в том числе гостиницы, вправе до 01.01.2030 добровольно применять упрощённый порядок исчисления и уплаты НДС (6% НДС и 0% налога на прибыль).",
+      "uz": "2026-yil 1-iyundan QQSning umumiy tartibiga majburiy o'tish chegarasi 1 mlrd so'mdan 12 000 BHM gacha (taxminan 5,0 mlrd so'm) oshirildi. Asosiy faoliyati xizmat ko'rsatish sohasiga oid subyektlar, jumladan mehmonxonalar, 2030-yil 1-yanvargacha QQSni hisoblash va to'lashning soddalashtirilgan tartibini ixtiyoriy qo'llash huquqiga ega (6% QQS va 0% foyda solig'i).",
+      "en": "From 01.06.2026 the threshold for mandatory transition to the general VAT procedure has been raised from 1 bln UZS to 12,000 BCU (approximately 5.0 bln UZS). Entities whose main activity is in the services sector, including hotels, may voluntarily apply the simplified VAT calculation and payment procedure until 01.01.2030 (6% VAT and 0% profit tax)."
+    },
+    "conditions": null,
+    "authority": [],
+    "legal_basis": { "type": "PF", "number": "100", "date": "26.05.2026", "ref": null },
+    "valid_from": "2026-06-01",
+    "valid_to": "2030-01-01",
+    "published": true,
+    "note": "Порог — с 01.06.2026; упрощённый порядок — до 01.01.2030."
+  },
+  {
+    "id": "C1",
+    "category": "subsidy",
+    "recipient": "hotel_investors",
+    "region": "all",
+    "title": {
+      "ru": "Субсидия на строительство современных бассейнов",
+      "uz": "Zamonaviy basseynlar qurilishi uchun subsidiya",
+      "en": "Subsidy for construction of modern swimming pools"
+    },
+    "amount_text": {
+      "ru": "до 100 млн сум за бассейн",
+      "uz": "bir basseyn uchun 100 mln so'mgacha",
+      "en": "up to 100 mln UZS per pool"
+    },
+    "amount_numeric": null,
+    "description": {
+      "ru": "До 100 млн сум за каждый бассейн при оснащении объектов размещения, крупных торговых комплексов или предприятий общественного питания.",
+      "uz": "Joylashtirish obyektlari, yirik savdo majmualari yoki jamoat ovqatlanish korxonalarini jihozlashda har bir basseyn uchun 100 mln so'mgacha.",
+      "en": "Up to 100 mln UZS for each pool when equipping accommodation facilities, large trade complexes or catering enterprises."
+    },
+    "conditions": null,
+    "authority": [],
+    "legal_basis": null,
+    "valid_from": null,
+    "valid_to": null,
+    "published": false,
+    "note": "ЧЕРНОВИК. Встречается только в английской версии документа, без нормативного основания. Установите published=true после подтверждения."
   }
 ]

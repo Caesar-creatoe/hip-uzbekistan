@@ -20,7 +20,7 @@
 | **[`form.html`](form.html)** | **Том III: Smart Investment Form** | 5-шаговый ввод 250+ параметров, Live Analytics Terminal (расчет ADR, RevPAR, EBITDA Margin, Payback, ROI, IRR, скоринг IRI), демо-заполнение, экспорт в JSON |
 | **[`tech-spec.html`](tech-spec.html)** | **Том IV: Technical Specification** | Архитектура системы, ER-схема PostgreSQL, OpenAPI эндпоинты, математическая модель скоринга, безопасность Data Room (AES-256) |
 | **[`tourism-types.html`](tourism-types.html)** | **Виды туризма и кластеры** | Интерактивный атлас 5 кластеров (Культурный/Зиёрат, MICE, Горный, Wellness, Эко) с аккордеонами и нишами доходности |
-| **[`registries.html`](registries.html)** | **Государственные реестры** | 4 реестра: сертифицированные отели (1★–5★), инвест-лоты (земля), субсидии ПКМ № 308, аккредитованные операторы (JLL, CBRE, PwC, Marriott) |
+| **[`registries.html`](registries.html)** | **Государственные реестры** | 4 реестра: сертифицированные отели (1★–5★), инвест-лоты (земля), реестр мер господдержки, аккредитованные операторы (JLL, CBRE, PwC, Marriott) |
 | **[`portfolio.html`](portfolio.html)** | **Каталог объектов** | Клиентская фильтрация по регионам, категории ★, модели сделки и рейтингу готовности IRI |
 
 ---

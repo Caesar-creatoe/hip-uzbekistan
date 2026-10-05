@@ -145,6 +145,7 @@ function applyLanguage(lang, userInitiated = false) {
   });
   document.documentElement.lang = lang;
   localStorage.setItem('hip_lang', lang);
+  document.dispatchEvent(new CustomEvent('hip:lang', { detail: lang }));
   if (userInitiated && lang !== 'ru') {
     showLangToast(lang);
   }
