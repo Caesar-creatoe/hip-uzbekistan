@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="styles/megamenu.css" />
   <link rel="stylesheet" href="styles/portal.css" />
   <link rel="stylesheet" href="styles/passport.css" />
+  <link rel="stylesheet" href="styles/economics.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body class="page-passport">
@@ -220,6 +221,7 @@
     <div class="passport-toc-inner">
       <a href="#cover" class="toc-link toc-link--active" id="toc-cover">Обложка</a>
       <a href="#summary" class="toc-link" id="toc-summary">Характеристики</a>
+      <a href="#economics" class="toc-link" id="toc-economics" style="display:none">Экономика</a>
       <a href="#amenities-section" class="toc-link" id="toc-amenities">Инфраструктура</a>
       <a href="#location" class="toc-link" id="toc-location">Локация</a>
       <a href="#gallery" class="toc-link" id="toc-gallery">Фотоматериалы</a>
@@ -437,6 +439,101 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
+       ЭКОНОМИЧЕСКИЕ ПОКАЗАТЕЛИ
+  ═══════════════════════════════════════════ -->
+  <section class="economics-section" id="economics" aria-label="Экономические показатели объекта" style="display:none">
+    <div class="economics-inner">
+
+      <div class="economics-header appear">
+        <span class="exec-kicker">ЭКОНОМИКА</span>
+        <h2 class="amenities-title" style="margin-bottom:8px">Экономические показатели</h2>
+        <div id="eco-period-meta" style="font-size:13px;color:var(--color-text-muted);display:flex;gap:12px;flex-wrap:wrap;"></div>
+      </div>
+
+      <!-- KPI Bar -->
+      <div class="eco-kpi-bar appear" id="eco-kpi-bar">
+        <!-- заполняется passport.js -->
+      </div>
+
+      <!-- Карточки -->
+      <div class="eco-cards-grid appear">
+
+        <!-- Операционные показатели -->
+        <div class="eco-card" id="eco-card-operational">
+          <div class="eco-card-header">
+            <span class="eco-card-icon">📊</span>
+            <span class="eco-card-title">Операционные показатели</span>
+            <span class="eco-badge" id="eco-op-badge"></span>
+          </div>
+          <div class="eco-fields-grid" id="eco-op-fields"></div>
+        </div>
+
+        <!-- Выручка -->
+        <div class="eco-card" id="eco-card-revenue">
+          <div class="eco-card-header">
+            <span class="eco-card-icon">💰</span>
+            <span class="eco-card-title">Структура выручки</span>
+          </div>
+          <div id="eco-revenue-chart"></div>
+        </div>
+
+        <!-- Прибыль и рентабельность -->
+        <div class="eco-card" id="eco-card-profit">
+          <div class="eco-card-header">
+            <span class="eco-card-icon">📈</span>
+            <span class="eco-card-title">Прибыль и рентабельность</span>
+          </div>
+          <div class="eco-fields-grid" id="eco-profit-fields"></div>
+        </div>
+
+        <!-- Инвестиционные показатели -->
+        <div class="eco-card" id="eco-card-invest">
+          <div class="eco-card-header">
+            <span class="eco-card-icon">🏦</span>
+            <span class="eco-card-title">Инвестиционные показатели</span>
+          </div>
+          <div class="eco-fields-grid" id="eco-invest-fields"></div>
+        </div>
+
+        <!-- Условия сделки (показывается по типу сделки) -->
+        <div class="eco-card" id="eco-card-deal" style="display:none">
+          <div class="eco-card-header">
+            <span class="eco-card-icon">📋</span>
+            <span class="eco-card-title">Условия сделки</span>
+          </div>
+          <div class="eco-fields-grid" id="eco-deal-fields"></div>
+        </div>
+
+        <!-- Сравнение с рынком (если есть) -->
+        <div class="eco-card" id="eco-card-compset" style="display:none">
+          <div class="eco-card-header">
+            <span class="eco-card-icon">🏆</span>
+            <span class="eco-card-title">Сравнение с рынком</span>
+          </div>
+          <div class="eco-fields-grid" id="eco-compset-fields"></div>
+        </div>
+
+        <!-- Динамика по годам -->
+        <div class="eco-card eco-card-wide" id="eco-card-history" style="display:none">
+          <div class="eco-card-header">
+            <span class="eco-card-icon">📉</span>
+            <span class="eco-card-title">Динамика показателей</span>
+          </div>
+          <div class="eco-chart-wrap" id="eco-chart-wrap">
+            <svg class="eco-chart-svg" id="eco-chart-svg" viewBox="0 0 800 160" preserveAspectRatio="none"></svg>
+          </div>
+          <div class="eco-table-wrap" id="eco-history-table-wrap"></div>
+        </div>
+
+      </div>
+
+      <!-- Метабар -->
+      <div class="eco-meta-bar" id="eco-meta-bar"></div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
        УДОБСТВА И ИНФРАСТРУКТУРА
   ═══════════════════════════════════════════ -->
   <section class="amenities-section" id="amenities-section" aria-label="Удобства и сервисы">
@@ -625,6 +722,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
   <script src="js/hotels-data.js"></script>
+  <script src="js/economics.js"></script>
   <script src="js/passport.js"></script>
   <script src="js/megamenu.js"></script>
 </body>

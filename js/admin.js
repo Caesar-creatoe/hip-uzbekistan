@@ -513,6 +513,9 @@ function loadForEdit(id) {
       }
     }).catch(() => {});
   }
+
+  // 8. Диспатч события для заполнения секции экономики
+  window.dispatchEvent(new CustomEvent('sri_hotel_loaded', { detail: hotel }));
 }
 
 
@@ -579,6 +582,8 @@ if (hotelForm) {
         src: typeof p === 'object' ? (p.src || '') : String(p),
         caption: typeof p === 'object' ? (p.caption || '') : ''
       })),
+      // Экономические показатели (из inline-скрипта в admin.html)
+      economics:        typeof ecoCollectFromForm === 'function' ? ecoCollectFromForm() : undefined,
     };
 
     showStatus('⏳ Сохранение...', 'info');

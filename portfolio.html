@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="styles/verticals.css" />
   <link rel="stylesheet" href="styles/portal.css" />
   <link rel="stylesheet" href="styles/catalog.css" />
+  <link rel="stylesheet" href="styles/economics.css" />
 </head>
 <body class="page-portfolio" data-vertical="hotels">
 
@@ -457,9 +458,40 @@
               <option value="stars-desc">По звёздности (сначала 5★)</option>
               <option value="year-desc">Сначала новые (год ввода)</option>
               <option value="name-asc">По названию (А — Я)</option>
+              <optgroup label="── По экономике ──">
+                <option value="payback-asc">Payback (сначала короче)</option>
+                <option value="roi-desc">ROI (сначала выше)</option>
+                <option value="occ-desc">Occupancy (сначала выше)</option>
+              </optgroup>
             </select>
           </div>
 
+        </div>
+
+        <!-- Eco-фильтры (доп. строка) -->
+        <div class="glass-filter-eco" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 16px;border-top:1px solid rgba(255,255,255,0.08)">
+          <button type="button"
+            id="filter-has-eco"
+            class="glass-tag-btn"
+            data-active="false"
+            title="Показывать только отели с заполненными экономическими данными"
+            style="white-space:nowrap">
+            📊 С экономикой
+          </button>
+          <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-muted,#9D978E)">
+            <label for="filter-payback-max" style="white-space:nowrap">Payback ≤</label>
+            <input type="number" id="filter-payback-max" min="1" max="50" step="1"
+              placeholder="лет"
+              style="width:60px;padding:5px 8px;border:1px solid var(--color-border,#EDE9E2);border-radius:6px;font-size:12px;background:rgba(255,255,255,0.6)" />
+            <span>лет</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-muted,#9D978E)">
+            <label for="filter-roi-min" style="white-space:nowrap">ROI ≥</label>
+            <input type="number" id="filter-roi-min" min="0" max="100" step="0.5"
+              placeholder="%"
+              style="width:60px;padding:5px 8px;border:1px solid var(--color-border,#EDE9E2);border-radius:6px;font-size:12px;background:rgba(255,255,255,0.6)" />
+            <span>%</span>
+          </div>
         </div>
 
         <!-- Нижняя строка: Быстрые теги формата + Результаты + Сброс -->
@@ -585,6 +617,7 @@
 
   <script src="js/main.js"></script>
   <script src="js/hotels-data.js"></script>
+  <script src="js/economics.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/verticals.js"></script>
   <script src="js/megamenu.js"></script>

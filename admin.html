@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles/admin.css" />
+  <link rel="stylesheet" href="styles/economics.css" />
 </head>
 <body class="admin-body">
 
@@ -307,6 +308,397 @@
           </div>
         </div>
 
+        <!-- ── СЕКЦИЯ 7: Экономические показатели ──────── -->
+        <div class="form-section" id="eco-admin-section">
+          <div class="form-section-title">📊 Экономические показатели
+            <span style="font-size:11px;font-weight:400;color:#9D978E;margin-left:8px">Все поля необязательны — отели без данных работают корректно</span>
+          </div>
+
+          <!-- Аккордеон 1: Период и источник -->
+          <div class="eco-accordion is-open" id="eco-acc-period">
+            <div class="eco-accordion-header" onclick="ecoToggleAcc('eco-acc-period')">
+              <span class="eco-accordion-title">📅 Период и источник данных</span>
+              <span class="eco-accordion-chevron">▼</span>
+            </div>
+            <div class="eco-accordion-body">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label class="form-label" for="eco-period">Отчётный период / финансовый год</label>
+                  <input type="text" class="form-input" id="eco-period" placeholder="Например: 2025 FY" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-dataType">Тип данных</label>
+                  <select class="form-select" id="eco-dataType">
+                    <option value="fact">Факт (отчётный период)</option>
+                    <option value="forecast">Прогноз (бюджет/проект)</option>
+                    <option value="estimate">Оценка</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-currency">Валюта</label>
+                  <select class="form-select" id="eco-currency">
+                    <option value="USD">USD — Доллар США</option>
+                    <option value="UZS">UZS — Узбекский сум</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-verificationStatus">Статус верификации</label>
+                  <select class="form-select" id="eco-verificationStatus">
+                    <option value="unverified">Не проверено</option>
+                    <option value="committee">Верифицировано Комитетом</option>
+                    <option value="audited">Аудировано</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-updatedAt">Дата последнего обновления</label>
+                  <input type="date" class="form-input" id="eco-updatedAt" />
+                </div>
+              </div>
+              <div class="form-grid" style="margin-top:12px">
+                <div class="form-field">
+                  <label class="form-label">Видимость: Операционные</label>
+                  <select class="form-select" id="eco-vis-operational">
+                    <option value="public">Публично</option>
+                    <option value="registered">Только зарегистрированным</option>
+                    <option value="nda">После NDA (Data Room)</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Видимость: Инвестиционные</label>
+                  <select class="form-select" id="eco-vis-investment">
+                    <option value="public">Публично</option>
+                    <option value="registered" selected>Только зарегистрированным</option>
+                    <option value="nda">После NDA</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Видимость: Долг и финансирование</label>
+                  <select class="form-select" id="eco-vis-debt">
+                    <option value="public">Публично</option>
+                    <option value="registered">Зарегистрированным</option>
+                    <option value="nda" selected>После NDA</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Аккордеон 2: Операционные -->
+          <div class="eco-accordion" id="eco-acc-operational">
+            <div class="eco-accordion-header" onclick="ecoToggleAcc('eco-acc-operational')">
+              <span class="eco-accordion-title">📊 Операционные показатели (STR / USALI)</span>
+              <span class="eco-accordion-chevron">▼</span>
+            </div>
+            <div class="eco-accordion-body">
+              <div id="eco-admin-warnings" class="eco-admin-warnings" style="display:none"></div>
+              <div class="form-grid-3">
+                <div class="form-field">
+                  <label class="form-label" for="eco-occupancy">Загрузка Occupancy, %</label>
+                  <input type="number" class="form-input" id="eco-occupancy" placeholder="Напр.: 74" min="0" max="100" step="0.1" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-adr">ADR, USD</label>
+                  <input type="number" class="form-input" id="eco-adr" placeholder="Напр.: 128" min="0" step="0.01" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-revpar">RevPAR, USD <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-revpar" placeholder="Авто: ADR × Occ/100" step="0.01" oninput="ecoRevparManual(this)" />
+                  <label style="font-size:11px;margin-top:4px;display:flex;align-items:center;gap:6px;cursor:pointer">
+                    <input type="checkbox" id="eco-revpar-manual" onchange="ecoRecalc()" /> Ввести вручную
+                  </label>
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-trevpar">TRevPAR, USD <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-trevpar" placeholder="Авто: Total Rev / доступные номера" step="0.01" readonly />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-availableRoomNights">Доступных номеро-ночей</label>
+                  <input type="number" class="form-input" id="eco-availableRoomNights" placeholder="Напр.: 94170" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-soldRoomNights">Проданных номеро-ночей</label>
+                  <input type="number" class="form-input" id="eco-soldRoomNights" placeholder="Необязательно" min="0" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-alos">ALOS, дней</label>
+                  <input type="number" class="form-input" id="eco-alos" placeholder="Средняя продолжительность" min="0" step="0.1" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Аккордеон 3: Выручка -->
+          <div class="eco-accordion" id="eco-acc-revenue">
+            <div class="eco-accordion-header" onclick="ecoToggleAcc('eco-acc-revenue')">
+              <span class="eco-accordion-title">💰 Выручка (USD за период)</span>
+              <span class="eco-accordion-chevron">▼</span>
+            </div>
+            <div class="eco-accordion-body">
+              <div class="form-grid-3">
+                <div class="form-field">
+                  <label class="form-label" for="eco-revRooms">Выручка номерного фонда (Rooms)</label>
+                  <input type="number" class="form-input" id="eco-revRooms" placeholder="USD" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-revFB">Выручка F&amp;B (рестораны и бары)</label>
+                  <input type="number" class="form-input" id="eco-revFB" placeholder="USD" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-revOther">Прочая выручка (MICE, SPA, аренда)</label>
+                  <input type="number" class="form-input" id="eco-revOther" placeholder="USD" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-totalRevenue">Total Revenue <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто-сумма</span></label>
+                  <input type="number" class="form-input" id="eco-totalRevenue" placeholder="Авто: сумма трёх статей" min="0" oninput="ecoTotalRevManual(this)" />
+                  <label style="font-size:11px;margin-top:4px;display:flex;align-items:center;gap:6px;cursor:pointer">
+                    <input type="checkbox" id="eco-totalRevenue-manual" onchange="ecoRecalc()" /> Ввести вручную
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Аккордеон 4: Расходы и прибыль -->
+          <div class="eco-accordion" id="eco-acc-profit">
+            <div class="eco-accordion-header" onclick="ecoToggleAcc('eco-acc-profit')">
+              <span class="eco-accordion-title">📈 Расходы и прибыль (USD)</span>
+              <span class="eco-accordion-chevron">▼</span>
+            </div>
+            <div class="eco-accordion-body">
+              <div class="form-grid-3">
+                <div class="form-field">
+                  <label class="form-label" for="eco-opex">Операционные расходы (OPEX)</label>
+                  <input type="number" class="form-input" id="eco-opex" placeholder="USD" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-laborCost">Расходы на персонал</label>
+                  <input type="number" class="form-input" id="eco-laborCost" placeholder="USD, необязательно" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-laborCostPct">Доля персонала в выручке, % <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-laborCostPct" placeholder="Авто" step="0.1" readonly />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-gop">GOP <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-gop" placeholder="Авто: Total Revenue - OPEX" oninput="ecoGopManual(this)" />
+                  <label style="font-size:11px;margin-top:4px;display:flex;align-items:center;gap:6px;cursor:pointer">
+                    <input type="checkbox" id="eco-gop-manual" onchange="ecoRecalc()" /> Ввести вручную
+                  </label>
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-gopMargin">GOP Margin, % <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-gopMargin" placeholder="Авто" step="0.1" readonly />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-goppar">GOPPAR <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-goppar" placeholder="Авто: GOP / номеро-ночи" step="0.01" readonly />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-ebitda">EBITDA, USD</label>
+                  <input type="number" class="form-input" id="eco-ebitda" placeholder="USD" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-ebitdaMargin">EBITDA Margin, % <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-ebitdaMargin" placeholder="Авто: EBITDA / Revenue × 100" step="0.1" readonly />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-noi">NOI (необязательно)</label>
+                  <input type="number" class="form-input" id="eco-noi" placeholder="Чистый операционный доход, USD" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-netIncome">Чистая прибыль (необязательно)</label>
+                  <input type="number" class="form-input" id="eco-netIncome" placeholder="USD" min="0" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Аккордеон 5: Инвестиционные -->
+          <div class="eco-accordion" id="eco-acc-invest">
+            <div class="eco-accordion-header" onclick="ecoToggleAcc('eco-acc-invest')">
+              <span class="eco-accordion-title">🏦 Инвестиционные показатели</span>
+              <span class="eco-accordion-chevron">▼</span>
+            </div>
+            <div class="eco-accordion-body">
+              <div class="form-grid-3">
+                <div class="form-field">
+                  <label class="form-label" for="eco-valuation">Оценочная стоимость актива (Valuation), USD</label>
+                  <input type="number" class="form-input" id="eco-valuation" placeholder="USD" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-askingPrice">Запрашиваемая цена / объём предложения, USD</label>
+                  <input type="number" class="form-input" id="eco-askingPrice" placeholder="USD" min="0" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-capex">CAPEX, USD</label>
+                  <input type="number" class="form-input" id="eco-capex" placeholder="Требуемый объём инвестиций" min="0" oninput="ecoRecalc()" />
+                </div>
+                <div class="form-field col-span-2">
+                  <label class="form-label" for="eco-capexDescription">Статья расхода CAPEX</label>
+                  <input type="text" class="form-input" id="eco-capexDescription" placeholder="Реновация, достройка, FF&amp;E и т.д." maxlength="200" />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-pricePerKey">Price per Key <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-pricePerKey" placeholder="Авто: Valuation / номеров" step="1" readonly />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-pricePerSqm">Price per m² здания <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-pricePerSqm" placeholder="Авто: Valuation / площадь" step="1" readonly />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-payback">Payback, лет <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-payback" placeholder="Авто: Valuation / EBITDA" step="0.1" oninput="ecoPaybackManual(this)" />
+                  <label style="font-size:11px;margin-top:4px;display:flex;align-items:center;gap:6px;cursor:pointer">
+                    <input type="checkbox" id="eco-payback-manual" onchange="ecoRecalc()" /> Ввести вручную
+                  </label>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-irr">IRR, %</label>
+                  <input type="number" class="form-input" id="eco-irr" placeholder="%" min="0" max="100" step="0.1" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-irrHorizon">Горизонт IRR, лет</label>
+                  <input type="number" class="form-input" id="eco-irrHorizon" value="10" min="1" max="30" />
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-roi">ROI, % <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-roi" placeholder="Авто: EBITDA / Valuation × 100" step="0.1" oninput="ecoRoiManual(this)" />
+                  <label style="font-size:11px;margin-top:4px;display:flex;align-items:center;gap:6px;cursor:pointer">
+                    <input type="checkbox" id="eco-roi-manual" onchange="ecoRecalc()" /> Ввести вручную
+                  </label>
+                </div>
+                <div class="form-field eco-auto-field">
+                  <label class="form-label" for="eco-capRate">Cap Rate, % <span class="eco-badge eco-badge--forecast" style="font-size:8px">авто</span></label>
+                  <input type="number" class="form-input" id="eco-capRate" placeholder="Авто: NOI / Valuation × 100" step="0.1" readonly />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-npv">NPV, USD (необязательно)</label>
+                  <input type="number" class="form-input" id="eco-npv" placeholder="USD" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-discountRate">Ставка дисконтирования, %</label>
+                  <input type="number" class="form-input" id="eco-discountRate" placeholder="%" min="0" max="100" step="0.1" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-dividendYield">Дивидендная доходность, % (необязательно)</label>
+                  <input type="number" class="form-input" id="eco-dividendYield" placeholder="%" min="0" max="100" step="0.1" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Аккордеон 6: Долг и финансирование -->
+          <div class="eco-accordion" id="eco-acc-debt">
+            <div class="eco-accordion-header" onclick="ecoToggleAcc('eco-acc-debt')">
+              <span class="eco-accordion-title">🏛 Долг и финансирование (необязательно)</span>
+              <span class="eco-accordion-chevron">▼</span>
+            </div>
+            <div class="eco-accordion-body">
+              <div class="form-grid-3">
+                <div class="form-field">
+                  <label class="form-label" for="eco-currentDebt">Текущая задолженность, USD</label>
+                  <input type="number" class="form-input" id="eco-currentDebt" placeholder="USD" min="0" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-lender">Кредитор</label>
+                  <input type="text" class="form-input" id="eco-lender" placeholder="Название банка / фонда" maxlength="200" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-loanRate">Ставка по кредиту, %</label>
+                  <input type="number" class="form-input" id="eco-loanRate" placeholder="%" min="0" max="100" step="0.1" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-dscr">DSCR (необязательно)</label>
+                  <input type="number" class="form-input" id="eco-dscr" placeholder="Debt Service Coverage Ratio" min="0" step="0.01" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Аккордеон 7: Условия сделки -->
+          <div class="eco-accordion" id="eco-acc-deal">
+            <div class="eco-accordion-header" onclick="ecoToggleAcc('eco-acc-deal')">
+              <span class="eco-accordion-title">📋 Условия сделки</span>
+              <span class="eco-accordion-chevron">▼</span>
+            </div>
+            <div class="eco-accordion-body">
+              <div class="form-grid-3">
+                <div class="form-field">
+                  <label class="form-label" for="eco-equityOffered">Предлагаемая доля, % (соинвестирование)</label>
+                  <input type="number" class="form-input" id="eco-equityOffered" placeholder="%" min="0" max="100" step="0.1" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-minInvestment">Минимальный вход, USD</label>
+                  <input type="number" class="form-input" id="eco-minInvestment" placeholder="USD" min="0" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-leaseRate">Ставка аренды, USD/год (для lease)</label>
+                  <input type="number" class="form-input" id="eco-leaseRate" placeholder="USD/год" min="0" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-baseFee">Base fee, % (для HMA)</label>
+                  <input type="number" class="form-input" id="eco-baseFee" placeholder="% от выручки" min="0" max="100" step="0.1" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-incentiveFee">Incentive fee, % (для HMA)</label>
+                  <input type="number" class="form-input" id="eco-incentiveFee" placeholder="% от прибыли" min="0" max="100" step="0.1" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Аккордеон 8: Сравнение с рынком -->
+          <div class="eco-accordion" id="eco-acc-compset">
+            <div class="eco-accordion-header" onclick="ecoToggleAcc('eco-acc-compset')">
+              <span class="eco-accordion-title">🏆 Сравнение с рынком (comp-set, необязательно)</span>
+              <span class="eco-accordion-chevron">▼</span>
+            </div>
+            <div class="eco-accordion-body">
+              <div class="form-grid-3">
+                <div class="form-field">
+                  <label class="form-label" for="eco-rgi">RGI (RevPAR Index)</label>
+                  <input type="number" class="form-input" id="eco-rgi" placeholder="Напр.: 1.12" min="0" step="0.01" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-mpi">MPI (Occupancy Index)</label>
+                  <input type="number" class="form-input" id="eco-mpi" placeholder="Напр.: 1.05" min="0" step="0.01" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="eco-ari">ARI (ADR Index)</label>
+                  <input type="number" class="form-input" id="eco-ari" placeholder="Напр.: 1.08" min="0" step="0.01" />
+                </div>
+                <div class="form-field col-span-2">
+                  <label class="form-label" for="eco-compsetDescription">Описание конкурентного окружения</label>
+                  <textarea class="form-textarea" id="eco-compsetDescription" rows="2" placeholder="Конкуренты, источник данных (STR)..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Аккордеон 9: История и прогноз по годам -->
+          <div class="eco-accordion" id="eco-acc-history">
+            <div class="eco-accordion-header" onclick="ecoToggleAcc('eco-acc-history')">
+              <span class="eco-accordion-title">📉 История и прогноз по годам</span>
+              <span class="eco-accordion-chevron">▼</span>
+            </div>
+            <div class="eco-accordion-body">
+              <div class="eco-history-table-wrap">
+                <table class="eco-history-table" id="eco-history-table">
+                  <thead>
+                    <tr>
+                      <th>Год</th><th>Тип</th><th>Occ%</th><th>ADR</th>
+                      <th>RevPAR</th><th>Total Rev.</th><th>GOP</th><th>EBITDA</th><th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="eco-history-tbody"></tbody>
+                </table>
+              </div>
+              <button type="button" class="btn-history-add" onclick="ecoAddHistoryRow()">+ Добавить строку</button>
+            </div>
+          </div>
+
+        </div>
+
         <!-- ── Sticky Actions Bar ──────────────────────────── -->
         <div class="form-actions">
           <button type="submit" class="btn-save" id="btn-save">💾 Сохранить отель</button>
@@ -320,6 +712,227 @@
 
   <script src="js/supabase.js"></script>
   <script src="js/hotels-data.js"></script>
+  <script src="js/economics.js"></script>
   <script src="js/admin.js"></script>
+  <script>
+  /* ── Аккордеоны экономики ── */
+  function ecoToggleAcc(id) {
+    const acc = document.getElementById(id);
+    if (acc) acc.classList.toggle('is-open');
+  }
+
+  /* ── Лайв-пересчёт экономики (без сохранения) ── */
+  let _ecoAdminHotel = null;
+  function ecoRecalc() {
+    if (!window.EconomicsCalc) return;
+    const eco = ecoCollectFromForm();
+    const hotel = _ecoAdminHotel || { roomsCount: 0, buildingArea: '' };
+    const calc = window.EconomicsCalc.recalcAll(eco, hotel);
+
+    // Обновляем авто-поля
+    const setAuto = (id, val, manualId) => {
+      const chk = document.getElementById(manualId);
+      if (chk && chk.checked) return; // ручной режим
+      const el = document.getElementById(id);
+      if (el) el.value = val !== null && val !== undefined ? +val : '';
+    };
+    setAuto('eco-revpar',       calc.revpar,       'eco-revpar-manual');
+    setAuto('eco-trevpar',      calc.trevpar,       null);
+    setAuto('eco-totalRevenue', calc.totalRevenue,  'eco-totalRevenue-manual');
+    setAuto('eco-gop',          calc.gop,           'eco-gop-manual');
+    setAuto('eco-gopMargin',    calc.gopMargin,     null);
+    setAuto('eco-goppar',       calc.goppar,        null);
+    setAuto('eco-laborCostPct', calc.laborCostPct,  null);
+    setAuto('eco-ebitdaMargin', calc.ebitdaMargin,  null);
+    setAuto('eco-payback',      calc.payback,       'eco-payback-manual');
+    setAuto('eco-roi',          calc.roi,           'eco-roi-manual');
+    setAuto('eco-capRate',      calc.capRate,       null);
+    setAuto('eco-pricePerKey',  calc.pricePerKey,   null);
+    setAuto('eco-pricePerSqm',  calc.pricePerSqm,   null);
+
+    // Валидация
+    const warnings = window.EconomicsValidate ? window.EconomicsValidate.warnings(calc) : [];
+    const warnEl = document.getElementById('eco-admin-warnings');
+    if (warnEl) {
+      if (warnings.length) {
+        warnEl.style.display = 'block';
+        warnEl.innerHTML = '⚠️ Проверьте данные:<ul>' + warnings.map(w => `<li>${w}</li>`).join('') + '</ul>';
+      } else {
+        warnEl.style.display = 'none';
+      }
+    }
+  }
+
+  function ecoRevparManual(el) { if (!document.getElementById('eco-revpar-manual')?.checked) { el.value = ''; } }
+  function ecoTotalRevManual(el) { if (!document.getElementById('eco-totalRevenue-manual')?.checked) { el.value = ''; } }
+  function ecoGopManual(el) { if (!document.getElementById('eco-gop-manual')?.checked) { el.value = ''; } }
+  function ecoPaybackManual(el) { if (!document.getElementById('eco-payback-manual')?.checked) { el.value = ''; } }
+  function ecoRoiManual(el) { if (!document.getElementById('eco-roi-manual')?.checked) { el.value = ''; } }
+
+  /* ── Строки истории ── */
+  let _ecoHistoryRows = [];
+  function ecoAddHistoryRow(data) {
+    const row = data || { year: new Date().getFullYear(), dataType: 'fact', occupancy: '', adr: '', revpar: '', totalRevenue: '', gop: '', ebitda: '' };
+    _ecoHistoryRows.push(row);
+    ecoRenderHistoryTable();
+  }
+  function ecoDeleteHistoryRow(idx) {
+    _ecoHistoryRows.splice(idx, 1);
+    ecoRenderHistoryTable();
+  }
+  function ecoRenderHistoryTable() {
+    const tbody = document.getElementById('eco-history-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = _ecoHistoryRows.map((r, i) => `
+      <tr>
+        <td><input type="number" value="${r.year||''}" min="2000" max="2035" onchange="_ecoHistoryRows[${i}].year=+this.value" style="width:70px"/></td>
+        <td><select onchange="_ecoHistoryRows[${i}].dataType=this.value" style="width:90px;padding:4px;border:1px solid #EDE9E2;border-radius:4px;font-size:12px">
+          <option value="fact" ${r.dataType==='fact'?'selected':''}>Факт</option>
+          <option value="forecast" ${r.dataType==='forecast'?'selected':''}>Прогноз</option>
+          <option value="estimate" ${r.dataType==='estimate'?'selected':''}>Оценка</option>
+        </select></td>
+        <td><input type="number" value="${r.occupancy||''}" placeholder="%" step="0.1" onchange="_ecoHistoryRows[${i}].occupancy=+this.value||null" style="width:60px"/></td>
+        <td><input type="number" value="${r.adr||''}" placeholder="$" step="0.01" onchange="_ecoHistoryRows[${i}].adr=+this.value||null" style="width:70px"/></td>
+        <td><input type="number" value="${r.revpar||''}" placeholder="$" step="0.01" onchange="_ecoHistoryRows[${i}].revpar=+this.value||null" style="width:70px"/></td>
+        <td><input type="number" value="${r.totalRevenue||''}" placeholder="$" onchange="_ecoHistoryRows[${i}].totalRevenue=+this.value||null" style="width:100px"/></td>
+        <td><input type="number" value="${r.gop||''}" placeholder="$" onchange="_ecoHistoryRows[${i}].gop=+this.value||null" style="width:90px"/></td>
+        <td><input type="number" value="${r.ebitda||''}" placeholder="$" onchange="_ecoHistoryRows[${i}].ebitda=+this.value||null" style="width:90px"/></td>
+        <td><button type="button" class="btn-history-del" onclick="ecoDeleteHistoryRow(${i})">✕</button></td>
+      </tr>`).join('');
+  }
+
+  /* ── Сбор данных из формы ── */
+  function ecoCollectFromForm() {
+    const num = id => { const v = parseFloat(document.getElementById(id)?.value); return isNaN(v) ? null : v; };
+    const str = id => document.getElementById(id)?.value.trim() || '';
+    const chk = id => document.getElementById(id)?.checked || false;
+    return {
+      period:             str('eco-period'),
+      dataType:           str('eco-dataType') || 'fact',
+      currency:           str('eco-currency') || 'USD',
+      verificationStatus: str('eco-verificationStatus') || 'unverified',
+      updatedAt:          str('eco-updatedAt'),
+      visibility: {
+        operational: str('eco-vis-operational') || 'public',
+        investment:  str('eco-vis-investment')  || 'registered',
+        debt:        str('eco-vis-debt')        || 'nda',
+      },
+      occupancy:           num('eco-occupancy'),
+      adr:                 num('eco-adr'),
+      revpar:              num('eco-revpar'),
+      revpar_manual:       chk('eco-revpar-manual'),
+      trevpar:             num('eco-trevpar'),
+      availableRoomNights: num('eco-availableRoomNights'),
+      soldRoomNights:      num('eco-soldRoomNights'),
+      alos:                num('eco-alos'),
+      revRooms:            num('eco-revRooms'),
+      revFB:               num('eco-revFB'),
+      revOther:            num('eco-revOther'),
+      totalRevenue:        num('eco-totalRevenue'),
+      totalRevenue_manual: chk('eco-totalRevenue-manual'),
+      opex:                num('eco-opex'),
+      laborCost:           num('eco-laborCost'),
+      laborCostPct:        num('eco-laborCostPct'),
+      gop:                 num('eco-gop'),
+      gop_manual:          chk('eco-gop-manual'),
+      gopMargin:           num('eco-gopMargin'),
+      goppar:              num('eco-goppar'),
+      ebitda:              num('eco-ebitda'),
+      ebitdaMargin:        num('eco-ebitdaMargin'),
+      noi:                 num('eco-noi'),
+      netIncome:           num('eco-netIncome'),
+      valuation:           num('eco-valuation'),
+      askingPrice:         num('eco-askingPrice'),
+      capex:               num('eco-capex'),
+      capexDescription:    str('eco-capexDescription'),
+      pricePerKey:         num('eco-pricePerKey'),
+      pricePerSqm:         num('eco-pricePerSqm'),
+      payback:             num('eco-payback'),
+      payback_manual:      chk('eco-payback-manual'),
+      irr:                 num('eco-irr'),
+      irrHorizon:          num('eco-irrHorizon') || 10,
+      roi:                 num('eco-roi'),
+      roi_manual:          chk('eco-roi-manual'),
+      capRate:             num('eco-capRate'),
+      npv:                 num('eco-npv'),
+      discountRate:        num('eco-discountRate'),
+      dividendYield:       num('eco-dividendYield'),
+      currentDebt:         num('eco-currentDebt'),
+      lender:              str('eco-lender'),
+      loanRate:            num('eco-loanRate'),
+      dscr:                num('eco-dscr'),
+      equityOffered:       num('eco-equityOffered'),
+      minInvestment:       num('eco-minInvestment'),
+      leaseRate:           num('eco-leaseRate'),
+      baseFee:             num('eco-baseFee'),
+      incentiveFee:        num('eco-incentiveFee'),
+      rgi:                 num('eco-rgi'),
+      mpi:                 num('eco-mpi'),
+      ari:                 num('eco-ari'),
+      compsetDescription:  str('eco-compsetDescription'),
+      history:             _ecoHistoryRows.map(r => ({...r})),
+    };
+  }
+
+  /* ── Заполнение формы из объекта ── */
+  function ecoFillForm(eco) {
+    if (!eco) return;
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val !== null && val !== undefined ? val : ''; };
+    const setChk = (id, val) => { const el = document.getElementById(id); if (el) el.checked = !!val; };
+    set('eco-period', eco.period);
+    set('eco-dataType', eco.dataType || 'fact');
+    set('eco-currency', eco.currency || 'USD');
+    set('eco-verificationStatus', eco.verificationStatus || 'unverified');
+    set('eco-updatedAt', eco.updatedAt);
+    if (eco.visibility) {
+      set('eco-vis-operational', eco.visibility.operational || 'public');
+      set('eco-vis-investment', eco.visibility.investment || 'registered');
+      set('eco-vis-debt', eco.visibility.debt || 'nda');
+    }
+    set('eco-occupancy', eco.occupancy); set('eco-adr', eco.adr);
+    set('eco-revpar', eco.revpar); setChk('eco-revpar-manual', eco.revpar_manual);
+    set('eco-availableRoomNights', eco.availableRoomNights); set('eco-soldRoomNights', eco.soldRoomNights);
+    set('eco-alos', eco.alos);
+    set('eco-revRooms', eco.revRooms); set('eco-revFB', eco.revFB); set('eco-revOther', eco.revOther);
+    set('eco-totalRevenue', eco.totalRevenue); setChk('eco-totalRevenue-manual', eco.totalRevenue_manual);
+    set('eco-opex', eco.opex); set('eco-laborCost', eco.laborCost);
+    set('eco-gop', eco.gop); setChk('eco-gop-manual', eco.gop_manual);
+    set('eco-ebitda', eco.ebitda); set('eco-noi', eco.noi); set('eco-netIncome', eco.netIncome);
+    set('eco-valuation', eco.valuation); set('eco-askingPrice', eco.askingPrice);
+    set('eco-capex', eco.capex); set('eco-capexDescription', eco.capexDescription);
+    set('eco-payback', eco.payback); setChk('eco-payback-manual', eco.payback_manual);
+    set('eco-irr', eco.irr); set('eco-irrHorizon', eco.irrHorizon || 10);
+    set('eco-roi', eco.roi); setChk('eco-roi-manual', eco.roi_manual);
+    set('eco-npv', eco.npv); set('eco-discountRate', eco.discountRate); set('eco-dividendYield', eco.dividendYield);
+    set('eco-currentDebt', eco.currentDebt); set('eco-lender', eco.lender); set('eco-loanRate', eco.loanRate); set('eco-dscr', eco.dscr);
+    set('eco-equityOffered', eco.equityOffered); set('eco-minInvestment', eco.minInvestment);
+    set('eco-leaseRate', eco.leaseRate); set('eco-baseFee', eco.baseFee); set('eco-incentiveFee', eco.incentiveFee);
+    set('eco-rgi', eco.rgi); set('eco-mpi', eco.mpi); set('eco-ari', eco.ari);
+    set('eco-compsetDescription', eco.compsetDescription);
+    _ecoHistoryRows = Array.isArray(eco.history) ? eco.history.map(r => ({...r})) : [];
+    ecoRenderHistoryTable();
+    setTimeout(ecoRecalc, 50);
+  }
+
+  /* ── Инициализация при загрузке ── */
+  document.addEventListener('DOMContentLoaded', () => {
+    ecoRenderHistoryTable();
+    // Перехватываем loadForEdit чтобы заполнять экономику
+    const origLoadForEdit = window.loadForEditOrig;
+    window.addEventListener('sri_hotel_loaded', e => {
+      if (e.detail && e.detail.economics) {
+        _ecoAdminHotel = e.detail;
+        ecoFillForm(window.EconomicsSchema ? window.EconomicsSchema.get(e.detail) : e.detail.economics);
+      } else if (e.detail) {
+        _ecoAdminHotel = e.detail;
+        ecoFillForm({});
+      }
+    });
+    // Перехватываем submit чтобы добавлять eco в данные
+    document.getElementById('hotel-form')?.addEventListener('eco_collect', e => {
+      e.detail.economics = ecoCollectFromForm();
+    });
+  });
+  </script>
 </body>
 </html>

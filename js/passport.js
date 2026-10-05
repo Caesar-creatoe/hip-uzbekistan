@@ -167,6 +167,9 @@ function renderPassport(hotel) {
   // 7. Карточки характеристик (NEW: взаменяет таблицу)
   renderSpecsCards(hotel);
 
+  // 7b. Экономические показатели (новый блок)
+  renderEconomicsSection(hotel);
+
   // 8. Раздел удобств (дедупликация и отображение чипов)
   renderAmenitiesSection(hotel);
 
@@ -352,6 +355,307 @@ function getAmenityIcon(text) {
     if (lower.includes(key)) return icon;
   }
   return '✓';
+}
+
+/* ── Рендеринг секции «Экономика» ──────────────────────────── */
+function renderEconomicsSection(hotel) {
+  const section   = document.getElementById('economics');
+  const tocLink   = document.getElementById('toc-economics');
+  if (!section) return;
+
+  const Calc = window.EconomicsCalc;
+  const Fmt  = window.EconomicsFmt;
+  const Schema = window.EconomicsSchema;
+  if (!Calc || !Fmt || !Schema) return;
+
+  const eco = Schema.get(hotel);
+  const ecoCalc = Calc.recalcAll(eco, hotel);
+
+  // Проверяем, есть ли хоть какие-то значимые данные
+  const hasData = [
+    ecoCalc.occupancy, ecoCalc.adr, ecoCalc.revpar,
+    ecoCalc.ebitda, ecoCalc.valuation, ecoCalc.irr,
+    ecoCalc.totalRevenue, ecoCalc.gop
+  ].some(v => v !== null && v !== undefined);
+
+  if (!hasData) {
+    section.style.display = 'none';
+    if (tocLink) tocLink.style.display = 'none';
+    return;
+  }
+
+  section.style.display = 'block';
+  if (tocLink) tocLink.style.display = 'flex';
+
+  // ── Период и метаданные ──
+  const periodMeta = document.getElementById('eco-period-meta');
+  if (periodMeta) {
+    const parts = [];
+    if (ecoCalc.period) parts.push(`<span class="eco-meta-item">📅 ${esc(ecoCalc.period)}</span>`);
+    if (ecoCalc.dataType) parts.push(Fmt.dataTypeBadge(ecoCalc.dataType));
+    if (ecoCalc.verificationStatus) parts.push(Fmt.verificationBadge(ecoCalc.verificationStatus));
+    periodMeta.innerHTML = parts.join('<span class="eco-meta-sep">·</span>');
+  }
+
+  // ── KPI bar ──
+  const kpiBar = document.getElementById('eco-kpi-bar');
+  if (kpiBar) {
+    const kpis = [];
+    if (ecoCalc.occupancy !== null) kpis.push({ label: 'OCCUPANCY', val: Fmt.pct(ecoCalc.occupancy), sub: 'загрузка' });
+    if (ecoCalc.adr !== null) kpis.push({ label: 'ADR', val: Fmt.usd(ecoCalc.adr), sub: 'ср. тариф / номер' });
+    if (ecoCalc.revpar !== null) kpis.push({ label: 'REVPAR', val: Fmt.usd(ecoCalc.revpar, 1), sub: 'доход / доступный номер' });
+    if (ecoCalc.ebitdaMargin !== null) kpis.push({ label: 'EBITDA MARGIN', val: Fmt.pct(ecoCalc.ebitdaMargin), sub: 'рентабельность' });
+    if (ecoCalc.payback !== null) kpis.push({ label: 'PAYBACK', val: Fmt.years(ecoCalc.payback), sub: 'срок окупаемости' });
+    if (ecoCalc.irr !== null) kpis.push({ label: 'IRR', val: Fmt.pct(ecoCalc.irr), sub: `${ecoCalc.irrHorizon || 10} лет горизонт` });
+
+    kpiBar.innerHTML = kpis.map(k => `
+      <div class="eco-kpi-item">
+        <span class="eco-kpi-label">${esc(k.label)}
+          ${k.label === 'REVPAR' ? '<span class="eco-tooltip-trigger" title="RevPAR = ADR × Occupancy / 100">?</span>' : ''}
+          ${k.label === 'EBITDA MARGIN' ? '<span class="eco-tooltip-trigger" title="EBITDA / Total Revenue × 100">?</span>' : ''}
+          ${k.label === 'PAYBACK' ? '<span class="eco-tooltip-trigger" title="Valuation / EBITDA">?</span>' : ''}
+        </span>
+        <span class="eco-kpi-value">${k.val}</span>
+        <span class="eco-kpi-sub">${esc(k.sub)}</span>
+      </div>`).join('');
+  }
+
+  // Helper для поля
+  const field = (label, val, mono = true, tooltip = '') => {
+    const cls = mono ? 'eco-field-value eco-field-value--mono' : 'eco-field-value';
+    const tip = tooltip ? `<span class="eco-tooltip-trigger" title="${esc(tooltip)}">?</span>` : '';
+    return `
+      <div class="eco-field">
+        <span class="eco-field-label">${esc(label)}${tip}</span>
+        <span class="${cls} ${val === 'Н/Д' ? 'eco-field-value--muted' : ''}">${val}</span>
+      </div>`;
+  };
+
+  // ── Операционные показатели ──
+  const opFields = document.getElementById('eco-op-fields');
+  const opBadge  = document.getElementById('eco-op-badge');
+  if (opBadge && ecoCalc.dataType) opBadge.innerHTML = Fmt.dataTypeBadge(ecoCalc.dataType);
+  if (opFields) {
+    opFields.innerHTML =
+      field('Occupancy', Fmt.pct(ecoCalc.occupancy)) +
+      field('ADR', Fmt.usd(ecoCalc.adr), true, 'Average Daily Rate — средняя цена за занятый номер') +
+      field('RevPAR', Fmt.usd(ecoCalc.revpar, 1), true, 'Revenue Per Available Room = ADR × Occupancy') +
+      (ecoCalc.trevpar !== null ? field('TRevPAR', Fmt.usd(ecoCalc.trevpar, 1), true, 'Total Revenue / доступных номеро-ночей') : '') +
+      (ecoCalc.alos !== null ? field('ALOS', Fmt.num(ecoCalc.alos, 1) + ' дн.', false, 'Average Length of Stay') : '');
+  }
+
+  // ── Выручка ──
+  const revChart = document.getElementById('eco-revenue-chart');
+  if (revChart) {
+    const totalRev = ecoCalc.totalRevenue || 0;
+    const rooms = +(ecoCalc.revRooms || 0);
+    const fb    = +(ecoCalc.revFB || 0);
+    const other = +(ecoCalc.revOther || 0);
+    const hasRevDetail = rooms > 0 || fb > 0 || other > 0;
+
+    if (totalRev > 0 || hasRevDetail) {
+      const pct = v => totalRev > 0 ? Math.round(v / totalRev * 100) : 0;
+      revChart.innerHTML = `
+        <div class="eco-field eco-field--wide" style="margin-bottom:12px">
+          <span class="eco-field-label">TOTAL REVENUE</span>
+          <span class="eco-field-value eco-field-value--mono" style="font-size:1.4rem">${Fmt.money(totalRev, true)}</span>
+        </div>
+        ${hasRevDetail ? `
+        <div class="eco-revenue-chart">
+          ${rooms > 0 ? `
+          <div class="eco-rev-row">
+            <div class="eco-rev-row-header">
+              <span>🛏 Номерной фонд</span>
+              <span>${Fmt.money(rooms, true)} · ${pct(rooms)}%</span>
+            </div>
+            <div class="eco-rev-bar-wrap"><div class="eco-rev-bar eco-rev-bar--rooms" style="width:${pct(rooms)}%"></div></div>
+          </div>` : ''}
+          ${fb > 0 ? `
+          <div class="eco-rev-row">
+            <div class="eco-rev-row-header">
+              <span>🍽 F&amp;B</span>
+              <span>${Fmt.money(fb, true)} · ${pct(fb)}%</span>
+            </div>
+            <div class="eco-rev-bar-wrap"><div class="eco-rev-bar eco-rev-bar--fb" style="width:${pct(fb)}%"></div></div>
+          </div>` : ''}
+          ${other > 0 ? `
+          <div class="eco-rev-row">
+            <div class="eco-rev-row-header">
+              <span>📦 Прочее</span>
+              <span>${Fmt.money(other, true)} · ${pct(other)}%</span>
+            </div>
+            <div class="eco-rev-bar-wrap"><div class="eco-rev-bar eco-rev-bar--other" style="width:${pct(other)}%"></div></div>
+          </div>` : ''}
+        </div>` : ''}`;
+    } else {
+      revChart.innerHTML = '<p class="eco-field-value eco-field-value--muted">Данные не предоставлены</p>';
+    }
+  }
+
+  // ── Прибыль и рентабельность ──
+  const profitFields = document.getElementById('eco-profit-fields');
+  if (profitFields) {
+    profitFields.innerHTML =
+      (ecoCalc.gop !== null ? field('GOP', Fmt.money(ecoCalc.gop, true), true, 'Gross Operating Profit = Revenue − OPEX') : '') +
+      (ecoCalc.gopMargin !== null ? field('GOP Margin', Fmt.pct(ecoCalc.gopMargin), true, 'GOP / Total Revenue × 100') : '') +
+      (ecoCalc.goppar !== null ? field('GOPPAR', Fmt.usd(ecoCalc.goppar, 1), true, 'GOP / Available Room Nights') : '') +
+      field('EBITDA', Fmt.money(ecoCalc.ebitda, true)) +
+      (ecoCalc.ebitdaMargin !== null ? field('EBITDA Margin', Fmt.pct(ecoCalc.ebitdaMargin), true, 'EBITDA / Total Revenue × 100') : '') +
+      (ecoCalc.noi !== null ? field('NOI', Fmt.money(ecoCalc.noi, true), true, 'Net Operating Income') : '') +
+      (ecoCalc.netIncome !== null ? field('Чистая прибыль', Fmt.money(ecoCalc.netIncome, true)) : '');
+  }
+
+  // ── Инвестиционные показатели ──
+  const investFields = document.getElementById('eco-invest-fields');
+  if (investFields) {
+    investFields.innerHTML =
+      (ecoCalc.valuation !== null ? field('Оценочная стоимость', Fmt.money(ecoCalc.valuation, true)) : '') +
+      (ecoCalc.askingPrice !== null ? field('Запрашиваемая цена', Fmt.money(ecoCalc.askingPrice, true)) : '') +
+      (ecoCalc.capex !== null ? `
+        <div class="eco-field">
+          <span class="eco-field-label">CAPEX</span>
+          <span class="eco-field-value eco-field-value--mono">${Fmt.money(ecoCalc.capex, true)}</span>
+          ${ecoCalc.capexDescription ? `<span class="eco-field-auto">${esc(ecoCalc.capexDescription)}</span>` : ''}
+        </div>` : '') +
+      (ecoCalc.pricePerKey !== null ? field('Price per Key', Fmt.money(ecoCalc.pricePerKey, true), true, 'Valuation / количество номеров') : '') +
+      (ecoCalc.pricePerSqm !== null ? field('Price per m²', Fmt.money(ecoCalc.pricePerSqm, true), true, 'Valuation / площадь строения') : '') +
+      (ecoCalc.payback !== null ? field('Payback', Fmt.years(ecoCalc.payback), true, 'Valuation / EBITDA') : '') +
+      (ecoCalc.irr !== null ? field(`IRR (${ecoCalc.irrHorizon || 10} лет)`, Fmt.pct(ecoCalc.irr)) : '') +
+      (ecoCalc.roi !== null ? field('ROI', Fmt.pct(ecoCalc.roi), true, 'EBITDA / Valuation × 100') : '') +
+      (ecoCalc.capRate !== null ? field('Cap Rate', Fmt.pct(ecoCalc.capRate), true, 'NOI (или EBITDA) / Valuation × 100') : '') +
+      (ecoCalc.npv !== null ? `
+        <div class="eco-field">
+          <span class="eco-field-label">NPV ${ecoCalc.discountRate ? '(ставка ' + ecoCalc.discountRate + '%)' : ''}</span>
+          <span class="eco-field-value eco-field-value--mono">${Fmt.money(ecoCalc.npv, true)}</span>
+        </div>` : '') +
+      (ecoCalc.dividendYield !== null ? field('Дивид. доходность', Fmt.pct(ecoCalc.dividendYield)) : '');
+  }
+
+  // ── Условия сделки ──
+  const dealCard   = document.getElementById('eco-card-deal');
+  const dealFields = document.getElementById('eco-deal-fields');
+  const dealConfig = typeof window.getHotelDealConfig === 'function'
+    ? window.getHotelDealConfig(hotel) : null;
+  const dealType = dealConfig ? dealConfig.key : 'sale';
+
+  const hasDealData = [ecoCalc.equityOffered, ecoCalc.minInvestment, ecoCalc.leaseRate, ecoCalc.baseFee, ecoCalc.incentiveFee]
+    .some(v => v !== null);
+  if (dealCard && dealFields && hasDealData) {
+    dealCard.style.display = 'block';
+    let df = '';
+    if (dealType === 'invest' && ecoCalc.equityOffered !== null) df += field('Предлагаемая доля', Fmt.pct(ecoCalc.equityOffered));
+    if (ecoCalc.minInvestment !== null) df += field('Минимальный вход', Fmt.money(ecoCalc.minInvestment, true));
+    if (dealType === 'rent' && ecoCalc.leaseRate !== null) df += field('Ставка аренды', Fmt.money(ecoCalc.leaseRate, true) + '/год');
+    if ((dealType === 'franchise') && ecoCalc.baseFee !== null) df += field('Base fee', Fmt.pct(ecoCalc.baseFee));
+    if ((dealType === 'franchise') && ecoCalc.incentiveFee !== null) df += field('Incentive fee', Fmt.pct(ecoCalc.incentiveFee));
+    dealFields.innerHTML = df;
+  } else if (dealCard) {
+    dealCard.style.display = 'none';
+  }
+
+  // ── Сравнение с рынком ──
+  const compCard   = document.getElementById('eco-card-compset');
+  const compFields = document.getElementById('eco-compset-fields');
+  if (compCard && compFields && (ecoCalc.rgi || ecoCalc.mpi || ecoCalc.ari)) {
+    compCard.style.display = 'block';
+    compFields.innerHTML =
+      (ecoCalc.rgi !== null ? field('RGI (RevPAR Index)', Fmt.num(ecoCalc.rgi, 2)) : '') +
+      (ecoCalc.mpi !== null ? field('MPI (Occupancy Index)', Fmt.num(ecoCalc.mpi, 2)) : '') +
+      (ecoCalc.ari !== null ? field('ARI (ADR Index)', Fmt.num(ecoCalc.ari, 2)) : '') +
+      (ecoCalc.compsetDescription ? `
+        <div class="eco-field eco-field--wide">
+          <span class="eco-field-label">Конкурентное окружение</span>
+          <span class="eco-field-value" style="font-size:13px">${esc(ecoCalc.compsetDescription)}</span>
+        </div>` : '');
+  } else if (compCard) {
+    compCard.style.display = 'none';
+  }
+
+  // ── История и динамика ──
+  const histCard = document.getElementById('eco-card-history');
+  const histWrap = document.getElementById('eco-history-table-wrap');
+  const chartSvg = document.getElementById('eco-chart-svg');
+  if (histCard && Array.isArray(ecoCalc.history) && ecoCalc.history.length >= 1) {
+    histCard.style.display = 'block';
+    const rows = ecoCalc.history;
+
+    // SVG Chart (RevPAR line)
+    if (chartSvg && rows.length >= 2) {
+      const revpars = rows.map(r => r.revpar || 0);
+      const ebitdas = rows.map(r => r.ebitda || 0);
+      const W = 800, H = 140;
+      const maxR = Math.max(...revpars) * 1.2 || 1;
+      const maxE = Math.max(...ebitdas) * 1.2 || 1;
+      const px = i => (i / (rows.length - 1)) * W;
+      const pyR = v => H - (v / maxR) * H;
+      const pyE = v => H - (v / maxE) * H;
+
+      const pathR = revpars.map((v, i) => (i === 0 ? 'M' : 'L') + px(i).toFixed(1) + ',' + pyR(v).toFixed(1)).join(' ');
+      const pathE = ebitdas.filter(v => v > 0).length >= 2
+        ? ebitdas.map((v, i) => (i === 0 ? 'M' : 'L') + px(i).toFixed(1) + ',' + pyE(v).toFixed(1)).join(' ')
+        : '';
+
+      const areaR = `M${px(0)},${H} ${pathR.slice(1)} L${px(rows.length - 1)},${H} Z`;
+
+      chartSvg.innerHTML = `
+        <defs>
+          <linearGradient id="gRevpar" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#8B6F4E" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#8B6F4E" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="${areaR}" fill="url(#gRevpar)" class="eco-chart-area"/>
+        <path d="${pathR}" stroke="#8B6F4E" class="eco-chart-line"/>
+        ${pathE ? `<path d="${pathE}" stroke="#5a8fb8" stroke-dasharray="4,2" class="eco-chart-line"/>` : ''}
+        ${rows.map((r, i) => `
+          <text x="${px(i).toFixed(1)}" y="${H + 14}" text-anchor="middle" fill="#9D978E" font-size="11" font-family="Golos Text, sans-serif">${r.year || ''}</text>
+        `).join('')}
+      `;
+    }
+
+    // Таблица
+    if (histWrap) {
+      histWrap.innerHTML = `
+        <table class="eco-table">
+          <thead>
+            <tr>
+              <th>Год</th><th>Тип</th><th>Occ%</th><th>ADR</th>
+              <th>RevPAR</th><th>Total Rev.</th><th>GOP</th><th>EBITDA</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map(r => {
+              const isFC = r.dataType === 'forecast' || r.dataType === 'estimate';
+              const tdClass = isFC ? 'is-forecast' : '';
+              return `<tr>
+                <td><strong>${r.year || ''}</strong></td>
+                <td>${r.dataType ? Fmt.dataTypeBadge(r.dataType) : ''}</td>
+                <td class="mono ${tdClass}">${r.occupancy != null ? Fmt.pct(r.occupancy) : '—'}</td>
+                <td class="mono ${tdClass}">${r.adr != null ? Fmt.usd(r.adr) : '—'}</td>
+                <td class="mono ${tdClass}">${r.revpar != null ? Fmt.usd(r.revpar, 1) : '—'}</td>
+                <td class="mono ${tdClass}">${r.totalRevenue != null ? Fmt.money(r.totalRevenue, true) : '—'}</td>
+                <td class="mono ${tdClass}">${r.gop != null ? Fmt.money(r.gop, true) : '—'}</td>
+                <td class="mono ${tdClass}">${r.ebitda != null ? Fmt.money(r.ebitda, true) : '—'}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>`;
+    }
+  } else if (histCard) {
+    histCard.style.display = 'none';
+  }
+
+  // ── Метабар ──
+  const metaBar = document.getElementById('eco-meta-bar');
+  if (metaBar) {
+    const parts = [];
+    if (ecoCalc.period) parts.push(`<span class="eco-meta-item">📅 Период: <strong>${esc(ecoCalc.period)}</strong></span>`);
+    parts.push(`<span class="eco-meta-item">💵 Валюта: <strong>${esc(ecoCalc.currency || 'USD')}</strong></span>`);
+    parts.push(Fmt.verificationBadge(ecoCalc.verificationStatus));
+    if (ecoCalc.updatedAt) parts.push(`<span class="eco-meta-item">🕒 Обновлено: ${esc(ecoCalc.updatedAt)}</span>`);
+    parts.push('<span class="eco-meta-item" style="margin-left:auto;font-size:11px">Методология: STR Global / USALI</span>');
+    metaBar.innerHTML = parts.join('<span class="eco-meta-sep"> · </span>');
+  }
 }
 
 /* ── Рендеринг удобств и инфраструктуры ───────────────── */
@@ -561,7 +865,7 @@ function initLightbox() {
 function initTocSpy() {
   const tocLinks = document.querySelectorAll('.toc-link[href^="#"]');
   const passportSections = document.querySelectorAll(
-    '#cover, #summary, #amenities-section, #location, #gallery, #download'
+    '#cover, #summary, #economics, #amenities-section, #location, #gallery, #download'
   );
 
   if (!tocLinks.length || !passportSections.length) return;
