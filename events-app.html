@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Государственные мероприятия — Silk Route Invest</title>
+  <meta name="description" content="Система «одного окна» для государственных и международных мероприятий">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #0f1117; --bg2: #161b24; --bg3: #1e2535; --bg4: #252d3f;
+      --sidebar: #111827; --card: #1a2035;
+      --border:  rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+      --text:    #e8ecf4; --muted: #8b96b0; --muted2: #5a6580;
+      --accent:  #3b82f6; --accent2: #60a5fa;
+      --green:   #10b981; --red: #ef4444; --amber: #f59e0b;
+      --teal:    #14b8a6; --purple: #8b5cf6;
+      --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px;
+      --sw: 240px; --hh: 56px;
+      --tr: 0.18s ease;
+      --font: 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --sh-md: 0 4px 16px rgba(0,0,0,0.5);
+      --sh-lg: 0 8px 32px rgba(0,0,0,0.6);
+    }
+    html,body{height:100%;overflow:hidden;}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;}
+
+    /* SCREENS */
+    .screen{display:none;height:100vh;}
+    .screen.active{display:flex;}
+
+    /* LOGIN */
+    #login-screen{
+      align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#0a0e1a 0%,#0f1117 50%,#111827 100%);
+      position:relative;overflow:hidden;
+    }
+    #login-screen::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(59,130,246,.12) 0%,transparent 70%),
+                 radial-gradient(ellipse 60% 40% at 80% 100%,rgba(139,92,246,.08) 0%,transparent 70%);
+    }
+    .login-box{
+      position:relative;width:440px;max-width:calc(100vw - 32px);
+      background:var(--bg2);border:1px solid var(--border2);
+      border-radius:var(--r-xl);padding:40px;box-shadow:var(--sh-lg);
+    }
+    .login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+    .login-logo-icon{
+      width:46px;height:46px;border-radius:12px;
+      background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+      display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;
+    }
+    .login-logo-text h1{font-size:17px;font-weight:700;}
+    .login-logo-text p{font-size:11px;color:var(--muted);margin-top:2px;}
+    .form-g{margin-bottom:14px;}
+    .form-g label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px;}
+    .form-g input{
+      width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);
+      border-radius:var(--r-md);color:var(--text);font-size:14px;font-family:inherit;outline:none;
+      transition:border-color var(--tr);
+    }
+    .form-g input:focus{border-color:var(--accent);}
+    .btn-login{
+      width:100%;padding:12px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+      border:none;border-radius:var(--r-md);color:#fff;font-size:15px;font-weight:600;
+      cursor:pointer;margin-top:6px;transition:opacity var(--tr);font-family:inherit;
+    }
+    .btn-login:hover{opacity:.9;}
+    .login-err{color:var(--red);font-size:13px;margin-top:8px;display:none;}
+    .login-demo{margin-top:22px;padding-top:18px;border-top:1px solid var(--border);}
+    .login-demo p{font-size:11px;color:var(--muted);margin-bottom:8px;}
+    .demo-btns{display:flex;flex-wrap:wrap;gap:6px;}
+    .demo-btn{
+      padding:5px 10px;background:var(--bg3);border:1px solid var(--border2);
+      border-radius:var(--r-sm);color:var(--muted);font-size:11px;cursor:pointer;
+      transition:all var(--tr);font-family:inherit;
+    }
+    .demo-btn:hover{border-color:var(--accent);color:var(--accent2);}
+
+    /* APP */
+    #app-screen{flex-direction:row;overflow:hidden;}
+
+    /* SIDEBAR */
+    .ev-sidebar{
+      width:var(--sw);background:var(--sidebar);border-right:1px solid var(--border);
+      display:flex;flex-direction:column;flex-shrink:0;z-index:100;overflow:hidden;
+    }
+    .sb-head{
+      height:var(--hh);padding:0 14px;display:flex;align-items:center;gap:10px;
+      border-bottom:1px solid var(--border);flex-shrink:0;
+    }
+    .sb-logo-icon{
+      width:32px;height:32px;border-radius:8px;
+      background:linear-gradient(135deg,#1d4ed8,#3b82f6);
+      display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;
+    }
+    .sb-logo-text{font-size:12px;font-weight:700;line-height:1.3;}
+    .sb-logo-sub{font-size:10px;color:var(--muted);font-weight:400;}
+    .ev-sel-wrap{margin:10px 8px;flex-shrink:0;}
+    .ev-sel-wrap select{
+      width:100%;padding:6px 8px;background:var(--bg3);border:1px solid var(--border2);
+      border-radius:var(--r-sm);color:var(--text);font-size:11px;font-family:inherit;outline:none;cursor:pointer;
+    }
+    .ev-sel-wrap select option{background:var(--bg2);}
+    .sb-nav{flex:1;overflow-y:auto;padding:4px 6px 8px;scrollbar-width:thin;scrollbar-color:var(--bg4) transparent;}
+    .nav-sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2);padding:10px 8px 3px;}
+    .nav-item{
+      display:flex;align-items:center;gap:9px;padding:7px 10px;
+      border-radius:var(--r-sm);cursor:pointer;transition:all var(--tr);
+      color:var(--muted);font-size:12.5px;font-weight:500;position:relative;white-space:nowrap;
+    }
+    .nav-item:hover{background:var(--bg3);color:var(--text);}
+    .nav-item.active{background:rgba(59,130,246,.12);color:var(--accent2);}
+    .nav-item.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:18px;background:var(--accent);border-radius:0 2px 2px 0;}
+    .nav-icon{width:18px;text-align:center;font-size:14px;flex-shrink:0;}
+    .nav-badge{margin-left:auto;min-width:17px;height:17px;padding:0 4px;background:var(--red);border-radius:9px;font-size:10px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;}
+    .nav-badge.am{background:var(--amber);color:#111;}
+    .sb-foot{border-top:1px solid var(--border);padding:8px 6px;flex-shrink:0;}
+    .u-info{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:var(--r-sm);}
+    .u-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;background:var(--accent);}
+    .u-name{font-size:12px;font-weight:600;}
+    .u-role{font-size:10px;color:var(--muted);}
+    .btn-logout{margin-left:auto;padding:4px 7px;background:transparent;border:1px solid var(--border2);border-radius:var(--r-sm);color:var(--muted);font-size:11px;cursor:pointer;transition:all var(--tr);font-family:inherit;}
+    .btn-logout:hover{border-color:var(--red);color:var(--red);}
+
+    /* MAIN */
+    .ev-main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+    .ev-header{height:var(--hh);background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 18px;gap:10px;flex-shrink:0;}
+    .hdr-title{font-size:15px;font-weight:700;flex:1;}
+    .btn-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;font-size:15px;transition:all var(--tr);color:var(--muted);position:relative;text-decoration:none;}
+    .btn-icon:hover{background:var(--bg4);color:var(--text);}
+    .n-dot{position:absolute;top:4px;right:4px;width:7px;height:7px;background:var(--red);border-radius:50%;border:2px solid var(--bg2);}
+    .lang-sw{display:flex;gap:3px;}
+    .lang-btn{padding:3px 7px;background:transparent;border:1px solid var(--border);border-radius:var(--r-sm);color:var(--muted);font-size:11px;font-weight:700;cursor:pointer;transition:all var(--tr);text-transform:uppercase;font-family:inherit;}
+    .lang-btn:hover,.lang-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+    .ev-content{flex:1;overflow-y:auto;padding:18px;scrollbar-width:thin;scrollbar-color:var(--bg4) transparent;}
+
+    /* COMPONENTS */
+    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-bottom:18px;}
+    .kpi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px;position:relative;overflow:hidden;}
+    .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--acc,var(--accent));}
+    .kpi-val{font-size:30px;font-weight:800;line-height:1;}
+    .kpi-lbl{font-size:12px;color:var(--muted);margin-top:3px;}
+    .kpi-sub{font-size:11px;color:var(--muted2);margin-top:1px;}
+    .kpi-ico{position:absolute;right:12px;top:12px;font-size:22px;opacity:.25;}
+
+    .sec-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+    .sec-title{font-size:14px;font-weight:700;}
+    .sec-acts{margin-left:auto;display:flex;gap:6px;}
+
+    .toolbar{display:flex;align-items:center;gap:7px;margin-bottom:12px;flex-wrap:wrap;}
+    .search-inp{flex:1;min-width:160px;padding:7px 11px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r-sm);color:var(--text);font-size:13px;font-family:inherit;outline:none;}
+    .search-inp:focus{border-color:var(--accent);}
+    .f-sel{padding:7px 9px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r-sm);color:var(--text);font-size:12px;font-family:inherit;outline:none;cursor:pointer;}
+    .f-sel option{background:var(--bg2);}
+
+    .btn{padding:7px 13px;border-radius:var(--r-sm);font-size:12.5px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all var(--tr);display:inline-flex;align-items:center;gap:5px;}
+    .btn-primary{background:var(--accent);color:#fff;}
+    .btn-primary:hover{background:#2563eb;}
+    .btn-secondary{background:var(--bg3);color:var(--text);border:1px solid var(--border2);}
+    .btn-secondary:hover{background:var(--bg4);}
+    .btn-danger{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+    .btn-success{background:rgba(16,185,129,.12);color:var(--green);border:1px solid rgba(16,185,129,.3);}
+    .btn-sm{padding:5px 9px;font-size:11.5px;}
+    .btn-xs{padding:3px 7px;font-size:11px;}
+
+    .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;}
+    .bg-gray{background:rgba(139,150,176,.15);color:var(--muted);}
+    .bg-blue{background:rgba(59,130,246,.18);color:#93c5fd;}
+    .bg-green{background:rgba(16,185,129,.18);color:#6ee7b7;}
+    .bg-amber{background:rgba(245,158,11,.18);color:#fcd34d;}
+    .bg-red{background:rgba(239,68,68,.18);color:#fca5a5;}
+    .bg-teal{background:rgba(20,184,166,.18);color:#5eead4;}
+    .bg-purple{background:rgba(139,92,246,.18);color:#c4b5fd;}
+    .bg-gold{background:rgba(245,158,11,.25);color:#fbbf24;}
+    .bg-dark{background:rgba(255,255,255,.07);color:var(--muted);}
+
+    .tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;overflow-x:auto;}
+    .ev-tbl{width:100%;border-collapse:collapse;min-width:600px;}
+    .ev-tbl th{padding:9px 13px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg3);text-align:left;white-space:nowrap;}
+    .ev-tbl td{padding:10px 13px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+    .ev-tbl tr:last-child td{border-bottom:none;}
+    .ev-tbl tr:hover td{background:rgba(255,255,255,.02);}
+    .td-acts{display:flex;gap:5px;}
+
+    .empty-s{padding:44px;text-align:center;color:var(--muted);}
+    .empty-ico{font-size:36px;margin-bottom:10px;opacity:.45;}
+    .empty-txt{font-size:14px;}
+    .empty-sub{font-size:11px;margin-top:3px;color:var(--muted2);}
+
+    /* MODAL */
+    .modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity var(--tr);}
+    .modal-ov.open{opacity:1;pointer-events:all;}
+    .modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-xl);width:100%;max-width:600px;max-height:90vh;display:flex;flex-direction:column;box-shadow:var(--sh-lg);transform:translateY(18px);transition:transform var(--tr);}
+    .modal-ov.open .modal-box{transform:translateY(0);}
+    .modal-lg{max-width:780px;}
+    .modal-hdr{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+    .modal-ttl{font-size:15px;font-weight:700;flex:1;}
+    .modal-close{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:none;background:var(--bg3);border-radius:50%;cursor:pointer;font-size:15px;color:var(--muted);transition:all var(--tr);}
+    .modal-close:hover{background:var(--bg4);color:var(--text);}
+    .modal-body{padding:18px 22px;overflow-y:auto;flex:1;}
+    .modal-foot{padding:14px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:7px;flex-shrink:0;}
+
+    /* FORM */
+    .f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+    .f-row.s1{grid-template-columns:1fr;}
+    .f-row.s3{grid-template-columns:1fr 1fr 1fr;}
+    .f-grp{display:flex;flex-direction:column;gap:4px;}
+    .f-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+    .f-lbl .req{color:var(--red);margin-left:2px;}
+    .f-inp,.f-sel2,.f-ta{padding:8px 11px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r-sm);color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border-color var(--tr);}
+    .f-inp:focus,.f-sel2:focus,.f-ta:focus{border-color:var(--accent);}
+    .f-sel2 option{background:var(--bg2);}
+    .f-ta{resize:vertical;min-height:66px;}
+
+    /* CARDS GRID */
+    .ev-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;}
+    .ev-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px;cursor:pointer;transition:all var(--tr);}
+    .ev-card:hover{border-color:var(--border2);box-shadow:var(--sh-md);transform:translateY(-1px);}
+    .card-hd{display:flex;align-items:flex-start;gap:9px;margin-bottom:9px;}
+    .card-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+    .card-ttl{font-size:13px;font-weight:600;line-height:1.3;}
+    .card-sub{font-size:11px;color:var(--muted);margin-top:1px;}
+    .card-meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
+    .card-stat{font-size:11px;color:var(--muted);}
+    .card-acts{margin-top:10px;padding-top:9px;border-top:1px solid var(--border);display:flex;gap:5px;}
+
+    /* ACTIVITY */
+    .act-list{display:flex;flex-direction:column;}
+    .act-item{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+    .act-item:last-child{border-bottom:none;}
+    .act-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:5px;flex-shrink:0;}
+    .act-dot.red{background:var(--red);}
+    .act-dot.green{background:var(--green);}
+    .act-dot.am{background:var(--amber);}
+    .act-dot.mu{background:var(--muted2);}
+    .act-body{flex:1;min-width:0;}
+    .act-text{font-size:13px;}
+    .act-meta{font-size:11px;color:var(--muted);margin-top:1px;}
+
+    /* LAYOUT */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+    .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;}
+    .sec-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);}
+    .sec-box-hd{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px;}
+    .sec-box-hd .sec-title{font-size:12.5px;}
+    .sec-box-bd{padding:10px 14px;}
+
+    .dl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;}
+    .dl-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted2);margin-bottom:2px;}
+    .dl-val{font-size:13px;}
+
+    /* PROGRESS */
+    .prog-bar{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;}
+    .prog-fill{height:100%;background:var(--accent);border-radius:3px;transition:width .5s;}
+
+    /* TAGS */
+    .tag-list{display:flex;gap:3px;flex-wrap:wrap;}
+    .tag{padding:1px 7px;background:var(--bg3);border:1px solid var(--border2);border-radius:20px;font-size:10.5px;color:var(--muted);}
+
+    /* AVATAR */
+    .g-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;}
+
+    /* NOTIF PANEL */
+    .notif-panel{position:fixed;right:14px;top:calc(var(--hh) + 6px);width:320px;max-height:68vh;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-lg);box-shadow:var(--sh-lg);z-index:500;overflow:hidden;display:none;flex-direction:column;}
+    .notif-panel.open{display:flex;}
+    .notif-hdr{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;}
+    .notif-ttl{font-size:12px;font-weight:700;flex:1;}
+    .notif-list{overflow-y:auto;flex:1;}
+    .n-item{padding:10px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background var(--tr);}
+    .n-item:hover{background:var(--bg3);}
+    .n-item.unread{border-left:3px solid var(--accent);}
+    .n-item.hi{border-left-color:var(--red);}
+    .n-text{font-size:12.5px;}
+    .n-meta{font-size:10.5px;color:var(--muted);margin-top:2px;}
+
+    /* TOAST */
+    .toast-wrap{position:fixed;bottom:16px;right:16px;display:flex;flex-direction:column;gap:7px;z-index:2000;pointer-events:none;}
+    .toast{padding:10px 14px;background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-md);box-shadow:var(--sh-md);font-size:13px;animation:tIn .22s ease;max-width:280px;pointer-events:all;}
+    .toast.ok{border-left:3px solid var(--green);}
+    .toast.er{border-left:3px solid var(--red);}
+    .toast.inf{border-left:3px solid var(--accent);}
+    @keyframes tIn{from{transform:translateX(16px);opacity:0;}to{transform:none;opacity:1;}}
+
+    /* SPINNER */
+    .spin{display:inline-block;width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:sp .7s linear infinite;}
+    @keyframes sp{to{transform:rotate(360deg);}}
+
+    /* CALENDAR */
+    .cal-mini{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:12px;}
+    .cal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+    .cal-mon{font-size:12.5px;font-weight:700;}
+    .cal-nav-btn{width:24px;height:24px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:5px;cursor:pointer;color:var(--muted);font-size:13px;background:var(--bg3);transition:all var(--tr);}
+    .cal-nav-btn:hover{border-color:var(--accent);color:var(--accent2);}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;}
+    .cal-dow{font-size:9.5px;font-weight:700;color:var(--muted2);text-transform:uppercase;padding:3px 0;}
+    .cal-day{font-size:11px;padding:4px 2px;border-radius:4px;cursor:pointer;color:var(--muted);transition:all var(--tr);}
+    .cal-day:hover{background:var(--bg3);color:var(--text);}
+    .cal-day.today{background:rgba(59,130,246,.2);color:var(--accent2);font-weight:700;}
+    .cal-day.has-ev{color:var(--text);font-weight:600;}
+    .cal-day.has-ev::after{content:'';display:block;width:3px;height:3px;background:var(--accent);border-radius:50%;margin:1px auto 0;}
+    .cal-day.oth{opacity:.25;}
+
+    /* MAP */
+    .map-ph{height:360px;background:var(--bg3);border-radius:var(--r-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);gap:8px;}
+
+    /* UTIL */
+    .mu{color:var(--muted);}
+    .xs{font-size:11px;}
+    .sm{font-size:12px;}
+    .fw7{font-weight:700;}
+    .mt2{margin-top:8px;}
+    .mt3{margin-top:12px;}
+    .mb3{margin-bottom:12px;}
+    .mono{font-family:var(--mono);}
+    .hidden{display:none!important;}
+    .tr-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:12px;}
+    .g-mini{display:flex;align-items:center;gap:8px;padding:7px;border-radius:var(--r-sm);background:var(--bg3);}
+    .menu-toggle{display:none;}
+    .sb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;display:none;}
+    .sb-overlay.open{display:block;}
+
+    @media(max-width:768px){
+      :root{--sw:0px;}
+      .ev-sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;transform:translateX(-100%);transition:transform .25s;z-index:200;}
+      .ev-sidebar.mob{transform:translateX(0);}
+      .menu-toggle{display:flex;}
+      .f-row{grid-template-columns:1fr;}
+      .two-col{grid-template-columns:1fr;}
+      .three-col{grid-template-columns:1fr;}
+      .kpi-grid{grid-template-columns:repeat(2,1fr);}
+    }
+    ::-webkit-scrollbar{width:5px;height:5px;}
+    ::-webkit-scrollbar-track{background:transparent;}
+    ::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px;}
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen" class="screen active">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-icon">🏛️</div>
+      <div class="login-logo-text">
+        <h1>Государственные мероприятия</h1>
+        <p>Silk Route Invest · Комитет по туризму РУз</p>
+      </div>
+    </div>
+    <div class="form-g">
+      <label for="l-email">Email</label>
+      <input type="email" id="l-email" placeholder="email@events.demo" autocomplete="username">
+    </div>
+    <div class="form-g">
+      <label for="l-pass">Пароль</label>
+      <input type="password" id="l-pass" placeholder="••••••" autocomplete="current-password">
+    </div>
+    <div id="l-err" class="login-err">Неверный email или пароль</div>
+    <button class="btn-login" id="l-btn">Войти</button>
+    <div class="login-demo">
+      <p>Демо-доступ (пароль: demo):</p>
+      <div class="demo-btns">
+        <button class="demo-btn" data-e="admin@events.demo">👑 Админ</button>
+        <button class="demo-btn" data-e="head@events.demo">📊 Рук-ль</button>
+        <button class="demo-btn" data-e="officer@events.demo">🗂 Офицер</button>
+        <button class="demo-btn" data-e="coordinator@events.demo">🤝 Координатор</button>
+        <button class="demo-btn" data-e="hotel@events.demo">🏨 Отель</button>
+        <button class="demo-btn" data-e="driver@events.demo">🚗 Водитель</button>
+        <button class="demo-btn" data-e="escort@events.demo">👤 Сопровод.</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app-screen" class="screen">
+  <div class="sb-overlay" id="sb-overlay"></div>
+  <aside class="ev-sidebar" id="sidebar">
+    <div class="sb-head">
+      <div class="sb-logo-icon">🏛️</div>
+      <div class="sb-logo-text">
+        Мероприятия
+        <div class="sb-logo-sub">Silk Route Invest</div>
+      </div>
+    </div>
+    <div class="ev-sel-wrap">
+      <select id="ev-sel" aria-label="Мероприятие">
+        <option value="">— Все мероприятия —</option>
+      </select>
+    </div>
+    <nav class="sb-nav" id="sb-nav" role="navigation"></nav>
+    <div class="sb-foot">
+      <div class="u-info">
+        <div class="u-avatar" id="u-av">?</div>
+        <div>
+          <div class="u-name" id="u-name">—</div>
+          <div class="u-role" id="u-role">—</div>
+        </div>
+        <button class="btn-logout" id="logout-btn">⏏</button>
+      </div>
+    </div>
+  </aside>
+  <main class="ev-main">
+    <header class="ev-header">
+      <button class="btn-icon menu-toggle" id="menu-toggle">☰</button>
+      <span class="hdr-title" id="page-title">Дашборд</span>
+      <div style="flex:1"></div>
+      <div class="lang-sw">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="uz">UZ</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="btn-icon" id="notif-btn" aria-label="Уведомления">
+        🔔<span class="n-dot hidden" id="n-dot"></span>
+      </button>
+      <a href="index.html" class="btn-icon" title="Главная сайта">🏠</a>
+    </header>
+    <div class="ev-content" id="ev-content"></div>
+  </main>
+  <div class="notif-panel" id="notif-panel">
+    <div class="notif-hdr">
+      <span class="notif-ttl">Уведомления</span>
+      <button class="btn-xs btn-secondary" id="mark-read-btn">Прочитать все</button>
+    </div>
+    <div class="notif-list" id="notif-list"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modal-ov" role="dialog" aria-modal="true">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-hdr">
+      <span class="modal-ttl" id="modal-ttl">—</span>
+      <button class="modal-close" id="modal-cls">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot" id="modal-foot"></div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<!-- SCRIPTS -->
+<script src="js/events/core/utils.js"></script>
+<script src="js/events/core/config.js"></script>
+<script src="js/events/core/i18n.js"></script>
+<script src="js/events/i18n/ru.js"></script>
+<script src="js/events/core/permissions.js"></script>
+<script src="js/hotels-data.js"></script>
+<script src="js/events/data/hotels-adapter.js"></script>
+<script src="js/events/data/places.js"></script>
+<script src="js/events/data/seed.js"></script>
+<script src="js/events/data/data-service.js"></script>
+<script>
+(function(){
+'use strict';
+const EV=window.EV, U=EV.U, C=EV.C;
+const t=(k,p)=>EV.I18n.t(k,p)||k;
+
+/* ─── STATE ───────────────────────────────────────────────── */
+const S={user:null, mod:null, evId:null, dir:{}};
+window.S=S;
+
+/* ─── COLORS ──────────────────────────────────────────────── */
+const AV_COLORS=['#3b82f6','#8b5cf6','#10b981','#f59e0b','#ef4444','#14b8a6'];
+const avColor=n=>AV_COLORS[U.hash(n||'')%AV_COLORS.length];
+
+/* ─── AUTH ────────────────────────────────────────────────── */
+EV.Auth={
+  login(email,pw){
+    const u=EV.Data.__db().tables.users.find(x=>x.email===email&&x.password===pw);
+    if(!u) return false;
+    S.user=u;
+    try{sessionStorage.setItem(C.SESSION_KEY,JSON.stringify({id:u.id}));}catch(e){}
+    return true;
+  },
+  restore(){
+    try{
+      const s=sessionStorage.getItem(C.SESSION_KEY);
+      if(!s) return false;
+      const {id}=JSON.parse(s);
+      const u=EV.Data.__db().tables.users.find(x=>x.id===id);
+      if(u){S.user=u;return true;}
+    }catch(e){}
+    return false;
+  },
+  current(){return S.user||null;},
+  logout(){S.user=null;try{sessionStorage.removeItem(C.SESSION_KEY);}catch(e){}}
+};
+
+/* ─── TOAST ───────────────────────────────────────────────── */
+const Toast={
+  show(msg,type,ms=3200){
+    const el=document.createElement('div');
+    el.className='toast '+type;el.textContent=msg;
+    document.getElementById('toasts').appendChild(el);
+    setTimeout(()=>el.remove(),ms);
+  },
+  ok(m){this.show(m,'ok');},
+  err(m){this.show(m,'er');},
+  info(m){this.show(m,'inf');}
+};
+window.Toast=Toast;
+
+/* ─── MODAL ───────────────────────────────────────────────── */
+const Modal={
+  init(){
+    const ov=document.getElementById('modal-ov');
+    document.getElementById('modal-cls').onclick=()=>this.close();
+    ov.addEventListener('click',e=>{if(e.target===ov)this.close();});
+  },
+  open({title,body,footer,wide}){
+    document.getElementById('modal-ttl').textContent=title||'';
+    document.getElementById('modal-body').innerHTML=body||'';
+    document.getElementById('modal-foot').innerHTML=footer||'';
+    document.getElementById('modal-box').className='modal-box'+(wide?' modal-lg':'');
+    document.getElementById('modal-ov').classList.add('open');
+    const f=document.querySelector('#modal-box input,#modal-box select,#modal-box textarea');
+    if(f) setTimeout(()=>f.focus(),60);
+  },
+  close(){document.getElementById('modal-ov').classList.remove('open');},
+  setFoot(h){document.getElementById('modal-foot').innerHTML=h;}
+};
+window.Modal=Modal;
+
+/* ─── HELPERS ─────────────────────────────────────────────── */
+function e(s){return U.esc(s);}
+function bd(text,cls){return`<span class="badge ${cls||'bg-gray'}">${e(text)}</span>`;}
+const COLOR_MAP={
+  event:{planned:'bg-dark',preparation:'bg-blue',booking:'bg-amber',arriving:'bg-teal',running:'bg-green',completed:'bg-dark',archive:'bg-dark'},
+  guest:{expected:'bg-blue',arrived:'bg-teal',accommodated:'bg-green',departed:'bg-dark'},
+  booking:{draft:'bg-dark',sent:'bg-amber',confirmed:'bg-green',changed:'bg-amber',cancelled:'bg-red'},
+  meeting:{planned:'bg-dark',driver_assigned:'bg-amber',confirmed:'bg-blue',met:'bg-teal',done:'bg-green'},
+  transfer:{planned:'bg-dark',assigned:'bg-amber',dispatched:'bg-blue',enroute:'bg-teal',done:'bg-green',cancelled:'bg-red'},
+  departure:{planned:'bg-dark',vehicle_assigned:'bg-amber',enroute:'bg-blue',departed:'bg-green'},
+  task:{new:'bg-dark',in_progress:'bg-amber',done:'bg-green',overdue:'bg-red'},
+  meal:{draft:'bg-dark',requested:'bg-amber',confirmed:'bg-green',served:'bg-teal',cancelled:'bg-red'},
+  excursion:{planned:'bg-dark',confirmed:'bg-blue',running:'bg-teal',done:'bg-green',cancelled:'bg-red'},
+};
+function stBd(entity,status){
+  const cls=(COLOR_MAP[entity]||{})[status]||'bg-gray';
+  const pfx={event:'ev',guest:'gs',booking:'bk',meeting:'mt',transfer:'tr',departure:'dp',task:'tk',meal:'ml',excursion:'ex'}[entity]||entity.slice(0,2);
+  const lbl=t(`${pfx}.status.${status}`)||status;
+  return bd(lbl,cls);
+}
+function vipBd(v){
+  if(!v||v==='none') return '';
+  return bd(v==='vip'?'VIP':'Протокол',v==='vip'?'bg-gold':'bg-purple');
+}
+function prioBd(p){
+  return bd(t('prio.'+p)||p,{low:'bg-gray',normal:'bg-blue',high:'bg-amber',critical:'bg-red'}[p]||'bg-gray');
+}
+function av(name,sz){
+  const c=avColor(name),i=U.initials(name),s=sz||28;
+  return`<div class="g-av" style="width:${s}px;height:${s}px;background:${c}">${e(i)}</div>`;
+}
+function flag(cc){return U.flag(cc||'');}
+function roomLbl(rt){return t('room.'+rt)||rt;}
+function mealLbl(m){return t('meal.'+m)||m;}
+function vehLbl(c){return t('veh.'+c)||c;}
+function dietLbl(d){return t('diet.'+d)||d;}
+
+/* ─── EVENT SELECTOR ──────────────────────────────────────── */
+async function loadEvSel(){
+  const evs=await EV.Data.list('events');
+  const sel=document.getElementById('ev-sel');
+  sel.innerHTML='<option value="">— Все мероприятия —</option>';
+  evs.sort((a,b)=>(b.dateFrom||'').localeCompare(a.dateFrom||'')).forEach(ev=>{
+    const o=document.createElement('option');
+    o.value=ev.id; o.textContent=U.tx(ev.name);
+    if(S.evId===ev.id) o.selected=true;
+    sel.appendChild(o);
+  });
+}
+
+/* ─── NAVIGATION ──────────────────────────────────────────── */
+function buildNav(){
+  const nav=document.getElementById('sb-nav');
+  const allowed=EV.Perm.allowedModules(S.user);
+  const secs=[
+    {lbl:'Рабочее место',mods:['my','dashboard']},
+    {lbl:'Программа',mods:['events','guests','booking','accommodation','meeting','transport']},
+    {lbl:'Логистика',mods:['routes','excursions','escort','meals','vip','departure']},
+    {lbl:'Управление',mods:['tasks','calendar','map','reports','archive']},
+    {lbl:'Система',mods:['quality','security']},
+  ];
+  nav.innerHTML=secs.map(sec=>{
+    const its=sec.mods.filter(id=>allowed.find(m=>m.id===id));
+    if(!its.length) return '';
+    return`<div><div class="nav-sec-lbl">${e(sec.lbl)}</div>
+    ${its.map(id=>{
+      const mod=C.MODULES.find(m=>m.id===id);
+      if(!mod) return '';
+      return`<div class="nav-item${S.mod===id?' active':''}" data-m="${id}">
+        <span class="nav-icon">${mod.icon}</span>
+        <span>${t('nav.'+id)||id}</span>
+      </div>`;
+    }).join('')}</div>`;
+  }).join('');
+  nav.querySelectorAll('.nav-item').forEach(el=>{
+    el.addEventListener('click',()=>go(el.dataset.m));
+  });
+}
+
+/* ─── GO (NAVIGATE) ───────────────────────────────────────── */
+async function go(mod){
+  if(!EV.Perm.canView(mod)) return;
+  S.mod=mod;
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.toggle('active',el.dataset.m===mod));
+  document.getElementById('sidebar').classList.remove('mob');
+  document.getElementById('sb-overlay').classList.remove('open');
+  document.getElementById('page-title').textContent=t('nav.'+mod)||mod;
+  const cnt=document.getElementById('ev-content');
+  cnt.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:180px"><div class="spin"></div></div>';
+  try{
+    S.dir=EV.Data.directory();
+    const html=await(MOD[mod]?.render?.())||placeholder(mod);
+    cnt.innerHTML=html;
+    MOD[mod]?.init?.();
+  }catch(ex){
+    console.error(ex);
+    cnt.innerHTML=`<div class="empty-s"><div class="empty-ico">⚠️</div><div class="empty-txt">${e(ex.message||'Ошибка')}</div></div>`;
+  }
+}
+window.go=go;
+
+function placeholder(id){
+  const mod=C.MODULES.find(m=>m.id===id);
+  return`<div style="text-align:center;padding:60px"><div style="font-size:46px;margin-bottom:10px">${mod?.icon||'📄'}</div>
+  <div style="font-size:17px;font-weight:700">${t('nav.'+id)||id}</div>
+  <div class="mu" style="margin-top:6px">Модуль в разработке</div></div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MODULES
+   ═══════════════════════════════════════════════════════════ */
+const MOD={};
+
+/* ── DASHBOARD ───────────────────────────────────────────── */
+MOD.dashboard={
+  async render(){
+    const evId=S.evId;
+    const f=evId?{eventId:evId}:{};
+    const [evs,guests,tasks,bks,meets,deps,audit]=await Promise.all([
+      EV.Data.list('events'),
+      EV.Data.list('guests',f),
+      EV.Data.list('tasks',f),
+      EV.Data.list('bookings',f),
+      EV.Data.list('meetings',f),
+      EV.Data.list('departures',f),
+      EV.Perm.can('audit.view')?EV.Data.list('audit'):Promise.resolve([]),
+    ]);
+    const now=new Date(), today=U.toDay(now);
+    const active=evs.filter(ev=>['planned','preparation','booking','arriving','running'].includes(ev.status));
+    const overdue=tasks.filter(tk=>tk.status!=='done'&&tk.due&&U.parse(tk.due)<now);
+    const unconf=bks.filter(b=>b.status==='draft'||b.status==='sent');
+    const todayArr=guests.filter(g=>g.arrivalAt&&U.day(g.arrivalAt)===today&&g.status==='expected');
+    const todayDep=deps.filter(d=>d.at&&U.day(d.at)===today);
+    const todayMeet=meets.filter(m=>m.at&&U.day(m.at)===today).sort((a,b)=>(a.at||'').localeCompare(b.at||''));
+    const urgent=tasks.filter(tk=>tk.status!=='done'&&['high','critical'].includes(tk.priority)).slice(0,6);
+    const recent=(audit||[]).slice(-8).reverse();
+
+    const kpi=[
+      {v:active.length,l:'Активных мер-й',s:`всего ${evs.length}`,ico:'🗂',acc:'#3b82f6'},
+      {v:guests.length,l:'Гостей',s:`${todayArr.length} прибывает сегодня`,ico:'👥',acc:'#8b5cf6'},
+      {v:tasks.filter(t=>t.status!=='done').length,l:'Задач открыто',s:`${overdue.length} просрочено`,ico:'✅',acc:overdue.length?'#ef4444':'#10b981'},
+      {v:bks.length,l:'Броней',s:`${unconf.length} ожидают`,ico:'🏨',acc:'#f59e0b'},
+      {v:meets.filter(m=>['planned','driver_assigned'].includes(m.status)).length,l:'Встреч',s:`${todayMeet.length} сегодня`,ico:'🛬',acc:'#14b8a6'},
+      {v:deps.filter(d=>d.status!=='departed').length,l:'Проводов',s:`${todayDep.length} сегодня`,ico:'🛫',acc:'#60a5fa'},
+    ];
+
+    const renderKpi=kpi.map(k=>`<div class="kpi-card" style="--acc:${k.acc}">
+      <div class="kpi-ico">${k.ico}</div>
+      <div class="kpi-val">${k.v}</div>
+      <div class="kpi-lbl">${k.l}</div>
+      <div class="kpi-sub">${k.s}</div>
+    </div>`).join('');
+
+    const renderSchedule=[
+      ...todayMeet.map(m=>{
+        const g=EV.Data.__db().tables.guests.find(x=>x.id===m.guestId);
+        return`<div class="act-item">
+          <div class="act-dot" style="background:#14b8a6"></div>
+          <div class="act-body">
+            <div class="act-text">🛬 ${e(g?.fullName||m.guestId)} — ${e(m.flightNo||'—')}</div>
+            <div class="act-meta">${U.fmtTime(m.at)}</div>
+          </div>${stBd('meeting',m.status)}</div>`;
+      }),
+      ...todayDep.map(d=>{
+        const g=EV.Data.__db().tables.guests.find(x=>x.id===d.guestId);
+        return`<div class="act-item">
+          <div class="act-dot am"></div>
+          <div class="act-body">
+            <div class="act-text">🛫 ${e(g?.fullName||d.guestId)} — ${e(d.flightNo||'—')}</div>
+            <div class="act-meta">${U.fmtTime(d.at)}</div>
+          </div>${stBd('departure',d.status)}</div>`;
+      })
+    ].join('');
+
+    const renderUrgent=urgent.map(tk=>{
+      const u=S.dir.users?.[tk.assigneeId];
+      const title=tk.title||t(tk.titleKey||'')||tk.id;
+      return`<div class="act-item">
+        <div class="act-dot ${tk.priority==='critical'?'red':'am'}"></div>
+        <div class="act-body">
+          <div class="act-text">${e(title)}</div>
+          <div class="act-meta">${u?e(u.name):''}${tk.due?' · '+U.fmtDTFull(tk.due):''}</div>
+        </div>${prioBd(tk.priority)}</div>`;
+    }).join('');
+
+    const renderActive=active.slice(0,4).map(ev=>renderEvCard(ev)).join('');
+    const renderAudit=recent.map(a=>`<div class="act-item">
+      <div class="act-dot ${a.action==='delete'?'red':a.action==='create'?'green':'mu'}"></div>
+      <div class="act-body">
+        <div class="act-text">${t('audit.'+a.action)||a.action} · ${e(a.label||a.entityId)}</div>
+        <div class="act-meta">${e(a.userName)} · ${U.fmtDTFull(a.ts)}</div>
+      </div></div>`).join('');
+
+    return`<div class="kpi-grid">${renderKpi}</div>
+    <div class="two-col">
+      <div class="sec-box">
+        <div class="sec-box-hd"><span>📅</span><span class="sec-title">Сегодня</span><span class="xs mu" style="margin-left:auto">${U.fmtDate(U.nowISO())}</span></div>
+        <div class="sec-box-bd"><div class="act-list">${renderSchedule||'<div class="empty-s" style="padding:16px"><div class="empty-ico" style="font-size:22px">😌</div><div class="empty-txt">Нет событий</div></div>'}</div></div>
+      </div>
+      <div class="sec-box">
+        <div class="sec-box-hd"><span>⚡</span><span class="sec-title">Срочные задачи</span>${EV.Perm.canView('tasks')?`<button class="btn btn-xs btn-secondary" style="margin-left:auto" onclick="go('tasks')">Все →</button>`:''}
+        </div>
+        <div class="sec-box-bd"><div class="act-list">${renderUrgent||'<div class="empty-s" style="padding:16px"><div class="empty-ico" style="font-size:22px">✅</div><div class="empty-txt">Срочных нет</div></div>'}</div></div>
+      </div>
+    </div>
+    ${EV.Perm.canView('events')?`
+    <div class="sec-head"><span class="sec-title">Активные мероприятия</span><div class="sec-acts"><button class="btn btn-sm btn-secondary" onclick="go('events')">Все →</button></div></div>
+    <div class="ev-cards" id="dash-ev-cards">${active.length?renderActive:'<div class="empty-s"><div class="empty-ico">🗂</div><div class="empty-txt">Нет</div></div>'}</div>`:''}
+    ${EV.Perm.can('audit.view')&&recent.length?`
+    <div class="sec-head" style="margin-top:18px"><span class="sec-title">Последние действия</span></div>
+    <div class="sec-box"><div class="sec-box-bd"><div class="act-list">${renderAudit}</div></div></div>`:''}`;
+  },
+  init(){
+    document.querySelectorAll('#dash-ev-cards .ev-card[data-eid]').forEach(el=>{
+      el.addEventListener('click',e2=>{if(!e2.target.closest('button'))showEvDetail(el.dataset.eid);});
+    });
+  }
+};
+
+/* ── EVENTS ──────────────────────────────────────────────── */
+MOD.events={
+  async render(){
+    const evs=await EV.Data.list('events');
+    return`<div class="sec-head"><span class="sec-title">Мероприятия</span>
+      <div class="sec-acts">${EV.Perm.can('event.create')?`<button class="btn btn-primary btn-sm" id="ev-create-btn">+ Создать</button>`:''}</div></div>
+    <div class="toolbar">
+      <input class="search-inp" id="ev-q" placeholder="Поиск…">
+      <select class="f-sel" id="ev-fs">
+        <option value="">Все статусы</option>
+        ${C.STATUS.event.map(s=>`<option value="${s}">${t('ev.status.'+s)||s}</option>`).join('')}
+      </select>
+    </div>
+    <div id="ev-list">${evs.length?`<div class="ev-cards">${evs.map(ev=>renderEvCard(ev)).join('')}</div>`
+    :'<div class="empty-s"><div class="empty-ico">🗂</div><div class="empty-txt">Нет мероприятий</div></div>'}</div>`;
+  },
+  init(){
+    document.getElementById('ev-create-btn')?.addEventListener('click',()=>evForm(null));
+    document.getElementById('ev-q')?.addEventListener('input',U.debounce(filterEvs,260));
+    document.getElementById('ev-fs')?.addEventListener('change',filterEvs);
+    bindEvCards();
+  }
+};
+
+async function filterEvs(){
+  const q=(document.getElementById('ev-q')?.value||'').toLowerCase();
+  const st=document.getElementById('ev-fs')?.value||'';
+  let evs=await EV.Data.list('events');
+  if(q) evs=evs.filter(ev=>U.tx(ev.name).toLowerCase().includes(q));
+  if(st) evs=evs.filter(ev=>ev.status===st);
+  const el=document.getElementById('ev-list');
+  if(!el) return;
+  el.innerHTML=evs.length?`<div class="ev-cards">${evs.map(ev=>renderEvCard(ev)).join('')}</div>`
+    :'<div class="empty-s"><div class="empty-ico">🗂</div><div class="empty-txt">Ничего не найдено</div></div>';
+  bindEvCards();
+}
+
+function bindEvCards(){
+  document.querySelectorAll('.ev-card[data-eid]').forEach(el=>{
+    el.addEventListener('click',ev2=>{if(!ev2.target.closest('button'))showEvDetail(el.dataset.eid);});
+  });
+}
+
+function renderEvCard(ev){
+  const resp=S.dir.users?.[ev.responsibleId];
+  const etLabel=(()=>{const et=EV.Data.settings().eventTypes.find(x=>x.id===ev.type);return et?U.tx(et):ev.type;})();
+  const dLeft=ev.dateFrom?Math.ceil((U.parse(ev.dateFrom)-new Date())/86400000):null;
+  return`<div class="ev-card" data-eid="${ev.id}">
+    <div class="card-hd">
+      <div class="card-ico" style="background:rgba(59,130,246,.15)">🗂</div>
+      <div style="flex:1;min-width:0">
+        <div class="card-ttl">${e(U.tx(ev.name))}</div>
+        <div class="card-sub">${e(etLabel)}</div>
+      </div>${stBd('event',ev.status)}
+    </div>
+    <div class="card-meta">
+      <span class="card-stat">📅 ${U.fmtDate(ev.dateFrom)}–${U.fmtDate(ev.dateTo)}</span>
+      <span class="card-stat">👥 ${ev.foreignGuests||0} иностр.</span>
+      ${dLeft!==null&&dLeft>=0&&dLeft<=7?`<span class="badge bg-red">через ${dLeft}д</span>`:''}
+    </div>
+    ${ev.venue?`<div class="xs mu" style="margin-top:5px">📍 ${e(U.tx(ev.venue))}</div>`:''}
+    ${resp?`<div class="xs mu" style="margin-top:3px">👤 ${e(resp.name)}</div>`:''}
+    ${EV.Perm.can('event.status')?`<div class="card-acts">
+      <button class="btn btn-xs btn-secondary" onclick="event.stopPropagation();showEvDetail('${ev.id}')">Подробно</button>
+      <button class="btn btn-xs btn-secondary" onclick="event.stopPropagation();evForm('${ev.id}')">✏️</button>
+      <button class="btn btn-xs btn-secondary" onclick="event.stopPropagation();S.evId='${ev.id}';document.getElementById('ev-sel').value='${ev.id}';go('dashboard')" title="Задать контекст">→</button>
+    </div>`:''}
+  </div>`;
+}
+window.showEvDetail=showEvDetail;
+window.evForm=evForm;
+
+async function showEvDetail(evId){
+  const ev=await EV.Data.get('events',evId); if(!ev) return;
+  const etLabel=(()=>{const et=EV.Data.settings().eventTypes.find(x=>x.id===ev.type);return et?U.tx(et):ev.type;})();
+  const resp=S.dir.users?.[ev.responsibleId];
+  const [guests,bks,tasks,dels]=await Promise.all([
+    EV.Data.list('guests',{eventId:evId}),
+    EV.Data.list('bookings',{eventId:evId}),
+    EV.Data.list('tasks',{eventId:evId}),
+    EV.Data.list('delegations',{eventId:evId}),
+  ]);
+  const done=tasks.filter(t=>t.status==='done').length;
+  Modal.open({title:U.tx(ev.name),wide:true,
+    body:`<div style="margin-bottom:12px;display:flex;gap:6px;flex-wrap:wrap">${stBd('event',ev.status)} ${bd(etLabel,'bg-blue')} ${vipBd(ev.vip)}</div>
+    <div class="dl-grid" style="margin-bottom:14px">
+      <div><div class="dl-lbl">Даты</div><div class="dl-val">${U.fmtDate(ev.dateFrom)} — ${U.fmtDate(ev.dateTo)}</div></div>
+      <div><div class="dl-lbl">Площадка</div><div class="dl-val">${e(U.tx(ev.venue)||'—')}</div></div>
+      <div><div class="dl-lbl">Участников</div><div class="dl-val">${ev.participants||0}</div></div>
+      <div><div class="dl-lbl">Иностр.</div><div class="dl-val">${ev.foreignGuests||0}</div></div>
+      <div><div class="dl-lbl">Ответственный</div><div class="dl-val">${resp?e(resp.name):'—'}</div></div>
+      <div><div class="dl-lbl">Телефон</div><div class="dl-val">${ev.contactPhone?`<a href="tel:${ev.contactPhone}" style="color:var(--accent2)">${e(ev.contactPhone)}</a>`:'—'}</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
+      ${[{l:'Делегаций',v:dels.length,i:'🏳'},{l:'Гостей',v:guests.length,i:'👥'},{l:'Броней',v:bks.length,i:'🏨'},{l:'Задач',v:`${done}/${tasks.length}`,i:'✅'}]
+        .map(k=>`<div class="kpi-card" style="padding:10px;--acc:#3b82f6"><div style="font-size:10px;color:var(--muted2)">${k.i} ${k.l}</div><div style="font-size:18px;font-weight:800;margin-top:4px">${k.v}</div></div>`).join('')}
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px"><span>Выполнение задач</span><span>${done}/${tasks.length}</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:${tasks.length?Math.round(done/tasks.length*100):0}%"></div></div>
+    </div>
+    ${dels.length?`<div class="dl-lbl" style="margin-bottom:7px">Делегации</div>
+    <div style="display:flex;flex-direction:column;gap:5px">
+    ${dels.map(dl=>`<div class="g-mini">${flag(dl.country)} <div style="flex:1"><div style="font-size:13px;font-weight:600">${e(U.tx(dl.name))}</div></div>${vipBd(dl.vip)}</div>`).join('')}
+    </div>`:''}`,
+    footer:`<div style="display:flex;gap:6px;margin-right:auto">
+      <button class="btn btn-secondary btn-sm" onclick="S.evId='${evId}';document.getElementById('ev-sel').value='${evId}';Modal.close();go('guests')">👥 Гости</button>
+      <button class="btn btn-secondary btn-sm" onclick="S.evId='${evId}';document.getElementById('ev-sel').value='${evId}';Modal.close();go('tasks')">✅ Задачи</button>
+    </div>
+    ${EV.Perm.can('event.edit')?`<button class="btn btn-primary btn-sm" onclick="Modal.close();evForm('${evId}')">✏️ Редактировать</button>`:''}
+    <button class="btn btn-secondary btn-sm" onclick="Modal.close()">Закрыть</button>`
+  });
+}
+
+async function evForm(evId){
+  const isNew=!evId, ev=evId?EV.Data.__db().tables.events.find(x=>x.id===evId):null;
+  const sets=EV.Data.settings();
+  const users=EV.Data.__db().tables.users.filter(u=>['admin','head','officer','coordinator'].includes(u.role));
+  Modal.open({title:isNew?'Новое мероприятие':'Редактировать мероприятие',wide:true,
+    body:`<form id="ev-form">
+    <div class="f-row">
+      <div class="f-grp"><label class="f-lbl">Название (RU) <span class="req">*</span></label><input class="f-inp" name="name_ru" value="${e(ev?U.tx(ev.name):'')}" required></div>
+      <div class="f-grp"><label class="f-lbl">Название (EN)</label><input class="f-inp" name="name_en" value="${e(ev?.name?.en||'')}"></div>
+    </div>
+    <div class="f-row s3">
+      <div class="f-grp"><label class="f-lbl">Тип</label>
+        <select class="f-sel2" name="type">${sets.eventTypes.map(et=>`<option value="${et.id}" ${ev?.type===et.id?'selected':''}>${U.tx(et)}</option>`).join('')}</select>
+      </div>
+      <div class="f-grp"><label class="f-lbl">Начало <span class="req">*</span></label><input class="f-inp" type="datetime-local" name="dateFrom" value="${ev?.dateFrom||''}" required></div>
+      <div class="f-grp"><label class="f-lbl">Окончание <span class="req">*</span></label><input class="f-inp" type="datetime-local" name="dateTo" value="${ev?.dateTo||''}" required></div>
+    </div>
+    <div class="f-row">
+      <div class="f-grp"><label class="f-lbl">Площадка (RU)</label><input class="f-inp" name="venue_ru" value="${e(ev?.venue?U.tx(ev.venue):'')}" ></div>
+      <div class="f-grp"><label class="f-lbl">Площадка (EN)</label><input class="f-inp" name="venue_en" value="${e(ev?.venue?.en||'')}"></div>
+    </div>
+    <div class="f-row s3">
+      <div class="f-grp"><label class="f-lbl">Участников</label><input class="f-inp" type="number" name="participants" value="${ev?.participants||0}" min="0"></div>
+      <div class="f-grp"><label class="f-lbl">Иностр. гостей</label><input class="f-inp" type="number" name="foreignGuests" value="${ev?.foreignGuests||0}" min="0"></div>
+      <div class="f-grp"><label class="f-lbl">Ответственный</label>
+        <select class="f-sel2" name="responsibleId">
+          <option value="">— —</option>
+          ${users.map(u=>`<option value="${u.id}" ${ev?.responsibleId===u.id?'selected':''}>${e(u.name)}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <div class="f-row">
+      <div class="f-grp"><label class="f-lbl">Контактное лицо</label><input class="f-inp" name="contactName" value="${e(ev?.contactName||'')}"></div>
+      <div class="f-grp"><label class="f-lbl">Телефон</label><input class="f-inp" type="tel" name="contactPhone" value="${e(ev?.contactPhone||'')}"></div>
+    </div>
+    <div class="f-row s1">
+      <div class="f-grp"><label class="f-lbl">Требования</label><textarea class="f-ta" name="req_ru">${e(ev?.requirements?U.tx(ev.requirements):'')}</textarea></div>
+    </div>
+    </form>`,
+    footer:`<button class="btn btn-secondary" onclick="Modal.close()">Отмена</button><button class="btn btn-primary" id="ev-save-btn">${isNew?'Создать':'Сохранить'}</button>`
+  });
+  document.getElementById('ev-save-btn').addEventListener('click',async()=>{
+    const form=document.getElementById('ev-form');
+    if(!form.checkValidity()){form.reportValidity();return;}
+    const fd=new FormData(form);
+    const rec={name:{ru:fd.get('name_ru'),uz:fd.get('name_ru'),en:fd.get('name_en')||fd.get('name_ru')},type:fd.get('type'),
+      dateFrom:fd.get('dateFrom'),dateTo:fd.get('dateTo'),
+      venue:{ru:fd.get('venue_ru'),uz:fd.get('venue_ru'),en:fd.get('venue_en')||fd.get('venue_ru')},
+      participants:+fd.get('participants'),foreignGuests:+fd.get('foreignGuests'),
+      responsibleId:fd.get('responsibleId')||null,contactName:fd.get('contactName'),contactPhone:fd.get('contactPhone'),
+      requirements:{ru:fd.get('req_ru'),uz:fd.get('req_ru'),en:fd.get('req_ru')}};
+    try{
+      if(isNew){rec.status='planned';await EV.Data.create('events',rec);Toast.ok('Создано');}
+      else{await EV.Data.update('events',evId,rec);Toast.ok('Сохранено');}
+      Modal.close();go('events');
+    }catch(ex){Toast.err(ex.message||'Ошибка');}
+  });
+}
+
+/* ── GUESTS ──────────────────────────────────────────────── */
+MOD.guests={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const [guests,dels]=await Promise.all([EV.Data.list('guests',f),EV.Data.list('delegations',f)]);
+    const dm={};dels.forEach(d=>dm[d.id]=d);
+    return`<div class="sec-head"><span class="sec-title">Гости</span>
+      <div class="sec-acts">${EV.Perm.canEdit('guests')?`<button class="btn btn-primary btn-sm" id="add-g-btn">+ Гость</button>`:''}</div></div>
+    <div class="toolbar">
+      <input class="search-inp" id="g-q" placeholder="Поиск по имени…">
+      <select class="f-sel" id="g-del"><option value="">Все делегации</option>
+        ${dels.map(dl=>`<option value="${dl.id}">${e(U.tx(dl.name))}</option>`).join('')}
+      </select>
+      <select class="f-sel" id="g-st"><option value="">Все статусы</option>
+        ${C.STATUS.guest.map(s=>`<option value="${s}">${t('gs.status.'+s)||s}</option>`).join('')}
+      </select>
+    </div>
+    <div class="tbl-wrap" id="g-tbl-wrap">${renderGTbl(guests,dm)}</div>`;
+  },
+  init(){
+    document.getElementById('add-g-btn')?.addEventListener('click',()=>guestForm(null));
+    document.getElementById('g-q')?.addEventListener('input',U.debounce(filterGuests,250));
+    document.getElementById('g-del')?.addEventListener('change',filterGuests);
+    document.getElementById('g-st')?.addEventListener('change',filterGuests);
+    bindGuestBtns();
+  }
+};
+
+function renderGTbl(guests,dm){
+  if(!guests.length) return`<div class="empty-s"><div class="empty-ico">👥</div><div class="empty-txt">Нет гостей</div></div>`;
+  return`<table class="ev-tbl"><thead><tr><th>Гость</th><th>Страна</th><th>Делегация</th><th>Прибытие</th><th>Статус</th><th>VIP</th><th>Диеты</th><th></th></tr></thead>
+  <tbody>${guests.map(g=>{const dl=dm?.[g.delegationId];
+  return`<tr data-gid="${g.id}">
+    <td><div style="display:flex;align-items:center;gap:7px">${av(g.fullName)}<div><div style="font-weight:600">${e(g.fullName)}</div><div class="xs mu">${e(U.tx(g.position)||'')}</div></div></div></td>
+    <td>${flag(g.country)} ${e(g.country||'')}</td>
+    <td>${dl?`<span class="xs">${e(U.tx(dl.name))}</span>`:'—'}</td>
+    <td><div class="sm">${U.fmtDT(g.arrivalAt)||'—'}</div><div class="xs mu">${e(g.arrivalFlight||'')}</div></td>
+    <td>${stBd('guest',g.status)}</td>
+    <td>${vipBd(g.vip)}</td>
+    <td><div class="tag-list">${(g.diets||[]).map(d=>`<span class="tag">${dietLbl(d)}</span>`).join('')||'—'}</div></td>
+    <td><div class="td-acts">
+      <button class="btn btn-xs btn-secondary gv-btn" data-gid="${g.id}">👁</button>
+      ${EV.Perm.canEdit('guests')?`<button class="btn btn-xs btn-secondary ge-btn" data-gid="${g.id}">✏️</button>`:''}
+    </div></td>
+  </tr>`;}).join('')}</tbody></table>`;
+}
+async function filterGuests(){
+  const q=(document.getElementById('g-q')?.value||'').toLowerCase();
+  const del=document.getElementById('g-del')?.value||'';
+  const st=document.getElementById('g-st')?.value||'';
+  const f=S.evId?{eventId:S.evId}:{};
+  let [guests,dels]=await Promise.all([EV.Data.list('guests',f),EV.Data.list('delegations',f)]);
+  const dm={};dels.forEach(d=>dm[d.id]=d);
+  if(q) guests=guests.filter(g=>(g.fullName||'').toLowerCase().includes(q));
+  if(del) guests=guests.filter(g=>g.delegationId===del);
+  if(st) guests=guests.filter(g=>g.status===st);
+  document.getElementById('g-tbl-wrap').innerHTML=renderGTbl(guests,dm);
+  bindGuestBtns();
+}
+function bindGuestBtns(){
+  document.querySelectorAll('.gv-btn').forEach(b=>b.addEventListener('click',()=>showGuestDetail(b.dataset.gid)));
+  document.querySelectorAll('.ge-btn').forEach(b=>b.addEventListener('click',()=>guestForm(b.dataset.gid)));
+}
+window.guestForm=guestForm;
+async function showGuestDetail(gid){
+  const g=await EV.Data.get('guests',gid); if(!g) return;
+  const dl=g.delegationId?EV.Data.__db().tables.delegations.find(x=>x.id===g.delegationId):null;
+  const bk=EV.Data.__db().tables.bookings.find(x=>x.guestId===gid);
+  const hotel=bk?EV.Hotels.get(bk.hotelId):null;
+  Modal.open({title:g.fullName,body:`
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+      ${av(g.fullName,44)}
+      <div><div style="font-size:15px;font-weight:700">${e(g.fullName)}</div>
+      <div class="mu">${e(U.tx(g.position)||'')} ${dl?`· ${e(U.tx(dl.name))}`:''}</div>
+      <div style="margin-top:5px;display:flex;gap:4px">${stBd('guest',g.status)}${vipBd(g.vip)}</div></div>
+    </div>
+    <div class="dl-grid">
+      <div><div class="dl-lbl">Страна</div><div class="dl-val">${flag(g.country)} ${e(g.country||'—')}</div></div>
+      <div><div class="dl-lbl">Телефон</div><div class="dl-val">${g.phone?`<a href="tel:${g.phone}" style="color:var(--accent2)">${e(g.phone)}</a>`:'—'}</div></div>
+      <div><div class="dl-lbl">Email</div><div class="dl-val">${e(g.email||'—')}</div></div>
+      <div><div class="dl-lbl">Паспорт</div><div class="dl-val mono">${e(g.passport||'—')}</div></div>
+      <div><div class="dl-lbl">Прилёт</div><div class="dl-val">${U.fmtDTFull(g.arrivalAt)||'—'} ${e(g.arrivalFlight||'')}</div></div>
+      <div><div class="dl-lbl">Отлёт</div><div class="dl-val">${U.fmtDTFull(g.departureAt)||'—'} ${e(g.departureFlight||'')}</div></div>
+      ${hotel?`<div><div class="dl-lbl">Отель</div><div class="dl-val">${e(hotel.name)} · ${e(bk.roomNo||'—')} (${roomLbl(bk.roomType)})</div></div>`:''}
+    </div>
+    ${(g.diets||[]).length?`<div style="margin-top:10px"><div class="dl-lbl" style="margin-bottom:5px">Диеты</div><div class="tag-list">${g.diets.map(d=>`<span class="tag">${dietLbl(d)}</span>`).join('')}</div></div>`:''}
+    ${g.requirements?`<div style="margin-top:10px"><div class="dl-lbl">Требования</div><div class="sm" style="margin-top:3px">${e(U.tx(g.requirements))}</div></div>`:''}
+  `,footer:`${EV.Perm.canEdit('guests')?`<button class="btn btn-primary btn-sm" onclick="Modal.close();guestForm('${gid}')">✏️ Редактировать</button>`:''}
+  <button class="btn btn-secondary btn-sm" onclick="Modal.close()">Закрыть</button>`});
+}
+
+async function guestForm(gid){
+  const isNew=!gid, g=gid?EV.Data.__db().tables.guests.find(x=>x.id===gid):null;
+  const dels=EV.Data.__db().tables.delegations.filter(d=>!S.evId||d.eventId===S.evId);
+  Modal.open({title:isNew?'Добавить гостя':'Редактировать гостя',wide:true,body:`
+  <form id="g-form">
+  <div class="f-row">
+    <div class="f-grp"><label class="f-lbl">ФИО <span class="req">*</span></label><input class="f-inp" name="fullName" value="${e(g?.fullName||'')}" required></div>
+    <div class="f-grp"><label class="f-lbl">Должность</label><input class="f-inp" name="position" value="${e(g?.position?U.tx(g.position):'')}" ></div>
+  </div>
+  <div class="f-row s3">
+    <div class="f-grp"><label class="f-lbl">Делегация</label>
+      <select class="f-sel2" name="delegationId">
+        <option value="">— —</option>
+        ${dels.map(dl=>`<option value="${dl.id}" ${g?.delegationId===dl.id?'selected':''}>${e(U.tx(dl.name))}</option>`).join('')}
+      </select>
+    </div>
+    <div class="f-grp"><label class="f-lbl">Страна</label>
+      <select class="f-sel2" name="country">
+        ${C.COUNTRIES.map(cc=>`<option value="${cc}" ${g?.country===cc?'selected':''}>${flag(cc)} ${cc}</option>`).join('')}
+      </select>
+    </div>
+    <div class="f-grp"><label class="f-lbl">VIP-уровень</label>
+      <select class="f-sel2" name="vip">
+        <option value="none" ${(!g||g.vip==='none')?'selected':''}>Обычный</option>
+        <option value="vip" ${g?.vip==='vip'?'selected':''}>VIP</option>
+        <option value="protocol" ${g?.vip==='protocol'?'selected':''}>Протокол</option>
+      </select>
+    </div>
+  </div>
+  <div class="f-row">
+    <div class="f-grp"><label class="f-lbl">Телефон</label><input class="f-inp" type="tel" name="phone" value="${e(g?.phone||'')}"></div>
+    <div class="f-grp"><label class="f-lbl">Email</label><input class="f-inp" type="email" name="email" value="${e(g?.email||'')}"></div>
+  </div>
+  ${EV.Perm.can('passport.edit')?`<div class="f-row s1"><div class="f-grp"><label class="f-lbl">Паспорт</label><input class="f-inp mono" name="passport" value="${e(g?.passport||'')}"></div></div>`:''}
+  <div class="f-row">
+    <div class="f-grp"><label class="f-lbl">Дата прибытия</label><input class="f-inp" type="datetime-local" name="arrivalAt" value="${g?.arrivalAt||''}"></div>
+    <div class="f-grp"><label class="f-lbl">Рейс прибытия</label><input class="f-inp" name="arrivalFlight" value="${e(g?.arrivalFlight||'')}"></div>
+  </div>
+  <div class="f-row">
+    <div class="f-grp"><label class="f-lbl">Дата отлёта</label><input class="f-inp" type="datetime-local" name="departureAt" value="${g?.departureAt||''}"></div>
+    <div class="f-grp"><label class="f-lbl">Рейс отлёта</label><input class="f-inp" name="departureFlight" value="${e(g?.departureFlight||'')}"></div>
+  </div>
+  <div class="f-row s1"><div class="f-grp"><label class="f-lbl">Диеты</label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:3px">
+      ${C.DIETS.map(d=>`<label style="display:flex;align-items:center;gap:3px;font-size:12px;cursor:pointer">
+        <input type="checkbox" name="diets" value="${d}" ${(g?.diets||[]).includes(d)?'checked':''}> ${dietLbl(d)}</label>`).join('')}
+    </div>
+  </div></div>
+  <div class="f-row s1"><div class="f-grp"><label class="f-lbl">Требования</label><textarea class="f-ta" name="requirements">${e(g?.requirements?U.tx(g.requirements):'')}</textarea></div></div>
+  </form>`,
+  footer:`<button class="btn btn-secondary" onclick="Modal.close()">Отмена</button><button class="btn btn-primary" id="g-save-btn">${isNew?'Добавить':'Сохранить'}</button>`
+  });
+  document.getElementById('g-save-btn').addEventListener('click',async()=>{
+    const form=document.getElementById('g-form');
+    if(!form.checkValidity()){form.reportValidity();return;}
+    const fd=new FormData(form);
+    const diets=[...form.querySelectorAll('[name=diets]:checked')].map(i=>i.value);
+    const rec={fullName:fd.get('fullName'),position:{ru:fd.get('position'),en:fd.get('position')},
+      delegationId:fd.get('delegationId')||null,country:fd.get('country'),vip:fd.get('vip'),
+      phone:fd.get('phone'),email:fd.get('email'),arrivalAt:fd.get('arrivalAt'),arrivalFlight:fd.get('arrivalFlight'),
+      departureAt:fd.get('departureAt'),departureFlight:fd.get('departureFlight'),diets,
+      requirements:{ru:fd.get('requirements'),en:fd.get('requirements')}};
+    if(EV.Perm.can('passport.edit')) rec.passport=fd.get('passport')||'';
+    if(isNew){rec.eventId=S.evId||'';rec.status='expected';}
+    try{
+      if(isNew){await EV.Data.create('guests',rec);Toast.ok('Гость добавлен');}
+      else{await EV.Data.update('guests',gid,rec);Toast.ok('Сохранено');}
+      Modal.close();go('guests');
+    }catch(ex){Toast.err(ex.message||'Ошибка');}
+  });
+}
+
+/* ── BOOKING ─────────────────────────────────────────────── */
+MOD.booking={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const [bks,guests]=await Promise.all([EV.Data.list('bookings',f),EV.Data.list('guests')]);
+    const gm={};guests.forEach(g=>gm[g.id]=g);
+    return`<div class="sec-head"><span class="sec-title">Бронирование отелей</span>
+      <div class="sec-acts">${EV.Perm.canEdit('booking')?`<button class="btn btn-primary btn-sm" id="add-bk-btn">+ Бронь</button>`:''}</div></div>
+    <div class="toolbar">
+      <input class="search-inp" id="bk-q" placeholder="Поиск по гостю, отелю…">
+      <select class="f-sel" id="bk-st"><option value="">Все статусы</option>
+        ${C.STATUS.booking.map(s=>`<option value="${s}">${t('bk.status.'+s)||s}</option>`).join('')}
+      </select>
+    </div>
+    <div class="tbl-wrap" id="bk-tbl-wrap">${renderBkTbl(bks,gm)}</div>`;
+  },
+  init(){
+    document.getElementById('add-bk-btn')?.addEventListener('click',()=>bkForm());
+    document.getElementById('bk-q')?.addEventListener('input',U.debounce(filterBks,250));
+    document.getElementById('bk-st')?.addEventListener('change',filterBks);
+    bindBkBtns();
+  }
+};
+function renderBkTbl(bks,gm){
+  if(!bks.length) return`<div class="empty-s"><div class="empty-ico">🏨</div><div class="empty-txt">Нет броней</div></div>`;
+  return`<table class="ev-tbl"><thead><tr><th>Гость</th><th>Отель</th><th>Тип</th><th>Номер</th><th>Заезд</th><th>Выезд</th><th>Нч</th><th>Питание</th><th>Статус</th><th></th></tr></thead>
+  <tbody>${bks.map(bk=>{const g=gm[bk.guestId]||{},hotel=EV.Hotels.get(bk.hotelId);
+  return`<tr>
+    <td><div style="display:flex;align-items:center;gap:7px">${av(g.fullName||'?')}<div><div style="font-weight:600">${e(g.fullName||bk.guestId)}</div><div class="xs mu">${e(g.country||'')}</div></div></div></td>
+    <td><div style="font-weight:600">${e(hotel?.name||bk.hotelId)}</div><div class="xs mu">${e(hotel?.region||'')}</div></td>
+    <td>${bd(roomLbl(bk.roomType),'bg-blue')}</td>
+    <td class="mono xs">${e(bk.roomNo||'—')}</td>
+    <td class="sm">${U.fmtDate(bk.checkIn)}</td>
+    <td class="sm">${U.fmtDate(bk.checkOut)}</td>
+    <td class="sm">${U.nights(bk.checkIn,bk.checkOut)}</td>
+    <td>${bd(mealLbl(bk.meal),'bg-teal')}</td>
+    <td>${stBd('booking',bk.status)}</td>
+    <td><div class="td-acts">
+      <button class="btn btn-xs btn-secondary bkv-btn" data-bkid="${bk.id}">👁</button>
+      ${EV.Perm.canEdit('booking')?`<button class="btn btn-xs btn-secondary bke-btn" data-bkid="${bk.id}">✏️</button>`:''}
+    </div></td>
+  </tr>`;}).join('')}</tbody></table>`;
+}
+async function filterBks(){
+  const q=(document.getElementById('bk-q')?.value||'').toLowerCase();
+  const st=document.getElementById('bk-st')?.value||'';
+  const f=S.evId?{eventId:S.evId}:{};
+  let [bks,guests]=await Promise.all([EV.Data.list('bookings',f),EV.Data.list('guests')]);
+  const gm={};guests.forEach(g=>gm[g.id]=g);
+  if(q) bks=bks.filter(b=>{const g=gm[b.guestId]||{},h=EV.Hotels.get(b.hotelId);return(g.fullName||'').toLowerCase().includes(q)||(h?.name||'').toLowerCase().includes(q);});
+  if(st) bks=bks.filter(b=>b.status===st);
+  document.getElementById('bk-tbl-wrap').innerHTML=renderBkTbl(bks,gm);
+  bindBkBtns();
+}
+function bindBkBtns(){
+  document.querySelectorAll('.bkv-btn').forEach(b=>b.addEventListener('click',()=>showBkDetail(b.dataset.bkid)));
+  document.querySelectorAll('.bke-btn').forEach(b=>b.addEventListener('click',()=>bkEditStatus(b.dataset.bkid)));
+}
+async function showBkDetail(bkId){
+  const bk=await EV.Data.get('bookings',bkId);if(!bk) return;
+  const g=EV.Data.__db().tables.guests.find(x=>x.id===bk.guestId);
+  const hotel=EV.Hotels.get(bk.hotelId);
+  Modal.open({title:'Бронь — '+(g?.fullName||bk.guestId),
+    body:`<div class="dl-grid">
+      <div><div class="dl-lbl">Гость</div><div class="dl-val">${e(g?.fullName||bk.guestId)}</div></div>
+      <div><div class="dl-lbl">Отель</div><div class="dl-val">${e(hotel?.name||bk.hotelId)}</div></div>
+      <div><div class="dl-lbl">Тип номера</div><div class="dl-val">${roomLbl(bk.roomType)}</div></div>
+      <div><div class="dl-lbl">Номер</div><div class="dl-val mono">${e(bk.roomNo||'—')}</div></div>
+      <div><div class="dl-lbl">Заезд</div><div class="dl-val">${U.fmtDTFull(bk.checkIn)}</div></div>
+      <div><div class="dl-lbl">Выезд</div><div class="dl-val">${U.fmtDTFull(bk.checkOut)}</div></div>
+      <div><div class="dl-lbl">Ночей</div><div class="dl-val">${U.nights(bk.checkIn,bk.checkOut)}</div></div>
+      <div><div class="dl-lbl">Питание</div><div class="dl-val">${mealLbl(bk.meal)}</div></div>
+      <div><div class="dl-lbl">Статус</div><div class="dl-val">${stBd('booking',bk.status)}</div></div>
+    </div>`,
+    footer:`${EV.Perm.can('booking.confirm')&&bk.status==='sent'?`<button class="btn btn-success btn-sm" id="bk-confirm-btn">✓ Подтвердить</button>`:''} ${EV.Perm.can('booking.cancel')&&bk.status!=='cancelled'?`<button class="btn btn-danger btn-sm" id="bk-cancel-btn">✗ Отменить</button>`:''} <button class="btn btn-secondary btn-sm" onclick="Modal.close()">Закрыть</button>`
+  });
+  document.getElementById('bk-confirm-btn')?.addEventListener('click',async()=>{
+    await EV.Data.update('bookings',bkId,{status:'confirmed',confirmedAt:U.nowISO()});Toast.ok('Подтверждено');Modal.close();go('booking');
+  });
+  document.getElementById('bk-cancel-btn')?.addEventListener('click',async()=>{
+    await EV.Data.update('bookings',bkId,{status:'cancelled'});Toast.ok('Отменено');Modal.close();go('booking');
+  });
+}
+async function bkEditStatus(bkId){
+  const bk=await EV.Data.get('bookings',bkId);if(!bk) return;
+  const hotel=EV.Hotels.get(bk.hotelId);
+  const rooms=hotel?EV.Hotels.rooms(hotel):[];
+  Modal.open({title:'Изменить бронь',body:`<form id="bk-st-form">
+  <div class="f-row">
+    <div class="f-grp"><label class="f-lbl">Статус</label>
+      <select class="f-sel2" name="status">${C.STATUS.booking.map(s=>`<option value="${s}" ${bk.status===s?'selected':''}>${t('bk.status.'+s)||s}</option>`).join('')}</select>
+    </div>
+    <div class="f-grp"><label class="f-lbl">Номер комнаты</label>
+      <select class="f-sel2" name="roomNo">
+        <option value="">— не назначен —</option>
+        ${rooms.filter(r=>r.type===bk.roomType).map(r=>`<option value="${r.no}" ${bk.roomNo===r.no?'selected':''}>${r.no} (эт.${r.floor})</option>`).join('')}
+      </select>
+    </div>
+  </div>
+  <div class="f-row">
+    <div class="f-grp"><label class="f-lbl">Тип питания</label>
+      <select class="f-sel2" name="meal">${C.MEAL_PLANS.map(m=>`<option value="${m}" ${bk.meal===m?'selected':''}>${mealLbl(m)}</option>`).join('')}</select>
+    </div>
+  </div></form>`,
+  footer:`<button class="btn btn-secondary" onclick="Modal.close()">Отмена</button><button class="btn btn-primary" id="bk-st-save">Сохранить</button>`});
+  document.getElementById('bk-st-save').addEventListener('click',async()=>{
+    const fd=new FormData(document.getElementById('bk-st-form'));
+    const p={status:fd.get('status'),roomNo:fd.get('roomNo'),meal:fd.get('meal')};
+    if(p.status==='confirmed'&&!bk.confirmedAt) p.confirmedAt=U.nowISO();
+    try{await EV.Data.update('bookings',bkId,p);Toast.ok('Сохранено');Modal.close();go('booking');}
+    catch(ex){Toast.err(ex.message);}
+  });
+}
+function bkForm(){
+  const guests=EV.Data.__db().tables.guests.filter(g=>!S.evId||g.eventId===S.evId);
+  const hotels=EV.Hotels.all();
+  Modal.open({title:'Новая бронь',body:`<form id="new-bk-form">
+  <div class="f-row">
+    <div class="f-grp"><label class="f-lbl">Гость <span class="req">*</span></label>
+      <select class="f-sel2" name="guestId" required><option value="">— выберите —</option>
+        ${guests.map(g=>`<option value="${g.id}">${e(g.fullName)}</option>`).join('')}
+      </select>
+    </div>
+    <div class="f-grp"><label class="f-lbl">Отель <span class="req">*</span></label>
+      <select class="f-sel2" name="hotelId" required><option value="">— выберите —</option>
+        ${hotels.map(h=>`<option value="${h.id}">${e(h.name)} (${h.stars}★)</option>`).join('')}
+      </select>
+    </div>
+  </div>
+  <div class="f-row s3">
+    <div class="f-grp"><label class="f-lbl">Тип номера</label>
+      <select class="f-sel2" name="roomType">${C.ROOM_TYPES.map(rt=>`<option value="${rt}">${roomLbl(rt)}</option>`).join('')}</select>
+    </div>
+    <div class="f-grp"><label class="f-lbl">Заезд <span class="req">*</span></label><input class="f-inp" type="datetime-local" name="checkIn" required></div>
+    <div class="f-grp"><label class="f-lbl">Выезд <span class="req">*</span></label><input class="f-inp" type="datetime-local" name="checkOut" required></div>
+  </div>
+  <div class="f-row s1"><div class="f-grp"><label class="f-lbl">Питание</label>
+    <select class="f-sel2" name="meal">${C.MEAL_PLANS.map(m=>`<option value="${m}">${mealLbl(m)}</option>`).join('')}</select>
+  </div></div></form>`,
+  footer:`<button class="btn btn-secondary" onclick="Modal.close()">Отмена</button><button class="btn btn-primary" id="new-bk-save">Создать</button>`});
+  document.getElementById('new-bk-save').addEventListener('click',async()=>{
+    const form=document.getElementById('new-bk-form');
+    if(!form.checkValidity()){form.reportValidity();return;}
+    const fd=new FormData(form);
+    const g=EV.Data.__db().tables.guests.find(x=>x.id===fd.get('guestId'));
+    const h=EV.Hotels.get(fd.get('hotelId'));
+    const rec={eventId:g?.eventId||S.evId||'',guestId:fd.get('guestId'),hotelId:fd.get('hotelId'),
+      roomType:fd.get('roomType'),roomNo:'',meal:fd.get('meal'),
+      checkIn:fd.get('checkIn'),checkOut:fd.get('checkOut'),
+      status:'draft',contactName:h?.contactName||'',contactPhone:h?.phone||''};
+    try{await EV.Data.create('bookings',rec);Toast.ok('Бронь создана');Modal.close();go('booking');}
+    catch(ex){Toast.err(ex.message);}
+  });
+}
+
+/* ── MEETING ─────────────────────────────────────────────── */
+MOD.meeting={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const [meets,guests,vehs]=await Promise.all([EV.Data.list('meetings',f),EV.Data.list('guests'),EV.Data.list('vehicles')]);
+    const gm={};guests.forEach(g=>gm[g.id]=g);
+    const vm={};vehs.forEach(v=>vm[v.id]=v);
+    const sorted=meets.slice().sort((a,b)=>(a.at||'').localeCompare(b.at||''));
+    return`<div class="sec-head"><span class="sec-title">Встречи делегаций</span></div>
+    <div class="tbl-wrap">
+    ${sorted.length?`<table class="ev-tbl"><thead><tr><th>Гость</th><th>Место</th><th>Рейс</th><th>Время</th><th>Транспорт</th><th>Статус</th>${EV.Perm.canEdit('meeting')?'<th></th>':''}</tr></thead>
+    <tbody>${sorted.map(m=>{const g=gm[m.guestId]||{},v=m.vehicleId?vm[m.vehicleId]:null;
+    const place=EV.Places.resolve(m.placeRef)||{name:m.placeText||'—'};
+    return`<tr>
+      <td><div style="display:flex;align-items:center;gap:7px">${av(g.fullName||'?')}<div><div style="font-weight:600">${e(g.fullName||m.guestId)}</div><div class="xs mu">${flag(g.country)}</div></div></div></td>
+      <td class="sm">${e(place.name)}</td>
+      <td class="mono xs">${e(m.flightNo||'—')}</td>
+      <td><div style="font-weight:600">${U.fmtTime(m.at)}</div><div class="xs mu">${U.fmtDate(m.at)}</div></td>
+      <td>${v?`<div class="sm">${e(v.make)}</div><div class="xs mu">${e(v.plate)}</div>`:bd('Не назначен','bg-amber')}</td>
+      <td>${stBd('meeting',m.status)}</td>
+      ${EV.Perm.canEdit('meeting')?`<td><select class="f-sel" style="padding:3px 6px;font-size:11px" onchange="upMt('${m.id}',this.value)">
+        ${C.STATUS.meeting.map(s=>`<option value="${s}" ${m.status===s?'selected':''}>${t('mt.status.'+s)||s}</option>`).join('')}
+      </select></td>`:''}
+    </tr>`;}).join('')}</tbody></table>`
+    :'<div class="empty-s"><div class="empty-ico">🛬</div><div class="empty-txt">Нет встреч</div></div>'}</div>`;
+  },init(){}
+};
+window.upMt=async function(id,st){try{await EV.Data.update('meetings',id,{status:st});Toast.ok('Обновлено');}catch(ex){Toast.err(ex.message);}};
+
+/* ── TRANSPORT ───────────────────────────────────────────── */
+MOD.transport={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const [transfers,vehs,drivers]=await Promise.all([EV.Data.list('transfers',f),EV.Data.list('vehicles'),EV.Data.list('drivers')]);
+    const vm={};vehs.forEach(v=>vm[v.id]=v);
+    const dm={};drivers.forEach(d=>dm[d.id]=d);
+    const sorted=transfers.slice().sort((a,b)=>(a.at||'').localeCompare(b.at||''));
+    return`<div class="sec-head"><span class="sec-title">Транспорт</span></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px;margin-bottom:18px">
+      ${vehs.map(v=>{const d=dm[v.driverId]||{};return`<div class="tr-card">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div><div style="font-weight:700;font-size:13px">${e(v.make)}</div><div class="mono xs mu">${e(v.plate)}</div></div>
+          ${bd(vehLbl(v.category),'bg-blue')}
+        </div>
+        <div class="xs mu" style="margin-top:5px">👤 ${e(d.fullName||'—')} · 👥 ${v.capacity}</div>
+      </div>`;}).join('')}
+    </div>
+    <div class="sec-head"><span class="sec-title sm mu">Маршруты</span></div>
+    <div class="tbl-wrap">
+    ${sorted.length?`<table class="ev-tbl"><thead><tr><th>Вид</th><th>Откуда</th><th>Куда</th><th>Время</th><th>Транспорт</th><th>Гостей</th><th>Статус</th>${EV.Perm.canEdit('transport')?'<th></th>':''}</tr></thead>
+    <tbody>${sorted.map(tr=>{const v=tr.vehicleId?vm[tr.vehicleId]:null;
+    const from=EV.Places.resolve(tr.fromRef)||{name:tr.fromText||'—'};
+    const to=EV.Places.resolve(tr.toRef)||{name:tr.toText||'—'};
+    return`<tr>
+      <td>${bd(t('tr.kind.'+tr.kind)||tr.kind,tr.kind==='arrival'?'bg-teal':tr.kind==='departure'?'bg-amber':'bg-blue')}</td>
+      <td class="sm">${e(from.name)}</td><td class="sm">${e(to.name)}</td>
+      <td><div style="font-weight:600">${U.fmtTime(tr.at)}</div><div class="xs mu">${U.fmtDate(tr.at)}</div></td>
+      <td>${v?`<div class="sm">${e(v.make)}</div><div class="xs mu">${e(v.plate)}</div>`:bd('—','bg-gray')}</td>
+      <td class="sm">${(tr.guestIds||[]).length}</td>
+      <td>${stBd('transfer',tr.status)}</td>
+      ${EV.Perm.canEdit('transport')?`<td><select class="f-sel" style="padding:3px 6px;font-size:11px" onchange="upTr('${tr.id}',this.value)">
+        ${C.STATUS.transfer.map(s=>`<option value="${s}" ${tr.status===s?'selected':''}>${t('tr.status.'+s)||s}</option>`).join('')}
+      </select></td>`:''}
+    </tr>`;}).join('')}</tbody></table>`
+    :'<div class="empty-s"><div class="empty-ico">🚐</div><div class="empty-txt">Нет маршрутов</div></div>'}</div>`;
+  },init(){}
+};
+window.upTr=async function(id,st){try{await EV.Data.update('transfers',id,{status:st});Toast.ok('Обновлено');}catch(ex){Toast.err(ex.message);}};
+
+/* ── TASKS ───────────────────────────────────────────────── */
+MOD.tasks={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const [tasks,users]=await Promise.all([EV.Data.list('tasks',f),EV.Data.list('users')]);
+    const um={};users.forEach(u=>um[u.id]=u);
+    const now=new Date();
+    const groups={new:[],in_progress:[],done:[],overdue:[]};
+    tasks.forEach(tk=>{const ov=tk.status!=='done'&&tk.due&&U.parse(tk.due)<now;groups[ov?'overdue':tk.status]?.push(tk);});
+    const rg=(label,arr,col)=>{
+      if(!arr.length) return '';
+      return`<div style="margin-bottom:18px">
+        <div style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--${col});margin-bottom:7px">${label} (${arr.length})</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+        ${arr.map(tk=>{const u=um[tk.assigneeId]||{};const title=tk.title||t(tk.titleKey||'')||tk.id;
+        return`<div style="display:flex;align-items:center;gap:9px;padding:9px 13px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--${col});border-radius:var(--r-sm)">
+          <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">${e(title)}</div>
+          <div class="xs mu">${e(u.name||'')}${tk.due?' · '+U.fmtDTFull(tk.due):''}</div></div>
+          ${prioBd(tk.priority)}
+          ${EV.Perm.canEdit('tasks')?`<select class="f-sel" style="padding:3px 6px;font-size:11px;width:115px" onchange="upTk('${tk.id}',this.value)">
+            ${C.STATUS.task.map(s=>`<option value="${s}" ${tk.status===s?'selected':''}>${t('tk.status.'+s)||s}</option>`).join('')}
+          </select>`:stBd('task',tk.status)}
+        </div>`;}).join('')}
+        </div></div>`;
+    };
+    return`<div class="sec-head"><span class="sec-title">Задачи</span><div class="sec-acts"><span class="xs mu">${tasks.filter(t=>t.status!=='done').length} открытых</span></div></div>
+    ${rg('Просрочено',groups.overdue,'red')||rg('Новые',groups.new,'accent')+rg('В работе',groups.in_progress,'amber')+rg('Выполнено',groups.done,'muted2')}
+    ${!tasks.length?'<div class="empty-s"><div class="empty-ico">✅</div><div class="empty-txt">Нет задач</div></div>':''}`;
+  },init(){}
+};
+window.upTk=async function(id,st){try{await EV.Data.update('tasks',id,{status:st});Toast.ok('Обновлено');go('tasks');}catch(ex){Toast.err(ex.message);}};
+
+/* ── MEALS ───────────────────────────────────────────────── */
+MOD.meals={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const meals=await EV.Data.list('meals',f);
+    const sorted=meals.slice().sort((a,b)=>(a.date+a.time||'').localeCompare(b.date+b.time||''));
+    return`<div class="sec-head"><span class="sec-title">Питание</span></div>
+    <div class="tbl-wrap">${sorted.length?`<table class="ev-tbl"><thead><tr><th>Вид</th><th>Дата</th><th>Время</th><th>Место</th><th>Гостей</th><th>Статус</th>${EV.Perm.canEdit('meals')?'<th></th>':''}</tr></thead>
+    <tbody>${sorted.map(m=>`<tr>
+      <td>${bd(t('mealKind.'+m.kind)||m.kind,'bg-teal')}</td>
+      <td class="sm">${U.fmtDate(m.date)}</td>
+      <td style="font-weight:600">${e(m.time||'—')}</td>
+      <td class="sm">${e(m.place||'—')}</td>
+      <td class="sm">${m.guestsCount||0}</td>
+      <td>${stBd('meal',m.status)}</td>
+      ${EV.Perm.canEdit('meals')?`<td><select class="f-sel" style="padding:3px 6px;font-size:11px" onchange="upMl('${m.id}',this.value)">
+        ${C.STATUS.meal.map(s=>`<option value="${s}" ${m.status===s?'selected':''}>${t('ml.status.'+s)||s}</option>`).join('')}
+      </select></td>`:''}
+    </tr>`).join('')}</tbody></table>`
+    :'<div class="empty-s"><div class="empty-ico">🍽</div><div class="empty-txt">Нет данных</div></div>'}</div>`;
+  },init(){}
+};
+window.upMl=async function(id,st){try{await EV.Data.update('meals',id,{status:st});Toast.ok('Обновлено');go('meals');}catch(ex){Toast.err(ex.message);}};
+
+/* ── DEPARTURE ───────────────────────────────────────────── */
+MOD.departure={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const [deps,guests,vehs]=await Promise.all([EV.Data.list('departures',f),EV.Data.list('guests'),EV.Data.list('vehicles')]);
+    const gm={};guests.forEach(g=>gm[g.id]=g);
+    const vm={};vehs.forEach(v=>vm[v.id]=v);
+    const sorted=deps.slice().sort((a,b)=>(a.at||'').localeCompare(b.at||''));
+    return`<div class="sec-head"><span class="sec-title">Проводы</span></div>
+    <div class="tbl-wrap">${sorted.length?`<table class="ev-tbl"><thead><tr><th>Гость</th><th>Рейс</th><th>Вылет</th><th>Транспорт</th><th>Статус</th>${EV.Perm.canEdit('departure')?'<th></th>':''}</tr></thead>
+    <tbody>${sorted.map(d=>{const g=gm[d.guestId]||{},v=d.vehicleId?vm[d.vehicleId]:null;
+    return`<tr>
+      <td><div style="display:flex;align-items:center;gap:7px">${av(g.fullName||'?')}<div><div style="font-weight:600">${e(g.fullName||d.guestId)}</div><div class="xs mu">${flag(g.country)}</div></div></div></td>
+      <td class="mono xs">${e(d.flightNo||'—')}</td>
+      <td><div style="font-weight:600">${U.fmtTime(d.at)}</div><div class="xs mu">${U.fmtDate(d.at)}</div></td>
+      <td>${v?`<div class="sm">${e(v.make)}</div><div class="xs mu">${e(v.plate)}</div>`:bd('Не назначен','bg-amber')}</td>
+      <td>${stBd('departure',d.status)}</td>
+      ${EV.Perm.canEdit('departure')?`<td><select class="f-sel" style="padding:3px 6px;font-size:11px" onchange="upDp('${d.id}',this.value)">
+        ${C.STATUS.departure.map(s=>`<option value="${s}" ${d.status===s?'selected':''}>${t('dp.status.'+s)||s}</option>`).join('')}
+      </select></td>`:''}
+    </tr>`;}).join('')}</tbody></table>`
+    :'<div class="empty-s"><div class="empty-ico">🛫</div><div class="empty-txt">Нет данных</div></div>'}</div>`;
+  },init(){}
+};
+window.upDp=async function(id,st){const p={status:st};if(st==='departed') p.departedAt=U.nowISO();
+  try{await EV.Data.update('departures',id,p);Toast.ok('Обновлено');go('departure');}catch(ex){Toast.err(ex.message);}};
+
+/* ── VIP ─────────────────────────────────────────────────── */
+MOD.vip={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const [plans,dels]=await Promise.all([EV.Data.list('vipPlans',f),EV.Data.list('delegations')]);
+    const dm={};dels.forEach(d=>dm[d.id]=d);
+    return`<div class="sec-head"><span class="sec-title">VIP-протокол</span></div>
+    <div class="ev-cards">${plans.map(vp=>{const dl=dm[vp.subjectId];
+    return`<div class="ev-card">
+      <div class="card-hd"><div class="card-ico" style="background:rgba(245,158,11,.15)">⭐</div>
+        <div style="flex:1"><div class="card-ttl">${dl?e(U.tx(dl.name)):e(vp.subjectId)}</div>
+        <div>${bd(vp.level==='vip'?'VIP':'Протокол',vp.level==='vip'?'bg-gold':'bg-purple')}</div></div>
+      </div>
+      <div class="sm" style="margin-top:5px;line-height:1.5">${e(U.tx(vp.plan))}</div>
+    </div>`;}).join('')||'<div class="empty-s"><div class="empty-ico">⭐</div><div class="empty-txt">Нет VIP-планов</div></div>'}
+    </div>`;
+  },init(){}
+};
+
+/* ── ACCOMMODATION ───────────────────────────────────────── */
+MOD.accommodation={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const [bks,guests]=await Promise.all([EV.Data.list('bookings',f),EV.Data.list('guests')]);
+    const gm={};guests.forEach(g=>gm[g.id]=g);
+    const confirmed=bks.filter(b=>b.status==='confirmed');
+    const groups=U.groupBy(confirmed,b=>b.hotelId);
+    return`<div class="sec-head"><span class="sec-title">Размещение — подтверждённые брони</span></div>
+    ${Object.entries(groups).map(([hid,bs])=>{
+      const hotel=EV.Hotels.get(hid);
+      return`<div class="sec-box" style="margin-bottom:12px">
+        <div class="sec-box-hd"><span>🏨</span><span class="sec-title">${e(hotel?.name||hid)}</span><span class="xs mu" style="margin-left:auto">${bs.length} номеров</span></div>
+        <div style="overflow-x:auto"><table class="ev-tbl" style="margin:0">
+          <thead><tr><th>Гость</th><th>Тип</th><th>Номер</th><th>Заезд</th><th>Выезд</th><th>Нч</th><th>Питание</th></tr></thead>
+          <tbody>${bs.map(bk=>{const g=gm[bk.guestId]||{};
+          return`<tr>
+            <td><div style="display:flex;align-items:center;gap:7px">${av(g.fullName||'?')}<div style="font-weight:600">${e(g.fullName||bk.guestId)}</div></div></td>
+            <td>${bd(roomLbl(bk.roomType),'bg-blue')}</td>
+            <td class="mono xs">${e(bk.roomNo||'—')}</td>
+            <td class="sm">${U.fmtDate(bk.checkIn)}</td>
+            <td class="sm">${U.fmtDate(bk.checkOut)}</td>
+            <td class="sm">${U.nights(bk.checkIn,bk.checkOut)}</td>
+            <td>${bd(mealLbl(bk.meal),'bg-teal')}</td>
+          </tr>`;}).join('')}</tbody>
+        </table></div></div>`;
+    }).join('')||'<div class="empty-s"><div class="empty-ico">🛏</div><div class="empty-txt">Нет подтверждённых броней</div></div>'}`;
+  },init(){}
+};
+
+/* ── ESCORT ──────────────────────────────────────────────── */
+MOD.escort={
+  async render(){
+    const [escorts,dels]=await Promise.all([EV.Data.list('escorts'),EV.Data.list('delegations')]);
+    return`<div class="sec-head"><span class="sec-title">Сопровождающие</span></div>
+    <div class="ev-cards">${escorts.map(es=>{const myDels=dels.filter(d=>d.escortId===es.id);
+    return`<div class="ev-card">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:9px">
+        ${av(es.fullName,38)}
+        <div><div style="font-weight:700">${e(es.fullName)}</div><div class="xs mu">${e(es.position||'')}</div></div>
+      </div>
+      ${es.phone?`<div class="xs"><a href="tel:${es.phone}" style="color:var(--accent2)">${e(es.phone)}</a></div>`:''}
+      <div class="tag-list" style="margin-top:5px">${(es.languages||[]).map(l=>`<span class="tag">${l.toUpperCase()}</span>`).join('')}</div>
+      ${myDels.length?`<div class="xs mu" style="margin-top:7px">Делегаций: ${myDels.map(d=>e(U.tx(d.name))).join(', ')}</div>`:''}
+    </div>`;}).join('')||'<div class="empty-s"><div class="empty-ico">🤝</div><div class="empty-txt">Нет сопровождающих</div></div>'}</div>`;
+  },init(){}
+};
+
+/* ── ROUTES ──────────────────────────────────────────────── */
+MOD.routes={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const routes=await EV.Data.list('routes',f);
+    return`<div class="sec-head"><span class="sec-title">Маршруты</span></div>
+    <div class="ev-cards">${routes.map(r=>`<div class="ev-card">
+      <div class="card-hd"><div class="card-ico" style="background:rgba(20,184,166,.15)">🧭</div>
+        <div style="flex:1"><div class="card-ttl">${e(U.tx(r.name))}</div><div class="card-sub">${bd(r.type||'—','bg-blue')}</div></div>
+      </div>
+      <div class="card-meta">
+        <span class="card-stat">📅 ${U.fmtDate(r.date)}</span>
+        <span class="card-stat">⏰ ${e(r.startTime||'')}–${e(r.endTime||'')}</span>
+        <span class="card-stat">👥 ${r.participants}</span>
+      </div>
+      ${r.guide?`<div class="xs mu" style="margin-top:5px">👤 ${e(r.guide)}</div>`:''}
+    </div>`).join('')||'<div class="empty-s"><div class="empty-ico">🧭</div><div class="empty-txt">Нет маршрутов</div></div>'}</div>`;
+  },init(){}
+};
+
+/* ── EXCURSIONS ──────────────────────────────────────────── */
+MOD.excursions={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const excs=await EV.Data.list('excursions',f);
+    return`<div class="sec-head"><span class="sec-title">Экскурсии</span></div>
+    <div class="tbl-wrap">${excs.length?`<table class="ev-tbl"><thead><tr><th>Название</th><th>Дата</th><th>Сложность</th><th>Участников</th><th>Гид</th><th>Статус</th></tr></thead>
+    <tbody>${excs.map(x=>`<tr>
+      <td style="font-weight:600">${e(U.tx(x.name))}</td>
+      <td class="sm">${U.fmtDate(x.date)} ${e(x.startTime||'')}</td>
+      <td>${bd(t('diff.'+x.difficulty)||x.difficulty,x.difficulty==='hard'?'bg-red':x.difficulty==='medium'?'bg-amber':'bg-green')}</td>
+      <td class="sm">${x.participants||0}</td>
+      <td class="sm">${e(x.guide||'—')}</td>
+      <td>${stBd('excursion',x.status)}</td>
+    </tr>`).join('')}</tbody></table>`
+    :'<div class="empty-s"><div class="empty-ico">⛰</div><div class="empty-txt">Нет экскурсий</div></div>'}</div>`;
+  },init(){}
+};
+
+/* ── MY (FIELD WORKER) ───────────────────────────────────── */
+MOD.my={
+  async render(){
+    const u=S.user;
+    const [tasks,meets,deps]=await Promise.all([EV.Data.list('tasks'),EV.Data.list('meetings'),EV.Data.list('departures')]);
+    const today=U.toDay(new Date());
+    const myTasks=tasks.filter(t=>t.assigneeId===u.id&&t.status!=='done');
+    const todayMeet=meets.filter(m=>m.at&&U.day(m.at)===today);
+    const todayDep=deps.filter(d=>d.at&&U.day(d.at)===today);
+    return`<div style="margin-bottom:18px">
+      <div style="font-size:20px;font-weight:800">${e(u.name)}</div>
+      <div class="mu">${e(u.position||'')}</div>
+    </div>
+    ${myTasks.length?`<div class="sec-head"><span class="sec-title">⚡ Мои задачи (${myTasks.length})</span></div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px">
+    ${myTasks.map(tk=>{const title=tk.title||t(tk.titleKey||'')||tk.id;
+    return`<div style="display:flex;align-items:center;gap:9px;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:var(--r-md)">
+      <div style="flex:1"><div style="font-weight:600">${e(title)}</div>${tk.due?`<div class="xs mu">${U.fmtDTFull(tk.due)}</div>`:''}</div>
+      ${prioBd(tk.priority)}
+      <select class="f-sel" style="padding:4px 7px;font-size:11px" onchange="upTk('${tk.id}',this.value)">
+        ${C.STATUS.task.map(s=>`<option value="${s}" ${tk.status===s?'selected':''}>${t('tk.status.'+s)||s}</option>`).join('')}
+      </select>
+    </div>`;}).join('')}</div>`:''}
+    ${todayMeet.length?`<div class="sec-head"><span class="sec-title">🛬 Встречи сегодня</span></div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px">
+    ${todayMeet.map(m=>{const g=EV.Data.__db().tables.guests.find(x=>x.id===m.guestId)||{};
+    const place=EV.Places.resolve(m.placeRef)||{name:m.placeText||'—'};
+    return`<div style="padding:10px 14px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:var(--r-md)">
+      <div style="font-weight:700">${U.fmtTime(m.at)} — ${e(g.fullName||m.guestId)}</div>
+      <div class="sm mu">${e(m.flightNo||'')} · ${e(place.name)}</div>
+      <div style="margin-top:6px">${stBd('meeting',m.status)}</div>
+    </div>`;}).join('')}</div>`:''}
+    ${todayDep.length?`<div class="sec-head"><span class="sec-title">🛫 Проводы сегодня</span></div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+    ${todayDep.map(d=>{const g=EV.Data.__db().tables.guests.find(x=>x.id===d.guestId)||{};
+    return`<div style="padding:10px 14px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--r-md)">
+      <div style="font-weight:700">${U.fmtTime(d.at)} — ${e(g.fullName||d.guestId)}</div>
+      <div class="sm mu">${e(d.flightNo||'')}</div>
+      <div style="margin-top:6px">${stBd('departure',d.status)}</div>
+    </div>`;}).join('')}</div>`:''}
+    ${!myTasks.length&&!todayMeet.length&&!todayDep.length?`<div class="empty-s"><div class="empty-ico">😌</div><div class="empty-txt">Нет активных заданий</div><div class="empty-sub">Всё выполнено!</div></div>`:''}`;
+  },init(){}
+};
+
+/* ── CALENDAR ────────────────────────────────────────────── */
+MOD.calendar={
+  _d:new Date(), _sel:null,
+  async render(){
+    const d=this._d; const yr=d.getFullYear(), mo=d.getMonth();
+    const [evs,meets,deps,tasks]=await Promise.all([EV.Data.list('events'),EV.Data.list('meetings'),EV.Data.list('departures'),EV.Data.list('tasks')]);
+    const byDay={};
+    const add=(iso,lbl)=>{const day=U.day(iso);if(!day) return;(byDay[day]=byDay[day]||[]).push(lbl);};
+    evs.forEach(ev=>{
+      let cur=U.parse(ev.dateFrom);const end=U.parse(ev.dateTo);
+      while(cur<=end){add(cur.toISOString(),`🗂 ${U.tx(ev.name)}`);cur=U.addDays(cur.toISOString(),1);}
+    });
+    meets.forEach(m=>add(m.at,'🛬 Встреча'));
+    deps.forEach(d=>add(d.at,'🛫 Проводы'));
+    tasks.filter(t=>t.due&&t.status!=='done').forEach(t=>add(t.due,'✅ Задача'));
+    const first=new Date(yr,mo,1);
+    const startDow=(first.getDay()+6)%7;
+    const dim=new Date(yr,mo+1,0).getDate();
+    const today=U.toDay(new Date());
+    const mn=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+    const dows=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+    let cells='';
+    for(let i=0;i<startDow;i++) cells+=`<div class="cal-day oth"></div>`;
+    for(let day=1;day<=dim;day++){
+      const iso=`${yr}-${String(mo+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+      const evts=byDay[iso]||[];
+      cells+=`<div class="cal-day${iso===today?' today':''}${evts.length?' has-ev':''}" data-day="${iso}" title="${evts.join('\n')}">${day}</div>`;
+    }
+    const sel=this._sel, dayEvs=sel?(byDay[sel]||[]):[];
+    return`<div class="sec-head"><span class="sec-title">Календарь</span></div>
+    <div class="two-col">
+      <div>
+        <div class="cal-mini">
+          <div class="cal-hdr">
+            <button class="cal-nav-btn" id="cal-prev">‹</button>
+            <span class="cal-mon">${mn[mo]} ${yr}</span>
+            <button class="cal-nav-btn" id="cal-next">›</button>
+          </div>
+          <div class="cal-grid">
+            ${dows.map(d=>`<div class="cal-dow">${d}</div>`).join('')}
+            ${cells}
+          </div>
+        </div>
+      </div>
+      <div>
+        ${sel?`<div class="sec-box">
+          <div class="sec-box-hd"><span>📅</span><span class="sec-title">${sel}</span></div>
+          <div class="sec-box-bd"><div class="act-list">${dayEvs.length?dayEvs.map(ev=>`<div class="act-item"><div class="act-dot"></div><div class="act-body"><div class="act-text">${e(ev)}</div></div></div>`).join('')
+          :'<div class="empty-s" style="padding:14px"><div class="empty-txt">Нет событий</div></div>'}</div></div>
+        </div>`:'<div class="empty-s"><div class="empty-ico">📅</div><div class="empty-txt">Кликните на дату</div></div>'}
+      </div>
+    </div>`;
+  },
+  init(){
+    document.getElementById('cal-prev')?.addEventListener('click',()=>{this._d=new Date(this._d.getFullYear(),this._d.getMonth()-1,1);go('calendar');});
+    document.getElementById('cal-next')?.addEventListener('click',()=>{this._d=new Date(this._d.getFullYear(),this._d.getMonth()+1,1);go('calendar');});
+    document.querySelectorAll('.cal-day[data-day]').forEach(el=>el.addEventListener('click',()=>{this._sel=el.dataset.day;go('calendar');}));
+  }
+};
+
+/* ── MAP ─────────────────────────────────────────────────── */
+MOD.map={
+  async render(){
+    const hotels=EV.Hotels.all().slice(0,15);
+    return`<div class="sec-head"><span class="sec-title">Карта объектов</span></div>
+    <div class="map-ph"><div style="font-size:42px;opacity:.35">🗺</div>
+      <div style="font-size:14px;font-weight:600">Интерактивная карта</div>
+      <div class="mu sm">Подключите Leaflet.js или Google Maps API для полноценной карты</div>
+    </div>
+    <div class="sec-head" style="margin-top:14px"><span class="sec-title">Отели</span></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:9px">
+      ${hotels.map(h=>`<div class="tr-card">
+        <div style="font-weight:700">${e(h.name)}</div>
+        <div class="xs mu">${e(h.region)} · ${'★'.repeat(h.stars)}</div>
+        ${h.phone?`<a href="tel:${h.phone}" class="xs" style="color:var(--accent2)">${e(h.phone)}</a>`:''}
+      </div>`).join('')}
+    </div>`;
+  },init(){}
+};
+
+/* ── REPORTS ─────────────────────────────────────────────── */
+MOD.reports={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const [guests,bks,tasks,quality,audit]=await Promise.all([
+      EV.Data.list('guests',f),EV.Data.list('bookings',f),EV.Data.list('tasks',f),
+      EV.Data.list('quality',f),
+      EV.Perm.can('audit.view')?EV.Data.list('audit'):Promise.resolve([])
+    ]);
+    const byS=(arr,fn)=>{const m={};arr.forEach(x=>{const s=fn(x);m[s]=(m[s]||0)+1;});return m;};
+    const gSt=byS(guests,g=>g.status), bSt=byS(bks,b=>b.status), tSt=byS(tasks,t=>t.status);
+    const bar=(arr,sts,pfx,colorFn)=>sts.map(s=>{
+      const n=arr[s]||0, tot=Object.values(arr).reduce((a,b)=>a+b,0);
+      const pct=tot?Math.round(n/tot*100):0;
+      return`<div style="margin-bottom:7px">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px"><span>${t(`${pfx}.status.${s}`)||s}</span><span>${n}</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:${pct}%;background:${colorFn(s)}"></div></div>
+      </div>`;}).join('');
+    return`<div class="sec-head"><span class="sec-title">Отчёты и статистика</span>
+      <div class="sec-acts">${EV.Perm.can('export.data')?`<button class="btn btn-secondary btn-sm" onclick="doExport()">📤 Экспорт JSON</button>`:''}</div>
+    </div>
+    <div class="three-col">
+      <div class="sec-box"><div class="sec-box-hd"><span>👥</span><span class="sec-title">Гости</span></div>
+        <div class="sec-box-bd">${bar(gSt,C.STATUS.guest,'gs',s=>({expected:'#3b82f6',arrived:'#14b8a6',accommodated:'#10b981',departed:'#5a6580'}[s]||'#5a6580'))}</div>
+      </div>
+      <div class="sec-box"><div class="sec-box-hd"><span>🏨</span><span class="sec-title">Бронирование</span></div>
+        <div class="sec-box-bd">${bar(bSt,C.STATUS.booking,'bk',s=>({confirmed:'#10b981',sent:'#f59e0b',draft:'#5a6580',cancelled:'#ef4444',changed:'#f59e0b'}[s]||'#5a6580'))}</div>
+      </div>
+      <div class="sec-box"><div class="sec-box-hd"><span>✅</span><span class="sec-title">Задачи</span></div>
+        <div class="sec-box-bd">${bar(tSt,C.STATUS.task,'tk',s=>({done:'#10b981',in_progress:'#3b82f6',new:'#5a6580',overdue:'#ef4444'}[s]||'#5a6580'))}</div>
+      </div>
+    </div>
+    ${quality.length?`<div class="sec-head"><span class="sec-title">Качество</span></div>
+    <div class="tbl-wrap"><table class="ev-tbl"><thead><tr><th>Вид</th><th>Описание</th><th>Оценка</th><th>Дата</th></tr></thead>
+    <tbody>${quality.map(q=>`<tr><td>${bd(t('quality.'+q.kind)||q.kind,'bg-teal')}</td><td class="sm">${e(q.text)}</td><td>${q.rating?'⭐'.repeat(q.rating):'—'}</td><td class="xs mu">${U.fmtDate(q.createdAt)}</td></tr>`).join('')}
+    </tbody></table></div>`:''}
+    ${EV.Perm.can('audit.view')&&audit.length?`<div class="sec-head" style="margin-top:16px"><span class="sec-title">Журнал действий</span></div>
+    <div class="tbl-wrap"><table class="ev-tbl"><thead><tr><th>Время</th><th>Сотрудник</th><th>Действие</th><th>Объект</th></tr></thead>
+    <tbody>${audit.slice(-15).reverse().map(a=>`<tr><td class="xs mu">${U.fmtDTFull(a.ts)}</td><td class="sm">${e(a.userName)}</td><td>${bd(t('audit.'+a.action)||a.action,'bg-blue')}</td><td class="sm">${e(a.label||a.entityId)}</td></tr>`).join('')}
+    </tbody></table></div>`:''}`;
+  },init(){}
+};
+window.doExport=function(){
+  try{const data=EV.Data.exportAll();U.downloadText(data,'events-backup.json','application/json');Toast.ok('Экспорт выполнен');}
+  catch(ex){Toast.err(ex.message);}
+};
+
+/* ── ARCHIVE ─────────────────────────────────────────────── */
+MOD.archive={
+  async render(){
+    const evs=await EV.Data.list('events');
+    const arch=evs.filter(ev=>ev.status==='archive'||ev.status==='completed');
+    return`<div class="sec-head"><span class="sec-title">Архив мероприятий</span></div>
+    ${arch.length?`<div class="ev-cards">${arch.map(ev=>renderEvCard(ev)).join('')}</div>`
+    :'<div class="empty-s"><div class="empty-ico">🗄</div><div class="empty-txt">Архив пуст</div></div>'}`;
+  },
+  init(){bindEvCards();}
+};
+
+/* ── QUALITY ─────────────────────────────────────────────── */
+MOD.quality={
+  async render(){
+    const f=S.evId?{eventId:S.evId}:{};
+    const quality=await EV.Data.list('quality',f);
+    return`<div class="sec-head"><span class="sec-title">Контроль качества</span></div>
+    <div class="tbl-wrap">${quality.length?`<table class="ev-tbl"><thead><tr><th>Вид</th><th>Описание</th><th>Оценка</th><th>Дата</th></tr></thead>
+    <tbody>${quality.map(q=>`<tr><td>${bd(t('quality.'+q.kind)||q.kind,'bg-teal')}</td><td class="sm">${e(q.text)}</td><td>${q.rating?'⭐'.repeat(q.rating):'—'}</td><td class="xs mu">${U.fmtDate(q.createdAt)}</td></tr>`).join('')}
+    </tbody></table>`:'<div class="empty-s"><div class="empty-ico">🏅</div><div class="empty-txt">Нет записей</div></div>'}</div>`;
+  },init(){}
+};
+
+/* ── SECURITY ────────────────────────────────────────────── */
+MOD.security={
+  async render(){
+    if(!EV.Perm.can('users.manage')) return`<div class="empty-s"><div class="empty-ico">🛡</div><div class="empty-txt">Нет прав доступа</div></div>`;
+    const users=await EV.Data.list('users');
+    return`<div class="sec-head"><span class="sec-title">Пользователи системы</span></div>
+    <div class="tbl-wrap"><table class="ev-tbl"><thead><tr><th>Сотрудник</th><th>Email</th><th>Роль</th><th>Должность</th><th>Телефон</th></tr></thead>
+    <tbody>${users.map(u=>`<tr>
+      <td><div style="display:flex;align-items:center;gap:7px"><div class="g-av" style="background:${avColor(u.name)}">${U.initials(u.name)}</div><div style="font-weight:600">${e(u.name)}</div></div></td>
+      <td class="sm">${e(u.email)}</td>
+      <td>${bd(t('user.role.'+u.role)||u.role,'bg-blue')}</td>
+      <td class="sm">${e(u.position||'—')}</td>
+      <td>${u.phone?`<a href="tel:${u.phone}" class="sm" style="color:var(--accent2)">${e(u.phone)}</a>`:'—'}</td>
+    </tr>`).join('')}</tbody></table></div>`;
+  },init(){}
+};
+
+/* ─── NOTIFICATIONS ───────────────────────────────────────── */
+async function loadNotifs(){
+  const notifs=await EV.Data.list('notifications');
+  const unread=notifs.filter(n=>!(n.readBy||[]).includes(S.user.id));
+  const dot=document.getElementById('n-dot');
+  if(dot) dot.classList.toggle('hidden',!unread.length);
+  const list=document.getElementById('notif-list');
+  if(!list) return;
+  if(!notifs.length){list.innerHTML='<div class="empty-s" style="padding:16px"><div class="empty-txt">Нет уведомлений</div></div>';return;}
+  list.innerHTML=notifs.slice().reverse().slice(0,20).map(n=>{
+    const read=(n.readBy||[]).includes(S.user.id);
+    const txt=t(n.k,n.p)||n.k;
+    return`<div class="n-item${!read?' unread':''}${n.priority==='high'?' hi':''}" data-nid="${n.id}">
+      <div class="n-text">${e(txt)}</div>
+      <div class="n-meta">${U.fmtDTFull(n.createdAt)}</div>
+    </div>`;}).join('');
+  list.querySelectorAll('.n-item').forEach(el=>el.addEventListener('click',async()=>{
+    const n=notifs.find(x=>x.id===el.dataset.nid);
+    if(n&&!(n.readBy||[]).includes(S.user.id)){
+      await EV.Data.update('notifications',n.id,{readBy:[...(n.readBy||[]),S.user.id]},{system:true});
+      loadNotifs();
+    }
+  }));
+}
+
+/* ─── INIT APP ────────────────────────────────────────────── */
+function initApp(){
+  EV.I18n.init();EV.Data.init();Modal.init();
+  // Login
+  document.getElementById('l-btn').addEventListener('click',doLogin);
+  document.getElementById('l-pass').addEventListener('keydown',ev=>{if(ev.key==='Enter')doLogin();});
+  document.querySelectorAll('.demo-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.getElementById('l-email').value=btn.dataset.e;
+      document.getElementById('l-pass').value='demo';
+      doLogin();
+    });
+  });
+  if(EV.Auth.restore()){showApp();return;}
+  document.getElementById('login-screen').classList.add('active');
+}
+
+function doLogin(){
+  const email=document.getElementById('l-email').value.trim();
+  const pw=document.getElementById('l-pass').value;
+  const err=document.getElementById('l-err');
+  if(EV.Auth.login(email,pw)){err.style.display='none';showApp();}
+  else err.style.display='block';
+}
+
+async function showApp(){
+  const u=S.user;
+  document.getElementById('login-screen').classList.remove('active');
+  document.getElementById('app-screen').classList.add('active');
+  document.getElementById('u-name').textContent=u.name;
+  document.getElementById('u-role').textContent=t('user.role.'+u.role)||u.role;
+  const avEl=document.getElementById('u-av');
+  avEl.textContent=U.initials(u.name); avEl.style.background=avColor(u.name);
+  document.getElementById('logout-btn').addEventListener('click',()=>{
+    EV.Auth.logout();
+    document.getElementById('app-screen').classList.remove('active');
+    document.getElementById('login-screen').classList.add('active');
+  });
+  // Mobile sidebar
+  document.getElementById('menu-toggle').addEventListener('click',()=>{
+    document.getElementById('sidebar').classList.toggle('mob');
+    document.getElementById('sb-overlay').classList.toggle('open');
+  });
+  document.getElementById('sb-overlay').addEventListener('click',()=>{
+    document.getElementById('sidebar').classList.remove('mob');
+    document.getElementById('sb-overlay').classList.remove('open');
+  });
+  // Notifications
+  document.getElementById('notif-btn').addEventListener('click',()=>document.getElementById('notif-panel').classList.toggle('open'));
+  document.addEventListener('click',ev=>{if(!ev.target.closest('#notif-btn')&&!ev.target.closest('#notif-panel'))document.getElementById('notif-panel').classList.remove('open');});
+  document.getElementById('mark-read-btn')?.addEventListener('click',async()=>{
+    const ns=await EV.Data.list('notifications');
+    for(const n of ns) if(!(n.readBy||[]).includes(u.id)) await EV.Data.update('notifications',n.id,{readBy:[...(n.readBy||[]),u.id]},{system:true});
+    loadNotifs();
+  });
+  // Lang buttons
+  document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>{
+    EV.I18n.setLang(btn.dataset.lang);
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b===btn));
+    if(S.mod) go(S.mod);
+  }));
+  // Event selector
+  await loadEvSel();
+  document.getElementById('ev-sel').addEventListener('change',async ev=>{
+    S.evId=ev.target.value||null;
+    if(S.mod) go(S.mod);
+  });
+  S.dir=EV.Data.directory();
+  buildNav();loadNotifs();
+  setInterval(()=>{S.dir=EV.Data.directory();buildNav();loadNotifs();},30000);
+  EV.Bus.on('data',({entity})=>{
+    if(entity==='notifications'){loadNotifs();return;}
+    if(S.mod) go(S.mod);
+    loadEvSel();buildNav();
+  });
+  const home=EV.Perm.home(u);
+  go(home||'dashboard');
+}
+
+initApp();
+})();
+</script>
+</body>
+</html>
