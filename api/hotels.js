@@ -34,7 +34,7 @@ async function readHotels() {
     }
   } catch (e) { console.warn('Tier1 raw failed:', e.message); }
 
-  // Tier 2: GitHub Contents API
+  // Tier 2: GitHub Contents API / Blob API (handles > 1MB files)
   try {
     const headers = {
       'Accept': 'application/vnd.github.v3+json',
@@ -45,8 +45,20 @@ async function readHotels() {
     const res = await fetch(GH_API, { headers });
     if (res.ok) {
       const fi = await res.json();
+      let rawJson = null;
       if (fi && fi.content) {
-        const data = JSON.parse(Buffer.from(fi.content, 'base64').toString('utf8'));
+        rawJson = Buffer.from(fi.content, 'base64').toString('utf8');
+      } else if (fi && fi.git_url) {
+        const blobRes = await fetch(fi.git_url, { headers });
+        if (blobRes.ok) {
+          const blobData = await blobRes.json();
+          if (blobData && blobData.content) {
+            rawJson = Buffer.from(blobData.content, 'base64').toString('utf8');
+          }
+        }
+      }
+      if (rawJson) {
+        const data = JSON.parse(rawJson);
         if (Array.isArray(data) && data.length >= 10) return { hotels: data, source: 'github-api' };
       }
     }
