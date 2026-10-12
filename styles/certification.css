@@ -1,0 +1,1784 @@
+/* ============================================================
+ * css/certification.css — Стили модуля «Сертификация» (Silk Route Invest)
+ * ГУП «Центр сертификации туристских услуг»
+ * ============================================================ */
+
+/* ── ПЕРЕМЕННЫЕ И БАЗОВЫЕ НАСТРОЙКИ ────────────────────────── */
+:root {
+  --cert-ok:         #2E5E3F;
+  --cert-ok-bg:      #F0F5F1;
+  --cert-ok-border:  rgba(46, 94, 63, 0.28);
+
+  --cert-info:       #1E3A6E;
+  --cert-info-bg:    #EFF3FA;
+  --cert-info-border:rgba(30, 58, 110, 0.28);
+
+  --cert-danger:     #8B3A2F;
+  --cert-danger-bg:  #FBF2F0;
+  --cert-danger-border: rgba(139, 58, 47, 0.28);
+
+  --cert-warn:       #B7791F;
+  --cert-warn-bg:    #FBF4E4;
+  --cert-warn-border:rgba(183, 121, 31, 0.28);
+
+  --cert-muted:      #6B655C;
+  --cert-muted-bg:   #F0EBE0;
+  --cert-muted-border: rgba(107, 101, 92, 0.28);
+
+  --cert-frame-gold: #D6C7AE;
+  --cert-gold-accent:#8B6F4E;
+  --cert-gold-light: #F5EFE3;
+  --cert-dark:       #2B2A3A;
+  --cert-cream-hero: #D9CBB8;
+  --cert-cream-soft: #F8F5EE;
+}
+
+/* ── ЧИПЫ СТАТУСОВ (ТЗ §8.3) ───────────────────────────────── */
+.cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 2px;
+  font-family: 'Golos Text', -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.cert-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.cert-badge--ok {
+  background: var(--cert-ok-bg);
+  color: var(--cert-ok);
+  border-color: var(--cert-ok-border);
+}
+.cert-badge--ok .cert-badge__dot { background: var(--cert-ok); }
+
+.cert-badge--warn {
+  background: var(--cert-warn-bg);
+  color: var(--cert-warn);
+  border-color: var(--cert-warn-border);
+}
+.cert-badge--warn .cert-badge__dot { background: var(--cert-warn); }
+
+.cert-badge--danger {
+  background: var(--cert-danger-bg);
+  color: var(--cert-danger);
+  border-color: var(--cert-danger-border);
+}
+.cert-badge--danger .cert-badge__dot { background: var(--cert-danger); }
+
+.cert-badge--info {
+  background: var(--cert-info-bg);
+  color: var(--cert-info);
+  border-color: var(--cert-info-border);
+}
+.cert-badge--info .cert-badge__dot { background: var(--cert-info); }
+
+.cert-badge--muted {
+  background: var(--cert-muted-bg);
+  color: var(--cert-muted);
+  border-color: var(--cert-muted-border);
+}
+.cert-badge--muted .cert-badge__dot { background: var(--cert-muted); }
+
+/* Чип зоны проверки */
+.cert-zone-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.cert-zone-chip--green { background: #E6F4EA; color: #1E6637; border: 1px solid rgba(30,102,55,0.25); }
+.cert-zone-chip--yellow { background: #FEF7E0; color: #9A6700; border: 1px solid rgba(154,103,0,0.25); }
+.cert-zone-chip--red { background: #FCE8E6; color: #B3261E; border: 1px solid rgba(179,38,30,0.25); }
+
+/* ── ХЛЕБНЫЕ КРОШКИ ────────────────────────────────────────── */
+.cert-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-text-secondary, #6B655C);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.cert-breadcrumbs a {
+  color: var(--color-text-secondary, #6B655C);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.cert-breadcrumbs a:hover {
+  color: var(--color-accent-gold, #8B6F4E);
+}
+.cert-breadcrumbs span.sep {
+  opacity: 0.45;
+  font-size: 10px;
+}
+.cert-breadcrumbs span.current {
+  color: var(--color-text-primary, #2B2A3A);
+  font-weight: 500;
+}
+
+/* ── HERO СЕКЦИЯ ХАБА (ТЗ §4.1) ────────────────────────────── */
+.cert-hero {
+  background: var(--cert-cream-hero, #D9CBB8);
+  padding: 80px 0 96px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--cert-frame-gold, #D6C7AE);
+}
+
+.cert-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 85% 20%, rgba(255,255,255,0.4) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cert-hero__grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.cert-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #5A4839;
+  margin-bottom: 16px;
+  background: rgba(255,255,255,0.6);
+  padding: 4px 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(139,111,78,0.2);
+}
+
+.cert-hero__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(34px, 4.4vw, 54px);
+  line-height: 1.14;
+  color: #241D17;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+}
+
+.cert-hero__title em {
+  font-style: italic;
+  color: #7A5734;
+  font-family: 'PT Serif', Georgia, serif;
+  font-weight: 700;
+}
+
+.cert-hero__subtitle {
+  font-size: 17px;
+  line-height: 1.55;
+  color: #4A3E33;
+  margin: 0 0 32px 0;
+  max-width: 580px;
+}
+
+.cert-hero__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Кнопки в стиле сайта */
+.btn-cert-primary {
+  background: #2B2A3A;
+  color: #F8F5EE;
+  padding: 13px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: 3px;
+  border: 1px solid #2B2A3A;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.22s ease;
+  box-shadow: 0 2px 6px rgba(43,42,58,0.14);
+  cursor: pointer;
+}
+.btn-cert-primary:hover {
+  background: #1F1E2A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(43,42,58,0.22);
+}
+
+.btn-cert-secondary {
+  background: rgba(255,255,255,0.7);
+  color: #2B2A3A;
+  padding: 13px 26px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: 3px;
+  border: 1px solid #8B6F4E;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.22s ease;
+  cursor: pointer;
+}
+.btn-cert-secondary:hover {
+  background: #FFFFFF;
+  border-color: #5A4839;
+  transform: translateY(-2px);
+}
+
+/* Карточка быстрой проверки в Hero */
+.cert-hero-card {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  padding: 28px;
+  box-shadow: 0 12px 36px rgba(59,42,32,0.12);
+  position: relative;
+}
+
+.cert-hero-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #EFE8DA;
+}
+.cert-hero-card__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 19px;
+  color: #2B2A3A;
+  font-weight: 600;
+  margin: 0;
+}
+.cert-hero-card__tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  background: var(--cert-cream-soft);
+  padding: 3px 6px;
+  border-radius: 2px;
+  color: #8B6F4E;
+  border: 1px solid #D6C7AE;
+}
+
+.cert-hero-card__desc {
+  font-size: 13px;
+  color: #6B655C;
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.cert-hero-card__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cert-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.cert-input-text {
+  flex: 1;
+  padding: 11px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  border: 1px solid #D6C7AE;
+  border-radius: 3px;
+  background: #FAF8F5;
+  color: #2B2A3A;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cert-input-text:focus {
+  outline: none;
+  border-color: #8B6F4E;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(139,111,78,0.18);
+}
+
+.cert-input-text::placeholder {
+  color: #A39B8F;
+}
+
+.cert-hero-card__quick-samples {
+  font-size: 11px;
+  color: #8C8478;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.cert-hero-card__quick-samples button {
+  background: none;
+  border: none;
+  padding: 0 2px;
+  color: #7A5734;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 11px;
+}
+.cert-hero-card__quick-samples button:hover {
+  color: #2B2A3A;
+}
+
+/* Результат проверки в карточке */
+.cert-verify-result {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 3px;
+  font-size: 13px;
+  border: 1px solid #D6C7AE;
+  background: var(--cert-cream-soft);
+  display: none;
+  animation: certFadeIn 0.25s ease;
+}
+@keyframes certFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cert-verify-result--found {
+  border-left: 4px solid var(--cert-ok);
+  background: var(--cert-ok-bg);
+}
+.cert-verify-result--warn {
+  border-left: 4px solid var(--cert-warn);
+  background: var(--cert-warn-bg);
+}
+.cert-verify-result--danger {
+  border-left: 4px solid var(--cert-danger);
+  background: var(--cert-danger-bg);
+}
+.cert-verify-result--notfound {
+  border-left: 4px solid var(--cert-muted);
+  background: var(--cert-muted-bg);
+}
+
+/* ── KPI ЛЕНТА С COUNT-UP (ТЗ §4.1 / §8.5) ─────────────────── */
+.cert-kpi-strip {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5DCCB;
+  padding: 36px 0;
+}
+.cert-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.cert-kpi-item {
+  border-left: 2px solid #8B6F4E;
+  padding-left: 18px;
+}
+.cert-kpi-value {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(30px, 3.2vw, 42px);
+  font-weight: 700;
+  color: #2B2A3A;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.cert-kpi-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4A3E33;
+  margin-bottom: 4px;
+}
+.cert-kpi-note {
+  font-size: 11px;
+  color: #8C8478;
+}
+
+/* ── СЕКЦИИ И КОНТЕЙНЕРЫ ───────────────────────────────────── */
+.cert-section {
+  padding: 96px 0;
+  position: relative;
+}
+.cert-section--cream {
+  background: var(--cert-cream-soft, #F8F5EE);
+}
+.cert-section--white {
+  background: #FFFFFF;
+}
+
+.cert-container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.cert-section-head {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 56px;
+}
+.cert-section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8B6F4E;
+  margin-bottom: 10px;
+  display: block;
+}
+.cert-section-title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(28px, 3vw, 40px);
+  color: #2B2A3A;
+  font-weight: 400;
+  margin: 0 0 14px;
+  line-height: 1.22;
+}
+.cert-section-desc {
+  font-size: 15px;
+  color: #6B655C;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── «ОДИН ЧЕЛОВЕК — ОДНО РЕШЕНИЕ» ─────────────────────────── */
+.cert-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.cert-col-card {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 16px rgba(59,42,32,0.04);
+}
+.cert-col-card--system {
+  border-top: 4px solid #1E3A6E;
+}
+.cert-col-card--human {
+  border-top: 4px solid #8B6F4E;
+}
+.cert-col-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #F0EBE0;
+}
+.cert-col-card__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 22px;
+  color: #2B2A3A;
+  margin: 0;
+}
+.cert-col-card__badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 4px 9px;
+  border-radius: 2px;
+  background: var(--cert-cream-soft);
+  color: #5A4839;
+  border: 1px solid #D6C7AE;
+}
+.cert-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cert-features-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4A3E33;
+}
+.cert-features-list li .icon {
+  font-weight: 700;
+  color: #8B6F4E;
+  flex-shrink: 0;
+}
+
+/* ── ПУТЬ ЗАЯВКИ — 10 ШАГОВ (ТЗ §4.1 / §4) ─────────────────── */
+.cert-journey-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin-top: 16px;
+}
+.cert-step-card {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 3px;
+  padding: 20px 18px;
+  position: relative;
+  transition: transform 0.22s, box-shadow 0.22s;
+  display: flex;
+  flex-direction: column;
+}
+.cert-step-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(59,42,32,0.08);
+}
+.cert-step-card__num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8B6F4E;
+  margin-bottom: 10px;
+}
+.cert-step-card__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2B2A3A;
+  margin-bottom: 12px;
+  line-height: 1.35;
+  flex: 1;
+}
+.cert-step-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #F5EFE3;
+  font-size: 11px;
+}
+.cert-actor-chip {
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.cert-actor-chip--user { background: #EAE6DF; color: #4A3E33; }
+.cert-actor-chip--sys  { background: #EFF3FA; color: #1E3A6E; }
+.cert-actor-chip--insp { background: #FBF4E4; color: #B7791F; }
+
+.cert-step-card__time {
+  color: #8C8478;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+}
+
+/* ── ТРИ ЗОНЫ ПРОВЕРКИ (ТЗ §4.1) ───────────────────────────── */
+.cert-zones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.cert-zone-card {
+  background: #FFFFFF;
+  border-radius: 4px;
+  padding: 32px 26px;
+  border: 1px solid #D6C7AE;
+  position: relative;
+  transition: transform 0.22s;
+}
+.cert-zone-card:hover {
+  transform: translateY(-2px);
+}
+.cert-zone-card--green { border-top: 5px solid var(--cert-ok); }
+.cert-zone-card--yellow { border-top: 5px solid var(--cert-warn); }
+.cert-zone-card--red { border-top: 5px solid var(--cert-danger); }
+
+.cert-zone-card__pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+.cert-zone-card--green .cert-zone-card__pill { background: var(--cert-ok-bg); color: var(--cert-ok); }
+.cert-zone-card--yellow .cert-zone-card__pill { background: var(--cert-warn-bg); color: var(--cert-warn); }
+.cert-zone-card--red .cert-zone-card__pill { background: var(--cert-danger-bg); color: var(--cert-danger); }
+
+.cert-zone-card__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 20px;
+  color: #2B2A3A;
+  margin: 0 0 10px 0;
+}
+.cert-zone-card__desc {
+  font-size: 13px;
+  color: #6B655C;
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+.cert-zone-card__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  color: #4A3E33;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cert-zone-card__bullets li::before {
+  content: '— ';
+  color: #8B6F4E;
+}
+
+/* ── ЭЛЕКТРОННЫЙ СЕРТИФИКАТ (ТЗ §8.6) — ВАУ-КОМПОНЕНТ ───────── */
+.cert-document-wrap {
+  perspective: 1200px;
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.cert-sheet {
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 1 / 1.414; /* A4 пропорции */
+  background: #FFFFFF;
+  border: 1px solid var(--cert-frame-gold, #D6C7AE);
+  box-shadow: 0 18px 48px rgba(59,42,32,0.14), 0 2px 8px rgba(59,42,32,0.06);
+  border-radius: 2px;
+  padding: 24px;
+  position: relative;
+  box-sizing: border-box;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  overflow: hidden;
+  user-select: text;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cert-sheet:hover {
+    transform: rotate3d(1, 1, 0, 2deg) translateY(-4px);
+    box-shadow: 0 26px 60px rgba(59,42,32,0.18), 0 4px 12px rgba(59,42,32,0.08);
+  }
+}
+
+/* Внутренняя рамка с отступом 10px */
+.cert-sheet__inner {
+  height: 100%;
+  border: 1px solid var(--cert-frame-gold, #D6C7AE);
+  padding: 28px 24px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Ажурные узбекские углы (SVG inline) */
+.cert-corner-motif {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  opacity: 0.16;
+  color: #8B6F4E;
+}
+.cert-corner-motif--tl { top: 4px; left: 4px; }
+.cert-corner-motif--tr { top: 4px; right: 4px; transform: scaleX(-1); }
+.cert-corner-motif--bl { bottom: 4px; left: 4px; transform: scaleY(-1); }
+.cert-corner-motif--br { bottom: 4px; right: 4px; transform: scale(-1); }
+
+/* Диагональный водяной знак */
+.cert-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-35deg);
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(59,42,32,0.06);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+/* Угловая статусная лента */
+.cert-ribbon {
+  position: absolute;
+  top: 18px;
+  right: -32px;
+  transform: rotate(45deg);
+  width: 140px;
+  text-align: center;
+  padding: 4px 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  z-index: 3;
+}
+.cert-ribbon--ok { background: var(--cert-ok); }
+.cert-ribbon--warn { background: var(--cert-warn); }
+.cert-ribbon--danger { background: var(--cert-danger); }
+.cert-ribbon--info { background: var(--cert-info); }
+.cert-ribbon--muted { background: var(--cert-muted); }
+
+/* Шапка сертификата */
+.cert-doc-header {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 12px;
+}
+.cert-doc-emblem {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8B6F4E;
+}
+.cert-doc-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6B655C;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.cert-doc-title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #2B2A3A;
+  margin: 4px 0;
+}
+.cert-doc-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8B6F4E;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+/* Сетка реквизитов (2 колонки) */
+.cert-doc-body {
+  position: relative;
+  z-index: 2;
+  margin: 10px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cert-attrs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+  font-size: 12px;
+}
+.cert-attr-item {
+  display: flex;
+  flex-direction: column;
+}
+.cert-attr-label {
+  font-family: 'Golos Text', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8C8478;
+  margin-bottom: 2px;
+}
+.cert-attr-value {
+  color: #2B2A3A;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.cert-attr-value--stars {
+  color: #D9A441;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+.cert-attr-value--mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+/* Подвал сертификата: круглая печать, QR, подпись */
+.cert-doc-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px dashed #D6C7AE;
+  margin-top: 10px;
+}
+.cert-seal-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cert-stamp-svg {
+  width: 82px;
+  height: 82px;
+  flex-shrink: 0;
+}
+.cert-signer-info {
+  font-size: 10px;
+  line-height: 1.4;
+  color: #5A4839;
+}
+.cert-signer-title {
+  font-weight: 600;
+  color: #2B2A3A;
+}
+
+.cert-qr-wrap {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.cert-qr-canvas {
+  width: 76px;
+  height: 76px;
+  background: #FFFFFF;
+  padding: 4px;
+  border: 1px solid #D6C7AE;
+  border-radius: 2px;
+}
+.cert-hash-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  color: #8C8478;
+  margin-top: 4px;
+  letter-spacing: -0.02em;
+  max-width: 140px;
+  word-break: break-all;
+  text-align: right;
+}
+
+/* ── ТАЙМЛАЙН 5-ЛЕТНЕГО КОНТРОЛЯ (ТЗ §4.1 / §5) ────────────── */
+.cert-5y-timeline {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+  position: relative;
+}
+.cert-5y-point {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 3px;
+  padding: 16px 14px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.cert-5y-point::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #8B6F4E;
+  border: 2px solid #FFFFFF;
+}
+.cert-5y-point__year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8B6F4E;
+  margin-bottom: 6px;
+}
+.cert-5y-point__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2B2A3A;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.cert-5y-point__desc {
+  font-size: 11px;
+  color: #6B655C;
+  line-height: 1.45;
+  margin-top: auto;
+}
+
+/* Карточки риск-сигналов */
+.cert-risk-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+.cert-risk-card {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-left: 4px solid #B7791F;
+  border-radius: 3px;
+  padding: 18px 16px;
+}
+.cert-risk-card__icon {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.cert-risk-card__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2B2A3A;
+  margin-bottom: 4px;
+}
+.cert-risk-card__desc {
+  font-size: 12px;
+  color: #6B655C;
+  line-height: 1.45;
+}
+
+/* ── КАРТОЧКИ РОЛЕЙ ────────────────────────────────────────── */
+.cert-roles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.cert-role-card {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cert-role-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(59,42,32,0.06);
+}
+.cert-role-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 3px;
+  background: var(--cert-cream-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+  border: 1px solid #E5DCCB;
+}
+.cert-role-card__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 18px;
+  color: #2B2A3A;
+  margin: 0 0 8px 0;
+}
+.cert-role-card__desc {
+  font-size: 13px;
+  color: #6B655C;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex: 1;
+}
+.cert-role-card__action {
+  margin-top: auto;
+}
+
+/* ── FAQ АККОРДЕОН ─────────────────────────────────────────── */
+.cert-faq-list {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cert-faq-item {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 3px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.cert-faq-item[open] {
+  border-color: #8B6F4E;
+}
+.cert-faq-summary {
+  padding: 18px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2B2A3A;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+.cert-faq-summary::-webkit-details-marker { display: none; }
+.cert-faq-summary::after {
+  content: '+';
+  font-size: 20px;
+  color: #8B6F4E;
+  font-weight: 300;
+  transition: transform 0.2s;
+}
+.cert-faq-item[open] .cert-faq-summary::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+.cert-faq-content {
+  padding: 0 22px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5A4839;
+  border-top: 1px solid #F5EFE3;
+  margin-top: 4px;
+  padding-top: 14px;
+}
+
+/* ── CTA ПОЛОСА ────────────────────────────────────────────── */
+.cert-cta-strip {
+  background: #2B2A3A;
+  color: #F8F5EE;
+  padding: 64px 0;
+  text-align: center;
+}
+.cert-cta-title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 12px;
+}
+.cert-cta-desc {
+  font-size: 15px;
+  color: #C5BCB0;
+  margin: 0 0 28px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cert-cta-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-cert-cta-primary {
+  background: #D9A441;
+  color: #1F1E2A;
+  font-weight: 700;
+  padding: 13px 28px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  transition: all 0.2s;
+}
+.btn-cert-cta-primary:hover {
+  background: #E5B354;
+  transform: translateY(-2px);
+}
+.btn-cert-cta-secondary {
+  background: transparent;
+  color: #F8F5EE;
+  border: 1px solid #8B6F4E;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.btn-cert-cta-secondary:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* ── ПУБЛИЧНЫЙ РЕЕСТР: СТИЛИ СТРАНИЦЫ (ТЗ §4.2) ────────────── */
+.cert-registry-verify-box {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 16px rgba(59,42,32,0.04);
+}
+
+.cert-filter-bar {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  position: sticky;
+  top: 72px;
+  z-index: 20;
+  box-shadow: 0 4px 12px rgba(59,42,32,0.06);
+}
+
+.cert-filter-input {
+  flex: 1.6;
+  min-width: 220px;
+  padding: 9px 12px;
+  font-size: 13px;
+  border: 1px solid #D6C7AE;
+  border-radius: 3px;
+  background: #FAF8F5;
+  color: #2B2A3A;
+}
+.cert-filter-select {
+  flex: 1;
+  min-width: 140px;
+  padding: 9px 12px;
+  font-size: 13px;
+  border: 1px solid #D6C7AE;
+  border-radius: 3px;
+  background: #FAF8F5;
+  color: #2B2A3A;
+}
+.cert-filter-btn {
+  padding: 9px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 3px;
+  border: 1px solid #D6C7AE;
+  background: var(--cert-cream-soft);
+  color: #4A3E33;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cert-filter-btn:hover { background: #EAE3D4; }
+
+.cert-view-toggle {
+  display: inline-flex;
+  border: 1px solid #D6C7AE;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-left: auto;
+}
+.cert-view-toggle button {
+  padding: 8px 14px;
+  background: #FFFFFF;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6B655C;
+  cursor: pointer;
+}
+.cert-view-toggle button.active {
+  background: #2B2A3A;
+  color: #FFFFFF;
+}
+
+/* Таблица реестра */
+.cert-table-wrap {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  overflow-x: auto;
+  box-shadow: 0 4px 16px rgba(59,42,32,0.04);
+}
+.cert-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+.cert-table th {
+  background: #FAF8F5;
+  padding: 12px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8C8478;
+  border-bottom: 1px solid #D6C7AE;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.cert-table td {
+  padding: 14px;
+  border-bottom: 1px solid #F0EBE0;
+  color: #2B2A3A;
+  vertical-align: middle;
+}
+.cert-table tbody tr {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cert-table tbody tr:hover {
+  background: #F5EFE3;
+}
+.cert-table td.cert-num-cell {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8B6F4E;
+}
+
+/* Боковая панель деталей (Drawer) */
+.cert-drawer-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(43,42,58,0.45);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.cert-drawer-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cert-drawer {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: 100%;
+  max-width: 520px;
+  background: #FFFFFF;
+  box-shadow: -8px 0 32px rgba(43,42,58,0.18);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+.cert-drawer.active {
+  transform: translateX(0);
+}
+.cert-drawer__header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #E5DCCB;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--cert-cream-soft);
+}
+.cert-drawer__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 18px;
+  color: #2B2A3A;
+  margin: 0;
+}
+.cert-drawer__close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #6B655C;
+  cursor: pointer;
+  line-height: 1;
+}
+.cert-drawer__body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+.cert-drawer__footer {
+  padding: 16px 24px;
+  border-top: 1px solid #E5DCCB;
+  background: #FAF8F5;
+  display: flex;
+  gap: 12px;
+}
+
+/* ── МАСТЕР ЗАЯВКИ (certification-apply.html) ──────────────── */
+.cert-apply-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
+  padding: 40px 0 80px;
+}
+
+/* Вертикальный степпер мастера */
+.cert-stepper {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  padding: 20px 16px;
+  position: sticky;
+  top: 96px;
+  height: fit-content;
+}
+.cert-stepper-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s;
+  position: relative;
+}
+.cert-stepper-item:hover {
+  background: var(--cert-cream-soft);
+}
+.cert-stepper-item.active {
+  background: var(--cert-cream-soft);
+}
+.cert-stepper-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #D6C7AE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8C8478;
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+.cert-stepper-item.completed .cert-stepper-circle {
+  background: var(--cert-ok);
+  border-color: var(--cert-ok);
+  color: #FFFFFF;
+}
+.cert-stepper-item.active .cert-stepper-circle {
+  border-color: #8B6F4E;
+  color: #8B6F4E;
+  box-shadow: 0 0 0 3px rgba(139,111,78,0.18);
+}
+.cert-stepper-info {
+  display: flex;
+  flex-direction: column;
+}
+.cert-stepper-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2B2A3A;
+  line-height: 1.3;
+}
+.cert-stepper-desc {
+  font-size: 11px;
+  color: #8C8478;
+}
+
+/* Панель шага */
+.cert-step-pane {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 16px rgba(59,42,32,0.04);
+}
+.cert-step-pane__head {
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #EFE8DA;
+}
+.cert-step-pane__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 24px;
+  color: #2B2A3A;
+  margin: 0 0 6px;
+}
+.cert-step-pane__desc {
+  font-size: 14px;
+  color: #6B655C;
+  margin: 0;
+}
+
+/* Элемент чек-листа в мастере (ТЗ §7.4) */
+.cert-chk-item {
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 18px;
+  background: #FFFFFF;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cert-chk-item:hover {
+  border-color: #8B6F4E;
+}
+.cert-chk-item--ok {
+  border-left: 4px solid var(--cert-ok);
+}
+.cert-chk-item--warn {
+  border-left: 4px solid var(--cert-warn);
+}
+.cert-chk-item--danger {
+  border-left: 4px solid var(--cert-danger);
+}
+
+.cert-chk-item__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.cert-chk-item__code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #8B6F4E;
+  background: var(--cert-cream-soft);
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid #D6C7AE;
+}
+.cert-chk-item__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2B2A3A;
+  line-height: 1.4;
+  flex: 1;
+}
+.cert-chk-item__norm-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  background: #EFF3FA;
+  color: #1E3A6E;
+  border: 1px solid rgba(30,58,110,0.2);
+  cursor: pointer;
+}
+
+/* Зона доказательств */
+.cert-evidence-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.cert-slot-card {
+  border: 1px dashed #D6C7AE;
+  border-radius: 3px;
+  padding: 14px;
+  background: #FAF8F5;
+  text-align: center;
+  position: relative;
+  transition: all 0.2s;
+}
+.cert-slot-card:hover {
+  background: #FFFFFF;
+  border-color: #8B6F4E;
+}
+.cert-slot-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4A3E33;
+  margin-bottom: 8px;
+}
+.cert-slot-card__actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.cert-btn-sm {
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* Результат автопроверки */
+.cert-autocheck-list {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--cert-cream-soft);
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 1.5;
+  border: 1px solid #E5DCCB;
+}
+.cert-autocheck-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cert-autocheck-item--ok { color: var(--cert-ok); }
+.cert-autocheck-item--warn { color: var(--cert-warn); }
+.cert-autocheck-item--fail { color: var(--cert-danger); }
+
+/* Липкая нижняя панель навигации мастера */
+.cert-apply-nav-bar {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #EFE8DA;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── МОДАЛЬНЫЕ ОКНА (E-IMZO, OneID, Оплата) ────────────────── */
+.cert-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(43,42,58,0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.cert-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.cert-modal {
+  background: #FFFFFF;
+  border: 1px solid #D6C7AE;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: 0 16px 48px rgba(43,42,58,0.22);
+  overflow: hidden;
+  animation: certModalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes certModalPop {
+  from { transform: scale(0.96) translateY(8px); }
+  to { transform: scale(1) translateY(0); }
+}
+
+.cert-modal__head {
+  padding: 20px 24px;
+  background: var(--cert-cream-soft);
+  border-bottom: 1px solid #E5DCCB;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cert-modal__title {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 18px;
+  color: #2B2A3A;
+  margin: 0;
+}
+.cert-modal__body {
+  padding: 24px;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+.cert-modal__foot {
+  padding: 16px 24px;
+  border-top: 1px solid #E5DCCB;
+  background: #FAF8F5;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* ── КАБИНЕТ ЦЕНТРА (cabinet-inspector.html) ────────────────── */
+.cert-cabinet-header-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #D6C7AE;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cert-role-tabs {
+  display: flex;
+  gap: 8px;
+  background: var(--cert-cream-soft);
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #D6C7AE;
+}
+.cert-role-tab {
+  padding: 7px 16px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: #6B655C;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.cert-role-tab.active {
+  background: #2B2A3A;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(43,42,58,0.15);
+}
+
+.cert-grid-2col {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+}
+
+/* Спарклайны руководителя */
+.cert-sparkline {
+  width: 100%;
+  height: 36px;
+  margin-top: 8px;
+}
+
+/* Цепочка хешей аудита */
+.cert-hash-chain {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+.cert-hash-node {
+  background: #FAF8F5;
+  border: 1px solid #E5DCCB;
+  border-left: 3px solid #8B6F4E;
+  padding: 8px 12px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── ПЕЧАТНАЯ ВЁРСТКА (@media print) ───────────────────────── */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  .site-header,
+  .site-footer,
+  .cert-breadcrumbs,
+  .cert-hero__actions,
+  .cert-print-hide,
+  .btn-cert-primary,
+  .btn-cert-secondary {
+    display: none !important;
+  }
+  .cert-document-wrap {
+    padding: 0 !important;
+    perspective: none !important;
+  }
+  .cert-sheet {
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+    transform: none !important;
+    aspect-ratio: auto !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+}
+
+/* ── АДАПТИВНОСТЬ ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .cert-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .cert-two-col {
+    grid-template-columns: 1fr;
+  }
+  .cert-journey-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cert-zones-grid {
+    grid-template-columns: 1fr;
+  }
+  .cert-roles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cert-5y-timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cert-risk-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cert-apply-layout {
+    grid-template-columns: 1fr;
+  }
+  .cert-stepper {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .cert-hero {
+    padding: 48px 0 64px;
+  }
+  .cert-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .cert-journey-strip {
+    grid-template-columns: 1fr;
+  }
+  .cert-roles-grid {
+    grid-template-columns: 1fr;
+  }
+  .cert-5y-timeline {
+    grid-template-columns: 1fr;
+  }
+  .cert-risk-grid {
+    grid-template-columns: 1fr;
+  }
+  .cert-sheet__inner {
+    padding: 16px 12px;
+  }
+  .cert-attrs-grid {
+    grid-template-columns: 1fr;
+  }
+  .cert-doc-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+  }
+  .cert-qr-wrap {
+    align-items: center;
+  }
+  .cert-stamp-svg {
+    width: 68px;
+    height: 68px;
+  }
+}

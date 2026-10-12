@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Электронный сертификат соответствия средства размещения. ГУП «Центр сертификации туристских услуг» и Silk Route Invest. Проверка подлинности и печать." />
+  <title>Электронный сертификат соответствия — Silk Route Invest</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/megamenu.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+  <link rel="stylesheet" href="css/certification.css" />
+</head>
+<body data-vertical="certification" class="page-certificate">
+
+  <!-- HEADER -->
+  <header class="site-header cert-print-hide" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <a href="certification.html" class="nav-link">Сертификация</a>
+        <a href="certification-registry.html" class="nav-link">Реестр гостиниц</a>
+        <a href="cabinet-hotel.html" class="nav-link">Кабинет отеля</a>
+        <a href="about.html" class="nav-link">О платформе</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="uz">UZ</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="cabinet-hotel.html" class="btn-login">
+          <span class="btn-login-icon">⚿</span>
+          <span>Кабинет</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" style="padding: 32px 0 64px;">
+    <div class="cert-container">
+
+      <!-- Панель управления и крошки (скрывается при печати) -->
+      <div class="cert-print-hide" style="margin-bottom:28px;">
+        <div class="cert-breadcrumbs">
+          <a href="index.html">Главная</a>
+          <span class="sep">/</span>
+          <a href="certification.html">Сертификация</a>
+          <span class="sep">/</span>
+          <a href="certification-registry.html">Реестр</a>
+          <span class="sep">/</span>
+          <span class="current" id="crumb-cert-no">Сертификат</span>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:14px 20px;">
+          <div>
+            <span class="cert-eyebrow" style="margin-bottom:4px;">ГОСУДАРСТВЕННЫЙ ЭЛЕКТРОННЫЙ СЕРТИФИКАТ</span>
+            <div style="font-size:13px;color:#6B655C;">
+              Официальное подтверждение соответствия стандарту O'z DSt 3220:2017
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <button type="button" onclick="window.print()" class="btn-cert-primary" style="padding:9px 18px;font-size:13px;">
+              🖨 Печать / Сохранить в PDF
+            </button>
+            <a href="certification-registry.html" class="btn-cert-secondary" style="padding:9px 16px;font-size:13px;">
+              🏛 В реестр
+            </a>
+            <a href="#" id="link-hotel-passport" class="btn-cert-secondary" style="padding:9px 16px;font-size:13px;display:none;">
+              🏨 Паспорт отеля
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Контейнер бланка сертификата (компонент А4) -->
+      <div class="cert-document-wrap">
+        <div id="certificate-target" style="width:100%;max-width:640px;">
+          <div style="text-align:center;padding:60px 0;color:#8C8478;">
+            Загрузка данных сертификата…
+          </div>
+        </div>
+      </div>
+
+      <!-- Блок валидации и инспекционного контроля (скрывается при печати) -->
+      <div class="cert-print-hide" style="max-width:640px;margin:32px auto 0;background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:24px 28px;">
+        <h3 style="font-family:'PT Serif',Georgia,serif;font-size:18px;color:#2B2A3A;margin:0 0 14px;">
+          Юридический статус и инспекционный контроль (5 лет)
+        </h3>
+
+        <div id="cert-timeline-block" style="font-size:13px;color:#4A3E33;line-height:1.5;margin-bottom:18px;">
+          <!-- Заполняется JS -->
+        </div>
+
+        <div style="border-top:1px dashed #D6C7AE;padding-top:14px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#8C8478;font-family:'JetBrains Mono',monospace;">
+          <span id="cert-chain-verification">✔ Запись подтверждена в реестре</span>
+          <a href="certification-registry.html#verify" style="color:#8B6F4E;text-decoration:underline;">Проверить повторно</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER (скрывается при печати) -->
+  <footer class="site-footer cert-print-hide" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 ГУП «Центр сертификации туристских услуг». Данные являются официальными сведениями открытого реестра.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/megamenu.js"></script>
+  <script src="js/cert-api.js"></script>
+  <script src="js/cert-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var params = new URLSearchParams(window.location.search);
+      var no = params.get('no') || 'UZ.TSM.TK.000123';
+
+      CertAPI.ready().then(function (api) {
+        var cert = api.getCertificate(no);
+        var target = document.getElementById('certificate-target');
+
+        if (!cert) {
+          // Если номер не найден, попробуем дефолтный или сообщим об ошибке
+          target.innerHTML = '' +
+            '<div style="background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:48px 24px;text-align:center;">' +
+              '<div style="font-size:36px;margin-bottom:12px;">🔍</div>' +
+              '<h2 style="font-family:PT Serif,serif;font-size:22px;color:#2B2A3A;margin:0 0 8px;">Сертификат не найден</h2>' +
+              '<p style="font-size:14px;color:#6B655C;max-width:440px;margin:0 auto 20px;">' +
+                'Сертификат с номером <code>' + (no || '—') + '</code> отсутствует в публичном реестре либо был аннулирован.' +
+              '</p>' +
+              '<a href="certification-registry.html" class="btn-cert-primary">Перейти в публичный реестр</a>' +
+            '</div>';
+          return;
+        }
+
+        // Обновляем заголовок и крошки
+        document.title = 'Сертификат ' + cert.number + ' — ' + (cert.hotelName || '') + ' · Silk Route Invest';
+        document.getElementById('crumb-cert-no').textContent = cert.number;
+
+        // Рендерим электронный сертификат
+        CertUI.renderCertificate(cert, target);
+
+        // Паспорт отеля
+        if (cert.hotelId) {
+          var passportLink = document.getElementById('link-hotel-passport');
+          passportLink.href = 'passport.html?id=' + encodeURIComponent(cert.hotelId);
+          passportLink.style.display = 'inline-flex';
+        }
+
+        // График контроля
+        var issueDate = cert.issueDate.slice(0, 10).split('-').reverse().join('.');
+        var expiryDate = cert.expiryDate.slice(0, 10).split('-').reverse().join('.');
+        var nextDue = cert.nextInspectionDue ? cert.nextInspectionDue.slice(0, 10).split('-').reverse().join('.') : 'Согласно регламенту';
+        var lastInsp = cert.lastInspectionDate ? cert.lastInspectionDate.slice(0, 10).split('-').reverse().join('.') : 'При первичной выдаче';
+
+        var timelineEl = document.getElementById('cert-timeline-block');
+        timelineEl.innerHTML = '' +
+          '<div style="display:flex;justify-content:space-between;margin-bottom:8px;">' +
+            '<span>Текущий юридический статус:</span>' +
+            CertUI.renderStatusBadge(cert.status) +
+          '</div>' +
+          '<div style="display:flex;justify-content:space-between;margin-bottom:6px;">' +
+            '<span style="color:#6B655C;">Срок действия (5 лет):</span>' +
+            '<strong>' + issueDate + ' — ' + expiryDate + '</strong>' +
+          '</div>' +
+          '<div style="display:flex;justify-content:space-between;margin-bottom:6px;">' +
+            '<span style="color:#6B655C;">Последняя инспекция:</span>' +
+            '<span>' + lastInsp + '</span>' +
+          '</div>' +
+          '<div style="display:flex;justify-content:space-between;">' +
+            '<span style="color:#6B655C;">Следующая самоинспекция:</span>' +
+            '<strong style="color:#8B6F4E;">' + nextDue + '</strong>' +
+          '</div>';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Электронная сертификация средств размещения Республики Узбекистан. ГУП «Центр сертификации туристских услуг» и Silk Route Invest. Без бумаги, выдача за 2 рабочих дня." />
+  <title>Электронная сертификация средств размещения — ГУП «Центр сертификации туристских услуг» · Silk Route Invest</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/megamenu.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+  <link rel="stylesheet" href="css/certification.css" />
+</head>
+<body data-vertical="certification" class="page-certification">
+
+  <!-- HEADER (Мегаменю) -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <!-- 1. Для инвесторов -->
+        <div class="nav-item" data-mega="investors" data-page="portfolio">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Для инвесторов
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--investors">
+            <span class="mega-group-title">Инвестиционные возможности</span>
+            <a href="portfolio.html" class="mega-link">
+              <span class="mega-icon-badge">🏨</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Каталог объектов</span>
+                <span class="mega-link-desc">Гостиничные проекты, интерактивный фильтр</span>
+              </span>
+            </a>
+            <a href="tourism-types.html" class="mega-link">
+              <span class="mega-icon-badge">🗺️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Виды туризма</span>
+                <span class="mega-link-desc">Культурный, экологический, MICE, гастро</span>
+              </span>
+            </a>
+            <a href="certification-registry.html#verify" class="mega-link">
+              <span class="mega-icon-badge">✔</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Проверить сертификат отеля</span>
+                <span class="mega-link-desc">По номеру или QR-коду</span>
+              </span>
+            </a>
+            <a href="cabinet-investor.html" class="mega-link">
+              <span class="mega-icon-badge">👤</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Кабинет инвестора</span>
+                <span class="mega-link-desc">Избранное, заявки и доступ к Data Room</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Для отельеров -->
+        <div class="nav-item" data-mega="hoteliers" data-page="hoteliers">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Для отельеров
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--hoteliers">
+            <div class="mega-featured-card">
+              <div>
+                <div class="mega-featured-tag">★ ГОСУДАРСТВЕННАЯ СЕРТИФИКАЦИЯ</div>
+                <h4 class="mega-featured-title">Электронная сертификация</h4>
+                <p class="mega-featured-desc">Подайте заявку онлайн, загрузите подтверждающие фото/видео по чек-листу и получите сертификат за 2 дня.</p>
+              </div>
+              <a href="certification-apply.html" class="mega-featured-cta">
+                <span>Подать заявку онлайн</span>
+                <span class="mega-featured-arrow">→</span>
+              </a>
+            </div>
+            <div>
+              <span class="mega-group-title">Сервисы и стандарты</span>
+              <a href="cabinet-hotel.html" class="mega-link">
+                <span class="mega-icon-badge">🏨</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Кабинет отеля</span>
+                  <span class="mega-link-desc">Управление объектом, инспекционный контроль</span>
+                </span>
+              </a>
+              <a href="certification-apply.html" class="mega-link">
+                <span class="mega-icon-badge">🛡</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Заявка на сертификацию</span>
+                  <span class="mega-link-desc">Электронный чек-лист O'z DSt 3220:2017</span>
+                </span>
+              </a>
+              <a href="passport.html" class="mega-link">
+                <span class="mega-icon-badge">📄</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Инвестиционный паспорт</span>
+                  <span class="mega-link-desc">Стандарт USALI, финансовая модель и Data Room</span>
+                </span>
+              </a>
+              <a href="registries.html" class="mega-link">
+                <span class="mega-icon-badge">📋</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Реестры и субсидии</span>
+                  <span class="mega-link-desc">Единый реестр средств размещения</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Услуги -->
+        <div class="nav-item" data-mega="services" data-page="services">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Услуги
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--services">
+            <span class="mega-group-title">Официальные сервисы платформы</span>
+            <a href="certification.html" class="mega-link" style="background:rgba(139,111,78,0.08);border-radius:6px;">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label" style="color:var(--color-accent-gold,#8B6F4E);font-weight:700;">Сертификация</span>
+                <span class="mega-link-desc">Электронная сертификация и реестр сертифицированных гостиниц</span>
+              </span>
+            </a>
+            <a href="certification-registry.html" class="mega-link">
+              <span class="mega-icon-badge">🏛</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Реестр сертифицированных отелей</span>
+                <span class="mega-link-desc">Публичный реестр, проверка статуса и сроков</span>
+              </span>
+            </a>
+            <a href="quality.html" class="mega-link">
+              <span class="mega-icon-badge">⭐</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Quality Management</span>
+                <span class="mega-link-desc">Классификация KQI, чек-листы и стандарты сервиса</span>
+              </span>
+            </a>
+            <a href="economics-ratings.html" class="mega-link">
+              <span class="mega-icon-badge">📈</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Economics Ratings</span>
+                <span class="mega-link-desc">Рейтинг экономической эффективности и бенчмаркинг</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. О платформе -->
+        <div class="nav-item" data-mega="platform" data-page="about">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            О платформе
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--platform">
+            <span class="mega-group-title">Документация системы</span>
+            <a href="about.html" class="mega-link">
+              <span class="mega-icon-badge">📖</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">О системе</span>
+                <span class="mega-link-desc">Методические рекомендации · Том I</span>
+              </span>
+            </a>
+            <a href="tech-spec.html" class="mega-link">
+              <span class="mega-icon-badge">🛠️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Tech Specification</span>
+                <span class="mega-link-desc">Архитектура, ER-схема, API · Том IV</span>
+              </span>
+            </a>
+            <a href="certification.html#methodology" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Том VIII. Сертификация</span>
+                <span class="mega-link-desc">O’z DSt 3220:2017 · реестр · контроль 5 лет</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" data-lang="ru" aria-pressed="true">RU</button>
+          <button class="lang-btn" data-lang="uz" aria-pressed="false">UZ</button>
+          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a href="cabinet-hotel.html" class="btn-login" id="header-login">
+          <span class="btn-login-icon">⚿</span>
+          <span>Кабинет</span>
+        </a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Мобильная навигация -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Сертификация</span>
+      <a href="certification.html">🛡 Хаб сертификации</a>
+      <a href="certification-apply.html">✍ Подать заявку онлайн</a>
+      <a href="certification-registry.html">🏛 Публичный реестр</a>
+      <a href="certification-registry.html#verify">✔ Проверить сертификат</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для отельеров</span>
+      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
+      <a href="cabinet-inspector.html">🛡 Кабинет Центра</a>
+      <a href="quality.html">⭐ Quality Management</a>
+      <a href="passport.html">📄 Инвестиционный паспорт</a>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ═══ 1. HERO СЕКЦИЯ ═══ -->
+    <section class="cert-hero" id="hero">
+      <div class="cert-container">
+        <div class="cert-breadcrumbs">
+          <a href="index.html">Главная</a>
+          <span class="sep">/</span>
+          <span class="current">Сертификация</span>
+        </div>
+
+        <div class="cert-hero__grid">
+          <div>
+            <div class="cert-eyebrow">
+              <span>🏛</span> ГУП «ЦЕНТР СЕРТИФИКАЦИИ ТУРИСТСКИХ УСЛУГ» · SILK ROUTE INVEST
+            </div>
+            <h1 class="cert-hero__title">
+              Электронная <em>сертификация</em> средств размещения
+            </h1>
+            <p class="cert-hero__subtitle">
+              Без бумаги и без визита в Центр. Заявитель вносит факты по электронному чек-листу и подтверждает фото/видео. Машина проверяет данные, инспектор принимает решение в один клик. Сертификат за 2 рабочих дня.
+            </p>
+            <div class="cert-hero__actions">
+              <a href="certification-apply.html" class="btn-cert-primary">
+                <span>✍ Подать заявку</span>
+              </a>
+              <a href="certification-registry.html#verify" class="btn-cert-secondary">
+                <span>🔍 Проверить сертификат</span>
+              </a>
+              <a href="cabinet-inspector.html" class="btn-cert-secondary" style="font-size:12px;opacity:0.85;">
+                <span>🛡 Вход для сотрудников Центра</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Карточка быстрой проверки в Hero -->
+          <div>
+            <div class="cert-hero-card">
+              <div class="cert-hero-card__header">
+                <h3 class="cert-hero-card__title">Проверка подлинности</h3>
+                <span class="cert-hero-card__tag">ОТКРЫТЫЙ РЕЕСТР</span>
+              </div>
+              <p class="cert-hero-card__desc">
+                Проверьте актуальный статус сертификата любого отеля Узбекистана по государственному реестру.
+              </p>
+              <div class="cert-hero-card__form">
+                <div class="cert-input-group">
+                  <input type="text" id="hero-cert-input" class="cert-input-text" placeholder="UZ.TSM.TK.000123" aria-label="Номер сертификата" />
+                  <button type="button" id="hero-cert-btn" class="btn-cert-primary" style="padding:11px 18px;">
+                    Проверить
+                  </button>
+                </div>
+                <div class="cert-hero-card__quick-samples">
+                  Примеры номеров:
+                  <button type="button" class="hero-sample-btn" data-no="UZ.TSM.TK.000123">000123 (5★)</button>,
+                  <button type="button" class="hero-sample-btn" data-no="UZ.TSM.SM.000204">000204 (4★)</button>,
+                  <button type="button" class="hero-sample-btn" data-no="UZ.TSM.BU.000318">000318 (3★)</button>
+                </div>
+              </div>
+              <div id="hero-cert-result" class="cert-verify-result"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 2. ЛЕНТА KPI (COUNT-UP 1400 МС) ═══ -->
+    <section class="cert-kpi-strip" aria-label="Целевые показатели эффективности">
+      <div class="cert-container">
+        <div class="cert-kpi-grid">
+          <div class="cert-kpi-item">
+            <div class="cert-kpi-value" data-cert-counter="2 р.д.">2 р.д.</div>
+            <div class="cert-kpi-label">Целевой срок выдачи</div>
+            <div class="cert-kpi-note">При полном комплекте подтверждений</div>
+          </div>
+          <div class="cert-kpi-item">
+            <div class="cert-kpi-value" data-cert-counter="≥80%">≥80%</div>
+            <div class="cert-kpi-label">Пунктов проверяет система</div>
+            <div class="cert-kpi-note">Автопроверка геометок, EXIF, ИИ и реестров</div>
+          </div>
+          <div class="cert-kpi-item">
+            <div class="cert-kpi-value" data-cert-counter="≤60 мин">≤60 мин</div>
+            <div class="cert-kpi-label">Работа инспектора на заявку</div>
+            <div class="cert-kpi-note">Фокус на спорных и пограничных фактах</div>
+          </div>
+          <div class="cert-kpi-item">
+            <div class="cert-kpi-value" data-cert-counter="5 лет">5 лет</div>
+            <div class="cert-kpi-label">Срок действия + контроль</div>
+            <div class="cert-kpi-note">Ежегодная самоинспекция и риск-мониторинг</div>
+          </div>
+        </div>
+        <div style="text-align:right;font-size:10px;color:#8C8478;margin-top:14px;">
+          * Демо-значения целевых показателей по ТЗ ГУП «Центр сертификации туристских услуг»
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 3. «ОДИН ЧЕЛОВЕК — ОДНО РЕШЕНИЕ» ═══ -->
+    <section class="cert-section cert-section--cream">
+      <div class="cert-container">
+        <div class="cert-section-head">
+          <span class="cert-section-tag">ФИЛОСОФИЯ ПРОЦЕССА</span>
+          <h2 class="cert-section-title">Один человек — одно решение</h2>
+          <p class="cert-section-desc">
+            Разделение труда между алгоритмической системой и уполномоченным инспектором. Машина берёт на себя рутину и проверки данных, а человек принимает ответственное юридическое решение.
+          </p>
+        </div>
+
+        <div class="cert-two-col">
+          <div class="cert-col-card cert-col-card--system">
+            <div class="cert-col-card__header">
+              <h3 class="cert-col-card__title">Делает система</h3>
+              <span class="cert-col-card__badge">АВТОМАТИЧЕСКИ</span>
+            </div>
+            <ul class="cert-features-list">
+              <li><span class="icon">✓</span> Проверка ИНН заявителя и связка с профилем OneID отеля.</li>
+              <li><span class="icon">✓</span> Расчёт сбора за сертификацию по сетке тарифов и выставление счёта.</li>
+              <li><span class="icon">✓</span> Экспресс-проверка доказательств: GPS-геометка в радиусе 150 м от объекта, окно съёмки до 14 дней, чтение EXIF.</li>
+              <li><span class="icon">✓</span> Проверка уникальности фото: выявление дубликатов по перцептивному хешу (dHash) против всей базы.</li>
+              <li><span class="icon">✓</span> ИИ-распознавание критичных объектов (огнетушители, фасадные вывески, номерной фонд).</li>
+              <li><span class="icon">✓</span> Формирование чистого юридического протокола и генерация сертификата при подписании.</li>
+              <li><span class="icon">✓</span> Ведение графика 5-летнего инспекционного контроля и авто-напоминания по SMS и в кабинет.</li>
+            </ul>
+          </div>
+
+          <div class="cert-col-card cert-col-card--human">
+            <div class="cert-col-card__header">
+              <h3 class="cert-col-card__title">Решает человек</h3>
+              <span class="cert-col-card__badge" style="background:#FBF4E4;color:#B7791F;border-color:#D6C7AE;">ИНСПЕКТОР ЦЕНТРА</span>
+            </div>
+            <ul class="cert-features-list">
+              <li><span class="icon">⚖</span> Анализ пунктов «жёлтой зоны» (пограничные параметры, вопросы качества доказательств).</li>
+              <li><span class="icon">⚖</span> Проверка пунктов «красной зоны» и принятие решения о запросе доработки.</li>
+              <li><span class="icon">⚖</span> Проведение дистанционной видеоинспекции объекта при наличии сомнений.</li>
+              <li><span class="icon">⚖</span> Обоснование и назначение выездного инспекционного контроля (только при веских основаниях).</li>
+              <li><span class="icon">⚖</span> Принятие юридически обязывающего решения: утвердить выдачу / отказать / направить на доработку.</li>
+              <li><span class="icon">⚖</span> Подписание итогового решения квалифицированной электронной цифровой подписью E-IMZO.</li>
+              <li><span class="icon">⚖</span> Рассмотрение апелляций заявителей при участии Апелляционной комиссии Центра.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 4. ПУТЬ ЗАЯВКИ — 10 ШАГОВ ═══ -->
+    <section class="cert-section cert-section--white">
+      <div class="cert-container">
+        <div class="cert-section-head">
+          <span class="cert-section-tag">РЕГЛАМЕНТ РАБОТЫ</span>
+          <h2 class="cert-section-title">Путь заявки: от регистрации до реестра</h2>
+          <p class="cert-section-desc">
+            Прозрачный цикл из 10 этапов со строгими нормативными сроками (SLA) и персональной ответственностью исполнителей.
+          </p>
+        </div>
+
+        <div class="cert-journey-strip">
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">01</div>
+            <div class="cert-step-card__title">Регистрация и OneID</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--user">Заявитель</span>
+              <span class="cert-step-card__time">~15 мин</span>
+            </div>
+          </div>
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">02</div>
+            <div class="cert-step-card__title">Подача заявки онлайн</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--user">Заявитель</span>
+              <span class="cert-step-card__time">Сразу</span>
+            </div>
+          </div>
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">03</div>
+            <div class="cert-step-card__title">Решение о проведении</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--sys">Система</span>
+              <span class="cert-step-card__time">≤ 1 р.д.</span>
+            </div>
+          </div>
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">04</div>
+            <div class="cert-step-card__title">Оплата сбора</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--user">Заявитель</span>
+              <span class="cert-step-card__time">В день счёта</span>
+            </div>
+          </div>
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">05</div>
+            <div class="cert-step-card__title">Чек-лист и фото/видео</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--user">Заявитель</span>
+              <span class="cert-step-card__time">По готовности</span>
+            </div>
+          </div>
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">06</div>
+            <div class="cert-step-card__title">Автооценка доказательств</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--sys">Система</span>
+              <span class="cert-step-card__time">≤ 1 час</span>
+            </div>
+          </div>
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">07</div>
+            <div class="cert-step-card__title">Оценка инспектором</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--insp">Инспектор</span>
+              <span class="cert-step-card__time">≤ 3 р.д.</span>
+            </div>
+          </div>
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">08</div>
+            <div class="cert-step-card__title">Устранение замечаний</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--user">Заявитель</span>
+              <span class="cert-step-card__time">До 10 р.д.</span>
+            </div>
+          </div>
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">09</div>
+            <div class="cert-step-card__title">Решение и ЭЦП E-IMZO</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--insp">Инспектор</span>
+              <span class="cert-step-card__time">В день оценки</span>
+            </div>
+          </div>
+          <div class="cert-step-card">
+            <div class="cert-step-card__num">10</div>
+            <div class="cert-step-card__title">Сертификат и реестр</div>
+            <div class="cert-step-card__meta">
+              <span class="cert-actor-chip cert-actor-chip--sys">Система</span>
+              <span class="cert-step-card__time">Мгновенно</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 5. ТРИ ЗОНЫ ПРОВЕРКИ ═══ -->
+    <section class="cert-section cert-section--cream">
+      <div class="cert-container">
+        <div class="cert-section-head">
+          <span class="cert-section-tag">КЛАССИФИКАЦИЯ ФАКТОВ</span>
+          <h2 class="cert-section-title">Три зоны проверки доказательств</h2>
+          <p class="cert-section-desc">
+            Система категоризирует каждый пункт стандарта O'z DSt 3220:2017 по уровню критичности и степени автоматической верифицируемости.
+          </p>
+        </div>
+
+        <div class="cert-zones-grid">
+          <div class="cert-zone-card cert-zone-card--green">
+            <span class="cert-zone-card__pill">ЗЕЛЁНАЯ ЗОНА · АВТО</span>
+            <h3 class="cert-zone-card__title">Пакетное утверждение</h3>
+            <p class="cert-zone-card__desc">
+              Пункты, которые машина проверила с абсолютной достоверностью. Принимаются инспектором в 1 клик пакетом.
+            </p>
+            <ul class="cert-zone-card__bullets">
+              <li>Геопозиция строго в пределах 150 м от объекта</li>
+              <li>Корректные метаданные EXIF и свежесть файлов</li>
+              <li>Отсутствие совпадений dHash в базе дубликатов</li>
+              <li>ИИ-уверенность распознавания ≥ 85%</li>
+              <li>Действующие лицензии и договоры без просрочки</li>
+            </ul>
+          </div>
+
+          <div class="cert-zone-card cert-zone-card--yellow">
+            <span class="cert-zone-card__pill">ЖЁЛТАЯ ЗОНА · ВНИМАНИЕ</span>
+            <h3 class="cert-zone-card__title">Оценка инспектором</h3>
+            <p class="cert-zone-card__desc">
+              Спорные факты, пограничные площади номеров или недостаточно чёткие фотографии, требующие взгляда эксперта.
+            </p>
+            <ul class="cert-zone-card__bullets">
+              <li>Погрешность площади номера в пределах нормы</li>
+              <li>Недостаточная освещённость или нечёткий ракурс</li>
+              <li>ИИ-уверенность распознавания от 60% до 84%</li>
+              <li>Нетипичная планировка санузлов или холлов</li>
+              <li>Возможность назначения видеоинспекции</li>
+            </ul>
+          </div>
+
+          <div class="cert-zone-card cert-zone-card--red">
+            <span class="cert-zone-card__pill">КРАСНАЯ ЗОНА · БЛОКИРОВКА</span>
+            <h3 class="cert-zone-card__title">Критичное несоответствие</h3>
+            <p class="cert-zone-card__desc">
+              Прямые нарушения норм безопасности или попытка фальсификации данных. Требуют устранения либо отказа.
+            </p>
+            <ul class="cert-zone-card__bullets">
+              <li>Повторное использование чужих фото (дубликат dHash)</li>
+              <li>Геолокация съёмки вне радиуса 150 м объекта</li>
+              <li>Отсутствие первичных средств пожаротушения</li>
+              <li>Истёкший договор вывоза ТБО или отсутствие лицензий</li>
+              <li>Несоответствие базовым критериям категории</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 6. ОБРАЗЕЦ ЭЛЕКТРОННОГО СЕРТИФИКАТА ═══ -->
+    <section class="cert-section cert-section--white" id="sample-certificate">
+      <div class="cert-container">
+        <div class="cert-section-head">
+          <span class="cert-section-tag">ОФИЦИАЛЬНЫЙ ДОКУМЕНТ</span>
+          <h2 class="cert-section-title">Образец электронного сертификата</h2>
+          <p class="cert-section-desc">
+            Электронный документ государственного образца с многоуровневой криптографической защитой, QR-кодом и связью с публичным реестром.
+          </p>
+        </div>
+
+        <div class="cert-document-wrap">
+          <div id="cert-preview-container">
+            <!-- Rendered by CertUI.renderCertificate -->
+          </div>
+        </div>
+
+        <div style="max-width:820px;margin:36px auto 0;background:#FAF8F5;border:1px solid #D6C7AE;border-radius:4px;padding:24px 28px;">
+          <h4 style="margin:0 0 12px;font-family:PT Serif,serif;font-size:18px;color:#2B2A3A;">Элементы защиты государственного образца:</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:13px;color:#4A3E33;">
+            <div><strong>🔑 Квалифицированная ЭЦП:</strong> цифровая подпись руководителя Центра (E-IMZO) гарантирует подлинность и неизменность документа.</div>
+            <div><strong>📱 Динамический QR-код:</strong> ведёт прямо на публичную страницу проверки статуса в государственном реестре.</div>
+            <div><strong>🔒 Хеш-цепочка SHA-256:</strong> запись о выдаче фиксируется в неизменяемом аудит-журнале системы.</div>
+            <div><strong>🌐 Трёхъязычный формуляр:</strong> официальные реквизиты на узбекском (латиница), русском и английском языках.</div>
+          </div>
+          <div style="margin-top:16px;text-align:center;">
+            <a href="certificate.html?no=UZ.TSM.TK.000123" class="btn-cert-primary" style="padding:9px 20px;font-size:12px;">
+              📄 Открыть полную страницу сертификата с печатью A4
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 7. ИНСПЕКЦИОННЫЙ КОНТРОЛЬ 5 ЛЕТ ═══ -->
+    <section class="cert-section cert-section--cream">
+      <div class="cert-container">
+        <div class="cert-section-head">
+          <span class="cert-section-tag">ПОСТ-СЕРТИФИКАЦИОННЫЙ НАДЗОР</span>
+          <h2 class="cert-section-title">Инспекционный контроль в течение 5 лет</h2>
+          <p class="cert-section-desc">
+            Сертификат действует 5 лет при условии регулярного подтверждения соответствия стандартам через цифровую самоинспекцию и мониторинг рисков.
+          </p>
+        </div>
+
+        <div class="cert-5y-timeline">
+          <div class="cert-5y-point">
+            <div class="cert-5y-point__year">Выдача</div>
+            <div class="cert-5y-point__title">Выпуск сертификата</div>
+            <div class="cert-5y-point__desc">Внесение в реестр, присвоение категории, начало 5-летнего цикла.</div>
+          </div>
+          <div class="cert-5y-point">
+            <div class="cert-5y-point__year">Год 1</div>
+            <div class="cert-5y-point__title">Самоинспекция №1</div>
+            <div class="cert-5y-point__desc">Подтверждение ключевых пунктов в кабинете отеля («без изменений» / новые фото).</div>
+          </div>
+          <div class="cert-5y-point">
+            <div class="cert-5y-point__year">Год 2</div>
+            <div class="cert-5y-point__title">Самоинспекция №2</div>
+            <div class="cert-5y-point__desc">Контроль договоров, поверки огнетушителей и санитарных книжек.</div>
+          </div>
+          <div class="cert-5y-point">
+            <div class="cert-5y-point__year">Год 3</div>
+            <div class="cert-5y-point__title">Плановый аудит</div>
+            <div class="cert-5y-point__desc">Углублённый дистанционный аудит с видеоинспекцией или выездом при риске.</div>
+          </div>
+          <div class="cert-5y-point">
+            <div class="cert-5y-point__year">Год 4</div>
+            <div class="cert-5y-point__title">Самоинспекция №3</div>
+            <div class="cert-5y-point__desc">Ежегодная цифровая сверка актуальности материально-технической базы.</div>
+          </div>
+          <div class="cert-5y-point">
+            <div class="cert-5y-point__year">Год 5</div>
+            <div class="cert-5y-point__title">Ресертификация</div>
+            <div class="cert-5y-point__desc">За 90 дней до окончания: запуск упрощённой повторной сертификации.</div>
+          </div>
+        </div>
+
+        <h4 style="margin:48px 0 16px;text-align:center;font-family:PT Serif,serif;font-size:20px;color:#2B2A3A;">
+          Автоматические риск-сигналы для внепланового контроля:
+        </h4>
+        <div class="cert-risk-grid">
+          <div class="cert-risk-card">
+            <div class="cert-risk-card__icon">📢</div>
+            <div class="cert-risk-card__title">Обоснованные жалобы</div>
+            <div class="cert-risk-card__desc">Жалобы гостей через my.gov.uz или Telegram-бот Комитета по туризму.</div>
+          </div>
+          <div class="cert-risk-card">
+            <div class="cert-risk-card__icon">📉</div>
+            <div class="cert-risk-card__title">Падение KQI рейтинга</div>
+            <div class="cert-risk-card__desc">Снижение индекса качества Quality Management более чем на 15 баллов.</div>
+          </div>
+          <div class="cert-risk-card">
+            <div class="cert-risk-card__icon">🕵️</div>
+            <div class="cert-risk-card__title">«Тайный гость»</div>
+            <div class="cert-risk-card__desc">Фиксация нарушений стандартов в ходе плановой программы тайного гостя.</div>
+          </div>
+          <div class="cert-risk-card">
+            <div class="cert-risk-card__icon">⚖️</div>
+            <div class="cert-risk-card__title">Расхождения баз данных</div>
+            <div class="cert-risk-card__desc">Несовпадение фактического номерного фонда с данными Soliq или кадастра.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 8. РОЛИ В СИСТЕМЕ ═══ -->
+    <section class="cert-section cert-section--white">
+      <div class="cert-container">
+        <div class="cert-section-head">
+          <span class="cert-section-tag">РОЛЕВАЯ МОДЕЛЬ (RBAC)</span>
+          <h2 class="cert-section-title">Единая экосистема для всех участников</h2>
+          <p class="cert-section-desc">
+            Индивидуальные цифровые рабочие пространства с персональными сценариями и разграничением прав доступа.
+          </p>
+        </div>
+
+        <div class="cert-roles-grid">
+          <div class="cert-role-card">
+            <div class="cert-role-card__icon">🏨</div>
+            <h3 class="cert-role-card__title">Заявитель</h3>
+            <p class="cert-role-card__desc">
+              Руководитель или управляющий отеля. Вход через OneID. Заполнение чек-листа, загрузка фото/видео, оплата сбора, отслеживание инспекций.
+            </p>
+            <div class="cert-role-card__action">
+              <a href="certification-apply.html" class="btn-cert-primary" style="width:100%;box-sizing:border-box;justify-content:center;padding:9px;">Подать заявку</a>
+            </div>
+          </div>
+
+          <div class="cert-role-card">
+            <div class="cert-role-card__icon">🛡️</div>
+            <h3 class="cert-role-card__title">Инспектор</h3>
+            <p class="cert-role-card__desc">
+              Эксперт Центра сертификации. Работа с очередью заявок, анализ жёлтой/красной зон, видеоинспекция, подписание протокола E-IMZO.
+            </p>
+            <div class="cert-role-card__action">
+              <a href="cabinet-inspector.html" class="btn-cert-secondary" style="width:100%;box-sizing:border-box;justify-content:center;padding:9px;">Кабинет инспектора</a>
+            </div>
+          </div>
+
+          <div class="cert-role-card">
+            <div class="cert-role-card__icon">👔</div>
+            <h3 class="cert-role-card__title">Руководитель</h3>
+            <p class="cert-role-card__desc">
+              Контроль соблюдения SLA (2 р.д.), загрузки инспекторов по регионам, рассмотрение апелляций, утверждение решений высокого риска.
+            </p>
+            <div class="cert-role-card__action">
+              <a href="cabinet-inspector.html#manager" class="btn-cert-secondary" style="width:100%;box-sizing:border-box;justify-content:center;padding:9px;">Дашборд KPI</a>
+            </div>
+          </div>
+
+          <div class="cert-role-card">
+            <div class="cert-role-card__icon">🔍</div>
+            <h3 class="cert-role-card__title">Инвестор / Гость</h3>
+            <p class="cert-role-card__desc">
+              Публичный доступ без регистрации: проверка подлинности сертификатов, поиск в реестре, скачивание открытых данных и выписок.
+            </p>
+            <div class="cert-role-card__action">
+              <a href="certification-registry.html" class="btn-cert-secondary" style="width:100%;box-sizing:border-box;justify-content:center;padding:9px;">Открыть реестр</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 9. МЕТОДОЛОГИЯ (ЯКОРЬ #methodology) ═══ -->
+    <section class="cert-section cert-section--cream" id="methodology">
+      <div class="cert-container">
+        <div class="cert-section-head">
+          <span class="cert-section-tag">НОРМАТИВНАЯ БАЗА · ТОМ VIII</span>
+          <h2 class="cert-section-title">Методология и нормативные стандарты</h2>
+          <p class="cert-section-desc">
+            Процедура сертификации и структура электронного чек-листа соответствуют действующему законодательству Республики Узбекистан.
+          </p>
+        </div>
+
+        <div style="background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:32px;box-shadow:0 4px 16px rgba(59,42,32,0.04);margin-bottom:32px;">
+          <h4 style="margin:0 0 16px;font-family:PT Serif,serif;font-size:20px;color:#2B2A3A;">Основополагающие документы:</h4>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:14px;color:#4A3E33;">
+            <li style="display:flex;gap:10px;"><strong style="color:#8B6F4E;flex-shrink:0;">1. O'z DSt 3220:2017:</strong> Государственный стандарт «Туристские услуги. Средства размещения. Общие требования». Классификация гостиниц по категориям 1★–5★.</li>
+            <li style="display:flex;gap:10px;"><strong style="color:#8B6F4E;flex-shrink:0;">2. ПКМ РУз № 433:</strong> Положение о порядке сертификации туристских услуг (приложение к Постановлению Кабинета Министров от 10.07.2020 № 433).</li>
+            <li style="display:flex;gap:10px;"><strong style="color:#8B6F4E;flex-shrink:0;">3. O'z DSt 3296:</strong> Государственный стандарт требований к туристским услугам и безопасности персонала.</li>
+            <li style="display:flex;gap:10px;"><strong style="color:#8B6F4E;flex-shrink:0;">4. Закон РУз «О туризме»:</strong> Обязательность сертификации услуг гостиниц и средств размещения.</li>
+          </ul>
+        </div>
+
+        <h4 style="margin:0 0 18px;font-family:PT Serif,serif;font-size:20px;color:#2B2A3A;">Разделы электронного чек-листа (А–К):</h4>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:16px;">
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел А.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Общие сведения и документы</div>
+            <div style="font-size:12px;color:#6B655C;">Учредительные документы, кадастр, договор ТБО, лицензии.</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел Б.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Территория и вывеска</div>
+            <div style="font-size:12px;color:#6B655C;">Подъездные пути, парковка, освещение, фасадная вывеска (день/ночь).</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел В.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Здание и доступность</div>
+            <div style="font-size:12px;color:#6B655C;">Входная группа, пандусы, лифты при этажности >3, безбарьерность.</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел Г.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Общественные помещения</div>
+            <div style="font-size:12px;color:#6B655C;">Холл, стойка приёма (ресепшен), зона ожидания, гардероб.</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел Д.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Номерной фонд</div>
+            <div style="font-size:12px;color:#6B655C;">Площади номеров по стандарту, звукоизоляция, мебель, оснащение.</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел Е.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Санузлы номеров</div>
+            <div style="font-size:12px;color:#6B655C;">Площадь санузла, сантехническое оборудование, вентиляция, косметика.</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел Ж.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Инженерное обеспечение</div>
+            <div style="font-size:12px;color:#6B655C;">Горячая вода 24/7, отопление, кондиционирование, резервные генераторы.</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел З.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Безопасность</div>
+            <div style="font-size:12px;color:#6B655C;">Пожарная сигнализация, огнетушители, эвакуационные выходы, видеонаблюдение.</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел И.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Персонал</div>
+            <div style="font-size:12px;color:#6B655C;">Квалификация, знание иностранных языков, медкнижки, униформа.</div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;padding:16px;border-radius:3px;">
+            <strong style="color:#8B6F4E;font-family:JetBrains Mono,monospace;">Раздел К.</strong>
+            <div style="font-weight:600;color:#2B2A3A;margin:4px 0 2px;">Информация и услуги</div>
+            <div style="font-size:12px;color:#6B655C;">Информационные папки в номерах, правила проживания, сейфы, Wi-Fi.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 10. FAQ АККОРДЕОН ═══ -->
+    <section class="cert-section cert-section--white" id="faq">
+      <div class="cert-container">
+        <div class="cert-section-head">
+          <span class="cert-section-tag">ЧАСТЫЕ ВОПРОСЫ</span>
+          <h2 class="cert-section-title">Вопросы и ответы о сертификации</h2>
+          <p class="cert-section-desc">
+            Разъяснения по регламенту, стоимости, срокам и проверке сертификатов соответствия.
+          </p>
+        </div>
+
+        <div class="cert-faq-list">
+          <details class="cert-faq-item" open>
+            <summary class="cert-faq-summary">Сколько стоит обязательная сертификация гостиницы?</summary>
+            <div class="cert-faq-content">
+              Тарифы на проведение работ по сертификации утверждены ГУП «Центр сертификации туристских услуг» в соответствии с законодательством Республики Узбекистан. Стоимость зависит от присваиваемой категории (1★–5★) и номерного фонда. Точная сумма рассчитывается автоматически при оформлении заявки до момента оплаты с формированием официального счёта на оплату.
+            </div>
+          </details>
+
+          <details class="cert-faq-item">
+            <summary class="cert-faq-summary">Сколько времени занимает весь процесс от заявки до сертификата?</summary>
+            <div class="cert-faq-content">
+              При наличии полного комплекта подтверждающих фото и видеоматериалов целевой срок выдачи сертификата составляет <strong>2 рабочих дня</strong>. Предельный нормативный срок по регламенту не превышает 5 рабочих дней.
+            </div>
+          </details>
+
+          <details class="cert-faq-item">
+            <summary class="cert-faq-summary">Как проверить подлинность сертификата любого отеля?</summary>
+            <div class="cert-faq-content">
+              Вы можете ввести номер сертификата (например, <code>UZ.TSM.TK.000123</code>) в поле проверки на этой странице или в разделе <a href="certification-registry.html#verify">«Реестр»</a>, либо отсканировать QR-код на бланке отеля камерой смартфона. Система покажет текущий юридический статус, присвоенную категорию и срок действия из первоисточника.
+            </div>
+          </details>
+
+          <details class="cert-faq-item">
+            <summary class="cert-faq-summary">Что если отель не набрал баллы на заявленную категорию?</summary>
+            <div class="cert-faq-content">
+              Инспектор направляет заявку на этап «Устранение замечаний» с указанием конкретных пунктов. У заявителя есть до 10 рабочих дней для устранения несоответствий и загрузки повторных фото. Если параметры не позволяют получить заявленные 5★, заявителю может быть предложена корректировка категории на 4★ без повторной оплаты полного сбора.
+            </div>
+          </details>
+
+          <details class="cert-faq-item">
+            <summary class="cert-faq-summary">Как устроен инспекционный контроль в течение 5 лет?</summary>
+            <div class="cert-faq-content">
+              Сертификат выдаётся на 5 лет. Ежегодно отель проходит цифровую самоинспекцию в своём кабинете, подтверждая неизменность ключевых параметров. При отсутствии жалоб и риск-сигналов визит инспектора не требуется. За 90 дней до истечения 5 лет открывается процедура ресертификации.
+            </div>
+          </details>
+
+          <details class="cert-faq-item">
+            <summary class="cert-faq-summary">Обязательно ли инспектору лично приезжать в отель?</summary>
+            <div class="cert-faq-content">
+              Нет, базовая процедура полностью дистанционная. Более 80% пунктов проверяются по фото/видео с геометками и ИИ. В спорных случаях проводится онлайн-видеоинспекция в реальном времени. Очный выезд инспектора назначается только при обоснованных подозрениях на фальсификацию или критичных нарушениях пожарной безопасности.
+            </div>
+          </details>
+
+          <details class="cert-faq-item">
+            <summary class="cert-faq-summary">Чем сертификация отличается от рейтинга KQI (Quality Management)?</summary>
+            <div class="cert-faq-content">
+              <strong>Сертификация</strong> — это обязательное государственное подтверждение соответствия стандарту O'z DSt 3220:2017 с выдачей юридического сертификата на 5 лет. <strong>KQI (Quality Management)</strong> — добровольная система оценки качества сервиса по 80 критериям с расчётом баллов от 0 до 100 для инвесторов. Данные сертификата автоматически транслируются в карточку KQI отеля.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 11. CTA ПОЛОСА ═══ -->
+    <section class="cert-cta-strip">
+      <div class="cert-container">
+        <h2 class="cert-cta-title">Готовы пройти сертификацию?</h2>
+        <p class="cert-cta-desc">
+          Подайте заявку онлайн через электронный чек-лист за 15 минут. Получите официальный сертификат соответствия без очередей и визитов в Центр.
+        </p>
+        <div class="cert-cta-actions">
+          <a href="certification-apply.html" class="btn-cert-cta-primary">
+            ✍ Подать заявку на сертификацию
+          </a>
+          <a href="certification-registry.html" class="btn-cert-cta-secondary">
+            🏛 Открыть публичный реестр отелей
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo">
+            <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+            <div class="logo-text">
+              <span class="logo-title">SILK ROUTE</span>
+              <span class="logo-subtitle">INVEST</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">ГУП «Центр сертификации туристских услуг» при Комитете по туризму Республики Узбекистан. Официальная электронная сертификация средств размещения.</p>
+        </div>
+        <nav class="footer-nav-grid">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Сертификация</p>
+            <a href="certification.html" class="footer-nav-link">Хаб модуля</a>
+            <a href="certification-apply.html" class="footer-nav-link">Подать заявку</a>
+            <a href="certification-registry.html" class="footer-nav-link">Реестр гостиниц</a>
+            <a href="certification-registry.html#verify" class="footer-nav-link">Проверка сертификата</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Для отелей</p>
+            <a href="cabinet-hotel.html" class="footer-nav-link">Кабинет отеля</a>
+            <a href="passport.html" class="footer-nav-link">Инвест-паспорт</a>
+            <a href="quality.html" class="footer-nav-link">Quality Management</a>
+            <a href="registries.html" class="footer-nav-link">Госреестры</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html" class="footer-nav-link">Том I. О системе</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Spec</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 ГУП «Центр сертификации туристских услуг». Все права защищены.
+          Демо-режим: данные носят иллюстративный характер.
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/megamenu.js"></script>
+  <script src="js/cert-api.js"></script>
+  <script src="js/cert-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 1. Инициализация виджета быстрой проверки в Hero
+      CertUI.initQuickVerify({
+        inputId: 'hero-cert-input',
+        btnId: 'hero-cert-btn',
+        resultId: 'hero-cert-result'
+      });
+
+      // Быстрые кнопки-образцы
+      document.querySelectorAll('.hero-sample-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var input = document.getElementById('hero-cert-input');
+          if (input) {
+            input.value = btn.getAttribute('data-no');
+            document.getElementById('hero-cert-btn').click();
+          }
+        });
+      });
+
+      // 2. Инициализация Count-up анимации KPI
+      CertUI.initKpiCounters();
+
+      // 3. Рендер образца сертификата в секции «Образец»
+      CertAPI.ready().then(function (api) {
+        var cert = api.getCertificate('UZ.TSM.TK.000123');
+        var container = document.getElementById('cert-preview-container');
+        if (cert && container) {
+          CertUI.renderCertificate(cert, container);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

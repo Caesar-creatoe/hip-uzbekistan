@@ -151,6 +151,15 @@
   --v-active:       var(--v-hotels);
   --v-active-bg:    var(--v-hotels-bg);
   --v-active-light: var(--v-hotels-light);
+
+  /* ── МОДУЛЬ «СЕРТИФИКАЦИЯ»: СЕМАНТИЧЕСКИЕ ЦВЕТА СТАТУСОВ ──
+     Переиспользуют оттенки вертикалей; --cert-warn — единственный новый оттенок.
+     Цвет никогда не единственный носитель смысла: всегда иконка + текст. */
+  --cert-ok:         #2E5E3F;  --cert-ok-bg:     #F0F5F1;   /* Действует · зелёная зона · Соответствует */
+  --cert-info:       #1E3A6E;  --cert-info-bg:   #EFF3FA;   /* На ресертификации · Принято */
+  --cert-danger:     #8B3A2F;  --cert-danger-bg: #FBF2F0;   /* Аннулирован · красная зона · отказ */
+  --cert-warn:       #B7791F;  --cert-warn-bg:   #FBF4E4;   /* Приостановлен · жёлтая зона */
+  --cert-muted:      #6B655C;  --cert-muted-bg:  #F0EBE0;   /* Истёк · не применимо · черновик */
 }
 
 /* ── ВЕРТИКАЛЬНЫЕ ТЕМЫ НА body ──────────────────── */
@@ -158,4 +167,5 @@ body[data-vertical="hotels"]      { --v-active: var(--v-hotels);      --v-active
 body[data-vertical="restaurants"] { --v-active: var(--v-restaurants);  --v-active-bg: var(--v-restaurants-bg); --v-active-light: var(--v-restaurants-light); }
 body[data-vertical="land"]        { --v-active: var(--v-land);         --v-active-bg: var(--v-land-bg);        --v-active-light: var(--v-land-light); }
 body[data-vertical="support"]     { --v-active: var(--v-support);      --v-active-bg: var(--v-support-bg);     --v-active-light: var(--v-support-light); }
+body[data-vertical="certification"] { --v-active: var(--v-hotels); --v-active-bg: var(--v-hotels-bg); --v-active-light: var(--v-hotels-light); }
 

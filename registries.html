@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="styles/methodology.css" />
   <link rel="stylesheet" href="styles/registries.css" />
   <link rel="stylesheet" href="styles/support-programs.css" />
+  <link rel="stylesheet" href="css/certification.css" />
 </head>
 <body class="page-registries">
 
@@ -63,6 +64,13 @@
               <span class="mega-link-text">
                 <span class="mega-link-label">Виды туризма</span>
                 <span class="mega-link-desc">Культурный, экологический, MICE, гастро</span>
+              </span>
+            </a>
+            <a href="certification-registry.html#verify" class="mega-link">
+              <span class="mega-icon-badge">✔</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Проверить сертификат отеля</span>
+                <span class="mega-link-desc">По номеру или QR-коду</span>
               </span>
             </a>
             <a href="cabinet-investor.html" class="mega-link">
@@ -112,6 +120,13 @@
                   <span class="mega-link-desc">Стандарт USALI, финансовая модель и карта</span>
                 </span>
               </a>
+              <a href="certification-apply.html" class="mega-link">
+                <span class="mega-icon-badge">🛡</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Заявка на сертификацию</span>
+                  <span class="mega-link-desc">Подача и статус заявки</span>
+                </span>
+              </a>
               
             <a href="form.html" class="mega-link">
               <span class="mega-icon-badge">⚡</span>
@@ -132,6 +147,14 @@
           </button>
           <div class="mega-panel mega-panel--services">
             <span class="mega-group-title">Официальные сервисы платформы</span>
+
+            <a href="certification.html" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Сертификация</span>
+                <span class="mega-link-desc">Электронная сертификация и реестр сертифицированных гостиниц</span>
+              </span>
+            </a>
 
             <a href="quality.html" class="mega-link">
               <span class="mega-icon-badge">⭐</span>
@@ -181,6 +204,13 @@
                 <span class="mega-link-desc">Архитектура, ER-схема, API · Том IV</span>
               </span>
             </a>
+            <a href="certification.html#methodology" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Том VIII. Сертификация</span>
+                <span class="mega-link-desc">O’z DSt 3220:2017 · реестр · контроль 5 лет</span>
+              </span>
+            </a>
           </div>
         </div>
 
@@ -216,7 +246,15 @@
       <span class="mobile-nav-label">Для инвесторов</span>
       <a href="portfolio.html">🏨 Каталог объектов</a>
       <a href="tourism-types.html">🗺️ Виды туризма</a>
+      <a href="certification-registry.html#verify">✔ Проверить сертификат отеля</a>
       <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="certification.html">🛡 Сертификация</a>
+      <a href="quality.html">⭐ Quality Management</a>
+      <a href="economics-ratings.html">📈 Economics Ratings</a>
+      <a href="events-app.html">🏛️ Государственные мероприятия</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Для отельеров</span>
@@ -224,12 +262,14 @@
       <a href="form.html">⚡ Smart Investment Form</a>
       <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
       <a href="passport.html">📄 Инвестиционный паспорт</a>
+      <a href="certification-apply.html">🛡 Заявка на сертификацию</a>
       <a href="registries.html">📋 Реестры и субсидии</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">О платформе</span>
       <a href="about.html">📖 О системе</a>
       <a href="tech-spec.html">🛠️ Tech Specification</a>
+      <a href="certification.html#methodology">🛡 Том VIII. Сертификация</a>
       <a href="b2b.html">🤝 B2B Cooperation</a>
     </div>
   </div>
@@ -336,6 +376,16 @@
           </div>
         </div>
 
+        <!-- Плашка синхронизации с модулем Сертификация (ТЗ §4.7) -->
+        <div style="background:#FAF8F5;border:1px solid #D6C7AE;border-left:4px solid #8B6F4E;border-radius:4px;padding:14px 18px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <div style="font-size:13px;color:#4A3E33;">
+            🛡️ <strong>Данные сертификатов синхронизируются с модулем «Сертификация».</strong> Официальный первоисточник — ГУП «Центр сертификации туристских услуг».
+          </div>
+          <a href="certification-registry.html" class="reg-link" style="font-size:12px;font-weight:600;color:#8B6F4E;text-decoration:underline;">
+            Открыть полный публичный реестр сертификатов →
+          </a>
+        </div>
+
         <div class="reg-table-wrap">
           <table class="editorial-table reg-table" id="hotels-table">
             <thead>
@@ -344,8 +394,8 @@
                 <th class="et-val et-head">Регион</th>
                 <th class="et-val et-head">Категория</th>
                 <th class="et-val et-head">Фонд</th>
-                <th class="et-val et-head">Сертификат</th>
-                <th class="et-val et-head">Статус</th>
+                <th class="et-val et-head">Сертификат соответствия</th>
+                <th class="et-val et-head">Статус / IRI</th>
                 <th class="et-val et-head">Паспорт</th>
               </tr>
             </thead>
@@ -355,8 +405,11 @@
                 <td class="et-val">г. Ташкент</td>
                 <td class="et-val"><span class="stars-gold">★★★★★</span></td>
                 <td class="et-val et-val--num">258 комн.</td>
-                <td class="et-val et-val--num">UZ.TR.001.2024</td>
-                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · A+</span></td>
+                <td class="et-val et-val--num"><a href="certificate.html?no=UZ.TSM.TK.000123" class="reg-link" style="font-family:'JetBrains Mono',monospace;font-weight:600;">UZ.TSM.TK.000123</a></td>
+                <td class="et-val">
+                  <span class="cert-badge cert-badge--ok"><span class="cert-badge__dot"></span>Действует</span>
+                  <span class="reg-status reg-status--valid" style="margin-left:6px;">IRI A+</span>
+                </td>
                 <td class="et-val"><a href="passport.html?hotel=grand-tashkent" class="reg-link">Открыть &rarr;</a></td>
               </tr>
               <tr data-cat="5">
@@ -364,8 +417,11 @@
                 <td class="et-val">Самаркандская обл.</td>
                 <td class="et-val"><span class="stars-gold">★★★★★</span></td>
                 <td class="et-val et-val--num">185 комн.</td>
-                <td class="et-val et-val--num">UZ.TR.004.2024</td>
-                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · A</span></td>
+                <td class="et-val et-val--num"><a href="certificate.html?no=UZ.TSM.SM.000204" class="reg-link" style="font-family:'JetBrains Mono',monospace;font-weight:600;">UZ.TSM.SM.000204</a></td>
+                <td class="et-val">
+                  <span class="cert-badge cert-badge--ok"><span class="cert-badge__dot"></span>Действует</span>
+                  <span class="reg-status reg-status--valid" style="margin-left:6px;">IRI A</span>
+                </td>
                 <td class="et-val"><a href="passport.html?hotel=samarkand-palace" class="reg-link">Открыть &rarr;</a></td>
               </tr>
               <tr data-cat="4">
@@ -373,8 +429,11 @@
                 <td class="et-val">Бухарская обл.</td>
                 <td class="et-val"><span class="stars-gold">★★★★</span></td>
                 <td class="et-val et-val--num">120 комн.</td>
-                <td class="et-val et-val--num">UZ.TR.018.2023</td>
-                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · B+</span></td>
+                <td class="et-val et-val--num"><a href="certificate.html?no=UZ.TSM.BU.000318" class="reg-link" style="font-family:'JetBrains Mono',monospace;font-weight:600;">UZ.TSM.BU.000318</a></td>
+                <td class="et-val">
+                  <span class="cert-badge cert-badge--ok"><span class="cert-badge__dot"></span>Действует</span>
+                  <span class="reg-status reg-status--valid" style="margin-left:6px;">IRI B+</span>
+                </td>
                 <td class="et-val"><a href="passport.html?hotel=bukhara-heritage" class="reg-link">Открыть &rarr;</a></td>
               </tr>
               <tr data-cat="4">
@@ -382,8 +441,11 @@
                 <td class="et-val">Ташкентская обл. (Чарвак)</td>
                 <td class="et-val"><span class="stars-gold">★★★★</span></td>
                 <td class="et-val et-val--num">140 комн.</td>
-                <td class="et-val et-val--num">UZ.TR.022.2024</td>
-                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · B+</span></td>
+                <td class="et-val et-val--num"><a href="certificate.html?no=UZ.TSM.TK.000412" class="reg-link" style="font-family:'JetBrains Mono',monospace;font-weight:600;">UZ.TSM.TK.000412</a></td>
+                <td class="et-val">
+                  <span class="cert-badge cert-badge--ok"><span class="cert-badge__dot"></span>Действует</span>
+                  <span class="reg-status reg-status--valid" style="margin-left:6px;">IRI B+</span>
+                </td>
                 <td class="et-val"><a href="passport.html?hotel=silk-road-resort" class="reg-link">Открыть &rarr;</a></td>
               </tr>
               <tr data-cat="4">
@@ -391,8 +453,11 @@
                 <td class="et-val">Хорезмская обл.</td>
                 <td class="et-val"><span class="stars-gold">★★★★</span></td>
                 <td class="et-val et-val--num">74 комн.</td>
-                <td class="et-val et-val--num">UZ.TR.035.2023</td>
-                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · B+</span></td>
+                <td class="et-val et-val--num"><a href="certificate.html?no=UZ.TSM.KH.000509" class="reg-link" style="font-family:'JetBrains Mono',monospace;font-weight:600;">UZ.TSM.KH.000509</a></td>
+                <td class="et-val">
+                  <span class="cert-badge cert-badge--ok"><span class="cert-badge__dot"></span>Действует</span>
+                  <span class="reg-status reg-status--valid" style="margin-left:6px;">IRI B+</span>
+                </td>
                 <td class="et-val"><a href="passport.html?hotel=khiva-palace" class="reg-link">Открыть &rarr;</a></td>
               </tr>
               <tr data-cat="4">
@@ -400,8 +465,11 @@
                 <td class="et-val">Джизакская обл. (Заамин)</td>
                 <td class="et-val"><span class="stars-gold">★★★★</span></td>
                 <td class="et-val et-val--num">110 комн.</td>
-                <td class="et-val et-val--num">UZ.TR.041.2025</td>
-                <td class="et-val"><span class="reg-status reg-status--valid">Верифицирован · A</span></td>
+                <td class="et-val et-val--num"><a href="certificate.html?no=UZ.TSM.DJ.000620" class="reg-link" style="font-family:'JetBrains Mono',monospace;font-weight:600;">UZ.TSM.DJ.000620</a></td>
+                <td class="et-val">
+                  <span class="cert-badge cert-badge--ok"><span class="cert-badge__dot"></span>Действует</span>
+                  <span class="reg-status reg-status--valid" style="margin-left:6px;">IRI A</span>
+                </td>
                 <td class="et-val"><a href="passport.html?hotel=zaamin-mountain-resort" class="reg-link">Открыть &rarr;</a></td>
               </tr>
             </tbody>
@@ -751,6 +819,8 @@
             <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
             <a href="registries.html"         class="footer-nav-link">Реестры</a>
             <a href="form.html"               class="footer-nav-link">Smart Form</a>
+            <a href="certification.html" class="footer-nav-link">Сертификация</a>
+            <a href="certification-registry.html" class="footer-nav-link">Реестр сертифицированных</a>
           </div>
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Документы</p>
@@ -758,6 +828,7 @@
             <a href="passport.html"  class="footer-nav-link">Том II. Investment Passport</a>
             <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
             <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
           </div>
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Контакты</p>

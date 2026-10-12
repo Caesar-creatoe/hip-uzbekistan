@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="styles/header.css" />
   <link rel="stylesheet" href="styles/megamenu.css" />
   <link rel="stylesheet" href="styles/cabinet.css" />
+  <link rel="stylesheet" href="css/certification.css" />
 </head>
 <body class="cabinet-page">
 
@@ -53,6 +54,13 @@
               <span class="mega-link-text">
                 <span class="mega-link-label">Виды туризма</span>
                 <span class="mega-link-desc">Культурный, экологический, MICE, гастро</span>
+              </span>
+            </a>
+            <a href="certification-registry.html#verify" class="mega-link">
+              <span class="mega-icon-badge">✔</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Проверить сертификат отеля</span>
+                <span class="mega-link-desc">По номеру или QR-коду</span>
               </span>
             </a>
             <a href="cabinet-investor.html" class="mega-link">
@@ -102,6 +110,13 @@
                   <span class="mega-link-desc">Стандарт USALI, финансовая модель и карта</span>
                 </span>
               </a>
+              <a href="certification-apply.html" class="mega-link">
+                <span class="mega-icon-badge">🛡</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Заявка на сертификацию</span>
+                  <span class="mega-link-desc">Подача и статус заявки</span>
+                </span>
+              </a>
               
             <a href="form.html" class="mega-link">
               <span class="mega-icon-badge">⚡</span>
@@ -122,6 +137,14 @@
           </button>
           <div class="mega-panel mega-panel--services">
             <span class="mega-group-title">Официальные сервисы платформы</span>
+
+            <a href="certification.html" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Сертификация</span>
+                <span class="mega-link-desc">Электронная сертификация и реестр сертифицированных гостиниц</span>
+              </span>
+            </a>
 
             <a href="quality.html" class="mega-link">
               <span class="mega-icon-badge">⭐</span>
@@ -171,6 +194,13 @@
                 <span class="mega-link-desc">Архитектура, ER-схема, API · Том IV</span>
               </span>
             </a>
+            <a href="certification.html#methodology" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Том VIII. Сертификация</span>
+                <span class="mega-link-desc">O’z DSt 3220:2017 · реестр · контроль 5 лет</span>
+              </span>
+            </a>
           </div>
         </div>
 
@@ -206,7 +236,15 @@
       <span class="mobile-nav-label">Для инвесторов</span>
       <a href="portfolio.html">🏨 Каталог объектов</a>
       <a href="tourism-types.html">🗺️ Виды туризма</a>
+      <a href="certification-registry.html#verify">✔ Проверить сертификат отеля</a>
       <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="certification.html">🛡 Сертификация</a>
+      <a href="quality.html">⭐ Quality Management</a>
+      <a href="economics-ratings.html">📈 Economics Ratings</a>
+      <a href="events-app.html">🏛️ Государственные мероприятия</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Для отельеров</span>
@@ -214,12 +252,14 @@
       <a href="form.html">⚡ Smart Investment Form</a>
       <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
       <a href="passport.html">📄 Инвестиционный паспорт</a>
+      <a href="certification-apply.html">🛡 Заявка на сертификацию</a>
       <a href="registries.html">📋 Реестры и субсидии</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">О платформе</span>
       <a href="about.html">📖 О системе</a>
       <a href="tech-spec.html">🛠️ Tech Specification</a>
+      <a href="certification.html#methodology">🛡 Том VIII. Сертификация</a>
       <a href="b2b.html">🤝 B2B Cooperation</a>
     </div>
   </div>
@@ -245,6 +285,7 @@
           <button type="submit" class="btn btn--teal auth-submit" id="signin-submit">Войти в кабинет</button>
           <p class="auth-divider">— или —</p>
           <button type="button" class="btn btn--outline auth-submit" id="demo-login-btn">🎭 Войти в демо-режиме</button>
+          <button type="button" class="btn btn--outline auth-submit" id="oneid-login-btn" style="margin-top:8px;">🆔 Войти через OneID (демо)</button>
         </form>
       </div>
       <div id="signup-form-wrap" style="display:none">
@@ -278,6 +319,10 @@
           <span style="margin-left:auto;background:var(--color-accent-teal);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;" id="req-badge">2</span>
         </button>
         <button class="cabinet-nav-item" data-section="kqi" id="nav-kqi"><span class="cabinet-nav-icon">⭐</span> KQI Самооценка</button>
+        <button class="cabinet-nav-item" data-section="certification" id="nav-certification">
+          <span class="cabinet-nav-icon">🛡</span> Сертификация
+          <span style="margin-left:auto;background:var(--cert-ok);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;" id="cert-nav-badge">1</span>
+        </button>
         <button class="cabinet-nav-item" data-section="documents" id="nav-documents"><span class="cabinet-nav-icon">📁</span> Документы</button>
         <button class="cabinet-nav-item" data-section="notifications" id="nav-notifications">
           <span class="cabinet-nav-icon">🔔</span> Уведомления
@@ -314,6 +359,49 @@
             <div class="cabinet-kpi-num" id="kpi-views">148</div>
             <div class="cabinet-kpi-label">Просмотров паспорта</div>
             <div class="cabinet-kpi-trend">За последние 30 дней</div>
+          </div>
+        </div>
+
+        <!-- Виджет Сертификация (ТЗ §4.5) -->
+        <div style="background:var(--color-card-bg);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px;margin-bottom:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:26px;">🛡️</span>
+              <div>
+                <h4 style="font-family:var(--font-body);font-size:16px;font-weight:600;color:var(--color-ink-on-dark);margin:0;">
+                  Электронный сертификат соответствия O'z DSt 3220:2017
+                </h4>
+                <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-accent-teal);">UZ.TSM.TK.000123</span>
+              </div>
+            </div>
+            <div>
+              <span class="cert-badge cert-badge--ok"><span class="cert-badge__dot"></span>✔ Действует</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:14px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:16px;font-size:12px;">
+            <div>
+              <span style="color:var(--color-ink-on-dark-muted);display:block;margin-bottom:2px;">Срок действия (5 лет)</span>
+              <strong style="color:var(--color-ink-on-dark);">12.10.2024 — 12.10.2029</strong>
+            </div>
+            <div>
+              <span style="color:var(--color-ink-on-dark-muted);display:block;margin-bottom:2px;">Ближайшая самоинспекция</span>
+              <strong style="color:var(--color-accent);">через 142 дня (Год 2)</strong>
+            </div>
+            <div>
+              <span style="color:var(--color-ink-on-dark-muted);display:block;margin-bottom:2px;">Категория в реестре</span>
+              <strong style="color:#D9A441;">★★★★ (4 звезды)</strong>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="certificate.html?no=UZ.TSM.TK.000123" class="btn btn--outline" style="font-size:12px;padding:7px 16px;">
+              📄 Открыть бланк сертификата
+            </a>
+            <button type="button" class="btn btn--teal" style="font-size:12px;padding:7px 16px;" onclick="document.getElementById('nav-certification').click()">
+              🛡 Управление сертификацией
+            </button>
+            <a href="certification-apply.html" class="btn btn--outline" style="font-size:12px;padding:7px 16px;">
+              ✍ Новая заявка / Ресертификация
+            </a>
           </div>
         </div>
 
@@ -430,6 +518,101 @@
         </div>
       </section>
 
+      <!-- ── СЕРТИФИКАЦИЯ (ТЗ §4.5) ── -->
+      <section class="cabinet-section" id="section-certification">
+        <h2 class="cabinet-section-title">Сертификация средства размещения</h2>
+        <p class="cabinet-section-desc">Официальный статус по стандарту O'z DSt 3220:2017 и график инспекционного контроля на 5 лет</p>
+
+        <!-- Карточка сертификата объекта -->
+        <div style="background:var(--color-card-bg);border:1px solid var(--color-hairline-dark);border-radius:12px;padding:24px;margin-bottom:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+            <div>
+              <span class="cert-eyebrow" style="margin-bottom:6px;">ГУП «ЦЕНТР СЕРТИФИКАЦИИ ТУРИСТСКИХ УСЛУГ»</span>
+              <h3 style="font-family:var(--font-body);font-size:18px;font-weight:600;color:var(--color-ink-on-dark);margin:4px 0;">
+                Сертификат соответствия № UZ.TSM.TK.000123
+              </h3>
+              <div style="font-family:var(--font-mono);font-size:12px;color:var(--color-ink-on-dark-muted);">
+                Объект: ASMALD Hospitality · Категория: <span style="color:#D9A441;font-weight:700;">★★★★ (4 звезды)</span>
+              </div>
+            </div>
+            <div>
+              <span class="cert-badge cert-badge--ok"><span class="cert-badge__dot"></span>✔ Действует</span>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:16px;background:rgba(255,255,255,0.03);border-radius:8px;margin-bottom:20px;font-size:12px;">
+            <div>
+              <span style="color:var(--color-ink-on-dark-muted);display:block;margin-bottom:2px;">Дата выдачи</span>
+              <strong style="color:var(--color-ink-on-dark);">12.10.2024</strong>
+            </div>
+            <div>
+              <span style="color:var(--color-ink-on-dark-muted);display:block;margin-bottom:2px;">Срок действия (5 лет)</span>
+              <strong style="color:var(--color-ink-on-dark);">до 12.10.2029</strong>
+            </div>
+            <div>
+              <span style="color:var(--color-ink-on-dark-muted);display:block;margin-bottom:2px;">Последний контроль</span>
+              <strong style="color:var(--color-ink-on-dark);">12.10.2025 (Год 1)</strong>
+            </div>
+            <div>
+              <span style="color:var(--color-ink-on-dark-muted);display:block;margin-bottom:2px;">Следующая самоинспекция</span>
+              <strong style="color:var(--color-accent);">через 142 дня (Год 2)</strong>
+            </div>
+          </div>
+
+          <!-- Таймлайн 5 лет в кабинете -->
+          <h4 style="font-size:13px;font-weight:600;color:var(--color-ink-on-dark);text-transform:uppercase;letter-spacing:0.06em;margin:0 0 14px;">
+            График инспекционного контроля (5 лет):
+          </h4>
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:24px;font-size:11px;">
+            <div style="background:rgba(46,94,63,0.15);border:1px solid rgba(46,94,63,0.3);padding:10px;border-radius:6px;">
+              <strong style="color:var(--cert-ok);">Выдача</strong>
+              <div style="color:var(--color-ink-on-dark);margin-top:2px;">12.10.2024</div>
+              <div style="color:var(--color-ink-on-dark-muted);font-size:10px;">✔ Выдан</div>
+            </div>
+            <div style="background:rgba(46,94,63,0.15);border:1px solid rgba(46,94,63,0.3);padding:10px;border-radius:6px;">
+              <strong style="color:var(--cert-ok);">Год 1</strong>
+              <div style="color:var(--color-ink-on-dark);margin-top:2px;">12.10.2025</div>
+              <div style="color:var(--color-ink-on-dark-muted);font-size:10px;">✔ Пройдено</div>
+            </div>
+            <div style="background:rgba(183,121,31,0.15);border:1px solid rgba(183,121,31,0.3);padding:10px;border-radius:6px;">
+              <strong style="color:var(--cert-warn);">Год 2</strong>
+              <div style="color:var(--color-ink-on-dark);margin-top:2px;">12.10.2026</div>
+              <div style="color:var(--color-ink-on-dark-muted);font-size:10px;">⏳ Ожидается</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.02);border:1px solid var(--color-hairline-dark);padding:10px;border-radius:6px;">
+              <strong style="color:var(--color-ink-on-dark-muted);">Год 3</strong>
+              <div style="color:var(--color-ink-on-dark);margin-top:2px;">12.10.2027</div>
+              <div style="color:var(--color-ink-on-dark-muted);font-size:10px;">Плановый аудит</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.02);border:1px solid var(--color-hairline-dark);padding:10px;border-radius:6px;">
+              <strong style="color:var(--color-ink-on-dark-muted);">Год 4</strong>
+              <div style="color:var(--color-ink-on-dark);margin-top:2px;">12.10.2028</div>
+              <div style="color:var(--color-ink-on-dark-muted);font-size:10px;">Самоинспекция</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.02);border:1px solid var(--color-hairline-dark);padding:10px;border-radius:6px;">
+              <strong style="color:var(--color-ink-on-dark-muted);">Год 5</strong>
+              <div style="color:var(--color-ink-on-dark);margin-top:2px;">12.07.2029</div>
+              <div style="color:var(--color-ink-on-dark-muted);font-size:10px;">Ресертификация</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <button type="button" class="btn btn--teal" style="font-size:12px;padding:9px 18px;" onclick="CertUI.showToast('Параметры объекта подтверждены: статус «Без изменений» сохранён', 'ok')">
+              ✔ Пройти ежегодную самоинспекцию
+            </button>
+            <a href="certificate.html?no=UZ.TSM.TK.000123" class="btn btn--outline" style="font-size:12px;padding:9px 18px;">
+              📄 Открыть бланк сертификата A4
+            </a>
+            <a href="certification-apply.html" class="btn btn--outline" style="font-size:12px;padding:9px 18px;">
+              ✍ Начать ресертификацию (новая заявка)
+            </a>
+            <button type="button" class="btn btn--outline" style="font-size:12px;padding:9px 18px;" onclick="CertUI.showToast('Форма апелляции в Центр сертификации готова', 'info')">
+              ⚖ Подать апелляцию
+            </button>
+          </div>
+        </div>
+      </section>
+
       <!-- ДОКУМЕНТЫ -->
       <section class="cabinet-section" id="section-documents">
         <h2 class="cabinet-section-title">Документы объекта</h2>
@@ -500,6 +683,23 @@
 
   <script src="js/megamenu.js"></script>
   <script src="js/supabase.js"></script>
+  <script src="js/cert-api.js"></script>
+  <script src="js/cert-ui.js"></script>
   <script src="js/cabinet-hotel.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var oneIdBtn = document.getElementById('oneid-login-btn');
+      if (oneIdBtn) {
+        oneIdBtn.addEventListener('click', function() {
+          CertUI.openOneIdModal({
+            onSuccess: function(data) {
+              CertUI.showToast('Успешный вход через OneID: ' + data.name, 'ok');
+              if (typeof enterDemo === 'function') enterDemo();
+            }
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>

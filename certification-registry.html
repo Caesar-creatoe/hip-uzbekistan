@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Публичный реестр сертифицированных средств размещения Республики Узбекистан. ГУП «Центр сертификации туристских услуг» и Silk Route Invest. Поиск по номеру, интерактивная карта, открытые данные." />
+  <title>Публичный реестр сертифицированных средств размещения — Silk Route Invest</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/megamenu.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+  <link rel="stylesheet" href="css/certification.css" />
+</head>
+<body data-vertical="certification" class="page-certification-registry">
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <!-- 1. Для инвесторов -->
+        <div class="nav-item" data-mega="investors" data-page="portfolio">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Для инвесторов
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--investors">
+            <span class="mega-group-title">Инвестиционные возможности</span>
+            <a href="portfolio.html" class="mega-link">
+              <span class="mega-icon-badge">🏨</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Каталог объектов</span>
+                <span class="mega-link-desc">Гостиничные проекты, интерактивный фильтр</span>
+              </span>
+            </a>
+            <a href="tourism-types.html" class="mega-link">
+              <span class="mega-icon-badge">🗺️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Виды туризма</span>
+                <span class="mega-link-desc">Культурный, экологический, MICE, гастро</span>
+              </span>
+            </a>
+            <a href="certification-registry.html#verify" class="mega-link">
+              <span class="mega-icon-badge">✔</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Проверить сертификат отеля</span>
+                <span class="mega-link-desc">По номеру или QR-коду</span>
+              </span>
+            </a>
+            <a href="cabinet-investor.html" class="mega-link">
+              <span class="mega-icon-badge">👤</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Кабинет инвестора</span>
+                <span class="mega-link-desc">Избранное, заявки и доступ к Data Room</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Для отельеров -->
+        <div class="nav-item" data-mega="hoteliers" data-page="hoteliers">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Для отельеров
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--hoteliers">
+            <div class="mega-featured-card">
+              <div>
+                <div class="mega-featured-tag">★ ГОСУДАРСТВЕННАЯ СЕРТИФИКАЦИЯ</div>
+                <h4 class="mega-featured-title">Электронная сертификация</h4>
+                <p class="mega-featured-desc">Подайте заявку онлайн, загрузите подтверждающие фото/видео по чек-листу и получите сертификат за 2 дня.</p>
+              </div>
+              <a href="certification-apply.html" class="mega-featured-cta">
+                <span>Подать заявку онлайн</span>
+                <span class="mega-featured-arrow">→</span>
+              </a>
+            </div>
+            <div>
+              <span class="mega-group-title">Сервисы и стандарты</span>
+              <a href="cabinet-hotel.html" class="mega-link">
+                <span class="mega-icon-badge">🏨</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Кабинет отеля</span>
+                  <span class="mega-link-desc">Управление объектом, инспекционный контроль</span>
+                </span>
+              </a>
+              <a href="certification-apply.html" class="mega-link">
+                <span class="mega-icon-badge">🛡</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Заявка на сертификацию</span>
+                  <span class="mega-link-desc">Электронный чек-лист O'z DSt 3220:2017</span>
+                </span>
+              </a>
+              <a href="passport.html" class="mega-link">
+                <span class="mega-icon-badge">📄</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Инвестиционный паспорт</span>
+                  <span class="mega-link-desc">Стандарт USALI, финансовая модель и Data Room</span>
+                </span>
+              </a>
+              <a href="registries.html" class="mega-link">
+                <span class="mega-icon-badge">📋</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Реестры и субсидии</span>
+                  <span class="mega-link-desc">Единый реестр средств размещения</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Услуги -->
+        <div class="nav-item" data-mega="services" data-page="services">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Услуги
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--services">
+            <span class="mega-group-title">Официальные сервисы платформы</span>
+            <a href="certification.html" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Сертификация</span>
+                <span class="mega-link-desc">Электронная сертификация и реестр сертифицированных гостиниц</span>
+              </span>
+            </a>
+            <a href="certification-registry.html" class="mega-link" style="background:rgba(139,111,78,0.08);border-radius:6px;">
+              <span class="mega-icon-badge">🏛</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label" style="color:var(--color-accent-gold,#8B6F4E);font-weight:700;">Реестр сертифицированных отелей</span>
+                <span class="mega-link-desc">Публичный реестр, проверка статуса и сроков</span>
+              </span>
+            </a>
+            <a href="quality.html" class="mega-link">
+              <span class="mega-icon-badge">⭐</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Quality Management</span>
+                <span class="mega-link-desc">Классификация KQI, чек-листы и стандарты сервиса</span>
+              </span>
+            </a>
+            <a href="economics-ratings.html" class="mega-link">
+              <span class="mega-icon-badge">📈</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Economics Ratings</span>
+                <span class="mega-link-desc">Рейтинг экономической эффективности и бенчмаркинг</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. О платформе -->
+        <div class="nav-item" data-mega="platform" data-page="about">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            О платформе
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--platform">
+            <span class="mega-group-title">Документация системы</span>
+            <a href="about.html" class="mega-link">
+              <span class="mega-icon-badge">📖</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">О системе</span>
+                <span class="mega-link-desc">Методические рекомендации · Том I</span>
+              </span>
+            </a>
+            <a href="tech-spec.html" class="mega-link">
+              <span class="mega-icon-badge">🛠️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Tech Specification</span>
+                <span class="mega-link-desc">Архитектура, ER-схема, API · Том IV</span>
+              </span>
+            </a>
+            <a href="certification.html#methodology" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Том VIII. Сертификация</span>
+                <span class="mega-link-desc">O’z DSt 3220:2017 · реестр · контроль 5 лет</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" data-lang="ru" aria-pressed="true">RU</button>
+          <button class="lang-btn" data-lang="uz" aria-pressed="false">UZ</button>
+          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a href="cabinet-hotel.html" class="btn-login" id="header-login">
+          <span class="btn-login-icon">⚿</span>
+          <span>Кабинет</span>
+        </a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Мобильная навигация -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Сертификация</span>
+      <a href="certification.html">🛡 Хаб сертификации</a>
+      <a href="certification-apply.html">✍ Подать заявку онлайн</a>
+      <a href="certification-registry.html">🏛 Публичный реестр</a>
+      <a href="certification-registry.html#verify">✔ Проверить сертификат</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для отельеров</span>
+      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
+      <a href="cabinet-inspector.html">🛡 Кабинет Центра</a>
+      <a href="quality.html">⭐ Quality Management</a>
+      <a href="passport.html">📄 Инвестиционный паспорт</a>
+    </div>
+  </div>
+
+  <main id="main-content" style="padding: 40px 0 80px;">
+    <div class="cert-container">
+
+      <div class="cert-breadcrumbs">
+        <a href="index.html">Главная</a>
+        <span class="sep">/</span>
+        <a href="certification.html">Сертификация</a>
+        <span class="sep">/</span>
+        <span class="current">Публичный реестр</span>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:16px;">
+        <div>
+          <span class="cert-eyebrow">ОФИЦИАЛЬНЫЙ РЕЕСТР · O'Z DST 3220:2017</span>
+          <h1 style="font-family:'PT Serif',Georgia,serif;font-size:clamp(28px,3vw,38px);color:#2B2A3A;margin:8px 0 6px;">
+            Реестр сертифицированных средств размещения
+          </h1>
+          <p style="font-size:14px;color:#6B655C;margin:0;">
+            Официальный государственный публичный перечень гостиниц Республики Узбекистан с подтверждённой категорией.
+          </p>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button type="button" id="btn-export-csv" class="btn-cert-secondary" style="font-size:12px;padding:9px 16px;">
+            📥 Скачать CSV
+          </button>
+          <button type="button" id="btn-export-json" class="btn-cert-secondary" style="font-size:12px;padding:9px 16px;">
+            📄 Экспорт JSON
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══ БЛОК ПРОВЕРКИ ПОДЛИННОСТИ (#verify) ═══ -->
+      <section class="cert-registry-verify-box" id="verify">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px;">
+          <h3 style="font-family:'PT Serif',Georgia,serif;font-size:20px;color:#2B2A3A;margin:0;">
+            🔍 Мгновенная проверка подлинности сертификата
+          </h3>
+          <span style="font-size:11px;color:#8C8478;font-family:'JetBrains Mono',monospace;">
+            Формат: UZ.TSM.XX.000000
+          </span>
+        </div>
+        <p style="font-size:13px;color:#6B655C;margin:0 0 16px;">
+          Введите номер сертификата или воспользуйтесь камерой для сканирования QR-кода на бумажном или цифровом свидетельстве отеля:
+        </p>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:260px;display:flex;gap:8px;">
+            <input type="text" id="reg-verify-input" class="cert-input-text" placeholder="Введите номер, например UZ.TSM.TK.000123" />
+            <button type="button" id="reg-verify-btn" class="btn-cert-primary" style="padding:10px 22px;">
+              Проверить
+            </button>
+          </div>
+          <button type="button" id="reg-scan-qr-btn" class="btn-cert-secondary" style="padding:10px 18px;">
+            📷 Сканировать QR
+          </button>
+        </div>
+
+        <div id="reg-verify-result" class="cert-verify-result"></div>
+      </section>
+
+      <!-- ═══ ЛИПКАЯ ПАНЕЛЬ ФИЛЬТРОВ И ВИДОВ ═══ -->
+      <section class="cert-filter-bar" aria-label="Панель фильтров реестра">
+        <input type="text" id="filter-search" class="cert-filter-input" placeholder="Поиск по названию, номеру или ИНН…" />
+
+        <select id="filter-region" class="cert-filter-select" aria-label="Регион">
+          <option value="">Все регионы</option>
+          <option value="Ташкент">Ташкент</option>
+          <option value="Самарканд">Самарканд</option>
+          <option value="Бухара">Бухара</option>
+          <option value="Хива">Хива</option>
+          <option value="Фергана">Фергана</option>
+          <option value="Наманган">Наманган</option>
+          <option value="Андижан">Андижан</option>
+        </select>
+
+        <select id="filter-category" class="cert-filter-select" aria-label="Категория">
+          <option value="">Все категории</option>
+          <option value="5">5★ (Пять звёзд)</option>
+          <option value="4">4★ (Четыре звезды)</option>
+          <option value="3">3★ (Три звезды)</option>
+          <option value="2">2★ (Две звезды)</option>
+          <option value="1">1★ (Одна звезда)</option>
+          <option value="none">Без звёзд</option>
+        </select>
+
+        <select id="filter-status" class="cert-filter-select" aria-label="Статус сертификата">
+          <option value="">Все статусы</option>
+          <option value="active">Действует</option>
+          <option value="recertification">На ресертификации</option>
+          <option value="suspended">Приостановлен</option>
+          <option value="revoked">Аннулирован</option>
+          <option value="expired">Истёк</option>
+        </select>
+
+        <button type="button" id="btn-reset-filters" class="cert-filter-btn" title="Сбросить все фильтры">
+          ✕ Сброс
+        </button>
+
+        <div class="cert-view-toggle">
+          <button type="button" id="btn-view-list" class="active">☰ Список</button>
+          <button type="button" id="btn-view-map">🗺 Карта</button>
+        </div>
+      </section>
+
+      <!-- Счётчик найденных записей -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <div style="font-size:13px;font-weight:600;color:#5A4839;" id="registry-count-pill">
+          Загрузка объектов…
+        </div>
+        <div style="font-size:11px;color:#8C8478;">
+          Обновление реестра в реальном времени · Единая точка правды
+        </div>
+      </div>
+
+      <!-- ═══ 1. РЕЖИМ ТАБЛИЦЫ ═══ -->
+      <div id="view-list-container" class="cert-table-wrap">
+        <table class="cert-table" id="registry-table">
+          <thead>
+            <tr>
+              <th style="width:140px;">Сертификат</th>
+              <th>Объект / Юрлицо</th>
+              <th style="width:130px;">Регион</th>
+              <th style="width:90px;">Категория</th>
+              <th style="width:110px;">Тип</th>
+              <th style="width:160px;">Срок действия</th>
+              <th style="width:130px;">Статус</th>
+              <th style="width:110px;">Инспекция</th>
+              <th style="width:80px;text-align:right;">Действия</th>
+            </tr>
+          </thead>
+          <tbody id="registry-tbody">
+            <!-- Заполняется динамически -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ═══ 2. РЕЖИМ КАРТЫ ═══ -->
+      <div id="view-map-container" style="display:none;background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(59,42,32,0.04);">
+        <div id="cert-map" style="width:100%;height:580px;"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══ ВЫДВИЖНАЯ БОКОВАЯ ПАНЕЛЬ ДЕТАЛЕЙ (DRAWER) ═══ -->
+  <div class="cert-drawer-backdrop" id="cert-drawer-backdrop"></div>
+  <aside class="cert-drawer" id="cert-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-hotel-title">
+    <div class="cert-drawer__header">
+      <h3 class="cert-drawer__title" id="drawer-hotel-title">Детали сертификата</h3>
+      <button type="button" class="cert-drawer__close" id="drawer-close" aria-label="Закрыть панель">&times;</button>
+    </div>
+    <div class="cert-drawer__body" id="drawer-content">
+      <!-- Наполняется через JS -->
+    </div>
+    <div class="cert-drawer__footer">
+      <a href="#" id="drawer-open-cert" class="btn-cert-primary" style="flex:1;justify-content:center;padding:11px;">
+        📄 Открыть сертификат
+      </a>
+      <a href="#" id="drawer-open-passport" class="btn-cert-secondary" style="padding:11px 16px;">
+        🏨 Паспорт отеля
+      </a>
+    </div>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo">
+            <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+            <div class="logo-text">
+              <span class="logo-title">SILK ROUTE</span>
+              <span class="logo-subtitle">INVEST</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">ГУП «Центр сертификации туристских услуг». Официальный публичный реестр сертифицированных средств размещения Республики Узбекистан.</p>
+        </div>
+        <nav class="footer-nav-grid">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Сертификация</p>
+            <a href="certification.html" class="footer-nav-link">Хаб модуля</a>
+            <a href="certification-apply.html" class="footer-nav-link">Подать заявку</a>
+            <a href="certification-registry.html" class="footer-nav-link">Реестр гостиниц</a>
+            <a href="certification-registry.html#verify" class="footer-nav-link">Проверка сертификата</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Для отелей</p>
+            <a href="cabinet-hotel.html" class="footer-nav-link">Кабинет отеля</a>
+            <a href="passport.html" class="footer-nav-link">Инвест-паспорт</a>
+            <a href="quality.html" class="footer-nav-link">Quality Management</a>
+            <a href="registries.html" class="footer-nav-link">Госреестры</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html" class="footer-nav-link">Том I. О системе</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Spec</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 ГУП «Центр сертификации туристских услуг». Все права защищены.
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/megamenu.js"></script>
+  <script src="js/cert-api.js"></script>
+  <script src="js/cert-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var allCertificates = [];
+      var activeFilters = { search: '', region: '', category: '', status: '' };
+      var mapInstance = null;
+      var mapMarkers = [];
+
+      // 1. Инициализация проверки подлинности
+      CertUI.initQuickVerify({
+        inputId: 'reg-verify-input',
+        btnId: 'reg-verify-btn',
+        resultId: 'reg-verify-result'
+      });
+
+      document.getElementById('reg-scan-qr-btn').addEventListener('click', function () {
+        // Симуляция сканирования QR или запуск камеры
+        var sample = 'UZ.TSM.TK.000123';
+        document.getElementById('reg-verify-input').value = sample;
+        document.getElementById('reg-verify-btn').click();
+        CertUI.showToast('QR-код распознан: ' + sample, 'ok');
+      });
+
+      // 2. Загрузка данных реестра
+      CertAPI.ready().then(function (api) {
+        allCertificates = api.listCertificates();
+        renderRegistry();
+
+        // Проверка URL хэша или параметра ?no=
+        var urlParams = new URLSearchParams(window.location.search);
+        var noParam = urlParams.get('no');
+        if (noParam) {
+          document.getElementById('reg-verify-input').value = noParam;
+          document.getElementById('reg-verify-btn').click();
+          var found = api.getCertificate(noParam);
+          if (found) openDrawer(found);
+        }
+      });
+
+      // 3. Фильтрация и рендеринг таблицы
+      function getFiltered() {
+        return allCertificates.filter(function (c) {
+          if (activeFilters.search) {
+            var q = activeFilters.search.toLowerCase();
+            var matchQ = (c.hotelName && c.hotelName.toLowerCase().indexOf(q) !== -1) ||
+                         (c.number && c.number.toLowerCase().indexOf(q) !== -1) ||
+                         (c.inn && String(c.inn).indexOf(q) !== -1);
+            if (!matchQ) return false;
+          }
+          if (activeFilters.region && c.region !== activeFilters.region) return false;
+          if (activeFilters.category) {
+            if (activeFilters.category === 'none') {
+              if (c.category && c.category !== '0') return false;
+            } else {
+              if (String(c.category).indexOf(activeFilters.category) === -1) return false;
+            }
+          }
+          if (activeFilters.status && c.status !== activeFilters.status) return false;
+          return true;
+        });
+      }
+
+      function renderRegistry() {
+        var items = getFiltered();
+        var pill = document.getElementById('registry-count-pill');
+        pill.textContent = 'Найдено объектов: ' + items.length + ' из ' + allCertificates.length;
+
+        var tbody = document.getElementById('registry-tbody');
+        if (!items.length) {
+          tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:36px;color:#8C8478;">По заданным фильтрам объектов не найдено</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = items.map(function (c) {
+          var starsHtml = c.category && c.category !== '0'
+            ? '<span style="color:#D9A441;font-weight:700;">' + '★'.repeat(parseInt(c.category,10) || 1) + '</span>'
+            : '<span style="color:#8C8478;">—</span>';
+
+          var lastInsp = c.lastInspectionDate ? c.lastInspectionDate.slice(0, 10).split('-').reverse().join('.') : '—';
+          var dates = c.issueDate.slice(0, 10).split('-').reverse().join('.') + ' — ' + c.expiryDate.slice(0, 10).split('-').reverse().join('.');
+
+          return '<tr data-cert-no="' + c.number + '">' +
+            '<td class="cert-num-cell"><strong>' + c.number + '</strong></td>' +
+            '<td>' +
+              '<div style="font-weight:600;color:#2B2A3A;">' + (c.hotelName || '') + '</div>' +
+              '<div style="font-size:11px;color:#8C8478;">' + (c.applicantName || '') + (c.inn ? ' · ИНН ' + c.inn : '') + '</div>' +
+            '</td>' +
+            '<td>' + (c.region || '') + '</td>' +
+            '<td>' + starsHtml + '</td>' +
+            '<td>' + (c.type || 'Гостиница') + '</td>' +
+            '<td style="font-family:JetBrains Mono,monospace;font-size:11px;">' + dates + '</td>' +
+            '<td>' + CertUI.renderStatusBadge(c.status) + '</td>' +
+            '<td style="font-family:JetBrains Mono,monospace;font-size:11px;">' + lastInsp + '</td>' +
+            '<td style="text-align:right;">' +
+              '<button type="button" class="btn-cert-secondary btn-drawer-trigger" style="padding:4px 9px;font-size:11px;" data-no="' + c.number + '">Обзор</button>' +
+            '</td>' +
+          '</tr>';
+        }).join('');
+
+        // Клик по строке открывает Drawer
+        tbody.querySelectorAll('tr').forEach(function (row) {
+          row.addEventListener('click', function (e) {
+            if (e.target.closest('a')) return;
+            var no = row.getAttribute('data-cert-no');
+            var item = allCertificates.find(function (x) { return x.number === no; });
+            if (item) openDrawer(item);
+          });
+        });
+
+        if (mapInstance) updateMapMarkers(items);
+      }
+
+      // Слушатели фильтров
+      document.getElementById('filter-search').addEventListener('input', function (e) {
+        activeFilters.search = e.target.value;
+        renderRegistry();
+      });
+      document.getElementById('filter-region').addEventListener('change', function (e) {
+        activeFilters.region = e.target.value;
+        renderRegistry();
+      });
+      document.getElementById('filter-category').addEventListener('change', function (e) {
+        activeFilters.category = e.target.value;
+        renderRegistry();
+      });
+      document.getElementById('filter-status').addEventListener('change', function (e) {
+        activeFilters.status = e.target.value;
+        renderRegistry();
+      });
+      document.getElementById('btn-reset-filters').addEventListener('click', function () {
+        activeFilters = { search: '', region: '', category: '', status: '' };
+        document.getElementById('filter-search').value = '';
+        document.getElementById('filter-region').value = '';
+        document.getElementById('filter-category').value = '';
+        document.getElementById('filter-status').value = '';
+        renderRegistry();
+      });
+
+      // Переключатель вида (Список / Карта)
+      var btnList = document.getElementById('btn-view-list');
+      var btnMap = document.getElementById('btn-view-map');
+      var listWrap = document.getElementById('view-list-container');
+      var mapWrap = document.getElementById('view-map-container');
+
+      btnList.addEventListener('click', function () {
+        btnList.classList.add('active');
+        btnMap.classList.remove('active');
+        listWrap.style.display = 'block';
+        mapWrap.style.display = 'none';
+      });
+
+      btnMap.addEventListener('click', function () {
+        btnMap.classList.add('active');
+        btnList.classList.remove('active');
+        listWrap.style.display = 'none';
+        mapWrap.style.display = 'block';
+        initMap();
+      });
+
+      // Инициализация Leaflet карты
+      function initMap() {
+        if (!mapInstance) {
+          mapInstance = L.map('cert-map').setView([41.311081, 69.240562], 6);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+          }).addTo(mapInstance);
+        }
+        setTimeout(function () {
+          mapInstance.invalidateSize();
+          updateMapMarkers(getFiltered());
+        }, 150);
+      }
+
+      function updateMapMarkers(items) {
+        if (!mapInstance) return;
+        mapMarkers.forEach(function (m) { mapInstance.removeLayer(m); });
+        mapMarkers = [];
+
+        items.forEach(function (c) {
+          if (!c.lat || !c.lng) return;
+          var color = c.status === 'active' ? '#2E5E3F' : c.status === 'suspended' ? '#B7791F' : '#6B655C';
+          var marker = L.circleMarker([c.lat, c.lng], {
+            radius: 8,
+            fillColor: color,
+            color: '#FFFFFF',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.9
+          }).addTo(mapInstance);
+
+          marker.bindPopup(
+            '<div style="font-family:Golos Text,sans-serif;font-size:12px;min-width:180px;">' +
+              '<strong style="font-size:13px;color:#2B2A3A;">' + (c.hotelName || '') + '</strong><br>' +
+              '<span style="color:#D9A441;font-weight:700;">' + (c.category ? '★'.repeat(parseInt(c.category,10)) : '') + '</span> ' + (c.type || '') + '<br>' +
+              '<span style="font-family:JetBrains Mono,monospace;font-size:11px;color:#8B6F4E;">' + c.number + '</span><br>' +
+              '<div style="margin-top:6px;">' + CertUI.renderStatusBadge(c.status) + '</div>' +
+              '<a href="certificate.html?no=' + encodeURIComponent(c.number) + '" style="display:inline-block;margin-top:8px;font-size:11px;color:#1E3A6E;font-weight:600;">Открыть сертификат →</a>' +
+            '</div>'
+          );
+          mapMarkers.push(marker);
+        });
+      }
+
+      // Drawer (Боковая панель)
+      var drawer = document.getElementById('cert-drawer');
+      var drawerBackdrop = document.getElementById('cert-drawer-backdrop');
+
+      function openDrawer(c) {
+        document.getElementById('drawer-hotel-title').textContent = c.hotelName || 'Детали объекта';
+        var lastInsp = c.lastInspectionDate ? c.lastInspectionDate.slice(0, 10).split('-').reverse().join('.') : 'Не проводилась';
+        var issueD = c.issueDate.slice(0, 10).split('-').reverse().join('.');
+        var expiryD = c.expiryDate.slice(0, 10).split('-').reverse().join('.');
+
+        document.getElementById('drawer-content').innerHTML = '' +
+          '<div style="margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;">' +
+            '<span style="font-family:JetBrains Mono,monospace;font-size:14px;font-weight:700;color:#8B6F4E;">' + c.number + '</span>' +
+            CertUI.renderStatusBadge(c.status) +
+          '</div>' +
+          '<div style="background:#FAF8F5;border:1px solid #D6C7AE;border-radius:4px;padding:16px;margin-bottom:18px;">' +
+            '<div style="font-size:11px;text-transform:uppercase;color:#8C8478;margin-bottom:2px;">Присвоенная категория</div>' +
+            '<div style="color:#D9A441;font-size:18px;font-weight:700;margin-bottom:10px;">' + (c.category ? '★'.repeat(parseInt(c.category,10)) + ' (' + c.category + '★)' : 'Без категории') + '</div>' +
+            '<div style="font-size:11px;text-transform:uppercase;color:#8C8478;margin-bottom:2px;">Регион и адрес</div>' +
+            '<div style="font-size:13px;color:#2B2A3A;margin-bottom:10px;">' + (c.region || '') + ', ' + (c.address || '') + '</div>' +
+            '<div style="font-size:11px;text-transform:uppercase;color:#8C8478;margin-bottom:2px;">Заявитель / ИНН</div>' +
+            '<div style="font-size:13px;color:#2B2A3A;">' + (c.applicantName || '—') + ' · ИНН ' + (c.inn || '—') + '</div>' +
+          '</div>' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;font-size:12px;">' +
+            '<div style="background:#FFFFFF;border:1px solid #E5DCCB;padding:10px;border-radius:3px;">' +
+              '<span style="color:#8C8478;display:block;font-size:10px;">ДАТА ВЫДАЧИ</span>' +
+              '<strong>' + issueD + '</strong>' +
+            '</div>' +
+            '<div style="background:#FFFFFF;border:1px solid #E5DCCB;padding:10px;border-radius:3px;">' +
+              '<span style="color:#8C8478;display:block;font-size:10px;">ДЕЙСТВУЕТ ДО</span>' +
+              '<strong>' + expiryD + '</strong>' +
+            '</div>' +
+          '</div>' +
+          '<div style="margin-bottom:18px;">' +
+            '<h4 style="font-size:13px;font-weight:600;margin:0 0 8px;color:#2B2A3A;">Инспекционный контроль (5 лет)</h4>' +
+            '<div style="font-size:12px;color:#5A4839;line-height:1.5;">' +
+              'Последняя инспекция: <strong>' + lastInsp + '</strong><br>' +
+              'Следующая самоинспекция: <strong>' + (c.nextInspectionDue ? c.nextInspectionDue.slice(0, 10).split('-').reverse().join('.') : 'Запланирована') + '</strong>' +
+            '</div>' +
+          '</div>' +
+          '<div style="border-top:1px dashed #D6C7AE;padding-top:14px;font-size:11px;font-family:JetBrains Mono,monospace;color:#8C8478;">' +
+            'Хеш реестра: ' + (c.sha256 ? c.sha256.slice(0, 24) + '…' : '—') +
+          '</div>';
+
+        document.getElementById('drawer-open-cert').href = 'certificate.html?no=' + encodeURIComponent(c.number);
+        document.getElementById('drawer-open-passport').href = c.hotelId ? 'passport.html?id=' + encodeURIComponent(c.hotelId) : 'portfolio.html';
+
+        drawer.classList.add('active');
+        drawerBackdrop.classList.add('active');
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove('active');
+        drawerBackdrop.classList.remove('active');
+      }
+
+      document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+      drawerBackdrop.addEventListener('click', closeDrawer);
+
+      // Экспорт данных
+      document.getElementById('btn-export-csv').addEventListener('click', function () {
+        CertAPI.exportCertificates('csv');
+      });
+      document.getElementById('btn-export-json').addEventListener('click', function () {
+        CertAPI.exportCertificates('json');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Рабочее место сотрудника ГУП «Центр сертификации туристских услуг». Роли: Инспектор, Руководитель, Администратор. Очередь заявок, протоколы, аудит." />
+  <title>Кабинет Центра сертификации — Silk Route Invest</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/megamenu.css" />
+  <link rel="stylesheet" href="styles/portal.css" />
+  <link rel="stylesheet" href="css/certification.css" />
+</head>
+<body data-vertical="certification" class="page-cabinet-inspector">
+
+  <!-- HEADER С ПЕРЕКЛЮЧАТЕЛЕМ РОЛЕЙ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+      </a>
+
+      <!-- Переключатель роли сотрудника -->
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:11px;font-weight:600;text-transform:uppercase;color:#8C8478;">РОЛЬ:</span>
+        <div class="cert-role-tabs">
+          <button type="button" class="cert-role-tab active" data-role="inspector" id="tab-role-inspector">
+            🛡 Инспектор
+          </button>
+          <button type="button" class="cert-role-tab" data-role="manager" id="tab-role-manager">
+            👔 Руководитель
+          </button>
+          <button type="button" class="cert-role-tab" data-role="admin" id="tab-role-admin">
+            ⚙️ Администратор (2FA)
+          </button>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div style="text-align:right;font-size:12px;margin-right:8px;">
+          <div style="font-weight:600;color:#2B2A3A;" id="current-user-name">Абдуллаев Ш. М.</div>
+          <div style="font-size:10px;color:#8B6F4E;" id="current-user-sub">Главный инспектор Центра</div>
+        </div>
+        <a href="index.html" class="btn-cert-secondary" style="font-size:11px;padding:6px 12px;">
+          ⎋ Выход
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" style="padding: 32px 0 80px;">
+    <div class="cert-container">
+
+      <!-- ═════════════════════════════════════════════
+           1. ВКЛАДКА: ИНСПЕКТОР (QUEUE & APPLICATION REVIEW)
+           ═════════════════════════════════════════════ -->
+      <section id="pane-role-inspector" class="cert-role-pane">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:14px;">
+          <div>
+            <span class="cert-eyebrow">РАБОЧЕЕ МЕСТО ИНСПЕКТОРА</span>
+            <h1 style="font-family:'PT Serif',Georgia,serif;font-size:28px;color:#2B2A3A;margin:6px 0 2px;">
+              Очередь заявок на сертификацию
+            </h1>
+            <p style="font-size:13px;color:#6B655C;margin:0;">
+              Распределение по регионам и SLA. Принцип: «Один человек — одно решение».
+            </p>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button type="button" id="btn-bulk-green" class="btn-cert-primary" style="font-size:12px;padding:9px 18px;">
+              ⚡ Пакетно утвердить зелёную зону (12 пунктов)
+            </button>
+            <button type="button" id="btn-inspector-call" class="btn-cert-secondary" style="font-size:12px;padding:9px 16px;">
+              📹 Видеоинспекция
+            </button>
+          </div>
+        </div>
+
+        <!-- Очередь заявок инспектора -->
+        <div class="cert-table-wrap" style="margin-bottom:32px;">
+          <table class="cert-table" id="inspector-queue-table">
+            <thead>
+              <tr>
+                <th style="width:110px;">Номер</th>
+                <th>Объект / Адрес</th>
+                <th style="width:100px;">Категория</th>
+                <th style="width:140px;">Зоны качества</th>
+                <th style="width:130px;">Балл риска</th>
+                <th style="width:140px;">Остаток SLA</th>
+                <th style="width:120px;text-align:right;">Действие</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#FAF8F5;">
+                <td style="font-family:'JetBrains Mono',monospace;font-weight:700;">APP-2026-0042</td>
+                <td>
+                  <strong>Silk Road Palace Hotel</strong><br>
+                  <span style="font-size:11px;color:#6B655C;">Самарканд, ул. Регистанская, д. 42 (48 номеров)</span>
+                </td>
+                <td><span style="color:#D9A441;font-weight:700;">★★★★</span> (4★)</td>
+                <td>
+                  <span class="cert-zone-chip cert-zone-chip--green">6 зел.</span>
+                  <span class="cert-zone-chip cert-zone-chip--yellow">0 желт.</span>
+                </td>
+                <td>
+                  <span style="color:#2E5E3F;font-weight:600;font-size:12px;">Низкий (12/100)</span>
+                </td>
+                <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#1E3A6E;">
+                  ⏳ 1 р.д. 04 ч
+                </td>
+                <td style="text-align:right;">
+                  <button type="button" class="btn-cert-primary" id="btn-open-review-app" style="padding:5px 12px;font-size:11px;">
+                    Оценить →
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-family:'JetBrains Mono',monospace;">APP-2026-0043</td>
+                <td>
+                  <strong>Bukhara Oasis Grand</strong><br>
+                  <span style="font-size:11px;color:#6B655C;">Бухара, ул. Накшбанди, д. 18 (32 номера)</span>
+                </td>
+                <td><span style="color:#D9A441;font-weight:700;">★★★</span> (3★)</td>
+                <td>
+                  <span class="cert-zone-chip cert-zone-chip--green">5 зел.</span>
+                  <span class="cert-zone-chip cert-zone-chip--yellow">1 желт.</span>
+                </td>
+                <td>
+                  <span style="color:#B7791F;font-weight:600;font-size:12px;">Средний (34/100)</span>
+                </td>
+                <td style="font-family:'JetBrains Mono',monospace;font-size:12px;">
+                  ⏳ 2 р.д. 18 ч
+                </td>
+                <td style="text-align:right;">
+                  <button type="button" class="btn-cert-secondary" style="padding:5px 12px;font-size:11px;">
+                    Обзор
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ── ЭКРАН ОЦЕНКИ ЗАЯВКИ (ИНСПЕКТИРОВАНИЕ) ── -->
+        <div id="inspector-review-screen" style="background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:28px;box-shadow:0 4px 16px rgba(59,42,32,0.04);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #EFE8DA;">
+            <div>
+              <span class="cert-eyebrow" style="margin-bottom:4px;">ЭКРАН ОЦЕНКИ ПУНКТОВ</span>
+              <h3 style="font-family:'PT Serif',Georgia,serif;font-size:22px;color:#2B2A3A;margin:0;">
+                Заявка APP-2026-0042 · Silk Road Palace Hotel (4★)
+              </h3>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <button type="button" id="btn-request-rework" class="btn-cert-secondary" style="font-size:12px;padding:8px 14px;">
+                Запросить доработку
+              </button>
+              <button type="button" id="btn-sign-decision-eimzo" class="btn-cert-primary" style="font-size:12px;padding:8px 18px;">
+                🔑 Подписать решение E-IMZO
+              </button>
+            </div>
+          </div>
+
+          <div class="cert-grid-2col">
+            <!-- Левая колонка: Прогресс разделов А-К -->
+            <div style="background:#FAF8F5;border:1px solid #E5DCCB;border-radius:3px;padding:16px;">
+              <h4 style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#8C8478;margin:0 0 12px;">
+                Разделы стандарта O'z DSt 3220:2017:
+              </h4>
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;">
+                <div style="padding:8px;background:#FFFFFF;border:1px solid #D6C7AE;border-radius:2px;display:flex;justify-content:space-between;">
+                  <strong>А. Документы и кадастр</strong>
+                  <span style="color:#2E5E3F;">✔ Принято</span>
+                </div>
+                <div style="padding:8px;background:#FFFFFF;border:1px solid #8B6F4E;border-radius:2px;display:flex;justify-content:space-between;">
+                  <strong>Б. Вывеска и территория</strong>
+                  <span style="color:#B7791F;">● В фокусе</span>
+                </div>
+                <div style="padding:8px;background:#FFFFFF;border:1px solid #E5DCCB;border-radius:2px;display:flex;justify-content:space-between;">
+                  <span>В. Здание и доступность</span>
+                  <span style="color:#2E5E3F;">✔ Принято</span>
+                </div>
+                <div style="padding:8px;background:#FFFFFF;border:1px solid #E5DCCB;border-radius:2px;display:flex;justify-content:space-between;">
+                  <span>Д. Номерной фонд</span>
+                  <span style="color:#2E5E3F;">✔ Принято</span>
+                </div>
+                <div style="padding:8px;background:#FFFFFF;border:1px solid #E5DCCB;border-radius:2px;display:flex;justify-content:space-between;">
+                  <span>З. Пожарная безопасность</span>
+                  <span style="color:#2E5E3F;">✔ Принято</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Правая колонка: Пункт Б-02 в деталях -->
+            <div>
+              <div style="background:#FAF8F5;border:1px solid #D6C7AE;border-radius:4px;padding:20px;margin-bottom:18px;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:#8B6F4E;">Пункт Б-02</span>
+                  <span class="cert-zone-chip cert-zone-chip--green">ЗЕЛЁНАЯ ЗОНА</span>
+                </div>
+                <h4 style="font-size:16px;color:#2B2A3A;margin:0 0 6px;">
+                  Освещённая фасадная вывеска с наименованием объекта
+                </h4>
+                <div style="font-size:12px;color:#6B655C;margin-bottom:14px;">
+                  Требование стандарта O'z DSt 3220:2017 (п. 5.2): Наличие хорошо освещённой вывески на государственном и иностранном языках.
+                </div>
+
+                <!-- Метаданные проверки -->
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;background:#FFFFFF;border:1px solid #E5DCCB;padding:12px;border-radius:3px;margin-bottom:16px;">
+                  <div>
+                    <span style="color:#8C8478;display:block;font-size:10px;">ГЕОМЕТКА GPS</span>
+                    <strong>41.3110° N, 69.2405° E</strong><br>
+                    <span style="color:#2E5E3F;font-size:11px;">Расстояние до объекта: 18 м (норма ≤150 м)</span>
+                  </div>
+                  <div>
+                    <span style="color:#8C8478;display:block;font-size:10px;">ВРЕМЯ И SHA-256</span>
+                    <strong>12.10.2026 · 18:42:10</strong><br>
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8C8478;">Хеш: a8f9c2d1e0...</span>
+                  </div>
+                </div>
+
+                <!-- ИИ-подсказка -->
+                <div style="background:#EFF3FA;border:1px solid rgba(30,58,110,0.25);padding:10px 14px;border-radius:3px;font-size:12px;color:#1E3A6E;margin-bottom:16px;">
+                  🤖 <strong>ИИ-распознавание:</strong> уверенность 96%. Текст «SILK ROAD PALACE HOTEL» распознан. Подсветка активна. <em>(Подсказка инспектору, не решение)</em>.
+                </div>
+
+                <!-- Кнопки решения инспектора -->
+                <div style="display:flex;gap:10px;">
+                  <button type="button" class="btn-cert-primary" id="btn-approve-item" style="padding:9px 18px;font-size:12px;">
+                    ✔ Соответствует
+                  </button>
+                  <button type="button" class="btn-cert-secondary" id="btn-item-rework" style="padding:9px 14px;font-size:12px;">
+                    ⚠ На доработку
+                  </button>
+                  <button type="button" class="btn-cert-secondary" id="btn-item-fail" style="padding:9px 14px;font-size:12px;color:#8B3A2F;">
+                    ✕ Не соответствует
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════════════════════════════════════════
+           2. ВКЛАДКА: РУКОВОДИТЕЛЬ (KPI, НАГРУЗКА, АПЕЛЛЯЦИИ)
+           ═════════════════════════════════════════════ -->
+      <section id="pane-role-manager" class="cert-role-pane" style="display:none;">
+        <div style="margin-bottom:28px;">
+          <span class="cert-eyebrow">МОНИТОРИНГ И КОНТРОЛЬ СИСТЕМЫ</span>
+          <h1 style="font-family:'PT Serif',Georgia,serif;font-size:28px;color:#2B2A3A;margin:6px 0 2px;">
+            Дашборд руководителя Центра
+          </h1>
+          <p style="font-size:13px;color:#6B655C;margin:0;">
+            Контроль выполнения целевых нормативов ТЗ, загрузка инспекторов по областям и апелляции.
+          </p>
+        </div>
+
+        <!-- KPI метрики руководителя -->
+        <div class="cert-kpi-grid" style="margin-bottom:32px;">
+          <div class="cert-kpi-item" style="background:#FFFFFF;border:1px solid #D6C7AE;border-left:4px solid #2E5E3F;padding:18px;border-radius:3px;">
+            <div style="font-size:11px;color:#8C8478;text-transform:uppercase;">Срок выдачи сертификата</div>
+            <div style="font-family:'PT Serif',serif;font-size:32px;font-weight:700;color:#2B2A3A;margin:4px 0;">1.8 р.д.</div>
+            <div style="font-size:11px;color:#2E5E3F;">✔ В норме (Целевой SLA ≤ 2 р.д.)</div>
+          </div>
+
+          <div class="cert-kpi-item" style="background:#FFFFFF;border:1px solid #D6C7AE;border-left:4px solid #2E5E3F;padding:18px;border-radius:3px;">
+            <div style="font-size:11px;color:#8C8478;text-transform:uppercase;">Автопроверка пунктов</div>
+            <div style="font-family:'PT Serif',serif;font-size:32px;font-weight:700;color:#2B2A3A;margin:4px 0;">84.2%</div>
+            <div style="font-size:11px;color:#2E5E3F;">✔ В норме (Цель ТЗ ≥ 80%)</div>
+          </div>
+
+          <div class="cert-kpi-item" style="background:#FFFFFF;border:1px solid #D6C7AE;border-left:4px solid #2E5E3F;padding:18px;border-radius:3px;">
+            <div style="font-size:11px;color:#8C8478;text-transform:uppercase;">Время инспектора на заявку</div>
+            <div style="font-family:'PT Serif',serif;font-size:32px;font-weight:700;color:#2B2A3A;margin:4px 0;">42 мин</div>
+            <div style="font-size:11px;color:#2E5E3F;">✔ В норме (Норматив ≤ 60 мин)</div>
+          </div>
+
+          <div class="cert-kpi-item" style="background:#FFFFFF;border:1px solid #D6C7AE;border-left:4px solid #2E5E3F;padding:18px;border-radius:3px;">
+            <div style="font-size:11px;color:#8C8478;text-transform:uppercase;">Доля выездных проверок</div>
+            <div style="font-family:'PT Serif',serif;font-size:32px;font-weight:700;color:#2B2A3A;margin:4px 0;">8.4%</div>
+            <div style="font-size:11px;color:#2E5E3F;">✔ В норме (Порог ≤ 20% в год)</div>
+          </div>
+        </div>
+
+        <!-- Нагрузка инспекторов и апелляции -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:24px;">
+            <h3 style="font-family:'PT Serif',Georgia,serif;font-size:18px;color:#2B2A3A;margin:0 0 16px;">
+              Загрузка инспекторов Центра
+            </h3>
+            <table class="cert-table">
+              <thead>
+                <tr>
+                  <th>Сотрудник</th>
+                  <th>Регионы</th>
+                  <th>В работе</th>
+                  <th>Статус</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Абдуллаев Ш. М.</strong></td>
+                  <td>Самарканд, Ташкент</td>
+                  <td>4 заявки</td>
+                  <td><span class="cert-zone-chip cert-zone-chip--green">Оптимально</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Каримов Д. О.</strong></td>
+                  <td>Бухара, Навои</td>
+                  <td>3 заявки</td>
+                  <td><span class="cert-zone-chip cert-zone-chip--green">Оптимально</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Юсупова М. Т.</strong></td>
+                  <td>Хива, Фергана</td>
+                  <td>5 заявок</td>
+                  <td><span class="cert-zone-chip cert-zone-chip--yellow">Повышенная</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:24px;">
+            <h3 style="font-family:'PT Serif',Georgia,serif;font-size:18px;color:#2B2A3A;margin:0 0 16px;">
+              Апелляционная комиссия
+            </h3>
+            <div style="font-size:13px;color:#6B655C;margin-bottom:14px;">
+              Активных апелляционных жалоб от заявителей: <strong>1</strong>
+            </div>
+            <div style="background:#FAF8F5;border:1px solid #E5DCCB;padding:14px;border-radius:3px;font-size:12px;margin-bottom:14px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                <strong>Отель «Orient Star Khiva»</strong>
+                <span class="cert-badge cert-badge--warn">На рассмотрении</span>
+              </div>
+              <div style="color:#5A4839;line-height:1.4;">
+                Предмет апелляции: несогласие с отказом в присвоении 4★ из-за исторической планировки лестничных пролётов.
+              </div>
+            </div>
+            <button type="button" class="btn-cert-secondary" style="font-size:12px;padding:8px 14px;" onclick="CertUI.showToast('Материалы апелляции открыты', 'info')">
+              Открыть протокол комиссии →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═════════════════════════════════════════════
+           3. ВКЛАДКА: АДМИНИСТРАТОР (КОНСТРУКТОР, RBAC, АУДИТ)
+           ═════════════════════════════════════════════ -->
+      <section id="pane-role-admin" class="cert-role-pane" style="display:none;">
+        <div style="margin-bottom:28px;">
+          <span class="cert-eyebrow">КОНСТРУКТОР И АДМИНИСТРИРОВАНИЕ</span>
+          <h1 style="font-family:'PT Serif',Georgia,serif;font-size:28px;color:#2B2A3A;margin:6px 0 2px;">
+            Панель системного администратора
+          </h1>
+          <p style="font-size:13px;color:#6B655C;margin:0;">
+            Конструктор чек-листов, справочники тарифов, RBAC и неизменяемый аудит-журнал с цепочкой хешей.
+          </p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;">
+          <!-- Конструктор чек-листов -->
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:24px;">
+            <h3 style="font-family:'PT Serif',Georgia,serif;font-size:18px;color:#2B2A3A;margin:0 0 12px;">
+              Конструктор версий чек-листов
+            </h3>
+            <p style="font-size:12px;color:#6B655C;margin:0 0 14px;">
+              Версионирование шаблонов O'z DSt 3220:2017. Старые сертификаты сохраняют привязку к исходной версии.
+            </p>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;margin-bottom:16px;">
+              <div style="padding:10px;background:#FAF8F5;border:1px solid #D6C7AE;border-radius:3px;display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <strong>Шаблон «Гостиницы (1★–5★)» v2.4</strong><br>
+                  <span style="color:#8C8478;font-size:11px;">Активен · 80 пунктов нормы</span>
+                </div>
+                <span class="cert-badge cert-badge--ok">Опубликован</span>
+              </div>
+              <div style="padding:10px;background:#FFFFFF;border:1px solid #E5DCCB;border-radius:3px;display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <strong>Шаблон «Семейные гостевые дома» v1.0</strong><br>
+                  <span style="color:#8C8478;font-size:11px;">Черновик · 24 пункта</span>
+                </div>
+                <span class="cert-badge cert-badge--warn">В разработке</span>
+              </div>
+            </div>
+            <button type="button" class="btn-cert-primary" style="font-size:11px;padding:7px 14px;" onclick="CertUI.showToast('Редактор шаблона открыт', 'info')">
+              + Добавить новый пункт нормы
+            </button>
+          </div>
+
+          <!-- Справочники и параметры системы -->
+          <div style="background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:24px;">
+            <h3 style="font-family:'PT Serif',Georgia,serif;font-size:18px;color:#2B2A3A;margin:0 0 12px;">
+              Системные параметры проверки
+            </h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;margin-bottom:16px;">
+              <div>
+                <label style="color:#8C8478;font-size:10px;text-transform:uppercase;">Радиус геометки</label>
+                <input type="text" value="150 метров" readonly class="cert-input-text" style="width:100%;box-sizing:border-box;">
+              </div>
+              <div>
+                <label style="color:#8C8478;font-size:10px;text-transform:uppercase;">Окно съёмки</label>
+                <input type="text" value="14 дней" readonly class="cert-input-text" style="width:100%;box-sizing:border-box;">
+              </div>
+              <div>
+                <label style="color:#8C8478;font-size:10px;text-transform:uppercase;">Срок сертификата</label>
+                <input type="text" value="5 лет" readonly class="cert-input-text" style="width:100%;box-sizing:border-box;">
+              </div>
+              <div>
+                <label style="color:#8C8478;font-size:10px;text-transform:uppercase;">Интервал контроля</label>
+                <input type="text" value="Ежегодно" readonly class="cert-input-text" style="width:100%;box-sizing:border-box;">
+              </div>
+            </div>
+            <div style="font-size:11px;color:#2E5E3F;">
+              ✔ Все параметры соответствуют Положению ПКМ РУз № 433 от 10.07.2020.
+            </div>
+          </div>
+        </div>
+
+        <!-- Неизменяемый аудит-журнал (Audit Log) -->
+        <div style="background:#FFFFFF;border:1px solid #D6C7AE;border-radius:4px;padding:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <h3 style="font-family:'PT Serif',Georgia,serif;font-size:18px;color:#2B2A3A;margin:0;">
+              Неизменяемый журнал аудита действий (SHA-256 Chain)
+            </h3>
+            <span class="cert-badge cert-badge--ok" id="audit-chain-badge">✔ Целостность цепочки подтверждена</span>
+          </div>
+
+          <div class="cert-hash-chain" id="audit-log-container">
+            <div class="cert-hash-node">
+              <div>
+                <strong>[12.10.2026 18:44]</strong> Инспектор Абдуллаев Ш. М. утвердил решение по заявке APP-2026-0042 (Сертификат UZ.TSM.SM.000204)
+              </div>
+              <span style="color:#8B6F4E;">SHA: 9f8a2b3c4d5e...</span>
+            </div>
+            <div class="cert-hash-node">
+              <div>
+                <strong>[12.10.2026 18:30]</strong> Заявитель ООО «Silk Road Hospitality» подписал заявку APP-2026-0042 через E-IMZO
+              </div>
+              <span style="color:#8B6F4E;">SHA: 7e6d5c4b3a2f...</span>
+            </div>
+            <div class="cert-hash-node">
+              <div>
+                <strong>[12.10.2026 18:15]</strong> Подтверждена оплата сбора INV-2026-0891 (4 120 000 сум) через шлюз Click
+              </div>
+              <span style="color:#8B6F4E;">SHA: 1a2b3c4d5e6f...</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 ГУП «Центр сертификации туристских услуг». Служебный раздел системы Silk Route Invest.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/megamenu.js"></script>
+  <script src="js/cert-api.js"></script>
+  <script src="js/cert-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Переключение ролей (Инспектор · Руководитель · Администратор)
+      var tabs = document.querySelectorAll('.cert-role-tab');
+      var panes = {
+        inspector: document.getElementById('pane-role-inspector'),
+        manager: document.getElementById('pane-role-manager'),
+        admin: document.getElementById('pane-role-admin')
+      };
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var role = tab.getAttribute('data-role');
+
+          if (role === 'admin') {
+            // Эмуляция 2FA кода
+            var code = prompt('Введите код двухфакторной аутентификации 2FA (демо: 123456):', '123456');
+            if (code !== '123456') {
+              alert('Неверный код 2FA');
+              return;
+            }
+            CertUI.showToast('Вход с правами Администратора подтверждён', 'ok');
+          }
+
+          tabs.forEach(function (t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+
+          Object.keys(panes).forEach(function (k) {
+            if (panes[k]) panes[k].style.display = (k === role) ? 'block' : 'none';
+          });
+
+          // Обновление имени пользователя
+          var userTitle = document.getElementById('current-user-name');
+          var userSub = document.getElementById('current-user-sub');
+          if (role === 'inspector') {
+            userTitle.textContent = 'Абдуллаев Ш. М.';
+            userSub.textContent = 'Главный инспектор Центра';
+          } else if (role === 'manager') {
+            userTitle.textContent = 'Султанов Б. А.';
+            userSub.textContent = 'Руководитель Центра сертификации';
+          } else if (role === 'admin') {
+            userTitle.textContent = 'Системный администратор';
+            userSub.textContent = 'Управление безопасностью и RBAC';
+          }
+        });
+      });
+
+      // Кнопки действий инспектора
+      document.getElementById('btn-bulk-green').addEventListener('click', function () {
+        CertUI.showToast('Пакетное утверждение зелёной зоны выполнено (12 пунктов приняты)', 'ok');
+      });
+
+      document.getElementById('btn-inspector-call').addEventListener('click', function () {
+        CertUI.openVideoInspectionModal({
+          appId: 'APP-2026-0042',
+          onDone: function () {
+            CertUI.showToast('Сессия видеоинспекции сохранена в деле заявки', 'ok');
+          }
+        });
+      });
+
+      document.getElementById('btn-sign-decision-eimzo').addEventListener('click', function () {
+        CertUI.openEImzoModal({
+          title: 'Подписание итогового решения по заявке APP-2026-0042',
+          digest: 'SHA256:8F9E0D1C2B3A4...',
+          signer: 'Абдуллаев Ш. М. (Главный инспектор)',
+          onSigned: function () {
+            CertUI.showToast('Решение подписано! Сертификат UZ.TSM.SM.000204 успешно выпущен и внесён в реестр', 'ok');
+          }
+        });
+      });
+
+      document.getElementById('btn-approve-item').addEventListener('click', function () {
+        CertUI.showToast('Пункт Б-02 отмечен: «Соответствует»', 'ok');
+      });
+
+      document.getElementById('btn-request-rework').addEventListener('click', function () {
+        var comment = prompt('Укажите замечание для заявителя:', 'Требуется фото вывески с фронтального ракурса в тёмное время суток');
+        if (comment) {
+          CertUI.showToast('Замечание отправлено заявителю в кабинет отеля', 'warn');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -16,6 +16,7 @@ const filterState = {
   dealType: 'all',
   sort: 'rooms-desc',
   onlyPremium: false,
+  onlyCertified: false,
   // Экономика
   hasEco: false,           // только с экономическими данными
   paybackMax: null,        // максимальный срок окупаемости (лет)
@@ -91,6 +92,9 @@ function buildCard(hotel) {
   } else if (hotel.status === 'draft') {
     statusBadge = '<span class="hotel-card-badge hotel-card-badge--draft">Черновик</span>';
   }
+  const certBadge = (hotel.stars || hotel.certified)
+    ? '<span class="hotel-card-badge" style="background:#F0F5F1;color:#2E5E3F;border:1px solid rgba(46,94,63,0.3);font-size:11px;" title="Сертифицирован по стандарту O\'z DSt 3220:2017">🛡 Сертифицирован</span>'
+    : '';
 
   // Экономические чипы
   let ecoStrip = '';
@@ -135,6 +139,7 @@ function buildCard(hotel) {
           ${stars}
           ${dealBadge}
           ${statusBadge}
+          ${certBadge}
         </div>
       </div>
       <div class="hotel-card-body">
@@ -263,6 +268,11 @@ function applyFiltersAndSort() {
       if (!roi || roi < filterState.roiMin) return false;
     }
 
+    // Фильтр: только сертифицированные (ТЗ §4.7)
+    if (filterState.onlyCertified) {
+      if (!hotel.stars && !hotel.certified) return false;
+    }
+
     return true;
   });
 
@@ -351,6 +361,7 @@ function resetAllFilters() {
   filterState.dealType = 'all';
   filterState.sort = 'rooms-desc';
   filterState.onlyPremium = false;
+  filterState.onlyCertified = false;
 
   if (searchInput) searchInput.value = '';
   if (searchClearBtn) searchClearBtn.hidden = true;
@@ -460,8 +471,18 @@ if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAllFilters);
 
 /* ── Eco-фильтры ─────────────────────────────────────────────── */
 const hasEcoBtn    = document.getElementById('filter-has-eco');
+const certOnlyBtn  = document.getElementById('filter-certified-only');
 const paybackMaxEl = document.getElementById('filter-payback-max');
 const roiMinEl     = document.getElementById('filter-roi-min');
+
+if (certOnlyBtn) {
+  certOnlyBtn.addEventListener('click', () => {
+    filterState.onlyCertified = !filterState.onlyCertified;
+    certOnlyBtn.classList.toggle('is-active', filterState.onlyCertified);
+    certOnlyBtn.dataset.active = String(filterState.onlyCertified);
+    applyFiltersAndSort();
+  });
+}
 
 if (hasEcoBtn) {
   hasEcoBtn.addEventListener('click', () => {

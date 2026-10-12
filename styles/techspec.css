@@ -94,6 +94,10 @@
   background-color: var(--color-accent);
   color: #FFFFFF;
 }
+.http-badge--put {
+  background-color: #2E5E3F;
+  color: #FFFFFF;
+}
 
 .api-path {
   font-family: var(--font-mono);

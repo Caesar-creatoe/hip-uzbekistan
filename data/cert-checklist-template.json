@@ -1,0 +1,1644 @@
+{
+ "id": "tpl-hotels",
+ "serviceKind": "hotel",
+ "name": {
+  "ru": "Гостиницы и средства размещения",
+  "uz": "Mehmonxonalar va joylashtirish vositalari",
+  "en": "Hotels and accommodation facilities"
+ },
+ "version": "1.0.0-demo",
+ "status": "published",
+ "publishedAt": "2026-09-01",
+ "normative": {
+  "primary": "O'z DSt 3220:2017",
+  "reference": "O'z DSt 3296",
+  "regulation": "Положение о порядке сертификации (прил. к ПКМ № 433 от 10.07.2020)"
+ },
+ "disclaimer": {
+  "ru": "Демо-шаблон. Реальные пункты и числа O'z DSt 3220:2017 и Положения № 433 загрузит Центр. Пункты Б-02, Д-01, Д-07, Ж-03, З-01, А-03 — примеры из ТЗ; остальные помечены «условное значение».",
+  "uz": "Demo shablon. Haqiqiy band va raqamlarni Markaz yuklaydi.",
+  "en": "Demo template. Real clauses and values will be uploaded by the Center. Items marked 'conditional value' are illustrative."
+ },
+ "sections": [
+  {
+   "code": "А",
+   "title": {
+    "ru": "Общие сведения и документы",
+    "uz": "Umumiy ma'lumotlar va hujjatlar",
+    "en": "General information and documents"
+   }
+  },
+  {
+   "code": "Б",
+   "title": {
+    "ru": "Территория, подъезд, парковка, освещение, вывеска",
+    "uz": "Hudud, kirish yo'li, avtoturargoh, yoritish, lavha",
+    "en": "Grounds, access, parking, lighting, signage"
+   }
+  },
+  {
+   "code": "В",
+   "title": {
+    "ru": "Здание и вход, доступность",
+    "uz": "Bino va kirish, qulaylik",
+    "en": "Building, entrance, accessibility"
+   }
+  },
+  {
+   "code": "Г",
+   "title": {
+    "ru": "Общественные помещения",
+    "uz": "Jamoat xonalari",
+    "en": "Public areas"
+   }
+  },
+  {
+   "code": "Д",
+   "title": {
+    "ru": "Номерной фонд",
+    "uz": "Xonalar fondi",
+    "en": "Guest rooms"
+   }
+  },
+  {
+   "code": "Е",
+   "title": {
+    "ru": "Санузлы номеров",
+    "uz": "Xona sanuzellari",
+    "en": "Room bathrooms"
+   }
+  },
+  {
+   "code": "Ж",
+   "title": {
+    "ru": "Инженерное обеспечение",
+    "uz": "Muhandislik ta'minoti",
+    "en": "Utilities and engineering"
+   }
+  },
+  {
+   "code": "З",
+   "title": {
+    "ru": "Безопасность",
+    "uz": "Xavfsizlik",
+    "en": "Safety and security"
+   }
+  },
+  {
+   "code": "И",
+   "title": {
+    "ru": "Персонал",
+    "uz": "Xodimlar",
+    "en": "Staff"
+   }
+  },
+  {
+   "code": "К",
+   "title": {
+    "ru": "Информация для гостей и услуги",
+    "uz": "Mehmonlar uchun ma'lumot va xizmatlar",
+    "en": "Guest information and services"
+   }
+  }
+ ],
+ "items": [
+  {
+   "code": "А-01",
+   "section": "А",
+   "req": {
+    "ru": "Свидетельство о государственной регистрации заявителя",
+    "uz": "Ariza beruvchining davlat ro'yxatidan o'tganlik guvohnomasi",
+    "en": "Applicant state registration certificate"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "file"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "scan",
+      "kind": "pdf",
+      "label": {
+       "ru": "Скан свидетельства (PDF)",
+       "uz": "Guvohnoma skani (PDF)",
+       "en": "Certificate scan (PDF)"
+      }
+     }
+    ]
+   },
+   "autocheck": [
+    "hash",
+    "time"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Загрузите скан целиком, все углы видны.",
+     "uz": "Skanerni to'liq yuklang.",
+     "en": "Upload the full scan, all corners visible."
+    },
+    "reference": "document"
+   },
+   "conditional": true
+  },
+  {
+   "code": "А-03",
+   "section": "А",
+   "req": {
+    "ru": "Договор на вывоз ТБО действует",
+    "uz": "Maishiy chiqindilarni olib chiqish shartnomasi amal qiladi",
+    "en": "Waste removal contract is valid"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "пример из ТЗ",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "date",
+    "label": {
+     "ru": "Дата окончания договора",
+     "uz": "Shartnoma tugash sanasi",
+     "en": "Contract end date"
+    }
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "scan",
+      "kind": "pdf",
+      "label": {
+       "ru": "Скан договора (PDF)",
+       "uz": "Shartnoma skani (PDF)",
+       "en": "Contract scan (PDF)"
+      }
+     }
+    ]
+   },
+   "autocheck": [
+    "hash",
+    "time",
+    "notexpired"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Срок действия не должен истечь.",
+     "uz": "Muddat tugamagan bo'lishi kerak.",
+     "en": "The contract must not be expired."
+    },
+    "reference": "document"
+   },
+   "conditional": false
+  },
+  {
+   "code": "Б-01",
+   "section": "Б",
+   "req": {
+    "ru": "Парковка для гостей в пределах территории объекта",
+    "uz": "Obyekt hududida mehmonlar uchun avtoturargoh",
+    "en": "Guest parking within the premises"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": false,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото парковки",
+       "uz": "Avtoturargoh surati",
+       "en": "Parking photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Снимите парковку так, чтобы был виден въезд.",
+     "uz": "Kirish ko'rinadigan qilib suratga oling.",
+     "en": "Shoot the parking so the entrance is visible."
+    },
+    "reference": "parking"
+   },
+   "conditional": true
+  },
+  {
+   "code": "Б-02",
+   "section": "Б",
+   "req": {
+    "ru": "Освещённая вывеска с наименованием объекта",
+    "uz": "Obyekt nomi yozilgan yoritilgan lavha",
+    "en": "Illuminated sign with the facility name"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "пример из ТЗ",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 2,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "day",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото днём",
+       "uz": "Kunduzgi surat",
+       "en": "Daytime photo"
+      },
+      "live": true
+     },
+     {
+      "id": "night",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото в тёмное время",
+       "uz": "Qorong'ida surat",
+       "en": "Night-time photo"
+      },
+      "live": true,
+      "dark": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality",
+    "ai:signboard_text"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Одно фото днём и одно в тёмное время; название должно читаться.",
+     "uz": "Kunduz va qorong'ida bittadan surat; nom o'qilishi kerak.",
+     "en": "One daytime and one night-time photo; the name must be readable."
+    },
+    "reference": "signboard"
+   },
+   "conditional": false
+  },
+  {
+   "code": "В-01",
+   "section": "В",
+   "req": {
+    "ru": "Пандус или иной доступ для маломобильных гостей",
+    "uz": "Harakati cheklangan mehmonlar uchun pandus yoki boshqa kirish",
+    "en": "Ramp or other access for guests with reduced mobility"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото входа",
+       "uz": "Kirish surati",
+       "en": "Entrance photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Покажите вход целиком и пандус.",
+     "uz": "Kirish va pandusni to'liq ko'rsating.",
+     "en": "Show the whole entrance and the ramp."
+    },
+    "reference": "entrance"
+   },
+   "conditional": true
+  },
+  {
+   "code": "В-02",
+   "section": "В",
+   "req": {
+    "ru": "Лифт для гостей (при этажности выше заданной)",
+    "uz": "Mehmonlar uchun lift (qavatlar soni belgilangandan ko'p bo'lsa)",
+    "en": "Guest lift (when floors exceed the set value)"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": [
+     {
+      "field": "floors",
+      "op": ">",
+      "value": 3,
+      "reason": {
+       "ru": "этажность не выше 3",
+       "uz": "qavatlar soni 3 dan ko'p emas",
+       "en": "no more than 3 floors"
+      }
+     }
+    ]
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото лифта",
+       "uz": "Lift surati",
+       "en": "Lift photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Кабина и табло этажей.",
+     "uz": "Kabina va qavat tablosi.",
+     "en": "Car and floor indicator."
+    },
+    "reference": "lift"
+   },
+   "conditional": true
+  },
+  {
+   "code": "Г-01",
+   "section": "Г",
+   "req": {
+    "ru": "Зона приёма и размещения (ресепшн)",
+    "uz": "Qabul va joylashtirish zonasi (resepshn)",
+    "en": "Reception and check-in area"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото ресепшн",
+       "uz": "Resepshn surati",
+       "en": "Reception photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Снимите стойку и зону ожидания.",
+     "uz": "Peshtaxta va kutish zonasini suratga oling.",
+     "en": "Shoot the desk and waiting area."
+    },
+    "reference": "reception"
+   },
+   "conditional": true
+  },
+  {
+   "code": "Г-02",
+   "section": "Г",
+   "req": {
+    "ru": "Ресторан или зал завтраков",
+    "uz": "Restoran yoki nonushta zali",
+    "en": "Restaurant or breakfast hall"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": false,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": [],
+    "reasonCategory": {
+     "ru": "только для категорий 4★ и 5★",
+     "uz": "faqat 4★ va 5★ uchun",
+     "en": "only for 4★ and 5★"
+    }
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото зала",
+       "uz": "Zal surati",
+       "en": "Hall photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Общий вид зала.",
+     "uz": "Zalning umumiy ko'rinishi.",
+     "en": "General view of the hall."
+    },
+    "reference": "hall"
+   },
+   "conditional": true
+  },
+  {
+   "code": "Д-01",
+   "section": "Д",
+   "req": {
+    "ru": "Площадь одноместного номера не меньше нормы",
+    "uz": "Bir kishilik xona maydoni me'yordan kam emas",
+    "en": "Single room area is not below the norm"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "пример из ТЗ",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": true,
+   "weight": 3,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "number",
+    "unit": "м²",
+    "min": 1,
+    "max": 200
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "plan",
+      "kind": "pdf",
+      "label": {
+       "ru": "План БТИ (PDF)",
+       "uz": "BTI rejasi (PDF)",
+       "en": "Cadastral plan (PDF)"
+      }
+     },
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото номера",
+       "uz": "Xona surati",
+       "en": "Room photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality",
+    "normcompare:minRoomSingle"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Укажите площадь по плану БТИ; фото общего вида номера.",
+     "uz": "Maydonni reja bo'yicha ko'rsating.",
+     "en": "State the area per the plan; add an overview photo."
+    },
+    "reference": "room"
+   },
+   "conditional": false
+  },
+  {
+   "code": "Д-02",
+   "section": "Д",
+   "req": {
+    "ru": "Светозащита окон в номерах (шторы / жалюзи)",
+    "uz": "Xonalardagi oynalarning yorug'likdan himoyasi",
+    "en": "Window light protection in rooms"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": false,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото окна",
+       "uz": "Deraza surati",
+       "en": "Window photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Окно со шторой в закрытом положении.",
+     "uz": "Parda yopiq oyna.",
+     "en": "Window with the curtain closed."
+    },
+    "reference": "room"
+   },
+   "conditional": true
+  },
+  {
+   "code": "Д-07",
+   "section": "Д",
+   "req": {
+    "ru": "Оснащение номера по перечню стандарта",
+    "uz": "Xonaning standart ro'yxati bo'yicha jihozlanishi",
+    "en": "Room equipment per the standard list"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "пример из ТЗ",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": true,
+   "weight": 3,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "multi",
+    "options": [
+     {
+      "id": "bed",
+      "label": {
+       "ru": "Кровать",
+       "uz": "Karavot",
+       "en": "Bed"
+      }
+     },
+     {
+      "id": "wardrobe",
+      "label": {
+       "ru": "Шкаф",
+       "uz": "Shkaf",
+       "en": "Wardrobe"
+      }
+     },
+     {
+      "id": "desk",
+      "label": {
+       "ru": "Стол",
+       "uz": "Stol",
+       "en": "Desk"
+      }
+     },
+     {
+      "id": "tv",
+      "label": {
+       "ru": "Телевизор",
+       "uz": "Televizor",
+       "en": "TV"
+      }
+     },
+     {
+      "id": "ac",
+      "label": {
+       "ru": "Кондиционер",
+       "uz": "Konditsioner",
+       "en": "Air conditioner"
+      }
+     },
+     {
+      "id": "kettle",
+      "label": {
+       "ru": "Чайник",
+       "uz": "Choynak",
+       "en": "Kettle"
+      }
+     }
+    ]
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "video",
+      "kind": "video",
+      "label": {
+       "ru": "Видеообход номера 30–60 с",
+       "uz": "Xonani 30–60 s video aylanish",
+       "en": "Room walkthrough video 30–60 s"
+      },
+      "live": true,
+      "minSec": 30,
+      "maxSec": 60
+     }
+    ]
+   },
+   "autocheck": [
+    "time",
+    "hash",
+    "videometa",
+    "ai:room_amenities"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Медленно пройдите по номеру и покажите каждый предмет перечня.",
+     "uz": "Sekin yurib har bir buyumni ko'rsating.",
+     "en": "Walk slowly and show every item of the list."
+    },
+    "reference": "room"
+   },
+   "conditional": false
+  },
+  {
+   "code": "Е-01",
+   "section": "Е",
+   "req": {
+    "ru": "Исправная сантехника, горячая и холодная вода",
+    "uz": "Sanitariya jihozlari soz, issiq va sovuq suv",
+    "en": "Working plumbing, hot and cold water"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото санузла",
+       "uz": "Sanuzel surati",
+       "en": "Bathroom photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Раковина, душ, унитаз в кадре.",
+     "uz": "Lavabo, dush, unitaz kadrda.",
+     "en": "Sink, shower, toilet in frame."
+    },
+    "reference": "bathroom"
+   },
+   "conditional": true
+  },
+  {
+   "code": "Е-02",
+   "section": "Е",
+   "req": {
+    "ru": "Туалетные принадлежности по перечню",
+    "uz": "Hammom buyumlari ro'yxat bo'yicha",
+    "en": "Toiletries per list"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": false,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "multi",
+    "options": [
+     {
+      "id": "soap",
+      "label": {
+       "ru": "Мыло",
+       "uz": "Sovun",
+       "en": "Soap"
+      }
+     },
+     {
+      "id": "shampoo",
+      "label": {
+       "ru": "Шампунь",
+       "uz": "Shampun",
+       "en": "Shampoo"
+      }
+     },
+     {
+      "id": "towel",
+      "label": {
+       "ru": "Полотенца",
+       "uz": "Sochiqlar",
+       "en": "Towels"
+      }
+     }
+    ]
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото принадлежностей",
+       "uz": "Buyumlar surati",
+       "en": "Toiletries photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Разложите предметы так, чтобы все были видны.",
+     "uz": "Buyumlarni ko'rinadigan qilib joylashtiring.",
+     "en": "Lay items out so all are visible."
+    },
+    "reference": "bathroom"
+   },
+   "conditional": true
+  },
+  {
+   "code": "Ж-01",
+   "section": "Ж",
+   "req": {
+    "ru": "Отопление и кондиционирование в номерах",
+    "uz": "Xonalarda isitish va konditsionerlash",
+    "en": "Heating and air conditioning in rooms"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото прибора",
+       "uz": "Qurilma surati",
+       "en": "Device photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Панель управления климатом.",
+     "uz": "Iqlim boshqaruv paneli.",
+     "en": "Climate control panel."
+    },
+    "reference": "room"
+   },
+   "conditional": true
+  },
+  {
+   "code": "Ж-03",
+   "section": "Ж",
+   "req": {
+    "ru": "Круглосуточная подача горячей воды",
+    "uz": "Issiq suv sutka davomida ta'minlanadi",
+    "en": "24-hour hot water supply"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "пример из ТЗ",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 2,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "video",
+      "kind": "video",
+      "label": {
+       "ru": "Видео: открытие крана и термометр",
+       "uz": "Video: jo'mrakni ochish va termometr",
+       "en": "Video: tap opening and thermometer"
+      },
+      "live": true,
+      "minSec": 10,
+      "maxSec": 40
+     }
+    ]
+   },
+   "autocheck": [
+    "time",
+    "hash",
+    "videometa"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Откройте кран и покажите показания термометра.",
+     "uz": "Jo'mrakni oching va termometrni ko'rsating.",
+     "en": "Open the tap and show the thermometer reading."
+    },
+    "reference": "water"
+   },
+   "conditional": false
+  },
+  {
+   "code": "З-01",
+   "section": "З",
+   "req": {
+    "ru": "Первичные средства пожаротушения на этажах",
+    "uz": "Qavatlarda birlamchi yong'in o'chirish vositalari",
+    "en": "Primary fire-fighting equipment on floors"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "пример из ТЗ",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": true,
+   "weight": 3,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "number",
+    "unit": "шт.",
+    "min": 0,
+    "max": 500
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "floor",
+      "kind": "photo",
+      "repeat": "floors",
+      "live": true,
+      "label": {
+       "ru": "Фото этажа {n}",
+       "uz": "{n}-qavat surati",
+       "en": "Floor {n} photo"
+      }
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality",
+    "ai:fire_extinguisher",
+    "ocr:verification_date"
+   ],
+   "hint": {
+    "text": {
+     "ru": "На каждом этаже: огнетушитель с этикеткой поверки.",
+     "uz": "Har qavatda: tekshiruv yorlig'i bor o't o'chirgich.",
+     "en": "Each floor: extinguisher with a verification label."
+    },
+    "reference": "extinguisher"
+   },
+   "conditional": false
+  },
+  {
+   "code": "З-02",
+   "section": "З",
+   "req": {
+    "ru": "Видеонаблюдение входа и общих зон",
+    "uz": "Kirish va umumiy zonalarda videokuzatuv",
+    "en": "CCTV of the entrance and common areas"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": false,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото монитора / камеры",
+       "uz": "Monitor / kamera surati",
+       "en": "Monitor / camera photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Экран видеонаблюдения или камера на месте.",
+     "uz": "Videokuzatuv ekrani yoki kamera.",
+     "en": "CCTV screen or camera in place."
+    },
+    "reference": "cctv"
+   },
+   "conditional": true
+  },
+  {
+   "code": "И-01",
+   "section": "И",
+   "req": {
+    "ru": "Сотрудников на ресепшн в смену (чел.)",
+    "uz": "Smenada resepshndagi xodimlar soni",
+    "en": "Reception staff per shift"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "number",
+    "unit": "чел.",
+    "min": 0,
+    "max": 50
+   },
+   "evidence": {
+    "slots": []
+   },
+   "autocheck": [],
+   "hint": {
+    "text": {
+     "ru": "Достаточно указать число.",
+     "uz": "Raqam kiritish kifoya.",
+     "en": "Just enter the number."
+    },
+    "reference": null
+   },
+   "conditional": true
+  },
+  {
+   "code": "И-02",
+   "section": "И",
+   "req": {
+    "ru": "Единая форма и бейджи персонала",
+    "uz": "Xodimlarning yagona kiyimi va nishonlari",
+    "en": "Staff uniform and name badges"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": false,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото персонала",
+       "uz": "Xodimlar surati",
+       "en": "Staff photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Без лиц: достаточно формы и бейджа.",
+     "uz": "Yuzsiz: kiyim va nishon ko'rinsa yetadi.",
+     "en": "No faces: uniform and badge are enough."
+    },
+    "reference": "staff"
+   },
+   "conditional": true
+  },
+  {
+   "code": "К-01",
+   "section": "К",
+   "req": {
+    "ru": "Правила проживания и цены размещены на видном месте",
+    "uz": "Yashash qoidalari va narxlar ko'rinadigan joyda",
+    "en": "House rules and prices posted visibly"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": true,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "bool"
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото стенда",
+       "uz": "Stend surati",
+       "en": "Information board photo"
+      },
+      "live": true
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Текст должен читаться.",
+     "uz": "Matn o'qilishi kerak.",
+     "en": "Text must be legible."
+    },
+    "reference": "board"
+   },
+   "conditional": true
+  },
+  {
+   "code": "К-02",
+   "section": "К",
+   "req": {
+    "ru": "Информация об услугах на государственном и ещё одном языке",
+    "uz": "Xizmatlar haqida davlat tilida va yana bitta tilda ma'lumot",
+    "en": "Service information in the state language and one more"
+   },
+   "norm": {
+    "doc": "O'z DSt 3220:2017",
+    "clause": "п. — (пример, нормативный текст загружает Центр)",
+    "quote": {
+     "ru": "Цитата-заглушка: нормативный текст пункта будет загружен Центром в конструктор чек-листов.",
+     "uz": "Iqtibos-o'rin: band matni Markaz tomonidan konstruktorga yuklanadi.",
+     "en": "Placeholder quote: the normative text will be uploaded by the Center into the checklist builder."
+    }
+   },
+   "mandatory": false,
+   "critical": false,
+   "weight": 1,
+   "applicability": {
+    "categories": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "types": [
+     "*"
+    ],
+    "rules": []
+   },
+   "answer": {
+    "type": "choice",
+    "options": [
+     {
+      "id": "uz-ru",
+      "label": {
+       "ru": "Узбекский + русский",
+       "uz": "O'zbek + rus",
+       "en": "Uzbek + Russian"
+      }
+     },
+     {
+      "id": "uz-en",
+      "label": {
+       "ru": "Узбекский + английский",
+       "uz": "O'zbek + ingliz",
+       "en": "Uzbek + English"
+      }
+     },
+     {
+      "id": "other",
+      "label": {
+       "ru": "Другое",
+       "uz": "Boshqa",
+       "en": "Other"
+      }
+     }
+    ]
+   },
+   "evidence": {
+    "slots": [
+     {
+      "id": "photo",
+      "kind": "photo",
+      "label": {
+       "ru": "Фото информационного материала",
+       "uz": "Axborot materiali surati",
+       "en": "Information material photo"
+      },
+      "live": false
+     }
+    ]
+   },
+   "autocheck": [
+    "geotag",
+    "time",
+    "hash",
+    "duplicate",
+    "quality"
+   ],
+   "hint": {
+    "text": {
+     "ru": "Меню услуг или буклет.",
+     "uz": "Xizmatlar menyusi yoki buklet.",
+     "en": "Service menu or brochure."
+    },
+    "reference": "board"
+   },
+   "conditional": true
+  }
+ ]
+}

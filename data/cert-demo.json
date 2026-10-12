@@ -1,0 +1,2562 @@
+{
+ "meta": {
+  "version": "2026.10.12-demo",
+  "operator": "ГУП «Центр сертификации туристских услуг»",
+  "platform": "Silk Route Invest",
+  "today": "2026-10-12",
+  "notice": "ДЕМО · образец. Все данные вымышленные и иллюстративные."
+ },
+ "serviceKinds": [
+  {
+   "id": "hotel",
+   "label": {
+    "ru": "Гостиницы и средства размещения",
+    "uz": "Mehmonxonalar va joylashtirish vositalari",
+    "en": "Hotels and accommodation"
+   },
+   "templateId": "tpl-hotels",
+   "active": true
+  },
+  {
+   "id": "hostel",
+   "label": {
+    "ru": "Хостелы",
+    "uz": "Hostellar",
+    "en": "Hostels"
+   },
+   "templateId": null,
+   "active": false
+  },
+  {
+   "id": "guesthouse",
+   "label": {
+    "ru": "Гостевые дома",
+    "uz": "Mehmon uylari",
+    "en": "Guest houses"
+   },
+   "templateId": null,
+   "active": false
+  },
+  {
+   "id": "touroperator",
+   "label": {
+    "ru": "Туроператоры",
+    "uz": "Turoperatorlar",
+    "en": "Tour operators"
+   },
+   "templateId": null,
+   "active": false
+  }
+ ],
+ "regions": [
+  {
+   "code": "TK",
+   "name": "Ташкент (город)"
+  },
+  {
+   "code": "TO",
+   "name": "Ташкентская область"
+  },
+  {
+   "code": "SA",
+   "name": "Самаркандская область"
+  },
+  {
+   "code": "BU",
+   "name": "Бухарская область"
+  },
+  {
+   "code": "KH",
+   "name": "Хорезмская область"
+  },
+  {
+   "code": "JI",
+   "name": "Джизакская область"
+  },
+  {
+   "code": "QA",
+   "name": "Кашкадарьинская область"
+  },
+  {
+   "code": "NA",
+   "name": "Навоийская область"
+  },
+  {
+   "code": "FE",
+   "name": "Ферганская область"
+  },
+  {
+   "code": "AN",
+   "name": "Андижанская область"
+  },
+  {
+   "code": "NM",
+   "name": "Наманганская область"
+  },
+  {
+   "code": "SU",
+   "name": "Сурхандарьинская область"
+  },
+  {
+   "code": "SR",
+   "name": "Сырдарьинская область"
+  },
+  {
+   "code": "KK",
+   "name": "Республика Каракалпакстан"
+  }
+ ],
+ "typeLabels": {
+  "hotel": "Гостиница",
+  "resort": "Курортный отель",
+  "aparthotel": "Апарт-отель",
+  "hostel": "Хостел",
+  "guesthouse": "Гостевой дом"
+ },
+ "settings": {
+  "geoRadiusM": 150,
+  "shootWindowDays": 14,
+  "certYears": 5,
+  "controlPeriod": "annual",
+  "notifyDays": [
+   30,
+   14,
+   3
+  ],
+  "riskThreshold": 60,
+  "evalMode": "hybrid",
+  "signMode": "server",
+  "checklistSet": "3220",
+  "recertDays": 90,
+  "autoCheckSeconds": 4,
+  "minPhotoWidth": 640,
+  "minPhotoHeight": 480,
+  "minSharpness": 40,
+  "dupHamming": 6,
+  "nearDupHamming": 12,
+  "aiMinConfidence": 0.7,
+  "slaIssueWorkDays": 5,
+  "slaTargetWorkDays": 2,
+  "slaReviewWorkDays": 3,
+  "onsiteMaxPercent": 20,
+  "retention": {
+   "mediaYearsAfterExpiry": 1,
+   "backup": "ежедневно",
+   "encryption": "AES-256 (at rest)",
+   "tls": "1.2+",
+   "residency": "дата-центр на территории РУз"
+  },
+  "publicFields": {
+   "name": true,
+   "region": true,
+   "address": true,
+   "stars": true,
+   "type": true,
+   "no": true,
+   "issued": true,
+   "expires": true,
+   "status": true,
+   "lastInspection": true,
+   "passport": true,
+   "inn": false,
+   "legalEntity": false,
+   "decisionNo": false,
+   "inspector": false
+  },
+  "integrations": {
+   "oneid": {
+    "on": true,
+    "level": "required"
+   },
+   "eimzo": {
+    "on": true,
+    "level": "required"
+   },
+   "payments": {
+    "on": true,
+    "level": "required"
+   },
+   "notify": {
+    "on": true,
+    "level": "required"
+   },
+   "soliq": {
+    "on": true,
+    "level": "agreed"
+   },
+   "cadastre": {
+    "on": true,
+    "level": "agreed"
+   },
+   "registry": {
+    "on": false,
+    "level": "agreed"
+   },
+   "mygov": {
+    "on": false,
+    "level": "stage2"
+   }
+  }
+ },
+ "directory": {
+  "norms": [
+   {
+    "id": "minRoomSingle",
+    "label": "Минимальная площадь одноместного номера",
+    "value": 9,
+    "unit": "м²",
+    "conditional": true,
+    "note": "условное значение; реальную норму загрузит Центр"
+   },
+   {
+    "id": "minRoomDouble",
+    "label": "Минимальная площадь двухместного номера",
+    "value": 14,
+    "unit": "м²",
+    "conditional": true,
+    "note": "условное значение"
+   }
+  ],
+  "tariffs": [
+   {
+    "id": "t-hotel-13",
+    "label": "Сертификация: 1★–3★",
+    "amount": 1200000,
+    "currency": "сум",
+    "conditional": true,
+    "note": "условный демо-тариф; тарифы определяет Центр"
+   },
+   {
+    "id": "t-hotel-45",
+    "label": "Сертификация: 4★–5★",
+    "amount": 2400000,
+    "currency": "сум",
+    "conditional": true,
+    "note": "условный демо-тариф; тарифы определяет Центр"
+   }
+  ]
+ },
+ "users": [
+  {
+   "id": "u-app-1",
+   "role": "applicant",
+   "name": "Демо-заявитель · ASMALD Hospitality",
+   "hotelId": "asmald",
+   "oneid": true
+  },
+  {
+   "id": "insp-1",
+   "role": "inspector",
+   "name": "Демо-инспектор Азиз Т.",
+   "regions": [
+    "TK",
+    "TO",
+    "SA"
+   ],
+   "conflicts": [
+    "miraki-hotel"
+   ],
+   "capacity": 8,
+   "load": 5
+  },
+  {
+   "id": "insp-2",
+   "role": "inspector",
+   "name": "Демо-инспектор Малика Р.",
+   "regions": [
+    "BU",
+    "KH",
+    "NA"
+   ],
+   "conflicts": [],
+   "capacity": 8,
+   "load": 3
+  },
+  {
+   "id": "insp-3",
+   "role": "inspector",
+   "name": "Демо-инспектор Бахтиёр Ш.",
+   "regions": [
+    "QA",
+    "SU",
+    "JI",
+    "FE",
+    "NM"
+   ],
+   "conflicts": [
+    "imam-bukhari-hotel"
+   ],
+   "capacity": 8,
+   "load": 7
+  },
+  {
+   "id": "mgr-1",
+   "role": "manager",
+   "name": "Демо-руководитель Нодира К."
+  },
+  {
+   "id": "adm-1",
+   "role": "admin",
+   "name": "Демо-администратор Центра",
+   "twofa": true
+  }
+ ],
+ "hotels": [
+  {
+   "id": "grand-tashkent",
+   "name": "Grand Tashkent Hotel",
+   "legalEntity": "ООО «Grand Tashkent Hospitality»",
+   "inn": "301245678",
+   "regionCode": "TK",
+   "region": "Ташкент (город)",
+   "address": "г. Ташкент, ул. Навои, 12",
+   "type": "hotel",
+   "stars": 5,
+   "floors": 12,
+   "rooms": 258,
+   "lat": 41.3111,
+   "lng": 69.2797,
+   "cadastre": "TK:01:100:01"
+  },
+  {
+   "id": "samarkand-palace",
+   "name": "Samarkand Palace Hotel",
+   "legalEntity": "ООО «Samarkand Palace Group»",
+   "inn": "301256789",
+   "regionCode": "SA",
+   "region": "Самаркандская область",
+   "address": "г. Самарканд, ул. Регистан, 7",
+   "type": "hotel",
+   "stars": 5,
+   "floors": 6,
+   "rooms": 185,
+   "lat": 39.6542,
+   "lng": 66.9597,
+   "cadastre": "SA:01:107:02"
+  },
+  {
+   "id": "bukhara-heritage",
+   "name": "Bukhara Heritage Hotel",
+   "legalEntity": "ООО «Bukhara Heritage»",
+   "inn": "301267890",
+   "regionCode": "BU",
+   "region": "Бухарская область",
+   "address": "г. Бухара, ул. Ляби-Хауз, 4",
+   "type": "hotel",
+   "stars": 4,
+   "floors": 3,
+   "rooms": 120,
+   "lat": 39.7747,
+   "lng": 64.4286,
+   "cadastre": "BU:01:114:03"
+  },
+  {
+   "id": "silk-road-resort",
+   "name": "Silk Road Resort & Spa",
+   "legalEntity": "ООО «Silk Road Resort»",
+   "inn": "301278901",
+   "regionCode": "TO",
+   "region": "Ташкентская область",
+   "address": "Ташкентская обл., Чарвак, зона отдыха «Бельдерсай», 3",
+   "type": "resort",
+   "stars": 4,
+   "floors": 4,
+   "rooms": 140,
+   "lat": 41.634,
+   "lng": 69.95,
+   "cadastre": "TO:01:121:04"
+  },
+  {
+   "id": "khiva-palace",
+   "name": "Khiva Palace Hotel",
+   "legalEntity": "ООО «Khiva Palace»",
+   "inn": "301289012",
+   "regionCode": "KH",
+   "region": "Хорезмская область",
+   "address": "г. Хива, ул. Ичан-Кала, 22",
+   "type": "hotel",
+   "stars": 4,
+   "floors": 3,
+   "rooms": 74,
+   "lat": 41.3783,
+   "lng": 60.3639,
+   "cadastre": "KH:01:128:05"
+  },
+  {
+   "id": "zaamin-mountain-resort",
+   "name": "Zaamin Mountain Resort",
+   "legalEntity": "ООО «Zaamin Resort»",
+   "inn": "301290123",
+   "regionCode": "JI",
+   "region": "Джизакская область",
+   "address": "Джизакская обл., Заамин, Заамин-Тау, 1",
+   "type": "resort",
+   "stars": 4,
+   "floors": 3,
+   "rooms": 110,
+   "lat": 39.96,
+   "lng": 68.4,
+   "cadastre": "JI:01:135:06"
+  },
+  {
+   "id": "bakh-mir-palace",
+   "name": "Bakh Mir Palace",
+   "legalEntity": "OOO GROUP EMIR BMV",
+   "inn": "301301234",
+   "regionCode": "BU",
+   "region": "Бухарская область",
+   "address": "г. Бухара, ул. Зебонисо, 15",
+   "type": "hotel",
+   "stars": 4,
+   "floors": 5,
+   "rooms": 50,
+   "lat": 39.77,
+   "lng": 64.42,
+   "cadastre": "BU:01:142:07"
+  },
+  {
+   "id": "farovon-khiva",
+   "name": "Farovon Khiva",
+   "legalEntity": "ООО «Farovon Hospitality»",
+   "inn": "301312345",
+   "regionCode": "KH",
+   "region": "Хорезмская область",
+   "address": "г. Хива, ул. Пахлавана Махмуда, 9",
+   "type": "hotel",
+   "stars": 5,
+   "floors": 4,
+   "rooms": 96,
+   "lat": 41.38,
+   "lng": 60.36,
+   "cadastre": "KH:01:149:08"
+  },
+  {
+   "id": "navoi-industrial-hotel",
+   "name": "Navoi Industrial Hotel",
+   "legalEntity": "ООО «Navoi Industrial»",
+   "inn": "301323456",
+   "regionCode": "NA",
+   "region": "Навоийская область",
+   "address": "г. Навои, пр. Галаба, 28",
+   "type": "hotel",
+   "stars": 3,
+   "floors": 5,
+   "rooms": 86,
+   "lat": 40.0844,
+   "lng": 65.3792,
+   "cadastre": "NA:01:156:09"
+  },
+  {
+   "id": "fergana-valley-inn",
+   "name": "Fergana Valley Inn",
+   "legalEntity": "ЧП «Fergana Inn»",
+   "inn": "301334567",
+   "regionCode": "FE",
+   "region": "Ферганская область",
+   "address": "г. Фергана, ул. Мустакиллик, 41",
+   "type": "hotel",
+   "stars": 3,
+   "floors": 3,
+   "rooms": 42,
+   "lat": 40.3894,
+   "lng": 71.7864,
+   "cadastre": "FE:01:163:010"
+  },
+  {
+   "id": "namangan-garden",
+   "name": "Namangan Garden Hotel",
+   "legalEntity": "ООО «Namangan Garden»",
+   "inn": "301345678",
+   "regionCode": "NM",
+   "region": "Наманганская область",
+   "address": "г. Наманган, ул. Бобура, 18",
+   "type": "guesthouse",
+   "stars": 3,
+   "floors": 2,
+   "rooms": 28,
+   "lat": 41.0011,
+   "lng": 71.6725,
+   "cadastre": "NM:01:170:011"
+  },
+  {
+   "id": "termez-oasis",
+   "name": "Termez Oasis Hotel",
+   "legalEntity": "ООО «Termez Oasis»",
+   "inn": "301356789",
+   "regionCode": "SU",
+   "region": "Сурхандарьинская область",
+   "address": "г. Термез, ул. Ал-Хаким ат-Термизий, 5",
+   "type": "aparthotel",
+   "stars": 3,
+   "floors": 4,
+   "rooms": 64,
+   "lat": 37.2242,
+   "lng": 67.2783,
+   "cadastre": "SU:01:177:012"
+  },
+  {
+   "id": "asmald",
+   "name": "ASMALD Hotel",
+   "legalEntity": "ASMALD",
+   "inn": "301400156",
+   "regionCode": "TK",
+   "region": "Ташкент (город)",
+   "address": "г. Ташкент, Себзорский район",
+   "type": "hotel",
+   "stars": "4",
+   "floors": 5,
+   "rooms": 94,
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "cadastre": "TK:02:260:013"
+  },
+  {
+   "id": "kumushkon-hotel",
+   "name": "Kumushkon Hotel (Chimgan)",
+   "legalEntity": "Chimgan Residence LLC",
+   "inn": "301400169",
+   "regionCode": "TO",
+   "region": "Ташкентская область",
+   "address": "Ташкентская обл., р-н Паркент, мфй Кумушкон",
+   "type": "hotel",
+   "stars": 4,
+   "floors": 2,
+   "rooms": 98,
+   "lat": 41.57,
+   "lng": 69.98,
+   "cadastre": "TO:02:265:014"
+  },
+  {
+   "id": "imam-bukhari-hotel",
+   "name": "Hotel Imam Al-Bukhari Complex",
+   "legalEntity": "Perfect Capital Investment LLC",
+   "inn": "301400182",
+   "regionCode": "SA",
+   "region": "Самаркандская область",
+   "address": "Самаркандская обл., тур. комплекс Имам аль-Бухари",
+   "type": "hotel",
+   "stars": 4,
+   "floors": 3,
+   "rooms": 124,
+   "lat": 39.66,
+   "lng": 66.97,
+   "cadastre": "SA:02:270:015"
+  },
+  {
+   "id": "glinka-hotel",
+   "name": "Glinka Hotel",
+   "legalEntity": "West End Consulting",
+   "inn": "301400195",
+   "regionCode": "TK",
+   "region": "Ташкент (город)",
+   "address": "г. Ташкент, Яккасарайский р-н",
+   "type": "hotel",
+   "stars": "4",
+   "floors": 9,
+   "rooms": 79,
+   "lat": 41.312,
+   "lng": 69.265,
+   "cadastre": "TK:02:275:016"
+  },
+  {
+   "id": "chimgan-apart",
+   "name": "Apart-Hotel Chimgan",
+   "legalEntity": "Chimyon Plaza Invest LLC",
+   "inn": "301400208",
+   "regionCode": "TO",
+   "region": "Ташкентская область",
+   "address": "Ташкентская обл., тур. комплекс Чимён, Бостанлыкский р-н",
+   "type": "hotel",
+   "stars": 4,
+   "floors": 6,
+   "rooms": 75,
+   "lat": 41.53,
+   "lng": 70.02,
+   "cadastre": "TO:02:280:017"
+  },
+  {
+   "id": "miraki-hotel",
+   "name": "Hotel Miraki (Shakhrisabz)",
+   "legalEntity": "Miraki Town Plaza LLC",
+   "inn": "301400221",
+   "regionCode": "QA",
+   "region": "Кашкадарьинская область",
+   "address": "Кашкадарьинская обл., Шахрисабзский р-н, мфй Мираки",
+   "type": "hotel",
+   "stars": 4,
+   "floors": 3,
+   "rooms": 150,
+   "lat": 38.86,
+   "lng": 65.79,
+   "cadastre": "QA:02:285:018"
+  }
+ ],
+ "certificates": [
+  {
+   "no": "UZ.TSM.TK.000101",
+   "hotelId": "grand-tashkent",
+   "name": "Grand Tashkent Hotel",
+   "legalEntity": "ООО «Grand Tashkent Hospitality»",
+   "inn": "301245678",
+   "region": "Ташкент (город)",
+   "regionCode": "TK",
+   "address": "г. Ташкент, ул. Навои, 12",
+   "type": "hotel",
+   "typeLabel": "Гостиница",
+   "stars": 5,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2025-11-18",
+   "expires": "2030-11-18",
+   "status": "Действует",
+   "statusReason": "",
+   "decisionNo": "РЕШ-2025-0117",
+   "inspectorId": "insp-1",
+   "templateVersion": "1.0.0-demo",
+   "lastInspection": "2026-06-15",
+   "lat": 41.3111,
+   "lng": 69.2797,
+   "rooms": 258,
+   "floors": 12,
+   "history": [
+    {
+     "at": "2025-11-18",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-1",
+     "decisionNo": "РЕШ-2025-0117"
+    }
+   ],
+   "docHash": "328e755b442a5d77a450f8d9871d32b998982f7a043064da874b3ecac52c5ed7"
+  },
+  {
+   "no": "UZ.TSM.SA.000102",
+   "hotelId": "samarkand-palace",
+   "name": "Samarkand Palace Hotel",
+   "legalEntity": "ООО «Samarkand Palace Group»",
+   "inn": "301256789",
+   "region": "Самаркандская область",
+   "regionCode": "SA",
+   "address": "г. Самарканд, ул. Регистан, 7",
+   "type": "hotel",
+   "typeLabel": "Гостиница",
+   "stars": 5,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2024-12-05",
+   "expires": "2029-12-05",
+   "status": "Действует",
+   "statusReason": "",
+   "decisionNo": "РЕШ-2024-0102",
+   "inspectorId": "insp-1",
+   "templateVersion": "1.0.0-demo",
+   "lastInspection": "2026-06-15",
+   "lat": 39.6542,
+   "lng": 66.9597,
+   "rooms": 185,
+   "floors": 6,
+   "history": [
+    {
+     "at": "2024-12-05",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-1",
+     "decisionNo": "РЕШ-2024-0102"
+    }
+   ],
+   "docHash": "f2cfb4d222cc053f3cd7603c3d902829863f4ee4fc255932ca5ffa9665fbaaea"
+  },
+  {
+   "no": "UZ.TSM.BU.000103",
+   "hotelId": "bukhara-heritage",
+   "name": "Bukhara Heritage Hotel",
+   "legalEntity": "ООО «Bukhara Heritage»",
+   "inn": "301267890",
+   "region": "Бухарская область",
+   "regionCode": "BU",
+   "address": "г. Бухара, ул. Ляби-Хауз, 4",
+   "type": "hotel",
+   "typeLabel": "Гостиница",
+   "stars": 4,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2023-10-25",
+   "expires": "2028-10-25",
+   "status": "Действует",
+   "statusReason": "",
+   "decisionNo": "РЕШ-2023-0188",
+   "inspectorId": "insp-2",
+   "templateVersion": "0.9.0-demo",
+   "lastInspection": "2026-06-15",
+   "lat": 39.7747,
+   "lng": 64.4286,
+   "rooms": 120,
+   "floors": 3,
+   "history": [
+    {
+     "at": "2023-10-25",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-2",
+     "decisionNo": "РЕШ-2023-0188"
+    }
+   ],
+   "docHash": "e3c725628d9455e4537e1bc6b9026fdca07029a32f9691dc2c19d903e6e83264"
+  },
+  {
+   "no": "UZ.TSM.TO.000104",
+   "hotelId": "silk-road-resort",
+   "name": "Silk Road Resort & Spa",
+   "legalEntity": "ООО «Silk Road Resort»",
+   "inn": "301278901",
+   "region": "Ташкентская область",
+   "regionCode": "TO",
+   "address": "Ташкентская обл., Чарвак, зона отдыха «Бельдерсай», 3",
+   "type": "resort",
+   "typeLabel": "Курортный отель",
+   "stars": 4,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2024-08-10",
+   "expires": "2029-08-10",
+   "status": "Действует",
+   "statusReason": "",
+   "decisionNo": "РЕШ-2024-0071",
+   "inspectorId": "insp-1",
+   "templateVersion": "1.0.0-demo",
+   "lastInspection": "2026-06-15",
+   "lat": 41.634,
+   "lng": 69.95,
+   "rooms": 140,
+   "floors": 4,
+   "history": [
+    {
+     "at": "2024-08-10",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-1",
+     "decisionNo": "РЕШ-2024-0071"
+    }
+   ],
+   "docHash": "a9491041af604580d4678aa555928bcefb5e3cd38ffe7fc9282aac6f0a3cb133"
+  },
+  {
+   "no": "UZ.TSM.KH.000105",
+   "hotelId": "khiva-palace",
+   "name": "Khiva Palace Hotel",
+   "legalEntity": "ООО «Khiva Palace»",
+   "inn": "301289012",
+   "region": "Хорезмская область",
+   "regionCode": "KH",
+   "address": "г. Хива, ул. Ичан-Кала, 22",
+   "type": "hotel",
+   "typeLabel": "Гостиница",
+   "stars": 4,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2023-06-20",
+   "expires": "2028-06-20",
+   "status": "Действует",
+   "statusReason": "",
+   "decisionNo": "РЕШ-2023-0121",
+   "inspectorId": "insp-2",
+   "templateVersion": "0.9.0-demo",
+   "lastInspection": "2026-06-15",
+   "lat": 41.3783,
+   "lng": 60.3639,
+   "rooms": 74,
+   "floors": 3,
+   "history": [
+    {
+     "at": "2023-06-20",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-2",
+     "decisionNo": "РЕШ-2023-0121"
+    }
+   ],
+   "docHash": "af03a2e67338a2908bb7cdd0041ccb459cea135d389b492c42394f6ea6be5ec1"
+  },
+  {
+   "no": "UZ.TSM.JI.000106",
+   "hotelId": "zaamin-mountain-resort",
+   "name": "Zaamin Mountain Resort",
+   "legalEntity": "ООО «Zaamin Resort»",
+   "inn": "301290123",
+   "region": "Джизакская область",
+   "regionCode": "JI",
+   "address": "Джизакская обл., Заамин, Заамин-Тау, 1",
+   "type": "resort",
+   "typeLabel": "Курортный отель",
+   "stars": 4,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2025-02-14",
+   "expires": "2030-02-14",
+   "status": "Действует",
+   "statusReason": "",
+   "decisionNo": "РЕШ-2025-0034",
+   "inspectorId": "insp-3",
+   "templateVersion": "1.0.0-demo",
+   "lastInspection": "2026-06-15",
+   "lat": 39.96,
+   "lng": 68.4,
+   "rooms": 110,
+   "floors": 3,
+   "history": [
+    {
+     "at": "2025-02-14",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-3",
+     "decisionNo": "РЕШ-2025-0034"
+    }
+   ],
+   "docHash": "376e17fe590cf9d727026dd12aff69a231f15a175dfbbd11b41366287579dd89"
+  },
+  {
+   "no": "UZ.TSM.BU.000107",
+   "hotelId": "bakh-mir-palace",
+   "name": "Bakh Mir Palace",
+   "legalEntity": "OOO GROUP EMIR BMV",
+   "inn": "301301234",
+   "region": "Бухарская область",
+   "regionCode": "BU",
+   "address": "г. Бухара, ул. Зебонисо, 15",
+   "type": "hotel",
+   "typeLabel": "Гостиница",
+   "stars": 4,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2026-10-05",
+   "expires": "2031-10-05",
+   "status": "Действует",
+   "statusReason": "",
+   "decisionNo": "РЕШ-2026-0212",
+   "inspectorId": "insp-2",
+   "templateVersion": "1.0.0-demo",
+   "lastInspection": "2026-06-15",
+   "lat": 39.77,
+   "lng": 64.42,
+   "rooms": 50,
+   "floors": 5,
+   "history": [
+    {
+     "at": "2026-10-05",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-2",
+     "decisionNo": "РЕШ-2026-0212"
+    }
+   ],
+   "docHash": "08813c7a41aaaa2844775d06373e7b06d4dca00a8fcdf10c92ec73b9a6942b36"
+  },
+  {
+   "no": "UZ.TSM.KH.000108",
+   "hotelId": "farovon-khiva",
+   "name": "Farovon Khiva",
+   "legalEntity": "ООО «Farovon Hospitality»",
+   "inn": "301312345",
+   "region": "Хорезмская область",
+   "regionCode": "KH",
+   "address": "г. Хива, ул. Пахлавана Махмуда, 9",
+   "type": "hotel",
+   "typeLabel": "Гостиница",
+   "stars": 5,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2022-11-30",
+   "expires": "2027-11-30",
+   "status": "Действует",
+   "statusReason": "",
+   "decisionNo": "РЕШ-2022-0245",
+   "inspectorId": "insp-2",
+   "templateVersion": "0.9.0-demo",
+   "lastInspection": "2026-06-15",
+   "lat": 41.38,
+   "lng": 60.36,
+   "rooms": 96,
+   "floors": 4,
+   "history": [
+    {
+     "at": "2022-11-30",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-2",
+     "decisionNo": "РЕШ-2022-0245"
+    }
+   ],
+   "docHash": "a098354e1b519868d8849aba46cd0d45b1e1c4e50ac04e1d83bf3689b07f2a46"
+  },
+  {
+   "no": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "name": "Navoi Industrial Hotel",
+   "legalEntity": "ООО «Navoi Industrial»",
+   "inn": "301323456",
+   "region": "Навоийская область",
+   "regionCode": "NA",
+   "address": "г. Навои, пр. Галаба, 28",
+   "type": "hotel",
+   "typeLabel": "Гостиница",
+   "stars": 3,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2023-03-12",
+   "expires": "2028-03-12",
+   "status": "Приостановлен",
+   "statusReason": "Пропуск самоинспекции; решение инспектора с ЭЦП от 02.09.2026",
+   "decisionNo": "РЕШ-2023-0049",
+   "inspectorId": "insp-2",
+   "templateVersion": "0.9.0-demo",
+   "lastInspection": "2026-01-20",
+   "lat": 40.0844,
+   "lng": 65.3792,
+   "rooms": 86,
+   "floors": 5,
+   "history": [
+    {
+     "at": "2023-03-12",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-2",
+     "decisionNo": "РЕШ-2023-0049"
+    },
+    {
+     "at": "2026-09-02",
+     "status": "Приостановлен",
+     "reason": "Пропуск самоинспекции (предупреждение → повторное → проект решения)",
+     "by": "insp-2",
+     "decisionNo": "РЕШ-2026-0188"
+    }
+   ],
+   "docHash": "9d7fc7286163fabec8c19f99493220b54e0b510c7b4bf6ca980e06af46e1bc21"
+  },
+  {
+   "no": "UZ.TSM.FE.000110",
+   "hotelId": "fergana-valley-inn",
+   "name": "Fergana Valley Inn",
+   "legalEntity": "ЧП «Fergana Inn»",
+   "inn": "301334567",
+   "region": "Ферганская область",
+   "regionCode": "FE",
+   "address": "г. Фергана, ул. Мустакиллик, 41",
+   "type": "hotel",
+   "typeLabel": "Гостиница",
+   "stars": 3,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2022-05-10",
+   "expires": "2027-05-10",
+   "status": "Аннулирован",
+   "statusReason": "Не устранены нарушения; решение инспектора с ЭЦП от 18.06.2026",
+   "decisionNo": "РЕШ-2022-0090",
+   "inspectorId": "insp-3",
+   "templateVersion": "0.9.0-demo",
+   "lastInspection": "2026-05-02",
+   "lat": 40.3894,
+   "lng": 71.7864,
+   "rooms": 42,
+   "floors": 3,
+   "history": [
+    {
+     "at": "2022-05-10",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-3",
+     "decisionNo": "РЕШ-2022-0090"
+    },
+    {
+     "at": "2026-03-04",
+     "status": "Приостановлен",
+     "reason": "Жалобы гостей и результат «тайного гостя»",
+     "by": "insp-3",
+     "decisionNo": "РЕШ-2026-0061"
+    },
+    {
+     "at": "2026-06-18",
+     "status": "Аннулирован",
+     "reason": "Не устранены нарушения в установленный срок",
+     "by": "insp-3",
+     "decisionNo": "РЕШ-2026-0149"
+    }
+   ],
+   "docHash": "8865f1d680885b93f3afbab3204fbd7607c7464b1245f6903e907bb2306aff71"
+  },
+  {
+   "no": "UZ.TSM.NM.000111",
+   "hotelId": "namangan-garden",
+   "name": "Namangan Garden Hotel",
+   "legalEntity": "ООО «Namangan Garden»",
+   "inn": "301345678",
+   "region": "Наманганская область",
+   "regionCode": "NM",
+   "address": "г. Наманган, ул. Бобура, 18",
+   "type": "guesthouse",
+   "typeLabel": "Гостевой дом",
+   "stars": 3,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2021-09-30",
+   "expires": "2026-09-30",
+   "status": "Истёк",
+   "statusReason": "Срок действия истёк 30.09.2026",
+   "decisionNo": "РЕШ-2021-0301",
+   "inspectorId": "insp-3",
+   "templateVersion": "0.9.0-demo",
+   "lastInspection": "2025-09-12",
+   "lat": 41.0011,
+   "lng": 71.6725,
+   "rooms": 28,
+   "floors": 2,
+   "history": [
+    {
+     "at": "2021-09-30",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-3",
+     "decisionNo": "РЕШ-2021-0301"
+    },
+    {
+     "at": "2026-09-30",
+     "status": "Истёк",
+     "reason": "Истёк срок действия; ресертификация не начата",
+     "by": "system",
+     "decisionNo": ""
+    }
+   ],
+   "docHash": "25be449ba3b4595f6754520c225460397a8e5ff9185fe76271fffe62f7f9f6c8"
+  },
+  {
+   "no": "UZ.TSM.SU.000112",
+   "hotelId": "termez-oasis",
+   "name": "Termez Oasis Hotel",
+   "legalEntity": "ООО «Termez Oasis»",
+   "inn": "301356789",
+   "region": "Сурхандарьинская область",
+   "regionCode": "SU",
+   "address": "г. Термез, ул. Ал-Хаким ат-Термизий, 5",
+   "type": "aparthotel",
+   "typeLabel": "Апарт-отель",
+   "stars": 3,
+   "serviceKind": "hotel",
+   "serviceLabel": "Услуги средств размещения (гостиничные услуги)",
+   "normDoc": "O'z DSt 3220:2017",
+   "issued": "2021-12-20",
+   "expires": "2026-12-20",
+   "status": "На ресертификации",
+   "statusReason": "Идёт ресертификация; сертификат действует до окончания срока",
+   "decisionNo": "РЕШ-2021-0344",
+   "inspectorId": "insp-3",
+   "templateVersion": "0.9.0-demo",
+   "lastInspection": "2026-05-14",
+   "lat": 37.2242,
+   "lng": 67.2783,
+   "rooms": 64,
+   "floors": 4,
+   "history": [
+    {
+     "at": "2021-12-20",
+     "status": "Действует",
+     "reason": "Сертификат выдан по результатам оценки",
+     "by": "insp-3",
+     "decisionNo": "РЕШ-2021-0344"
+    },
+    {
+     "at": "2026-09-21",
+     "status": "На ресертификации",
+     "reason": "За 90 дней до окончания срока подана заявка на ресертификацию",
+     "by": "system",
+     "decisionNo": ""
+    }
+   ],
+   "docHash": "856392a7132d21aa90ee30cae28cf738d3a9d1beb065ec99f9613d3c967a5d1b"
+  }
+ ],
+ "applications": [
+  {
+   "id": "APP-2026-0001",
+   "hotelId": "asmald",
+   "applicantId": "u-app-1",
+   "status": "Черновик",
+   "stage": "draft",
+   "serviceKind": "hotel",
+   "category": 4,
+   "templateId": "tpl-hotels",
+   "templateVersion": "1.0.0-demo",
+   "createdAt": "2026-10-10T09:12:00",
+   "submittedAt": null,
+   "paid": false,
+   "invoice": null,
+   "history": [
+    {
+     "at": "2026-10-10T09:12:00",
+     "status": "Черновик",
+     "by": "u-app-1"
+    }
+   ],
+   "step": 1,
+   "riskScore": null,
+   "zones": null,
+   "reviews": {},
+   "inspectorId": null
+  },
+  {
+   "id": "APP-2026-0002",
+   "hotelId": "kumushkon-hotel",
+   "applicantId": "ext",
+   "status": "Автопроверка",
+   "stage": "autocheck",
+   "serviceKind": "hotel",
+   "category": 4,
+   "templateId": "tpl-hotels",
+   "templateVersion": "1.0.0-demo",
+   "createdAt": "2026-10-09T10:00:00",
+   "submittedAt": "2026-10-09T10:20:00",
+   "paid": true,
+   "invoice": {
+    "no": "СЧ-2026-0451",
+    "amount": 2400000,
+    "paidAt": "2026-10-09T11:05:00"
+   },
+   "history": [],
+   "step": 6,
+   "riskScore": null,
+   "zones": null,
+   "reviews": {},
+   "inspectorId": null
+  },
+  {
+   "id": "APP-2026-0003",
+   "hotelId": "imam-bukhari-hotel",
+   "applicantId": "ext",
+   "status": "На оценке",
+   "stage": "review",
+   "serviceKind": "hotel",
+   "category": 4,
+   "templateId": "tpl-hotels",
+   "templateVersion": "1.0.0-demo",
+   "createdAt": "2026-10-07T08:30:00",
+   "submittedAt": "2026-10-08T14:00:00",
+   "paid": true,
+   "invoice": {
+    "no": "СЧ-2026-0446",
+    "amount": 2400000,
+    "paidAt": "2026-10-07T09:40:00"
+   },
+   "history": [],
+   "step": 8,
+   "riskScore": null,
+   "zones": null,
+   "reviews": {},
+   "inspectorId": null,
+   "slaDueAt": "2026-10-13T14:00:00"
+  },
+  {
+   "id": "APP-2026-0004",
+   "hotelId": "glinka-hotel",
+   "applicantId": "ext",
+   "status": "На доработке",
+   "stage": "rework",
+   "serviceKind": "hotel",
+   "category": 4,
+   "templateId": "tpl-hotels",
+   "templateVersion": "1.0.0-demo",
+   "createdAt": "2026-10-03T08:30:00",
+   "submittedAt": "2026-10-04T14:00:00",
+   "paid": true,
+   "invoice": {
+    "no": "СЧ-2026-0432",
+    "amount": 2400000,
+    "paidAt": "2026-10-03T09:40:00"
+   },
+   "history": [],
+   "step": 7,
+   "riskScore": null,
+   "zones": null,
+   "reviews": {},
+   "inspectorId": "insp-1",
+   "reworkDueAt": "2026-10-16T18:00:00"
+  },
+  {
+   "id": "APP-2026-0005",
+   "hotelId": "bakh-mir-palace",
+   "applicantId": "ext",
+   "status": "Выдан",
+   "stage": "issued",
+   "serviceKind": "hotel",
+   "category": 4,
+   "templateId": "tpl-hotels",
+   "templateVersion": "1.0.0-demo",
+   "createdAt": "2026-10-01T08:00:00",
+   "submittedAt": "2026-10-01T09:00:00",
+   "paid": true,
+   "invoice": {
+    "no": "СЧ-2026-0418",
+    "amount": 2400000,
+    "paidAt": "2026-10-01T10:00:00"
+   },
+   "history": [],
+   "step": 9,
+   "riskScore": 8,
+   "zones": null,
+   "reviews": {},
+   "inspectorId": "insp-2",
+   "certNo": "UZ.TSM.BU.000107"
+  },
+  {
+   "id": "APP-2026-0006",
+   "hotelId": "chimgan-apart",
+   "applicantId": "ext",
+   "status": "На оценке",
+   "stage": "review",
+   "serviceKind": "hotel",
+   "category": 4,
+   "templateId": "tpl-hotels",
+   "templateVersion": "1.0.0-demo",
+   "createdAt": "2026-10-08T08:30:00",
+   "submittedAt": "2026-10-09T09:00:00",
+   "paid": true,
+   "invoice": {
+    "no": "СЧ-2026-0449",
+    "amount": 2400000,
+    "paidAt": "2026-10-08T09:40:00"
+   },
+   "history": [],
+   "step": 8,
+   "riskScore": null,
+   "zones": null,
+   "reviews": {},
+   "inspectorId": null,
+   "slaDueAt": "2026-10-14T09:00:00"
+  },
+  {
+   "id": "APP-2026-0007",
+   "hotelId": "miraki-hotel",
+   "applicantId": "ext",
+   "status": "На оценке",
+   "stage": "review",
+   "serviceKind": "hotel",
+   "category": 4,
+   "templateId": "tpl-hotels",
+   "templateVersion": "1.0.0-demo",
+   "createdAt": "2026-10-09T08:30:00",
+   "submittedAt": "2026-10-10T09:00:00",
+   "paid": true,
+   "invoice": {
+    "no": "СЧ-2026-0452",
+    "amount": 2400000,
+    "paidAt": "2026-10-09T09:40:00"
+   },
+   "history": [],
+   "step": 8,
+   "riskScore": null,
+   "zones": null,
+   "reviews": {},
+   "inspectorId": null,
+   "slaDueAt": "2026-10-15T09:00:00"
+  }
+ ],
+ "seedAnswers": {
+  "APP-2026-0002": {
+   "fill": 0.5,
+   "red": [],
+   "yellow": [
+    "Б-02"
+   ]
+  },
+  "APP-2026-0003": {
+   "fill": 1,
+   "red": [
+    "З-01"
+   ],
+   "yellow": [
+    "Д-07",
+    "Б-02"
+   ]
+  },
+  "APP-2026-0004": {
+   "fill": 1,
+   "red": [],
+   "yellow": [],
+   "returned": [
+    {
+     "code": "Д-07",
+     "comment": "На видеообходе не видны чайник и кондиционер. Переснимите видео, покажите каждый предмет перечня."
+    },
+    {
+     "code": "З-01",
+     "comment": "Для этажей 5–7 нет этикетки поверки на огнетушителе. Приложите чёткие фото."
+    }
+   ]
+  },
+  "APP-2026-0005": {
+   "fill": 1,
+   "red": [],
+   "yellow": []
+  },
+  "APP-2026-0006": {
+   "fill": 1,
+   "red": [
+    "Д-01",
+    "З-01"
+   ],
+   "yellow": [
+    "Б-02",
+    "Д-07",
+    "Ж-03",
+    "Е-01"
+   ]
+  },
+  "APP-2026-0007": {
+   "fill": 1,
+   "red": [],
+   "yellow": [
+    "Ж-03"
+   ]
+  }
+ },
+ "inspections": [
+  {
+   "id": "INS-0001",
+   "certNo": "UZ.TSM.TK.000101",
+   "hotelId": "grand-tashkent",
+   "kind": "self",
+   "seq": 1,
+   "due": "2026-11-18",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0002",
+   "certNo": "UZ.TSM.TK.000101",
+   "hotelId": "grand-tashkent",
+   "kind": "self",
+   "seq": 2,
+   "due": "2027-11-18",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0003",
+   "certNo": "UZ.TSM.TK.000101",
+   "hotelId": "grand-tashkent",
+   "kind": "self",
+   "seq": 3,
+   "due": "2028-11-18",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0004",
+   "certNo": "UZ.TSM.TK.000101",
+   "hotelId": "grand-tashkent",
+   "kind": "self",
+   "seq": 4,
+   "due": "2029-11-18",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0005",
+   "certNo": "UZ.TSM.TK.000101",
+   "hotelId": "grand-tashkent",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2030-11-18",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0006",
+   "certNo": "UZ.TSM.SA.000102",
+   "hotelId": "samarkand-palace",
+   "kind": "self",
+   "seq": 1,
+   "due": "2025-12-05",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0007",
+   "certNo": "UZ.TSM.SA.000102",
+   "hotelId": "samarkand-palace",
+   "kind": "self",
+   "seq": 2,
+   "due": "2026-12-05",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0008",
+   "certNo": "UZ.TSM.SA.000102",
+   "hotelId": "samarkand-palace",
+   "kind": "self",
+   "seq": 3,
+   "due": "2027-12-05",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0009",
+   "certNo": "UZ.TSM.SA.000102",
+   "hotelId": "samarkand-palace",
+   "kind": "self",
+   "seq": 4,
+   "due": "2028-12-05",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0010",
+   "certNo": "UZ.TSM.SA.000102",
+   "hotelId": "samarkand-palace",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2029-12-05",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0011",
+   "certNo": "UZ.TSM.BU.000103",
+   "hotelId": "bukhara-heritage",
+   "kind": "self",
+   "seq": 1,
+   "due": "2024-10-25",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0012",
+   "certNo": "UZ.TSM.BU.000103",
+   "hotelId": "bukhara-heritage",
+   "kind": "self",
+   "seq": 2,
+   "due": "2025-10-25",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0013",
+   "certNo": "UZ.TSM.BU.000103",
+   "hotelId": "bukhara-heritage",
+   "kind": "self",
+   "seq": 3,
+   "due": "2026-10-25",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0014",
+   "certNo": "UZ.TSM.BU.000103",
+   "hotelId": "bukhara-heritage",
+   "kind": "self",
+   "seq": 4,
+   "due": "2027-10-25",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0015",
+   "certNo": "UZ.TSM.BU.000103",
+   "hotelId": "bukhara-heritage",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2028-10-25",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0016",
+   "certNo": "UZ.TSM.TO.000104",
+   "hotelId": "silk-road-resort",
+   "kind": "self",
+   "seq": 1,
+   "due": "2025-08-10",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0017",
+   "certNo": "UZ.TSM.TO.000104",
+   "hotelId": "silk-road-resort",
+   "kind": "self",
+   "seq": 2,
+   "due": "2026-08-10",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0018",
+   "certNo": "UZ.TSM.TO.000104",
+   "hotelId": "silk-road-resort",
+   "kind": "self",
+   "seq": 3,
+   "due": "2027-08-10",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0019",
+   "certNo": "UZ.TSM.TO.000104",
+   "hotelId": "silk-road-resort",
+   "kind": "self",
+   "seq": 4,
+   "due": "2028-08-10",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0020",
+   "certNo": "UZ.TSM.TO.000104",
+   "hotelId": "silk-road-resort",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2029-08-10",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-1"
+  },
+  {
+   "id": "INS-0021",
+   "certNo": "UZ.TSM.KH.000105",
+   "hotelId": "khiva-palace",
+   "kind": "self",
+   "seq": 1,
+   "due": "2024-06-20",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0022",
+   "certNo": "UZ.TSM.KH.000105",
+   "hotelId": "khiva-palace",
+   "kind": "self",
+   "seq": 2,
+   "due": "2025-06-20",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0023",
+   "certNo": "UZ.TSM.KH.000105",
+   "hotelId": "khiva-palace",
+   "kind": "self",
+   "seq": 3,
+   "due": "2026-06-20",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0024",
+   "certNo": "UZ.TSM.KH.000105",
+   "hotelId": "khiva-palace",
+   "kind": "self",
+   "seq": 4,
+   "due": "2027-06-20",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0025",
+   "certNo": "UZ.TSM.KH.000105",
+   "hotelId": "khiva-palace",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2028-06-20",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0026",
+   "certNo": "UZ.TSM.JI.000106",
+   "hotelId": "zaamin-mountain-resort",
+   "kind": "self",
+   "seq": 1,
+   "due": "2026-02-14",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0027",
+   "certNo": "UZ.TSM.JI.000106",
+   "hotelId": "zaamin-mountain-resort",
+   "kind": "self",
+   "seq": 2,
+   "due": "2027-02-14",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0028",
+   "certNo": "UZ.TSM.JI.000106",
+   "hotelId": "zaamin-mountain-resort",
+   "kind": "self",
+   "seq": 3,
+   "due": "2028-02-14",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0029",
+   "certNo": "UZ.TSM.JI.000106",
+   "hotelId": "zaamin-mountain-resort",
+   "kind": "self",
+   "seq": 4,
+   "due": "2029-02-14",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0030",
+   "certNo": "UZ.TSM.JI.000106",
+   "hotelId": "zaamin-mountain-resort",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2030-02-14",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0031",
+   "certNo": "UZ.TSM.BU.000107",
+   "hotelId": "bakh-mir-palace",
+   "kind": "self",
+   "seq": 1,
+   "due": "2027-10-05",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0032",
+   "certNo": "UZ.TSM.BU.000107",
+   "hotelId": "bakh-mir-palace",
+   "kind": "self",
+   "seq": 2,
+   "due": "2028-10-05",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0033",
+   "certNo": "UZ.TSM.BU.000107",
+   "hotelId": "bakh-mir-palace",
+   "kind": "self",
+   "seq": 3,
+   "due": "2029-10-05",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0034",
+   "certNo": "UZ.TSM.BU.000107",
+   "hotelId": "bakh-mir-palace",
+   "kind": "self",
+   "seq": 4,
+   "due": "2030-10-05",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0035",
+   "certNo": "UZ.TSM.BU.000107",
+   "hotelId": "bakh-mir-palace",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2031-10-05",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0036",
+   "certNo": "UZ.TSM.KH.000108",
+   "hotelId": "farovon-khiva",
+   "kind": "self",
+   "seq": 1,
+   "due": "2023-11-30",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0037",
+   "certNo": "UZ.TSM.KH.000108",
+   "hotelId": "farovon-khiva",
+   "kind": "self",
+   "seq": 2,
+   "due": "2024-11-30",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0038",
+   "certNo": "UZ.TSM.KH.000108",
+   "hotelId": "farovon-khiva",
+   "kind": "self",
+   "seq": 3,
+   "due": "2025-11-30",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0039",
+   "certNo": "UZ.TSM.KH.000108",
+   "hotelId": "farovon-khiva",
+   "kind": "self",
+   "seq": 4,
+   "due": "2026-11-30",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0040",
+   "certNo": "UZ.TSM.KH.000108",
+   "hotelId": "farovon-khiva",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2027-11-30",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0041",
+   "certNo": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "kind": "self",
+   "seq": 1,
+   "due": "2024-03-12",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0042",
+   "certNo": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "kind": "self",
+   "seq": 2,
+   "due": "2025-03-12",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0043",
+   "certNo": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "kind": "self",
+   "seq": 3,
+   "due": "2026-03-12",
+   "status": "Выявлены нарушения",
+   "result": "Нарушения: пропуск самоинспекции",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0044",
+   "certNo": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "kind": "self",
+   "seq": 4,
+   "due": "2027-03-12",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0045",
+   "certNo": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2028-03-12",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2"
+  },
+  {
+   "id": "INS-0046",
+   "certNo": "UZ.TSM.NM.000111",
+   "hotelId": "namangan-garden",
+   "kind": "self",
+   "seq": 1,
+   "due": "2022-09-30",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0047",
+   "certNo": "UZ.TSM.NM.000111",
+   "hotelId": "namangan-garden",
+   "kind": "self",
+   "seq": 2,
+   "due": "2023-09-30",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0048",
+   "certNo": "UZ.TSM.NM.000111",
+   "hotelId": "namangan-garden",
+   "kind": "self",
+   "seq": 3,
+   "due": "2024-09-30",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0049",
+   "certNo": "UZ.TSM.NM.000111",
+   "hotelId": "namangan-garden",
+   "kind": "self",
+   "seq": 4,
+   "due": "2025-09-30",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0050",
+   "certNo": "UZ.TSM.NM.000111",
+   "hotelId": "namangan-garden",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2026-09-30",
+   "status": "Не пройдена",
+   "result": "",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0051",
+   "certNo": "UZ.TSM.SU.000112",
+   "hotelId": "termez-oasis",
+   "kind": "self",
+   "seq": 1,
+   "due": "2022-12-20",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0052",
+   "certNo": "UZ.TSM.SU.000112",
+   "hotelId": "termez-oasis",
+   "kind": "self",
+   "seq": 2,
+   "due": "2023-12-20",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0053",
+   "certNo": "UZ.TSM.SU.000112",
+   "hotelId": "termez-oasis",
+   "kind": "self",
+   "seq": 3,
+   "due": "2024-12-20",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0054",
+   "certNo": "UZ.TSM.SU.000112",
+   "hotelId": "termez-oasis",
+   "kind": "self",
+   "seq": 4,
+   "due": "2025-12-20",
+   "status": "Пройдена",
+   "result": "Без замечаний",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0055",
+   "certNo": "UZ.TSM.SU.000112",
+   "hotelId": "termez-oasis",
+   "kind": "recert",
+   "seq": 5,
+   "due": "2026-12-20",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-3"
+  },
+  {
+   "id": "INS-0056",
+   "certNo": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "kind": "unplanned",
+   "seq": 0,
+   "due": "2026-10-20",
+   "status": "Запланирована",
+   "result": "",
+   "inspectorId": "insp-2",
+   "onsite": false
+  }
+ ],
+ "riskSignals": [
+  {
+   "id": "SIG-001",
+   "certNo": "UZ.TSM.FE.000110",
+   "hotelId": "fergana-valley-inn",
+   "type": "complaint",
+   "weight": 25,
+   "date": "2026-02-20",
+   "source": "Обращение гостя № 1182",
+   "note": "Жалоба на чистоту и работу горячей воды"
+  },
+  {
+   "id": "SIG-002",
+   "certNo": "UZ.TSM.FE.000110",
+   "hotelId": "fergana-valley-inn",
+   "type": "secret_guest",
+   "weight": 30,
+   "date": "2026-03-01",
+   "source": "Тайный гость (yashirin baholash)",
+   "note": "Оценка сервиса ниже порога"
+  },
+  {
+   "id": "SIG-003",
+   "certNo": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "type": "missed_inspection",
+   "weight": 30,
+   "date": "2026-08-18",
+   "source": "Система",
+   "note": "Самоинспекция не пройдена в срок"
+  },
+  {
+   "id": "SIG-004",
+   "certNo": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "type": "data_mismatch",
+   "weight": 20,
+   "date": "2026-08-25",
+   "source": "Госреестр (по согласованию)",
+   "note": "Смена собственника без уведомления"
+  },
+  {
+   "id": "SIG-005",
+   "certNo": "UZ.TSM.NA.000109",
+   "hotelId": "navoi-industrial-hotel",
+   "type": "complaint",
+   "weight": 15,
+   "date": "2026-09-05",
+   "source": "Обращение гостя № 1294",
+   "note": "Не работает кондиционер"
+  },
+  {
+   "id": "SIG-006",
+   "certNo": "UZ.TSM.KH.000105",
+   "hotelId": "khiva-palace",
+   "type": "rating_drop",
+   "weight": 12,
+   "date": "2026-09-30",
+   "source": "Рейтинги платформы",
+   "note": "Падение рейтинга на 0,6 за квартал"
+  },
+  {
+   "id": "SIG-007",
+   "certNo": "UZ.TSM.KH.000108",
+   "hotelId": "farovon-khiva",
+   "type": "data_mismatch",
+   "weight": 15,
+   "date": "2026-10-02",
+   "source": "Паспорт объекта",
+   "note": "Изменён номерной фонд (96 → 104)"
+  }
+ ],
+ "audit": [
+  {
+   "id": 1,
+   "at": "2026-08-01T09:00",
+   "actor": "adm-1",
+   "action": "template.publish",
+   "entity": "tpl-hotels",
+   "before": {
+    "version": null
+   },
+   "after": {
+    "version": "1.0.0-demo"
+   },
+   "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "b43fe239ec6416164db928d5f3674056b4b0a6e239de0bf5faabc31456dfd845"
+  },
+  {
+   "id": 2,
+   "at": "2026-08-01T09:05",
+   "actor": "adm-1",
+   "action": "settings.update",
+   "entity": "settings",
+   "before": {
+    "geoRadiusM": 100
+   },
+   "after": {
+    "geoRadiusM": 150
+   },
+   "prev": "b43fe239ec6416164db928d5f3674056b4b0a6e239de0bf5faabc31456dfd845",
+   "hash": "7a12d9892ca6c510ceed21fc306e72f73feb7d388ee1861dcb67d91b51ed319b"
+  },
+  {
+   "id": 3,
+   "at": "2026-08-18T00:10",
+   "actor": "system",
+   "action": "signal.add",
+   "entity": "SIG-003",
+   "before": null,
+   "after": {
+    "type": "missed_inspection",
+    "certNo": "UZ.TSM.NA.000109"
+   },
+   "prev": "7a12d9892ca6c510ceed21fc306e72f73feb7d388ee1861dcb67d91b51ed319b",
+   "hash": "7a78879d1568c688a625950167759b77d4343527cd35caecda68af993211f1bc"
+  },
+  {
+   "id": 4,
+   "at": "2026-08-25T11:40",
+   "actor": "system",
+   "action": "signal.add",
+   "entity": "SIG-004",
+   "before": null,
+   "after": {
+    "type": "data_mismatch",
+    "certNo": "UZ.TSM.NA.000109"
+   },
+   "prev": "7a78879d1568c688a625950167759b77d4343527cd35caecda68af993211f1bc",
+   "hash": "16c3ad229c0db2513072a66655942426e0b198e44b90454d73157a6a730c86c1"
+  },
+  {
+   "id": 5,
+   "at": "2026-09-02T10:15",
+   "actor": "insp-2",
+   "action": "cert.status",
+   "entity": "UZ.TSM.NA.000109",
+   "before": {
+    "status": "Действует"
+   },
+   "after": {
+    "status": "Приостановлен",
+    "signature": "E-IMZO"
+   },
+   "prev": "16c3ad229c0db2513072a66655942426e0b198e44b90454d73157a6a730c86c1",
+   "hash": "d943220c828941484a8c4b462afd7e7de4b5e6250a2490101196cc60e6869b7e"
+  },
+  {
+   "id": 6,
+   "at": "2026-09-05T13:20",
+   "actor": "system",
+   "action": "signal.add",
+   "entity": "SIG-005",
+   "before": null,
+   "after": {
+    "type": "complaint",
+    "certNo": "UZ.TSM.NA.000109"
+   },
+   "prev": "d943220c828941484a8c4b462afd7e7de4b5e6250a2490101196cc60e6869b7e",
+   "hash": "8b62defe1b627e549f0f027c45a70ff1911e66ffaf81e8b5fd2e254f5d4fcf27"
+  },
+  {
+   "id": 7,
+   "at": "2026-09-21T08:00",
+   "actor": "system",
+   "action": "cert.status",
+   "entity": "UZ.TSM.SU.000112",
+   "before": {
+    "status": "Действует"
+   },
+   "after": {
+    "status": "На ресертификации"
+   },
+   "prev": "8b62defe1b627e549f0f027c45a70ff1911e66ffaf81e8b5fd2e254f5d4fcf27",
+   "hash": "fcaa61c619888260f94f42eedf3a8b5e0173c32d31986228355fbed9001ac37a"
+  },
+  {
+   "id": 8,
+   "at": "2026-09-30T23:59",
+   "actor": "system",
+   "action": "cert.status",
+   "entity": "UZ.TSM.NM.000111",
+   "before": {
+    "status": "Действует"
+   },
+   "after": {
+    "status": "Истёк"
+   },
+   "prev": "fcaa61c619888260f94f42eedf3a8b5e0173c32d31986228355fbed9001ac37a",
+   "hash": "f11337f3044ba06e9993fdc0b038ff6cf4941769db5ccf009092d53f1bcc35a9"
+  },
+  {
+   "id": 9,
+   "at": "2026-10-01T08:00",
+   "actor": "u-app-1",
+   "action": "application.create",
+   "entity": "APP-2026-0005",
+   "before": null,
+   "after": {
+    "status": "Черновик"
+   },
+   "prev": "f11337f3044ba06e9993fdc0b038ff6cf4941769db5ccf009092d53f1bcc35a9",
+   "hash": "dff223eeaa86abd33c9644c8d716e98aec081b6e9dff8b68156a2bcae5d3b0fa"
+  },
+  {
+   "id": 10,
+   "at": "2026-10-01T09:00",
+   "actor": "system",
+   "action": "application.submit",
+   "entity": "APP-2026-0005",
+   "before": {
+    "status": "Черновик"
+   },
+   "after": {
+    "status": "Принята",
+    "signature": "E-IMZO"
+   },
+   "prev": "dff223eeaa86abd33c9644c8d716e98aec081b6e9dff8b68156a2bcae5d3b0fa",
+   "hash": "56e7f4809f7e347033bad7bdb432f7c5b3b3f892930c0a60b17417526ce86bbe"
+  },
+  {
+   "id": 11,
+   "at": "2026-10-01T10:00",
+   "actor": "system",
+   "action": "payment.confirm",
+   "entity": "СЧ-2026-0418",
+   "before": {
+    "paid": false
+   },
+   "after": {
+    "paid": true
+   },
+   "prev": "56e7f4809f7e347033bad7bdb432f7c5b3b3f892930c0a60b17417526ce86bbe",
+   "hash": "d922bdb2729399a8d93ecdbede31238fdc136b63713bb1377a43fa6b0afe805d"
+  },
+  {
+   "id": 12,
+   "at": "2026-10-02T08:10",
+   "actor": "system",
+   "action": "autocheck.run",
+   "entity": "APP-2026-0005",
+   "before": null,
+   "after": {
+    "green": 16,
+    "yellow": 2,
+    "red": 0
+   },
+   "prev": "d922bdb2729399a8d93ecdbede31238fdc136b63713bb1377a43fa6b0afe805d",
+   "hash": "3d633e8d15d5f6902ec9f398cd9bba0167a82803a14bad64850f21556bfb7214"
+  },
+  {
+   "id": 13,
+   "at": "2026-10-02T09:30",
+   "actor": "system",
+   "action": "signal.add",
+   "entity": "SIG-007",
+   "before": null,
+   "after": {
+    "type": "data_mismatch",
+    "certNo": "UZ.TSM.KH.000108"
+   },
+   "prev": "3d633e8d15d5f6902ec9f398cd9bba0167a82803a14bad64850f21556bfb7214",
+   "hash": "e3d7ce5d649c98852f552baa0443dbff75e9e4325bf4905fc2414aab5bc42843"
+  },
+  {
+   "id": 14,
+   "at": "2026-10-02T15:30",
+   "actor": "insp-2",
+   "action": "review.bulk",
+   "entity": "APP-2026-0005",
+   "before": null,
+   "after": {
+    "approved": 16
+   },
+   "prev": "e3d7ce5d649c98852f552baa0443dbff75e9e4325bf4905fc2414aab5bc42843",
+   "hash": "b547e129971c750bcd03d71b8df7b566fe845cc9df45f3a72d0e84a9b7ffded3"
+  },
+  {
+   "id": 15,
+   "at": "2026-10-03T08:30",
+   "actor": "ext",
+   "action": "application.create",
+   "entity": "APP-2026-0004",
+   "before": null,
+   "after": {
+    "status": "Черновик"
+   },
+   "prev": "b547e129971c750bcd03d71b8df7b566fe845cc9df45f3a72d0e84a9b7ffded3",
+   "hash": "b4a4a1ef1308f7c8d95ac6bb505e59de55b8b00f752c21cdc48fce375d60a2c2"
+  },
+  {
+   "id": 16,
+   "at": "2026-10-04T12:00",
+   "actor": "insp-2",
+   "action": "review.item",
+   "entity": "APP-2026-0005/Д-07",
+   "before": {
+    "verdict": null
+   },
+   "after": {
+    "verdict": "ok"
+   },
+   "prev": "b4a4a1ef1308f7c8d95ac6bb505e59de55b8b00f752c21cdc48fce375d60a2c2",
+   "hash": "fc7dc0ec26ecd5024b0d94142e959e933e0a9630695c7ed4bd1ac77a31cc2e9a"
+  },
+  {
+   "id": 17,
+   "at": "2026-10-05T10:00",
+   "actor": "insp-2",
+   "action": "decision.sign",
+   "entity": "APP-2026-0005",
+   "before": null,
+   "after": {
+    "decision": "issue",
+    "signature": "E-IMZO"
+   },
+   "prev": "fc7dc0ec26ecd5024b0d94142e959e933e0a9630695c7ed4bd1ac77a31cc2e9a",
+   "hash": "dbd141ab0f278131d2423a92e1b7d4c6b6c12dd28b34757fb9a60d761bef9cb0"
+  },
+  {
+   "id": 18,
+   "at": "2026-10-05T10:00",
+   "actor": "system",
+   "action": "certificate.issue",
+   "entity": "UZ.TSM.BU.000107",
+   "before": null,
+   "after": {
+    "status": "Действует",
+    "expires": "2031-10-05"
+   },
+   "prev": "dbd141ab0f278131d2423a92e1b7d4c6b6c12dd28b34757fb9a60d761bef9cb0",
+   "hash": "bd5b4ae5a21dc07ad3e4bf8bf48a9e42ee0eba9f6f37ee1d074f0fadef02de15"
+  },
+  {
+   "id": 19,
+   "at": "2026-10-05T10:01",
+   "actor": "system",
+   "action": "registry.add",
+   "entity": "UZ.TSM.BU.000107",
+   "before": null,
+   "after": {
+    "public": true
+   },
+   "prev": "bd5b4ae5a21dc07ad3e4bf8bf48a9e42ee0eba9f6f37ee1d074f0fadef02de15",
+   "hash": "533e553cedec7bb0d9b3f10acb6344a3e75261ac162bf75869891ec716e9917e"
+  },
+  {
+   "id": 20,
+   "at": "2026-10-05T10:01",
+   "actor": "system",
+   "action": "inspections.plan",
+   "entity": "UZ.TSM.BU.000107",
+   "before": null,
+   "after": {
+    "count": 4
+   },
+   "prev": "533e553cedec7bb0d9b3f10acb6344a3e75261ac162bf75869891ec716e9917e",
+   "hash": "a5fba4e0c73d281fc80c17b1a2e772ac4170830c92deb3471346e4531d6f61a8"
+  },
+  {
+   "id": 21,
+   "at": "2026-10-06T09:00",
+   "actor": "insp-1",
+   "action": "review.rework",
+   "entity": "APP-2026-0004",
+   "before": {
+    "status": "На оценке"
+   },
+   "after": {
+    "status": "На доработке",
+    "items": [
+     "Д-07",
+     "З-01"
+    ]
+   },
+   "prev": "a5fba4e0c73d281fc80c17b1a2e772ac4170830c92deb3471346e4531d6f61a8",
+   "hash": "13e763f5759f7cb582ed90ffb59d053da1c419c256c4fcf8143a9a691ce04a7a"
+  },
+  {
+   "id": 22,
+   "at": "2026-10-07T08:30",
+   "actor": "ext",
+   "action": "application.create",
+   "entity": "APP-2026-0003",
+   "before": null,
+   "after": {
+    "status": "Черновик"
+   },
+   "prev": "13e763f5759f7cb582ed90ffb59d053da1c419c256c4fcf8143a9a691ce04a7a",
+   "hash": "94b107111bfaa3478684746fb1bd8513556979df157f6a51411922d33e55496e"
+  },
+  {
+   "id": 23,
+   "at": "2026-10-08T14:00",
+   "actor": "system",
+   "action": "application.submit",
+   "entity": "APP-2026-0003",
+   "before": {
+    "status": "Заполнение"
+   },
+   "after": {
+    "status": "На оценке"
+   },
+   "prev": "94b107111bfaa3478684746fb1bd8513556979df157f6a51411922d33e55496e",
+   "hash": "aa435f9e20e88ce2d6600632f7f34940de03a4722eecbe5b987778a257915e80"
+  },
+  {
+   "id": 24,
+   "at": "2026-10-08T14:05",
+   "actor": "system",
+   "action": "autocheck.run",
+   "entity": "APP-2026-0003",
+   "before": null,
+   "after": {
+    "green": 14,
+    "yellow": 2,
+    "red": 1
+   },
+   "prev": "aa435f9e20e88ce2d6600632f7f34940de03a4722eecbe5b987778a257915e80",
+   "hash": "f9885ac3282ca2d37e5a34afdd7df3ffb2e388991c3ade57611eb84fb6e9d818"
+  },
+  {
+   "id": 25,
+   "at": "2026-10-09T09:00",
+   "actor": "system",
+   "action": "application.submit",
+   "entity": "APP-2026-0006",
+   "before": {
+    "status": "Заполнение"
+   },
+   "after": {
+    "status": "На оценке"
+   },
+   "prev": "f9885ac3282ca2d37e5a34afdd7df3ffb2e388991c3ade57611eb84fb6e9d818",
+   "hash": "5d53342ecb66cc17676ce90b2f70e4e4405888c2b59922a8a0230140b774b416"
+  },
+  {
+   "id": 26,
+   "at": "2026-10-09T09:05",
+   "actor": "system",
+   "action": "autocheck.run",
+   "entity": "APP-2026-0006",
+   "before": null,
+   "after": {
+    "green": 10,
+    "yellow": 4,
+    "red": 2
+   },
+   "prev": "5d53342ecb66cc17676ce90b2f70e4e4405888c2b59922a8a0230140b774b416",
+   "hash": "e0fd23b47c52e49b417b2e0c30183f9304dbd6791d9df15368991e1e49368c8e"
+  },
+  {
+   "id": 27,
+   "at": "2026-10-09T10:00",
+   "actor": "ext",
+   "action": "application.create",
+   "entity": "APP-2026-0002",
+   "before": null,
+   "after": {
+    "status": "Черновик"
+   },
+   "prev": "e0fd23b47c52e49b417b2e0c30183f9304dbd6791d9df15368991e1e49368c8e",
+   "hash": "318d93288d4c7deefc266f83a71379cd91caf35ebac1ef691535bb8a1509f5a1"
+  },
+  {
+   "id": 28,
+   "at": "2026-10-10T09:00",
+   "actor": "system",
+   "action": "application.submit",
+   "entity": "APP-2026-0007",
+   "before": {
+    "status": "Заполнение"
+   },
+   "after": {
+    "status": "На оценке"
+   },
+   "prev": "318d93288d4c7deefc266f83a71379cd91caf35ebac1ef691535bb8a1509f5a1",
+   "hash": "7e8fac05b4d4c12c30bcbcdd4bcccc9feedbe38c2fdad5cadd3be7d46bef28bf"
+  },
+  {
+   "id": 29,
+   "at": "2026-10-10T09:12",
+   "actor": "u-app-1",
+   "action": "application.create",
+   "entity": "APP-2026-0001",
+   "before": null,
+   "after": {
+    "status": "Черновик"
+   },
+   "prev": "7e8fac05b4d4c12c30bcbcdd4bcccc9feedbe38c2fdad5cadd3be7d46bef28bf",
+   "hash": "e53fa7aea977e7c91c4464b262e249e0f79c401d7b184312ed9c42064573981b"
+  },
+  {
+   "id": 30,
+   "at": "2026-10-11T18:00",
+   "actor": "mgr-1",
+   "action": "report.export",
+   "entity": "kpi.csv",
+   "before": null,
+   "after": {
+    "rows": 14
+   },
+   "prev": "e53fa7aea977e7c91c4464b262e249e0f79c401d7b184312ed9c42064573981b",
+   "hash": "6c2d2fabfdc3040783c66765990180c02ca623d20a53b9eb1ad70e37af3d9ec6"
+  }
+ ],
+ "notifications": [
+  {
+   "id": "N-001",
+   "hotelId": "asmald",
+   "at": "2026-10-10T09:12",
+   "type": "draft",
+   "title": "Черновик заявки создан",
+   "text": "Заявка APP-2026-0001 сохранена. Продолжите заполнение в мастере сертификации.",
+   "channels": [
+    "cabinet"
+   ],
+   "read": false
+  },
+  {
+   "id": "N-002",
+   "hotelId": "asmald",
+   "at": "2026-10-09T18:00",
+   "type": "info",
+   "title": "Доступна электронная сертификация",
+   "text": "Подайте заявку без визита в Центр. Срок выдачи — 2 рабочих дня при полном комплекте (цель Центра).",
+   "channels": [
+    "cabinet",
+    "email"
+   ],
+   "read": false
+  }
+ ],
+ "demoLibrary": [
+  {
+   "id": "lib-1",
+   "kind": "extinguisher",
+   "variant": 101,
+   "ownerHotelId": "imam-bukhari-hotel",
+   "ownerName": "Imam Bukhari Hotel"
+  },
+  {
+   "id": "lib-2",
+   "kind": "signboard",
+   "variant": 102,
+   "ownerHotelId": "samarkand-palace",
+   "ownerName": "Samarkand Palace Hotel"
+  },
+  {
+   "id": "lib-3",
+   "kind": "room",
+   "variant": 103,
+   "ownerHotelId": "grand-tashkent",
+   "ownerName": "Grand Tashkent Hotel"
+  }
+ ],
+ "kpi": {
+  "issueDays": [
+   4.4,
+   4.0,
+   3.5,
+   3.1,
+   2.8,
+   2.5,
+   2.3
+  ],
+  "autoShare": [
+   68,
+   72,
+   75,
+   78,
+   81,
+   82,
+   84
+  ],
+  "inspectorMinutes": [
+   92,
+   84,
+   76,
+   69,
+   63,
+   58,
+   55
+  ],
+  "onsiteShare": [
+   19,
+   17,
+   15,
+   13,
+   12,
+   11,
+   9
+  ],
+  "audit": [
+   100,
+   100,
+   100,
+   100,
+   100,
+   100,
+   100
+  ],
+  "months": [
+   "Апр",
+   "Май",
+   "Июн",
+   "Июл",
+   "Авг",
+   "Сен",
+   "Окт"
+  ],
+  "note": "демо-значения"
+ }
+}
