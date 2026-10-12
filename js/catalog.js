@@ -17,6 +17,7 @@ const filterState = {
   sort: 'rooms-desc',
   onlyPremium: false,
   onlyCertified: false,
+  hasPresentation: false,  // только с инвестиционной презентацией
   // Экономика
   hasEco: false,           // только с экономическими данными
   paybackMax: null,        // максимальный срок окупаемости (лет)
@@ -96,6 +97,12 @@ function buildCard(hotel) {
     ? '<span class="hotel-card-badge" style="background:#F0F5F1;color:#2E5E3F;border:1px solid rgba(46,94,63,0.3);font-size:11px;" title="Сертифицирован по стандарту O\'z DSt 3220:2017">🛡 Сертифицирован</span>'
     : '';
 
+  const presUrl = hotel.presentationUrl || hotel.presentationFile;
+  const hasPres = Boolean(presUrl);
+  const presBadge = hasPres
+    ? '<span class="hotel-card-badge" style="background:#1E3A6E;color:#FFFFFF;border:1px solid rgba(30,58,110,0.4);font-size:11px;" title="Официальная презентация объекта">📑 Презентация</span>'
+    : '';
+
   // Экономические чипы
   let ecoStrip = '';
   const Fmt = window.EconomicsFmt;
@@ -127,6 +134,17 @@ function buildCard(hotel) {
     onclick="event.stopPropagation();event.preventDefault();toggleCompare('${escHtml(hotel.id)}','${escHtml(hotel.hotelName).replace(/'/g, '\\\'')}')"
     title="Добавить в сравнение">⇄ Сравнить</button>`;
 
+  // Кнопка презентации
+  const presBtn = hasPres
+    ? `<a href="${escHtml(presUrl)}" target="_blank" rel="noopener" download="${escHtml(hotel.presentationFileName || 'presentation')}"
+       class="compare-toggle-btn"
+       onclick="event.stopPropagation();"
+       style="text-decoration:none;display:inline-flex;align-items:center;gap:4px;color:var(--color-accent,#8B6F4E);border-color:var(--color-border,#D6C7AE);background:var(--color-surface,#F5EFE3);font-size:11px;font-weight:600;padding:4px 10px;"
+       title="Скачать презентацию (${escHtml(hotel.presentationFileName || 'Файл')})">
+       📥 Презентация
+     </a>`
+    : '';
+
   return `
   <article class="hotel-card hotel-card--catalog"
            data-id="${escHtml(hotel.id)}"
@@ -140,6 +158,7 @@ function buildCard(hotel) {
           ${dealBadge}
           ${statusBadge}
           ${certBadge}
+          ${presBadge}
         </div>
       </div>
       <div class="hotel-card-body">
@@ -156,8 +175,9 @@ function buildCard(hotel) {
         </div>
       </div>
     </a>
-    <div style="padding:8px 16px 12px;border-top:1px solid var(--color-border,#EDE9E2)">
+    <div style="padding:8px 16px 12px;border-top:1px solid var(--color-border,#EDE9E2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
       ${compareBtn}
+      ${presBtn}
     </div>
   </article>`;
 }
@@ -273,6 +293,12 @@ function applyFiltersAndSort() {
       if (!hotel.stars && !hotel.certified) return false;
     }
 
+    // Фильтр: только с презентацией
+    if (filterState.hasPresentation) {
+      const pUrl = hotel.presentationUrl || hotel.presentationFile;
+      if (!pUrl && !hotel.hasPresentation) return false;
+    }
+
     return true;
   });
 
@@ -362,6 +388,13 @@ function resetAllFilters() {
   filterState.sort = 'rooms-desc';
   filterState.onlyPremium = false;
   filterState.onlyCertified = false;
+  filterState.hasPresentation = false;
+
+  const presTagBtn = document.getElementById('filter-has-presentation');
+  if (presTagBtn) {
+    presTagBtn.classList.remove('is-active');
+    presTagBtn.dataset.active = 'false';
+  }
 
   if (searchInput) searchInput.value = '';
   if (searchClearBtn) searchClearBtn.hidden = true;
@@ -472,6 +505,7 @@ if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAllFilters);
 /* ── Eco-фильтры ─────────────────────────────────────────────── */
 const hasEcoBtn    = document.getElementById('filter-has-eco');
 const certOnlyBtn  = document.getElementById('filter-certified-only');
+const presOnlyBtn  = document.getElementById('filter-has-presentation');
 const paybackMaxEl = document.getElementById('filter-payback-max');
 const roiMinEl     = document.getElementById('filter-roi-min');
 
@@ -480,6 +514,15 @@ if (certOnlyBtn) {
     filterState.onlyCertified = !filterState.onlyCertified;
     certOnlyBtn.classList.toggle('is-active', filterState.onlyCertified);
     certOnlyBtn.dataset.active = String(filterState.onlyCertified);
+    applyFiltersAndSort();
+  });
+}
+
+if (presOnlyBtn) {
+  presOnlyBtn.addEventListener('click', () => {
+    filterState.hasPresentation = !filterState.hasPresentation;
+    presOnlyBtn.classList.toggle('is-active', filterState.hasPresentation);
+    presOnlyBtn.dataset.active = String(filterState.hasPresentation);
     applyFiltersAndSort();
   });
 }

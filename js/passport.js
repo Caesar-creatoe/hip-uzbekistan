@@ -918,7 +918,8 @@ async function downloadPresentation() {
   if (file) {
     const a = document.createElement('a');
     a.href = file;
-    a.download = filename.toLowerCase().endsWith('.pdf') ? filename : `${filename}.pdf`;
+    const hasExt = /\.(pdf|pptx|docx|zip|rar)$/i.test(filename);
+    a.download = hasExt ? filename : `${filename}.pdf`;
     if (!file.startsWith('data:')) {
       a.target = '_blank';
     }
