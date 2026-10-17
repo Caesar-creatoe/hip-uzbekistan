@@ -11,18 +11,20 @@
 }
 
 .rest-hero-card__inner {
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-top: 3px solid var(--v-restaurants);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-top: 4px solid var(--v-restaurants);
+  border-radius: var(--radius-card, 28px);
   padding: var(--space-6);
-  box-shadow: 0 4px 20px rgba(139, 58, 47, 0.08);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  box-shadow: 0 20px 48px -10px rgba(139, 58, 47, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .rest-hero-card__inner:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(139, 58, 47, 0.14);
+  transform: translateY(-3px);
+  box-shadow: 0 28px 60px -10px rgba(139, 58, 47, 0.18), inset 0 1px 1px rgba(255, 255, 255, 1);
 }
 
 /* ── Restaurant Card Enhancements ────────────────────────── */

@@ -394,17 +394,29 @@
   gap: var(--space-6);
 }
 
-/* ── HOTEL CARD ──────────────────────────────── */
+/* ── HOTEL CARD (Luxury Architectural Edition) ──────────────── */
 .hotel-card {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-none);
+  border: 1px solid rgba(214, 199, 174, 0.55);
+  border-radius: 28px;
   overflow: hidden;
-  background-color: var(--color-card-bg);
-  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 16px 40px -10px rgba(44, 30, 20, 0.07),
+    0 4px 12px -2px rgba(44, 30, 20, 0.03),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
 }
 .hotel-card:hover {
-  border-color: var(--color-accent);
-  box-shadow: 0 8px 24px rgba(59, 42, 32, 0.08);
+  transform: translateY(-5px);
+  border-color: rgba(179, 142, 93, 0.55);
+  box-shadow: 
+    0 32px 72px -14px rgba(44, 30, 20, 0.15),
+    0 8px 24px -4px rgba(44, 30, 20, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 1);
 }
 
 .hotel-card-link {
@@ -418,6 +430,8 @@
 .hotel-card-photo-wrap {
   position: relative;
   overflow: hidden;
+  border-radius: 20px;
+  margin: 10px 10px 0;
 }
 
 .hotel-card--large .hotel-card-photo-wrap {
@@ -433,10 +447,10 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hotel-card:hover .hotel-card-photo {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .hotel-card-overlay {
@@ -445,7 +459,7 @@
   background: linear-gradient(
     to bottom,
     transparent 50%,
-    rgba(59, 42, 32, 0.20) 100%
+    rgba(26, 20, 18, 0.25) 100%
   );
   pointer-events: none;
 }
@@ -453,17 +467,21 @@
 /* Бейдж Investment Readiness (A+ эспрессо, B+ кофе, B серый) */
 .hotel-card-iri {
   position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-weight: var(--fw-bold);
+  top: 14px;
+  right: 14px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
   color: #FFFFFF;
-  background-color: var(--color-text-primary);
+  background: rgba(26, 20, 18, 0.85);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   line-height: 1;
-  padding: 6px 10px;
-  letter-spacing: var(--tracking-tight);
-  border-radius: var(--radius-subtle);
+  padding: 6px 12px;
+  letter-spacing: 0.02em;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .hotel-card-iri--bplus {
   background-color: var(--color-accent);

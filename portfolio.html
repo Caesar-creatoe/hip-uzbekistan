@@ -11,16 +11,53 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="design-tokens.css" />
-  <link rel="stylesheet" href="styles/base.css" />
-  <link rel="stylesheet" href="styles/header.css" />
-  <link rel="stylesheet" href="styles/megamenu.css" />
-  <link rel="stylesheet" href="styles/verticals.css" />
-  <link rel="stylesheet" href="styles/portal.css" />
-  <link rel="stylesheet" href="styles/catalog.css" />
-  <link rel="stylesheet" href="styles/economics.css" />
+  <link rel="stylesheet" href="design-tokens.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/base.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/header.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/spatial-dock.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/verticals.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/catalog.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/economics.css?v=spatial_2" />
 </head>
 <body class="page-portfolio" data-vertical="hotels">
+
+  <!-- Floating Spatial Dock (Reference-matching vertical capsule) -->
+  <aside class="spatial-dock" aria-label="Быстрая навигация">
+    <a href="index.html" class="spatial-dock-item" aria-label="Главная">
+      <span>⌂</span>
+      <span class="spatial-dock-tooltip">Главная</span>
+    </a>
+    <a href="portfolio.html" class="spatial-dock-item is-active" aria-label="Каталог отелей">
+      <span>🏨</span>
+      <span class="spatial-dock-tooltip">Отели (32)</span>
+    </a>
+    <a href="restaurants.html" class="spatial-dock-item" aria-label="Ресторанные проекты">
+      <span>🍽</span>
+      <span class="spatial-dock-tooltip">Рестораны F&amp;B</span>
+    </a>
+    <a href="land.html" class="spatial-dock-item" aria-label="Земельные участки">
+      <span>🗺</span>
+      <span class="spatial-dock-tooltip">Земля (8 лотов)</span>
+    </a>
+    <a href="support.html" class="spatial-dock-item" aria-label="Государственная поддержка">
+      <span>🏛</span>
+      <span class="spatial-dock-tooltip">Господдержка</span>
+    </a>
+    <a href="cabinet-investor.html" class="spatial-dock-item" aria-label="Кабинет инвестора">
+      <div class="spatial-dock-avatar">
+        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=" alt="Bakh Mir Palace" />
+        <span class="spatial-dock-pulse" title="Активный статус"></span>
+      </div>
+      <span class="spatial-dock-tooltip">Инвестор Desk</span>
+    </a>
+    <div class="spatial-dock-divider"></div>
+    <a href="index.html#about" class="spatial-dock-btn-video" id="dock-btn-video" aria-label="Смотреть обзор платформы">
+      <div class="play-circle">▶</div>
+      <span>Обзор</span>
+    </a>
+  </aside>
 
   <!-- ═══ C-01 · SITE HEADER ════════════════════ -->
     <!-- ═══════════════════════════════════════════
@@ -308,8 +345,8 @@
           <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
         </div>
         <a href="cabinet-investor.html" class="btn-login" id="header-login">
-          <span class="btn-login-icon">⚿</span>
-          <span>Войти</span>
+          <span>Кабинет</span>
+          <span class="btn-login-icon">→</span>
         </a>
       </div>
 

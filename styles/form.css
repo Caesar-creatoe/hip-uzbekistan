@@ -89,9 +89,11 @@
   position: sticky;
   top: var(--header-height);
   z-index: 89;
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 1px 3px rgba(59, 42, 32, 0.05);
+  background: rgba(255, 253, 249, 0.88);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(214, 199, 174, 0.4);
+  box-shadow: 0 4px 16px rgba(59, 42, 32, 0.04);
 }
 
 .step-progress-inner {
@@ -184,10 +186,13 @@
 /* ── SMART FORM (LEFT) ───────────────────────── */
 
 .smart-form {
-  background-color: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-subtle);
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: blur(28px);
+  backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-card, 28px);
   padding: var(--space-10) var(--space-12);
+  box-shadow: 0 20px 48px -12px rgba(44, 30, 20, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95);
 }
 
 .form-step-panel {
@@ -297,10 +302,10 @@
   font-family: var(--font-body);
   font-size: var(--text-sm);
   color: var(--color-text-primary);
-  background-color: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-subtle);
-  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(214, 199, 174, 0.6);
+  border-radius: var(--radius-inner, 18px);
+  padding: 12px 18px;
   width: 100%;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   outline: none;
@@ -308,7 +313,7 @@
 .form-input:focus,
 .form-select:focus {
   border-color: var(--color-text-primary);
-  box-shadow: 0 0 0 1px var(--color-text-primary);
+  box-shadow: 0 0 0 3px rgba(59, 42, 32, 0.08);
 }
 
 /* Calculated read-only inputs */
@@ -527,14 +532,16 @@
 }
 
 .dock-inner {
-  background-color: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-subtle);
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: blur(28px);
+  backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-card, 28px);
   padding: var(--space-6);
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
-  box-shadow: var(--shadow-float);
+  box-shadow: 0 20px 48px -12px rgba(44, 30, 20, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95);
 }
 
 /* Dock Header */

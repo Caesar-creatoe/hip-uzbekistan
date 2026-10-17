@@ -11,14 +11,51 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="design-tokens.css" />
-  <link rel="stylesheet" href="styles/base.css" />
-  <link rel="stylesheet" href="styles/header.css" />
-  <link rel="stylesheet" href="styles/megamenu.css" />
+  <link rel="stylesheet" href="design-tokens.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/base.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/header.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/spatial-dock.css?v=spatial_2" />
   <!-- Home V2 isolated stylesheet — does NOT affect other pages -->
-  <link rel="stylesheet" href="css/home-v2.css" />
+  <link rel="stylesheet" href="css/home-v2.css?v=spatial_2" />
 </head>
 <body class="home-v2">
+
+  <!-- Floating Spatial Dock (Reference-matching vertical capsule) -->
+  <aside class="spatial-dock" aria-label="Быстрая навигация">
+    <a href="index.html" class="spatial-dock-item is-active" aria-label="Главная">
+      <span>⌂</span>
+      <span class="spatial-dock-tooltip">Главная</span>
+    </a>
+    <a href="portfolio.html" class="spatial-dock-item" aria-label="Каталог отелей">
+      <span>🏨</span>
+      <span class="spatial-dock-tooltip">Отели (32)</span>
+    </a>
+    <a href="restaurants.html" class="spatial-dock-item" aria-label="Ресторанные проекты">
+      <span>🍽</span>
+      <span class="spatial-dock-tooltip">Рестораны F&amp;B</span>
+    </a>
+    <a href="land.html" class="spatial-dock-item" aria-label="Земельные участки">
+      <span>🗺</span>
+      <span class="spatial-dock-tooltip">Земля (8 лотов)</span>
+    </a>
+    <a href="support.html" class="spatial-dock-item" aria-label="Государственная поддержка">
+      <span>🏛</span>
+      <span class="spatial-dock-tooltip">Господдержка</span>
+    </a>
+    <a href="cabinet-investor.html" class="spatial-dock-item" aria-label="Кабинет инвестора">
+      <div class="spatial-dock-avatar">
+        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=" alt="Bakh Mir Palace" />
+        <span class="spatial-dock-pulse" title="Активный статус"></span>
+      </div>
+      <span class="spatial-dock-tooltip">Инвестор Desk</span>
+    </a>
+    <div class="spatial-dock-divider"></div>
+    <a href="#about" class="spatial-dock-btn-video" id="dock-btn-video" aria-label="Смотреть обзор платформы">
+      <div class="play-circle">▶</div>
+      <span>Обзор</span>
+    </a>
+  </aside>
 
   <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
@@ -302,8 +339,8 @@
           <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
         </div>
         <a href="cabinet-investor.html" class="btn-login" id="header-login">
-          <span class="btn-login-icon">⚿</span>
-          <span>Войти</span>
+          <span>Кабинет</span>
+          <span class="btn-login-icon">→</span>
         </a>
       </div>
 
@@ -359,82 +396,174 @@
 
 
   <!-- ═══════════════════════════════════════════
-       §1 HERO — Скруглённый hero
+       §1 ARCHITECTURAL SPATIAL HERO (Visual Reference)
   ═══════════════════════════════════════════ -->
-  <section class="hv2-hero" id="hero" aria-label="Официальный инвестиционный портал">
+  <section class="spatial-hero" id="hero" aria-label="Официальный инвестиционный портал Узбекистана">
 
-    <!-- Фоновое фото -->
-    <div class="hv2-hero__bg" role="img" aria-label="Архитектура отеля класса люкс">
+    <!-- Фоновая архитектурная фотография с живой перспективой -->
+    <div class="spatial-hero__bg" role="img" aria-label="Архитектурный павильон отеля класса люкс">
       <img
-        src="./assets/hotel-hero.png"
-        alt="Grand Tashkent Hotel — архитектурный ансамбль отеля класса люкс"
+        src="./assets/hero-architecture.jpg"
+        alt="Silk Route Invest — Современная архитектура и инвестиционные активы Узбекистана"
+        id="hero-main-bg"
       />
+      <div class="spatial-hero__vignette" aria-hidden="true"></div>
+      <div class="spatial-hero__gradient" aria-hidden="true"></div>
+      <div class="spatial-hero__glow" aria-hidden="true"></div>
     </div>
 
-    <!-- Градиентный оверлей -->
-    <div class="hv2-hero__overlay" aria-hidden="true"></div>
-
-    <!-- Декоративная дуга -->
-    <div class="hv2-hero__arc" aria-hidden="true"></div>
-
-    <!-- Сетка точек -->
-    <div class="hv2-hero__dots" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <!-- Верхний мета-бар в точном стиле архитектурного референса -->
+    <div class="spatial-hero__meta-bar">
+      <div class="spatial-meta-left">
+        <span class="meta-tag">ARCHITECTURE</span>
+        <span class="meta-sep">—</span>
+        <span class="meta-tag">TOURISM</span>
+        <span class="meta-sep">—</span>
+        <span class="meta-tag">CAPITAL</span>
+      </div>
+      <div class="spatial-meta-right">
+        <span>MODERN</span>
+        <span class="meta-dot">·</span>
+        <span>SUSTAINABLE</span>
+        <span class="meta-dot">·</span>
+        <span>FUNCTIONAL</span>
+        <span class="meta-dot">·</span>
+        <span>TIMELESS</span>
+      </div>
     </div>
 
-    <!-- Основной контент -->
-    <div class="hv2-hero__content">
-      <p class="hv2-hero__kicker">
-        Комитет по туризму · Республика Узбекистан
-      </p>
-      <h1 class="hv2-hero__title">
-        Silk Route<br /><em>Invest</em>
+    <!-- Монументальный редакционный заголовок и дескриптор -->
+    <div class="spatial-hero__editorial">
+      <h1 class="spatial-hero__title">
+        Инвестиции,<br />
+        <em>Создающие Эпоху</em>
       </h1>
-      <p class="hv2-hero__sub">
-        Официальная цифровая платформа инвестиционных паспортов
-        туристической отрасли Узбекистана&nbsp;—
-        отели, рестораны, земельные участки, господдержка
+      <p class="spatial-hero__lead">
+        Официальная экосистема инвестиционных паспортов туристической индустрии Узбекистана:
+        институциональные отели 3★–5★, ресторанные ансамбли, земельные ресурсы и государственные субсидии.
       </p>
-      <div class="hv2-hero__ctas">
-        <a href="#asset-classes" class="hv2-btn-primary" id="hero-cta-primary">
-          4 класса активов
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+      <div class="spatial-hero__actions">
+        <a href="#asset-classes" class="spatial-btn-pill-dark" id="hero-cta-primary">
+          <span>Исследовать активы</span>
+          <span class="btn-arrow-circle">→</span>
         </a>
-        <a href="about.html" class="hv2-btn-outline" id="hero-cta-secondary">
-          О системе
+        <a href="#about" class="spatial-btn-pill-glass" id="hero-cta-video">
+          <span class="btn-play-circle">▶</span>
+          <span>Смотреть обзор</span>
         </a>
       </div>
     </div>
 
-    <!-- Hero KPI stats -->
-    <div class="hv2-hero__stats" aria-label="Ключевые показатели платформы">
-      <div class="hv2-hero-stat">
-        <div class="hv2-hero-stat__num">
-          <span class="hv2-counter" data-target="46" data-suffix="+">46</span><span>+</span>
+    <!-- ═══════════════════════════════════════════
+         ТРИ ГЛАВНЫХ ПЛАВАЮЩИХ ОСТРОВА (Точно как в референсе)
+    ═══════════════════════════════════════════ -->
+    <div class="spatial-hero__islands" aria-label="Витрина активов и ключевые показатели">
+
+      <!-- ОСТРОВ 1: Featured Project Card (Слева) -->
+      <div class="spatial-island spatial-island--featured" id="featured-project-island">
+        <div class="spatial-island__top">
+          <span class="spatial-badge-capsule">FEATURED ASSET</span>
+          <span class="spatial-island__counter" id="featured-counter">01 / 32</span>
         </div>
-        <div class="hv2-hero-stat__label">Объектов в базе</div>
-      </div>
-      <div class="hv2-hero-stat">
-        <div class="hv2-hero-stat__num">
-          <span class="hv2-counter" data-target="14">14</span>
+
+        <div class="spatial-island__body">
+          <a href="passport.html?hotel=bakh-mir" class="spatial-island__thumb-link">
+            <img
+              src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o="
+              alt="Bakh Mir Palace Hotel"
+              class="spatial-island__thumb"
+              id="featured-hotel-img"
+            />
+            <span class="spatial-thumb-badge">5★ Самарканд</span>
+          </a>
+          <div class="spatial-island__details">
+            <h4 class="spatial-island__title" id="featured-hotel-title">Bakh Mir Palace</h4>
+            <p class="spatial-island__desc" id="featured-hotel-desc">
+              Премиальный ансамбль в Самарканде с верифицированным USALI-аудитом и субсидиями.
+            </p>
+            <a href="passport.html?hotel=bakh-mir" class="spatial-island__cta-link" id="featured-hotel-link">
+              Открыть паспорт <span class="arrow">→</span>
+            </a>
+          </div>
         </div>
-        <div class="hv2-hero-stat__label">Регионов страны</div>
-      </div>
-      <div class="hv2-hero-stat">
-        <div class="hv2-hero-stat__num">$6.8<span>B</span></div>
-        <div class="hv2-hero-stat__label">Инвест. потенциал</div>
-      </div>
-      <div class="hv2-hero-stat">
-        <div class="hv2-hero-stat__num">
-          <span data-support="count">—</span>
+
+        <div class="spatial-island__footer">
+          <div class="spatial-investor-stack" title="Институциональные интересанты">
+            <span class="avatar-ring">🏛️</span>
+            <span class="avatar-ring">💼</span>
+            <span class="avatar-ring">🌐</span>
+            <span class="avatar-badge">+14</span>
+          </div>
+          <div class="spatial-slide-indicators" id="featured-dots">
+            <span class="slide-dash is-active"></span>
+            <span class="slide-dash"></span>
+            <span class="slide-dash"></span>
+          </div>
+          <div class="spatial-island__nav">
+            <button class="spatial-circle-btn" id="featured-prev-btn" aria-label="Предыдущий объект">←</button>
+            <button class="spatial-circle-btn" id="featured-next-btn" aria-label="Следующий объект">→</button>
+          </div>
         </div>
-        <div class="hv2-hero-stat__label">Программ господдержки</div>
       </div>
+
+      <!-- ОСТРОВ 2: Glass Metrics Capsule (По центру) -->
+      <div class="spatial-island spatial-island--stats" aria-label="Ключевые показатели платформы">
+        <div class="spatial-stat-unit">
+          <div class="spatial-stat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M13 10h4v11M9 9h.01M9 13h.01M9 17h.01M17 14h.01M17 18h.01"/></svg>
+          </div>
+          <div class="spatial-stat-content">
+            <div class="spatial-stat-val">
+              <span class="hv2-counter" data-target="46" data-suffix="+">46</span><span>+</span>
+            </div>
+            <div class="spatial-stat-lbl">Объектов в базе</div>
+          </div>
+        </div>
+
+        <div class="spatial-stat-divider"></div>
+
+        <div class="spatial-stat-unit">
+          <div class="spatial-stat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="spatial-stat-content">
+            <div class="spatial-stat-val">$6.8<span>B</span></div>
+            <div class="spatial-stat-lbl">Инвест. потенциал</div>
+          </div>
+        </div>
+
+        <div class="spatial-stat-divider"></div>
+
+        <div class="spatial-stat-unit">
+          <div class="spatial-stat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>
+          </div>
+          <div class="spatial-stat-content">
+            <div class="spatial-stat-val">
+              <span class="hv2-counter" data-target="14">14</span>
+            </div>
+            <div class="spatial-stat-lbl">Регионов страны</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ОСТРОВ 3: High-Contrast Dark Espresso Action Tile (Справа) -->
+      <a href="form.html" class="spatial-island spatial-island--action" id="island-action-card">
+        <div class="spatial-action__top">
+          <div class="spatial-action__thumb">
+            <img src="./assets/hotel-hero.png" alt="Smart Form Icon" />
+          </div>
+          <div class="spatial-action__arrow" aria-hidden="true">↗</div>
+        </div>
+        <div class="spatial-action__bottom">
+          <h4 class="spatial-action__title">Подать объект в реестр</h4>
+          <p class="spatial-action__sub">
+            Экспертиза O'z DSt 3220:2017, модель USALI и субсидии.
+          </p>
+        </div>
+      </a>
+
     </div>
 
   </section>

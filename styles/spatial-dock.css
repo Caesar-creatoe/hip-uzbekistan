@@ -1,0 +1,203 @@
+/* ============================================================
+   SPATIAL DOCK — Silk Route Invest
+   Floating Vertical Luxury Capsule Navigation
+   Matching Luxury Architectural OS Reference
+   ============================================================ */
+
+.spatial-dock {
+  position: fixed;
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 550;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 10px;
+  background: rgba(255, 255, 255, 0.76);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 9999px;
+  box-shadow: 
+    0 24px 60px -12px rgba(44, 30, 20, 0.12),
+    0 4px 16px -2px rgba(44, 30, 20, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.spatial-dock:hover {
+  box-shadow: 
+    0 32px 80px -16px rgba(44, 30, 20, 0.18),
+    0 8px 24px -4px rgba(44, 30, 20, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+.spatial-dock-item {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary, #3B2A20);
+  text-decoration: none;
+  font-size: 19px;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.spatial-dock-item:hover {
+  background: rgba(139, 111, 78, 0.12);
+  transform: scale(1.10);
+  color: var(--color-accent, #8B6F4E);
+}
+
+.spatial-dock-item.is-active {
+  background: var(--color-text-primary, #3B2A20);
+  color: #FAF8F5;
+  box-shadow: 0 6px 18px rgba(59, 42, 32, 0.28);
+}
+
+.spatial-dock-item.is-active:hover {
+  background: #241913;
+  color: #FFFFFF;
+}
+
+/* Tooltip floating to the right of the dock */
+.spatial-dock-tooltip {
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  background: rgba(26, 20, 18, 0.92);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  color: #FAF8F5;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-family: var(--font-body, system-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.spatial-dock-item:hover .spatial-dock-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Avatar Preview Chip in Dock */
+.spatial-dock-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--color-accent, #8B6F4E);
+  box-shadow: 0 4px 12px rgba(44, 30, 20, 0.2);
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.24s ease;
+  position: relative;
+}
+
+.spatial-dock-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.spatial-dock-item:hover .spatial-dock-avatar {
+  transform: scale(1.08);
+  border-color: #D9A441;
+}
+
+.spatial-dock-pulse {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2E5E3F;
+  border: 1.5px solid #FFFFFF;
+}
+
+/* Divider & Video Trigger */
+.spatial-dock-divider {
+  width: 24px;
+  height: 1px;
+  background: rgba(214, 199, 174, 0.6);
+  margin: 2px 0;
+}
+
+.spatial-dock-btn-video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  color: var(--color-text-muted, #6B655C);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 12px;
+  transition: all 0.22s ease;
+}
+
+.spatial-dock-btn-video:hover {
+  color: var(--color-accent, #8B6F4E);
+  transform: translateY(-1px);
+}
+
+.spatial-dock-btn-video .play-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(139, 111, 78, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--color-text-primary, #3B2A20);
+  transition: all 0.24s ease;
+}
+
+.spatial-dock-btn-video:hover .play-circle {
+  background: var(--color-text-primary, #3B2A20);
+  color: #FFFFFF;
+}
+
+.spatial-dock-btn-video span {
+  font-family: var(--font-body, system-ui);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 1240px) {
+  .spatial-dock {
+    display: none !important;
+  }
+}
+
+/* Cabinets with dedicated application sidebar navigation: hide dock to prevent visual collision */
+.cabinet-page .spatial-dock,
+body.page-admin .spatial-dock,
+body.page-cabinet .spatial-dock {
+  display: none !important;
+}

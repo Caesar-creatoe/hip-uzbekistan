@@ -4,26 +4,37 @@
    Бежево-кофейная гамма с золотым сиянием
    ============================================================ */
 
-/* ── Шапка: плавающий бар с глубоким матовым стеклом ──────── */
+/* ── Шапка: плавающий капсульный бар с глубоким матовым стеклом ──────── */
 .site-header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 18px;
+  left: 24px;
+  right: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
   z-index: 500;
-  height: var(--header-height, 68px);
-  background: rgba(247, 244, 238, 0.88);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.22);
-  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease;
+  height: 64px;
+  background: rgba(250, 247, 242, 0.82);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 9999px;
+  box-shadow: 
+    0 16px 40px -10px rgba(44, 30, 20, 0.08),
+    0 4px 12px -2px rgba(44, 30, 20, 0.03),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .site-header--scrolled {
-  background: rgba(245, 240, 232, 0.96);
-  border-bottom-color: rgba(197, 160, 89, 0.35);
-  box-shadow: 0 10px 32px -8px rgba(42, 30, 23, 0.12),
-              0 1px 0 0 rgba(197, 160, 89, 0.2);
+  top: 10px;
+  height: 60px;
+  background: rgba(250, 247, 242, 0.95);
+  border-color: rgba(214, 199, 174, 0.5);
+  box-shadow: 
+    0 20px 48px -10px rgba(44, 30, 20, 0.14),
+    0 6px 16px -2px rgba(44, 30, 20, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95);
 }
 
 .header-inner {
@@ -31,10 +42,10 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 32px;
-  gap: 20px;
+  padding: 0 24px 0 28px;
+  gap: 16px;
 }
 
 /* ── Логотип ─────────────────────────────────────────────── */
@@ -99,66 +110,49 @@
   align-items: center;
 }
 
-/* Кнопки триггеров и прямые ссылки */
+/* Кнопки триггеров и прямые ссылки (Pill geometry) */
 .nav-link,
 .nav-trigger {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 12px;
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-text-primary, #2A1E17);
+  letter-spacing: 0.01em;
+  color: var(--color-text-primary, #3B2A20);
   text-decoration: none;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 8px 14px;
-  height: 38px;
-  border-radius: 8px;
+  padding: 8px 18px;
+  height: 40px;
+  border-radius: 9999px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   position: relative;
   white-space: nowrap;
-  transition: color 0.2s ease, background-color 0.2s ease;
-}
-
-/* Нижняя золотая линия-индикатор */
-.nav-link::after,
-.nav-trigger::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 12px;
-  right: 12px;
-  height: 2px;
-  background: linear-gradient(90deg, #C5A059, #DFBD78);
-  border-radius: 2px;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-link:hover,
 .nav-trigger:hover,
 .nav-item:hover > .nav-trigger,
 .nav-item.open > .nav-trigger {
-  color: var(--color-accent, #A47E3B);
-  background: rgba(197, 160, 89, 0.08);
-}
-
-.nav-item:hover > .nav-trigger::after,
-.nav-item.open > .nav-trigger::after,
-.nav-link:hover::after,
-.nav-item.active > .nav-trigger::after,
-.nav-link.active::after {
-  transform: scaleX(1);
+  color: var(--color-text-primary, #1A1412);
+  background: rgba(139, 111, 78, 0.10);
 }
 
 .nav-item.active > .nav-trigger,
-.nav-link.active {
-  color: var(--color-accent, #A47E3B);
-  font-weight: 700;
+.nav-link.active,
+.nav-item[data-active="true"] > .nav-trigger {
+  background: var(--color-text-primary, #1A1412);
+  color: #FAF8F5;
+  box-shadow: 0 4px 14px rgba(44, 30, 20, 0.22);
+}
+
+.nav-item.active > .nav-trigger .chevron,
+.nav-item[data-active="true"] > .nav-trigger .chevron {
+  color: #FAF8F5;
+  opacity: 0.9;
 }
 
 /* Стрелочка-шеврон */
@@ -176,27 +170,27 @@
   color: var(--color-accent, #C5A059);
 }
 
-/* ── Выпадающие панели мегаменю (Glassmorphic) ───────────── */
+/* ── Выпадающие панели мегаменю (Liquid Glass) ───────────── */
 .mega-panel {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 12px);
   left: 50%;
   transform: translateX(-50%) translateY(-10px) scale(0.98);
   background: rgba(255, 253, 249, 0.94);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
-  backdrop-filter: blur(32px) saturate(200%);
-  border: 1px solid rgba(197, 160, 89, 0.28);
-  border-radius: 16px;
-  padding: 24px 28px;
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  backdrop-filter: blur(36px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  padding: 28px 32px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  box-shadow: 0 24px 64px -12px rgba(42, 30, 23, 0.22),
-              0 6px 20px -4px rgba(197, 160, 89, 0.12),
-              inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.22s;
+  box-shadow: 0 32px 80px -16px rgba(42, 30, 23, 0.20),
+              0 8px 24px -4px rgba(197, 160, 89, 0.12),
+              inset 0 1px 1px rgba(255, 255, 255, 1);
+  transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.24s;
   z-index: 600;
   overflow: hidden;
 }
@@ -206,7 +200,7 @@
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 3px;
+  height: 2px;
   background: linear-gradient(90deg, transparent, #C5A059 20%, #F5DEAA 50%, #C5A059 80%, transparent);
 }
 
@@ -468,39 +462,52 @@
   box-shadow: 0 2px 6px rgba(42, 30, 23, 0.08);
 }
 
-/* Кнопка «Войти» — премиум капсула */
+/* Кнопка «Войти» — премиум капсула в стиле Reference CTA */
 .btn-login {
-  font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-text-primary, #2A1E17);
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(197, 160, 89, 0.35);
-  border-radius: 20px;
-  padding: 7px 16px;
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #FAF8F5;
+  background: var(--color-text-primary, #1A1412);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0 6px 0 18px;
+  height: 42px;
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 10px;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(26, 20, 18, 0.25);
   white-space: nowrap;
 }
 
 .btn-login:hover {
-  background: rgba(197, 160, 89, 0.12);
-  border-color: var(--color-accent, #C5A059);
-  color: var(--color-text-primary, #2A1E17);
+  background: #2D201A;
+  color: #FFFFFF;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(197, 160, 89, 0.18);
+  box-shadow: 0 8px 24px rgba(26, 20, 18, 0.35);
 }
 
 .btn-login .btn-login-icon {
-  font-size: 13px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #1A1412;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
   line-height: 1;
-  color: var(--color-accent, #C5A059);
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-login:hover .btn-login-icon {
+  transform: translateX(2px) scale(1.05);
 }
 
 /* ── Мобильное меню (гамбургер) ─────────────────────────── */
