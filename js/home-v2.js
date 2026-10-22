@@ -14,7 +14,7 @@
   function initAppear() {
     const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealSections = document.querySelectorAll('.arch-reveal');
-    const childCards = document.querySelectorAll('.arch-gallery-card, .arch-hotel-card, .arch-step-card, .arch-metric-unit');
+    const childCards = document.querySelectorAll('.arch-gallery-card, .arch-hotel-card, .arch-step-card, .arch-metric-unit, .arch-glass-metric-tile, .arch-liquid-glass-step');
 
     if (isReduced) {
       revealSections.forEach((el) => el.classList.add('is-revealed'));
