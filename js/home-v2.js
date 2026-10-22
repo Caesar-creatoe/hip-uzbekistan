@@ -141,27 +141,40 @@
   /* ─── 5. Sticky Capsule Header visibility on scroll ─── */
   function initStickyHeader() {
     const header = document.getElementById('site-header');
+    const hero = document.querySelector('.arch-hero');
     if (!header) return;
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 820) {
+    header.style.transition = 'opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)';
+
+    function updateHeader() {
+      if (!hero) {
+        if (window.scrollY > 400) {
+          header.style.opacity = '1';
+          header.style.pointerEvents = 'auto';
+          header.style.transform = 'translateY(0)';
+        } else {
+          header.style.opacity = '0';
+          header.style.pointerEvents = 'none';
+          header.style.transform = 'translateY(-16px)';
+        }
+        return;
+      }
+
+      const heroRect = hero.getBoundingClientRect();
+      // Show sticky header only when hero has mostly scrolled past, preventing duplicate navigation
+      if (heroRect.bottom <= 120) {
         header.style.opacity = '1';
         header.style.pointerEvents = 'auto';
         header.style.transform = 'translateY(0)';
       } else {
         header.style.opacity = '0';
         header.style.pointerEvents = 'none';
-        header.style.transform = 'translateY(-20px)';
+        header.style.transform = 'translateY(-16px)';
       }
-    }, { passive: true });
-
-    // Initial state
-    if (window.scrollY <= 820) {
-      header.style.opacity = '0';
-      header.style.pointerEvents = 'none';
-      header.style.transform = 'translateY(-20px)';
-      header.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
     }
+
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
   }
 
   /* ─── 6. Init ─── */
