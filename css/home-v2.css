@@ -73,19 +73,17 @@ body.home-v2 {
 }
 
 /* ──────────────────────────────────────────────
-   MAIN OUTER ARCHITECTURAL CONTAINER (The Reference Frame)
-   A softly rounded architectural canvas with generous margins
+   MAIN OUTER ARCHITECTURAL CONTAINER (Seamless Minimal Canvas)
+   Eliminates heavy outer framing and allows hero to blend seamlessly
    ────────────────────────────────────────────── */
 .arch-site-frame {
   max-width: 1440px;
-  margin: 18px auto 44px auto;
-  padding: 18px 22px 48px 22px;
+  margin: 0 auto 44px auto;
+  padding: 0;
   background: var(--arch-frame-bg);
-  border-radius: var(--r-frame);
-  border: 1px solid var(--arch-line);
-  box-shadow: 
-    0 24px 64px -16px rgba(44, 30, 20, 0.05),
-    0 1px 3px rgba(44, 30, 20, 0.02);
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -93,61 +91,61 @@ body.home-v2 {
 
 @media (max-width: 1200px) {
   .arch-site-frame {
-    margin: 14px 14px 38px 14px;
-    padding: 14px 16px 38px 16px;
-    border-radius: 26px;
+    margin: 0 auto 38px auto;
+    padding: 0;
+    border-radius: 0;
   }
 }
 
 @media (max-width: 768px) {
   .arch-site-frame {
-    margin: 8px 6px 28px 6px;
-    padding: 10px 10px 28px 10px;
-    border-radius: 20px;
+    margin: 0 auto 28px auto;
+    padding: 0;
+    border-radius: 0;
   }
 }
 
 /* ──────────────────────────────────────────────
-   CINEMATIC ARCHITECTURAL HERO (Section B of Reference)
-   Panoramic composition, refined typography,
-   minimal navigation, floating previews, statistical card.
+   MINIMAL ATMOSPHERIC ARCHITECTURAL HERO
+   Warm cream & champagne ambient lighting, diffused gold highlights,
+   subtle coffee depth, espresso typography, seamless bottom fade.
    ────────────────────────────────────────────── */
 .arch-hero {
   position: relative;
-  min-height: 680px;
-  max-height: 820px;
-  border-radius: var(--r-hero);
-  overflow: hidden;
+  min-height: 640px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 30px 40px 40px 40px;
+  padding: 34px 44px 58px 44px;
   isolation: isolate;
-  background: #15100E;
-  box-shadow: 
-    0 20px 52px -12px rgba(21, 16, 14, 0.24),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  background-color: #FAF6F0;
+  background-image: 
+    radial-gradient(ellipse 65% 55% at 20% 12%, rgba(255, 253, 250, 0.95) 0%, rgba(247, 239, 228, 0.55) 45%, transparent 75%),
+    radial-gradient(ellipse 55% 45% at 86% 18%, rgba(235, 216, 192, 0.45) 0%, rgba(244, 232, 215, 0.18) 50%, transparent 80%),
+    radial-gradient(ellipse 70% 60% at 75% 70%, rgba(226, 204, 178, 0.28) 0%, rgba(242, 230, 214, 0.12) 50%, transparent 80%),
+    linear-gradient(180deg, #F8F3EB 0%, #F5ECE0 42%, #FAF7F2 78%, #FFFFFF 100%);
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: hidden;
 }
 
 @media (max-width: 1024px) {
   .arch-hero {
-    min-height: 700px;
-    max-height: none;
-    padding: 24px 24px 36px 24px;
+    min-height: auto;
+    padding: 28px 24px 46px 24px;
   }
 }
 
 @media (max-width: 768px) {
   .arch-hero {
     min-height: auto;
-    max-height: none;
-    padding: 20px 16px 28px 16px;
-    border-radius: 18px;
+    padding: 22px 18px 38px 18px;
   }
 }
 
-/* Фоновая панорамная фотография */
-.arch-hero__bg {
+/* ── Атмосферная световая система (Cream, Champagne, Soft Gold Diffusion) ── */
+.arch-hero__atmosphere {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -155,35 +153,58 @@ body.home-v2 {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  animation: heroAtmosphereIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.arch-hero__bg img {
+.arch-hero__ambient {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 38%;
-  transform: scale(1.02);
-  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.85;
+  transform: translateZ(0);
 }
 
-.arch-hero:hover .arch-hero__bg img {
-  transform: scale(1.04);
+/* Мягкий свет шампанского в левой верхней зоне под брендом и заголовком */
+.arch-hero__ambient--champagne {
+  top: -10%;
+  left: 10%;
+  width: 580px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(255, 252, 246, 0.95) 0%, rgba(247, 239, 227, 0.5) 60%, transparent 80%);
 }
 
-/* Градиенты для безупречной читаемости белой типографики */
-.arch-hero__overlay {
+/* Диффузный золотистый отблеск в правой верхней зоне */
+.arch-hero__ambient--gold {
+  top: 2%;
+  right: -4%;
+  width: 520px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(235, 214, 186, 0.48) 0%, rgba(243, 231, 215, 0.2) 55%, transparent 75%);
+}
+
+/* Кофейно-бронзовая глубина в правой нижней зоне */
+.arch-hero__ambient--depth {
+  bottom: 6%;
+  right: 12%;
+  width: 620px;
+  height: 420px;
+  background: radial-gradient(ellipse, rgba(220, 197, 170, 0.32) 0%, rgba(238, 224, 206, 0.12) 55%, transparent 80%);
+}
+
+/* Бесшовный плавный переход в следующую секцию (No harsh boundary) */
+.arch-hero__fade {
   position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(180deg, rgba(21, 16, 14, 0.55) 0%, rgba(21, 16, 14, 0.15) 32%, rgba(21, 16, 14, 0.35) 60%, rgba(21, 16, 14, 0.92) 100%),
-    radial-gradient(circle at 82% 35%, rgba(0, 0, 0, 0) 0%, rgba(21, 16, 14, 0.45) 60%, rgba(21, 16, 14, 0.85) 100%);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 130px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.65) 60%, #FFFFFF 100%);
   pointer-events: none;
   z-index: 1;
 }
 
-/* ── Integrated Minimal Navigation inside Hero (Top Bar) ── */
+/* ── Встроенная навигация Hero (Интегрирована в светлый атмосферный фон) ── */
 .arch-hero__nav {
   position: relative;
   z-index: 10;
@@ -205,7 +226,7 @@ body.home-v2 {
   width: 32px;
   height: 36px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 2px 4px rgba(44, 30, 20, 0.08));
 }
 
 .arch-hero__logo-text {
@@ -218,7 +239,7 @@ body.home-v2 {
   font-size: 16px;
   font-weight: 800;
   letter-spacing: 0.14em;
-  color: #FFFFFF;
+  color: var(--arch-ink);
   line-height: 1;
 }
 
@@ -245,17 +266,17 @@ body.home-v2 {
 }
 
 .arch-hero__link {
-  color: rgba(255, 255, 255, 0.86);
+  color: #5C4D44;
   font-size: 13.5px;
   font-weight: 500;
   text-decoration: none;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   transition: color 0.2s ease, transform 0.2s ease;
   position: relative;
 }
 
 .arch-hero__link:hover {
-  color: #FFFFFF;
+  color: var(--arch-ink);
   transform: translateY(-1px);
 }
 
@@ -283,14 +304,14 @@ body.home-v2 {
 .arch-hero__phone {
   font-family: var(--font-mono);
   font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.85);
+  color: #5C4D44;
   text-decoration: none;
   letter-spacing: 0.04em;
   transition: color 0.2s ease;
 }
 
 .arch-hero__phone:hover {
-  color: #FFFFFF;
+  color: var(--arch-ink);
 }
 
 @media (max-width: 1100px) {
@@ -305,25 +326,28 @@ body.home-v2 {
   gap: 8px;
   height: 38px;
   padding: 0 16px;
-  background: rgba(255, 255, 255, 0.16);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(220, 205, 185, 0.5);
   border-radius: var(--r-pill);
-  color: #FFFFFF;
+  color: var(--arch-ink);
   font-size: 12.5px;
   font-weight: 600;
   text-decoration: none;
+  box-shadow: 0 2px 6px rgba(92, 77, 68, 0.04);
   transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .arch-hero__cabinet-btn:hover {
-  background: #FFFFFF;
-  color: var(--arch-ink);
+  background: var(--arch-ink);
+  color: #FFFFFF;
+  border-color: var(--arch-ink);
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(26, 20, 18, 0.16);
 }
 
-/* ── OVERSIZED TYPOGRAPHY (Section C of Reference) ── */
+/* ── АРХИТЕКТУРНАЯ ТИПОГРАФИКА (Apple-style глубокий эспрессо) ── */
 .arch-hero__oversized {
   position: relative;
   z-index: 2;
@@ -337,30 +361,45 @@ body.home-v2 {
   margin: 0;
   padding: 0;
   font-family: var(--font-hero);
-  font-size: clamp(40px, 5.2vw, 82px);
+  font-size: clamp(38px, 5.2vw, 78px);
   font-weight: 800;
   line-height: 0.94;
   letter-spacing: -0.025em;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: var(--arch-ink);
   display: flex;
   flex-direction: column;
-  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.32);
+  text-shadow: none;
+  animation: heroHeadlineReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 1024px) {
+  .arch-hero__giant-heading {
+    font-size: clamp(36px, 6vw, 62px);
+  }
+}
+
+@media (max-width: 768px) {
+  .arch-hero__giant-heading {
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.02;
+  }
 }
 
 .arch-hero__giant-row {
   display: block;
 }
 
-/* ── HERO LOWER COMPOSITION (Section B & D of Reference) ── */
+/* ── НИЖНЯЯ КОМПОЗИЦИЯ HERO (Баланс, воздух, минимализм) ── */
 .arch-hero__bottom {
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-columns: 1.2fr 0.9fr 1fr;
+  grid-template-columns: 1.25fr 0.85fr 1fr;
   align-items: flex-end;
-  gap: 22px;
-  margin-top: 28px;
+  gap: 24px;
+  margin-top: 32px;
+  animation: heroHeadlineReveal 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
 
 @media (max-width: 1100px) {
@@ -380,7 +419,9 @@ body.home-v2 {
 
 /* Левый текстовый блок */
 .arch-hero__editorial-left {
-  max-width: 430px;
+  max-width: 440px;
+  position: relative;
+  z-index: 2;
 }
 
 .arch-hero__eyebrow {
@@ -396,60 +437,68 @@ body.home-v2 {
 
 .arch-hero__subheadline {
   font-family: var(--font-hero);
-  font-size: clamp(14px, 1.2vw, 17.5px);
+  font-size: clamp(15px, 1.25vw, 18px);
   font-weight: 700;
-  line-height: 1.28;
+  line-height: 1.3;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: var(--arch-ink);
   margin: 0 0 10px 0;
-  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  text-shadow: none;
 }
 
 .arch-hero__copy {
-  font-size: 13px;
+  font-size: 13.5px;
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.82);
+  color: #5C4D44;
   margin: 0 0 18px 0;
 }
 
-.arch-btn-pill-white {
+/* Кнопка действия (Apple-style глубокий эспрессо) */
+.arch-btn-pill-espresso,
+.arch-hero .arch-btn-pill-white {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   height: 42px;
-  padding: 0 20px;
-  background: #FFFFFF;
-  color: var(--arch-ink);
+  padding: 0 22px;
+  background: var(--arch-ink);
+  color: #FFFFFF;
   font-family: var(--font-hero);
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
   border-radius: var(--r-pill);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 4px 18px rgba(26, 20, 18, 0.14);
   transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.arch-btn-pill-white:hover {
-  background: #FAF8F5;
+.arch-btn-pill-espresso:hover,
+.arch-hero .arch-btn-pill-white:hover {
+  background: #2C221E;
+  color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 8px 24px rgba(26, 20, 18, 0.22);
 }
 
-.arch-btn-pill-white .arrow {
+.arch-btn-pill-espresso .arrow,
+.arch-hero .arch-btn-pill-white .arrow {
   font-size: 14px;
   transition: transform 0.2s ease;
 }
 
-.arch-btn-pill-white:hover .arrow {
+.arch-btn-pill-espresso:hover .arrow,
+.arch-hero .arch-btn-pill-white:hover .arrow {
   transform: translate(3px, -3px);
 }
 
-/* Центр — Аватары инвесторов */
+/* Центр — Аватары инвесторов (Минималистичный инлайн-стиль без темного футляра) */
 .arch-hero__center {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 1100px) {
@@ -462,13 +511,11 @@ body.home-v2 {
 .arch-avatar-stack {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(21, 16, 14, 0.55);
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
-  padding: 6px 14px 6px 8px;
-  border-radius: var(--r-pill);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  gap: 12px;
+  background: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .arch-avatars {
@@ -477,32 +524,48 @@ body.home-v2 {
 }
 
 .arch-avatar {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  border: 2px solid #FFFFFF;
-  margin-left: -6px;
+  border: 2px solid #FAF6F0;
+  margin-left: -8px;
   object-fit: cover;
-  background: #E0D6C4;
+  background: #E5D8C6;
+  box-shadow: 0 2px 6px rgba(44, 30, 20, 0.08);
 }
 
 .arch-avatar:first-child {
   margin-left: 0;
 }
 
+.arch-avatar-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .arch-avatar-label {
   font-size: 12px;
   font-weight: 600;
-  color: #FFFFFF;
-  letter-spacing: 0.01em;
+  color: var(--arch-ink);
+  line-height: 1.2;
 }
 
-/* Правый блок — Плавающие превью и статистическая карточка */
+.arch-avatar-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: #7C6E65;
+  line-height: 1.2;
+}
+
+/* Правый блок — Компактные редакционные ссылки и легкая типографическая метрика */
 .arch-hero__right {
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: flex-end;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 768px) {
@@ -516,7 +579,7 @@ body.home-v2 {
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  max-width: 260px;
+  max-width: 250px;
 }
 
 @media (max-width: 768px) {
@@ -525,30 +588,36 @@ body.home-v2 {
   }
 }
 
+/* Компактная редакционная ссылка */
+.arch-preview-link,
 .arch-preview-card {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 6px 10px 6px 6px;
-  background: rgba(255, 255, 255, 0.18);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: var(--r-thumb);
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(220, 205, 185, 0.45);
+  border-radius: 10px;
   text-decoration: none;
-  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(92, 77, 68, 0.03);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.arch-preview-link:hover,
 .arch-preview-card:hover {
-  background: rgba(255, 255, 255, 0.28);
-  transform: translateX(-4px);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateX(-3px);
+  border-color: rgba(179, 142, 93, 0.35);
+  box-shadow: 0 4px 14px rgba(92, 77, 68, 0.08);
 }
 
+.arch-preview-thumb,
 .arch-preview-img {
-  width: 48px;
-  height: 36px;
-  border-radius: 8px;
+  width: 40px;
+  height: 32px;
+  border-radius: 6px;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -564,49 +633,115 @@ body.home-v2 {
   font-family: var(--font-hero);
   font-size: 12px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--arch-ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.arch-preview-arrow {
+  font-size: 11px;
+  color: var(--arch-gold);
+  transition: transform 0.2s ease;
+}
+
+.arch-preview-link:hover .arch-preview-arrow {
+  transform: translate(2px, -2px);
 }
 
 .arch-preview-meta {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.78);
+  font-size: 10.5px;
+  color: #7C6E65;
 }
 
+/* Легкая типографическая плашка метрики */
+.arch-stat-tile,
 .arch-stat-card {
   width: 100%;
-  max-width: 260px;
-  background: #FFFFFF;
-  border-radius: 14px;
-  padding: 14px 18px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  max-width: 250px;
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(220, 205, 185, 0.45);
+  box-shadow: 0 2px 8px rgba(92, 77, 68, 0.03);
   box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
+  .arch-stat-tile,
   .arch-stat-card {
     max-width: 100%;
   }
 }
 
+.arch-stat-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
 .arch-stat-num {
   font-family: var(--font-hero);
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
   line-height: 1;
   color: var(--arch-ink);
   letter-spacing: -0.02em;
-  margin-bottom: 4px;
+}
+
+.arch-stat-badge {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--arch-gold);
 }
 
 .arch-stat-desc {
-  font-size: 11.5px;
-  line-height: 1.45;
-  color: var(--arch-muted);
+  font-size: 11px;
+  line-height: 1.4;
+  color: #5C4D44;
   margin: 0;
+}
+
+/* ── Мягкие микро-анимации появления (Performant, Calmed) ── */
+@keyframes heroAtmosphereIn {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroHeadlineReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-hero__atmosphere,
+  .arch-hero__giant-heading,
+  .arch-hero__bottom {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ──────────────────────────────────────────────
@@ -622,6 +757,7 @@ body.home-v2 {
   align-items: flex-start;
   border-bottom: 1px solid var(--arch-line);
   scroll-margin-top: 90px;
+  background: #FFFFFF;
 }
 
 @media (max-width: 1024px) {

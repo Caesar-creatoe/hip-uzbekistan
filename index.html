@@ -138,20 +138,18 @@
   ═══════════════════════════════════════════ -->
   <main class="arch-site-frame" id="main-content">
 
-    <!-- ── SECTION B, C & D: CINEMATIC ARCHITECTURAL HERO ── -->
+    <!-- ── SECTION B, C & D: MINIMAL ATMOSPHERIC ARCHITECTURAL HERO ── -->
     <section class="arch-hero" id="hero" aria-label="Главный экран платформы">
       
-      <!-- Фоновая архитектурная фотография (Золотой закат и органический модернизм) -->
-      <div class="arch-hero__bg" role="img" aria-label="Архитектурный павильон отеля">
-        <img
-          src="./assets/media-pavilion.jpg"
-          alt="Silk Route Invest — Современная архитектура и инвестиционные активы Узбекистана"
-          id="hero-main-bg"
-        />
-        <div class="arch-hero__overlay"></div>
+      <!-- Атмосферный световой фон в фирменной палитре (крем, шампань, мягкое золото) -->
+      <div class="arch-hero__atmosphere" aria-hidden="true">
+        <div class="arch-hero__ambient arch-hero__ambient--champagne"></div>
+        <div class="arch-hero__ambient arch-hero__ambient--gold"></div>
+        <div class="arch-hero__ambient arch-hero__ambient--depth"></div>
+        <div class="arch-hero__fade"></div>
       </div>
 
-      <!-- Встроенная минималистичная навигация Hero (Точно как в референсе) -->
+      <!-- Встроенная минималистичная навигация Hero (Интегрированная в светлый фон) -->
       <div class="arch-hero__nav">
         <a href="index.html" class="arch-hero__brand" aria-label="Silk Route Invest">
           <img src="./assets/logo-icon.png" alt="Emblem" class="arch-hero__logo-img" width="32" height="36" />
@@ -179,7 +177,7 @@
         </div>
       </div>
 
-      <!-- Масштабная архитектурная типографика (Секция C референса) -->
+      <!-- Масштабная архитектурная типографика (Apple-style глубокий эспрессо) -->
       <div class="arch-hero__oversized">
         <h1 class="arch-hero__giant-heading">
           <span class="arch-hero__giant-row">ИНВЕСТИЦИИ.</span>
@@ -187,7 +185,7 @@
         </h1>
       </div>
 
-      <!-- Нижняя композиция Hero: левый контент, аватары инвесторов, плавающие превью (D) -->
+      <!-- Нижняя композиция Hero: левый контент, аватары инвесторов, редакционные превью -->
       <div class="arch-hero__bottom">
         
         <!-- Левый блок: дескриптор и первичный CTA -->
@@ -199,13 +197,13 @@
           <p class="arch-hero__copy">
             Перспективные отели, рестораны и земельные ресурсы Узбекистана. Проверенные данные USALI, готовые инвестиционные паспорта и доступ к институциональным льготам.
           </p>
-          <a href="#asset-gallery" class="arch-btn-pill-white" id="hero-primary-cta">
+          <a href="#asset-gallery" class="arch-btn-pill-espresso" id="hero-primary-cta">
             <span>Смотреть объекты</span>
             <span class="arrow">↗</span>
           </a>
         </div>
 
-        <!-- Центральный блок: Аватары инвесторов -->
+        <!-- Центральный блок: Аватары инвесторов (Минималистичный инлайн-стиль) -->
         <div class="arch-hero__center">
           <div class="arch-avatar-stack">
             <div class="arch-avatars">
@@ -213,34 +211,40 @@
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Investor" class="arch-avatar" />
               <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Investor" class="arch-avatar" />
             </div>
-            <span class="arch-avatar-label">Инвесторы &amp; Отельеры · SRI Desk</span>
+            <div class="arch-avatar-text">
+              <span class="arch-avatar-label">Инвесторы &amp; Отельеры</span>
+              <span class="arch-avatar-sub">SRI Private Desk</span>
+            </div>
           </div>
         </div>
 
-        <!-- Правый блок: Плавающие превью и белая карточка метрик -->
+        <!-- Правый блок: Компактные редакционные ссылки и легкая типографическая метрика -->
         <div class="arch-hero__right">
           <div class="arch-previews-stack">
-            <a href="passport.html?hotel=bakh-mir" class="arch-preview-card" title="Bakh Mir Palace">
-              <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=" alt="Bakh Mir" class="arch-preview-img" />
+            <a href="passport.html?hotel=bakh-mir" class="arch-preview-link" title="Bakh Mir Palace">
+              <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=" alt="Bakh Mir" class="arch-preview-thumb" />
               <div class="arch-preview-info">
-                <span class="arch-preview-title">Bakh Mir Palace</span>
+                <span class="arch-preview-title">Bakh Mir Palace <span class="arch-preview-arrow">↗</span></span>
                 <span class="arch-preview-meta">5★ Самарканд · USALI A+</span>
               </div>
             </a>
-            <a href="passport.html?hotel=grand-tashkent" class="arch-preview-card" title="Grand Tashkent Hotel">
-              <img src="./assets/hotel-hero.png" alt="Grand Tashkent" class="arch-preview-img" />
+            <a href="passport.html?hotel=grand-tashkent" class="arch-preview-link" title="Grand Tashkent Hotel">
+              <img src="./assets/hotel-hero.png" alt="Grand Tashkent" class="arch-preview-thumb" />
               <div class="arch-preview-info">
-                <span class="arch-preview-title">Grand Tashkent</span>
+                <span class="arch-preview-title">Grand Tashkent <span class="arch-preview-arrow">↗</span></span>
                 <span class="arch-preview-meta">258 номеров · Ташкент</span>
               </div>
             </a>
           </div>
 
-          <!-- Белая статистическая карточка (Секция D референса) -->
-          <div class="arch-stat-card">
-            <div class="arch-stat-num">32</div>
+          <!-- Легкая типографическая плашка метрики -->
+          <div class="arch-stat-tile">
+            <div class="arch-stat-header">
+              <span class="arch-stat-num">32</span>
+              <span class="arch-stat-badge">В реестре</span>
+            </div>
             <p class="arch-stat-desc">
-              Объекта в реестре с подтвержденными показателями USALI и финансовыми моделями.
+              Объекта с подтвержденными показателями USALI и финансовыми моделями.
             </p>
           </div>
         </div>
