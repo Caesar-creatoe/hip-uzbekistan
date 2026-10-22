@@ -121,18 +121,18 @@
     counters.forEach((c) => io.observe(c));
   }
 
-  /* ─── 3. Hero Atmosphere Ambient Parallax (Gentle & Lightweight) ─── */
+  /* ─── 3. Hero Parallax (Lightweight & Smooth) ─── */
   function initHeroParallax() {
-    const ambientGold = document.querySelector('.arch-hero__ambient--gold');
-    if (!ambientGold || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const heroBg = document.querySelector('.arch-hero__bg img');
+    if (!heroBg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     let ticking = false;
     window.addEventListener('scroll', () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           const scrolled = window.scrollY;
-          if (scrolled < 700) {
-            ambientGold.style.transform = `translateY(${scrolled * 0.08}px)`;
+          if (scrolled < 850) {
+            heroBg.style.transform = `scale(1.02) translateY(${scrolled * 0.1}px)`;
           }
           ticking = false;
         });
