@@ -251,7 +251,7 @@
 
 
     <!-- ── SECTION E: MINIMAL EDITORIAL SECTION ── -->
-    <section class="arch-editorial" id="about" aria-label="О платформе">
+    <section class="arch-editorial arch-reveal" id="about" aria-label="О платформе">
       
       <!-- Левая колонка: метки и минималистичные цифры -->
       <div class="arch-editorial__left">
@@ -291,7 +291,7 @@
 
 
     <!-- ── SECTION F: THREE-COLUMN ARCHITECTURAL GALLERY ── -->
-    <section class="arch-gallery-section" id="asset-gallery" aria-label="Классы инвестиционных активов">
+    <section class="arch-gallery-section arch-reveal" id="asset-gallery" aria-label="Классы инвестиционных активов">
       
       <div class="arch-gallery-header">
         <div>
@@ -356,7 +356,7 @@
 
 
     <!-- ── SECTION G: CINEMATIC FULL-WIDTH MEDIA SECTION ── -->
-    <section class="arch-media-section" aria-label="Медиа-обзор архитектуры">
+    <section class="arch-media-section arch-reveal" aria-label="Медиа-обзор архитектуры">
       
       <div class="arch-media-container">
         <img src="./assets/hero-architecture.jpg" alt="Silk Route Invest Cinematic View" loading="lazy" />
@@ -383,7 +383,7 @@
 
 
     <!-- ── SECTION: REAL ASSETS SHOWCASE (Grand Tashkent, Samarkand Palace, Bakh Mir) ── -->
-    <section class="arch-portfolio-section" id="portfolio" aria-label="Реальные инвестиционные объекты">
+    <section class="arch-portfolio-section arch-reveal" id="portfolio" aria-label="Реальные инвестиционные объекты">
       
       <div class="arch-portfolio-header">
         <div>
@@ -494,7 +494,7 @@
 
 
     <!-- ── SECTION: 4 STEPS TO INVESTMENT PASSPORT ── -->
-    <section class="arch-steps-section" id="how-it-works" aria-label="Как работает платформа">
+    <section class="arch-steps-section arch-reveal" id="how-it-works" aria-label="Как работает платформа">
       
       <div class="arch-steps-header">
         <p class="arch-steps-kicker">ЭКОСИСТЕМА СТАНДАРТОВ</p>
@@ -582,63 +582,124 @@
 
 
   <!-- ═══════════════════════════════════════════
-       FOOTER (Премиальный лаконичный подвал)
+       ARCHITECTURAL LUXURY FOOTER (Silk Route Invest)
+       Closing statement, structured navigation, brand signature, legal & language
   ═══════════════════════════════════════════ -->
-  <footer class="site-footer" id="contact" role="contentinfo">
-    <div class="footer-inner">
+  <footer class="arch-footer site-footer arch-reveal" id="contact" role="contentinfo">
+    <!-- Subtle architectural background watermark -->
+    <div class="arch-footer__watermark" aria-hidden="true">SILK ROUTE</div>
 
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="/" class="header-logo footer-logo" aria-label="Главная">
-            <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
-            <div class="logo-text">
-              <span class="logo-title">SILK ROUTE</span>
-              <span class="logo-subtitle">INVEST</span>
-            </div>
-          </a>
-          <p class="footer-brand-desc">
-            Silk Route Invest&nbsp;— официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.
+    <div class="arch-footer__inner">
+
+      <!-- SECTION A: Closing Statement & Primary CTA -->
+      <div class="arch-footer__closing">
+        <div class="arch-footer__closing-text">
+          <p class="arch-footer__kicker">ИНВЕСТИЦИОННАЯ ЭКОСИСТЕМА УЗБЕКИСТАНА</p>
+          <h2 class="arch-footer__headline">Возможности начинаются здесь.</h2>
+          <p class="arch-footer__subtext">
+            Инвестиционные проекты в туристической отрасли Узбекистана — в единой цифровой платформе с прозрачными финансовыми моделями и государственной поддержкой.
           </p>
         </div>
-
-        <nav class="footer-nav-grid" aria-label="Навигация footer">
-          <div class="footer-nav-col">
-            <p class="footer-nav-heading">Платформа</p>
-            <a href="about.html"             class="footer-nav-link">О системе</a>
-            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
-            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
-            <a href="registries.html"         class="footer-nav-link">Реестры</a>
-            <a href="form.html"               class="footer-nav-link">Smart Form</a>
-            <a href="certification.html" class="footer-nav-link">Сертификация</a>
-          </div>
-          <div class="footer-nav-col">
-            <p class="footer-nav-heading">Документы</p>
-            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
-            <a href="passport.html"  class="footer-nav-link">Том II. Hotel Investment Passport</a>
-            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
-            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
-            <a href="support.html"   class="footer-nav-link">Том V. Государственная поддержка</a>
-            <a href="restaurants.html" class="footer-nav-link">Том VI. Ресторанные инвестиции</a>
-            <a href="land.html"      class="footer-nav-link">Том VII. Земельные участки</a>
-          </div>
-          <div class="footer-nav-col">
-            <p class="footer-nav-heading">Контакты</p>
-            <p class="footer-contact-item">Комитет по туризму Республики Узбекистан</p>
-            <p class="footer-contact-item">Ташкент, Узбекистан</p>
-            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
-          </div>
-        </nav>
+        <div class="arch-footer__closing-actions">
+          <a href="portfolio.html" class="arch-footer__cta-btn">
+            <span>Смотреть объекты</span>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none"><path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="form.html" class="arch-footer__secondary-link">
+            Внести объект в реестр →
+          </a>
+        </div>
       </div>
 
-      <div class="footer-bottom">
-        <p class="footer-legal">
-          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан.
-          Данные носят иллюстративный характер. Методология соответствует стандартам STR Global&nbsp;/ USALI&nbsp;/ IFC.
+      <div class="arch-footer__divider"></div>
+
+      <!-- SECTION B: Structured Multi-Column Navigation -->
+      <nav class="arch-footer__nav-grid" aria-label="Навигация в подвале">
+        
+        <!-- Column 1: Платформа -->
+        <div class="arch-footer__col">
+          <h3 class="arch-footer__col-title">Платформа</h3>
+          <ul class="arch-footer__link-list">
+            <li><a href="about.html" class="arch-footer__link">О системе</a></li>
+            <li><a href="tourism-types.html" class="arch-footer__link">Виды туризма</a></li>
+            <li><a href="portfolio.html" class="arch-footer__link">Каталог объектов</a></li>
+            <li><a href="registries.html" class="arch-footer__link">Реестры отелей</a></li>
+            <li><a href="form.html" class="arch-footer__link">Smart Investment Form</a></li>
+            <li><a href="certification.html" class="arch-footer__link">Сертификация отелей</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Инвестиции -->
+        <div class="arch-footer__col">
+          <h3 class="arch-footer__col-title">Инвестиции</h3>
+          <ul class="arch-footer__link-list">
+            <li><a href="portfolio.html" class="arch-footer__link">Флагманские отели</a></li>
+            <li><a href="restaurants.html" class="arch-footer__link">Ресторанный сектор</a></li>
+            <li><a href="land.html" class="arch-footer__link">Земельный банк</a></li>
+            <li><a href="economics-ratings.html" class="arch-footer__link">Economics Ratings · USALI</a></li>
+            <li><a href="passport.html" class="arch-footer__link">Инвестиционный паспорт</a></li>
+            <li><a href="cabinet-investor.html" class="arch-footer__link">Кабинет инвестора</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Документы и Стандарты -->
+        <div class="arch-footer__col">
+          <h3 class="arch-footer__col-title">Услуги и документы</h3>
+          <ul class="arch-footer__link-list">
+            <li><a href="about.html" class="arch-footer__link"><span class="arch-footer__vol">Том I</span> Методические рекомендации</a></li>
+            <li><a href="passport.html" class="arch-footer__link"><span class="arch-footer__vol">Том II</span> Hotel Investment Passport</a></li>
+            <li><a href="form.html" class="arch-footer__link"><span class="arch-footer__vol">Том III</span> Smart Form</a></li>
+            <li><a href="tech-spec.html" class="arch-footer__link"><span class="arch-footer__vol">Том IV</span> Tech Specification</a></li>
+            <li><a href="support.html" class="arch-footer__link"><span class="arch-footer__vol">Том V</span> Государственная поддержка</a></li>
+            <li><a href="restaurants.html" class="arch-footer__link"><span class="arch-footer__vol">Том VI</span> Ресторанные инвестиции</a></li>
+            <li><a href="land.html" class="arch-footer__link"><span class="arch-footer__vol">Том VII</span> Земельные участки</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Контакты и институциональная поддержка -->
+        <div class="arch-footer__col">
+          <h3 class="arch-footer__col-title">Контакты</h3>
+          <div class="arch-footer__contact-info">
+            <p class="arch-footer__contact-org">Комитет по туризму Республики Узбекистан</p>
+            <p class="arch-footer__contact-item">Ташкент, Узбекистан</p>
+            <p class="arch-footer__contact-item">
+              <a href="mailto:info@uzbektourism.uz" class="arch-footer__link">info@uzbektourism.uz</a>
+            </p>
+            <p class="arch-footer__contact-item">
+              <a href="https://uzbektourism.uz" class="arch-footer__link arch-footer__link--external" target="_blank" rel="noopener">
+                uzbektourism.uz
+                <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </p>
+          </div>
+        </div>
+
+      </nav>
+
+      <!-- SECTION C: Brand Signature & Description -->
+      <div class="arch-footer__brand-strip">
+        <a href="index.html" class="header-logo arch-footer__logo" aria-label="Silk Route Invest — Главная">
+          <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+          <div class="logo-text">
+            <span class="logo-title text-light">SILK ROUTE</span>
+            <span class="logo-subtitle text-gold">INVEST</span>
+          </div>
+        </a>
+        <p class="arch-footer__brand-desc">
+          Silk Route Invest — официальная цифровая платформа инвестиционных паспортов гостиничных и инфраструктурных объектов Республики Узбекистан. Стандартизация по методологиям USALI, STR Global и IFC.
         </p>
-        <div class="footer-lang-group" role="group" aria-label="Язык">
-          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
-          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
-          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
+      </div>
+
+      <!-- SECTION D: Legal Footer & Language Selector -->
+      <div class="arch-footer__bottom">
+        <p class="arch-footer__legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Все права защищены.<br />
+          Данные носят информационный характер. Методология соответствует стандартам STR Global&nbsp;/ USALI&nbsp;/ IFC.
+        </p>
+        <div class="arch-footer__lang-group" role="group" aria-label="Язык интерфейса">
+          <button type="button" class="arch-footer__lang-btn footer-lang-link footer-lang-link--active is-active" data-lang="ru" lang="ru">RU</button>
+          <button type="button" class="arch-footer__lang-btn footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
+          <button type="button" class="arch-footer__lang-btn footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
         </div>
       </div>
 

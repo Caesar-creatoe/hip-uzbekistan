@@ -1,6 +1,6 @@
 /**
  * home-v2.js — Silk Route Invest
- * Architectural Redesign Logic (@kozyuk.design)
+ * Architectural Redesign Motion System & Interactive Logic (@kozyuk.design)
  */
 
 (function () {
@@ -10,33 +10,73 @@
     history.scrollRestoration = 'manual';
   }
 
-  /* ─── 1. IntersectionObserver для появления блоков ─── */
+  /* ─── 1. Scroll-Triggered Reveal System with Stagger Support ─── */
   function initAppear() {
-    const els = document.querySelectorAll('.arch-gallery-card, .arch-hotel-card, .arch-step-card, .arch-metric-unit');
-    if (!els.length) return;
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealSections = document.querySelectorAll('.arch-reveal');
+    const childCards = document.querySelectorAll('.arch-gallery-card, .arch-hotel-card, .arch-step-card, .arch-metric-unit');
 
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.style.opacity = '1';
-            e.target.style.transform = 'translateY(0)';
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    );
+    if (isReduced) {
+      revealSections.forEach((el) => el.classList.add('is-revealed'));
+      childCards.forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      return;
+    }
 
-    els.forEach((el) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-      io.observe(el);
-    });
+    // Observer for major sections
+    if (revealSections.length) {
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              sectionObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+      );
+
+      revealSections.forEach((s) => sectionObserver.observe(s));
+    }
+
+    // Observer for cascading cards inside grids
+    if (childCards.length) {
+      const cardObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              // Subtle stagger based on element index among siblings
+              const parent = el.parentElement;
+              const siblings = parent ? Array.from(parent.children) : [];
+              const idx = siblings.indexOf(el);
+              const delay = idx >= 0 ? Math.min(idx * 75, 300) : 0;
+
+              setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+              }, delay);
+
+              cardObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -20px 0px' }
+      );
+
+      childCards.forEach((el) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(18px)';
+        el.style.transition = 'opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)';
+        cardObserver.observe(el);
+      });
+    }
   }
 
-  /* ─── 2. Анимированные счётчики KPI ─── */
+  /* ─── 2. Animated KPI Counters ─── */
   function animateCounter(el) {
     const target = parseFloat(el.dataset.target || el.textContent);
     const suffix = el.dataset.suffix || '';
@@ -76,7 +116,7 @@
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.4 }
     );
     counters.forEach((c) => io.observe(c));
   }
@@ -92,7 +132,7 @@
         requestAnimationFrame(() => {
           const scrolled = window.scrollY;
           if (scrolled < 900) {
-            heroBg.style.transform = `scale(1.02) translateY(${scrolled * 0.15}px)`;
+            heroBg.style.transform = `scale(1.02) translateY(${scrolled * 0.12}px)`;
           }
           ticking = false;
         });
@@ -101,7 +141,7 @@
     }, { passive: true });
   }
 
-  /* ─── 4. Video Showcase Modal Interaction ─── */
+  /* ─── 4. Architectural Video Showcase Modal Interaction ─── */
   function initVideoModal() {
     const playBtn = document.getElementById('arch-play-btn');
     const modal = document.getElementById('arch-video-modal');
@@ -121,7 +161,7 @@
       const iframe = modal.querySelector('iframe');
       if (iframe) {
         const src = iframe.src;
-        iframe.src = src; // Stop playback
+        iframe.src = src; // Pause video by resetting source
       }
     }
 
@@ -177,13 +217,45 @@
     updateHeader();
   }
 
-  /* ─── 6. Init ─── */
+  /* ─── 6. Footer Language Selector Interaction ─── */
+  function initFooterLang() {
+    const langBtns = document.querySelectorAll('.arch-footer__lang-btn');
+    if (!langBtns.length) return;
+
+    langBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        langBtns.forEach((b) => {
+          const isTarget = b.dataset.lang === lang;
+          b.classList.toggle('is-active', isTarget);
+          b.classList.toggle('footer-lang-link--active', isTarget);
+        });
+        try {
+          localStorage.setItem('sri_lang', lang);
+        } catch (_) {}
+      });
+    });
+
+    try {
+      const saved = localStorage.getItem('sri_lang');
+      if (saved) {
+        langBtns.forEach((b) => {
+          const isTarget = b.dataset.lang === saved;
+          b.classList.toggle('is-active', isTarget);
+          b.classList.toggle('footer-lang-link--active', isTarget);
+        });
+      }
+    } catch (_) {}
+  }
+
+  /* ─── 7. Init ─── */
   function init() {
     initAppear();
     initCounters();
     initHeroParallax();
     initVideoModal();
     initStickyHeader();
+    initFooterLang();
   }
 
   if (document.readyState === 'loading') {
