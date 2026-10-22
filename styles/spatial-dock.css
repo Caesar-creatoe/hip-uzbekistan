@@ -5,6 +5,7 @@
    ============================================================ */
 
 .spatial-dock {
+  display: none !important; /* Superseded by @kozyuk.design architectural frame & integrated navigation */
   position: fixed;
   left: 28px;
   top: 50%;

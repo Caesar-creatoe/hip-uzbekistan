@@ -6,7 +6,7 @@
  * ============================================================
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
 
@@ -19,34 +19,46 @@
   --color-text-muted:    #6B655C;  /* Серый — второстепенный текст, бейдж B */
   --color-border:        #D6C7AE;  /* Граница — рамки карточек и блоков */
 
-  /* ── SPATIAL LUXURY & LIQUID GLASS TOKENS ────────────── */
+  /* ── ARCHITECTURAL FRAME & VISUAL REFERENCE TOKENS (@kozyuk.design) ── */
+  --canvas-bg:                #F4EFEA;
+  --canvas-bg-warm:           #EDE6DC;
+  --frame-bg:                 #FFFFFF;
+  --frame-border:             1px solid rgba(59, 42, 32, 0.08);
+  --frame-radius:             40px;
+  --frame-radius-tablet:      28px;
+  --frame-radius-mobile:      18px;
+  --hero-radius:              32px;
+  --card-radius:              24px;
+  --pill-radius:              9999px;
+
+  /* ── COLOR PRESERVATION WITH ARCHITECTURAL REFINEMENT ─────── */
   --color-espresso-deep:      #1A1412;
   --color-gold-muted:         #B38E5D;
   --color-gold-glow:          rgba(179, 142, 93, 0.20);
   --color-champagne-light:    #EDE3D3;
   --color-terracotta-rich:    #8E3A2B;
   
-  --glass-bg:                 rgba(255, 255, 255, 0.72);
-  --glass-bg-subtle:          rgba(250, 247, 242, 0.78);
-  --glass-bg-elevated:        rgba(255, 255, 255, 0.88);
-  --glass-bg-dark:            rgba(26, 20, 18, 0.86);
-  --glass-border:             1px solid rgba(255, 255, 255, 0.75);
+  /* Restrained glass tokens (secondary supporting effect) */
+  --glass-bg:                 rgba(255, 255, 255, 0.85);
+  --glass-bg-subtle:          rgba(250, 247, 242, 0.82);
+  --glass-bg-elevated:        rgba(255, 255, 255, 0.94);
+  --glass-bg-dark:            rgba(26, 20, 18, 0.90);
+  --glass-border:             1px solid rgba(255, 255, 255, 0.65);
   --glass-border-subtle:      1px solid rgba(214, 199, 174, 0.35);
   --glass-border-gold:        1px solid rgba(179, 142, 93, 0.35);
-  --glass-blur:               28px;
+  --glass-blur:               20px;
   --glass-highlight:          inset 0 1px 1px rgba(255, 255, 255, 0.95);
   --glass-highlight-dark:     inset 0 1px 1px rgba(255, 255, 255, 0.15);
 
-  --shadow-ambient:           0 24px 64px -12px rgba(44, 30, 20, 0.08), 0 8px 24px -4px rgba(44, 30, 20, 0.04);
-  --shadow-elevated:          0 32px 80px -16px rgba(44, 30, 20, 0.14), 0 12px 32px -4px rgba(44, 30, 20, 0.08);
-  --shadow-dock:              0 20px 48px -8px rgba(44, 30, 20, 0.12), 0 1px 1px rgba(255, 255, 255, 0.8) inset;
-  --shadow-card-hover:        0 28px 60px -12px rgba(44, 30, 20, 0.12);
+  --shadow-ambient:           0 24px 64px -12px rgba(44, 30, 20, 0.06), 0 8px 24px -4px rgba(44, 30, 20, 0.03);
+  --shadow-elevated:          0 32px 80px -16px rgba(44, 30, 20, 0.10), 0 12px 32px -4px rgba(44, 30, 20, 0.05);
+  --shadow-card-hover:        0 24px 48px -8px rgba(44, 30, 20, 0.10);
 
   --radius-pill:              9999px;
   --radius-master:            36px;
-  --radius-card:              28px;
-  --radius-panel:             24px;
-  --radius-inner:             18px;
+  --radius-card:              24px;
+  --radius-panel:             20px;
+  --radius-inner:             16px;
   --radius-chip:              12px;
 
   /* ── СЕМАНТИЧЕСКИЕ АЛИАСЫ ДЛЯ СОВМЕСТИМОСТИ ────────────── */
@@ -67,10 +79,11 @@
 
   --header-bg:               var(--color-header-bg);
 
-  /* ── ШРИФТЫ ────────────────────────────────── */
-  --font-display: 'Playfair Display', 'PT Serif', Georgia, serif;
-  --font-body:    'Plus Jakarta Sans', 'Manrope', 'Golos Text', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+  /* ── ШРИФТЫ (Apple-grade Architectural Typography) ────── */
+  --font-display:       'Outfit', 'Plus Jakarta Sans', 'Manrope', system-ui, sans-serif;
+  --font-architectural: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body:          'Plus Jakarta Sans', 'Manrope', 'Golos Text', system-ui, sans-serif;
+  --font-mono:          'JetBrains Mono', 'Courier New', monospace;
 
   /* ── ШКАЛА РАЗМЕРОВ ───────────────────────── */
   --text-2xs:    11px;
