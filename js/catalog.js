@@ -67,62 +67,65 @@ function formatObjectsCountWord(n) {
   return 'объектов';
 }
 
-/* ── Рендер отдельной карточки отеля ────────────────────────── */
+/* ── Рендер отдельной карточки отеля (Apple-Inspired Luxury Card по референсу) ── */
 function buildCard(hotel) {
   const rawPhoto = (Array.isArray(hotel.photos) && hotel.photos.length > 0 && hotel.photos[0])
     ? hotel.photos[0]
     : './assets/hotel-hero.png';
   const photo = typeof rawPhoto === 'object' && rawPhoto !== null ? (rawPhoto.src || './assets/hotel-hero.png') : rawPhoto;
 
-  const stars = hotel.stars ? `<span class="hotel-card-stars">${starsHtml(hotel.stars)}</span>` : '';
-  const deal = typeof window.getHotelDealConfig === 'function'
-    ? window.getHotelDealConfig(hotel)
-    : { label: 'Прямая продажа', icon: '💼', badgeClass: 'deal-sale' };
-  const dealBadge = `<span class="hotel-card-badge hotel-card-badge--deal ${deal.badgeClass}">${deal.icon} ${deal.label}</span>`;
-
-  const region = hotel.region ? `<span class="hotel-card-region">📍 ${escHtml(hotel.region)}</span>` : '';
-  const rooms = hotel.roomsCount ? `<span class="hotel-stat"><strong>${escHtml(hotel.roomsCount)}</strong><small>номеров</small></span>` : '';
-  const places = hotel.placesCount ? `<span class="hotel-stat"><strong>${escHtml(hotel.placesCount)}</strong><small>мест</small></span>` : '';
-  const floors = hotel.floors ? `<span class="hotel-stat"><strong>${escHtml(hotel.floors)}</strong><small>эт.</small></span>` : '';
-  const year = hotel.yearCommissioned ? `<span class="hotel-card-year">${escHtml(hotel.yearCommissioned)} г.</span>` : '';
   const passportUrl = `passport.html?hotel=${encodeURIComponent(hotel.slug || hotel.id)}`;
 
-  let statusBadge = '';
-  if (hotel.status === 'pending') {
-    statusBadge = '<span class="hotel-card-badge" style="background:#FFF3E0;color:#E65100;border:1px solid #FFE0B2">На проверке</span>';
-  } else if (hotel.status === 'draft') {
-    statusBadge = '<span class="hotel-card-badge hotel-card-badge--draft">Черновик</span>';
+  // 1. Плавающий бейдж слева вверху (по референсу ⭐ Prime Pick)
+  let primeBadgeText = '⭐ Prime Pick';
+  const starsNum = parseInt(hotel.stars, 10);
+  if (starsNum === 5) {
+    primeBadgeText = '★ Prime 5-Star';
+  } else if (hotel.certified) {
+    primeBadgeText = '🛡 USALI Verified';
+  } else if (starsNum === 4) {
+    primeBadgeText = '⭐ Premium Class';
+  } else if (hotel.status === 'pending') {
+    primeBadgeText = '⏳ На аудите';
   }
-  const certBadge = (hotel.stars || hotel.certified)
-    ? '<span class="hotel-card-badge" style="background:#F0F5F1;color:#2E5E3F;border:1px solid rgba(46,94,63,0.3);font-size:11px;" title="Сертифицирован по стандарту O\'z DSt 3220:2017">🛡 Сертифицирован</span>'
-    : '';
+  const primePill = `<span class="rc-badge-pill">${primeBadgeText}</span>`;
 
-  const presUrl = hotel.presentationUrl || hotel.presentationFile;
-  const hasPres = Boolean(presUrl);
-  const presBadge = hasPres
-    ? '<span class="hotel-card-badge" style="background:#1E3A6E;color:#FFFFFF;border:1px solid rgba(30,58,110,0.4);font-size:11px;" title="Официальная презентация объекта">📑 Презентация</span>'
-    : '';
+  // 2. Плавающий бейдж формата сделки справа вверху
+  const deal = typeof window.getHotelDealConfig === 'function'
+    ? window.getHotelDealConfig(hotel)
+    : { label: 'Прямая продажа', icon: '💼' };
+  const dealPill = `<span class="rc-deal-pill">${deal.icon} ${escHtml(deal.label)}</span>`;
 
-  // Экономические чипы
-  let ecoStrip = '';
-  const Fmt = window.EconomicsFmt;
-  const Schema = window.EconomicsSchema;
-  const Calc = window.EconomicsCalc;
-  if (Fmt && Schema && hotel.economics) {
-    const eco = Schema.get(hotel);
-    const ecoC = Calc ? Calc.recalcAll(eco, hotel) : eco;
-    const chips = [];
-    if (ecoC.occupancy !== null) chips.push({ label: 'OCC', val: Fmt.pct(ecoC.occupancy) });
-    if (ecoC.adr !== null) chips.push({ label: 'ADR', val: Fmt.usd(ecoC.adr) });
-    if (ecoC.ebitdaMargin !== null) chips.push({ label: 'EBITDA', val: Fmt.pct(ecoC.ebitdaMargin) });
-    if (ecoC.payback !== null) chips.push({ label: 'PBK', val: Fmt.years(ecoC.payback) });
-    if (chips.length) {
-      ecoStrip = `<div class="hotel-eco-strip">${chips.map(c => `
-        <div class="hotel-eco-chip">
-          <span class="hotel-eco-chip-label">${escHtml(c.label)}</span>
-          <span class="hotel-eco-chip-val">${c.val}</span>
-        </div>`).join('')}</div>`;
+  // 3. Локация и регион
+  const locCity = hotel.city || hotel.address || hotel.region || 'Узбекистан';
+  const yearStr = hotel.yearCommissioned ? ` · ${escHtml(hotel.yearCommissioned)} г.` : '';
+  const locLine = `📍 ${escHtml(locCity)}${yearStr}`;
+
+  // 4. Ключевые метрики (по референсу: 2-3 лаконичных колонки)
+  const roomsVal = hotel.roomsCount || '—';
+  const starsVal = hotel.stars ? `${hotel.stars}★` : (hotel.certified ? 'O\'z DSt' : '—');
+  
+  // Экономическая метрика (IRR / Payback / ADR)
+  let ecoVal = 'USALI';
+  let ecoLbl = 'Стандарт';
+  if (hotel.economics) {
+    const eco = hotel.economics;
+    if (eco.payback) {
+      ecoVal = `${parseFloat(eco.payback).toFixed(1)} г.`;
+      ecoLbl = 'Окупаемость';
+    } else if (eco.roi) {
+      ecoVal = `${parseFloat(eco.roi).toFixed(1)}%`;
+      ecoLbl = 'ROI';
+    } else if (eco.adr) {
+      ecoVal = `$${Math.round(eco.adr)}`;
+      ecoLbl = 'ADR';
+    } else if (hotel.placesCount) {
+      ecoVal = `${hotel.placesCount}`;
+      ecoLbl = 'Мест';
     }
+  } else if (hotel.placesCount) {
+    ecoVal = `${hotel.placesCount}`;
+    ecoLbl = 'Мест';
   }
 
   // Кнопка сравнения
@@ -135,12 +138,13 @@ function buildCard(hotel) {
     title="Добавить в сравнение">⇄ Сравнить</button>`;
 
   // Кнопка презентации
+  const presUrl = hotel.presentationUrl || hotel.presentationFile;
+  const hasPres = Boolean(presUrl);
   const presBtn = hasPres
     ? `<a href="${escHtml(presUrl)}" target="_blank" rel="noopener" download="${escHtml(hotel.presentationFileName || 'presentation')}"
        class="compare-toggle-btn"
        onclick="event.stopPropagation();"
-       style="text-decoration:none;display:inline-flex;align-items:center;gap:4px;color:var(--color-accent,#8B6F4E);border-color:var(--color-border,#D6C7AE);background:var(--color-surface,#F5EFE3);font-size:11px;font-weight:600;padding:4px 10px;"
-       title="Скачать презентацию (${escHtml(hotel.presentationFileName || 'Файл')})">
+       title="Скачать презентацию">
        📥 Презентация
      </a>`
     : '';
@@ -149,33 +153,41 @@ function buildCard(hotel) {
   <article class="hotel-card hotel-card--catalog"
            data-id="${escHtml(hotel.id)}"
            role="listitem">
-    <a href="${passportUrl}" class="hotel-card-link" style="text-decoration:none;color:inherit;display:block">
+    <a href="${passportUrl}" class="hotel-card-link">
       <div class="hotel-card-img-wrap">
         <img src="${photo}" alt="${escHtml(hotel.hotelName)}" class="hotel-card-img" loading="lazy" onerror="this.onerror=null;this.src='./assets/hotel-hero.png'" />
         <div class="hotel-card-img-overlay"></div>
-        <div class="hotel-card-badges">
-          ${stars}
-          ${dealBadge}
-          ${statusBadge}
-          ${certBadge}
-          ${presBadge}
-        </div>
+        ${primePill}
+        ${dealPill}
       </div>
       <div class="hotel-card-body">
-        <div class="hotel-card-meta">${region} ${year}</div>
         <h3 class="hotel-card-name">${escHtml(hotel.hotelName)}</h3>
-        ${hotel.legalEntity ? `<p class="hotel-card-legal">${escHtml(hotel.legalEntity)}</p>` : ''}
-        <div class="hotel-card-stats">${rooms}${places}${floors}</div>
-        ${hotel.amenities ? `<div class="hotel-card-amenities">${amenityBadges(hotel.amenities)}</div>` : ''}
-        ${hotel.managerContact ? `<div class="hotel-card-contact">📞 ${escHtml(hotel.managerContact)}</div>` : ''}
-        ${ecoStrip}
+        <div class="hotel-card-meta">${locLine}</div>
+        
+        <div class="rc-metrics-grid">
+          <div class="rc-metric-item">
+            <span class="rc-metric-val">${escHtml(roomsVal)}</span>
+            <span class="rc-metric-lbl">Номеров</span>
+          </div>
+          <div class="rc-metric-item">
+            <span class="rc-metric-val">${escHtml(starsVal)}</span>
+            <span class="rc-metric-lbl">Категория</span>
+          </div>
+          <div class="rc-metric-item">
+            <span class="rc-metric-val">${escHtml(ecoVal)}</span>
+            <span class="rc-metric-lbl">${escHtml(ecoLbl)}</span>
+          </div>
+        </div>
+
+        <div class="rc-card-divider"></div>
+
         <div class="hotel-card-footer">
-          <span class="hotel-card-model" style="color:var(--color-text-muted);font-size:var(--text-xs)">Верифицирован в SRI</span>
+          <span class="rc-card-origin">МТУ РУз · USALI Реестр</span>
           <span class="hotel-card-cta">Паспорт объекта →</span>
         </div>
       </div>
     </a>
-    <div style="padding:8px 16px 12px;border-top:1px solid var(--color-border,#EDE9E2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+    <div class="rc-bottom-actions">
       ${compareBtn}
       ${presBtn}
     </div>
@@ -671,6 +683,55 @@ function openCompareModal() {
   });
 }
 
+/* ── Управление компактным состоянием панели фильтров при скролле ── */
+function initStickyFilterController() {
+  const filterSection = document.getElementById('catalog-filter-section');
+  const toggleBtn = document.getElementById('filter-advanced-toggle');
+  const ecoPanel = document.getElementById('glass-filter-eco');
+
+  if (toggleBtn && ecoPanel) {
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      toggleBtn.classList.toggle('is-active', !isExpanded);
+      if (filterSection) filterSection.classList.toggle('is-expanded', !isExpanded);
+      ecoPanel.hidden = isExpanded;
+    });
+  }
+
+  if (!filterSection) return;
+
+  let ticking = false;
+  const updateStickyState = () => {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollY > 280) {
+      if (!filterSection.classList.contains('is-sticky-compact')) {
+        filterSection.classList.add('is-sticky-compact');
+      }
+    } else {
+      if (filterSection.classList.contains('is-sticky-compact')) {
+        filterSection.classList.remove('is-sticky-compact');
+        filterSection.classList.remove('is-expanded');
+        if (toggleBtn) {
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          toggleBtn.classList.remove('is-active');
+        }
+        if (ecoPanel) ecoPanel.hidden = true;
+      }
+    }
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateStickyState);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateStickyState();
+}
+
 /* ── Синхронизация и инициализация ──────────────────────────── */
 window.addEventListener('sri_hotels_updated', () => { applyFiltersAndSort(); });
 window.addEventListener('storage', (e) => {
@@ -682,12 +743,15 @@ window.addEventListener('storage', (e) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   applyFiltersAndSort();
+  initStickyFilterController();
   if (Store && typeof Store.getAllAsync === 'function') {
     Store.getAllAsync().then(() => applyFiltersAndSort());
   }
 });
 
 applyFiltersAndSort();
+initStickyFilterController();
 if (Store && typeof Store.getAllAsync === 'function') {
   Store.getAllAsync().then(() => applyFiltersAndSort());
 }
+

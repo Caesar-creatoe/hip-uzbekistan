@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="styles/spatial-dock.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/verticals.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/catalog.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/catalog.css?v=apple_luxury_v1" />
   <link rel="stylesheet" href="styles/economics.css?v=spatial_2" />
 </head>
 <body class="page-portfolio" data-vertical="hotels">
@@ -411,8 +411,8 @@
   </div>
 
 
-  <!-- ═══ PAGE HEADER (compact editorial, not fullscreen) ══ -->
-  <section class="page-header" aria-label="Каталог инвестиционных объектов">
+  <!-- ═══ PAGE HEADER (Apple-Inspired Editorial Architecture) ══ -->
+  <section class="page-header" id="page-header" aria-label="Каталог инвестиционных объектов">
     <div class="page-header-inner">
 
       <!-- Левый блок: навигация + заголовок -->
@@ -420,11 +420,20 @@
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="index.html" class="breadcrumb-link">Главная</a>
           <span class="breadcrumb-sep" aria-hidden="true">/</span>
-          <span class="breadcrumb-current">Каталог объектов</span>
+          <span class="breadcrumb-current">Каталог отелей</span>
         </nav>
-        <h1 class="page-title">Объекты с потенциалом будущего</h1>
+        
+        <div class="page-kicker-badge">
+          <span class="pk-dot"></span>
+          <span>ОФИЦИАЛЬНЫЙ РЕЕСТР · МТУ РЕСПУБЛИКИ УЗБЕКИСТАН</span>
+        </div>
+
+        <h1 class="page-title">
+          Инвестиционная архитектура.<br />
+          <span class="text-gold">Проверенные активы.</span>
+        </h1>
         <p class="page-subtitle">
-          Гостиницы, курорты и бутик-отели Узбекистана с подтвержденным USALI-аудитом, финансовыми моделями и прозрачной аналитикой для институционального капитала.
+          32 гостиничных актива институционального уровня. Проверенные аудиторские данные USALI, готовые финансовые модели и прямой доступ к государственным налоговым преференциям.
         </p>
       </div>
 
@@ -432,17 +441,22 @@
       <div class="page-header-stats">
         <div class="ph-stat">
           <span class="ph-stat-num">32</span>
-          <span class="ph-stat-label">Объекта в базе</span>
+          <span class="ph-stat-label">Объекта в реестре</span>
         </div>
         <div class="ph-stat-sep" aria-hidden="true"></div>
         <div class="ph-stat">
           <span class="ph-stat-num">14</span>
-          <span class="ph-stat-label">Регионов</span>
+          <span class="ph-stat-label">Регионов охвата</span>
         </div>
         <div class="ph-stat-sep" aria-hidden="true"></div>
         <div class="ph-stat">
           <span class="ph-stat-num">USALI</span>
-          <span class="ph-stat-label">Стандарт</span>
+          <span class="ph-stat-label">Стандарт аудита</span>
+        </div>
+        <div class="ph-stat-sep" aria-hidden="true"></div>
+        <div class="ph-stat">
+          <span class="ph-stat-num">100%</span>
+          <span class="ph-stat-label">Верификация</span>
         </div>
       </div>
 
@@ -452,19 +466,15 @@
     <div class="page-header-ornament" aria-hidden="true">
       <svg width="100%" height="12" preserveAspectRatio="none" viewBox="0 0 1440 12">
         <line x1="0" y1="6" x2="1440" y2="6" stroke="#D6C7AE" stroke-width="1"/>
-        <!-- Геометрический акцент: повторяющийся мотив -->
-        <g fill="none" stroke="#8B6F4E" stroke-width="1" opacity="0.5">
+        <g fill="none" stroke="#8B6F4E" stroke-width="1" opacity="0.45">
           <rect x="80"  y="3" width="6" height="6"/>
-          <rect x="200" y="3" width="6" height="6"/>
-          <rect x="320" y="3" width="6" height="6"/>
-          <rect x="440" y="3" width="6" height="6"/>
+          <rect x="240" y="3" width="6" height="6"/>
+          <rect x="400" y="3" width="6" height="6"/>
           <rect x="560" y="3" width="6" height="6"/>
-          <rect x="680" y="3" width="6" height="6"/>
-          <rect x="800" y="3" width="6" height="6"/>
-          <rect x="920" y="3" width="6" height="6"/>
+          <rect x="720" y="3" width="6" height="6"/>
+          <rect x="880" y="3" width="6" height="6"/>
           <rect x="1040" y="3" width="6" height="6"/>
-          <rect x="1160" y="3" width="6" height="6"/>
-          <rect x="1280" y="3" width="6" height="6"/>
+          <rect x="1200" y="3" width="6" height="6"/>
           <rect x="1360" y="3" width="6" height="6"/>
         </g>
       </svg>
@@ -472,12 +482,12 @@
   </section>
 
 
-  <!-- ═══ GLASSMORPHIC FILTER & SEARCH HUB ════════════════════ -->
+  <!-- ═══ STREAMLINED FILTER & SEARCH HUB (Non-blocking & Compact Sticky) ════ -->
   <section class="catalog-filter-section" id="catalog-filter-section" aria-label="Панель фильтрации объектов">
     <div class="catalog-filter-inner">
       <div class="glass-filter-card" id="glass-filter-card">
 
-        <!-- Верхняя строка: Поиск + Селекторы -->
+        <!-- 1. Главная строка фильтрации -->
         <div class="glass-filter-primary">
 
           <!-- Поиск -->
@@ -487,7 +497,7 @@
               type="text"
               id="catalog-search"
               class="glass-input"
-              placeholder="Поиск по названию или локации..."
+              placeholder="Поиск по названию, городу или бренду..."
               aria-label="Поиск по названию или адресу"
               autocomplete="off"
             />
@@ -528,17 +538,6 @@
             </select>
           </div>
 
-          <!-- Номерной фонд -->
-          <div class="glass-field glass-field--select">
-            <span class="glass-field-icon" aria-hidden="true">🏨</span>
-            <select id="filter-rooms" class="glass-select" aria-label="Фильтр по номерному фонду">
-              <option value="all">Любой номерной фонд</option>
-              <option value="small">До 50 номеров (Бутик)</option>
-              <option value="medium">50 – 150 номеров</option>
-              <option value="large">150+ номеров (Крупные)</option>
-            </select>
-          </div>
-
           <!-- Формат сделки -->
           <div class="glass-field glass-field--select">
             <span class="glass-field-icon" aria-hidden="true">💼</span>
@@ -555,64 +554,28 @@
           <div class="glass-field glass-field--select glass-field--sort">
             <span class="glass-field-icon" aria-hidden="true">⇅</span>
             <select id="catalog-sort" class="glass-select" aria-label="Сортировка объектов">
-              <option value="rooms-desc">Сначала больше номеров</option>
-              <option value="rooms-asc">Сначала меньше номеров</option>
-              <option value="stars-desc">По звёздности (сначала 5★)</option>
-              <option value="year-desc">Сначала новые (год ввода)</option>
+              <option value="rooms-desc">По номерному фонду (max)</option>
+              <option value="rooms-asc">По номерному фонду (min)</option>
+              <option value="stars-desc">По звёздности (5★ → 1★)</option>
+              <option value="year-desc">Сначала новые объекты</option>
               <option value="name-asc">По названию (А — Я)</option>
-              <optgroup label="── По экономике ──">
-                <option value="payback-asc">Payback (сначала короче)</option>
-                <option value="roi-desc">ROI (сначала выше)</option>
-                <option value="occ-desc">Occupancy (сначала выше)</option>
+              <optgroup label="── По экономике USALI ──">
+                <option value="payback-asc">Срок окупаемости (min)</option>
+                <option value="roi-desc">Доходность ROI (max)</option>
+                <option value="occ-desc">Загрузка Occupancy (max)</option>
               </optgroup>
             </select>
           </div>
 
+          <!-- Кнопка раскрытия доп. фильтров -->
+          <button type="button" class="glass-btn-toggle" id="filter-advanced-toggle" aria-expanded="false" title="Дополнительные параметры">
+            <span>Фильтры</span>
+            <span class="filter-toggle-icon">▾</span>
+          </button>
+
         </div>
 
-        <!-- Eco-фильтры (доп. строка) -->
-        <div class="glass-filter-eco" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 16px;border-top:1px solid rgba(255,255,255,0.08)">
-          <button type="button"
-            id="filter-has-eco"
-            class="glass-tag-btn"
-            data-active="false"
-            title="Показывать только отели с заполненными экономическими данными"
-            style="white-space:nowrap">
-            📊 С экономикой
-          </button>
-          <button type="button"
-            id="filter-certified-only"
-            class="glass-tag-btn"
-            data-active="false"
-            title="Показывать только сертифицированные отели (O'z DSt 3220:2017)"
-            style="white-space:nowrap">
-            🛡️ Только сертифицированные
-          </button>
-          <button type="button"
-            id="filter-has-presentation"
-            class="glass-tag-btn"
-            data-active="false"
-            title="Показывать только отели с инвестиционной презентацией"
-            style="white-space:nowrap">
-            📑 С презентацией
-          </button>
-          <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-muted,#9D978E)">
-            <label for="filter-payback-max" style="white-space:nowrap">Payback ≤</label>
-            <input type="number" id="filter-payback-max" min="1" max="50" step="1"
-              placeholder="лет"
-              style="width:60px;padding:5px 8px;border:1px solid var(--color-border,#EDE9E2);border-radius:6px;font-size:12px;background:rgba(255,255,255,0.6)" />
-            <span>лет</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-muted,#9D978E)">
-            <label for="filter-roi-min" style="white-space:nowrap">ROI ≥</label>
-            <input type="number" id="filter-roi-min" min="0" max="100" step="0.5"
-              placeholder="%"
-              style="width:60px;padding:5px 8px;border:1px solid var(--color-border,#EDE9E2);border-radius:6px;font-size:12px;background:rgba(255,255,255,0.6)" />
-            <span>%</span>
-          </div>
-        </div>
-
-        <!-- Нижняя строка: Быстрые теги формата + Результаты + Сброс -->
+        <!-- 2. Строка быстрых тегов формата и индикации -->
         <div class="glass-filter-secondary">
           <div class="glass-quick-tags" role="group" aria-label="Быстрые фильтры по формату">
             <button type="button" class="glass-tag-btn is-active" data-deal="all">
@@ -637,11 +600,61 @@
 
           <div class="glass-filter-status">
             <span class="glass-count-badge">
-              Найдено: <strong id="filter-count-num">0</strong> <span id="filter-count-label">объектов</span>
+              Найдено: <strong id="filter-count-num">32</strong> <span id="filter-count-label">объекта</span>
             </span>
             <button type="button" class="glass-reset-btn" id="filter-reset" title="Сбросить все параметры фильтра">
-              Сбросить фильтры ✕
+              Сбросить ✕
             </button>
+          </div>
+        </div>
+
+        <!-- 3. Дополнительные фильтры (скрыты в компактном режиме) -->
+        <div class="glass-filter-eco" id="glass-filter-eco" hidden>
+          <div class="glass-field glass-field--select" style="min-width: 190px;">
+            <span class="glass-field-icon" aria-hidden="true">🏨</span>
+            <select id="filter-rooms" class="glass-select" aria-label="Фильтр по номерному фонду">
+              <option value="all">Любой номерной фонд</option>
+              <option value="small">До 50 номеров (Бутик)</option>
+              <option value="medium">50 – 150 номеров</option>
+              <option value="large">150+ номеров (Крупные)</option>
+            </select>
+          </div>
+
+          <button type="button"
+            id="filter-has-eco"
+            class="glass-tag-btn"
+            data-active="false"
+            title="Показывать только отели с заполненными экономическими данными"
+            style="white-space:nowrap">
+            📊 С экономикой USALI
+          </button>
+          <button type="button"
+            id="filter-certified-only"
+            class="glass-tag-btn"
+            data-active="false"
+            title="Показывать только сертифицированные отели (O'z DSt 3220:2017)"
+            style="white-space:nowrap">
+            🛡️ Сертифицированные
+          </button>
+          <button type="button"
+            id="filter-has-presentation"
+            class="glass-tag-btn"
+            data-active="false"
+            title="Показывать только отели с инвестиционной презентацией"
+            style="white-space:nowrap">
+            📑 С презентацией
+          </button>
+          <div class="glass-eco-input-wrap">
+            <label for="filter-payback-max">Окупаемость ≤</label>
+            <input type="number" id="filter-payback-max" min="1" max="50" step="1"
+              placeholder="лет" class="glass-num-input" />
+            <span>лет</span>
+          </div>
+          <div class="glass-eco-input-wrap">
+            <label for="filter-roi-min">ROI ≥</label>
+            <input type="number" id="filter-roi-min" min="0" max="100" step="0.5"
+              placeholder="%" class="glass-num-input" />
+            <span>%</span>
           </div>
         </div>
 
@@ -739,7 +752,7 @@
   <script src="js/main.js"></script>
   <script src="js/hotels-data.js"></script>
   <script src="js/economics.js"></script>
-  <script src="js/catalog.js"></script>
+  <script src="js/catalog.js?v=apple_luxury_v1"></script>
   <script src="js/verticals.js"></script>
   <script src="js/megamenu.js"></script>
   <script src="js/support-core.js"></script>
