@@ -516,16 +516,19 @@
   margin-bottom: 40px;
 }
 
-/* ── НОВАЯ КАРТОЧКА ОТЕЛЯ (Строго по референсу) ──────────────── */
+/* ── НОВАЯ КАРТОЧКА ОТЕЛЯ (Liquid Glass + Image-Adaptive по референсу) ── */
 .hotel-card--catalog {
-  background: var(--cat-card-bg);
-  border: 1px solid var(--cat-card-border);
-  border-radius: 26px;
+  background: rgb(var(--tint-rgb, 34, 31, 35));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: var(--cat-card-shadow);
+  box-shadow:
+    0 24px 56px -14px rgba(0, 0, 0, 0.4),
+    0 2px 10px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18);
   transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -534,13 +537,42 @@
 }
 
 .hotel-card--catalog:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--cat-card-hover-shadow);
-  border-color: rgba(179, 142, 93, 0.6);
+  transform: translateY(-8px);
+  box-shadow:
+    0 36px 72px -16px rgba(0, 0, 0, 0.5),
+    0 4px 16px rgba(0, 0, 0, 0.18),
+    inset 0 1px 2px rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.26);
 }
 
 .hotel-card--catalog.is-hidden {
   display: none !important;
+}
+
+/* Цветовые темы карточек (привязаны к dominant mood фотографии) */
+.hotel-card--catalog.theme-moss {
+  --tint-rgb: 40, 49, 34;
+  --accent-rgb: 190, 215, 170;
+}
+.hotel-card--catalog.theme-slate {
+  --tint-rgb: 31, 41, 53;
+  --accent-rgb: 170, 205, 235;
+}
+.hotel-card--catalog.theme-amber {
+  --tint-rgb: 46, 36, 28;
+  --accent-rgb: 230, 195, 150;
+}
+.hotel-card--catalog.theme-teal {
+  --tint-rgb: 26, 42, 46;
+  --accent-rgb: 165, 220, 215;
+}
+.hotel-card--catalog.theme-ruby {
+  --tint-rgb: 45, 32, 36;
+  --accent-rgb: 225, 180, 190;
+}
+.hotel-card--catalog.theme-graphite {
+  --tint-rgb: 34, 31, 35;
+  --accent-rgb: 215, 210, 200;
 }
 
 .hotel-card-link {
@@ -551,13 +583,19 @@
   height: 100%;
 }
 
-/* Верхний блок с полноразмерным фото */
-.hotel-card-img-wrap {
+/* ── 1. Верхний визуальный блок с фото ─────────────────────── */
+.hotel-card-visual {
   position: relative;
   width: 100%;
-  height: 270px;
+  height: 285px;
   overflow: hidden;
-  background: #241E1A;
+  background: rgb(var(--tint-rgb, 34, 31, 35));
+}
+
+.hotel-card-img-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
 
 .hotel-card-img {
@@ -565,123 +603,154 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
 }
 
 .hotel-card--catalog:hover .hotel-card-img {
-  transform: scale(1.04);
+  transform: scale(1.045);
 }
 
-/* Мягкий градиент внизу фотографии для бесшовного перехода */
-.hotel-card-img-overlay {
+/* Бесшовный многоступенчатый градиент растворения фото в цветовую базу */
+.hotel-card-img-fade {
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(24, 20, 18, 0.08) 0%,
-    rgba(24, 20, 18, 0.02) 40%,
-    rgba(24, 20, 18, 0.85) 100%
+    rgba(var(--tint-rgb, 34, 31, 35), 0) 0%,
+    rgba(var(--tint-rgb, 34, 31, 35), 0) 25%,
+    rgba(var(--tint-rgb, 34, 31, 35), 0.14) 45%,
+    rgba(var(--tint-rgb, 34, 31, 35), 0.48) 68%,
+    rgba(var(--tint-rgb, 34, 31, 35), 0.82) 86%,
+    rgba(var(--tint-rgb, 34, 31, 35), 0.96) 96%,
+    rgb(var(--tint-rgb, 34, 31, 35)) 100%
   );
-  pointer-events: none;
 }
 
-/* Плавающий бейдж в верхнем левом углу (как ⭐ Prime Pick в референсе) */
+/* ── 2. Плавающие бейджи в стиле Liquid Glass ─────────────── */
+/* Левый бейдж: матовое белое жидкое стекло (по референсу ⭐ Prime Pick) */
 .rc-badge-pill {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 16px;
+  left: 16px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: #1A1715;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  color: #171513;
   border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  z-index: 2;
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.16),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  z-index: 3;
 }
 
-/* Плавающий бейдж формата сделки справа вверху */
+/* Правый бейдж формата сделки: полупрозрачное тонированное стекло */
 .rc-deal-pill {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 16px;
+  right: 16px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  background: rgba(24, 20, 18, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(var(--tint-rgb, 34, 31, 35), 0.72);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   color: #FFFFFF;
   border-radius: 9999px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  z-index: 2;
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.22),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  z-index: 3;
 }
 
-/* Нижний блок контента карточки (Тёмный люкс по референсу) */
-.hotel-card-body {
-  padding: 22px 24px 20px;
-  background: #181412;
+/* ── 3. Интегрированная нижняя секция карточки ─────────────── */
+/* Плавный переход из фото: margin-top: -38px наезжает на градиент растворения */
+.hotel-card--catalog .hotel-card-body {
+  padding: 18px 24px 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--tint-rgb, 34, 31, 35), 0.95) 0%,
+    rgb(var(--tint-rgb, 34, 31, 35)) 100%
+  );
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  margin-top: -38px;
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   flex: 1;
+  gap: 0 !important;
+  border-top: none !important;
 }
 
-/* Название отеля (Крупный выразительный заголовок) */
-.hotel-card-name {
+/* Заголовок отеля (Премиальная Apple-типографика, крупный и чистый) */
+.rc-title-row {
+  margin-bottom: 6px;
+}
+
+.hotel-card--catalog .hotel-card-name {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-  margin: 0 0 5px;
+  color: #FFFFFF !important;
+  line-height: 1.24;
+  letter-spacing: -0.018em;
+  margin: 0 !important;
+  border-top: none !important;
+  padding-top: 0 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* Локация и регион */
+/* Локация и метаданные */
 .hotel-card-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 12px;
-  color: var(--cat-gold-light);
-  letter-spacing: 0.02em;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.01em;
   margin-bottom: 18px;
+  line-height: 1.4;
+  border: none !important;
 }
 
-/* Ключевые метрики (В стиле референса 29 m² Living | 2 Rooms) */
+/* Ключевые метрики (В стиле колонок референса: 29 m² Living | 2 Rooms) */
 .rc-metrics-grid {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  align-items: flex-end;
+  gap: 24px;
   margin-bottom: 16px;
 }
 
 .rc-metric-item {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .rc-metric-val {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", monospace;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1;
+  letter-spacing: -0.01em;
 }
 
 .rc-metric-lbl {
@@ -690,17 +759,18 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #8C8074;
+  color: rgba(255, 255, 255, 0.52);
+  line-height: 1;
 }
 
-/* Тонкая разделительная линия перед футером */
+/* Ультратонкая разделительная линия перед футером */
 .rc-card-divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.09);
   margin: 4px 0 14px;
 }
 
-/* Нижняя строка: микрокопия + CTA */
+/* Футер карточки (микрокопия + CTA) */
 .hotel-card-footer {
   display: flex;
   align-items: center;
@@ -710,18 +780,18 @@
 }
 
 .rc-card-origin {
-  font-family: var(--font-mono, monospace);
-  font-size: 10px;
-  color: #8C8074;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", monospace;
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.48);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .hotel-card-cta {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 700;
-  color: var(--cat-gold);
+  color: rgba(var(--accent-rgb, 225, 190, 145), 1);
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -729,45 +799,53 @@
 }
 
 .hotel-card--catalog:hover .hotel-card-cta {
-  color: #D6C7AE;
+  color: #FFFFFF;
   transform: translateX(3px);
 }
 
-/* Строка вспомогательных кнопок (Сравнить, Презентация) */
+/* ── 4. Вспомогательные действия (Интегрированы без черного блока!) ── */
 .rc-bottom-actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 24px 14px;
-  background: #14110F;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 10px 24px 16px;
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   gap: 10px;
 }
 
 .compare-toggle-btn {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 9999px;
-  padding: 4px 12px;
+  padding: 5px 14px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   font-size: 11px;
   font-weight: 600;
-  color: #D6C7AE;
+  color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
   transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
 .compare-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.18);
   color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.32);
+  transform: translateY(-1px);
 }
 
 .compare-toggle-btn.is-selected {
-  background: var(--cat-gold);
+  background: #E5B26E;
   color: #181412;
-  border-color: var(--cat-gold);
+  border-color: #E5B26E;
   font-weight: 700;
+  box-shadow: 0 2px 8px rgba(229, 178, 110, 0.35);
 }
 
 

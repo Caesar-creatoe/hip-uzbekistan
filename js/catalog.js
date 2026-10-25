@@ -67,7 +67,68 @@ function formatObjectsCountWord(n) {
   return 'объектов';
 }
 
-/* ── Рендер отдельной карточки отеля (Apple-Inspired Luxury Card по референсу) ── */
+/* ── Определение цветовой гаммы карточки на основе фото / типа объекта / локации (по референсу) ── */
+function getHotelPalette(hotel) {
+  const name = String(hotel.hotelName || '').toLowerCase();
+  const regKey = String(hotel.regionKey || '').toLowerCase();
+  const reg = String(hotel.region || '').toLowerCase();
+  const address = String(hotel.address || '').toLowerCase();
+  const deal = String(hotel.dealType || '').toLowerCase();
+
+  // 1. Оазис / Водоём / Озеро / SPA / Релакс (Глубокий обсидиановый океан / тил)
+  if (name.includes('aydarkul') || name.includes('айдаркуль') || name.includes('charvak') || name.includes('чарвак') || name.includes('lake') || name.includes('озер') || name.includes('spa') || name.includes('спа') || name.includes('aqua')) {
+    return {
+      theme: 'teal',
+      rgb: '26, 42, 46',
+      accentRgb: '160, 215, 210'
+    };
+  }
+
+  // 2. Природа / Горные ландшафты / Лес (Глубокий лесной мох / олива, строго как правая карточка в референсе)
+  if (regKey === 'jizzakh' || regKey === 'tashkent-region' || name.includes('zomin') || name.includes('зомин') || name.includes('zaamin') || name.includes('заамин') || name.includes('chimgan') || name.includes('чимган') || name.includes('beldersay') || name.includes('бельдерсай') || name.includes('mountain') || name.includes('resort') || name.includes('резорт') || name.includes('eco') || name.includes('эко') || name.includes('garden')) {
+    return {
+      theme: 'moss',
+      rgb: '40, 49, 34',
+      accentRgb: '185, 205, 165'
+    };
+  }
+
+  // 3. Великий Шёлковый путь / Терракота / Песок / Исторический кирпич (Тёплый эспрессо-амбер, золотистый песок)
+  if (regKey === 'bukhara' || regKey === 'khorezm' || name.includes('bukhara') || name.includes('бухара') || name.includes('khiva') || name.includes('хива') || name.includes('bakh mir') || name.includes('heritage') || name.includes('palace') || name.includes('дворец') || name.includes('orient') || name.includes('caravan') || name.includes('караван') || name.includes('registan') || name.includes('регистан') || name.includes('emir') || name.includes('эмир')) {
+    return {
+      theme: 'amber',
+      rgb: '46, 36, 28',
+      accentRgb: '225, 190, 145'
+    };
+  }
+
+  // 4. Современные городские башни / Деловой центр / Небоскрёбы (Глубокий сланцевый индиго-нэви, как левая карточка в референсе)
+  if (name.includes('wyndham') || name.includes('виндхам') || name.includes('hyatt') || name.includes('хаятт') || name.includes('hilton') || name.includes('radisson') || name.includes('qushbegi') || name.includes('кушбеги') || name.includes('business') || name.includes('tower') || name.includes('башня') || name.includes('city') || regKey === 'tashkent') {
+    return {
+      theme: 'slate',
+      rgb: '31, 41, 53',
+      accentRgb: '165, 195, 225'
+    };
+  }
+
+  // 5. Самарканд / Царский люкс
+  if (regKey === 'samarkand' || name.includes('samarkand') || name.includes('самарканд')) {
+    return {
+      theme: 'amber',
+      rgb: '46, 36, 28',
+      accentRgb: '225, 190, 145'
+    };
+  }
+
+  // 6. Базовый благородный тёмный титан (Universal Refined Titanium)
+  return {
+    theme: 'graphite',
+    rgb: '34, 31, 35',
+    accentRgb: '210, 205, 200'
+  };
+}
+
+/* ── Рендер отдельной карточки отеля (Liquid Glass + Image-Adaptive по референсу) ── */
 function buildCard(hotel) {
   const rawPhoto = (Array.isArray(hotel.photos) && hotel.photos.length > 0 && hotel.photos[0])
     ? hotel.photos[0]
@@ -76,7 +137,10 @@ function buildCard(hotel) {
 
   const passportUrl = `passport.html?hotel=${encodeURIComponent(hotel.slug || hotel.id)}`;
 
-  // 1. Плавающий бейдж слева вверху (по референсу ⭐ Prime Pick)
+  // Цветовая гамма, адаптированная под фото и стиль объекта
+  const palette = getHotelPalette(hotel);
+
+  // 1. Плавающий бейдж слева вверху (по референсу ⭐ Prime Pick — матовое жидкое стекло)
   let primeBadgeText = '⭐ Prime Pick';
   const starsNum = parseInt(hotel.stars, 10);
   if (starsNum === 5) {
@@ -90,7 +154,7 @@ function buildCard(hotel) {
   }
   const primePill = `<span class="rc-badge-pill">${primeBadgeText}</span>`;
 
-  // 2. Плавающий бейдж формата сделки справа вверху
+  // 2. Плавающий бейдж формата сделки справа вверху (полупрозрачная капсула в тон карточки)
   const deal = typeof window.getHotelDealConfig === 'function'
     ? window.getHotelDealConfig(hotel)
     : { label: 'Прямая продажа', icon: '💼' };
@@ -128,7 +192,7 @@ function buildCard(hotel) {
     ecoLbl = 'Мест';
   }
 
-  // Кнопка сравнения
+  // Кнопка сравнения (стилизована под жидкое стекло)
   const isInCompare = compareState.ids.includes(hotel.id);
   const compareBtn = `<button type="button"
     class="compare-toggle-btn ${isInCompare ? 'is-selected' : ''}"
@@ -150,18 +214,23 @@ function buildCard(hotel) {
     : '';
 
   return `
-  <article class="hotel-card hotel-card--catalog"
+  <article class="hotel-card hotel-card--catalog theme-${palette.theme}"
+           style="--tint-rgb: ${palette.rgb}; --accent-rgb: ${palette.accentRgb};"
            data-id="${escHtml(hotel.id)}"
            role="listitem">
     <a href="${passportUrl}" class="hotel-card-link">
-      <div class="hotel-card-img-wrap">
-        <img src="${photo}" alt="${escHtml(hotel.hotelName)}" class="hotel-card-img" loading="lazy" onerror="this.onerror=null;this.src='./assets/hotel-hero.png'" />
-        <div class="hotel-card-img-overlay"></div>
+      <div class="hotel-card-visual">
+        <div class="hotel-card-img-wrap">
+          <img src="${photo}" alt="${escHtml(hotel.hotelName)}" class="hotel-card-img" loading="lazy" onerror="this.onerror=null;this.src='./assets/hotel-hero.png'" />
+          <div class="hotel-card-img-fade"></div>
+        </div>
         ${primePill}
         ${dealPill}
       </div>
       <div class="hotel-card-body">
-        <h3 class="hotel-card-name">${escHtml(hotel.hotelName)}</h3>
+        <div class="rc-title-row">
+          <h3 class="hotel-card-name">${escHtml(hotel.hotelName)}</h3>
+        </div>
         <div class="hotel-card-meta">${locLine}</div>
         
         <div class="rc-metrics-grid">
