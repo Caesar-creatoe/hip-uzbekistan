@@ -248,7 +248,159 @@
     } catch (_) {}
   }
 
-  /* ─── 7. Init ─── */
+  /* ─── 7. Platform Investment Showcase Carousel ─── */
+  function initPlatformShowcase() {
+    const stage = document.getElementById('showcase-stage');
+    const cards = Array.from(document.querySelectorAll('.arch-showcase-card'));
+    const tabs = Array.from(document.querySelectorAll('.arch-showcase-tab'));
+    const prevBtn = document.getElementById('showcase-prev-btn');
+    const nextBtn = document.getElementById('showcase-next-btn');
+    const counterCurrent = document.getElementById('showcase-current-idx');
+
+    if (!cards.length) return;
+
+    let activeIndex = 0;
+    const total = cards.length;
+    let autoTimer = null;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function renderState(index) {
+      activeIndex = (index + total) % total;
+
+      cards.forEach((card, i) => {
+        card.classList.remove('is-active', 'is-next', 'is-prev', 'is-hidden');
+        const offset = (i - activeIndex + total) % total;
+
+        if (offset === 0) {
+          card.classList.add('is-active');
+          card.setAttribute('aria-hidden', 'false');
+          card.tabIndex = 0;
+        } else if (offset === 1) {
+          card.classList.add('is-next');
+          card.setAttribute('aria-hidden', 'true');
+          card.tabIndex = -1;
+        } else if (offset === total - 1) {
+          card.classList.add('is-prev');
+          card.setAttribute('aria-hidden', 'true');
+          card.tabIndex = -1;
+        } else {
+          card.classList.add('is-hidden');
+          card.setAttribute('aria-hidden', 'true');
+          card.tabIndex = -1;
+        }
+      });
+
+      tabs.forEach((tab, i) => {
+        const isActive = i === activeIndex;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      if (counterCurrent) {
+        counterCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
+      }
+    }
+
+    function goTo(index) {
+      renderState(index);
+      resetAutoTimer();
+    }
+
+    function next() {
+      goTo(activeIndex + 1);
+    }
+
+    function prev() {
+      goTo(activeIndex - 1);
+    }
+
+    // Auto-advance carousel smoothly
+    function startAutoTimer() {
+      stopAutoTimer();
+      autoTimer = setInterval(() => {
+        renderState(activeIndex + 1);
+      }, 6000);
+    }
+
+    function stopAutoTimer() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    function resetAutoTimer() {
+      stopAutoTimer();
+      startAutoTimer();
+    }
+
+    // Tab clicks
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const idx = parseInt(tab.dataset.index, 10);
+        if (!isNaN(idx)) goTo(idx);
+      });
+    });
+
+    // Arrow controls
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        next();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        prev();
+      });
+    }
+
+    // Clicking flanking cards promotes them directly to center
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        // If clicking inside a direct link or CTA inside active card, allow native action
+        if (card.classList.contains('is-active')) return;
+
+        // If clicking flanking card, promote it
+        e.preventDefault();
+        goTo(idx);
+      });
+    });
+
+    // Touch swipe support on stage
+    if (stage) {
+      stage.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoTimer();
+      }, { passive: true });
+
+      stage.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 45) {
+          if (diff < 0) next();
+          else prev();
+        } else {
+          startAutoTimer();
+        }
+      }, { passive: true });
+
+      // Pause on hover
+      stage.addEventListener('mouseenter', stopAutoTimer);
+      stage.addEventListener('mouseleave', startAutoTimer);
+      stage.addEventListener('focusin', stopAutoTimer);
+      stage.addEventListener('focusout', startAutoTimer);
+    }
+
+    // Initial setup
+    renderState(0);
+    startAutoTimer();
+  }
+
+  /* ─── 8. Init ─── */
   function init() {
     initAppear();
     initCounters();
@@ -256,6 +408,7 @@
     initVideoModal();
     initStickyHeader();
     initFooterLang();
+    initPlatformShowcase();
   }
 
   if (document.readyState === 'loading') {

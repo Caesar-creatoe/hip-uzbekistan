@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="styles/megamenu.css?v=arch_2" />
   <link rel="stylesheet" href="styles/spatial-dock.css?v=arch_2" />
   <!-- Home V2 Architectural Stylesheet (Visual Reference @kozyuk.design) -->
-  <link rel="stylesheet" href="css/home-v2.css?v=arch_2" />
+  <link rel="stylesheet" href="css/home-v2.css?v=showcase_v4" />
 </head>
 <body class="home-v2">
 
@@ -205,7 +205,7 @@
           <p class="arch-hero__copy">
             Перспективные отели, рестораны и земельные ресурсы Узбекистана. Проверенные данные USALI, готовые инвестиционные паспорта и доступ к институциональным льготам.
           </p>
-          <a href="#asset-gallery" class="arch-btn-pill-espresso" id="hero-primary-cta">
+          <a href="#about" class="arch-btn-pill-espresso" id="hero-primary-cta">
             <span>Смотреть объекты</span>
             <span class="arrow">↗</span>
           </a>
@@ -262,132 +262,281 @@
     </section>
 
 
-    <!-- ── SECTION E: MINIMAL EDITORIAL SECTION ── -->
-    <section class="arch-editorial arch-reveal" id="about" aria-label="О платформе">
+    <!-- ── SECTION E: PREMIUM INVESTMENT SHOWCASE & EDITORIAL INTRO ── -->
+    <section class="arch-editorial arch-showcase-section arch-reveal" id="about" aria-label="О платформе и инвестиционных направлениях">
       
-      <!-- Левая колонка: метки и минималистичные цифры -->
-      <div class="arch-editorial__left">
-        <p class="arch-editorial__kicker">О ПЛАТФОРМЕ</p>
-        
-        <div class="arch-editorial__metrics">
-          <!-- Liquid Glass Metric 1: 14 Регионов (Reference A) -->
-          <div class="arch-glass-metric-tile">
-            <div class="arch-glass-metric__header">
-              <span class="arch-glass-metric__pip"></span>
-              <span class="arch-glass-metric__tag">НАЦИОНАЛЬНЫЙ ОХВАТ</span>
-            </div>
-            <div class="arch-glass-metric__num-row">
-              <span class="arch-glass-metric__val arch-counter" data-target="14">14</span>
-              <span class="arch-glass-metric__suffix">регионов</span>
-            </div>
-            <div class="arch-glass-metric__lbl">Ключевые центры гостеприимства</div>
-            <div class="arch-glass-metric__bar" aria-hidden="true">
-              <div class="arch-glass-metric__bar-fill" style="width: 100%;"></div>
-            </div>
-          </div>
-
-          <!-- Liquid Glass Metric 2: 32 Объекта (Reference A) -->
-          <div class="arch-glass-metric-tile">
-            <div class="arch-glass-metric__header">
-              <span class="arch-glass-metric__pip arch-glass-metric__pip--gold"></span>
-              <span class="arch-glass-metric__tag">USALI &amp; STR СТАНДАРТ</span>
-            </div>
-            <div class="arch-glass-metric__num-row">
-              <span class="arch-glass-metric__val arch-counter" data-target="32">32</span>
-              <span class="arch-glass-metric__suffix">объекта</span>
-            </div>
-            <div class="arch-glass-metric__lbl">В официальном реестре отрасли</div>
-            <div class="arch-glass-metric__bar" aria-hidden="true">
-              <div class="arch-glass-metric__bar-fill arch-glass-metric__bar-fill--gold" style="width: 100%;"></div>
-            </div>
+      <!-- Левая колонка: компактный редакционный блок, метрики и навигация карусели -->
+      <div class="arch-editorial__intro">
+        <div class="arch-editorial__intro-header">
+          <span class="arch-editorial__kicker">О ПЛАТФОРМЕ</span>
+          <div class="arch-showcase-counter" aria-live="polite">
+            <span class="arch-showcase-counter__current" id="showcase-current-idx">01</span>
+            <span class="arch-showcase-counter__divider">/</span>
+            <span class="arch-showcase-counter__total">04</span>
           </div>
         </div>
-      </div>
 
-      <!-- Правая колонка: асимметричный заголовок, текст и кнопка -->
-      <div class="arch-editorial__right">
         <h2 class="arch-editorial__headline">
           Объекты с потенциалом.<br />
           <span class="text-gold">Инвестиции с перспективой.</span>
         </h2>
 
-        <div class="arch-editorial__body">
-          <p class="arch-editorial__desc">
-            Изучайте инвестиционные возможности в гостиничном, ресторанном и туристическом секторе Узбекистана с прозрачными данными USALI и институциональными льготами.
-          </p>
-          <a href="about.html" class="arch-btn-outline">
-            <span>О платформе</span>
-            <span>↗</span>
+        <p class="arch-editorial__desc">
+          Единая инвестиционная инфраструктура туристической отрасли Узбекистана: проверенные активы USALI, готовые финансовые модели и государственные преференции.
+        </p>
+
+        <!-- Интегрированная строка ключевых метрик платформы -->
+        <div class="arch-editorial__key-metrics">
+          <div class="arch-key-metric">
+            <span class="arch-key-metric__num"><span class="arch-counter" data-target="32">32</span></span>
+            <span class="arch-key-metric__label">актива в реестре</span>
+          </div>
+          <div class="arch-key-metric-sep" aria-hidden="true"></div>
+          <div class="arch-key-metric">
+            <span class="arch-key-metric__num"><span class="arch-counter" data-target="14">14</span></span>
+            <span class="arch-key-metric__label">регионов охвата</span>
+          </div>
+          <div class="arch-key-metric-sep" aria-hidden="true"></div>
+          <div class="arch-key-metric">
+            <span class="arch-key-metric__num">USALI</span>
+            <span class="arch-key-metric__label">аудит &amp; STR</span>
+          </div>
+        </div>
+
+        <!-- Табы переключения направлений (Интерактивные пиллы) -->
+        <div class="arch-showcase-tabs" role="tablist" aria-label="Категории инвестиций">
+          <button class="arch-showcase-tab is-active" role="tab" aria-selected="true" data-index="0" id="tab-0">
+            <span>Отели (32)</span>
+          </button>
+          <button class="arch-showcase-tab" role="tab" aria-selected="false" data-index="1" id="tab-1">
+            <span>Рестораны (18)</span>
+          </button>
+          <button class="arch-showcase-tab" role="tab" aria-selected="false" data-index="2" id="tab-2">
+            <span>Земля (450 га)</span>
+          </button>
+          <button class="arch-showcase-tab" role="tab" aria-selected="false" data-index="3" id="tab-3">
+            <span>Господдержка (14)</span>
+          </button>
+        </div>
+
+        <!-- Кнопки действия и контролы карусели -->
+        <div class="arch-editorial__actions">
+          <a href="portfolio.html" class="arch-btn-primary" id="showcase-cta-main">
+            <span>Открыть каталог</span>
+            <span class="arrow">↗</span>
           </a>
+          <a href="about.html" class="arch-btn-subtle">
+            <span>О системе</span>
+            <span>→</span>
+          </a>
+          <div class="arch-showcase-nav-btns" aria-label="Управление витриной">
+            <button class="arch-showcase-arrow arch-showcase-arrow--prev" id="showcase-prev-btn" aria-label="Предыдущая категория">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <button class="arch-showcase-arrow arch-showcase-arrow--next" id="showcase-next-btn" aria-label="Следующая категория">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Правая/Центральная зона: Премиальная витрина многослойных карточек -->
+      <div class="arch-showcase-stage" id="showcase-stage" aria-roledescription="carousel">
+        <div class="arch-showcase-track" id="showcase-track">
+          
+          <!-- КАРТОЧКА 1: ГОСТИНИЧНЫЕ КОМПЛЕКСЫ -->
+          <article class="arch-showcase-card is-active" data-index="0" role="tabpanel" aria-labelledby="tab-0">
+            <div class="arch-showcase-card__media">
+              <img src="./assets/gallery-hotels.jpg" alt="Гостиничные комплексы Узбекистана" class="arch-showcase-card__img" loading="eager" />
+              <div class="arch-showcase-card__overlay"></div>
+              <div class="arch-showcase-card__status-chip">
+                <span class="status-dot"></span>
+                <span>USALI VERIFIED · ТОМ II</span>
+              </div>
+            </div>
+            
+            <div class="arch-showcase-card__content">
+              <div class="arch-showcase-card__header">
+                <span class="arch-showcase-card__num">01 / КАТЕГОРИЯ</span>
+                <span class="arch-showcase-card__scope">14 РЕГИОНОВ</span>
+              </div>
+              
+              <h3 class="arch-showcase-card__title">Гостиничные комплексы</h3>
+              <p class="arch-showcase-card__desc">
+                Действующие отели 3★–5★, курортные комплексы и бутик-отели с подтвержденными показателями ADR, RevPAR и финмоделями.
+              </p>
+              
+              <div class="arch-showcase-card__metrics">
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">32</span>
+                  <span class="arch-card-metric__lbl">объекта в пуле</span>
+                </div>
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">5★–3★</span>
+                  <span class="arch-card-metric__lbl">класс активов</span>
+                </div>
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">+24%</span>
+                  <span class="arch-card-metric__lbl">рост туризма YoY</span>
+                </div>
+              </div>
+              
+              <div class="arch-showcase-card__footer">
+                <a href="portfolio.html" class="arch-showcase-card__cta">
+                  <span>Смотреть отели</span>
+                  <span class="cta-arrow">↗</span>
+                </a>
+                <span class="arch-showcase-card__hint">Data Room &amp; Финмодели</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- КАРТОЧКА 2: РЕСТОРАННЫЕ ПРОЕКТЫ -->
+          <article class="arch-showcase-card is-next" data-index="1" role="tabpanel" aria-labelledby="tab-1">
+            <div class="arch-showcase-card__media">
+              <img src="./assets/gallery-restaurants.jpg" alt="Ресторанные проекты и F&B кластеры" class="arch-showcase-card__img" loading="lazy" />
+              <div class="arch-showcase-card__overlay"></div>
+              <div class="arch-showcase-card__status-chip">
+                <span class="status-dot status-dot--amber"></span>
+                <span>FINE DINING &amp; MICE</span>
+              </div>
+            </div>
+            
+            <div class="arch-showcase-card__content">
+              <div class="arch-showcase-card__header">
+                <span class="arch-showcase-card__num">02 / КАТЕГОРИЯ</span>
+                <span class="arch-showcase-card__scope">ТАШКЕНТ &amp; САМАРКАНД</span>
+              </div>
+              
+              <h3 class="arch-showcase-card__title">Ресторанные проекты</h3>
+              <p class="arch-showcase-card__desc">
+                Высокодоходные ресторанные концепции, панорамные заведения и гастрономические пространства в ключевых туристических хабах.
+              </p>
+              
+              <div class="arch-showcase-card__metrics">
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">18</span>
+                  <span class="arch-card-metric__lbl">проектов в реестре</span>
+                </div>
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">28%+</span>
+                  <span class="arch-card-metric__lbl">средняя EBITDA</span>
+                </div>
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">2.8 г.</span>
+                  <span class="arch-card-metric__lbl">окупаемость CapEx</span>
+                </div>
+              </div>
+              
+              <div class="arch-showcase-card__footer">
+                <a href="restaurants.html" class="arch-showcase-card__cta">
+                  <span>Смотреть рестораны</span>
+                  <span class="cta-arrow">↗</span>
+                </a>
+                <span class="arch-showcase-card__hint">Аудит потоков &amp; P&amp;L</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- КАРТОЧКА 3: ЗЕМЕЛЬНЫЙ БАНК -->
+          <article class="arch-showcase-card is-hidden" data-index="2" role="tabpanel" aria-labelledby="tab-2">
+            <div class="arch-showcase-card__media">
+              <img src="./assets/gallery-land.jpg" alt="Земельный банк и рекреационные зоны" class="arch-showcase-card__img" loading="lazy" />
+              <div class="arch-showcase-card__overlay"></div>
+              <div class="arch-showcase-card__status-chip">
+                <span class="status-dot status-dot--gold"></span>
+                <span>СЭЗ ТР &amp; РЕКРЕАЦИЯ</span>
+              </div>
+            </div>
+            
+            <div class="arch-showcase-card__content">
+              <div class="arch-showcase-card__header">
+                <span class="arch-showcase-card__num">03 / КАТЕГОРИЯ</span>
+                <span class="arch-showcase-card__scope">ИНФРАСТРУКТУРА</span>
+              </div>
+              
+              <h3 class="arch-showcase-card__title">Земельный банк</h3>
+              <p class="arch-showcase-card__desc">
+                Участки под строительство гостиничных и курортных комплексов с готовыми мастер-планами, подведенными инженерными сетями и статусом СЭЗ.
+              </p>
+              
+              <div class="arch-showcase-card__metrics">
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">450+</span>
+                  <span class="arch-card-metric__lbl">гектаров площади</span>
+                </div>
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">100%</span>
+                  <span class="arch-card-metric__lbl">готовность сетей</span>
+                </div>
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">СЭЗ</span>
+                  <span class="arch-card-metric__lbl">таможенные льготы</span>
+                </div>
+              </div>
+              
+              <div class="arch-showcase-card__footer">
+                <a href="land.html" class="arch-showcase-card__cta">
+                  <span>Смотреть участки</span>
+                  <span class="cta-arrow">↗</span>
+                </a>
+                <span class="arch-showcase-card__hint">Мастер-планы &amp; Кадастр</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- КАРТОЧКА 4: ГОСУДАРСТВЕННАЯ ПОДДЕРЖКА -->
+          <article class="arch-showcase-card is-prev" data-index="3" role="tabpanel" aria-labelledby="tab-3">
+            <div class="arch-showcase-card__media">
+              <img src="./assets/hero-architecture.jpg" alt="Государственная поддержка и преференции" class="arch-showcase-card__img" loading="lazy" />
+              <div class="arch-showcase-card__overlay"></div>
+              <div class="arch-showcase-card__status-chip">
+                <span class="status-dot status-dot--green"></span>
+                <span>МИНТУРИЗМА РУЗ · ГОСГАРАНТИИ</span>
+              </div>
+            </div>
+            
+            <div class="arch-showcase-card__content">
+              <div class="arch-showcase-card__header">
+                <span class="arch-showcase-card__num">04 / ПРЕФЕРЕНЦИИ</span>
+                <span class="arch-showcase-card__scope">ИНСТИТУЦИОНАЛЬНЫЙ СТАТУС</span>
+              </div>
+              
+              <h3 class="arch-showcase-card__title">Господдержка отрасли</h3>
+              <p class="arch-showcase-card__desc">
+                Прямые государственные субсидии на строительство номерного фонда, компенсация роялти мировых отельных сетей, нулевой НДС и таможенные каникулы.
+              </p>
+              
+              <div class="arch-showcase-card__metrics">
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">14</span>
+                  <span class="arch-card-metric__lbl">мер господдержки</span>
+                </div>
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">до 40 млрд</span>
+                  <span class="arch-card-metric__lbl">субсидия на объект</span>
+                </div>
+                <div class="arch-card-metric">
+                  <span class="arch-card-metric__val">0%</span>
+                  <span class="arch-card-metric__lbl">налог на прибыль</span>
+                </div>
+              </div>
+              
+              <div class="arch-showcase-card__footer">
+                <a href="support.html" class="arch-showcase-card__cta">
+                  <span>Изучить льготы</span>
+                  <span class="cta-arrow">↗</span>
+                </a>
+                <span class="arch-showcase-card__hint">Законодательная база</span>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
 
     </section>
 
-
-    <!-- ── SECTION F: THREE-COLUMN ARCHITECTURAL GALLERY ── -->
-    <section class="arch-gallery-section arch-reveal" id="asset-gallery" aria-label="Классы инвестиционных активов">
-      
-      <div class="arch-gallery-header">
-        <div>
-          <p class="arch-gallery-kicker">КЛАССЫ АКТИВОВ</p>
-          <h2 class="arch-gallery-title">Категории инвестиций</h2>
-        </div>
-        <a href="portfolio.html" class="arch-btn-outline" style="height:40px; padding:0 20px; font-size:13px;">
-          Все категории ↗
-        </a>
-      </div>
-
-      <div class="arch-gallery-grid">
-        
-        <!-- Карточка 1: Гостиничные комплексы -->
-        <a href="portfolio.html" class="arch-gallery-card">
-          <div class="arch-gallery-card__photo">
-            <img src="./assets/gallery-hotels.jpg" alt="Гостиничные комплексы" loading="lazy" />
-            <span class="arch-gallery-badge">32 ОБЪЕКТА</span>
-          </div>
-          <h3 class="arch-gallery-card__title">
-            <span>Гостиничные комплексы</span>
-            <span class="arrow-link">↗</span>
-          </h3>
-          <p class="arch-gallery-card__desc">
-            Премиальные отели и курорты с верифицированным аудитом USALI, показателями ADR и RevPAR.
-          </p>
-        </a>
-
-        <!-- Карточка 2: Ресторанные проекты -->
-        <a href="restaurants.html" class="arch-gallery-card">
-          <div class="arch-gallery-card__photo">
-            <img src="./assets/gallery-restaurants.jpg" alt="Ресторанные проекты" loading="lazy" />
-            <span class="arch-gallery-badge">F&amp;B СЕКТОР</span>
-          </div>
-          <h3 class="arch-gallery-card__title">
-            <span>Ресторанные проекты</span>
-            <span class="arrow-link">↗</span>
-          </h3>
-          <p class="arch-gallery-card__desc">
-            Панорамные ресторанные концепции, международные франшизы и comp-set анализ Тома VI.
-          </p>
-        </a>
-
-        <!-- Карточка 3: Земельный банк -->
-        <a href="land.html" class="arch-gallery-card">
-          <div class="arch-gallery-card__photo">
-            <img src="./assets/gallery-land.jpg" alt="Земельные участки" loading="lazy" />
-            <span class="arch-gallery-badge">8 ЛОТОВ · 49 ЛЕТ</span>
-          </div>
-          <h3 class="arch-gallery-card__title">
-            <span>Земельный банк</span>
-            <span class="arrow-link">↗</span>
-          </h3>
-          <p class="arch-gallery-card__desc">
-            Участки первой линии под курортный и городской девелопмент с готовой инфраструктурой и ГЧП.
-          </p>
-        </a>
-
-      </div>
-
-    </section>
 
 
     <!-- ── SECTION G: CINEMATIC FULL-WIDTH MEDIA SECTION ── -->
@@ -829,7 +978,7 @@
   <script src="js/hotels-data.js"></script>
   <script src="js/verticals.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/home-v2.js"></script>
+  <script src="js/home-v2.js?v=showcase_v4"></script>
   <script src="js/support-core.js"></script>
 </body>
 </html>
