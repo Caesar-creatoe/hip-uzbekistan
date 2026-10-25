@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="styles/megamenu.css?v=arch_2" />
   <link rel="stylesheet" href="styles/spatial-dock.css?v=arch_2" />
   <!-- Home V2 Architectural Stylesheet (Visual Reference @kozyuk.design) -->
-  <link rel="stylesheet" href="css/home-v2.css?v=showcase_v4" />
+  <link rel="stylesheet" href="css/home-v2.css?v=oculus_v5" />
 </head>
 <body class="home-v2">
 
@@ -262,279 +262,134 @@
     </section>
 
 
-    <!-- ── SECTION E: PREMIUM INVESTMENT SHOWCASE & EDITORIAL INTRO ── -->
-    <section class="arch-editorial arch-showcase-section arch-reveal" id="about" aria-label="О платформе и инвестиционных направлениях">
-      
-      <!-- Левая колонка: компактный редакционный блок, метрики и навигация карусели -->
-      <div class="arch-editorial__intro">
-        <div class="arch-editorial__intro-header">
-          <span class="arch-editorial__kicker">О ПЛАТФОРМЕ</span>
-          <div class="arch-showcase-counter" aria-live="polite">
-            <span class="arch-showcase-counter__current" id="showcase-current-idx">01</span>
-            <span class="arch-showcase-counter__divider">/</span>
-            <span class="arch-showcase-counter__total">04</span>
+    <!-- ── SECTION E: PREMIUM PLATFORM INVESTMENT SHOWCASE (Oculus-Inspired) ── -->
+    <section class="arch-showcase-section arch-reveal" id="about" aria-label="О платформе и инвестиционных направлениях">
+      <div class="arch-showcase-inner">
+
+        <!-- 1. ВЕРХНИЙ РЕДАКЦИОННЫЙ ЗАГОЛОВОК -->
+        <header class="arch-showcase-header">
+          <div class="arch-showcase-header__meta">
+            <span class="arch-showcase-kicker">О ПЛАТФОРМЕ</span>
+            <div class="arch-showcase-counter" aria-live="polite">
+              <span class="arch-showcase-counter__curr" id="showcase-counter-curr">01</span>
+              <span class="arch-showcase-counter__div">/</span>
+              <span class="arch-showcase-counter__total">04</span>
+            </div>
           </div>
-        </div>
-
-        <h2 class="arch-editorial__headline">
-          Объекты с потенциалом.<br />
-          <span class="text-gold">Инвестиции с перспективой.</span>
-        </h2>
-
-        <p class="arch-editorial__desc">
-          Единая инвестиционная инфраструктура туристической отрасли Узбекистана: проверенные активы USALI, готовые финансовые модели и государственные преференции.
-        </p>
-
-        <!-- Интегрированная строка ключевых метрик платформы -->
-        <div class="arch-editorial__key-metrics">
-          <div class="arch-key-metric">
-            <span class="arch-key-metric__num"><span class="arch-counter" data-target="32">32</span></span>
-            <span class="arch-key-metric__label">актива в реестре</span>
+          <div class="arch-showcase-header__headline-wrap">
+            <h2 class="arch-showcase-headline">
+              Объекты с потенциалом.<br />
+              <span class="text-gold">Инвестиции с перспективой.</span>
+            </h2>
+            <p class="arch-showcase-desc">
+              Единая цифровая инфраструктура инвестиционных паспортов туристической отрасли Узбекистана: проверенные данные USALI, готовые финансовые модели и государственные преференции.
+            </p>
           </div>
-          <div class="arch-key-metric-sep" aria-hidden="true"></div>
-          <div class="arch-key-metric">
-            <span class="arch-key-metric__num"><span class="arch-counter" data-target="14">14</span></span>
-            <span class="arch-key-metric__label">регионов охвата</span>
-          </div>
-          <div class="arch-key-metric-sep" aria-hidden="true"></div>
-          <div class="arch-key-metric">
-            <span class="arch-key-metric__num">USALI</span>
-            <span class="arch-key-metric__label">аудит &amp; STR</span>
-          </div>
-        </div>
+        </header>
 
-        <!-- Табы переключения направлений (Интерактивные пиллы) -->
-        <div class="arch-showcase-tabs" role="tablist" aria-label="Категории инвестиций">
-          <button class="arch-showcase-tab is-active" role="tab" aria-selected="true" data-index="0" id="tab-0">
-            <span>Отели (32)</span>
-          </button>
-          <button class="arch-showcase-tab" role="tab" aria-selected="false" data-index="1" id="tab-1">
-            <span>Рестораны (18)</span>
-          </button>
-          <button class="arch-showcase-tab" role="tab" aria-selected="false" data-index="2" id="tab-2">
-            <span>Земля (450 га)</span>
-          </button>
-          <button class="arch-showcase-tab" role="tab" aria-selected="false" data-index="3" id="tab-3">
-            <span>Господдержка (14)</span>
-          </button>
-        </div>
-
-        <!-- Кнопки действия и контролы карусели -->
-        <div class="arch-editorial__actions">
-          <a href="portfolio.html" class="arch-btn-primary" id="showcase-cta-main">
-            <span>Открыть каталог</span>
-            <span class="arrow">↗</span>
-          </a>
-          <a href="about.html" class="arch-btn-subtle">
-            <span>О системе</span>
-            <span>→</span>
-          </a>
-          <div class="arch-showcase-nav-btns" aria-label="Управление витриной">
-            <button class="arch-showcase-arrow arch-showcase-arrow--prev" id="showcase-prev-btn" aria-label="Предыдущая категория">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            </button>
-            <button class="arch-showcase-arrow arch-showcase-arrow--next" id="showcase-next-btn" aria-label="Следующая категория">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Правая/Центральная зона: Премиальная витрина многослойных карточек -->
-      <div class="arch-showcase-stage" id="showcase-stage" aria-roledescription="carousel">
-        <div class="arch-showcase-track" id="showcase-track">
+        <!-- 2. ЦЕНТРАЛЬНАЯ ГОРИЗОНТАЛЬНАЯ ВИТРИНА (ВСЕ 4 КАРТОЧКИ ВИДИМЫ, БЕЗ НАЛОЖЕНИЯ) -->
+        <div class="arch-showcase-row" id="showcase-row" role="tablist" aria-label="Инвестиционные направления">
           
-          <!-- КАРТОЧКА 1: ГОСТИНИЧНЫЕ КОМПЛЕКСЫ -->
-          <article class="arch-showcase-card is-active" data-index="0" role="tabpanel" aria-labelledby="tab-0">
+          <!-- Карточка 1: Гостиничные комплексы -->
+          <article class="arch-showcase-card is-active" data-index="0" role="tab" aria-selected="true" tabindex="0" id="card-cat-0">
             <div class="arch-showcase-card__media">
-              <img src="./assets/gallery-hotels.jpg" alt="Гостиничные комплексы Узбекистана" class="arch-showcase-card__img" loading="eager" />
-              <div class="arch-showcase-card__overlay"></div>
-              <div class="arch-showcase-card__status-chip">
-                <span class="status-dot"></span>
-                <span>USALI VERIFIED · ТОМ II</span>
-              </div>
+              <img src="./assets/gallery-hotels.jpg" alt="Гостиничные комплексы" class="arch-showcase-card__img" loading="eager" />
+              <div class="arch-showcase-card__scrim"></div>
             </div>
-            
-            <div class="arch-showcase-card__content">
-              <div class="arch-showcase-card__header">
-                <span class="arch-showcase-card__num">01 / КАТЕГОРИЯ</span>
-                <span class="arch-showcase-card__scope">14 РЕГИОНОВ</span>
-              </div>
-              
+            <div class="arch-showcase-card__badge">
+              <span class="arch-showcase-card__dot"></span>
+              <span>ОТЕЛИ · 32 ОБЪЕКТА</span>
+            </div>
+            <div class="arch-showcase-card__footer">
+              <span class="arch-showcase-card__num">01</span>
               <h3 class="arch-showcase-card__title">Гостиничные комплексы</h3>
-              <p class="arch-showcase-card__desc">
-                Действующие отели 3★–5★, курортные комплексы и бутик-отели с подтвержденными показателями ADR, RevPAR и финмоделями.
-              </p>
-              
-              <div class="arch-showcase-card__metrics">
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">32</span>
-                  <span class="arch-card-metric__lbl">объекта в пуле</span>
-                </div>
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">5★–3★</span>
-                  <span class="arch-card-metric__lbl">класс активов</span>
-                </div>
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">+24%</span>
-                  <span class="arch-card-metric__lbl">рост туризма YoY</span>
-                </div>
-              </div>
-              
-              <div class="arch-showcase-card__footer">
-                <a href="portfolio.html" class="arch-showcase-card__cta">
-                  <span>Смотреть отели</span>
-                  <span class="cta-arrow">↗</span>
-                </a>
-                <span class="arch-showcase-card__hint">Data Room &amp; Финмодели</span>
-              </div>
             </div>
           </article>
 
-          <!-- КАРТОЧКА 2: РЕСТОРАННЫЕ ПРОЕКТЫ -->
-          <article class="arch-showcase-card is-next" data-index="1" role="tabpanel" aria-labelledby="tab-1">
+          <!-- Карточка 2: Ресторанные проекты -->
+          <article class="arch-showcase-card" data-index="1" role="tab" aria-selected="false" tabindex="0" id="card-cat-1">
             <div class="arch-showcase-card__media">
-              <img src="./assets/gallery-restaurants.jpg" alt="Ресторанные проекты и F&B кластеры" class="arch-showcase-card__img" loading="lazy" />
-              <div class="arch-showcase-card__overlay"></div>
-              <div class="arch-showcase-card__status-chip">
-                <span class="status-dot status-dot--amber"></span>
-                <span>FINE DINING &amp; MICE</span>
-              </div>
+              <img src="./assets/gallery-restaurants.jpg" alt="Ресторанные проекты" class="arch-showcase-card__img" loading="lazy" />
+              <div class="arch-showcase-card__scrim"></div>
             </div>
-            
-            <div class="arch-showcase-card__content">
-              <div class="arch-showcase-card__header">
-                <span class="arch-showcase-card__num">02 / КАТЕГОРИЯ</span>
-                <span class="arch-showcase-card__scope">ТАШКЕНТ &amp; САМАРКАНД</span>
-              </div>
-              
+            <div class="arch-showcase-card__badge">
+              <span class="arch-showcase-card__dot"></span>
+              <span>F&amp;B СЕКТОР</span>
+            </div>
+            <div class="arch-showcase-card__footer">
+              <span class="arch-showcase-card__num">02</span>
               <h3 class="arch-showcase-card__title">Ресторанные проекты</h3>
-              <p class="arch-showcase-card__desc">
-                Высокодоходные ресторанные концепции, панорамные заведения и гастрономические пространства в ключевых туристических хабах.
-              </p>
-              
-              <div class="arch-showcase-card__metrics">
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">18</span>
-                  <span class="arch-card-metric__lbl">проектов в реестре</span>
-                </div>
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">28%+</span>
-                  <span class="arch-card-metric__lbl">средняя EBITDA</span>
-                </div>
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">2.8 г.</span>
-                  <span class="arch-card-metric__lbl">окупаемость CapEx</span>
-                </div>
-              </div>
-              
-              <div class="arch-showcase-card__footer">
-                <a href="restaurants.html" class="arch-showcase-card__cta">
-                  <span>Смотреть рестораны</span>
-                  <span class="cta-arrow">↗</span>
-                </a>
-                <span class="arch-showcase-card__hint">Аудит потоков &amp; P&amp;L</span>
-              </div>
             </div>
           </article>
 
-          <!-- КАРТОЧКА 3: ЗЕМЕЛЬНЫЙ БАНК -->
-          <article class="arch-showcase-card is-hidden" data-index="2" role="tabpanel" aria-labelledby="tab-2">
+          <!-- Карточка 3: Земельные участки -->
+          <article class="arch-showcase-card" data-index="2" role="tab" aria-selected="false" tabindex="0" id="card-cat-3">
             <div class="arch-showcase-card__media">
-              <img src="./assets/gallery-land.jpg" alt="Земельный банк и рекреационные зоны" class="arch-showcase-card__img" loading="lazy" />
-              <div class="arch-showcase-card__overlay"></div>
-              <div class="arch-showcase-card__status-chip">
-                <span class="status-dot status-dot--gold"></span>
-                <span>СЭЗ ТР &amp; РЕКРЕАЦИЯ</span>
-              </div>
+              <img src="./assets/gallery-land.jpg" alt="Земельные участки" class="arch-showcase-card__img" loading="lazy" />
+              <div class="arch-showcase-card__scrim"></div>
             </div>
-            
-            <div class="arch-showcase-card__content">
-              <div class="arch-showcase-card__header">
-                <span class="arch-showcase-card__num">03 / КАТЕГОРИЯ</span>
-                <span class="arch-showcase-card__scope">ИНФРАСТРУКТУРА</span>
-              </div>
-              
-              <h3 class="arch-showcase-card__title">Земельный банк</h3>
-              <p class="arch-showcase-card__desc">
-                Участки под строительство гостиничных и курортных комплексов с готовыми мастер-планами, подведенными инженерными сетями и статусом СЭЗ.
-              </p>
-              
-              <div class="arch-showcase-card__metrics">
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">450+</span>
-                  <span class="arch-card-metric__lbl">гектаров площади</span>
-                </div>
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">100%</span>
-                  <span class="arch-card-metric__lbl">готовность сетей</span>
-                </div>
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">СЭЗ</span>
-                  <span class="arch-card-metric__lbl">таможенные льготы</span>
-                </div>
-              </div>
-              
-              <div class="arch-showcase-card__footer">
-                <a href="land.html" class="arch-showcase-card__cta">
-                  <span>Смотреть участки</span>
-                  <span class="cta-arrow">↗</span>
-                </a>
-                <span class="arch-showcase-card__hint">Мастер-планы &amp; Кадастр</span>
-              </div>
+            <div class="arch-showcase-card__badge">
+              <span class="arch-showcase-card__dot"></span>
+              <span>ЗЕМЕЛЬНЫЙ БАНК</span>
+            </div>
+            <div class="arch-showcase-card__footer">
+              <span class="arch-showcase-card__num">03</span>
+              <h3 class="arch-showcase-card__title">Земельные участки</h3>
             </div>
           </article>
 
-          <!-- КАРТОЧКА 4: ГОСУДАРСТВЕННАЯ ПОДДЕРЖКА -->
-          <article class="arch-showcase-card is-prev" data-index="3" role="tabpanel" aria-labelledby="tab-3">
+          <!-- Карточка 4: Государственная поддержка -->
+          <article class="arch-showcase-card" data-index="3" role="tab" aria-selected="false" tabindex="0" id="card-cat-4">
             <div class="arch-showcase-card__media">
-              <img src="./assets/hero-architecture.jpg" alt="Государственная поддержка и преференции" class="arch-showcase-card__img" loading="lazy" />
-              <div class="arch-showcase-card__overlay"></div>
-              <div class="arch-showcase-card__status-chip">
-                <span class="status-dot status-dot--green"></span>
-                <span>МИНТУРИЗМА РУЗ · ГОСГАРАНТИИ</span>
-              </div>
+              <img src="./assets/hero-architecture.jpg" alt="Государственная поддержка" class="arch-showcase-card__img" loading="lazy" />
+              <div class="arch-showcase-card__scrim"></div>
             </div>
-            
-            <div class="arch-showcase-card__content">
-              <div class="arch-showcase-card__header">
-                <span class="arch-showcase-card__num">04 / ПРЕФЕРЕНЦИИ</span>
-                <span class="arch-showcase-card__scope">ИНСТИТУЦИОНАЛЬНЫЙ СТАТУС</span>
-              </div>
-              
-              <h3 class="arch-showcase-card__title">Господдержка отрасли</h3>
-              <p class="arch-showcase-card__desc">
-                Прямые государственные субсидии на строительство номерного фонда, компенсация роялти мировых отельных сетей, нулевой НДС и таможенные каникулы.
-              </p>
-              
-              <div class="arch-showcase-card__metrics">
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">14</span>
-                  <span class="arch-card-metric__lbl">мер господдержки</span>
-                </div>
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">до 40 млрд</span>
-                  <span class="arch-card-metric__lbl">субсидия на объект</span>
-                </div>
-                <div class="arch-card-metric">
-                  <span class="arch-card-metric__val">0%</span>
-                  <span class="arch-card-metric__lbl">налог на прибыль</span>
-                </div>
-              </div>
-              
-              <div class="arch-showcase-card__footer">
-                <a href="support.html" class="arch-showcase-card__cta">
-                  <span>Изучить льготы</span>
-                  <span class="cta-arrow">↗</span>
-                </a>
-                <span class="arch-showcase-card__hint">Законодательная база</span>
-              </div>
+            <div class="arch-showcase-card__badge">
+              <span class="arch-showcase-card__dot"></span>
+              <span>ГОСГАРАНТИИ</span>
+            </div>
+            <div class="arch-showcase-card__footer">
+              <span class="arch-showcase-card__num">04</span>
+              <h3 class="arch-showcase-card__title">Господдержка</h3>
             </div>
           </article>
 
         </div>
-      </div>
 
+        <!-- 3. НИЖНЯЯ ПАНЕЛЬ ДЕТАЛЕЙ АКТИВНОГО НАПРАВЛЕНИЯ (Как в референсе Oculus) -->
+        <div class="arch-showcase-detail" id="showcase-detail" aria-live="polite">
+          <div class="arch-showcase-detail__info">
+            <div class="arch-showcase-detail__header">
+              <span class="arch-showcase-detail__tag" id="detail-tag">01 / КАТЕГОРИЯ ПЛАТФОРМЫ</span>
+              <h3 class="arch-showcase-detail__title" id="detail-title">Гостиничные комплексы</h3>
+            </div>
+            <p class="arch-showcase-detail__desc" id="detail-desc">
+              Премиальные отели, курортные комплексы и бутик-отели Узбекистана с верифицированным аудитом USALI, данными ADR и RevPAR.
+            </p>
+            <div class="arch-showcase-detail__stats" id="detail-stats">
+              <span class="arch-stat-chip">32 объекта в реестре</span>
+              <span class="arch-stat-chip">14 регионов охвата</span>
+              <span class="arch-stat-chip">Стандарты USALI</span>
+            </div>
+          </div>
+
+          <div class="arch-showcase-detail__actions">
+            <a href="portfolio.html" class="arch-btn-primary" id="detail-cta">
+              <span id="detail-cta-text">Смотреть отели</span>
+              <span class="arrow">↗</span>
+            </a>
+            <div class="arch-showcase-nav-btns" aria-label="Переключение категорий">
+              <button class="arch-showcase-arrow" id="showcase-prev-btn" aria-label="Предыдущая категория">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <button class="arch-showcase-arrow" id="showcase-next-btn" aria-label="Следующая категория">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
 
 
@@ -978,7 +833,7 @@
   <script src="js/hotels-data.js"></script>
   <script src="js/verticals.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/home-v2.js?v=showcase_v4"></script>
+  <script src="js/home-v2.js?v=oculus_v5"></script>
   <script src="js/support-core.js"></script>
 </body>
 </html>
