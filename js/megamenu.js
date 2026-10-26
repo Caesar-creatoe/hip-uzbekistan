@@ -16,22 +16,66 @@
     onScroll();
   }
 
-  /* ── Мегаменю: hover на desktop ─────────────────────────── */
+  /* ── Мегаменю: hover, click/touch & keyboard ─────────────── */
   const navItems = document.querySelectorAll('.nav-item[data-mega]');
+  
+  function closeAllMega() {
+    navItems.forEach(item => {
+      item.classList.remove('open');
+      const tr = item.querySelector('.nav-trigger');
+      if (tr) tr.setAttribute('aria-expanded', 'false');
+    });
+  }
+
   navItems.forEach(item => {
     let leaveTimer;
+    const trigger = item.querySelector('.nav-trigger');
+
     item.addEventListener('mouseenter', () => {
       clearTimeout(leaveTimer);
       navItems.forEach(other => {
         if (other !== item) {
           other.classList.remove('open');
+          const ot = other.querySelector('.nav-trigger');
+          if (ot) ot.setAttribute('aria-expanded', 'false');
         }
       });
       item.classList.add('open');
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
     });
+
     item.addEventListener('mouseleave', () => {
-      leaveTimer = setTimeout(() => item.classList.remove('open'), 120);
+      leaveTimer = setTimeout(() => {
+        item.classList.remove('open');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      }, 140);
     });
+
+    if (trigger) {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willOpen = !item.classList.contains('open');
+        closeAllMega();
+        if (willOpen) {
+          item.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  });
+
+  // Закрытие при клике вне мегаменю
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item')) {
+      closeAllMega();
+    }
+  });
+
+  // Закрытие по нажатию клавиши Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAllMega();
+    }
   });
 
   /* ── Мобильное меню ─────────────────────────────────────── */

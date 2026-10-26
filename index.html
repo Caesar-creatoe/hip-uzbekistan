@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="design-tokens.css?v=arch_2" />
   <link rel="stylesheet" href="styles/base.css?v=arch_2" />
   <link rel="stylesheet" href="styles/header.css?v=arch_2" />
-  <link rel="stylesheet" href="styles/megamenu.css?v=arch_2" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=unified_nav_3" />
   <link rel="stylesheet" href="styles/spatial-dock.css?v=arch_2" />
   <!-- Home V2 Architectural Stylesheet (Visual Reference @kozyuk.design) -->
   <link rel="stylesheet" href="css/home-v2.css?v=oculus_v5" />
@@ -22,10 +22,11 @@
 <body class="home-v2">
 
   <!-- ═══════════════════════════════════════════
-       STICKY CAPSULE HEADER (Появляется при скролле)
+       C-01 · SITE HEADER — Мегаменю (Единая навигация платформы)
   ═══════════════════════════════════════════ -->
-  <header class="site-header" id="site-header" role="banner" style="opacity:0; pointer-events:none;">
+  <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
+
       <!-- Логотип -->
       <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
         <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
@@ -37,8 +38,9 @@
 
       <!-- Основная навигация -->
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+
         <!-- 1. Для инвесторов -->
-        <div class="nav-item" data-mega="investors" data-page="portfolio">
+        <div class="nav-item" data-mega="investors" data-page="investors">
           <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
             Для инвесторов
             <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -70,9 +72,34 @@
               <span class="mega-icon-badge">🏛</span>
               <span class="mega-link-text">
                 <span class="mega-link-label">Государственная поддержка</span>
-                <span class="mega-link-desc"><span data-support="count">14</span> мер · Субсидии, компенсации, налоговые льготы</span>
+                <span class="mega-link-desc"><span data-support="count">—</span> мер · Субсидии, компенсации, налоговые льготы</span>
               </span>
             </a>
+
+            <div style="border-top: 1px solid var(--color-border); margin-top: 8px; padding-top: 12px; grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px;">
+              <span class="mega-group-title" style="grid-column: 1 / -1;">Инструменты инвестора</span>
+              <a href="cabinet-investor.html" class="mega-link">
+                <span class="mega-icon-badge">👤</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Кабинет инвестора</span>
+                  <span class="mega-link-desc">Избранное, заявки и доступ к Data Room</span>
+                </span>
+              </a>
+              <a href="tourism-types.html" class="mega-link">
+                <span class="mega-icon-badge">📍</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Виды туризма</span>
+                  <span class="mega-link-desc">Культурный, горный, MICE, гастро</span>
+                </span>
+              </a>
+              <a href="certification-registry.html#verify" class="mega-link">
+                <span class="mega-icon-badge">✔</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Проверить сертификат отеля</span>
+                  <span class="mega-link-desc">По номеру или QR-коду</span>
+                </span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -83,33 +110,192 @@
             <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
           <div class="mega-panel mega-panel--hoteliers">
-            <a href="form.html" class="mega-link">
-              <span class="mega-icon-badge">⚡</span>
+            <!-- Акцентная карточка подачи заявки -->
+            <div class="mega-featured-card">
+              <div>
+                <div class="mega-featured-tag">★ ГОСУДАРСТВЕННЫЙ РЕЕСТР</div>
+                <h4 class="mega-featured-title">Подать заявку на включение</h4>
+                <p class="mega-featured-desc">Внесите отель или ресторан в официальный реестр для привлечения институционального капитала.</p>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+                <a href="form.html" class="mega-featured-cta" style="padding:7px 12px;font-size:12px;">
+                  <span>Отели →</span>
+                </a>
+                <a href="restaurant-form.html" class="mega-featured-cta" style="padding:7px 12px;font-size:12px;background:var(--v-restaurants);border-color:var(--v-restaurants);">
+                  <span>Рестораны →</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Ссылки для бизнеса -->
+            <div>
+              <span class="mega-group-title">Личные кабинеты &amp; Паспорта</span>
+              <a href="cabinet-hotel.html" class="mega-link">
+                <span class="mega-icon-badge">🏨</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Кабинет отеля</span>
+                  <span class="mega-link-desc">Управление гостиничным объектом</span>
+                </span>
+              </a>
+              <a href="cabinet-restaurant.html" class="mega-link">
+                <span class="mega-icon-badge" style="color:var(--v-restaurants)">🍽</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Кабинет ресторатора</span>
+                  <span class="mega-link-desc">Управление ресторанным проектом</span>
+                </span>
+              </a>
+              <a href="passport.html" class="mega-link">
+                <span class="mega-icon-badge">📄</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Hotel Investment Passport</span>
+                  <span class="mega-link-desc">Стандарт USALI, финмодель, Том II</span>
+                </span>
+              </a>
+              <a href="restaurant-passport.html" class="mega-link">
+                <span class="mega-icon-badge" style="color:var(--v-restaurants)">📊</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Restaurant Passport</span>
+                  <span class="mega-link-desc">F&amp;B метрики, comp-set, Том VI</span>
+                </span>
+              </a>
+              <a href="certification-apply.html" class="mega-link">
+                <span class="mega-icon-badge">🛡</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Заявка на сертификацию</span>
+                  <span class="mega-link-desc">Подача и статус заявки</span>
+                </span>
+              </a>
+              <a href="support.html" class="mega-link">
+                <span class="mega-icon-badge" style="color:var(--v-support)">🏛</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Калькулятор господдержки</span>
+                  <span class="mega-link-desc">Нормативная база НПА и расчёт мер поддержки</span>
+                </span>
+              </a>
+              <a href="form.html" class="mega-link">
+                <span class="mega-icon-badge">⚡</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Smart Investment Form</span>
+                  <span class="mega-link-desc">Экспресс-расчёт ADR, RevPAR, EBITDA, IRR</span>
+                </span>
+              </a>
+            </div>
+
+            <!-- Партнёрский коммерческий сервис — отделён от госуслуг -->
+            <div style="border-top: 1px solid var(--color-border); margin-top: 8px; padding-top: 16px;">
+              <span class="mega-group-title" style="display:flex;align-items:center;gap:6px;">
+                Сервис партнёра
+              </span>
+              <a href="/tools/" class="mega-link">
+                <span class="mega-icon-badge">🛠</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Инструменты для отельеров</span>
+                  <span class="mega-link-desc">Excel-модели, чек-листы, AI-промпты — коммерческий сервис SRI Toolkit</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Услуги -->
+        <div class="nav-item" data-mega="services" data-page="services">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Услуги
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--services">
+            <span class="mega-group-title">Официальные сервисы платформы</span>
+
+            <a href="certification.html" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
               <span class="mega-link-text">
-                <span class="mega-link-label">Smart Investment Form</span>
-                <span class="mega-link-desc">Включение в официальный реестр объектов</span>
+                <span class="mega-link-label">Сертификация</span>
+                <span class="mega-link-desc">Электронная сертификация и реестр сертифицированных гостиниц</span>
               </span>
             </a>
-            <a href="cabinet-investor.html" class="mega-link">
-              <span class="mega-icon-badge">👤</span>
+
+            <a href="quality.html" class="mega-link">
+              <span class="mega-icon-badge">⭐</span>
               <span class="mega-link-text">
-                <span class="mega-link-label">Кабинет инвестора</span>
-                <span class="mega-link-desc">Доступ к Data Room и финансовым моделям</span>
+                <span class="mega-link-label">Quality Management</span>
+                <span class="mega-link-desc">Классификация KQI, чек-листы и стандарты сервиса</span>
               </span>
             </a>
-            <a href="passport.html" class="mega-link">
-              <span class="mega-icon-badge">📄</span>
+
+            <a href="economics-ratings.html" class="mega-link">
+              <span class="mega-icon-badge">📈</span>
               <span class="mega-link-text">
-                <span class="mega-link-label">Hotel Investment Passport</span>
-                <span class="mega-link-desc">Стандарт USALI, финмодель, Том II</span>
+                <span class="mega-link-label">Economics Ratings</span>
+                <span class="mega-link-desc">Рейтинг экономической эффективности и бенчмаркинг отелей</span>
+              </span>
+            </a>
+
+            <a href="events-app.html" class="mega-link" style="background:rgba(59,130,246,0.06);border-radius:8px;">
+              <span class="mega-icon-badge">🏛️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label" style="color:var(--color-accent-blue,#3b82f6)">Государственные мероприятия</span>
+                <span class="mega-link-desc">Система «одного окна» для делегаций и MICE</span>
               </span>
             </a>
           </div>
         </div>
 
-        <!-- 3. О платформе -->
-        <a href="about.html" class="nav-link">О системе</a>
-        <a href="b2b.html" class="nav-link">B2B</a>
+        <!-- 4. О платформе -->
+        <div class="nav-item" data-mega="platform" data-page="about">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            О платформе
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--platform">
+            <span class="mega-group-title">Стандарты и документация системы</span>
+            <a href="about.html" class="mega-link">
+              <span class="mega-icon-badge">📖</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">О системе</span>
+                <span class="mega-link-desc">Методические рекомендации · Том I</span>
+              </span>
+            </a>
+            <a href="tech-spec.html" class="mega-link">
+              <span class="mega-icon-badge">🛠️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Tech Specification</span>
+                <span class="mega-link-desc">Архитектура, ER-схема, API · Том IV</span>
+              </span>
+            </a>
+            <a href="certification.html#methodology" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Том VIII. Сертификация</span>
+                <span class="mega-link-desc">O’z DSt 3220:2017 · реестр · контроль 5 лет</span>
+              </span>
+            </a>
+            <a href="support.html" class="mega-link">
+              <span class="mega-icon-badge">🏛️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Государственная поддержка</span>
+                <span class="mega-link-desc">Программы субсидий · Том V</span>
+              </span>
+            </a>
+            <a href="restaurants.html" class="mega-link">
+              <span class="mega-icon-badge">🍽️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Стандарты F&amp;B</span>
+                <span class="mega-link-desc">Ресторанные инвестиции · Том VI</span>
+              </span>
+            </a>
+            <a href="land.html" class="mega-link">
+              <span class="mega-icon-badge">🗺️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Земельные ресурсы</span>
+                <span class="mega-link-desc">Аукционы и кластеры · Том VII</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. B2B Cooperation (прямой переход) -->
+        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+
       </nav>
 
       <!-- Правый блок -->
@@ -129,8 +315,54 @@
       <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
+
     </div>
   </header>
+
+  <!-- Мобильная навигация -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Классы активов</span>
+      <a href="portfolio.html">🏨 Гостиничные объекты</a>
+      <a href="restaurants.html">🍽 Ресторанные проекты</a>
+      <a href="land.html">🗺 Земельные участки</a>
+      <a href="support.html">🏛 Государственная поддержка</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Инструменты инвестора</span>
+      <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
+      <a href="tourism-types.html">📍 Виды туризма</a>
+      <a href="certification-registry.html#verify">✔ Проверить сертификат отеля</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="certification.html">🛡 Сертификация</a>
+      <a href="quality.html">⭐ Quality Management</a>
+      <a href="economics-ratings.html">📈 Economics Ratings</a>
+      <a href="events-app.html">🏛️ Государственные мероприятия</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для бизнеса</span>
+      <a href="form.html" class="mobile-nav-cta">✨ Подать отель в реестр</a>
+      <a href="restaurant-form.html" class="mobile-nav-cta" style="background:var(--v-restaurants);border-color:var(--v-restaurants);margin-top:6px;">🍽 Подать ресторан в реестр</a>
+      <a href="form.html">⚡ Smart Investment Form</a>
+      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
+      <a href="cabinet-restaurant.html">🍽 Кабинет ресторатора</a>
+      <a href="passport.html">📄 Hotel Investment Passport</a>
+      <a href="restaurant-passport.html">📊 Restaurant Passport</a>
+      <a href="certification-apply.html">🛡 Заявка на сертификацию</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">О платформе</span>
+      <a href="about.html">📖 О системе (Том I)</a>
+      <a href="tech-spec.html">🛠️ Tech Specification (Том IV)</a>
+      <a href="certification.html#methodology">🛡 Том VIII. Сертификация</a>
+      <a href="support.html">🏛️ Государственная поддержка (Том V)</a>
+      <a href="restaurants.html">🍽️ Стандарты F&amp;B (Том VI)</a>
+      <a href="land.html">🗺️ Земельные ресурсы (Том VII)</a>
+      <a href="b2b.html">🤝 B2B Cooperation</a>
+    </div>
+  </div>
 
   <!-- ═══════════════════════════════════════════
        ГЛАВНЫЙ АРХИТЕКТУРНЫЙ ФРЕЙМ (Reference Frame @kozyuk.design)
@@ -157,33 +389,8 @@
         <div class="arch-hero__ambient arch-hero__ambient--gold"></div>
       </div>
 
-      <!-- Встроенная минималистичная навигация Hero (Интегрированная в светлый фон) -->
-      <div class="arch-hero__nav">
-        <a href="index.html" class="arch-hero__brand" aria-label="Silk Route Invest">
-          <img src="./assets/logo-icon.png" alt="Emblem" class="arch-hero__logo-img" width="32" height="36" />
-          <div class="arch-hero__logo-text">
-            <span class="arch-hero__logo-title">SILK ROUTE</span>
-            <span class="arch-hero__logo-subtitle">INVEST</span>
-          </div>
-        </a>
-
-        <div class="arch-hero__links">
-          <a href="portfolio.html" class="arch-hero__link">Отели (32)</a>
-          <a href="restaurants.html" class="arch-hero__link">Рестораны</a>
-          <a href="land.html" class="arch-hero__link">Земля</a>
-          <a href="support.html" class="arch-hero__link">Господдержка</a>
-          <a href="about.html" class="arch-hero__link">О системе</a>
-          <a href="b2b.html" class="arch-hero__link">B2B</a>
-        </div>
-
-        <div class="arch-hero__nav-right">
-          <a href="tel:+998712000088" class="arch-hero__phone">+998 (71) 200-00-88</a>
-          <a href="cabinet-investor.html" class="arch-hero__cabinet-btn">
-            <span>Кабинет</span>
-            <span style="font-size:14px;">↗</span>
-          </a>
-        </div>
-      </div>
+      <!-- Пространство под плавающий глобальный хедер -->
+      <div class="arch-hero__nav-spacer" style="height: 64px; pointer-events: none;" aria-hidden="true"></div>
 
       <!-- Масштабная архитектурная типографика (Apple-style глубокий эспрессо) -->
       <div class="arch-hero__oversized">
@@ -829,11 +1036,11 @@
     </div>
   </footer>
 
-  <script src="js/megamenu.js"></script>
+  <script src="js/megamenu.js?v=unified_nav_1"></script>
   <script src="js/hotels-data.js"></script>
   <script src="js/verticals.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/home-v2.js?v=oculus_v5"></script>
+  <script src="js/home-v2.js?v=unified_nav_1"></script>
   <script src="js/support-core.js"></script>
 </body>
 </html>

@@ -178,43 +178,9 @@
     });
   }
 
-  /* ─── 5. Sticky Capsule Header visibility on scroll ─── */
+  /* ─── 5. Sticky Capsule Header visibility on scroll (Unified with megamenu.js) ─── */
   function initStickyHeader() {
-    const header = document.getElementById('site-header');
-    const hero = document.querySelector('.arch-hero');
-    if (!header) return;
-
-    header.style.transition = 'opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)';
-
-    function updateHeader() {
-      if (!hero) {
-        if (window.scrollY > 400) {
-          header.style.opacity = '1';
-          header.style.pointerEvents = 'auto';
-          header.style.transform = 'translateY(0)';
-        } else {
-          header.style.opacity = '0';
-          header.style.pointerEvents = 'none';
-          header.style.transform = 'translateY(-16px)';
-        }
-        return;
-      }
-
-      const heroRect = hero.getBoundingClientRect();
-      // Show sticky header only when hero has mostly scrolled past, preventing duplicate navigation
-      if (heroRect.bottom <= 120) {
-        header.style.opacity = '1';
-        header.style.pointerEvents = 'auto';
-        header.style.transform = 'translateY(0)';
-      } else {
-        header.style.opacity = '0';
-        header.style.pointerEvents = 'none';
-        header.style.transform = 'translateY(-16px)';
-      }
-    }
-
-    window.addEventListener('scroll', updateHeader, { passive: true });
-    updateHeader();
+    // Header visibility is now unified across all pages via megamenu.js (.site-header / .site-header--scrolled)
   }
 
   /* ─── 6. Footer Language Selector Interaction ─── */
