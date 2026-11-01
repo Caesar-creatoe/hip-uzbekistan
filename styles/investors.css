@@ -938,3 +938,6 @@ a.tool:hover .ttile img { transform: scale(1.06); }
   .fmt img { width: 38%; aspect-ratio: auto; min-height: 96px; }
   .formats-head { flex-direction: column; gap: 2px; }
 }
+.tool-art--photo { padding: 0; background: #2b211a; }
+.tool-art--photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; transition: transform 1s var(--ease-out); }
+.tool:hover .tool-art--photo img { transform: scale(1.04); }
