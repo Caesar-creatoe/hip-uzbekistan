@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Услуги платформы: электронная сертификация гостиниц, самооценка качества KQI, рейтинг экономической эффективности отелей и система «одного окна» для государственных мероприятий." />
+  <meta name="theme-color" content="#F5F2EC" />
+  <title>Услуги — Silk Route Invest · Комитет по туризму РУз</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=PT+Serif:wght@400;700&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/base.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/header.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/verticals.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/investors.css?v=inv_2" />
+  <link rel="stylesheet" href="styles/services.css?v=svc_1" />
+</head>
+<body class="page-investors page-services">
+
+  <!-- ═══ C-01 · SITE HEADER ════════════════════ -->
+    <!-- ═══════════════════════════════════════════
+       C-01 · SITE HEADER — Мегаменю
+  ═══════════════════════════════════════════ -->
+    <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+
+      <!-- Логотип -->
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+      </a>
+
+      <!-- Основная навигация -->
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+
+        <!-- 1. Для инвесторов -->
+        <div class="nav-item" data-page="investors" data-also="portfolio restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry passport">
+          <a href="investors.html" class="nav-trigger">Для инвесторов</a>
+        </div>
+
+        <!-- 2. Для бизнеса -->
+        <div class="nav-item" data-page="business" data-also="form restaurant-form cabinet-hotel cabinet-restaurant certification-apply tools">
+          <a href="business.html" class="nav-trigger">Для бизнеса</a>
+        </div>
+
+                <!-- 3. Услуги -->
+        <div class="nav-item" data-page="services" data-also="certification certificate quality economics-ratings events-app cabinet-inspector">
+          <a href="services.html" class="nav-trigger">Услуги</a>
+        </div>
+
+        <!-- 4. О платформе -->
+        <div class="nav-item" data-mega="platform" data-page="about">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            О платформе
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--platform">
+            <span class="mega-group-title">Стандарты и документация системы</span>
+            <a href="about.html" class="mega-link">
+              <span class="mega-icon-badge">📖</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">О системе</span>
+                <span class="mega-link-desc">Методические рекомендации · Том I</span>
+              </span>
+            </a>
+            <a href="tech-spec.html" class="mega-link">
+              <span class="mega-icon-badge">🛠️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Tech Specification</span>
+                <span class="mega-link-desc">Архитектура, ER-схема, API · Том IV</span>
+              </span>
+            </a>
+            <a href="certification.html#methodology" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Том VIII. Сертификация</span>
+                <span class="mega-link-desc">O’z DSt 3220:2017 · реестр · контроль 5 лет</span>
+              </span>
+            </a>
+            <a href="support.html" class="mega-link">
+              <span class="mega-icon-badge">🏛️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Государственная поддержка</span>
+                <span class="mega-link-desc">Программы субсидий · Том V</span>
+              </span>
+            </a>
+            <a href="restaurants.html" class="mega-link">
+              <span class="mega-icon-badge">🍽️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Стандарты F&amp;B</span>
+                <span class="mega-link-desc">Ресторанные инвестиции · Том VI</span>
+              </span>
+            </a>
+            <a href="land.html" class="mega-link">
+              <span class="mega-icon-badge">🗺️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Земельные ресурсы</span>
+                <span class="mega-link-desc">Аукционы и кластеры · Том VII</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. B2B Cooperation (в последнюю очередь) -->
+        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+
+      </nav>
+
+      <!-- Правый блок -->
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" data-lang="ru" aria-pressed="true">RU</button>
+          <button class="lang-btn" data-lang="uz" aria-pressed="false">UZ</button>
+          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a href="cabinet-investor.html" class="btn-login" id="header-login">
+          <span>Кабинет</span>
+          <span class="btn-login-icon">→</span>
+        </a>
+      </div>
+
+      <!-- Мобильный гамбургер -->
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- Мобильная навигация -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Классы активов</span>
+      <a href="investors.html" class="mobile-nav-hub">Для инвесторов — обзор раздела</a>
+      <a href="portfolio.html">🏨 Гостиничные объекты</a>
+      <a href="restaurants.html">🍽 Ресторанные проекты</a>
+      <a href="land.html">🗺 Земельные участки</a>
+      <a href="support.html">🏛 Государственная поддержка</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Инструменты инвестора</span>
+      <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
+      <a href="tourism-types.html">📍 Виды туризма</a>
+      <a href="certification-registry.html#verify">✔ Проверить сертификат отеля</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
+      <a href="certification.html">🛡 Сертификация</a>
+      <a href="quality.html">⭐ Quality Management</a>
+      <a href="economics-ratings.html">📈 Economics Ratings</a>
+      <a href="events-app.html">🏛️ Государственные мероприятия</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для бизнеса</span>
+      <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
+      <a href="form.html" class="mobile-nav-cta">✨ Подать отель в реестр</a>
+      <a href="restaurant-form.html" class="mobile-nav-cta" style="background:var(--v-restaurants);border-color:var(--v-restaurants);margin-top:6px;">🍽 Подать ресторан в реестр</a>
+      <a href="form.html">⚡ Smart Investment Form</a>
+      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
+      <a href="cabinet-restaurant.html">🍽 Кабинет ресторатора</a>
+      <a href="passport.html">📄 Hotel Investment Passport</a>
+      <a href="restaurant-passport.html">📊 Restaurant Passport</a>
+      <a href="certification-apply.html">🛡 Заявка на сертификацию</a>
+      </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">О платформе</span>
+      <a href="about.html">📖 О системе (Том I)</a>
+      <a href="tech-spec.html">🛠️ Tech Specification (Том IV)</a>
+      <a href="certification.html#methodology">🛡 Том VIII. Сертификация</a>
+      <a href="b2b.html">🤝 B2B Cooperation</a>
+    </div>
+  </div>
+
+  <!-- ═══ УСЛУГИ ═══════════════════════════════════════════════
+       Раздел верхнего меню «Услуги». Задача страницы — понятность:
+       у каждой услуги «что это / кому / что получаете / с чего начать»,
+       плюс подбор услуги по задаче и таблица сравнения.
+  ════════════════════════════════════════════════════════════ -->
+  <main class="inv svc" id="main-content">
+
+    <!-- 1 · HERO: подбор услуги по задаче -->
+    <section class="inv-hero" aria-labelledby="svc-title">
+      <div class="svc-hero">
+        <div class="svc-hero-pattern" aria-hidden="true"></div>
+        <p class="inv-eyebrow">Услуги платформы</p>
+        <h1 class="svc-title" id="svc-title">Четыре официальных сервиса.<br /><span>Выберите, что нужно именно вам.</span></h1>
+
+        <div class="svc-pick" role="list">
+          <a href="#s-cert" class="pick" role="listitem">
+            <span class="app app--cert" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M8.8 12.2l2.3 2.3 4.2-4.5"/></svg></span>
+            <span class="pick-q">Подтвердить категорию отеля</span>
+            <span class="pick-a">Сертификация</span>
+          </a>
+          <a href="#s-kqi" class="pick" role="listitem">
+            <span class="app app--kqi" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.4"/></svg></span>
+            <span class="pick-q">Проверить и улучшить сервис</span>
+            <span class="pick-a">Quality Management</span>
+          </a>
+          <a href="#s-rate" class="pick" role="listitem">
+            <span class="app app--rate" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19V11M10 19V6M15 19v-5M20 19V9"/></svg></span>
+            <span class="pick-q">Сравнить отель с рынком</span>
+            <span class="pick-a">Economics Ratings</span>
+          </a>
+          <a href="#s-events" class="pick" role="listitem">
+            <span class="app app--events" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4M8.5 14h3"/></svg></span>
+            <span class="pick-q">Принять делегацию или мероприятие</span>
+            <span class="pick-a">Государственные мероприятия</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Локальная навигация -->
+    <nav class="inv-subnav" aria-label="Разделы страницы">
+      <div class="inv-subnav-inner lg">
+        <span class="inv-subnav-title">Услуги</span>
+        <div class="inv-subnav-links">
+          <a href="#s-cert">Сертификация</a>
+          <a href="#s-kqi">Качество</a>
+          <a href="#s-rate">Рейтинг</a>
+          <a href="#s-events">Мероприятия</a>
+          <a href="#compare">Сравнение</a>
+        </div>
+        <a href="certification-apply.html" class="inv-subnav-cta">Подать заявку</a>
+      </div>
+    </nav>
+
+    <!-- 2 · СЕРТИФИКАЦИЯ -->
+    <section class="inv-section svc-block" id="s-cert" aria-labelledby="s-cert-t">
+      <div class="svc-row" data-reveal>
+        <div class="svc-art svc-art--cert" aria-hidden="true">
+          <div class="vcard">
+            <div class="vcard-search"><span>UZ.TSM.TK.000123</span><b>Проверить</b></div>
+            <div class="vcard-res">
+              <span class="vcard-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4 8-9"/></svg></span>
+              <div>
+                <p class="vcard-st">Сертификат действует</p>
+                <p class="vcard-meta">★★★★★ · O'z DSt 3220:2017</p>
+              </div>
+            </div>
+            <div class="vcard-line"><span>Срок действия</span><b>5 лет</b></div>
+            <div class="vcard-line"><span>Контроль</span><b>ежегодная самоинспекция</b></div>
+            <p class="vcard-note">Пример номера — образец формата</p>
+          </div>
+        </div>
+        <div class="svc-info">
+          <p class="svc-kicker"><span class="app app--cert app--sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M8.8 12.2l2.3 2.3 4.2-4.5"/></svg></span>Сертификация · госуслуга</p>
+          <h2 class="svc-h2" id="s-cert-t">Официальное подтверждение категории гостиницы — онлайн.</h2>
+          <p class="svc-what">Центр сертификации туристских услуг подтверждает, что гостиница соответствует своей категории (звёздности) по стандарту O'z DSt 3220:2017. Заявка, проверка и сертификат — в электронном виде, без визита в Центр.</p>
+          <dl class="svc-facts">
+            <div><dt>Кому</dt><dd>Гостиницам и другим средствам размещения. Проверить сертификат может любой гость или инвестор.</dd></div>
+            <div><dt>Что получаете</dt><dd>Электронный сертификат на 5 лет, запись в открытом реестре и проверку подлинности по номеру или QR-коду.</dd></div>
+            <div><dt>Как начать</dt><dd>Подать заявку онлайн: категория, реквизиты, оплата сбора, чек-лист с фото, подпись E-IMZO.</dd></div>
+          </dl>
+          <ul class="svc-nums">
+            <li><b>2 р.д.</b><span>целевой срок выдачи при полном комплекте</span></li>
+            <li><b>5 лет</b><span>срок действия сертификата</span></li>
+            <li><b>≥80%</b><span>пунктов проверяет система</span></li>
+          </ul>
+          <div class="svc-cta">
+            <a href="certification-apply.html" class="inv-btn inv-btn--dark">Подать заявку</a>
+            <a href="certification-registry.html#verify" class="inv-btn inv-btn--ghost">Проверить сертификат</a>
+            <a href="certification.html" class="svc-more">Как это работает</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 · QUALITY MANAGEMENT -->
+    <section class="inv-section svc-block" id="s-kqi" aria-labelledby="s-kqi-t">
+      <div class="svc-row svc-row--flip" data-reveal>
+        <div class="svc-art svc-art--kqi" aria-hidden="true">
+          <div class="kqi">
+            <svg class="kqi-ring" viewBox="0 0 200 200" id="kqi-ring"></svg>
+            <div class="kqi-center"><b>QI</b><span>0–100</span></div>
+          </div>
+          <ul class="kqi-legend" id="kqi-legend"></ul>
+        </div>
+        <div class="svc-info">
+          <p class="svc-kicker"><span class="app app--kqi app--sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.4"/></svg></span>Quality Management · добровольно</p>
+          <h2 class="svc-h2" id="s-kqi-t">Самооценка качества: где отель хорош, а где теряет гостей.</h2>
+          <p class="svc-what">Чек-лист из 80 критериев в 8 блоках — от номеров и сервиса до безопасности и цифровизации. Балл QI Score от 0 до 100 считается сразу, пока вы отвечаете.</p>
+          <dl class="svc-facts">
+            <div><dt>Кому</dt><dd>Владельцам и управляющим, которые хотят найти слабые места. Инвесторам — для сравнения объектов.</dd></div>
+            <div><dt>Что получаете</dt><dd>Итоговый балл, разбор по каждому блоку и PDF-отчёт. Лучшие объекты попадают в рейтинг QI.</dd></div>
+            <div><dt>Как начать</dt><dd>Открыть чек-лист и отвечать по порядку — регистрация для самооценки не нужна.</dd></div>
+          </dl>
+          <p class="svc-diff"><b>Чем отличается от сертификации?</b> Сертификация — официальное подтверждение категории. KQI — ваш внутренний инструмент, чтобы улучшить сервис. Статус сертификата учитывается в блоке «Документооборот».</p>
+          <div class="svc-cta">
+            <a href="quality.html#q-checklist" class="inv-btn inv-btn--dark">Пройти чек-лист</a>
+            <a href="quality.html#q-rating" class="inv-btn inv-btn--ghost">Рейтинг QI</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · ECONOMICS RATINGS -->
+    <section class="inv-section svc-block" id="s-rate" aria-labelledby="s-rate-t">
+      <div class="svc-row" data-reveal>
+        <div class="svc-art svc-art--rate" aria-hidden="true">
+          <div class="board">
+            <div class="board-head"><span>Окупаемость</span><span id="board-sort">лучшие 4 из 32</span></div>
+            <ol class="board-list" id="board-list"></ol>
+            <div class="board-avg" id="board-avg"></div>
+          </div>
+        </div>
+        <div class="svc-info">
+          <p class="svc-kicker"><span class="app app--rate app--sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19V11M10 19V6M15 19v-5M20 19V9"/></svg></span>Economics Ratings · открытый рейтинг</p>
+          <h2 class="svc-h2" id="s-rate-t">Рейтинг отелей по деньгам: загрузка, тариф, прибыль, окупаемость.</h2>
+          <p class="svc-what">Все объекты реестра в одной таблице по методике USALI и STR: загрузка, средний тариф (ADR), доход на номер (RevPAR), маржа EBITDA, окупаемость и ROI.</p>
+          <dl class="svc-facts">
+            <div><dt>Кому</dt><dd>Инвесторам — быстро сравнить объекты. Отелям — увидеть себя на фоне рынка.</dd></div>
+            <div><dt>Что получаете</dt><dd>Сортировку по любому показателю, фильтры по региону и звёздности, средние значения по рынку.</dd></div>
+            <div><dt>Как начать</dt><dd>Открыть рейтинг — он доступен без регистрации.</dd></div>
+          </dl>
+          <ul class="svc-nums" id="rate-nums">
+            <li><b data-stat="avg-occ">—</b><span>средняя загрузка</span></li>
+            <li><b data-stat="avg-adr">—</b><span>средний тариф (ADR)</span></li>
+            <li><b data-stat="avg-payback">—</b><span>средняя окупаемость</span></li>
+          </ul>
+          <div class="svc-cta">
+            <a href="economics-ratings.html" class="inv-btn inv-btn--dark">Открыть рейтинг</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · ГОСУДАРСТВЕННЫЕ МЕРОПРИЯТИЯ -->
+    <section class="inv-section svc-block" id="s-events" aria-labelledby="s-events-t">
+      <div class="svc-row svc-row--flip" data-reveal>
+        <div class="svc-art svc-art--events" aria-hidden="true">
+          <div class="sched">
+            <div class="sched-head"><span>Расписание на сегодня</span><span class="sched-tag">Пример</span></div>
+            <ul class="sched-list">
+              <li><time>09:00</time><span class="sd sd--meet"></span><p><b>Встреча в аэропорту</b>Делегация · 12 гостей</p></li>
+              <li><time>11:30</time><span class="sd sd--hotel"></span><p><b>Заселение</b>Отель из реестра · 12 номеров</p></li>
+              <li><time>14:00</time><span class="sd sd--route"></span><p><b>Экскурсия</b>Маршрут и транспорт</p></li>
+              <li><time>19:00</time><span class="sd sd--vip"></span><p><b>Официальный ужин</b>VIP-протокол</p></li>
+            </ul>
+          </div>
+        </div>
+        <div class="svc-info">
+          <p class="svc-kicker"><span class="app app--events app--sm" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4M8.5 14h3"/></svg></span>Государственные мероприятия · по доступу</p>
+          <h2 class="svc-h2" id="s-events-t">Делегация, форум, визит — всё в одном окне.</h2>
+          <p class="svc-what">Рабочая система для подготовки государственных и международных мероприятий: гости, бронирование и размещение, встречи, транспорт и маршруты, экскурсии, питание, VIP-протокол, проводы и отчёты.</p>
+          <dl class="svc-facts">
+            <div><dt>Кому</dt><dd>Организаторам и ответственным сотрудникам, координаторам, отелям, принимающим гостей, полевым сотрудникам.</dd></div>
+            <div><dt>Что получаете</dt><dd>Каждый видит свои задачи и расписание, руководитель — общую картину по мероприятию.</dd></div>
+            <div><dt>Как начать</dt><dd>Войти по учётной записи. Для знакомства есть демо-доступ.</dd></div>
+          </dl>
+          <div class="svc-cta">
+            <a href="events-app.html" class="inv-btn inv-btn--dark">Открыть систему</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 · СРАВНЕНИЕ -->
+    <section class="inv-section" id="compare" aria-labelledby="compare-title">
+      <header class="inv-head">
+        <p class="inv-eyebrow">Коротко</p>
+        <h2 class="inv-h2" id="compare-title">Четыре услуги на одном экране.</h2>
+      </header>
+      <div class="cmp" data-reveal>
+        <table>
+          <thead>
+            <tr><th scope="col">Услуга</th><th scope="col">Что это</th><th scope="col">Для кого</th><th scope="col">Результат</th><th scope="col"><span class="visually-hidden">Ссылка</span></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><span class="app app--cert app--xs" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M8.8 12.2l2.3 2.3 4.2-4.5"/></svg></span>Сертификация</th>
+              <td data-label="Что это">Официальная госуслуга</td><td data-label="Для кого">Гостиницы</td><td data-label="Результат">Сертификат на 5 лет и запись в реестре</td>
+              <td class="cmp-go"><a href="certification-apply.html" class="tile-go">Заявка</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="app app--kqi app--xs" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.4"/></svg></span>Quality Management</th>
+              <td data-label="Что это">Добровольная самооценка</td><td data-label="Для кого">Владельцы и управляющие</td><td data-label="Результат">Балл QI 0–100 и PDF-отчёт</td>
+              <td class="cmp-go"><a href="quality.html#q-checklist" class="tile-go">Чек-лист</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="app app--rate app--xs" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19V11M10 19V6M15 19v-5M20 19V9"/></svg></span>Economics Ratings</th>
+              <td data-label="Что это">Открытый рейтинг</td><td data-label="Для кого">Инвесторы и отели</td><td data-label="Результат">Место отеля среди объектов реестра</td>
+              <td class="cmp-go"><a href="economics-ratings.html" class="tile-go">Рейтинг</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><span class="app app--events app--xs" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4M8.5 14h3"/></svg></span>Мероприятия</th>
+              <td data-label="Что это">Рабочая система, по доступу</td><td data-label="Для кого">Организаторы, отели, сотрудники</td><td data-label="Результат">Задачи и расписание по мероприятию</td>
+              <td class="cmp-go"><a href="events-app.html" class="tile-go">Войти</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 7 · С ЧЕГО НАЧАТЬ -->
+    <section class="inv-section" aria-labelledby="start-title">
+      <div class="start" data-reveal>
+        <div class="start-copy">
+          <h2 id="start-title">Отелю — с чего начать?</h2>
+          <p>Удобный порядок для гостиницы, которая хочет выглядеть сильно в глазах инвестора.</p>
+        </div>
+        <ol class="start-steps">
+          <li><span>1</span><div><b>Сертификация</b><small>Подтверждает категорию</small></div></li>
+          <li><span>2</span><div><b>Самооценка KQI</b><small>Статус сертификата уже учтён</small></div></li>
+          <li><span>3</span><div><b>Место в рейтинге</b><small>Цифры видят инвесторы</small></div></li>
+        </ol>
+        <a href="certification-apply.html" class="inv-btn inv-btn--light">Начать с сертификации</a>
+      </div>
+    </section>
+
+    <div style="height:72px" aria-hidden="true"></div>
+  </main>
+
+
+  <!-- ═══ FOOTER ════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+          </a>
+          <p class="footer-brand-desc">
+            Silk Route Invest&nbsp;— официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.
+          </p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация footer">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Платформа</p>
+            <a href="about.html"             class="footer-nav-link">О системе</a>
+            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
+            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
+            <a href="registries.html"         class="footer-nav-link">Реестры</a>
+            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+            <a href="certification.html" class="footer-nav-link">Сертификация</a>
+            <a href="certification-registry.html" class="footer-nav-link">Реестр сертифицированных</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
+            <a href="passport.html"  class="footer-nav-link">Том II. Hotel Investment Passport</a>
+            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
+            <a href="support.html"   class="footer-nav-link">Том V. Государственная поддержка</a>
+            <a href="restaurants.html" class="footer-nav-link">Том VI. Ресторанные инвестиции</a>
+            <a href="land.html"      class="footer-nav-link">Том VII. Земельные участки</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
+          Данные носят иллюстративный характер. Методология: STR Global / USALI / IFC.
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/hotels-data.js"></script>
+  <script src="js/megamenu.js?v=nav_inv_1"></script>
+  <script src="js/support-core.js"></script>
+  <script src="js/services.js?v=svc_1"></script>
+</body>
+</html>
