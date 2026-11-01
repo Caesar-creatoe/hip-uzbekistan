@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Для инвесторов: гостиничные объекты, ресторанные проекты, земельные участки и меры государственной поддержки в Узбекистане — с инвестиционными паспортами и проверенными данными." />
+  <meta name="theme-color" content="#F5F2EC" />
+  <title>Для инвесторов — Silk Route Invest · Комитет по туризму РУз</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=PT+Serif:wght@400;700&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/invest/hero-2400.webp" media="(min-width: 761px)" />
+  <link rel="preload" as="image" href="assets/invest/hero-1400.webp" media="(max-width: 760px)" />
+
+  <link rel="stylesheet" href="design-tokens.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/base.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/header.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/verticals.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/investors.css?v=inv_1" />
+</head>
+<body class="page-investors">
+
+  <!-- ═══ C-01 · SITE HEADER ════════════════════ -->
+    <!-- ═══════════════════════════════════════════
+       C-01 · SITE HEADER — Мегаменю
+  ═══════════════════════════════════════════ -->
+    <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+
+      <!-- Логотип -->
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+      </a>
+
+      <!-- Основная навигация -->
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+
+        <!-- 1. Для инвесторов -->
+        <div class="nav-item" data-page="investors" data-also="portfolio restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry passport">
+          <a href="investors.html" class="nav-trigger">Для инвесторов</a>
+        </div>
+
+        <!-- 2. Для бизнеса -->
+        <div class="nav-item" data-mega="hoteliers" data-page="hoteliers">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Для бизнеса
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--hoteliers">
+            <!-- Акцентная карточка подачи заявки -->
+            <div class="mega-featured-card">
+              <div>
+                <div class="mega-featured-tag">★ ГОСУДАРСТВЕННЫЙ РЕЕСТР</div>
+                <h4 class="mega-featured-title">Подать заявку на включение</h4>
+                <p class="mega-featured-desc">Внесите отель или ресторан в официальный реестр для привлечения институционального капитала.</p>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+                <a href="form.html" class="mega-featured-cta" style="padding:7px 12px;font-size:12px;">
+                  <span>Отели →</span>
+                </a>
+                <a href="restaurant-form.html" class="mega-featured-cta" style="padding:7px 12px;font-size:12px;background:var(--v-restaurants);border-color:var(--v-restaurants);">
+                  <span>Рестораны →</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Ссылки для бизнеса -->
+            <div>
+              <span class="mega-group-title">Личные кабинеты &amp; Паспорта</span>
+              <a href="cabinet-hotel.html" class="mega-link">
+                <span class="mega-icon-badge">🏨</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Кабинет отеля</span>
+                  <span class="mega-link-desc">Управление гостиничным объектом</span>
+                </span>
+              </a>
+              <a href="cabinet-restaurant.html" class="mega-link">
+                <span class="mega-icon-badge" style="color:var(--v-restaurants)">🍽</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Кабинет ресторатора</span>
+                  <span class="mega-link-desc">Управление ресторанным проектом</span>
+                </span>
+              </a>
+              <a href="passport.html" class="mega-link">
+                <span class="mega-icon-badge">📄</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Hotel Investment Passport</span>
+                  <span class="mega-link-desc">Стандарт USALI, финмодель, Том II</span>
+                </span>
+              </a>
+              <a href="restaurant-passport.html" class="mega-link">
+                <span class="mega-icon-badge" style="color:var(--v-restaurants)">📊</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Restaurant Passport</span>
+                  <span class="mega-link-desc">F&amp;B метрики, comp-set, Том VI</span>
+                </span>
+              </a>
+              <a href="certification-apply.html" class="mega-link">
+                <span class="mega-icon-badge">🛡</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Заявка на сертификацию</span>
+                  <span class="mega-link-desc">Подача и статус заявки</span>
+                </span>
+              </a>
+              <a href="support.html" class="mega-link">
+                <span class="mega-icon-badge" style="color:var(--v-support)">🏛</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Калькулятор господдержки</span>
+                  <span class="mega-link-desc">Нормативная база НПА и расчёт мер поддержки</span>
+                </span>
+              </a>
+              <a href="form.html" class="mega-link">
+                <span class="mega-icon-badge">⚡</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Smart Investment Form</span>
+                  <span class="mega-link-desc">Экспресс-расчёт ADR, RevPAR, EBITDA, IRR</span>
+                </span>
+              </a>
+              </div>
+
+            <!-- Партнёрский коммерческий сервис — отделён от госуслуг -->
+            <div style="border-top: 1px solid var(--color-border); margin-top: 8px; padding-top: 16px;">
+              <span class="mega-group-title" style="display:flex;align-items:center;gap:6px;">
+                Сервис партнёра
+              </span>
+              <a href="/tools/" class="mega-link">
+                <span class="mega-icon-badge">🛠</span>
+                <span class="mega-link-text">
+                  <span class="mega-link-label">Инструменты для отельеров</span>
+                  <span class="mega-link-desc">Excel-модели, чек-листы, AI-промпты — коммерческий сервис SRI Toolkit</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+                <!-- 3. Услуги -->
+        <div class="nav-item" data-mega="services" data-page="services">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Услуги
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--services">
+            <span class="mega-group-title">Официальные сервисы платформы</span>
+
+            <a href="certification.html" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Сертификация</span>
+                <span class="mega-link-desc">Электронная сертификация и реестр сертифицированных гостиниц</span>
+              </span>
+            </a>
+
+            <a href="quality.html" class="mega-link">
+              <span class="mega-icon-badge">⭐</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Quality Management</span>
+                <span class="mega-link-desc">Классификация KQI, чек-листы и стандарты сервиса</span>
+              </span>
+            </a>
+
+            <a href="economics-ratings.html" class="mega-link">
+              <span class="mega-icon-badge">📈</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Economics Ratings</span>
+                <span class="mega-link-desc">Рейтинг экономической эффективности и бенчмаркинг отелей</span>
+              </span>
+            </a>
+
+            <a href="events-app.html" class="mega-link" style="background:rgba(59,130,246,0.06);border-radius:8px;">
+              <span class="mega-icon-badge">🏛️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label" style="color:var(--color-accent-blue,#3b82f6)">Государственные мероприятия</span>
+                <span class="mega-link-desc">Система «одного окна» для делегаций и MICE</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. О платформе -->
+        <div class="nav-item" data-mega="platform" data-page="about">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            О платформе
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--platform">
+            <span class="mega-group-title">Стандарты и документация системы</span>
+            <a href="about.html" class="mega-link">
+              <span class="mega-icon-badge">📖</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">О системе</span>
+                <span class="mega-link-desc">Методические рекомендации · Том I</span>
+              </span>
+            </a>
+            <a href="tech-spec.html" class="mega-link">
+              <span class="mega-icon-badge">🛠️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Tech Specification</span>
+                <span class="mega-link-desc">Архитектура, ER-схема, API · Том IV</span>
+              </span>
+            </a>
+            <a href="certification.html#methodology" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Том VIII. Сертификация</span>
+                <span class="mega-link-desc">O’z DSt 3220:2017 · реестр · контроль 5 лет</span>
+              </span>
+            </a>
+            <a href="support.html" class="mega-link">
+              <span class="mega-icon-badge">🏛️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Государственная поддержка</span>
+                <span class="mega-link-desc">Программы субсидий · Том V</span>
+              </span>
+            </a>
+            <a href="restaurants.html" class="mega-link">
+              <span class="mega-icon-badge">🍽️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Стандарты F&amp;B</span>
+                <span class="mega-link-desc">Ресторанные инвестиции · Том VI</span>
+              </span>
+            </a>
+            <a href="land.html" class="mega-link">
+              <span class="mega-icon-badge">🗺️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Земельные ресурсы</span>
+                <span class="mega-link-desc">Аукционы и кластеры · Том VII</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. B2B Cooperation (в последнюю очередь) -->
+        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+
+      </nav>
+
+      <!-- Правый блок -->
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" data-lang="ru" aria-pressed="true">RU</button>
+          <button class="lang-btn" data-lang="uz" aria-pressed="false">UZ</button>
+          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a href="cabinet-investor.html" class="btn-login" id="header-login">
+          <span>Кабинет</span>
+          <span class="btn-login-icon">→</span>
+        </a>
+      </div>
+
+      <!-- Мобильный гамбургер -->
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- Мобильная навигация -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Классы активов</span>
+      <a href="investors.html" class="mobile-nav-hub">Для инвесторов — обзор раздела</a>
+      <a href="portfolio.html">🏨 Гостиничные объекты</a>
+      <a href="restaurants.html">🍽 Ресторанные проекты</a>
+      <a href="land.html">🗺 Земельные участки</a>
+      <a href="support.html">🏛 Государственная поддержка</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Инструменты инвестора</span>
+      <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
+      <a href="tourism-types.html">📍 Виды туризма</a>
+      <a href="certification-registry.html#verify">✔ Проверить сертификат отеля</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="certification.html">🛡 Сертификация</a>
+      <a href="quality.html">⭐ Quality Management</a>
+      <a href="economics-ratings.html">📈 Economics Ratings</a>
+      <a href="events-app.html">🏛️ Государственные мероприятия</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для бизнеса</span>
+      <a href="form.html" class="mobile-nav-cta">✨ Подать отель в реестр</a>
+      <a href="restaurant-form.html" class="mobile-nav-cta" style="background:var(--v-restaurants);border-color:var(--v-restaurants);margin-top:6px;">🍽 Подать ресторан в реестр</a>
+      <a href="form.html">⚡ Smart Investment Form</a>
+      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
+      <a href="cabinet-restaurant.html">🍽 Кабинет ресторатора</a>
+      <a href="passport.html">📄 Hotel Investment Passport</a>
+      <a href="restaurant-passport.html">📊 Restaurant Passport</a>
+      <a href="certification-apply.html">🛡 Заявка на сертификацию</a>
+      </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">О платформе</span>
+      <a href="about.html">📖 О системе (Том I)</a>
+      <a href="tech-spec.html">🛠️ Tech Specification (Том IV)</a>
+      <a href="certification.html#methodology">🛡 Том VIII. Сертификация</a>
+      <a href="b2b.html">🤝 B2B Cooperation</a>
+    </div>
+  </div>
+
+  <!-- ═══ ДЛЯ ИНВЕСТОРОВ ═══════════════════════════════════════
+       Раздел верхнего меню «Для инвесторов»: всё, что было в его
+       выпадающем меню, собрано на одной странице.
+       Цифры считает js/investors.js из тех же данных, что и каталоги.
+  ════════════════════════════════════════════════════════════ -->
+  <main class="inv" id="main-content">
+
+    <!-- 1 · HERO -->
+    <section class="inv-hero" aria-labelledby="inv-title">
+      <div class="inv-hero-frame">
+        <picture class="inv-hero-media">
+          <source media="(max-width: 760px)" srcset="assets/invest/hero-1400.webp" />
+          <img src="assets/invest/hero-2400.webp" alt="Гостиница в узбекском архитектурном стиле на закате" fetchpriority="high" />
+        </picture>
+        <div class="inv-hero-shade" aria-hidden="true"></div>
+
+        <div class="inv-hero-copy">
+          <p class="inv-eyebrow inv-eyebrow--light">Для инвесторов</p>
+          <h1 class="inv-hero-title" id="inv-title">
+            Гостиничные активы Узбекистана.
+            <span>С данными, которым можно доверять.</span>
+          </h1>
+          <p class="inv-hero-lead">
+            Отели, рестораны и земельные участки из государственного реестра — с инвестиционными паспортами по USALI, финансовыми моделями и мерами господдержки.
+          </p>
+          <div class="inv-hero-actions">
+            <a href="portfolio.html" class="inv-btn inv-btn--light">Смотреть объекты</a>
+            <a href="#path" class="inv-btn inv-btn--glass">Как это работает</a>
+          </div>
+        </div>
+
+        <dl class="inv-hero-stats lg" aria-label="Реестр в цифрах">
+          <div><dt data-forms="отель|отеля|отелей" data-of="hotels">отеля</dt><dd data-stat="hotels">32</dd></div>
+          <div><dt data-forms="ресторанный проект|ресторанных проекта|ресторанных проектов" data-of="restaurants">ресторанных проектов</dt><dd data-stat="restaurants">6</dd></div>
+          <div><dt data-forms="земельный лот|земельных лота|земельных лотов" data-of="land">земельных лотов</dt><dd data-stat="land">8</dd></div>
+          <div><dt data-forms="мера поддержки|меры поддержки|мер поддержки" data-of="support">мер поддержки</dt><dd data-stat="support">17</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Локальная навигация по странице -->
+    <nav class="inv-subnav" id="inv-subnav" aria-label="Разделы страницы">
+      <div class="inv-subnav-inner lg">
+        <span class="inv-subnav-title">Для инвесторов</span>
+        <div class="inv-subnav-links">
+          <a href="#assets">Активы</a>
+          <a href="#geo">География</a>
+          <a href="#featured">Объекты</a>
+          <a href="#path">Путь инвестора</a>
+          <a href="#tools">Инструменты</a>
+        </div>
+        <a href="cabinet-investor.html" class="inv-subnav-cta">Кабинет</a>
+      </div>
+    </nav>
+
+    <!-- 2 · КЛАССЫ АКТИВОВ -->
+    <section class="inv-section" id="assets" aria-labelledby="assets-title">
+      <header class="inv-head">
+        <p class="inv-eyebrow">Классы активов</p>
+        <h2 class="inv-h2" id="assets-title">Выберите, во что вложить.</h2>
+        <p class="inv-lead">Каждый объект проходит проверку и получает паспорт с ключевыми показателями — до того, как попадает на витрину.</p>
+      </header>
+
+      <div class="inv-bento">
+
+        <!-- Отели -->
+        <a href="portfolio.html" class="tile tile--hotels" data-reveal>
+          <div class="tile-slides" id="hotel-slides" aria-hidden="true"></div>
+          <div class="tile-shade" aria-hidden="true"></div>
+          <div class="tile-top">
+            <span class="tile-kicker">Гостиничные объекты</span>
+          </div>
+          <div class="tile-panel lg">
+            <div class="tile-panel-main">
+              <p class="tile-big"><span data-stat="hotels">32</span> <small data-forms="объект|объекта|объектов" data-of="hotels">объекта</small></p>
+              <p class="tile-sub" id="hotel-sub">3★–5★ · курорты, бутик-отели, городские</p>
+            </div>
+            <dl class="tile-facts">
+              <div><dt>Регионов</dt><dd data-stat="hotel-regions">7</dd></div>
+              <div><dt>Номеров</dt><dd data-stat="rooms">—</dd></div>
+              <div><dt>Цена</dt><dd data-stat="price-range">по запросу</dd></div>
+            </dl>
+            <span class="tile-go">Открыть каталог</span>
+          </div>
+        </a>
+
+        <!-- Рестораны -->
+        <a href="restaurants.html" class="tile tile--rest" data-reveal>
+          <img class="tile-img" src="assets/invest/restaurants-1400.webp" alt="" loading="lazy" />
+          <div class="tile-shade" aria-hidden="true"></div>
+          <div class="tile-top">
+            <span class="tile-kicker">Ресторанные проекты</span>
+          </div>
+          <div class="tile-panel lg">
+            <div class="tile-panel-main">
+              <p class="tile-big"><span data-stat="restaurants">6</span> <small data-forms="проект|проекта|проектов" data-of="restaurants">проектов</small></p>
+              <p class="tile-sub">F&amp;B · fine dining, франшизы, MICE</p>
+            </div>
+            <dl class="tile-facts">
+              <div><dt>IRR</dt><dd data-stat="rest-irr">—</dd></div>
+              <div><dt>Вход</dt><dd data-stat="rest-min">—</dd></div>
+            </dl>
+            <span class="tile-go">Смотреть проекты</span>
+          </div>
+        </a>
+
+        <!-- Земля -->
+        <a href="land.html" class="tile tile--land" data-reveal>
+          <div class="tile-topo" aria-hidden="true"></div>
+          <svg class="tile-plot" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <path class="plot-area" d="M520 214 L640 196 L668 300 L590 338 L512 312 Z" />
+            <path class="plot-edge" d="M520 214 L640 196 L668 300 L590 338 L512 312 Z" />
+            <circle class="plot-pin" cx="590" cy="268" r="6" />
+          </svg>
+          <span class="tile-coord" id="land-coord">41.49° N · 69.58° E</span>
+          <div class="tile-top">
+            <span class="tile-kicker tile-kicker--dark">Земельные участки</span>
+          </div>
+          <div class="tile-panel tile-panel--paper">
+            <div class="tile-panel-main">
+              <p class="tile-big"><span data-stat="land">8</span> <small data-forms="лот|лота|лотов" data-of="land">лотов</small></p>
+              <p class="tile-sub">Аренда на 49 лет, E-Auksion, ГЧП</p>
+            </div>
+            <dl class="tile-facts">
+              <div><dt>Площадь</dt><dd data-stat="land-area">—</dd></div>
+              <div><dt>Старт</dt><dd data-stat="land-min">—</dd></div>
+            </dl>
+            <span class="tile-go">Выбрать участок</span>
+          </div>
+        </a>
+
+        <!-- Господдержка -->
+        <a href="support.html" class="tile tile--support" data-reveal>
+          <div class="tile-top">
+            <span class="tile-kicker">Государственная поддержка</span>
+          </div>
+          <p class="support-num"><span data-stat="support">17</span></p>
+          <p class="support-cap"><span data-forms="действующая мера|действующие меры|действующих мер" data-of="support">действующих мер</span> для инвесторов и операторов</p>
+          <ul class="support-kinds" id="support-kinds" aria-label="Виды поддержки"></ul>
+          <span class="tile-go tile-go--light">Рассчитать поддержку</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3 · ГЕОГРАФИЯ -->
+    <section class="inv-section" id="geo" aria-labelledby="geo-title">
+      <header class="inv-head">
+        <p class="inv-eyebrow">География</p>
+        <h2 class="inv-h2" id="geo-title">Объекты в <span data-stat="all-regions">10</span> <span data-forms="регионе|регионах|регионах" data-of="all-regions">регионах</span> страны.</h2>
+        <p class="inv-lead">Наведите на регион, чтобы увидеть, что там есть. Нажмите — откроется каталог с фильтром по региону.</p>
+      </header>
+
+      <div class="geo lg" data-reveal>
+        <div class="geo-map-wrap" id="geo-map-wrap">
+          <svg class="geo-map" viewBox="0 0 1000 646" data-k="0.754710" data-minx="42.245502" data-maxy="45.558719" data-s="77.157647" role="img" aria-label="Карта регионов Узбекистана">
+<path class="geo-region" data-region="fergana" data-cx="896" data-cy="408" d="M920.6,429.7L920.9,430.5L919.6,435.4L919.0,436.4L918.1,436.6L916.6,436.1L914.2,434.6L913.6,433.5L914.6,432.4L916.0,432.3L919.2,430.2L920.6,429.7ZM933.9,408.7L934.6,409.5L933.4,410.6L923.6,409.7L920.1,415.0L915.3,418.0L911.5,408.9L909.4,413.6L905.2,413.2L900.6,408.8L896.1,406.2L891.4,405.9L889.7,403.9L886.6,408.5L878.0,407.7L874.6,408.3L872.5,410.5L852.9,413.5L850.5,411.8L847.2,402.4L838.3,400.7L839.1,398.1L837.3,393.7L839.9,391.1L844.5,389.9L847.2,385.9L859.5,376.5L864.0,372.1L868.2,371.6L870.9,369.1L875.7,370.4L882.3,370.1L878.6,375.2L890.7,381.3L898.8,373.6L908.8,369.2L912.3,375.1L913.7,373.7L921.5,375.6L926.0,381.0L936.9,382.7L939.1,381.3L941.5,383.9L946.0,385.7L946.4,393.4L938.9,396.0L937.2,400.4L930.6,404.5L930.7,406.8L933.9,408.7ZM875.4,416.7L881.1,423.9L884.7,425.6L887.9,424.4L889.1,425.3L885.1,429.4L887.8,434.2L887.6,436.5L884.3,437.8L880.6,438.5L878.4,436.3L875.4,437.7L877.5,429.5L874.6,428.2L872.1,422.8L873.6,417.7L875.4,416.7Z"/>
+<path class="geo-region" data-region="tashkent-region" data-cx="802" data-cy="338" d="M889.4,259.3L888.8,262.2L881.8,265.1L873.6,271.2L865.9,272.2L864.1,280.8L854.4,283.3L846.1,291.1L843.1,296.8L826.5,307.1L825.3,309.1L828.5,312.7L836.7,313.6L844.1,320.5L839.8,328.1L840.1,330.6L842.2,331.7L840.5,336.6L843.4,341.3L843.3,350.5L840.0,348.7L837.8,349.2L836.2,357.4L833.0,361.2L817.2,370.4L805.2,374.5L798.7,380.3L796.1,378.9L788.1,369.1L783.8,367.0L779.9,368.0L777.6,370.6L776.4,382.9L770.0,385.2L776.6,402.4L776.2,406.2L770.6,405.9L770.8,408.2L775.0,412.0L775.0,413.9L769.9,414.8L762.7,412.2L763.8,408.1L762.5,404.2L765.6,393.4L764.1,389.7L765.2,389.1L762.8,388.6L765.5,383.5L762.4,383.8L763.6,381.7L761.6,378.1L758.0,378.5L758.6,375.8L755.2,376.4L755.8,374.3L752.8,372.2L752.2,369.3L745.5,363.5L743.3,363.7L741.4,358.9L738.0,355.5L741.5,353.0L745.2,345.0L749.2,343.2L751.4,339.7L755.1,339.0L760.2,335.6L761.0,322.5L765.9,321.3L771.1,316.2L781.8,315.1L780.6,311.7L781.3,309.7L786.2,307.5L794.8,300.2L811.5,296.7L815.0,292.7L823.1,288.0L828.5,279.5L832.4,277.2L837.5,269.8L844.0,267.5L847.8,272.7L850.4,273.3L852.2,272.5L859.4,259.4L865.7,259.7L875.7,252.4L879.4,252.9L889.4,259.3Z"/>
+<path class="geo-region" data-region="namangan" data-cx="891" data-cy="343" d="M844.1,320.5L855.5,315.4L861.4,324.6L861.5,333.3L864.9,332.5L869.9,336.8L876.3,337.1L882.0,339.5L885.4,343.4L885.7,337.8L886.9,337.2L888.9,338.2L891.0,343.0L893.8,339.6L897.8,343.0L899.4,339.2L899.3,324.9L905.4,328.9L909.0,326.8L912.0,318.5L909.6,313.6L911.4,309.8L914.0,309.5L915.0,313.6L914.0,318.9L915.4,317.2L916.9,319.0L918.3,316.8L924.2,325.4L925.6,336.7L931.8,336.7L935.1,339.7L939.4,336.6L942.3,337.2L943.9,348.6L942.7,351.8L944.5,351.2L942.3,359.3L936.4,360.1L923.5,358.2L912.4,360.2L908.8,364.1L910.4,367.5L898.8,373.6L892.0,381.0L878.6,375.2L882.3,370.1L875.7,370.4L870.9,369.1L868.2,371.6L864.0,372.1L860.7,375.2L861.3,372.0L852.9,368.3L853.3,365.9L857.6,368.0L857.7,366.6L843.3,350.5L843.4,341.3L840.5,336.6L842.2,331.7L840.1,330.6L839.8,328.1L844.1,320.5Z"/>
+<path class="geo-region" data-region="andijan" data-cx="953" data-cy="373" d="M952.5,346.1L956.1,350.0L961.2,351.1L961.3,354.0L964.9,355.1L969.2,361.0L971.4,362.0L983.7,362.2L983.8,365.8L991.5,361.8L994.5,364.4L999.7,364.6L1000.0,366.1L995.5,370.1L978.8,377.2L976.7,384.5L971.8,384.3L969.5,389.5L967.2,389.6L959.2,385.7L955.3,381.7L953.6,382.5L954.3,389.4L957.9,393.5L956.1,398.9L945.4,396.1L946.4,395.1L948.5,394.0L946.4,393.4L945.2,384.9L941.5,383.9L939.1,381.3L936.9,382.7L926.0,381.0L922.1,376.0L918.4,374.6L913.0,373.7L912.6,375.2L908.8,369.2L910.4,367.5L908.8,364.1L912.4,360.2L918.4,358.6L941.7,359.6L944.5,351.2L950.0,349.9L952.5,346.1Z"/>
+<path class="geo-region" data-region="syrdarya" data-cx="743" data-cy="399" d="M762.7,412.2L759.5,411.0L746.9,414.1L737.6,414.7L736.9,413.3L738.9,407.1L721.4,411.5L706.4,410.6L705.9,405.0L712.8,389.1L712.7,388.1L709.8,388.3L710.2,382.8L714.8,381.7L715.7,377.8L727.1,383.8L730.2,381.1L736.0,381.9L735.2,380.3L736.7,377.4L735.7,373.7L733.6,373.0L732.8,370.9L733.1,362.6L733.4,358.4L734.5,358.9L738.0,355.5L741.4,358.9L743.3,363.7L746.8,364.1L751.9,368.9L752.8,372.2L755.8,374.3L755.2,376.4L758.6,375.8L758.0,378.5L761.6,378.1L763.6,381.7L762.4,383.8L765.5,383.5L762.8,388.6L765.2,389.1L764.1,389.7L765.6,393.4L762.5,404.2L763.8,408.1L762.7,412.2ZM754.4,417.6L757.1,419.6L757.1,423.9L751.5,423.4L747.5,425.9L745.3,422.7L744.5,424.2L751.5,438.3L749.0,439.3L744.4,430.4L746.0,438.0L743.4,442.8L740.1,439.1L737.5,440.6L738.2,437.0L736.3,435.2L738.1,435.4L738.5,432.4L737.4,425.3L740.7,420.3L754.4,417.6Z"/>
+<path class="geo-region" data-region="jizzakh" data-cx="684" data-cy="404" d="M737.6,414.7L734.0,416.2L740.7,420.3L737.1,426.1L738.5,432.4L738.1,435.4L736.3,435.2L738.2,437.0L736.0,442.2L735.1,456.5L729.7,462.3L730.3,463.7L719.8,465.3L683.7,458.0L676.2,462.6L671.5,463.4L670.4,464.5L670.6,468.2L667.4,468.6L659.7,461.4L659.3,454.8L659.8,453.4L663.6,452.5L664.2,445.8L671.1,443.1L669.7,435.3L668.7,433.7L645.8,429.0L643.8,426.7L643.5,423.6L638.6,423.6L638.2,419.3L640.3,417.9L640.6,415.4L636.5,408.9L635.5,400.0L636.6,395.2L635.1,392.0L619.8,390.7L630.4,369.1L628.5,365.1L628.3,360.4L622.7,358.7L620.6,356.4L619.5,345.2L620.7,343.1L627.9,339.9L631.2,340.8L685.5,337.5L690.6,339.6L696.5,336.3L702.2,348.4L703.6,347.5L705.0,348.4L707.0,346.6L707.8,349.5L706.0,350.7L707.2,354.4L704.9,361.5L699.7,366.3L704.1,368.1L715.7,377.8L714.8,381.7L710.1,383.2L709.8,388.3L712.7,388.1L712.8,389.1L705.9,405.0L706.0,410.0L708.2,411.2L721.4,411.5L739.1,407.1L736.9,413.3L737.6,414.7Z"/>
+<path class="geo-region" data-region="samarkand" data-cx="607" data-cy="439" d="M667.4,468.6L664.5,483.4L662.8,483.6L645.8,479.9L644.9,483.0L636.9,483.2L635.6,482.1L636.0,478.2L634.6,474.8L623.8,472.8L620.6,474.1L617.8,478.0L613.5,479.8L606.4,475.4L596.6,477.4L586.8,481.4L582.5,480.0L581.8,474.4L575.5,468.9L573.7,464.2L572.0,463.2L569.1,463.6L568.7,466.6L565.2,468.8L540.4,468.1L536.6,459.5L538.7,452.6L536.8,445.5L532.7,439.9L540.2,437.9L542.2,434.6L546.3,436.5L550.8,436.2L553.5,428.1L552.0,425.9L555.0,417.8L563.4,420.5L565.8,423.6L576.7,427.7L589.2,424.9L593.6,421.0L594.3,418.7L590.6,417.5L595.3,406.9L594.1,404.5L595.4,400.6L594.5,395.4L596.8,393.1L595.9,387.4L599.0,382.1L605.7,384.5L613.5,380.6L617.8,384.8L617.8,388.3L620.3,391.0L635.1,392.0L636.6,395.2L635.5,400.0L636.5,408.9L640.6,415.4L640.3,417.9L638.2,419.3L638.6,423.6L643.5,423.6L643.8,426.7L645.8,429.0L668.7,433.7L669.7,435.3L671.1,443.1L664.2,445.8L663.6,452.5L659.8,453.4L659.3,454.8L659.7,461.4L667.4,468.6Z"/>
+<path class="geo-region" data-region="kashkadarya" data-cx="608" data-cy="513" d="M662.8,483.6L662.3,489.1L664.0,490.7L671.0,493.2L675.7,493.4L681.4,496.8L681.2,505.8L674.3,507.3L672.0,509.7L674.4,518.3L672.9,528.9L668.3,526.7L664.9,528.2L660.5,536.4L655.8,539.1L651.1,544.8L649.2,553.3L642.0,559.6L634.8,563.1L632.0,569.8L624.4,577.4L622.5,584.6L620.8,585.8L620.1,583.7L616.0,581.1L607.5,579.9L601.6,577.0L597.2,571.7L576.5,562.2L572.9,562.7L568.6,565.9L560.7,564.9L537.4,548.5L524.2,536.0L504.2,525.8L488.7,510.7L497.6,501.7L518.8,493.4L516.1,486.1L521.5,479.7L524.2,478.9L533.5,470.2L540.4,468.1L565.2,468.8L568.7,466.6L570.2,463.1L573.3,463.6L575.5,468.9L581.8,474.4L582.5,480.0L586.8,481.4L596.6,477.4L606.4,475.4L613.5,479.8L617.8,478.0L620.6,474.1L623.8,472.8L634.6,474.8L636.0,478.2L635.6,482.1L636.9,483.2L644.9,483.0L645.8,479.9L662.8,483.6Z"/>
+<path class="geo-region" data-region="surkhandarya" data-cx="669" data-cy="575" d="M681.2,505.8L689.6,508.1L697.2,505.9L701.3,507.6L704.7,506.4L706.1,507.7L710.2,518.0L708.1,521.1L704.1,522.4L704.6,527.1L702.4,529.8L703.4,541.8L706.4,550.9L711.9,558.4L719.5,564.5L721.2,569.8L714.7,587.2L707.3,590.3L703.1,601.7L690.2,619.6L688.4,627.6L689.7,637.0L687.4,645.8L685.4,642.7L678.8,640.8L674.6,643.4L671.3,638.6L664.7,643.4L657.0,646.1L654.1,641.6L649.1,638.6L647.6,634.1L642.3,630.7L626.5,632.3L624.1,633.9L612.5,631.1L615.6,625.6L612.5,620.1L614.0,612.1L613.9,600.0L621.3,587.4L620.8,585.8L623.4,582.7L624.4,577.4L632.0,569.8L635.4,562.4L642.0,559.6L649.2,553.3L651.1,544.8L655.8,539.1L660.5,536.4L665.3,527.8L669.2,526.9L672.9,528.9L674.4,518.3L672.1,509.1L674.3,507.3L681.2,505.8Z"/>
+<path class="geo-region" data-region="karakalpakstan" data-cx="195" data-cy="250" d="M179.3,18.1L294.7,90.7L297.2,94.4L298.6,102.1L302.0,107.3L350.0,159.4L352.4,160.3L358.7,170.6L361.6,173.2L378.2,177.9L343.9,244.0L342.6,260.9L350.6,276.1L335.8,285.3L377.9,345.5L361.7,352.8L342.9,329.8L336.8,325.6L319.7,321.7L316.6,323.2L312.3,329.5L308.2,328.4L303.7,321.6L297.9,319.8L277.3,302.4L272.3,293.3L266.4,291.8L261.7,283.4L260.2,276.5L251.6,274.3L247.2,277.6L243.1,278.6L243.9,281.8L242.6,284.3L239.5,280.8L229.5,278.3L229.6,275.4L234.2,273.8L233.4,263.3L236.7,260.2L230.0,255.6L226.6,251.1L216.3,250.7L200.9,252.5L197.2,249.4L192.8,248.7L190.4,246.4L189.1,239.0L184.6,233.9L183.2,233.1L176.6,234.6L170.0,232.3L152.1,213.5L149.0,224.1L143.6,224.6L132.9,221.4L124.9,226.4L126.4,228.9L135.7,233.8L146.4,251.6L141.0,252.4L140.3,244.7L136.8,241.3L129.7,238.4L125.6,239.5L122.5,236.2L118.8,236.0L112.6,241.4L114.2,247.3L111.4,254.4L107.8,257.0L109.2,259.8L107.9,260.7L102.8,260.8L95.7,263.1L81.9,262.0L76.4,264.6L71.7,269.1L66.4,278.3L58.4,282.7L56.7,284.9L58.0,294.0L57.3,301.8L60.3,308.7L60.8,315.8L64.0,321.3L69.0,323.3L64.3,326.9L61.4,331.5L47.6,329.5L0.2,326.9L0.0,43.5L148.8,0.0L179.3,18.1Z"/>
+<path class="geo-region" data-region="navoi" data-cx="523" data-cy="358" d="M519.1,141.7L523.0,143.6L541.3,165.2L555.6,174.5L571.8,206.9L589.6,198.2L586.8,240.6L584.5,243.5L584.2,274.4L613.1,275.1L615.1,294.6L623.8,336.4L627.9,339.9L620.7,343.1L619.5,345.2L620.5,356.0L621.9,358.3L628.3,360.4L628.5,365.1L630.4,369.1L619.8,390.7L617.7,388.0L617.8,384.8L613.5,380.6L606.9,384.3L599.8,381.9L597.6,383.4L595.7,388.6L596.8,393.1L594.5,395.4L595.4,400.6L594.1,404.5L595.3,406.9L590.6,417.5L594.0,418.2L594.4,419.8L589.9,424.6L576.7,427.7L570.4,425.9L565.8,423.6L563.4,420.5L555.3,417.6L552.0,425.9L553.5,428.1L550.8,436.2L546.3,436.5L542.2,434.6L540.2,437.9L533.3,439.4L532.6,440.2L536.8,445.5L538.6,452.0L536.6,459.5L540.4,468.1L533.5,470.2L532.1,464.2L526.7,460.1L524.5,452.1L517.0,447.8L511.7,448.4L511.1,446.6L506.7,443.9L501.6,436.0L506.4,427.6L512.0,424.2L515.6,417.4L519.9,415.7L516.4,410.6L518.2,406.9L516.8,405.4L516.7,401.8L521.6,400.2L526.4,402.9L533.3,403.0L539.9,388.0L545.3,388.2L545.1,380.9L546.8,374.1L526.3,373.7L520.6,372.3L516.6,369.5L512.7,355.4L509.0,358.9L495.7,361.1L492.6,369.3L476.9,367.4L474.4,366.5L473.2,357.1L469.8,354.1L466.4,356.9L458.8,370.4L451.8,372.9L448.5,366.8L430.9,356.0L422.0,350.9L407.8,346.0L399.9,332.1L390.1,320.6L386.8,313.8L381.9,313.7L361.3,321.5L335.9,286.3L337.1,284.2L350.6,276.1L342.6,260.9L343.9,244.0L378.2,178.7L377.3,177.4L361.6,173.2L352.4,160.3L421.1,149.0L492.1,155.2L519.1,141.7Z"/>
+<path class="geo-region" data-region="khorezm" data-cx="297" data-cy="324" d="M247.5,292.7L249.0,291.6L248.4,289.4L242.6,284.3L243.9,281.8L243.1,278.6L252.6,274.2L260.2,276.5L261.7,283.4L266.4,291.8L272.3,293.3L277.3,302.4L297.9,319.8L303.7,321.6L308.2,328.4L312.3,329.5L316.6,323.2L319.7,321.7L336.8,325.6L342.9,329.8L352.8,340.7L360.0,352.1L364.7,351.8L374.2,362.5L376.8,368.1L373.8,374.7L361.7,389.9L356.6,377.9L353.4,373.7L349.8,360.6L349.1,350.5L343.7,342.1L330.7,332.5L317.8,328.6L311.0,338.6L306.7,339.7L298.4,334.4L293.9,335.0L293.2,333.4L291.3,336.1L288.5,333.2L284.4,332.2L272.7,332.9L265.7,335.3L260.1,334.8L251.8,327.8L238.2,320.1L239.0,310.7L243.9,306.6L237.2,293.6L240.3,290.4L247.5,292.7Z"/>
+<path class="geo-region" data-region="bukhara" data-cx="472" data-cy="406" d="M477.7,510.3L474.3,509.0L450.3,491.3L436.8,475.0L385.3,437.4L377.2,428.2L375.3,420.0L376.2,413.9L371.4,395.7L361.7,389.9L373.8,374.7L376.8,368.1L374.2,362.5L364.7,351.8L377.9,345.5L377.9,344.4L361.3,321.5L381.9,313.7L386.8,313.8L390.1,320.6L399.9,332.1L407.8,346.0L422.0,350.9L430.9,356.0L448.5,366.8L451.8,372.9L458.8,370.4L466.4,356.9L469.8,354.1L473.2,357.1L474.4,366.5L492.6,369.3L495.7,361.1L509.0,358.9L513.5,355.5L516.6,369.5L520.6,372.3L526.3,373.7L546.8,374.1L545.1,380.9L545.3,388.2L539.9,388.0L537.6,394.9L535.2,397.4L533.3,403.0L526.4,402.9L521.6,400.2L517.3,401.1L516.5,403.9L518.2,406.9L516.4,410.6L519.9,415.7L515.6,417.4L512.0,424.2L506.4,427.6L501.6,436.0L506.7,443.9L511.1,446.6L511.7,448.4L517.0,447.8L524.5,452.1L526.7,460.1L532.1,464.2L533.5,470.2L524.2,478.9L521.5,479.7L516.5,485.5L518.8,493.4L497.6,501.7L488.7,510.7L485.5,507.4L477.7,510.3Z"/>
+<path class="geo-region" data-region="tashkent" data-cx="772" data-cy="327" d="M773.4,320.6L778.7,323.2L778.0,326.0L779.6,328.7L772.6,334.8L770.8,334.4L770.4,332.0L769.5,333.0L767.5,329.5L766.3,329.9L768.3,323.7L771.4,320.6L773.4,320.6Z"/>
+<g class="geo-pins"></g></svg>
+          <div class="geo-tip lg" id="geo-tip" role="status" aria-live="polite" hidden></div>
+        </div>
+        <aside class="geo-side">
+          <ol class="geo-list" id="geo-list" aria-label="Регионы"></ol>
+          <div class="geo-legend">
+            <span><i class="lg-dot lg-dot--hotel"></i>Отели</span>
+            <span><i class="lg-dot lg-dot--rest"></i>Рестораны</span>
+            <span><i class="lg-dot lg-dot--land"></i>Земельные лоты</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 4 · ОБЪЕКТЫ РЕЕСТРА -->
+    <section class="inv-section inv-section--wide" id="featured" aria-labelledby="featured-title">
+      <header class="inv-head inv-head--row">
+        <div>
+          <p class="inv-eyebrow">Из реестра</p>
+          <h2 class="inv-h2" id="featured-title">Объекты с ценой и паспортом.</h2>
+        </div>
+        <div class="rail-ctrl">
+          <button type="button" class="rail-btn lg" data-rail="-1" aria-label="Назад"><svg viewBox="0 0 20 20"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
+          <button type="button" class="rail-btn lg" data-rail="1" aria-label="Вперёд"><svg viewBox="0 0 20 20"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
+        </div>
+      </header>
+      <div class="rail" id="rail" role="list"></div>
+    </section>
+
+    <!-- 5 · ПУТЬ ИНВЕСТОРА -->
+    <section class="inv-section" id="path" aria-labelledby="path-title">
+      <header class="inv-head">
+        <p class="inv-eyebrow">Путь инвестора</p>
+        <h2 class="inv-h2" id="path-title">От первого просмотра до доступа к данным.</h2>
+      </header>
+
+      <ol class="path" data-reveal>
+        <li class="path-step">
+          <span class="path-n">01</span>
+          <h3>Выберите объект</h3>
+          <p>Фильтры по региону, звёздности, модели сделки и окупаемости.</p>
+          <a href="portfolio.html">Каталог отелей</a>
+        </li>
+        <li class="path-step">
+          <span class="path-n">02</span>
+          <h3>Изучите паспорт</h3>
+          <p>Hotel Investment Passport: финмодель, ADR, RevPAR, EBITDA по стандарту USALI.</p>
+          <a href="passport.html">Пример паспорта</a>
+        </li>
+        <li class="path-step">
+          <span class="path-n">03</span>
+          <h3>Посчитайте поддержку</h3>
+          <p>Калькулятор подберёт субсидии и компенсации, положенные проекту.</p>
+          <a href="support.html">Калькулятор</a>
+        </li>
+        <li class="path-step">
+          <span class="path-n">04</span>
+          <h3>Сохраните и запросите</h3>
+          <p>Избранное, заявки и доступ к Data Room — в кабинете инвестора.</p>
+          <a href="cabinet-investor.html">Кабинет инвестора</a>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 6 · ИНСТРУМЕНТЫ ИНВЕСТОРА -->
+    <section class="inv-section" id="tools" aria-labelledby="tools-title">
+      <header class="inv-head">
+        <p class="inv-eyebrow">Инструменты инвестора</p>
+        <h2 class="inv-h2" id="tools-title">Всё под рукой.</h2>
+      </header>
+
+      <div class="tools">
+        <!-- Кабинет -->
+        <a href="cabinet-investor.html" class="tool" data-reveal>
+          <div class="tool-art tool-art--cabinet" aria-hidden="true">
+            <div class="mini lg">
+              <div class="mini-head"><span>Избранное</span><span class="mini-badge">Data Room</span></div>
+              <ul class="mini-list" id="mini-fav"></ul>
+            </div>
+          </div>
+          <div class="tool-body">
+            <h3>Кабинет инвестора</h3>
+            <p>Избранные объекты, ваши заявки и доступ к Data Room.</p>
+            <span class="tool-go">Открыть кабинет</span>
+          </div>
+        </a>
+
+        <!-- Виды туризма -->
+        <a href="tourism-types.html" class="tool" data-reveal>
+          <div class="tool-art tool-art--types" aria-hidden="true">
+            <span class="chip">Культурный</span>
+            <span class="chip chip--on">Горный</span>
+            <span class="chip">MICE</span>
+            <span class="chip">Гастро</span>
+            <span class="chip chip--on">Экотуризм</span>
+            <span class="chip">Оздоровительный</span>
+            <span class="chip">Деловой</span>
+          </div>
+          <div class="tool-body">
+            <h3>Виды туризма</h3>
+            <p>Культурный, горный, MICE, гастро — где какой спрос и какие объекты.</p>
+            <span class="tool-go">Изучить направления</span>
+          </div>
+        </a>
+
+        <!-- Проверка сертификата -->
+        <div class="tool tool--form" data-reveal>
+          <div class="tool-art tool-art--verify" aria-hidden="true">
+            <svg class="seal" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" class="seal-ring" />
+              <circle cx="60" cy="60" r="40" class="seal-ring seal-ring--in" />
+              <path d="M42 61 L55 73 L79 47" class="seal-check" />
+            </svg>
+          </div>
+          <div class="tool-body">
+            <h3>Проверить сертификат отеля</h3>
+            <p>Введите номер сертификата или отсканируйте QR-код на документе.</p>
+            <form class="verify" action="certification-registry.html" method="get" id="verify-form">
+              <label class="visually-hidden" for="verify-no">Номер сертификата</label>
+              <input id="verify-no" name="no" type="text" placeholder="UZ.TSM.TK.000123" autocomplete="off" spellcheck="false" required />
+              <button type="submit">Проверить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 · ФИНАЛ -->
+    <section class="inv-final" aria-labelledby="final-title">
+      <div class="inv-final-frame">
+        <img src="assets/invest/final-1800.webp" alt="" loading="lazy" class="inv-final-img" />
+        <div class="inv-final-card lg">
+          <h2 id="final-title">Начните с каталога.</h2>
+          <p><span data-stat="hotels">32</span> <span data-forms="отель|отеля|отелей" data-of="hotels">отеля</span>, <span data-stat="restaurants">6</span> <span data-forms="ресторанный проект|ресторанных проекта|ресторанных проектов" data-of="restaurants">ресторанных проектов</span> и <span data-stat="land">8</span> <span data-forms="земельный лот|земельных лота|земельных лотов" data-of="land">земельных лотов</span> — с данными, открытыми для инвестора.</p>
+          <div class="inv-hero-actions">
+            <a href="portfolio.html" class="inv-btn inv-btn--dark">Смотреть объекты</a>
+            <a href="cabinet-investor.html" class="inv-btn inv-btn--ghost">Кабинет инвестора</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══ FOOTER ════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+          </a>
+          <p class="footer-brand-desc">
+            Silk Route Invest&nbsp;— официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.
+          </p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация footer">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Платформа</p>
+            <a href="about.html"             class="footer-nav-link">О системе</a>
+            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
+            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
+            <a href="registries.html"         class="footer-nav-link">Реестры</a>
+            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+            <a href="certification.html" class="footer-nav-link">Сертификация</a>
+            <a href="certification-registry.html" class="footer-nav-link">Реестр сертифицированных</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
+            <a href="passport.html"  class="footer-nav-link">Том II. Hotel Investment Passport</a>
+            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
+            <a href="support.html"   class="footer-nav-link">Том V. Государственная поддержка</a>
+            <a href="restaurants.html" class="footer-nav-link">Том VI. Ресторанные инвестиции</a>
+            <a href="land.html"      class="footer-nav-link">Том VII. Земельные участки</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
+          Данные носят иллюстративный характер. Методология: STR Global / USALI / IFC.
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/hotels-data.js"></script>
+  <script src="js/megamenu.js?v=nav_inv_1"></script>
+  <script src="js/support-core.js"></script>
+  <script src="js/investors.js?v=inv_1"></script>
+</body>
+</html>

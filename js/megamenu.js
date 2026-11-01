@@ -114,7 +114,14 @@
 
   /* ── Активный пункт навигации ───────────────────────────── */
   const currentPath = (window.location.pathname.split('/').pop() || 'index.html').split('?')[0];
-  
+  const currentPage = currentPath.replace(/\.html$/, '');
+
+  // Пункт-ссылка на страницу раздела подсвечивается и на её подстраницах
+  // (data-also="portfolio land …" — имена страниц без .html)
+  document.querySelectorAll('.nav-item[data-also]').forEach(item => {
+    if (item.dataset.also.split(/\s+/).includes(currentPage)) item.classList.add('active');
+  });
+
   document.querySelectorAll('.nav-item').forEach(item => {
     // Проверяем внутренние ссылки выпадающего меню
     const internalLinks = item.querySelectorAll('a');

@@ -1092,6 +1092,15 @@ window.addEventListener('storage', (e) => {
   }
 });
 
+/* ?region=samarkand — переход с карты на странице «Для инвесторов» */
+(function applyRegionFromUrl() {
+  const key = new URLSearchParams(location.search).get('region');
+  if (key && regionSelect && regionSelect.querySelector(`option[value="${CSS.escape(key)}"]`)) {
+    regionSelect.value = key;
+    filterState.region = key;
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   initCardInteractions();
   applyFiltersAndSort();

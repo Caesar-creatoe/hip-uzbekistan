@@ -589,6 +589,11 @@
   border-bottom: none;
 }
 
+.mobile-nav-hub {
+  font-weight: 700 !important;
+  color: var(--color-text-primary, #1A1412) !important;
+}
+
 .mobile-nav-cta {
   font-weight: 700 !important;
   color: var(--color-accent, #A47E3B) !important;
