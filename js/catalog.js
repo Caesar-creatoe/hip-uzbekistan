@@ -223,6 +223,14 @@ function applyTint(img) {
   card.classList.add('is-tinted');
 }
 
+/* Для оптимизированных фото (assets/hotels/*.webp) в карточке берём
+   облегчённую версию «-card» — она рассчитана на размер карточки на Retina */
+function cardPhotoSrc(src) {
+  if (typeof src !== 'string') return src;
+  const m = src.match(/^(\/?assets\/hotels\/[^?#]+?)(?<!-card)\.webp$/);
+  return m ? `${m[1]}-card.webp` : src;
+}
+
 /* ── Иконки карточки ─────────────────────────────────────────── */
 const ICON_STAR = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75l2.2 4.6 5.05.62-3.72 3.48.95 5-4.48-2.47-4.48 2.47.95-5L2.75 7.97l5.05-.62L10 2.75z" fill="currentColor"/></svg>';
 const ICON_COMPARE = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7h11M12 4l3 3-3 3M16 13H5M8 10l-3 3 3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -233,7 +241,7 @@ function buildCard(hotel, index) {
   const rawPhoto = (Array.isArray(hotel.photos) && hotel.photos.length > 0 && hotel.photos[0])
     ? hotel.photos[0]
     : './assets/hotel-hero.png';
-  const photo = typeof rawPhoto === 'object' && rawPhoto !== null ? (rawPhoto.src || './assets/hotel-hero.png') : rawPhoto;
+  const photo = cardPhotoSrc(typeof rawPhoto === 'object' && rawPhoto !== null ? (rawPhoto.src || './assets/hotel-hero.png') : rawPhoto);
 
   const passportUrl = `passport.html?hotel=${encodeURIComponent(hotel.slug || hotel.id)}`;
   const palette = getHotelPalette(hotel);
@@ -292,11 +300,9 @@ function buildCard(hotel, index) {
 
       <div class="hcard-body">
         <p class="hcard-price">${priceHtml}</p>
+        <h3 class="hcard-name" title="${escHtml(hotel.hotelName)}">${escHtml(hotel.hotelName)}</h3>
         <div class="hcard-row">
-          <div class="hcard-id">
-            <h3 class="hcard-name" title="${escHtml(hotel.hotelName)}">${escHtml(hotel.hotelName)}</h3>
-            <p class="hcard-loc" title="${escHtml(locText)}">${escHtml(locText)}</p>
-          </div>
+          <p class="hcard-loc" title="${escHtml(locText)}">${escHtml(locText)}</p>
           <dl class="hcard-stats">
             <div><dt>Номеров</dt><dd>${escHtml(roomsVal)}</dd></div>
             <div><dt>${escHtml(ecoLbl)}</dt><dd>${escHtml(ecoVal)}</dd></div>
@@ -574,7 +580,7 @@ function renderAmbient(allHotels) {
   const box = document.getElementById('cat-hero-ambient');
   if (!box || !allHotels.length) return;
   const pick = allHotels
-    .map(h => { const p = h.photos && h.photos[0]; return typeof p === 'object' && p ? p.src : p; })
+    .map(h => { const p = h.photos && h.photos[0]; return cardPhotoSrc(typeof p === 'object' && p ? p.src : p); })
     .filter(Boolean).slice(0, 3);
   if (!pick.length) return;
   box.innerHTML = pick.map((src, i) => `<img src="${src}" alt="" class="amb amb-${i}" decoding="async" />`).join('');

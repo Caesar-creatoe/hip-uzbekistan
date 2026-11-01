@@ -608,8 +608,8 @@
 
 .hotel-full-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
-  gap: 32px 28px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 262px), 1fr));
+  gap: 26px 20px;
 }
 
 .hcard {
@@ -618,8 +618,8 @@
   --my: 0%;
   position: relative;
   isolation: isolate;
-  aspect-ratio: 4 / 5;
-  border-radius: 26px;
+  aspect-ratio: 3 / 4;
+  border-radius: 22px;
   overflow: hidden;
   background: rgb(var(--tint-rgb));
   color: #fff;
@@ -656,7 +656,7 @@
   position: absolute;
   inset: 0;
   z-index: 3;
-  background: radial-gradient(520px circle at var(--mx) var(--my),
+  background: radial-gradient(380px circle at var(--mx) var(--my),
     rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 42%);
   opacity: 0;
   transition: opacity 0.45s ease;
@@ -701,39 +701,39 @@
   inset: 0;
   -webkit-backdrop-filter: blur(22px) saturate(1.25);
   backdrop-filter: blur(22px) saturate(1.25);
-  -webkit-mask-image: linear-gradient(180deg, transparent 40%, #000 68%);
-  mask-image: linear-gradient(180deg, transparent 40%, #000 68%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 54%, #000 80%);
+  mask-image: linear-gradient(180deg, transparent 54%, #000 80%);
 }
 .hcard-shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 20%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0) 18%),
     linear-gradient(180deg,
-      rgba(var(--tint-rgb), 0)    36%,
-      rgba(var(--tint-rgb), 0.40) 52%,
-      rgba(var(--tint-rgb), 0.82) 67%,
-      rgba(var(--tint-rgb), 0.96) 80%,
+      rgba(var(--tint-rgb), 0)    48%,
+      rgba(var(--tint-rgb), 0.38) 60%,
+      rgba(var(--tint-rgb), 0.80) 72%,
+      rgba(var(--tint-rgb), 0.95) 83%,
       rgb(var(--tint-rgb))        100%);
 }
 
 /* Бейдж категории — белое матовое стекло */
 .hcard-pill {
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 12px;
+  left: 12px;
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 30px;
-  padding: 0 12px 0 10px;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px 0 8px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.86);
   -webkit-backdrop-filter: blur(12px) saturate(1.8);
   backdrop-filter: blur(12px) saturate(1.8);
   color: var(--c-ink);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   box-shadow:
     inset 0 1px 0 #fff,
@@ -741,7 +741,7 @@
     0 6px 16px -8px rgba(0, 0, 0, 0.45);
   pointer-events: none;
 }
-.hcard-pill svg { width: 14px; height: 14px; color: var(--c-star); }
+.hcard-pill svg { width: 12px; height: 12px; color: var(--c-star); }
 
 /* Текстовый блок */
 .hcard-body {
@@ -750,28 +750,25 @@
   right: 0;
   bottom: 0;
   z-index: 2;
-  padding: 0 20px 16px;
+  padding: 0 16px 13px;
 }
 
 .hcard-price {
-  margin: 0 0 8px;
+  margin: 0 0 3px;
   color: #fff;
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.18);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.28);
 }
 
 .hcard-row {
   display: flex;
   align-items: center;
-  gap: 14px;
-}
-.hcard-id {
-  flex: 1;
-  min-width: 0;
+  gap: 10px;
+  margin-top: 6px;
 }
 .hcard-name,
 .hcard-loc {
@@ -782,15 +779,18 @@
 }
 .hcard-name {
   font-family: var(--f-ui);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.35;
   letter-spacing: 0;
   color: rgba(255, 255, 255, 0.96);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
 }
 .hcard-loc {
-  font-size: 13px;
-  line-height: 1.4;
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.35;
   color: rgba(255, 255, 255, 0.66);
 }
 
@@ -803,7 +803,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 9px;
   text-align: center;
 }
 .hcard-stats > div + div { border-left: 1px solid rgba(255, 255, 255, 0.22); }
@@ -812,15 +812,15 @@
   order: -1;
   margin: 0;
   color: #fff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.35;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 .hcard-stats dt {
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 11px;
+  line-height: 1.35;
   color: rgba(255, 255, 255, 0.66);
   white-space: nowrap;
 }
@@ -829,11 +829,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-top: 14px;
-  padding-top: 12px;
+  gap: 10px;
+  margin-top: 11px;
+  padding-top: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
-  font-size: 12.5px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.58);
 }
 .hcard-deal {
@@ -859,8 +859,8 @@
 /* Кнопки «Сравнить» и «Презентация» — тёмное стекло на фото */
 .hcard-tools {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 10px;
+  right: 10px;
   z-index: 5;
   display: flex;
   gap: 8px;
@@ -868,8 +868,8 @@
 .hcard-tool {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   padding: 0;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -881,7 +881,7 @@
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, opacity 0.3s ease, transform 0.3s var(--ease-out);
 }
-.hcard-tool svg { width: 16px; height: 16px; }
+.hcard-tool svg { width: 15px; height: 15px; }
 .hcard-tool:hover { background: rgba(255, 255, 255, 0.3); }
 .hcard-tool:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .hcard-tool.is-selected {
@@ -1069,8 +1069,8 @@
   .cat-status { margin-left: auto; }
 
   .hotel-full-grid { gap: 20px; }
-  .hcard { border-radius: 24px; }
-  .hcard-price { font-size: 24px; }
+  .hcard { border-radius: 22px; aspect-ratio: 4 / 5; }
+  .hcard-price { font-size: 22px; }
 
   .page-portfolio .compare-bar {
     flex-wrap: wrap;
@@ -1080,8 +1080,8 @@
 }
 
 @media (max-width: 380px) {
-  .hcard-stats > div { padding: 0 8px; }
-  .hcard-body { padding: 0 16px 14px; }
+  .hcard-stats > div { padding: 0 7px; }
+  .hcard-body { padding: 0 14px 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
