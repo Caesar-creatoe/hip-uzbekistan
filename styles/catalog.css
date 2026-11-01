@@ -1,940 +1,1093 @@
 /* ============================================================
-   CATALOG.CSS — Редизайн страницы каталога /portfolio
+   CATALOG.CSS — Каталог отелей /portfolio
    Silk Route Invest · Комитет по туризму РУз
-   Apple-Inspired Luxury Real Estate Edition
+
+   Идея: фото отеля «перетекает» в цвет карточки (цвет снимается
+   с самой фотографии в js/catalog.js), поверх — матовое стекло.
+   Структура:
+     0. Токены и фон страницы
+     1. Hero: заголовок, факты, регионы
+     2. Панель поиска и фильтров (sticky, liquid glass)
+     3. Сетка и карточка отеля
+     4. Сравнение (плавающая панель, модальное окно)
+     5. Пустое состояние
+     6. Адаптив и reduced motion
    ============================================================ */
 
-:root {
-  --cat-bg: #F7F5F0;
-  --cat-card-bg: #181412;
-  --cat-card-border: rgba(214, 199, 174, 0.38);
-  --cat-card-shadow: 0 16px 40px -10px rgba(24, 20, 18, 0.14);
-  --cat-card-hover-shadow: 0 30px 64px -12px rgba(24, 20, 18, 0.28);
-  --cat-gold: #B38E5D;
-  --cat-gold-light: #D6C7AE;
-  --cat-ink: #1C1815;
-  --cat-muted: #7A7067;
+/* ═══ 0. ТОКЕНЫ ═══════════════════════════════════════════════ */
+.page-portfolio {
+  --c-bg: #F3EFE8;
+  --c-ink: #1D1915;
+  --c-ink-2: #4B4239;
+  --c-muted: #857A6F;
+  --c-line: rgba(70, 50, 30, 0.10);
+  --c-brown: #8B6F4E;
+  --c-star: #F2B705;
+
+  --f-ui: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --f-serif: 'PT Serif', Georgia, 'Times New Roman', serif;
+
+  --glass-bg: rgba(255, 253, 250, 0.62);
+  --glass-rim: rgba(255, 255, 255, 0.85);
+  --glass-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(120, 90, 60, 0.06),
+    0 1px 2px rgba(40, 25, 10, 0.04),
+    0 24px 48px -28px rgba(40, 25, 10, 0.30);
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.3, 1.35, 0.5, 1);
+  --container: 1320px;
+
+  background: var(--c-bg);
+  font-family: var(--f-ui);
+  color: var(--c-ink);
 }
 
-/* ═══ 1. PAGE HEADER (Apple-Inspired Editorial) ══════════════ */
-.page-header {
-  background: linear-gradient(180deg, #F9F7F2 0%, #F5F1E8 100%);
-  padding-top: calc(var(--header-height, 76px) + 36px);
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(214, 199, 174, 0.5);
+/* Полоса «Отели / Рестораны / …» пряталась под плавающей шапкой и
+   оставляла пустой призрак сверху — на этой странице её заменяет hero */
+.page-portfolio .vertical-switcher { display: none; }
+
+
+/* ═══ 1. HERO ═════════════════════════════════════════════════ */
+.cat-hero {
   position: relative;
-}
-
-.page-header-inner {
-  max-width: var(--container-max, 1320px);
-  margin: 0 auto;
-  padding: 0 32px 28px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 40px;
-  align-items: end;
-}
-
-/* Breadcrumb */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.breadcrumb-link {
-  font-family: var(--font-body, -apple-system, sans-serif);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cat-muted);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.breadcrumb-link:hover {
-  color: var(--cat-ink);
-}
-
-.breadcrumb-sep {
-  font-size: 11px;
-  color: rgba(122, 112, 103, 0.45);
-}
-
-.breadcrumb-current {
-  font-family: var(--font-body, -apple-system, sans-serif);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cat-gold);
-}
-
-/* Kicker Badge */
-.page-kicker-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 12px;
-  background: rgba(179, 142, 93, 0.12);
-  border: 1px solid rgba(179, 142, 93, 0.3);
-  border-radius: 9999px;
-  font-family: var(--font-mono, monospace);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--cat-gold);
-  margin-bottom: 14px;
-}
-
-.page-kicker-badge .pk-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #34C759;
-  box-shadow: 0 0 8px rgba(52, 199, 89, 0.8);
-}
-
-/* Headline & Subtitle */
-.page-title {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-  font-size: clamp(32px, 3.6vw, 46px);
-  font-weight: 800;
-  color: var(--cat-ink);
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-  margin: 0 0 14px;
-}
-
-.page-title .text-gold {
-  color: var(--cat-gold);
-  font-weight: 700;
-}
-
-.page-subtitle {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-  font-size: 15px;
-  color: #5C5248;
-  line-height: 1.55;
-  max-width: 64ch;
-  margin: 0;
-}
-
-/* Right Side: Air Stats Block */
-.page-header-stats {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  background: #FFFFFF;
-  padding: 16px 28px;
-  border-radius: 20px;
-  border: 1px solid rgba(214, 199, 174, 0.55);
-  box-shadow: 0 10px 28px -6px rgba(44, 30, 20, 0.05);
-}
-
-.ph-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-}
-
-.ph-stat-num {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", monospace;
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--cat-ink);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.ph-stat-label {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--cat-muted);
-}
-
-.ph-stat-sep {
-  width: 1px;
-  height: 32px;
-  background: rgba(214, 199, 174, 0.6);
-  flex-shrink: 0;
-}
-
-.page-header-ornament {
-  display: block;
-  width: 100%;
+  isolation: isolate;
   overflow: hidden;
-  margin-top: 10px;
+  padding: calc(18px + var(--header-height, 64px) + 64px) 0 44px;
 }
 
-
-/* ═══ 2. STREAMLINED FILTER & COMPACT STICKY BAR ══════════════ */
-.catalog-filter-section {
-  position: sticky;
-  top: calc(var(--header-height, 76px) + 8px);
-  z-index: 85;
-  margin-top: -24px;
-  margin-bottom: 24px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+/* Цветной свет из фотографий отелей (заполняет js/catalog.js) */
+.cat-hero-ambient {
+  position: absolute;
+  inset: -12% -6% -20%;
+  z-index: -2;
+  filter: blur(80px) saturate(1.2);
+  opacity: 0.42;
+  pointer-events: none;
 }
-
-.catalog-filter-inner {
-  max-width: var(--container-max, 1320px);
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-.glass-filter-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid rgba(214, 199, 174, 0.65);
-  border-radius: 24px;
-  padding: 16px 20px;
-  box-shadow:
-    0 20px 44px -10px rgba(44, 30, 20, 0.09),
-    0 2px 6px rgba(44, 30, 20, 0.02);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* 1. Главная строка фильтров */
-.glass-filter-primary {
-  display: grid;
-  grid-template-columns: 1.8fr 1.25fr 1fr 1.2fr 1.35fr auto;
-  gap: 10px;
-  align-items: center;
-}
-
-.glass-field {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background: #F8F6F2;
-  border: 1px solid rgba(214, 199, 174, 0.55);
-  border-radius: 9999px;
-  padding: 0 14px;
-  height: 44px;
-  transition: all 0.2s ease;
-}
-
-.glass-field:hover {
-  background: #FFFFFF;
-  border-color: var(--cat-gold);
-  box-shadow: 0 2px 10px rgba(44, 30, 20, 0.04);
-}
-
-.glass-field:focus-within {
-  background: #FFFFFF;
-  border-color: var(--cat-gold);
-  box-shadow: 0 0 0 3px rgba(179, 142, 93, 0.2);
-}
-
-.glass-field-icon {
-  font-size: 14px;
-  margin-right: 8px;
-  flex-shrink: 0;
-  opacity: 0.85;
-}
-
-.glass-input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: transparent;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 13.5px;
-  color: var(--cat-ink);
-  outline: none;
-}
-
-.glass-input::placeholder {
-  color: #8C8278;
-}
-
-.glass-search-clear {
-  background: none;
-  border: none;
-  color: #8C8278;
-  font-size: 13px;
-  cursor: pointer;
-  padding: 2px 6px;
+.cat-hero-ambient .amb {
+  position: absolute;
+  object-fit: cover;
   border-radius: 50%;
 }
-.glass-search-clear:hover {
-  color: var(--cat-ink);
-  background: rgba(0,0,0,0.06);
-}
+.cat-hero-ambient .amb-0 { width: 42%; height: 70%; left: -4%;  top: 12%; }
+.cat-hero-ambient .amb-1 { width: 40%; height: 64%; right: -2%; top: -8%; }
+.cat-hero-ambient .amb-2 { width: 34%; height: 56%; left: 40%;  top: 38%; opacity: 0.8; }
 
-.glass-select {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: transparent;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--cat-ink);
-  cursor: pointer;
-  outline: none;
-  appearance: none;
-  -webkit-appearance: none;
-  padding-right: 20px;
-}
-
-.glass-field--select::after {
-  content: "▾";
+.cat-hero::after {
+  content: '';
   position: absolute;
-  right: 14px;
-  font-size: 11px;
-  color: #8C8278;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(243, 239, 232, 0.25) 0%, rgba(243, 239, 232, 0.55) 55%, var(--c-bg) 100%);
   pointer-events: none;
 }
 
-/* Кнопка "Фильтры" / Advanced toggle */
-.glass-btn-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 44px;
-  padding: 0 16px;
-  background: #F8F6F2;
-  border: 1px solid rgba(214, 199, 174, 0.6);
-  border-radius: 9999px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--cat-ink);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+.cat-hero-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 56px;
+  align-items: end;
 }
 
-.glass-btn-toggle:hover {
-  background: #FFFFFF;
-  border-color: var(--cat-gold);
-}
-
-.glass-btn-toggle.is-active {
-  background: var(--cat-ink);
-  color: #FFFFFF;
-  border-color: var(--cat-ink);
-}
-
-.filter-toggle-icon {
-  font-size: 10px;
-  transition: transform 0.2s ease;
-}
-
-.glass-btn-toggle.is-active .filter-toggle-icon {
-  transform: rotate(180deg);
-}
-
-/* 2. Вторичная строка: быстрые теги + счетчик */
-.glass-filter-secondary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(214, 199, 174, 0.35);
-  transition: all 0.25s ease;
-}
-
-.glass-quick-tags {
+.cat-crumbs {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--c-muted);
+}
+.cat-crumbs a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.cat-crumbs a:hover { color: var(--c-ink); }
+.cat-crumbs [aria-current] { color: var(--c-ink-2); }
+
+.cat-title {
+  margin: 22px 0 18px;
+  font-family: var(--f-ui);
+  font-size: clamp(40px, 5.2vw, 72px);
+  font-weight: 600;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  color: var(--c-ink);
+}
+.cat-title em {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--c-brown);
 }
 
-.glass-tag-btn {
+.cat-lead {
+  max-width: 54ch;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--c-ink-2);
+}
+
+.cat-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  margin: 36px 0 0;
+}
+.cat-fact {
+  min-width: 120px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(70, 50, 30, 0.18);
+}
+.cat-fact dt {
+  font-size: 13px;
+  color: var(--c-muted);
+}
+.cat-fact dd {
+  margin: 4px 0 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ink);
+  white-space: nowrap;
+}
+
+/* Регионы — стеклянная панель с пропорциональной полосой */
+.cat-regions {
+  padding: 20px 20px 14px;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(24px) saturate(1.7);
+  backdrop-filter: blur(24px) saturate(1.7);
+  border: 1px solid var(--glass-rim);
+  box-shadow: var(--glass-shadow);
+}
+.cat-regions-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+.cat-regions-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-ink);
+}
+.cat-regions-total {
+  font-size: 13px;
+  color: var(--c-muted);
+}
+.cat-regions-bar {
+  display: flex;
+  gap: 3px;
+  height: 10px;
+  margin: 14px 4px 12px;
+}
+.cat-regions-seg {
+  min-width: 6px;
+  border-radius: 3px;
+  transition: opacity 0.35s ease, flex-grow 0.5s var(--ease-out);
+}
+.cat-regions-seg:first-child { border-radius: 999px 3px 3px 999px; }
+.cat-regions-seg:last-child  { border-radius: 3px 999px 999px 3px; }
+.cat-regions-seg.is-dim { opacity: 0.22; }
+
+.cat-regions-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cat-region {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  color: var(--c-ink-2);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.25s ease, color 0.2s ease;
+}
+.cat-region:hover { background: rgba(255, 255, 255, 0.7); color: var(--c-ink); }
+.cat-region.is-active {
+  background: #fff;
+  color: var(--c-ink);
+  box-shadow: 0 1px 2px rgba(40, 25, 10, 0.06), 0 6px 14px -8px rgba(40, 25, 10, 0.25);
+}
+.cat-region.is-dim { opacity: 0.5; }
+.cat-region-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.cat-region-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cat-region-n {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ink);
+}
+.cat-region:focus-visible {
+  outline: 2px solid var(--c-brown);
+  outline-offset: 1px;
+}
+
+
+/* ═══ 2. ПОИСК И ФИЛЬТРЫ ══════════════════════════════════════ */
+.catalog-filter-section {
+  position: sticky;
+  top: calc(18px + var(--header-height, 64px) + 8px);
+  z-index: 85;
+  margin: 4px 0 32px;
+}
+
+.catalog-filter-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+  transition: max-width 0.4s var(--ease-out);
+}
+
+.cat-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 26px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  backdrop-filter: blur(28px) saturate(1.8);
+  border: 1px solid var(--glass-rim);
+  box-shadow: var(--glass-shadow);
+  transition: padding 0.3s var(--ease-out), border-radius 0.3s var(--ease-out),
+              background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cat-toolbar-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.5fr) repeat(3, minmax(150px, 1fr)) auto;
+  gap: 8px;
+}
+
+.cat-search,
+.cat-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(70, 50, 30, 0.08);
+  color: var(--c-muted);
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, height 0.3s var(--ease-out);
+}
+.cat-search { cursor: text; }
+.cat-search:hover,
+.cat-select:hover { background: #fff; }
+.cat-search:focus-within,
+.cat-select:focus-within {
+  background: #fff;
+  border-color: rgba(139, 111, 78, 0.45);
+  box-shadow: 0 0 0 4px rgba(139, 111, 78, 0.14);
+}
+.cat-select.is-set {
+  background: #fff;
+  border-color: rgba(139, 111, 78, 0.35);
+}
+.cat-select.is-set .cat-ico { color: var(--c-brown); }
+
+.cat-ico {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.cat-search-input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 15px;
+  color: var(--c-ink);
+}
+.cat-search-input::placeholder { color: #9A8F84; }
+
+.cat-search-clear {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(70, 50, 30, 0.08);
+  color: var(--c-ink-2);
+  cursor: pointer;
+}
+.cat-search-clear[hidden] { display: none; }
+.cat-search-clear svg { width: 10px; height: 10px; }
+.cat-search-clear:hover { background: rgba(70, 50, 30, 0.16); }
+
+.cat-select select {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 18px 0 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--c-ink);
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.cat-select::after {
+  content: '';
+  position: absolute;
+  right: 17px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.cat-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 18px 0 16px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--c-ink);
+  color: #F6F1E9;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 18px -10px rgba(29, 25, 21, 0.6);
+  transition: background 0.2s ease, transform 0.2s ease, height 0.3s var(--ease-out);
+}
+.cat-more:hover { background: #2E2822; }
+.cat-more:active { transform: scale(0.97); }
+.cat-more.is-active,
+.cat-more[aria-expanded="true"] { background: var(--c-brown); }
+
+/* Строка 2 — сегменты формата сделки */
+.cat-toolbar-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px 0 0;
+}
+
+.cat-seg {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+  padding: 4px;
+  border-radius: 14px;
+  background: rgba(70, 50, 30, 0.06);
+  box-shadow: inset 0 1px 2px rgba(70, 50, 30, 0.07);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.cat-seg::-webkit-scrollbar { display: none; }
+
+.cat-seg button {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  height: 34px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-ink-2);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.cat-seg button:hover { color: var(--c-ink); }
+.cat-seg button.is-active { color: var(--c-ink); }
+.cat-seg button:focus-visible {
+  outline: 2px solid var(--c-brown);
+  outline-offset: -2px;
+}
+
+.cat-seg-thumb {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 34px;
+  width: 0;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1px 2px rgba(40, 25, 10, 0.08),
+    0 6px 14px -6px rgba(40, 25, 10, 0.22);
+  transition: transform 0.5s var(--ease-spring), width 0.4s var(--ease-out);
+}
+
+.cat-chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 12px;
-  border-radius: 9999px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #63584F;
-  background: #FAF8F5;
-  border: 1px solid rgba(214, 199, 174, 0.5);
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(70, 50, 30, 0.12);
+  background: rgba(255, 255, 255, 0.6);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-ink-2);
+  white-space: nowrap;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.cat-chip svg { width: 14px; height: 14px; color: var(--c-star); }
+.cat-chip:hover { background: #fff; color: var(--c-ink); }
+.cat-chip:active { transform: scale(0.97); }
+.cat-chip.is-active {
+  background: var(--c-ink);
+  border-color: var(--c-ink);
+  color: #F6F1E9;
 }
 
-.glass-tag-btn:hover {
-  background: #FFFFFF;
-  color: var(--cat-ink);
-  border-color: var(--cat-gold);
-  transform: translateY(-1px);
-}
-
-.glass-tag-btn.is-active {
-  background: var(--cat-ink);
-  color: #FFFFFF;
-  border-color: var(--cat-ink);
-  box-shadow: 0 4px 12px rgba(24, 20, 18, 0.2);
-}
-
-.glass-filter-status {
+.cat-status {
   display: flex;
   align-items: center;
   gap: 14px;
   margin-left: auto;
-  flex-shrink: 0;
-}
-
-.glass-count-badge {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 12px;
-  color: #63584F;
-  background: rgba(179, 142, 93, 0.1);
-  padding: 4px 12px;
-  border-radius: 9999px;
-  border: 1px solid rgba(179, 142, 93, 0.2);
   white-space: nowrap;
 }
-
-.glass-count-badge strong {
-  color: var(--cat-ink);
-  font-weight: 700;
+.cat-count {
+  font-size: 14px;
+  color: var(--c-muted);
 }
-
-.glass-reset-btn {
-  background: none;
-  border: none;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 11.5px;
+.cat-count strong {
   font-weight: 600;
-  color: var(--cat-gold);
+  font-variant-numeric: tabular-nums;
+  color: var(--c-ink);
+}
+.cat-reset {
+  display: none;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-brown);
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  white-space: nowrap;
 }
+.cat-reset:hover { background: rgba(139, 111, 78, 0.1); }
+.has-filters .cat-reset { display: inline-flex; }
 
-.glass-reset-btn:hover {
-  color: var(--cat-ink);
-  background: rgba(179, 142, 93, 0.12);
-}
-
-/* 3. Дополнительные фильтры */
-.glass-filter-eco {
+/* Строка 3 — расширенные параметры */
+.cat-adv {
   display: flex;
-  align-items: center;
-  gap: 10px;
   flex-wrap: wrap;
-  padding: 10px 14px;
-  background: #FAF8F5;
-  border-radius: 14px;
-  border: 1px solid rgba(214, 199, 174, 0.4);
+  align-items: center;
+  gap: 8px;
+  padding: 12px 2px 2px;
+  border-top: 1px solid var(--c-line);
 }
+.cat-adv[hidden] { display: none; }
+.cat-select--sm {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+}
+.cat-select--sm select { font-size: 14px; }
+.cat-select--sm::after { right: 14px; }
 
-.glass-eco-input-wrap {
-  display: flex;
+.cat-num {
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 11.5px;
-  color: #63584F;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(70, 50, 30, 0.12);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  color: var(--c-muted);
 }
-
-.glass-num-input {
-  width: 58px;
-  padding: 5px 8px;
-  border: 1px solid rgba(214, 199, 174, 0.6);
-  border-radius: 8px;
-  font-size: 12px;
-  background: #FFFFFF;
-  color: var(--cat-ink);
+.cat-num:focus-within {
+  background: #fff;
+  border-color: rgba(139, 111, 78, 0.45);
 }
-
-/* ── КОМПАКТНЫЙ РЕЖИМ ПРИ СКРОЛЛЕ (НЕ ЗАГОРАЖИВАЕТ КАРТОЧКИ!) ── */
-.catalog-filter-section.is-sticky-compact .catalog-filter-inner {
-  max-width: 1180px;
+.cat-num input {
+  width: 40px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  color: var(--c-ink);
+  text-align: center;
+  -moz-appearance: textfield;
 }
+.cat-num input::-webkit-outer-spin-button,
+.cat-num input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
-.catalog-filter-section.is-sticky-compact .glass-filter-card {
-  padding: 8px 16px;
-  border-radius: 9999px;
+/* Компактный режим при прокрутке (класс ставит js) */
+.catalog-filter-section.is-sticky-compact {
+  min-height: var(--fs-h, auto);
+  pointer-events: none;
+}
+.catalog-filter-section.is-sticky-compact .cat-toolbar { pointer-events: auto; }
+.catalog-filter-section.is-sticky-compact .catalog-filter-inner { max-width: 1180px; }
+.catalog-filter-section.is-sticky-compact .cat-toolbar {
+  padding: 6px;
+  border-radius: 22px;
+  background: rgba(255, 253, 250, 0.8);
   box-shadow:
-    0 16px 36px -8px rgba(24, 20, 18, 0.16),
-    0 2px 8px rgba(24, 20, 18, 0.04);
-  background: rgba(255, 255, 255, 0.96);
-  gap: 0;
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 2px 6px rgba(40, 25, 10, 0.05),
+    0 26px 50px -24px rgba(40, 25, 10, 0.38);
 }
-
-.catalog-filter-section.is-sticky-compact .glass-field {
-  height: 38px;
-  font-size: 12.5px;
-}
-
-.catalog-filter-section.is-sticky-compact .glass-btn-toggle {
-  height: 38px;
-}
-
-/* Скрываем второстепенные строки в компактном режиме, если они не развернуты вручную */
-.catalog-filter-section.is-sticky-compact:not(.is-expanded) .glass-filter-secondary,
-.catalog-filter-section.is-sticky-compact:not(.is-expanded) .glass-filter-eco {
-  display: none !important;
-}
-
-.catalog-filter-section.is-sticky-compact.is-expanded .glass-filter-card {
-  border-radius: 24px;
-  padding: 14px 18px;
-  gap: 10px;
-}
+.catalog-filter-section.is-sticky-compact .cat-search,
+.catalog-filter-section.is-sticky-compact .cat-select:not(.cat-select--sm),
+.catalog-filter-section.is-sticky-compact .cat-more { height: 42px; border-radius: 16px; }
+.catalog-filter-section.is-sticky-compact:not(.is-expanded) .cat-toolbar-sub,
+.catalog-filter-section.is-sticky-compact:not(.is-expanded) .cat-adv { display: none; }
+.catalog-filter-section.is-sticky-compact.is-expanded .cat-toolbar { padding: 8px; }
 
 
-/* ═══ 3. CATALOG MAIN & HOTEL CARDS (Matching Reference Image) ══════ */
-.catalog-section {
-  background-color: var(--cat-bg);
-  padding: 8px 0 80px;
-}
-
+/* ═══ 3. СЕТКА И КАРТОЧКА ═════════════════════════════════════ */
 .catalog-main-inner {
-  max-width: var(--container-max, 1320px);
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 32px 96px;
 }
 
-/* Сетка: 3 колонки на Desktop (380-420px), просторно и роскошно */
 .hotel-full-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
-  margin-bottom: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 32px 28px;
 }
 
-/* ── НОВАЯ КАРТОЧКА ОТЕЛЯ (Liquid Glass + Image-Adaptive по референсу) ── */
-.hotel-card--catalog {
-  background: rgb(var(--tint-rgb, 34, 31, 35));
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow:
-    0 24px 56px -14px rgba(0, 0, 0, 0.4),
-    0 2px 10px rgba(0, 0, 0, 0.12),
-    inset 0 1px 1px rgba(255, 255, 255, 0.18);
-  transition:
-    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-sizing: border-box;
-}
-
-.hotel-card--catalog:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 36px 72px -16px rgba(0, 0, 0, 0.5),
-    0 4px 16px rgba(0, 0, 0, 0.18),
-    inset 0 1px 2px rgba(255, 255, 255, 0.28);
-  border-color: rgba(255, 255, 255, 0.26);
-}
-
-.hotel-card--catalog.is-hidden {
-  display: none !important;
-}
-
-/* Цветовые темы карточек (привязаны к dominant mood фотографии) */
-.hotel-card--catalog.theme-moss {
-  --tint-rgb: 40, 49, 34;
-  --accent-rgb: 190, 215, 170;
-}
-.hotel-card--catalog.theme-slate {
-  --tint-rgb: 31, 41, 53;
-  --accent-rgb: 170, 205, 235;
-}
-.hotel-card--catalog.theme-amber {
-  --tint-rgb: 46, 36, 28;
-  --accent-rgb: 230, 195, 150;
-}
-.hotel-card--catalog.theme-teal {
-  --tint-rgb: 26, 42, 46;
-  --accent-rgb: 165, 220, 215;
-}
-.hotel-card--catalog.theme-ruby {
-  --tint-rgb: 45, 32, 36;
-  --accent-rgb: 225, 180, 190;
-}
-.hotel-card--catalog.theme-graphite {
+.hcard {
   --tint-rgb: 34, 31, 35;
-  --accent-rgb: 215, 210, 200;
-}
-
-.hotel-card-link {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
-}
-
-/* ── 1. Верхний визуальный блок с фото ─────────────────────── */
-.hotel-card-visual {
+  --mx: 50%;
+  --my: 0%;
   position: relative;
-  width: 100%;
-  height: 285px;
+  isolation: isolate;
+  aspect-ratio: 4 / 5;
+  border-radius: 26px;
   overflow: hidden;
-  background: rgb(var(--tint-rgb, 34, 31, 35));
+  background: rgb(var(--tint-rgb));
+  color: #fff;
+  box-shadow:
+    0 1px 1px rgba(30, 20, 10, 0.06),
+    0 12px 22px -12px rgba(30, 20, 10, 0.28),
+    0 38px 64px -34px rgba(30, 20, 10, 0.5);
+  transform: translateZ(0);
+  transition: transform 0.55s var(--ease-out), box-shadow 0.55s var(--ease-out);
 }
 
-.hotel-card-img-wrap {
+/* Стеклянный кант: светлый сверху, гаснет к низу */
+.hcard::before {
+  content: '';
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  z-index: 4;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(165deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.10) 28%,
+    rgba(255, 255, 255, 0.00) 60%,
+    rgba(255, 255, 255, 0.14) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
-.hotel-card-img {
+/* Блик, следующий за курсором */
+.hcard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: radial-gradient(520px circle at var(--mx) var(--my),
+    rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 42%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.hcard-link,
+.hcard-link:hover,
+.hcard-link:visited {
+  color: #fff;
+}
+.hcard-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  text-decoration: none;
+  border-radius: inherit;
+}
+.hcard-link:focus-visible { outline: none; }
+.hcard:has(.hcard-link:focus-visible) {
+  outline: 3px solid var(--c-brown);
+  outline-offset: 3px;
+}
+
+.hcard-media {
+  position: absolute;
+  inset: 0;
+}
+.hcard-img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  display: block;
+  transform: scale(1.02);
+  transition: transform 1.2s var(--ease-out);
 }
 
-.hotel-card--catalog:hover .hotel-card-img {
-  transform: scale(1.045);
-}
-
-/* Бесшовный многоступенчатый градиент растворения фото в цветовую базу */
-.hotel-card-img-fade {
+/* Нижняя часть кадра — размытое стекло, переходящее в цвет */
+.hcard-blur {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(var(--tint-rgb, 34, 31, 35), 0) 0%,
-    rgba(var(--tint-rgb, 34, 31, 35), 0) 25%,
-    rgba(var(--tint-rgb, 34, 31, 35), 0.14) 45%,
-    rgba(var(--tint-rgb, 34, 31, 35), 0.48) 68%,
-    rgba(var(--tint-rgb, 34, 31, 35), 0.82) 86%,
-    rgba(var(--tint-rgb, 34, 31, 35), 0.96) 96%,
-    rgb(var(--tint-rgb, 34, 31, 35)) 100%
-  );
+  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  backdrop-filter: blur(22px) saturate(1.25);
+  -webkit-mask-image: linear-gradient(180deg, transparent 40%, #000 68%);
+  mask-image: linear-gradient(180deg, transparent 40%, #000 68%);
+}
+.hcard-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 20%),
+    linear-gradient(180deg,
+      rgba(var(--tint-rgb), 0)    36%,
+      rgba(var(--tint-rgb), 0.40) 52%,
+      rgba(var(--tint-rgb), 0.82) 67%,
+      rgba(var(--tint-rgb), 0.96) 80%,
+      rgb(var(--tint-rgb))        100%);
 }
 
-/* ── 2. Плавающие бейджи в стиле Liquid Glass ─────────────── */
-/* Левый бейдж: матовое белое жидкое стекло (по референсу ⭐ Prime Pick) */
-.rc-badge-pill {
+/* Бейдж категории — белое матовое стекло */
+.hcard-pill {
   position: absolute;
   top: 16px;
   left: 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  color: #171513;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.16),
-    inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  z-index: 3;
-}
-
-/* Правый бейдж формата сделки: полупрозрачное тонированное стекло */
-.rc-deal-pill {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: rgba(var(--tint-rgb, 34, 31, 35), 0.72);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #FFFFFF;
-  border-radius: 9999px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.22),
-    inset 0 1px 1px rgba(255, 255, 255, 0.35);
-  z-index: 3;
-}
-
-/* ── 3. Интегрированная нижняя секция карточки ─────────────── */
-/* Плавный переход из фото: margin-top: -38px наезжает на градиент растворения */
-.hotel-card--catalog .hotel-card-body {
-  padding: 18px 24px 20px;
-  background: linear-gradient(
-    180deg,
-    rgba(var(--tint-rgb, 34, 31, 35), 0.95) 0%,
-    rgb(var(--tint-rgb, 34, 31, 35)) 100%
-  );
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  margin-top: -38px;
-  position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 0 !important;
-  border-top: none !important;
-}
-
-/* Заголовок отеля (Премиальная Apple-типографика, крупный и чистый) */
-.rc-title-row {
-  margin-bottom: 6px;
-}
-
-.hotel-card--catalog .hotel-card-name {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
-  font-size: 21px;
-  font-weight: 700;
-  color: #FFFFFF !important;
-  line-height: 1.24;
-  letter-spacing: -0.018em;
-  margin: 0 !important;
-  border-top: none !important;
-  padding-top: 0 !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-
-/* Локация и метаданные */
-.hotel-card-meta {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.72);
-  letter-spacing: 0.01em;
-  margin-bottom: 18px;
-  line-height: 1.4;
-  border: none !important;
-}
-
-/* Ключевые метрики (В стиле колонок референса: 29 m² Living | 2 Rooms) */
-.rc-metrics-grid {
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;
-  margin-bottom: 16px;
-}
-
-.rc-metric-item {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.rc-metric-val {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", monospace;
-  font-size: 16px;
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1;
-  letter-spacing: -0.01em;
-}
-
-.rc-metric-lbl {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px 0 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(12px) saturate(1.8);
+  backdrop-filter: blur(12px) saturate(1.8);
+  color: var(--c-ink);
+  font-size: 13px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.52);
-  line-height: 1;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+    0 6px 16px -8px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+.hcard-pill svg { width: 14px; height: 14px; color: var(--c-star); }
+
+/* Текстовый блок */
+.hcard-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 0 20px 16px;
 }
 
-/* Ультратонкая разделительная линия перед футером */
-.rc-card-divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.09);
-  margin: 4px 0 14px;
+.hcard-price {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.18);
 }
 
-/* Футер карточки (микрокопия + CTA) */
-.hotel-card-footer {
+.hcard-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hcard-id {
+  flex: 1;
+  min-width: 0;
+}
+.hcard-name,
+.hcard-loc {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hcard-name {
+  font-family: var(--f-ui);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.96);
+}
+.hcard-loc {
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.hcard-stats {
+  flex: none;
+  display: flex;
+  margin: 0;
+}
+.hcard-stats > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+  text-align: center;
+}
+.hcard-stats > div + div { border-left: 1px solid rgba(255, 255, 255, 0.22); }
+.hcard-stats > div:last-child { padding-right: 0; }
+.hcard-stats dd {
+  order: -1;
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.hcard-stats dt {
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.66);
+  white-space: nowrap;
+}
+
+.hcard-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-top: auto;
-}
-
-.rc-card-origin {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", monospace;
-  font-size: 10.5px;
-  color: rgba(255, 255, 255, 0.48);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.hotel-card-cta {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   font-size: 12.5px;
-  font-weight: 700;
-  color: rgba(var(--accent-rgb, 225, 190, 145), 1);
+  color: rgba(255, 255, 255, 0.58);
+}
+.hcard-deal {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hcard-cta {
+  flex: none;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.hotel-card--catalog:hover .hotel-card-cta {
-  color: #FFFFFF;
-  transform: translateX(3px);
-}
-
-/* ── 4. Вспомогательные действия (Интегрированы без черного блока!) ── */
-.rc-bottom-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 24px 16px;
-  background: transparent;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  gap: 10px;
-}
-
-.compare-toggle-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 9999px;
-  padding: 5px 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 11px;
+  gap: 3px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.92);
+}
+.hcard-cta svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s var(--ease-out);
+}
+
+/* Кнопки «Сравнить» и «Презентация» — тёмное стекло на фото */
+.hcard-tools {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+}
+.hcard-tool {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(20, 16, 12, 0.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  backdrop-filter: blur(14px) saturate(1.6);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 6px 16px -8px rgba(0, 0, 0, 0.55);
   cursor: pointer;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  transition: all 0.2s ease;
-  text-decoration: none;
-  display: inline-flex;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.3s ease, transform 0.3s var(--ease-out);
+}
+.hcard-tool svg { width: 16px; height: 16px; }
+.hcard-tool:hover { background: rgba(255, 255, 255, 0.3); }
+.hcard-tool:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.hcard-tool.is-selected {
+  background: #fff;
+  border-color: #fff;
+  color: var(--c-ink);
+}
+
+@media (hover: hover) {
+  .hcard:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 1px 1px rgba(30, 20, 10, 0.06),
+      0 18px 30px -14px rgba(30, 20, 10, 0.32),
+      0 50px 80px -36px rgba(30, 20, 10, 0.55);
+  }
+  .hcard:hover::after { opacity: 1; }
+  .hcard:hover .hcard-img { transform: scale(1.07); }
+  .hcard:hover .hcard-cta svg { transform: translate(2px, -2px); }
+
+  .hcard-tool { opacity: 0; transform: translateY(-4px); }
+  .hcard:hover .hcard-tool,
+  .hcard:focus-within .hcard-tool,
+  .hcard-tool.is-selected { opacity: 1; transform: none; }
+}
+
+/* Появление при первой загрузке */
+.hotel-full-grid.is-entering .hcard {
+  animation: hcard-in 0.75s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 45ms);
+}
+@keyframes hcard-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+
+/* ═══ 4. СРАВНЕНИЕ ════════════════════════════════════════════ */
+.page-portfolio .compare-bar {
+  left: 50%;
+  right: auto;
+  bottom: 20px;
+  width: min(780px, calc(100% - 32px));
+  padding: 10px 10px 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  background: rgba(29, 25, 21, 0.84);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(24px) saturate(1.6);
+  color: #F6F1E9;
+  font-family: var(--f-ui);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 28px 60px -20px rgba(0, 0, 0, 0.55);
+  transform: translate(-50%, calc(100% + 40px));
+  transition: transform 0.5s var(--ease-spring);
+}
+.page-portfolio .compare-bar.is-visible { transform: translate(-50%, 0); }
+.page-portfolio .compare-bar-label { color: rgba(246, 241, 233, 0.6); font-weight: 500; }
+.page-portfolio .compare-slot {
+  padding: 7px 10px 7px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #F6F1E9;
+  font-size: 13px;
+}
+.page-portfolio .compare-slot-remove { color: rgba(246, 241, 233, 0.55); }
+.page-portfolio .compare-slot-remove:hover { color: #fff; }
+.page-portfolio .btn-compare-now {
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: #F6F1E9;
+  color: var(--c-ink);
+  font-family: inherit;
+  font-size: 14px;
+}
+.page-portfolio .btn-compare-clear {
+  padding: 10px 14px;
+  border-radius: 14px;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(246, 241, 233, 0.75);
+  font-family: inherit;
+  font-size: 14px;
+}
+.page-portfolio .btn-compare-clear:hover { color: #fff; border-color: rgba(255, 255, 255, 0.35); }
+
+.page-portfolio .compare-modal-overlay {
+  background: rgba(29, 25, 21, 0.45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.page-portfolio .compare-modal {
+  border-radius: 26px;
+  font-family: var(--f-ui);
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ═══ 5. ПУСТОЕ СОСТОЯНИЕ ═════════════════════════════════════ */
+.page-portfolio .empty-state {
+  flex-direction: column;
   align-items: center;
-}
-
-.compare-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.32);
-  transform: translateY(-1px);
-}
-
-.compare-toggle-btn.is-selected {
-  background: #E5B26E;
-  color: #181412;
-  border-color: #E5B26E;
-  font-weight: 700;
-  box-shadow: 0 2px 8px rgba(229, 178, 110, 0.35);
-}
-
-
-/* ═══ 4. RESPONSIVE / ADAPTIVE ════════════════════════════════ */
-@media (max-width: 1280px) {
-  .hotel-full-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
-  }
-  .glass-filter-primary {
-    grid-template-columns: 1.6fr 1fr 1fr 1fr auto;
-  }
-  .glass-field--sort {
-    grid-column: span 2;
-  }
-}
-
-@media (max-width: 960px) {
-  .page-header-inner {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .page-header-stats {
-    width: 100%;
-    justify-content: space-between;
-    box-sizing: border-box;
-  }
-  .glass-filter-primary {
-    grid-template-columns: 1fr 1fr;
-  }
-  .glass-field--search {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 720px) {
-  .catalog-filter-section {
-    position: static;
-    margin-top: 16px;
-  }
-  .catalog-filter-inner,
-  .catalog-main-inner,
-  .page-header-inner {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-  .hotel-full-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .glass-filter-primary {
-    grid-template-columns: 1fr;
-  }
-  .glass-filter-secondary {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .glass-filter-status {
-    width: 100%;
-    justify-content: space-between;
-    margin-left: 0;
-  }
-  .page-header-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .ph-stat-sep {
-    display: none;
-  }
-}
-
-/* Пустое состояние */
-.empty-state {
+  max-width: 520px;
+  margin: 24px auto 0;
+  padding: 56px 32px;
+  border-radius: 26px;
   text-align: center;
-  padding: 80px 20px;
-  background: #FFFFFF;
-  border-radius: 24px;
-  border: 1px solid rgba(214, 199, 174, 0.4);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-rim);
+  box-shadow: var(--glass-shadow);
 }
+.page-portfolio .empty-state[hidden] { display: none !important; }
 .empty-state-title {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  margin: 0 0 8px;
   font-size: 22px;
-  font-weight: 700;
-  color: var(--cat-ink);
-  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--c-ink);
 }
 .empty-state-desc {
-  font-size: 14px;
-  color: var(--cat-muted);
-  margin-bottom: 20px;
+  margin: 0 0 22px;
+  font-size: 15px;
+  color: var(--c-muted);
+}
+.cat-btn {
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--c-ink);
+  color: #F6F1E9;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.cat-btn:hover { background: #2E2822; }
+
+
+/* ═══ 6. АДАПТИВ ══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .cat-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+  .cat-regions { max-width: 640px; }
+  .cat-toolbar-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  }
+  .cat-search { grid-column: 1 / -1; }
+}
+
+@media (max-width: 760px) {
+  .cat-hero { padding: calc(12px + var(--header-height, 64px) + 32px) 0 28px; }
+  .cat-hero-inner,
+  .catalog-filter-inner,
+  .catalog-main-inner { padding-left: 16px; padding-right: 16px; }
+  .cat-title { margin-top: 16px; font-size: clamp(34px, 10vw, 44px); }
+  .cat-lead { font-size: 16px; }
+  .cat-facts { gap: 12px 24px; margin-top: 26px; }
+  .cat-fact { min-width: 0; }
+  .cat-fact dd { font-size: 18px; }
+  .cat-regions { padding: 16px 14px 10px; }
+  .cat-regions-list { gap: 0 4px; }
+  .cat-region { padding: 7px 6px; gap: 8px; font-size: 13.5px; }
+
+  .catalog-filter-section {
+    position: static;
+    margin-bottom: 24px;
+  }
+  .cat-toolbar { border-radius: 22px; padding: 8px; }
+  .cat-toolbar-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cat-search { grid-column: 1 / -1; }
+  .cat-more { justify-content: center; }
+  .cat-search, .cat-select, .cat-more { height: 46px; }
+  .cat-select { padding: 0 12px; }
+  .cat-select .cat-ico { display: none; }
+  .cat-select::after { right: 14px; }
+
+  .cat-toolbar-sub {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .cat-seg { width: 100%; }
+  .cat-status { margin-left: auto; }
+
+  .hotel-full-grid { gap: 20px; }
+  .hcard { border-radius: 24px; }
+  .hcard-price { font-size: 24px; }
+
+  .page-portfolio .compare-bar {
+    flex-wrap: wrap;
+    bottom: 12px;
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hcard-stats > div { padding: 0 8px; }
+  .hcard-body { padding: 0 16px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hcard,
+  .hcard-img,
+  .cat-seg-thumb,
+  .page-portfolio .compare-bar { transition: none; }
+  .hotel-full-grid.is-entering .hcard { animation: none; }
 }

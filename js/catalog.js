@@ -128,137 +128,192 @@ function getHotelPalette(hotel) {
   };
 }
 
-/* ── Рендер отдельной карточки отеля (Liquid Glass + Image-Adaptive по референсу) ── */
-function buildCard(hotel) {
+/* ── Форматирование цены: 49600000 → «$49,6 млн» ────────────── */
+function fmtPriceShort(val) {
+  const n = Number(val);
+  if (!isFinite(n) || n <= 0) return null;
+  if (n >= 1e9) return '$' + (n / 1e9).toFixed(1).replace(/\.0$/, '').replace('.', ',') + ' млрд';
+  if (n >= 1e6) return '$' + (n / 1e6).toFixed(1).replace(/\.0$/, '').replace('.', ',') + ' млн';
+  if (n >= 1e3) return '$' + Math.round(n / 1e3) + ' тыс.';
+  return '$' + Math.round(n);
+}
+
+function fmtDec(n, d = 1) {
+  return Number(n).toFixed(d).replace(/\.0$/, '').replace('.', ',');
+}
+
+function starsWord(n) {
+  if (n === 1) return 'звезда';
+  if (n >= 2 && n <= 4) return 'звезды';
+  return 'звёзд';
+}
+
+/* ── Цвет подложки карточки, снятый с самой фотографии ───────────
+   Берём нижнюю половину кадра, усредняем, приглушаем и затемняем —
+   так текст ложится на цвет, который «вытекает» из фото (как в референсе).
+   Для внешних фото без CORS canvas недоступен — остаётся палитра по типу объекта. */
+const tintCache = new Map();
+
+function rgbToHsl(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h = 0, s = 0;
+  const l = (max + min) / 2;
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+    else if (max === g) h = (b - r) / d + 2;
+    else h = (r - g) / d + 4;
+    h /= 6;
+  }
+  return [h, s, l];
+}
+
+function hslToRgb(h, s, l) {
+  if (s === 0) { const v = Math.round(l * 255); return [v, v, v]; }
+  const hue = (p, q, t) => {
+    if (t < 0) t += 1; if (t > 1) t -= 1;
+    if (t < 1 / 6) return p + (q - p) * 6 * t;
+    if (t < 1 / 2) return q;
+    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+    return p;
+  };
+  const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+  const p = 2 * l - q;
+  return [hue(p, q, h + 1 / 3), hue(p, q, h), hue(p, q, h - 1 / 3)].map(v => Math.round(v * 255));
+}
+
+function extractTint(img) {
+  try {
+    const W = 24, H = 24;
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(img, 0, 0, W, H);
+    const d = ctx.getImageData(0, H / 2, W, H / 2).data;
+    // Пиксели с более «живым» цветом весят больше: серое небо и асфальт
+    // не должны забивать оттенок зелени, кирпича или воды.
+    let r = 0, g = 0, b = 0, n = 0;
+    for (let i = 0; i < d.length; i += 4) {
+      const chroma = (Math.max(d[i], d[i + 1], d[i + 2]) - Math.min(d[i], d[i + 1], d[i + 2])) / 255;
+      const w = 0.12 + chroma * chroma * 6;
+      r += d[i] * w; g += d[i + 1] * w; b += d[i + 2] * w; n += w;
+    }
+    if (!n) return null;
+    const [h, s] = rgbToHsl(r / n, g / n, b / n);
+    const [R, G, B] = hslToRgb(h, Math.min(Math.max(s * 1.5, 0.12), 0.34), 0.2);
+    return `${R}, ${G}, ${B}`;
+  } catch (e) {
+    return null; // tainted canvas (внешнее фото без CORS)
+  }
+}
+
+function applyTint(img) {
+  const card = img.closest('.hcard');
+  if (!card) return;
+  const id = card.dataset.id;
+  let rgb = tintCache.get(id);
+  if (!rgb) {
+    rgb = extractTint(img);
+    if (!rgb) return;
+    tintCache.set(id, rgb);
+  }
+  card.style.setProperty('--tint-rgb', rgb);
+  card.classList.add('is-tinted');
+}
+
+/* ── Иконки карточки ─────────────────────────────────────────── */
+const ICON_STAR = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75l2.2 4.6 5.05.62-3.72 3.48.95 5-4.48-2.47-4.48 2.47.95-5L2.75 7.97l5.05-.62L10 2.75z" fill="currentColor"/></svg>';
+const ICON_COMPARE = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7h11M12 4l3 3-3 3M16 13H5M8 10l-3 3 3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_DOWNLOAD = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3.5v9M6.5 9l3.5 3.5L13.5 9M4.5 16h11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* ── Рендер карточки отеля (по референсу: фото → цвет, цена крупно) ── */
+function buildCard(hotel, index) {
   const rawPhoto = (Array.isArray(hotel.photos) && hotel.photos.length > 0 && hotel.photos[0])
     ? hotel.photos[0]
     : './assets/hotel-hero.png';
   const photo = typeof rawPhoto === 'object' && rawPhoto !== null ? (rawPhoto.src || './assets/hotel-hero.png') : rawPhoto;
 
   const passportUrl = `passport.html?hotel=${encodeURIComponent(hotel.slug || hotel.id)}`;
-
-  // Цветовая гамма, адаптированная под фото и стиль объекта
   const palette = getHotelPalette(hotel);
+  const tint = tintCache.get(hotel.id) || palette.rgb;
 
-  // 1. Плавающий бейдж слева вверху (по референсу ⭐ Prime Pick — матовое жидкое стекло)
-  let primeBadgeText = '⭐ Prime Pick';
+  // Бейдж категории (белое матовое стекло, как «Prime Pick» в референсе)
   const starsNum = parseInt(hotel.stars, 10);
-  if (starsNum === 5) {
-    primeBadgeText = '★ Prime 5-Star';
-  } else if (hotel.certified) {
-    primeBadgeText = '🛡 USALI Verified';
-  } else if (starsNum === 4) {
-    primeBadgeText = '⭐ Premium Class';
-  } else if (hotel.status === 'pending') {
-    primeBadgeText = '⏳ На аудите';
-  }
-  const primePill = `<span class="rc-badge-pill">${primeBadgeText}</span>`;
+  let pillText;
+  if (hotel.status === 'pending') pillText = 'На аудите';
+  else if (starsNum >= 1 && starsNum <= 5) pillText = `${starsNum} ${starsWord(starsNum)}`;
+  else if (hotel.certified) pillText = 'Сертифицирован';
+  else pillText = 'Без категории';
 
-  // 2. Плавающий бейдж формата сделки справа вверху (полупрозрачная капсула в тон карточки)
   const deal = typeof window.getHotelDealConfig === 'function'
     ? window.getHotelDealConfig(hotel)
-    : { label: 'Прямая продажа', icon: '💼' };
-  const dealPill = `<span class="rc-deal-pill">${deal.icon} ${escHtml(deal.label)}</span>`;
+    : { label: 'Прямая продажа', shortLabel: 'Продажа' };
 
-  // 3. Локация и регион
-  const locCity = hotel.city || hotel.address || hotel.region || 'Узбекистан';
-  const yearStr = hotel.yearCommissioned ? ` · ${escHtml(hotel.yearCommissioned)} г.` : '';
-  const locLine = `📍 ${escHtml(locCity)}${yearStr}`;
+  // Главная цифра карточки — цена (как «List: $250,000»)
+  const eco = hotel.economics || {};
+  const priceStr = fmtPriceShort(eco.askingPrice || eco.valuation);
+  const priceHtml = priceStr
+    ? `<span class="hcard-price-lbl">Цена:</span> ${priceStr}`
+    : `<span class="hcard-price-lbl">Цена</span> по запросу`;
 
-  // 4. Ключевые метрики (по референсу: 2-3 лаконичных колонки)
+  const locText = hotel.city || hotel.address || hotel.region || 'Узбекистан';
+
+  // Две метрики справа: номерной фонд + экономика
   const roomsVal = hotel.roomsCount || '—';
-  const starsVal = hotel.stars ? `${hotel.stars}★` : (hotel.certified ? 'O\'z DSt' : '—');
-  
-  // Экономическая метрика (IRR / Payback / ADR)
-  let ecoVal = 'USALI';
-  let ecoLbl = 'Стандарт';
-  if (hotel.economics) {
-    const eco = hotel.economics;
-    if (eco.payback) {
-      ecoVal = `${parseFloat(eco.payback).toFixed(1)} г.`;
-      ecoLbl = 'Окупаемость';
-    } else if (eco.roi) {
-      ecoVal = `${parseFloat(eco.roi).toFixed(1)}%`;
-      ecoLbl = 'ROI';
-    } else if (eco.adr) {
-      ecoVal = `$${Math.round(eco.adr)}`;
-      ecoLbl = 'ADR';
-    } else if (hotel.placesCount) {
-      ecoVal = `${hotel.placesCount}`;
-      ecoLbl = 'Мест';
-    }
-  } else if (hotel.placesCount) {
-    ecoVal = `${hotel.placesCount}`;
-    ecoLbl = 'Мест';
-  }
+  let ecoVal = 'USALI', ecoLbl = 'Стандарт';
+  if (eco.payback) { ecoVal = `${fmtDec(eco.payback)} года`; ecoLbl = 'Окупаемость'; }
+  else if (eco.roi) { ecoVal = `${fmtDec(eco.roi)}%`; ecoLbl = 'ROI'; }
+  else if (eco.adr) { ecoVal = `$${Math.round(eco.adr)}`; ecoLbl = 'ADR'; }
+  else if (hotel.placesCount) { ecoVal = `${hotel.placesCount}`; ecoLbl = 'Мест'; }
 
-  // Кнопка сравнения (стилизована под жидкое стекло)
+  const year = hotel.yearCommissioned ? ` · ввод ${escHtml(hotel.yearCommissioned)}` : '';
+
   const isInCompare = compareState.ids.includes(hotel.id);
-  const compareBtn = `<button type="button"
-    class="compare-toggle-btn ${isInCompare ? 'is-selected' : ''}"
-    data-compare-id="${escHtml(hotel.id)}"
-    data-compare-name="${escHtml(hotel.hotelName)}"
-    onclick="event.stopPropagation();event.preventDefault();toggleCompare('${escHtml(hotel.id)}','${escHtml(hotel.hotelName).replace(/'/g, '\\\'')}')"
-    title="Добавить в сравнение">⇄ Сравнить</button>`;
-
-  // Кнопка презентации
   const presUrl = hotel.presentationUrl || hotel.presentationFile;
-  const hasPres = Boolean(presUrl);
-  const presBtn = hasPres
+  const presBtn = presUrl
     ? `<a href="${escHtml(presUrl)}" target="_blank" rel="noopener" download="${escHtml(hotel.presentationFileName || 'presentation')}"
-       class="compare-toggle-btn"
-       onclick="event.stopPropagation();"
-       title="Скачать презентацию">
-       📥 Презентация
-     </a>`
+         class="hcard-tool" title="Скачать презентацию" aria-label="Скачать презентацию: ${escHtml(hotel.hotelName)}">${ICON_DOWNLOAD}</a>`
     : '';
 
   return `
-  <article class="hotel-card hotel-card--catalog theme-${palette.theme}"
-           style="--tint-rgb: ${palette.rgb}; --accent-rgb: ${palette.accentRgb};"
-           data-id="${escHtml(hotel.id)}"
-           role="listitem">
-    <a href="${passportUrl}" class="hotel-card-link">
-      <div class="hotel-card-visual">
-        <div class="hotel-card-img-wrap">
-          <img src="${photo}" alt="${escHtml(hotel.hotelName)}" class="hotel-card-img" loading="lazy" onerror="this.onerror=null;this.src='./assets/hotel-hero.png'" />
-          <div class="hotel-card-img-fade"></div>
-        </div>
-        ${primePill}
-        ${dealPill}
+  <article class="hcard" data-id="${escHtml(hotel.id)}" role="listitem"
+           style="--tint-rgb: ${tint}; --i: ${Math.min(index || 0, 11)};">
+    <a href="${passportUrl}" class="hcard-link" aria-label="${escHtml(hotel.hotelName)} — открыть паспорт объекта">
+      <div class="hcard-media" aria-hidden="true">
+        <img src="${photo}" alt="" class="hcard-img" loading="${index < 8 ? 'eager' : 'lazy'}" decoding="async"
+             onerror="this.onerror=null;this.src='./assets/hotel-hero.png'" />
+        <div class="hcard-blur"></div>
+        <div class="hcard-shade"></div>
       </div>
-      <div class="hotel-card-body">
-        <div class="rc-title-row">
-          <h3 class="hotel-card-name">${escHtml(hotel.hotelName)}</h3>
-        </div>
-        <div class="hotel-card-meta">${locLine}</div>
-        
-        <div class="rc-metrics-grid">
-          <div class="rc-metric-item">
-            <span class="rc-metric-val">${escHtml(roomsVal)}</span>
-            <span class="rc-metric-lbl">Номеров</span>
-          </div>
-          <div class="rc-metric-item">
-            <span class="rc-metric-val">${escHtml(starsVal)}</span>
-            <span class="rc-metric-lbl">Категория</span>
-          </div>
-          <div class="rc-metric-item">
-            <span class="rc-metric-val">${escHtml(ecoVal)}</span>
-            <span class="rc-metric-lbl">${escHtml(ecoLbl)}</span>
-          </div>
-        </div>
 
-        <div class="rc-card-divider"></div>
+      <span class="hcard-pill">${ICON_STAR}${escHtml(pillText)}</span>
 
-        <div class="hotel-card-footer">
-          <span class="rc-card-origin">МТУ РУз · USALI Реестр</span>
-          <span class="hotel-card-cta">Паспорт объекта →</span>
+      <div class="hcard-body">
+        <p class="hcard-price">${priceHtml}</p>
+        <div class="hcard-row">
+          <div class="hcard-id">
+            <h3 class="hcard-name" title="${escHtml(hotel.hotelName)}">${escHtml(hotel.hotelName)}</h3>
+            <p class="hcard-loc" title="${escHtml(locText)}">${escHtml(locText)}</p>
+          </div>
+          <dl class="hcard-stats">
+            <div><dt>Номеров</dt><dd>${escHtml(roomsVal)}</dd></div>
+            <div><dt>${escHtml(ecoLbl)}</dt><dd>${escHtml(ecoVal)}</dd></div>
+          </dl>
+        </div>
+        <div class="hcard-foot">
+          <span class="hcard-deal">${escHtml(deal.label)}${year}</span>
+          <span class="hcard-cta">Паспорт<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </div>
     </a>
-    <div class="rc-bottom-actions">
-      ${compareBtn}
+
+    <div class="hcard-tools">
       ${presBtn}
+      <button type="button" class="hcard-tool hcard-compare ${isInCompare ? 'is-selected' : ''}"
+              data-compare-id="${escHtml(hotel.id)}" aria-pressed="${isInCompare}"
+              title="Добавить к сравнению" aria-label="Сравнить: ${escHtml(hotel.hotelName)}">${ICON_COMPARE}</button>
     </div>
   </article>`;
 }
@@ -440,6 +495,7 @@ function applyFiltersAndSort() {
       emptyState.classList.add('is-hidden');
     }
     grid.innerHTML = matched.map(buildCard).join('');
+    hydrateCards();
   }
 
   // 4. Обновление счётчиков
@@ -447,16 +503,195 @@ function applyFiltersAndSort() {
   if (countLabelEl) countLabelEl.textContent = formatObjectsCountWord(matched.length);
 
   updateHeaderStats(matched.length, allHotels);
+  syncFilterUi();
 }
 
-/* ── Обновление сводных показателей в Hero ──────────────────── */
+/* ── Hero: живые факты и распределение по регионам ────────────── */
+const REGION_COLORS = ['#2B2420', '#8B6F4E', '#C2A47A', '#5E6B4E', '#4A5A6E', '#A0705A', '#D9C9AE', '#77706A'];
+
+function regionLabel(key) {
+  const opt = regionSelect ? regionSelect.querySelector(`option[value="${key}"]`) : null;
+  return opt ? opt.textContent.replace(/\s*\(город\)/, '') : key;
+}
+
 function updateHeaderStats(count, allHotels) {
-  const statNums = document.querySelectorAll('.ph-stat-num');
-  if (statNums[0]) statNums[0].textContent = count;
-  if (statNums[1]) {
-    const regions = new Set(allHotels.map(h => h.regionKey).filter(Boolean)).size;
-    statNums[1].textContent = regions || (allHotels.length > 0 ? 1 : 0);
+  const facts = document.getElementById('cat-facts');
+  if (facts && allHotels.length) {
+    const set = (k, v) => { const el = facts.querySelector(`[data-fact="${k}"]`); if (el) el.textContent = v; };
+    set('count', allHotels.length);
+    const rooms = allHotels.reduce((a, h) => a + (parseInt(h.roomsCount, 10) || 0), 0);
+    set('rooms', rooms ? rooms.toLocaleString('ru-RU') : '—');
+    const prices = allHotels
+      .map(h => h.economics && (h.economics.askingPrice || h.economics.valuation))
+      .filter(v => Number(v) > 0).map(Number);
+    if (prices.length) {
+      set('price', `${fmtPriceShort(Math.min(...prices))} — ${fmtPriceShort(Math.max(...prices))}`);
+    }
   }
+  renderRegionStrip(allHotels);
+  renderAmbient(allHotels);
+}
+
+let regionStripKey = '';
+function renderRegionStrip(allHotels) {
+  const bar = document.getElementById('cat-regions-bar');
+  const list = document.getElementById('cat-regions-list');
+  const total = document.getElementById('cat-regions-total');
+  if (!bar || !list) return;
+
+  const counts = new Map();
+  allHotels.forEach(h => {
+    const k = h.regionKey || (typeof getRegionKey === 'function' ? getRegionKey(h.region) : '') || 'other';
+    counts.set(k, (counts.get(k) || 0) + 1);
+  });
+  const rows = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+  const sum = rows.reduce((a, r) => a + r[1], 0) || 1;
+  const key = rows.map(r => r.join(':')).join('|') + '#' + filterState.region;
+  if (key === regionStripKey) return;
+  regionStripKey = key;
+
+  if (total) total.textContent = `${rows.length} ${rows.length % 10 === 1 && rows.length !== 11 ? 'регион' : (rows.length % 10 >= 2 && rows.length % 10 <= 4 && (rows.length < 12 || rows.length > 14) ? 'региона' : 'регионов')}`;
+
+  const active = filterState.region;
+  bar.innerHTML = rows.map(([k, n], i) =>
+    `<span class="cat-regions-seg${active !== 'all' && active !== k ? ' is-dim' : ''}" style="flex:${n};background:${REGION_COLORS[i % REGION_COLORS.length]}" title="${escHtml(regionLabel(k))}: ${n}"></span>`
+  ).join('');
+
+  list.innerHTML = rows.map(([k, n], i) => `
+    <li>
+      <button type="button" class="cat-region${active === k ? ' is-active' : ''}${active !== 'all' && active !== k ? ' is-dim' : ''}" data-region="${escHtml(k)}" aria-pressed="${active === k}">
+        <span class="cat-region-dot" style="background:${REGION_COLORS[i % REGION_COLORS.length]}"></span>
+        <span class="cat-region-name">${escHtml(regionLabel(k))}</span>
+        <span class="cat-region-n">${n}</span>
+      </button>
+    </li>`).join('');
+}
+
+/* Мягкий цветной фон hero, собранный из фотографий самих отелей */
+let ambientDone = false;
+function renderAmbient(allHotels) {
+  if (ambientDone) return;
+  const box = document.getElementById('cat-hero-ambient');
+  if (!box || !allHotels.length) return;
+  const pick = allHotels
+    .map(h => { const p = h.photos && h.photos[0]; return typeof p === 'object' && p ? p.src : p; })
+    .filter(Boolean).slice(0, 3);
+  if (!pick.length) return;
+  box.innerHTML = pick.map((src, i) => `<img src="${src}" alt="" class="amb amb-${i}" decoding="async" />`).join('');
+  ambientDone = true;
+}
+
+/* ── Состояние элементов панели: бегунок сегментов, «Сбросить» ── */
+function moveSegThumb() {
+  const seg = document.getElementById('cat-seg');
+  if (!seg) return;
+  const thumb = seg.querySelector('.cat-seg-thumb');
+  const active = seg.querySelector('button.is-active') || seg.querySelector('button');
+  if (!thumb || !active) return;
+  thumb.style.width = active.offsetWidth + 'px';
+  thumb.style.transform = `translateX(${active.offsetLeft}px)`;
+  // держим активный сегмент в зоне видимости на мобильных
+  if (seg.scrollWidth > seg.clientWidth) {
+    const l = active.offsetLeft - 12, r = active.offsetLeft + active.offsetWidth + 12;
+    if (l < seg.scrollLeft || r > seg.scrollLeft + seg.clientWidth) seg.scrollTo({ left: l, behavior: 'smooth' });
+  }
+}
+
+function hasActiveFilters() {
+  return Boolean(filterState.search.trim()) || filterState.region !== 'all' || filterState.stars !== 'all' ||
+    filterState.rooms !== 'all' || filterState.dealType !== 'all' || filterState.onlyPremium ||
+    filterState.onlyCertified || filterState.hasPresentation || filterState.hasEco ||
+    filterState.paybackMax !== null || filterState.roiMin !== null;
+}
+
+function syncFilterUi() {
+  moveSegThumb();
+  const section = document.getElementById('catalog-filter-section');
+  if (section) section.classList.toggle('has-filters', hasActiveFilters());
+  if (tagPremBtn) tagPremBtn.setAttribute('aria-pressed', String(filterState.onlyPremium));
+  document.querySelectorAll('.cat-select select').forEach(sel => {
+    const def = sel.id === 'catalog-sort' ? 'rooms-desc' : 'all';
+    sel.closest('.cat-select').classList.toggle('is-set', sel.value !== def);
+  });
+}
+
+/* ── Карточки после рендера: цвет из фото, сравнение, блик ─────── */
+let firstPaint = true;
+function hydrateCards() {
+  if (!grid) return;
+  if (firstPaint) {
+    grid.classList.add('is-entering');
+    setTimeout(() => grid.classList.remove('is-entering'), 1400);
+    firstPaint = false;
+  }
+  grid.querySelectorAll('.hcard-img').forEach(img => {
+    if (img.complete && img.naturalWidth) applyTint(img);
+  });
+}
+
+function syncCompareButtons() {
+  document.querySelectorAll('.hcard-compare').forEach(btn => {
+    const on = compareState.ids.includes(btn.dataset.compareId);
+    btn.classList.toggle('is-selected', on);
+    btn.setAttribute('aria-pressed', String(on));
+  });
+}
+
+function initCardInteractions() {
+  if (!grid || grid.dataset.wired) return;
+  grid.dataset.wired = '1';
+
+  // Цвет подложки — когда фото загрузилось
+  grid.addEventListener('load', e => {
+    if (e.target.classList && e.target.classList.contains('hcard-img')) applyTint(e.target);
+  }, true);
+
+  // Кнопка сравнения
+  grid.addEventListener('click', e => {
+    const btn = e.target.closest('.hcard-compare');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    toggleCompare(btn.dataset.compareId, '');
+  });
+
+  // Световой блик стекла, следующий за курсором
+  if (window.matchMedia('(hover: hover)').matches) {
+    let raf = 0, last = null;
+    grid.addEventListener('pointermove', e => {
+      last = e;
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const card = last.target.closest('.hcard');
+        if (!card) return;
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((last.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+        card.style.setProperty('--my', ((last.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+      });
+    }, { passive: true });
+  }
+
+  // Клик по региону в hero
+  const regionList = document.getElementById('cat-regions-list');
+  if (regionList) {
+    regionList.addEventListener('click', e => {
+      const btn = e.target.closest('[data-region]');
+      if (!btn || !regionSelect) return;
+      const k = btn.dataset.region;
+      const next = filterState.region === k ? 'all' : k;
+      regionSelect.value = regionSelect.querySelector(`option[value="${next}"]`) ? next : 'all';
+      filterState.region = next;
+      applyFiltersAndSort();
+      const fs = document.getElementById('catalog-filter-section');
+      if (fs && window.scrollY < fs.offsetTop - 120) {
+        window.scrollTo({ top: fs.offsetTop - 96, behavior: 'smooth' });
+      }
+    });
+  }
+
+  window.addEventListener('resize', moveSegThumb, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveSegThumb);
 }
 
 /* ── Полный сброс параметров ────────────────────────────────── */
@@ -470,6 +705,18 @@ function resetAllFilters() {
   filterState.onlyPremium = false;
   filterState.onlyCertified = false;
   filterState.hasPresentation = false;
+  filterState.hasEco = false;
+  filterState.paybackMax = null;
+  filterState.roiMin = null;
+
+  ['filter-has-eco', 'filter-certified-only'].forEach(id => {
+    const b = document.getElementById(id);
+    if (b) { b.classList.remove('is-active'); b.dataset.active = 'false'; }
+  });
+  ['filter-payback-max', 'filter-roi-min'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
 
   const presTagBtn = document.getElementById('filter-has-presentation');
   if (presTagBtn) {
@@ -648,7 +895,7 @@ function renderCompareBar() {
     document.getElementById('btn-compare-clear')?.addEventListener('click', () => {
       compareState.ids = [];
       renderCompareBar();
-      applyFiltersAndSort();
+      syncCompareButtons();
     });
   }
   const slots = document.getElementById('compare-slots');
@@ -674,7 +921,7 @@ function toggleCompare(id, name) {
     compareState.ids.splice(idx, 1);
   }
   renderCompareBar();
-  applyFiltersAndSort();
+  syncCompareButtons();
 }
 window.toggleCompare = toggleCompare;
 
@@ -752,52 +999,81 @@ function openCompareModal() {
   });
 }
 
-/* ── Управление компактным состоянием панели фильтров при скролле ── */
+/* ── Управление компактным состоянием панели фильтров при скролле ──
+   Панель сжимается ровно в момент «прилипания» к шапке. Чтобы сетка
+   не прыгала вверх, секция сохраняет прежнюю высоту (прозрачная часть
+   не перехватывает клики — см. pointer-events в catalog.css). */
 function initStickyFilterController() {
   const filterSection = document.getElementById('catalog-filter-section');
+  if (!filterSection || filterSection.dataset.wired) return;
+  filterSection.dataset.wired = '1';
+
   const toggleBtn = document.getElementById('filter-advanced-toggle');
   const ecoPanel = document.getElementById('glass-filter-eco');
+
+  const collapseAdvanced = () => {
+    filterSection.classList.remove('is-expanded');
+    if (toggleBtn) {
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      toggleBtn.classList.remove('is-active');
+    }
+    if (ecoPanel) ecoPanel.hidden = true;
+  };
 
   if (toggleBtn && ecoPanel) {
     toggleBtn.addEventListener('click', () => {
       const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
       toggleBtn.classList.toggle('is-active', !isExpanded);
-      if (filterSection) filterSection.classList.toggle('is-expanded', !isExpanded);
+      filterSection.classList.toggle('is-expanded', !isExpanded);
       ecoPanel.hidden = isExpanded;
+      requestAnimationFrame(moveSegThumb);
     });
   }
 
-  if (!filterSection) return;
+  // Точка прилипания: где секция стоит в потоке минус её sticky-top
+  let stickAt = Infinity;
+  const measure = () => {
+    if (filterSection.classList.contains('is-sticky-compact')) return;
+    const cs = getComputedStyle(filterSection);
+    if (cs.position !== 'sticky') { stickAt = Infinity; return; }
+    const top = parseFloat(cs.top) || 0;
+    stickAt = filterSection.getBoundingClientRect().top + window.scrollY - top - 2;
+  };
 
   let ticking = false;
   const updateStickyState = () => {
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollY > 280) {
-      if (!filterSection.classList.contains('is-sticky-compact')) {
-        filterSection.classList.add('is-sticky-compact');
-      }
-    } else {
-      if (filterSection.classList.contains('is-sticky-compact')) {
-        filterSection.classList.remove('is-sticky-compact');
-        filterSection.classList.remove('is-expanded');
-        if (toggleBtn) {
-          toggleBtn.setAttribute('aria-expanded', 'false');
-          toggleBtn.classList.remove('is-active');
-        }
-        if (ecoPanel) ecoPanel.hidden = true;
-      }
-    }
     ticking = false;
+    const compact = filterSection.classList.contains('is-sticky-compact');
+    if (!compact && window.scrollY >= stickAt) {
+      filterSection.style.setProperty('--fs-h', filterSection.offsetHeight + 'px');
+      collapseAdvanced();
+      filterSection.classList.add('is-sticky-compact');
+    } else if (compact && window.scrollY < stickAt) {
+      filterSection.classList.remove('is-sticky-compact');
+      collapseAdvanced();
+      requestAnimationFrame(moveSegThumb);
+    }
   };
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
-      window.requestAnimationFrame(updateStickyState);
       ticking = true;
+      requestAnimationFrame(updateStickyState);
     }
   }, { passive: true });
 
+  window.addEventListener('resize', () => {
+    if (filterSection.classList.contains('is-sticky-compact')) {
+      filterSection.classList.remove('is-sticky-compact');
+      collapseAdvanced();
+    }
+    measure();
+    updateStickyState();
+  }, { passive: true });
+
+  measure();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); updateStickyState(); });
   updateStickyState();
 }
 
@@ -811,6 +1087,7 @@ window.addEventListener('storage', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  initCardInteractions();
   applyFiltersAndSort();
   initStickyFilterController();
   if (Store && typeof Store.getAllAsync === 'function') {
@@ -818,6 +1095,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+initCardInteractions();
 applyFiltersAndSort();
 initStickyFilterController();
 if (Store && typeof Store.getAllAsync === 'function') {

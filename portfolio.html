@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="styles/spatial-dock.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/verticals.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/catalog.css?v=liquid_glass_v3" />
+  <link rel="stylesheet" href="styles/catalog.css?v=glass_catalog_4" />
   <link rel="stylesheet" href="styles/economics.css?v=spatial_2" />
 </head>
 <body class="page-portfolio" data-vertical="hotels">
@@ -411,104 +411,82 @@
   </div>
 
 
-  <!-- ═══ PAGE HEADER (Apple-Inspired Editorial Architecture) ══ -->
-  <section class="page-header" id="page-header" aria-label="Каталог инвестиционных объектов">
-    <div class="page-header-inner">
+  <!-- ═══ CATALOG HERO ═══════════════════════════════════════
+       Заголовок, живые факты по каталогу и распределение по регионам.
+       Цифры пересчитываются из данных в js/catalog.js (renderHeroFacts)
+  ════════════════════════════════════════════════════════════ -->
+  <section class="cat-hero" id="page-header" aria-label="Каталог гостиничных объектов">
+    <div class="cat-hero-ambient" id="cat-hero-ambient" aria-hidden="true"></div>
 
-      <!-- Левый блок: навигация + заголовок -->
-      <div class="page-header-main">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html" class="breadcrumb-link">Главная</a>
-          <span class="breadcrumb-sep" aria-hidden="true">/</span>
-          <span class="breadcrumb-current">Каталог отелей</span>
+    <div class="cat-hero-inner">
+      <div class="cat-hero-copy">
+        <nav class="cat-crumbs" aria-label="Навигационная цепочка">
+          <a href="index.html">Главная</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Каталог отелей</span>
         </nav>
-        
-        <div class="page-kicker-badge">
-          <span class="pk-dot"></span>
-          <span>ОФИЦИАЛЬНЫЙ РЕЕСТР · МТУ РЕСПУБЛИКИ УЗБЕКИСТАН</span>
-        </div>
 
-        <h1 class="page-title">
-          Инвестиционная архитектура.<br />
-          <span class="text-gold">Проверенные активы.</span>
-        </h1>
-        <p class="page-subtitle">
-          32 гостиничных актива институционального уровня. Проверенные аудиторские данные USALI, готовые финансовые модели и прямой доступ к государственным налоговым преференциям.
+        <h1 class="cat-title">Отели, открытые<br /><em>для&nbsp;инвестиций</em></h1>
+
+        <p class="cat-lead">
+          Объекты из&nbsp;реестра Комитета по&nbsp;туризму Республики Узбекистан.
+          По&nbsp;каждому&nbsp;— фотографии, финансовая модель по&nbsp;стандарту USALI и&nbsp;паспорт объекта.
         </p>
+
+        <dl class="cat-facts" id="cat-facts">
+          <div class="cat-fact">
+            <dt>Объектов</dt>
+            <dd data-fact="count">32</dd>
+          </div>
+          <div class="cat-fact">
+            <dt>Номерной фонд</dt>
+            <dd data-fact="rooms">—</dd>
+          </div>
+          <div class="cat-fact">
+            <dt>Цены</dt>
+            <dd data-fact="price">—</dd>
+          </div>
+        </dl>
       </div>
 
-      <!-- Правый блок: сводные KPI каталога -->
-      <div class="page-header-stats">
-        <div class="ph-stat">
-          <span class="ph-stat-num">32</span>
-          <span class="ph-stat-label">Объекта в реестре</span>
+      <aside class="cat-regions" aria-label="Объекты по регионам">
+        <div class="cat-regions-head">
+          <span class="cat-regions-title">По регионам</span>
+          <span class="cat-regions-total" id="cat-regions-total"></span>
         </div>
-        <div class="ph-stat-sep" aria-hidden="true"></div>
-        <div class="ph-stat">
-          <span class="ph-stat-num">14</span>
-          <span class="ph-stat-label">Регионов охвата</span>
-        </div>
-        <div class="ph-stat-sep" aria-hidden="true"></div>
-        <div class="ph-stat">
-          <span class="ph-stat-num">USALI</span>
-          <span class="ph-stat-label">Стандарт аудита</span>
-        </div>
-        <div class="ph-stat-sep" aria-hidden="true"></div>
-        <div class="ph-stat">
-          <span class="ph-stat-num">100%</span>
-          <span class="ph-stat-label">Верификация</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Культурный разделитель (hairline орнамент) -->
-    <div class="page-header-ornament" aria-hidden="true">
-      <svg width="100%" height="12" preserveAspectRatio="none" viewBox="0 0 1440 12">
-        <line x1="0" y1="6" x2="1440" y2="6" stroke="#D6C7AE" stroke-width="1"/>
-        <g fill="none" stroke="#8B6F4E" stroke-width="1" opacity="0.45">
-          <rect x="80"  y="3" width="6" height="6"/>
-          <rect x="240" y="3" width="6" height="6"/>
-          <rect x="400" y="3" width="6" height="6"/>
-          <rect x="560" y="3" width="6" height="6"/>
-          <rect x="720" y="3" width="6" height="6"/>
-          <rect x="880" y="3" width="6" height="6"/>
-          <rect x="1040" y="3" width="6" height="6"/>
-          <rect x="1200" y="3" width="6" height="6"/>
-          <rect x="1360" y="3" width="6" height="6"/>
-        </g>
-      </svg>
+        <div class="cat-regions-bar" id="cat-regions-bar" aria-hidden="true"></div>
+        <ul class="cat-regions-list" id="cat-regions-list"></ul>
+      </aside>
     </div>
   </section>
 
 
-  <!-- ═══ STREAMLINED FILTER & SEARCH HUB (Non-blocking & Compact Sticky) ════ -->
-  <section class="catalog-filter-section" id="catalog-filter-section" aria-label="Панель фильтрации объектов">
+  <!-- ═══ ПОИСК И ФИЛЬТРЫ (липкая стеклянная панель) ═════════ -->
+  <section class="catalog-filter-section" id="catalog-filter-section" aria-label="Поиск и фильтры">
     <div class="catalog-filter-inner">
-      <div class="glass-filter-card" id="glass-filter-card">
+      <div class="cat-toolbar" id="glass-filter-card">
 
-        <!-- 1. Главная строка фильтрации -->
-        <div class="glass-filter-primary">
-
-          <!-- Поиск -->
-          <div class="glass-field glass-field--search">
-            <span class="glass-field-icon" aria-hidden="true">🔍</span>
+        <!-- Строка 1: поиск, регион, категория, сортировка -->
+        <div class="cat-toolbar-row">
+          <label class="cat-search">
+            <svg class="cat-ico" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
             <input
               type="text"
               id="catalog-search"
-              class="glass-input"
-              placeholder="Поиск по названию, городу или бренду..."
-              aria-label="Поиск по названию или адресу"
+              class="cat-search-input"
+              placeholder="Название, город или бренд"
+              aria-label="Поиск по названию, городу или бренду"
               autocomplete="off"
             />
-            <button type="button" class="glass-search-clear" id="catalog-search-clear" aria-label="Очистить поиск" hidden>✕</button>
-          </div>
+            <button type="button" class="cat-search-clear" id="catalog-search-clear" aria-label="Очистить поиск" hidden>
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </label>
 
-          <!-- Регион -->
-          <div class="glass-field glass-field--select">
-            <span class="glass-field-icon" aria-hidden="true">📍</span>
-            <select id="filter-region" class="glass-select" aria-label="Фильтр по региону">
-              <option value="all">Все регионы (14)</option>
+          <div class="cat-select">
+            <svg class="cat-ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 17.5s5.5-5 5.5-9.25a5.5 5.5 0 10-11 0C4.5 12.5 10 17.5 10 17.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="10" cy="8.25" r="1.9" fill="currentColor"/></svg>
+            <select id="filter-region" aria-label="Регион">
+              <option value="all">Все регионы</option>
               <option value="tashkent">Ташкент (город)</option>
               <option value="tashkent-region">Ташкентская обл.</option>
               <option value="samarkand">Самаркандская обл.</option>
@@ -526,136 +504,92 @@
             </select>
           </div>
 
-          <!-- Звёздность -->
-          <div class="glass-field glass-field--select">
-            <span class="glass-field-icon" aria-hidden="true">⭐</span>
-            <select id="filter-stars" class="glass-select" aria-label="Фильтр по звёздности">
-              <option value="all">Все категории</option>
-              <option value="5">★★★★★ 5 звёзд</option>
-              <option value="4">★★★★ 4 звезды</option>
-              <option value="3">★★★ 3 звезды</option>
-              <option value="1-2">★ – ★★ 1-2 звезды</option>
+          <div class="cat-select">
+            <svg class="cat-ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75l2.2 4.6 5.05.62-3.72 3.48.95 5-4.48-2.47-4.48 2.47.95-5L2.75 7.97l5.05-.62L10 2.75z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <select id="filter-stars" aria-label="Категория">
+              <option value="all">Любая категория</option>
+              <option value="5">5 звёзд</option>
+              <option value="4">4 звезды</option>
+              <option value="3">3 звезды</option>
+              <option value="1-2">1–2 звезды</option>
             </select>
           </div>
 
-          <!-- Формат сделки -->
-          <div class="glass-field glass-field--select">
-            <span class="glass-field-icon" aria-hidden="true">💼</span>
-            <select id="filter-deal-type" class="glass-select" aria-label="Фильтр по формату сделки">
-              <option value="all">Все форматы сделки</option>
-              <option value="sale">💼 Прямая продажа</option>
-              <option value="rent">🔑 Долгосрочная аренда</option>
-              <option value="franchise">⭐ Франшиза / Управление</option>
-              <option value="invest">📈 Соинвестирование</option>
-            </select>
-          </div>
-
-          <!-- Сортировка -->
-          <div class="glass-field glass-field--select glass-field--sort">
-            <span class="glass-field-icon" aria-hidden="true">⇅</span>
-            <select id="catalog-sort" class="glass-select" aria-label="Сортировка объектов">
-              <option value="rooms-desc">По номерному фонду (max)</option>
-              <option value="rooms-asc">По номерному фонду (min)</option>
-              <option value="stars-desc">По звёздности (5★ → 1★)</option>
-              <option value="year-desc">Сначала новые объекты</option>
-              <option value="name-asc">По названию (А — Я)</option>
-              <optgroup label="── По экономике USALI ──">
-                <option value="payback-asc">Срок окупаемости (min)</option>
-                <option value="roi-desc">Доходность ROI (max)</option>
-                <option value="occ-desc">Загрузка Occupancy (max)</option>
+          <div class="cat-select cat-select--sort">
+            <svg class="cat-ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4v12M6 16l-2.5-2.5M6 16l2.5-2.5M14 16V4M14 4l-2.5 2.5M14 4l2.5 2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <select id="catalog-sort" aria-label="Сортировка">
+              <option value="rooms-desc">Сначала крупные</option>
+              <option value="rooms-asc">Сначала небольшие</option>
+              <option value="stars-desc">По звёздности</option>
+              <option value="year-desc">Сначала новые</option>
+              <option value="name-asc">По названию, А–Я</option>
+              <optgroup label="Экономика USALI">
+                <option value="payback-asc">Быстрая окупаемость</option>
+                <option value="roi-desc">Высокий ROI</option>
+                <option value="occ-desc">Высокая загрузка</option>
               </optgroup>
             </select>
           </div>
 
-          <!-- Кнопка раскрытия доп. фильтров -->
-          <button type="button" class="glass-btn-toggle" id="filter-advanced-toggle" aria-expanded="false" title="Дополнительные параметры">
-            <span>Фильтры</span>
-            <span class="filter-toggle-icon">▾</span>
+          <button type="button" class="cat-more" id="filter-advanced-toggle" aria-expanded="false" aria-controls="glass-filter-eco">
+            <svg class="cat-ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 6h8M15.5 6h1M3.5 14h1M8.5 14h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="13.5" cy="6" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="6.5" cy="14" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Ещё</span>
+          </button>
+        </div>
+
+        <!-- Строка 2: формат сделки, премиум, счётчик -->
+        <div class="cat-toolbar-sub">
+          <div class="cat-seg" id="cat-seg" role="group" aria-label="Формат сделки">
+            <span class="cat-seg-thumb" aria-hidden="true"></span>
+            <button type="button" class="is-active" data-deal="all">Все</button>
+            <button type="button" data-deal="sale">Продажа</button>
+            <button type="button" data-deal="rent">Аренда</button>
+            <button type="button" data-deal="franchise">Франшиза</button>
+            <button type="button" data-deal="invest">Соинвестирование</button>
+          </div>
+
+          <button type="button" class="cat-chip" id="tag-premium-stars" data-active="false" aria-pressed="false">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75l2.2 4.6 5.05.62-3.72 3.48.95 5-4.48-2.47-4.48 2.47.95-5L2.75 7.97l5.05-.62L10 2.75z" fill="currentColor"/></svg>
+            4–5 звёзд
           </button>
 
-        </div>
-
-        <!-- 2. Строка быстрых тегов формата и индикации -->
-        <div class="glass-filter-secondary">
-          <div class="glass-quick-tags" role="group" aria-label="Быстрые фильтры по формату">
-            <button type="button" class="glass-tag-btn is-active" data-deal="all">
-              Все форматы
-            </button>
-            <button type="button" class="glass-tag-btn" data-deal="sale">
-              <span>💼</span> Продажа
-            </button>
-            <button type="button" class="glass-tag-btn" data-deal="rent">
-              <span>🔑</span> Аренда
-            </button>
-            <button type="button" class="glass-tag-btn" data-deal="franchise">
-              <span>⭐</span> Франшиза
-            </button>
-            <button type="button" class="glass-tag-btn" data-deal="invest">
-              <span>📈</span> Соинвестирование
-            </button>
-            <button type="button" class="glass-tag-btn" id="tag-premium-stars" data-active="false">
-              <span>✨</span> Премиум (4★ – 5★)
-            </button>
-          </div>
-
-          <div class="glass-filter-status">
-            <span class="glass-count-badge">
-              Найдено: <strong id="filter-count-num">32</strong> <span id="filter-count-label">объекта</span>
+          <div class="cat-status">
+            <span class="cat-count" aria-live="polite">
+              <strong id="filter-count-num">32</strong>
+              <span id="filter-count-label">объекта</span>
             </span>
-            <button type="button" class="glass-reset-btn" id="filter-reset" title="Сбросить все параметры фильтра">
-              Сбросить ✕
-            </button>
+            <button type="button" class="cat-reset" id="filter-reset">Сбросить</button>
           </div>
         </div>
 
-        <!-- 3. Дополнительные фильтры (скрыты в компактном режиме) -->
-        <div class="glass-filter-eco" id="glass-filter-eco" hidden>
-          <div class="glass-field glass-field--select" style="min-width: 190px;">
-            <span class="glass-field-icon" aria-hidden="true">🏨</span>
-            <select id="filter-rooms" class="glass-select" aria-label="Фильтр по номерному фонду">
+        <!-- Строка 3: расширенные параметры -->
+        <div class="cat-adv" id="glass-filter-eco" hidden>
+          <div class="cat-select cat-select--sm">
+            <select id="filter-rooms" aria-label="Номерной фонд">
               <option value="all">Любой номерной фонд</option>
-              <option value="small">До 50 номеров (Бутик)</option>
-              <option value="medium">50 – 150 номеров</option>
-              <option value="large">150+ номеров (Крупные)</option>
+              <option value="small">До 50 номеров</option>
+              <option value="medium">50–150 номеров</option>
+              <option value="large">Более 150 номеров</option>
             </select>
           </div>
 
-          <button type="button"
-            id="filter-has-eco"
-            class="glass-tag-btn"
-            data-active="false"
-            title="Показывать только отели с заполненными экономическими данными"
-            style="white-space:nowrap">
-            📊 С экономикой USALI
-          </button>
-          <button type="button"
-            id="filter-certified-only"
-            class="glass-tag-btn"
-            data-active="false"
-            title="Показывать только сертифицированные отели (O'z DSt 3220:2017)"
-            style="white-space:nowrap">
-            🛡️ Сертифицированные
-          </button>
-          <button type="button"
-            id="filter-has-presentation"
-            class="glass-tag-btn"
-            data-active="false"
-            title="Показывать только отели с инвестиционной презентацией"
-            style="white-space:nowrap">
-            📑 С презентацией
-          </button>
-          <div class="glass-eco-input-wrap">
-            <label for="filter-payback-max">Окупаемость ≤</label>
-            <input type="number" id="filter-payback-max" min="1" max="50" step="1"
-              placeholder="лет" class="glass-num-input" />
+          <button type="button" id="filter-has-eco" class="cat-chip" data-active="false"
+            title="Только отели с заполненными экономическими данными">С экономикой USALI</button>
+          <button type="button" id="filter-certified-only" class="cat-chip" data-active="false"
+            title="Только сертифицированные отели (O'z DSt 3220:2017)">Сертифицированные</button>
+          <button type="button" id="filter-has-presentation" class="cat-chip" data-active="false"
+            title="Только отели с инвестиционной презентацией">С презентацией</button>
+
+          <label class="cat-num">
+            <span>Окупаемость до</span>
+            <input type="number" id="filter-payback-max" min="1" max="50" step="1" placeholder="—" />
             <span>лет</span>
-          </div>
-          <div class="glass-eco-input-wrap">
-            <label for="filter-roi-min">ROI ≥</label>
-            <input type="number" id="filter-roi-min" min="0" max="100" step="0.5"
-              placeholder="%" class="glass-num-input" />
+          </label>
+          <label class="cat-num">
+            <span>ROI от</span>
+            <input type="number" id="filter-roi-min" min="0" max="100" step="0.5" placeholder="—" />
             <span>%</span>
-          </div>
+          </label>
         </div>
 
       </div>
@@ -663,27 +597,20 @@
   </section>
 
 
-  <!-- ═══ CATALOG GRID ══════════════════════════ -->
+  <!-- ═══ СЕТКА КАРТОЧЕК ═════════════════════════════════════ -->
   <main class="catalog-main" id="main-content" aria-label="Список объектов">
-    <div class="catalog-section">
-      <div class="catalog-main-inner">
+    <div class="catalog-main-inner">
 
-        <!-- Сетка карточек — заполняется из localStorage через catalog.js -->
-        <div class="hotel-full-grid" id="hotel-grid" role="list"></div>
+      <!-- Карточки рендерит js/catalog.js -->
+      <div class="hotel-full-grid" id="hotel-grid" role="list"></div>
 
-        <!-- Пустое состояние -->
-        <div class="empty-state" id="empty-state" aria-live="polite" hidden>
-          <p class="empty-state-title">Каталог пока пуст</p>
-          <p class="empty-state-desc">Администратор ещё не добавил объекты</p>
-          <a href="admin.html" class="btn btn--primary" style="margin-top:16px;display:inline-block">
-            ⚙️ Открыть Adminку
-          </a>
-          <button class="btn btn--outline btn--dark" id="empty-reset" style="margin-top:12px">
-            Сбросить фильтры
-          </button>
-        </div>
-
+      <!-- Пустое состояние -->
+      <div class="empty-state" id="empty-state" aria-live="polite" hidden>
+        <p class="empty-state-title">Каталог пока пуст</p>
+        <p class="empty-state-desc">Администратор ещё не добавил объекты</p>
+        <button type="button" class="cat-btn" id="empty-reset">Сбросить фильтры</button>
       </div>
+
     </div>
   </main>
 
@@ -752,7 +679,7 @@
   <script src="js/main.js"></script>
   <script src="js/hotels-data.js"></script>
   <script src="js/economics.js"></script>
-  <script src="js/catalog.js?v=liquid_glass_v3"></script>
+  <script src="js/catalog.js?v=glass_catalog_4"></script>
   <script src="js/verticals.js"></script>
   <script src="js/megamenu.js"></script>
   <script src="js/support-core.js"></script>
