@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Для бизнеса: заявка на включение отеля или ресторана в государственный реестр, личные кабинеты, инвестиционные паспорта, сертификация и господдержка." />
+  <meta name="theme-color" content="#F5F2EC" />
+  <title>Для бизнеса — Silk Route Invest · Комитет по туризму РУз</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=PT+Serif:wght@400;700&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="design-tokens.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/base.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/header.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/verticals.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/investors.css?v=inv_2" />
+  <link rel="stylesheet" href="styles/business.css?v=biz_1" />
+</head>
+<body class="page-investors page-business">
+
+  <!-- ═══ C-01 · SITE HEADER ════════════════════ -->
+    <!-- ═══════════════════════════════════════════
+       C-01 · SITE HEADER — Мегаменю
+  ═══════════════════════════════════════════ -->
+    <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+
+      <!-- Логотип -->
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+      </a>
+
+      <!-- Основная навигация -->
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+
+        <!-- 1. Для инвесторов -->
+        <div class="nav-item" data-page="investors" data-also="portfolio restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry passport">
+          <a href="investors.html" class="nav-trigger">Для инвесторов</a>
+        </div>
+
+        <!-- 2. Для бизнеса -->
+        <div class="nav-item" data-page="business" data-also="form restaurant-form cabinet-hotel cabinet-restaurant certification-apply tools">
+          <a href="business.html" class="nav-trigger">Для бизнеса</a>
+        </div>
+
+                <!-- 3. Услуги -->
+        <div class="nav-item" data-mega="services" data-page="services">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            Услуги
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--services">
+            <span class="mega-group-title">Официальные сервисы платформы</span>
+
+            <a href="certification.html" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Сертификация</span>
+                <span class="mega-link-desc">Электронная сертификация и реестр сертифицированных гостиниц</span>
+              </span>
+            </a>
+
+            <a href="quality.html" class="mega-link">
+              <span class="mega-icon-badge">⭐</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Quality Management</span>
+                <span class="mega-link-desc">Классификация KQI, чек-листы и стандарты сервиса</span>
+              </span>
+            </a>
+
+            <a href="economics-ratings.html" class="mega-link">
+              <span class="mega-icon-badge">📈</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Economics Ratings</span>
+                <span class="mega-link-desc">Рейтинг экономической эффективности и бенчмаркинг отелей</span>
+              </span>
+            </a>
+
+            <a href="events-app.html" class="mega-link" style="background:rgba(59,130,246,0.06);border-radius:8px;">
+              <span class="mega-icon-badge">🏛️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label" style="color:var(--color-accent-blue,#3b82f6)">Государственные мероприятия</span>
+                <span class="mega-link-desc">Система «одного окна» для делегаций и MICE</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. О платформе -->
+        <div class="nav-item" data-mega="platform" data-page="about">
+          <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+            О платформе
+            <svg class="chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel mega-panel--platform">
+            <span class="mega-group-title">Стандарты и документация системы</span>
+            <a href="about.html" class="mega-link">
+              <span class="mega-icon-badge">📖</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">О системе</span>
+                <span class="mega-link-desc">Методические рекомендации · Том I</span>
+              </span>
+            </a>
+            <a href="tech-spec.html" class="mega-link">
+              <span class="mega-icon-badge">🛠️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Tech Specification</span>
+                <span class="mega-link-desc">Архитектура, ER-схема, API · Том IV</span>
+              </span>
+            </a>
+            <a href="certification.html#methodology" class="mega-link">
+              <span class="mega-icon-badge">🛡</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Том VIII. Сертификация</span>
+                <span class="mega-link-desc">O’z DSt 3220:2017 · реестр · контроль 5 лет</span>
+              </span>
+            </a>
+            <a href="support.html" class="mega-link">
+              <span class="mega-icon-badge">🏛️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Государственная поддержка</span>
+                <span class="mega-link-desc">Программы субсидий · Том V</span>
+              </span>
+            </a>
+            <a href="restaurants.html" class="mega-link">
+              <span class="mega-icon-badge">🍽️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Стандарты F&amp;B</span>
+                <span class="mega-link-desc">Ресторанные инвестиции · Том VI</span>
+              </span>
+            </a>
+            <a href="land.html" class="mega-link">
+              <span class="mega-icon-badge">🗺️</span>
+              <span class="mega-link-text">
+                <span class="mega-link-label">Земельные ресурсы</span>
+                <span class="mega-link-desc">Аукционы и кластеры · Том VII</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. B2B Cooperation (в последнюю очередь) -->
+        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+
+      </nav>
+
+      <!-- Правый блок -->
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Выбор языка">
+          <button class="lang-btn lang-btn--active" data-lang="ru" aria-pressed="true">RU</button>
+          <button class="lang-btn" data-lang="uz" aria-pressed="false">UZ</button>
+          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a href="cabinet-investor.html" class="btn-login" id="header-login">
+          <span>Кабинет</span>
+          <span class="btn-login-icon">→</span>
+        </a>
+      </div>
+
+      <!-- Мобильный гамбургер -->
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- Мобильная навигация -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Классы активов</span>
+      <a href="investors.html" class="mobile-nav-hub">Для инвесторов — обзор раздела</a>
+      <a href="portfolio.html">🏨 Гостиничные объекты</a>
+      <a href="restaurants.html">🍽 Ресторанные проекты</a>
+      <a href="land.html">🗺 Земельные участки</a>
+      <a href="support.html">🏛 Государственная поддержка</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Инструменты инвестора</span>
+      <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
+      <a href="tourism-types.html">📍 Виды туризма</a>
+      <a href="certification-registry.html#verify">✔ Проверить сертификат отеля</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="certification.html">🛡 Сертификация</a>
+      <a href="quality.html">⭐ Quality Management</a>
+      <a href="economics-ratings.html">📈 Economics Ratings</a>
+      <a href="events-app.html">🏛️ Государственные мероприятия</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для бизнеса</span>
+      <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
+      <a href="form.html" class="mobile-nav-cta">✨ Подать отель в реестр</a>
+      <a href="restaurant-form.html" class="mobile-nav-cta" style="background:var(--v-restaurants);border-color:var(--v-restaurants);margin-top:6px;">🍽 Подать ресторан в реестр</a>
+      <a href="form.html">⚡ Smart Investment Form</a>
+      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
+      <a href="cabinet-restaurant.html">🍽 Кабинет ресторатора</a>
+      <a href="passport.html">📄 Hotel Investment Passport</a>
+      <a href="restaurant-passport.html">📊 Restaurant Passport</a>
+      <a href="certification-apply.html">🛡 Заявка на сертификацию</a>
+      </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">О платформе</span>
+      <a href="about.html">📖 О системе (Том I)</a>
+      <a href="tech-spec.html">🛠️ Tech Specification (Том IV)</a>
+      <a href="certification.html#methodology">🛡 Том VIII. Сертификация</a>
+      <a href="b2b.html">🤝 B2B Cooperation</a>
+    </div>
+  </div>
+
+  <!-- ═══ ДЛЯ БИЗНЕСА ══════════════════════════════════════════
+       Раздел верхнего меню «Для бизнеса»: всё из его выпадающего
+       меню собрано на одной странице. Цифры и макеты документов
+       заполняет js/business.js из данных реестра.
+  ════════════════════════════════════════════════════════════ -->
+  <main class="inv biz" id="main-content">
+
+    <!-- 1 · HERO -->
+    <section class="inv-hero" aria-labelledby="biz-title">
+      <div class="inv-hero-frame biz-hero">
+        <div class="biz-hero-pattern" aria-hidden="true"></div>
+        <div class="biz-hero-glow" aria-hidden="true"></div>
+
+        <div class="inv-hero-copy">
+          <p class="inv-eyebrow inv-eyebrow--light">Для бизнеса</p>
+          <h1 class="inv-hero-title" id="biz-title">
+            Внесите свой объект в&nbsp;государственный реестр.
+            <span>Инвесторы увидят его с&nbsp;проверенными цифрами.</span>
+          </h1>
+          <p class="inv-hero-lead">
+            Отели и рестораны получают инвестиционный паспорт, сертификат и личный кабинет, куда приходят заявки от инвесторов.
+          </p>
+          <div class="inv-hero-actions">
+            <a href="form.html" class="inv-btn inv-btn--light">Подать заявку: отель</a>
+            <a href="restaurant-form.html" class="inv-btn inv-btn--glass">Подать заявку: ресторан</a>
+          </div>
+          <p class="biz-hero-note">
+            Уже в реестре: <b data-stat="hotels">32</b> <span data-forms="отель|отеля|отелей" data-of="hotels">отеля</span> и <b data-stat="restaurants">6</b> <span data-forms="ресторан|ресторана|ресторанов" data-of="restaurants">ресторанов</span>
+          </p>
+        </div>
+
+        <!-- Иллюстрация: паспорт поверх сертификата (заполняет js) -->
+        <div class="biz-docs" aria-hidden="true">
+          <div class="doc-cert">
+            <div class="doc-cert-head">
+              <span>O'z DSt 3220:2017</span>
+              <span class="doc-cert-no">UZ.TSM.TK.000123</span>
+            </div>
+            <p class="doc-cert-title">Сертификат соответствия</p>
+            <p class="doc-cert-stars">★★★★</p>
+            <svg class="doc-cert-seal" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" />
+              <circle cx="60" cy="60" r="42" />
+              <path d="M42 61 L55 73 L79 47" />
+            </svg>
+          </div>
+          <div class="doc-pass lg">
+            <div class="doc-pass-photo" id="hero-pass-photo"></div>
+            <div class="doc-pass-body">
+              <p class="doc-pass-kicker">Hotel Investment Passport</p>
+              <p class="doc-pass-name" id="hero-pass-name">Bakh Mir Palace</p>
+              <p class="doc-pass-meta" id="hero-pass-meta">4★ · 50 номеров</p>
+              <dl class="doc-pass-kpi" id="hero-pass-kpi">
+                <div><dt>ADR</dt><dd>$74</dd></div>
+                <div><dt>Загрузка</dt><dd>69%</dd></div>
+                <div><dt>RevPAR</dt><dd>$51</dd></div>
+                <div><dt>EBITDA</dt><dd>35%</dd></div>
+              </dl>
+              <div class="doc-pass-iri" id="hero-pass-ver"><span id="hero-pass-period">Данные за 2025 FY</span><b>Проверено</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Локальная навигация -->
+    <nav class="inv-subnav" aria-label="Разделы страницы">
+      <div class="inv-subnav-inner lg">
+        <span class="inv-subnav-title">Для бизнеса</span>
+        <div class="inv-subnav-links">
+          <a href="#roles">Отель и ресторан</a>
+          <a href="#registry">Попасть в реестр</a>
+          <a href="#passports">Паспорта</a>
+          <a href="#cert">Сертификация</a>
+          <a href="#support">Поддержка</a>
+        </div>
+        <a href="form.html" class="inv-subnav-cta">Подать заявку</a>
+      </div>
+    </nav>
+
+    <!-- 2 · ОТЕЛЬ И РЕСТОРАН -->
+    <section class="inv-section" id="roles" aria-labelledby="roles-title">
+      <header class="inv-head">
+        <p class="inv-eyebrow">Отель и ресторан</p>
+        <h2 class="inv-h2" id="roles-title">Свой путь для каждого формата.</h2>
+        <p class="inv-lead">Заявка, кабинет и паспорт — отдельно для гостиниц и для ресторанов.</p>
+      </header>
+
+      <div class="roles">
+        <article class="role" data-reveal>
+          <div class="role-media">
+            <img id="role-hotel-img" src="" alt="" loading="lazy" />
+            <span class="role-tag lg"><span>Отель</span></span>
+          </div>
+          <ul class="role-list">
+            <li><a href="form.html">
+              <span class="role-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+              <span class="role-t"><b>Подать заявку на включение</b><small>Smart Investment Form · Том III</small></span>
+            </a></li>
+            <li><a href="cabinet-hotel.html">
+              <span class="role-ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16M10 10v10"/></svg></span>
+              <span class="role-t"><b>Кабинет отеля</b><small>Объект, заявки инвесторов, KQI, документы</small></span>
+            </a></li>
+            <li><a href="passport.html">
+              <span class="role-ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span>
+              <span class="role-t"><b>Hotel Investment Passport</b><small>Стандарт USALI, финмодель · Том II</small></span>
+            </a></li>
+          </ul>
+        </article>
+
+        <article class="role role--rest" data-reveal>
+          <div class="role-media">
+            <img src="assets/invest/restaurants-1400.webp" alt="" loading="lazy" />
+            <span class="role-tag lg"><span>Ресторан</span></span>
+          </div>
+          <ul class="role-list">
+            <li><a href="restaurant-form.html">
+              <span class="role-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+              <span class="role-t"><b>Подать заявку на включение</b><small>Restaurant Smart Form · 4 шага</small></span>
+            </a></li>
+            <li><a href="cabinet-restaurant.html">
+              <span class="role-ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16M10 10v10"/></svg></span>
+              <span class="role-t"><b>Кабинет ресторатора</b><small>Управление проектом и документами</small></span>
+            </a></li>
+            <li><a href="restaurant-passport.html">
+              <span class="role-ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span>
+              <span class="role-t"><b>Restaurant Passport</b><small>F&amp;B метрики, comp-set · Том VI</small></span>
+            </a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3 · КАК ПОПАСТЬ В РЕЕСТР + КАЛЬКУЛЯТОР -->
+    <section class="inv-section" id="registry" aria-labelledby="registry-title">
+      <header class="inv-head">
+        <p class="inv-eyebrow">Smart Investment Form</p>
+        <h2 class="inv-h2" id="registry-title">Как объект попадает в реестр.</h2>
+      </header>
+
+      <div class="reg">
+        <ol class="path path--col" data-reveal>
+          <li class="path-step">
+            <span class="path-n">01</span>
+            <div>
+              <h3>Заполните форму</h3>
+              <p>Характеристики объекта, номерной фонд, операционные KPI и комплект документов.</p>
+            </div>
+          </li>
+          <li class="path-step">
+            <span class="path-n">02</span>
+            <div>
+              <h3>Система посчитает показатели</h3>
+              <p>ADR, RevPAR и EBITDA рассчитываются автоматически по методике USALI.</p>
+            </div>
+          </li>
+          <li class="path-step">
+            <span class="path-n">03</span>
+            <div>
+              <h3>Объект получает индекс IRI</h3>
+              <p>Investment Readiness Index показывает инвестору, насколько объект готов к сделке.</p>
+            </div>
+          </li>
+          <li class="path-step">
+            <span class="path-n">04</span>
+            <div>
+              <h3>Паспорт публикуется в каталоге</h3>
+              <p>Заявки инвесторов приходят в кабинет отеля.</p>
+            </div>
+          </li>
+        </ol>
+
+        <!-- Экспресс-расчёт: рабочий мини-калькулятор -->
+        <div class="calc" data-reveal>
+          <div class="calc-head">
+            <p class="calc-kicker">Экспресс-расчёт</p>
+            <p class="calc-title">Сколько приносит номерной фонд</p>
+          </div>
+          <div class="calc-fields">
+            <label class="calc-field">
+              <span>Номеров</span>
+              <output id="calc-rooms-out">60</output>
+              <input type="range" id="calc-rooms" min="5" max="400" step="5" value="60" />
+            </label>
+            <label class="calc-field">
+              <span>Средняя цена номера (ADR), $</span>
+              <output id="calc-adr-out">80</output>
+              <input type="range" id="calc-adr" min="20" max="400" step="5" value="80" />
+            </label>
+            <label class="calc-field">
+              <span>Загрузка, %</span>
+              <output id="calc-occ-out">65</output>
+              <input type="range" id="calc-occ" min="10" max="100" step="1" value="65" />
+            </label>
+          </div>
+          <div class="calc-res">
+            <div><span>RevPAR</span><b id="calc-revpar">$52</b><small id="calc-cmp">в среднем по реестру —</small></div>
+            <div><span>Выручка от номеров в год</span><b id="calc-rev">$1,1 млн</b><small>RevPAR × номера × 365</small></div>
+          </div>
+          <a href="form.html" class="calc-go tile-go">Полный расчёт в Smart Investment Form</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 · ПАСПОРТА -->
+    <section class="inv-section" id="passports" aria-labelledby="pass-title">
+      <header class="inv-head">
+        <p class="inv-eyebrow">Инвестиционные паспорта</p>
+        <h2 class="inv-h2" id="pass-title">Один документ вместо десятка запросов.</h2>
+        <p class="inv-lead">Паспорт собирает всё, что инвестор спрашивает первым делом. Ниже — фрагменты реальных паспортов из реестра.</p>
+      </header>
+
+      <div class="passes">
+        <a class="pass" id="pass-hotel" href="passport.html" data-reveal>
+          <div class="pass-paper">
+            <div class="pass-top">
+              <span>Hotel Investment Passport</span><span>Том II · USALI</span>
+            </div>
+            <div class="pass-id">
+              <img id="ph-img" src="" alt="" loading="lazy" />
+              <div>
+                <p class="pass-name" id="ph-name">—</p>
+                <p class="pass-meta" id="ph-meta">—</p>
+              </div>
+            </div>
+            <dl class="pass-grid" id="ph-kpi"></dl>
+            <div class="pass-bar"><span>Цена объекта</span><b id="ph-price">—</b></div>
+          </div>
+          <span class="tile-go">Открыть паспорт отеля</span>
+        </a>
+
+        <a class="pass pass--rest" id="pass-rest" href="restaurant-passport.html" data-reveal>
+          <div class="pass-paper">
+            <div class="pass-top">
+              <span>Restaurant Passport</span><span>Том VI · F&amp;B</span>
+            </div>
+            <div class="pass-id">
+              <span class="pass-rating" id="pr-rating">A+</span>
+              <div>
+                <p class="pass-name" id="pr-name">—</p>
+                <p class="pass-meta" id="pr-meta">—</p>
+              </div>
+            </div>
+            <dl class="pass-grid" id="pr-kpi"></dl>
+            <div class="pass-bar"><span>Инвестиции</span><b id="pr-price">—</b></div>
+          </div>
+          <span class="tile-go">Открыть паспорт ресторана</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 5 · СЕРТИФИКАЦИЯ -->
+    <section class="inv-section" id="cert" aria-labelledby="cert-title">
+      <div class="cert lg" data-reveal>
+        <div class="cert-copy">
+          <p class="inv-eyebrow inv-eyebrow--light">Сертификация средства размещения</p>
+          <h2 class="cert-h2" id="cert-title">Сертификат — онлайн, без бумаги и визитов.</h2>
+          <p class="cert-lead">Электронная заявка по стандарту O'z DSt 3220:2017: от выбора категории до подписи E-IMZO и статуса рассмотрения.</p>
+          <ol class="cert-steps">
+            <li><b>1–2</b>Тип объекта, категория и реквизиты</li>
+            <li><b>3–4</b>Расчёт и оплата сбора</li>
+            <li><b>5–6</b>Электронный чек-лист и самооценка</li>
+            <li><b>7–8</b>Подпись E-IMZO и статус заявки</li>
+          </ol>
+          <div class="inv-hero-actions">
+            <a href="certification-apply.html" class="inv-btn inv-btn--light">Подать заявку на сертификацию</a>
+          </div>
+        </div>
+        <div class="cert-art" aria-hidden="true">
+          <div class="doc-cert doc-cert--big">
+            <div class="doc-cert-head">
+              <span>O'z DSt 3220:2017</span>
+              <span class="doc-cert-no">UZ.TSM.TK.000123</span>
+            </div>
+            <p class="doc-cert-title">Сертификат соответствия</p>
+            <p class="doc-cert-sub">средства размещения</p>
+            <p class="doc-cert-stars">★★★★★</p>
+            <div class="doc-cert-lines"><i></i><i></i><i></i></div>
+            <svg class="doc-cert-seal" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" />
+              <circle cx="60" cy="60" r="42" />
+              <path d="M42 61 L55 73 L79 47" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 · ПОДДЕРЖКА И ИНСТРУМЕНТЫ -->
+    <section class="inv-section" id="support" aria-labelledby="support-title">
+      <header class="inv-head">
+        <p class="inv-eyebrow">Поддержка и инструменты</p>
+        <h2 class="inv-h2" id="support-title">Что ещё поможет объекту.</h2>
+      </header>
+
+      <div class="extras">
+        <a href="support.html" class="extra extra--support" data-reveal>
+          <div class="extra-num"><span data-stat="support">16</span></div>
+          <div class="extra-body">
+            <h3>Калькулятор господдержки</h3>
+            <p>Подберёт субсидии, компенсации и льготы по нормативным актам — под ваш объект.</p>
+            <ul class="support-kinds support-kinds--paper" id="support-kinds"></ul>
+            <span class="tile-go">Рассчитать поддержку</span>
+          </div>
+        </a>
+
+        <a href="form.html" class="extra extra--form" data-reveal>
+          <div class="extra-art" aria-hidden="true">
+            <div class="mini-form">
+              <span class="mf-row"><i style="width:62%"></i></span>
+              <span class="mf-row"><i style="width:44%"></i></span>
+              <span class="mf-kpis"><b>ADR</b><b>RevPAR</b><b>EBITDA</b><b>IRR</b></span>
+              <span class="mf-bar"><i></i></span>
+            </div>
+          </div>
+          <div class="extra-body">
+            <h3>Smart Investment Form</h3>
+            <p>Экспресс-расчёт ADR, RevPAR, EBITDA и IRR по данным вашего объекта.</p>
+            <span class="tile-go">Открыть форму</span>
+          </div>
+        </a>
+
+        <a href="/tools/" class="extra extra--partner" data-reveal>
+          <span class="partner-badge">Сервис партнёра · платно</span>
+          <div class="extra-body">
+            <h3>Инструменты для отельеров</h3>
+            <p>Excel-модели, чек-листы, шаблоны презентаций и AI-промпты от SRI Toolkit.</p>
+            <ul class="partner-list" id="partner-list"></ul>
+            <span class="tile-go">Смотреть инструменты</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 7 · ФИНАЛ -->
+    <section class="inv-final" aria-labelledby="biz-final-title">
+      <div class="inv-final-frame">
+        <img id="biz-final-img" src="assets/invest/hero-1400.webp" alt="" loading="lazy" class="inv-final-img" />
+        <div class="inv-final-card lg">
+          <h2 id="biz-final-title">Готовы показать объект инвесторам?</h2>
+          <p>Начните с заявки: дальше — паспорт объекта, сертификат и кабинет с заявками инвесторов.</p>
+          <div class="inv-hero-actions">
+            <a href="form.html" class="inv-btn inv-btn--dark">Заявка: отель</a>
+            <a href="restaurant-form.html" class="inv-btn inv-btn--ghost">Заявка: ресторан</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══ FOOTER ════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+          </a>
+          <p class="footer-brand-desc">
+            Silk Route Invest&nbsp;— официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.
+          </p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация footer">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Платформа</p>
+            <a href="about.html"             class="footer-nav-link">О системе</a>
+            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
+            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
+            <a href="registries.html"         class="footer-nav-link">Реестры</a>
+            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+            <a href="certification.html" class="footer-nav-link">Сертификация</a>
+            <a href="certification-registry.html" class="footer-nav-link">Реестр сертифицированных</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Документы</p>
+            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
+            <a href="passport.html"  class="footer-nav-link">Том II. Hotel Investment Passport</a>
+            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
+            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
+            <a href="support.html"   class="footer-nav-link">Том V. Государственная поддержка</a>
+            <a href="restaurants.html" class="footer-nav-link">Том VI. Ресторанные инвестиции</a>
+            <a href="land.html"      class="footer-nav-link">Том VII. Земельные участки</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
+          Данные носят иллюстративный характер. Методология: STR Global / USALI / IFC.
+        </p>
+        <div class="footer-lang-group" role="group" aria-label="Язык">
+          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
+          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
+          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/hotels-data.js"></script>
+  <script src="js/megamenu.js?v=nav_inv_1"></script>
+  <script src="js/support-core.js"></script>
+  <script src="js/business.js?v=biz_1"></script>
+</body>
+</html>
