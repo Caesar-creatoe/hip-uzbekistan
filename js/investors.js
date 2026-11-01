@@ -362,7 +362,7 @@
   function renderMini(pick) {
     const ul = document.getElementById('mini-fav');
     if (!ul) return;
-    const three = pick.slice(0, 3);
+    const three = pick.slice(0, 2);
     ul.innerHTML = three.map((h) => `<li>
       <img src="${esc(cardSrc(photoOf(h)))}" alt="" loading="lazy" />
       <span class="mini-t"><b>${esc(h.hotelName)}</b><span>${esc(money(priceOf(h)) || 'Цена по запросу')}</span></span>
