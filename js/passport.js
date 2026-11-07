@@ -1,29 +1,22 @@
 /* ============================================================
-   PASSPORT.JS — Навигация и динамический рендер паспорта
+   PASSPORT.JS — паспорт отеля (v2, soft glass)
    Hotel Investment Portfolio · Silk Route Invest
-   Отображение ТОЛЬКО реальных канонических данных (19 полей)
+   Показывает только реальные данные объекта из HotelStore.
    ============================================================ */
 'use strict';
 
 let currentHotelData = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const hotelParam = urlParams.get('hotel');
-
-  // Получаем список отелей из единого HotelStore
+  document.documentElement.classList.add('js-pp');
+  const hotelParam = new URLSearchParams(window.location.search).get('hotel');
   const store = window.HotelStore;
   let hotel = null;
 
-  if (store && typeof store.getById === 'function' && hotelParam) {
-    hotel = store.getById(hotelParam);
-  }
-
+  if (store && typeof store.getById === 'function' && hotelParam) hotel = store.getById(hotelParam);
   if (!hotel && store && typeof store.getAll === 'function') {
     const all = store.getAll();
-    if (all.length > 0) {
-      hotel = all[0];
-    }
+    if (all.length) hotel = all[0];
   }
 
   if (hotel) {
@@ -37,926 +30,593 @@ document.addEventListener('DOMContentLoaded', () => {
   initTocSpy();
   initLightbox();
   initPdfButton();
+  initReveal();
 });
 
-/* ── Вспомогательные утилиты ────────────────────────────────── */
+/* ── Утилиты ─────────────────────────────────────────────────── */
 function esc(str) {
-  return String(str ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
-
-function renderStars(stars) {
-  const count = parseInt(stars, 10);
-  if (isNaN(count) || count <= 0) {
-    return `<span style="color:var(--color-accent);font-weight:600">${esc(stars || 'Без категории')}</span>`;
+const $id = (id) => document.getElementById(id);
+const has = (v) => v !== null && v !== undefined && v !== '';
+function setTxt(id, val, fallback = '—') {
+  const el = $id(id);
+  if (el) el.textContent = has(val) ? val : fallback;
+}
+/* Числа в русском формате: 49,6 млн; 76%; $151 */
+const ru = (n, d = 1) => Number(n).toLocaleString('ru-RU', { minimumFractionDigits: 0, maximumFractionDigits: d });
+const fmt = {
+  money(v) {
+    if (!has(v) || isNaN(+v)) return null;
+    const n = +v, a = Math.abs(n);
+    if (a >= 1e9) return '$' + ru(n / 1e9) + ' млрд';
+    if (a >= 1e6) return '$' + ru(n / 1e6) + ' млн';
+    if (a >= 1e3) return '$' + ru(n / 1e3, 0) + ' тыс.';
+    return '$' + ru(n, 0);
+  },
+  usd(v, d = 0) { return has(v) && !isNaN(+v) ? '$' + ru(+v, d) : null; },
+  pct(v, d = 1) { return has(v) && !isNaN(+v) ? ru(+v, d) + '%' : null; },
+  num(v, d = 0) { return has(v) && !isNaN(+v) ? ru(+v, d) : null; },
+  years(v) {
+    if (!has(v) || isNaN(+v)) return null;
+    const n = +v, i = Math.floor(n);
+    const w = n !== i ? 'года' : (i % 10 === 1 && i % 100 !== 11 ? 'год' : ([2, 3, 4].includes(i % 10) && ![12, 13, 14].includes(i % 100) ? 'года' : 'лет'));
+    return ru(n) + ' ' + w;
+  },
+  date(v) {
+    const d = new Date(v);
+    return isNaN(d) ? null : d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
   }
-  const full = Math.min(count, 5);
-  let starsHtml = '';
-  for (let i = 0; i < full; i++) {
-    starsHtml += `<svg width="18" height="18" viewBox="0 0 20 20" fill="#8B6F4E" aria-hidden="true" style="margin-right:2px"><polygon points="10,1 12.5,7 19,7.5 14,12 15.5,18.5 10,15 4.5,18.5 6,12 1,7.5 7.5,7"/></svg>`;
-  }
-  return starsHtml;
+};
+const info = (t) => (t ? `<i class="pp-info" title="${esc(t)}">i</i>` : '');
+function row(label, val, tip = '', extra = '') {
+  if (!has(val)) return '';
+  return `<li><span class="k">${esc(label)}${info(tip)}</span><span class="v">${val}${extra}</span></li>`;
 }
 
-function getRegionCoords(regionKey) {
-  const coordsMap = {
-    'tashkent': [41.2995, 69.2401],
-    'tashkent-region': [41.6318, 70.0435],
-    'samarkand': [39.6542, 66.9597],
-    'bukhara': [39.7747, 64.4286],
-    'khorezm': [41.3783, 60.3639],
-    'fergana': [40.3842, 71.7843],
-    'namangan': [40.9983, 71.6726],
-    'andijan': [40.7821, 72.3442],
-    'kashkadarya': [38.8612, 65.7847],
-    'surkhandarya': [37.2242, 67.2783],
-    'jizzakh': [40.1158, 67.8422],
-    'syrdarya': [40.4933, 68.7844],
-    'navoi': [40.0844, 65.3792],
-    'karakalpakstan': [42.4602, 59.6166]
-  };
-  return coordsMap[regionKey] || [41.2995, 69.2401];
+/* Иконки (линейные, 24×24) */
+const ICON = {
+  star: '<svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.6 6 .7-4.5 4.1 1.2 6-5.3-3-5.3 3 1.2-6L1.4 7.8l6-.7z"/></svg>',
+  food: '<svg viewBox="0 0 24 24"><path d="M7 3v8a2 2 0 0 0 2 2v8M5 3v5a2 2 0 0 0 2 2M9 3v5a2 2 0 0 1-2 2M17 21V3c-2 1-3.5 3.5-3.5 7v3H17"/></svg>',
+  pool: '<svg viewBox="0 0 24 24"><path d="M3 18c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1M3 14c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1M8 13V5a2 2 0 0 1 4 0M16 13V5a2 2 0 0 0-4 0M8 8h8"/></svg>',
+  gym: '<svg viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>',
+  bar: '<svg viewBox="0 0 24 24"><path d="M7 3h10l-1 7a4 4 0 0 1-8 0L7 3zM12 14v7M8.5 21h7"/></svg>',
+  club: '<svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>',
+  casino: '<svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>',
+  spa: '<svg viewBox="0 0 24 24"><path d="M12 21c-5 0-8-3-8-7 3 0 6 1.5 8 4 2-2.5 5-4 8-4 0 4-3 7-8 7zM12 18c-2-3-2-7 0-11 2 4 2 8 0 11z"/></svg>',
+  meeting: '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.5A5 5 0 0 1 21 19"/></svg>',
+  parking: '<svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M10 17V7h3a3 3 0 0 1 0 6h-3"/></svg>',
+  wifi: '<svg viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1" fill="currentColor"/></svg>',
+  shop: '<svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8zM9 8V6a3 3 0 0 1 6 0v2"/></svg>',
+  kids: '<svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="2.5"/><path d="M7 11l5 1 5-1M12 12v4l-3 5M12 16l3 5"/></svg>',
+  sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+  laundry: '<svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="13" r="4"/><path d="M8 6.5h.01M11 6.5h.01"/></svg>',
+  shield: '<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/></svg>',
+  lift: '<svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9.5 9L12 6.5 14.5 9M9.5 15l2.5 2.5 2.5-2.5"/></svg>',
+  tour: '<svg viewBox="0 0 24 24"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>',
+  check: '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  ok: '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  cal: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>'
+};
+const AMENITY_ICONS = [
+  [/рестора|restaurant|кафе|cafe|румсервис|room service|столов/i, 'food'],
+  [/бассейн|pool|аквапарк|якузи|джакузи/i, 'pool'],
+  [/спортзал|фитнес|gym|fitness|тренаж/i, 'gym'],
+  [/бар|bar|лаунж|lounge/i, 'bar'],
+  [/клуб|club|караоке|ночн/i, 'club'],
+  [/казино|casino/i, 'casino'],
+  [/спа|spa|саун|хамам|массаж|wellness|баня/i, 'spa'],
+  [/конферен|конгресс|conference|бизнес|переговор|банкет|зал/i, 'meeting'],
+  [/парков|паркинг|гараж|parking|valet/i, 'parking'],
+  [/wi-?fi|ви-фи|интернет/i, 'wifi'],
+  [/магазин|бутик|шопинг|shop/i, 'shop'],
+  [/детск|kids/i, 'kids'],
+  [/терраса|панорам|крыш|сад|открыт/i, 'sun'],
+  [/прачеч|химчист|laundry/i, 'laundry'],
+  [/сейф|охран|безопас/i, 'shield'],
+  [/лифт/i, 'lift'],
+  [/экскурс|тур|трансфер/i, 'tour']
+];
+function amenityIcon(text) {
+  for (const [re, key] of AMENITY_ICONS) if (re.test(text)) return ICON[key];
+  return ICON.check;
+}
+function plural(n, one, few, many) {
+  const a = Math.abs(n) % 100, b = a % 10;
+  if (a > 10 && a < 20) return many;
+  if (b > 1 && b < 5) return few;
+  if (b === 1) return one;
+  return many;
+}
+function photosOf(hotel) {
+  return (Array.isArray(hotel.photos) ? hotel.photos.filter(Boolean) : []).map((p) =>
+    (typeof p === 'object' && p !== null && p.src) ? { src: p.src, caption: p.caption || '' } : { src: String(p), caption: '' });
+}
+function placeOf(hotel) {
+  const m = String(hotel.address || '').match(/(?:^|[\s,])(?:г\.|город)\s*([^,]+)/i);
+  if (m) return m[1].trim();
+  if (hotel.city) return hotel.city;
+  return hotel.region || 'Узбекистан';
 }
 
-/* ── Рендеринг паспорта отеля ───────────────────────────────── */
+/* ── Рендер ─────────────────────────────────────────────────── */
 function renderPassport(hotel) {
-  const hotelName = hotel.hotelName || 'Гостиничный объект';
-  document.title = `${hotelName} — Инвестиционный паспорт · Silk Route Invest`;
+  const name = hotel.hotelName || 'Гостиничный объект';
+  document.title = `${name} — инвестиционный паспорт · Silk Route Invest`;
 
-  // 1. Хлебные крошки и заголовок
-  const breadcrumb = document.getElementById('passport-breadcrumb-name');
-  if (breadcrumb) breadcrumb.textContent = hotelName;
+  setTxt('passport-breadcrumb-name', name);
+  setTxt('passport-hotel-name', name);
+  setTxt('passport-region-sub', placeOf(hotel));
 
-  const titleEl = document.getElementById('passport-hotel-name');
-  if (titleEl) titleEl.textContent = hotelName;
-
-  // 2. Звёздность
-  const starsEl = document.getElementById('passport-stars');
+  const stars = parseInt(hotel.stars, 10);
+  const starsEl = $id('passport-stars');
   if (starsEl) {
-    starsEl.innerHTML = renderStars(hotel.stars);
+    starsEl.innerHTML = stars > 0 ? ICON.star.repeat(Math.min(stars, 5)) : `<span>${esc(hotel.stars || 'Без категории')}</span>`;
+    starsEl.setAttribute('aria-label', stars > 0 ? `${stars} звёзд` : 'Без категории');
   }
+  setTxt('passport-location', hotel.address || hotel.region, 'Республика Узбекистан');
 
-  // 3. Локация в шапке
-  const locEl = document.getElementById('passport-location');
-  if (locEl) {
-    locEl.textContent = hotel.address || hotel.region || 'Республика Узбекистан';
+  // Статус и формат сделки
+  const status = String(hotel.status || 'active').toLowerCase();
+  const st = $id('passport-status-badge');
+  if (st) {
+    const map = { active: ['Активный объект', ''], pending: ['На проверке', 'pp-tag--pending'] };
+    const [label, cls] = map[status] || ['Черновик', 'pp-tag--draft'];
+    st.className = `pp-tag pp-tag--status ${cls}`.trim();
+    st.innerHTML = `<i></i>${label}`;
   }
+  const deal = typeof window.getHotelDealConfig === 'function' ? window.getHotelDealConfig(hotel) : { label: 'Прямая продажа' };
+  setTxt('passport-deal-badge', deal.label);
 
-  // 4. Статус публикации
-  const statusBadge = document.getElementById('passport-status-badge');
-  if (statusBadge) {
-    const s = (hotel.status || 'active').toLowerCase();
-    if (s === 'active') {
-      statusBadge.textContent = '● Активный объект';
-      statusBadge.className = 'cover-status-badge cover-status-badge--active';
-    } else if (s === 'pending') {
-      statusBadge.textContent = '⏳ На проверке';
-      statusBadge.className = 'cover-status-badge cover-status-badge--pending';
-    } else {
-      statusBadge.textContent = '📝 Черновик';
-      statusBadge.className = 'cover-status-badge cover-status-badge--draft';
-    }
-  }
-
-  // Бейдж формата сделки в обложке
-  const deal = typeof window.getHotelDealConfig === 'function'
-    ? window.getHotelDealConfig(hotel)
-    : { label: 'Прямая продажа', icon: '💼' };
-  const dealBadge = document.getElementById('passport-deal-badge');
-  if (dealBadge) {
-    dealBadge.textContent = `${deal.icon} ${deal.label}`;
-  }
-
-  // 5. Ключевые показатели в обложке (номера, места, этажи, год ввода)
-  const setTxt = (id, val) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = (val !== null && val !== undefined && val !== '') ? val : '—';
-  };
+  // Цифры объекта
   setTxt('cover-rooms-count', hotel.roomsCount);
   setTxt('cover-places-count', hotel.placesCount);
   setTxt('cover-floors-count', hotel.floors);
   setTxt('cover-year-commissioned', hotel.yearCommissioned);
-  setTxt('cover-legal-entity', hotel.legalEntity);
+  setTxt('cover-legal-entity', hotel.legalEntity, 'Не указан');
 
-  // 6. Главное фото обложки и бейджи
-  const coverImg = document.getElementById('passport-cover-photo');
-  if (coverImg) {
-    const firstPhoto = hotel.photos && hotel.photos.length > 0
-      ? (typeof hotel.photos[0] === 'object' ? hotel.photos[0].src : hotel.photos[0])
-      : null;
-    coverImg.src = firstPhoto || './assets/hotel-hero.png';
-    coverImg.alt = `${hotelName} — фасад и архитектура`;
+  // Фото обложки
+  const photos = photosOf(hotel);
+  const cover = $id('passport-cover-photo');
+  if (cover) {
+    cover.src = photos[0] ? photos[0].src : './assets/hotel-hero.png';
+    cover.alt = `${name} — фасад`;
   }
-  const coverPhotoTitle = document.getElementById('cover-photo-title');
-  if (coverPhotoTitle) coverPhotoTitle.textContent = hotelName;
+  updatePhotoCount(photos.length);
 
-  const countBadge = document.getElementById('cover-photo-count-badge');
-  if (countBadge) {
-    const numPhotos = Array.isArray(hotel.photos) ? hotel.photos.filter(Boolean).length : 0;
-    if (numPhotos > 0) {
-      countBadge.innerHTML = `<span>📷 ${numPhotos} фото</span>`;
-      countBadge.style.display = 'inline-flex';
-    } else {
-      countBadge.style.display = 'none';
-    }
-  }
+  // Цена (чёрная карточка)
+  const eco = hotel.economics || {};
+  const price = fmt.money(eco.askingPrice || eco.valuation);
+  setTxt('pp-price-label', eco.askingPrice ? 'Запрашиваемая цена' : (eco.valuation ? 'Оценочная стоимость' : 'Стоимость'));
+  setTxt('pp-price-value', price, 'По запросу');
+  const perKey = fmt.money(eco.pricePerKey);
+  setTxt('pp-price-sub', perKey ? `${perKey} за номер · экономика объекта` : 'Смотреть экономику объекта');
 
-  // 7. Карточки характеристик (NEW: взаменяет таблицу)
-  renderSpecsCards(hotel);
-
-  // 7b. Экономические показатели (новый блок)
   renderEconomicsSection(hotel);
-
-  // 8. Раздел удобств (дедупликация и отображение чипов)
+  renderObject(hotel);
   renderAmenitiesSection(hotel);
-
-  // 9. Блок локации
-  setTxt('loc-region', hotel.region);
-  setTxt('loc-address', hotel.address);
-  const locContact = document.getElementById('loc-contact');
-  if (locContact) {
-    if (hotel.managerContact) {
-      locContact.innerHTML = `<a href="tel:${esc(hotel.managerContact)}" style="color:var(--color-accent);text-decoration:none;font-weight:600">📞 ${esc(hotel.managerContact)}</a>`;
-    } else {
-      locContact.textContent = 'По запросу через платформу';
-    }
-  }
-  const notesRow = document.getElementById('loc-notes-row');
-  const notesEl = document.getElementById('loc-notes');
-  if (notesRow && notesEl) {
-    if (hotel.notes && hotel.notes.trim()) {
-      notesEl.textContent = hotel.notes;
-      notesRow.style.display = 'flex';
-    } else {
-      notesRow.style.display = 'none';
-    }
-  }
-
-  const mapTagHotel = document.getElementById('map-tag-hotel-name');
-  if (mapTagHotel) mapTagHotel.textContent = hotelName;
-  const mapTagRegion = document.getElementById('map-tag-hotel-region');
-  if (mapTagRegion) mapTagRegion.textContent = hotel.region || 'Узбекистан';
-
-  // 10. Фотогалерея
+  renderLocation(hotel);
   renderPhotoGallery(hotel);
 
-  // Если фото было усечено квотой localStorage, подгружаем полную галерею из SriDB
-  if (Array.isArray(hotel.photos) && hotel.photos.length <= 1 && window.SriDB && hotel.id) {
-    window.SriDB.get('photos_' + hotel.id).then(dbPhotos => {
-      if (Array.isArray(dbPhotos) && dbPhotos.length > hotel.photos.length) {
+  // Полная галерея из IndexedDB, если в localStorage сохранено усечённо
+  if (photos.length <= 1 && window.SriDB && hotel.id) {
+    window.SriDB.get('photos_' + hotel.id).then((dbPhotos) => {
+      if (Array.isArray(dbPhotos) && dbPhotos.length > photos.length) {
         hotel.photos = dbPhotos;
         renderPhotoGallery(hotel);
-        const countBadge = document.getElementById('cover-photo-count-badge');
-        if (countBadge) {
-          countBadge.innerHTML = `<span>📷 ${dbPhotos.length} фото</span>`;
-          countBadge.style.display = 'inline-flex';
-        }
+        updatePhotoCount(dbPhotos.length);
       }
     }).catch(console.warn);
   }
 }
 
-/* ── Рендеринг карточек характеристик (взаменяет renderSpecsTable) ── */
-function renderSpecsCards(hotel) {
-  // Большие числа
-  const setTxt = (id, val, fallback) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = (val !== null && val !== undefined && val !== '') ? val : (fallback || '—');
-  };
-
-  setTxt('spec-rooms', hotel.roomsCount);
-  setTxt('spec-places', hotel.placesCount);
-  setTxt('spec-floors', hotel.floors);
-  setTxt('spec-year', hotel.yearCommissioned);
-
-  // Основная информация
-  setTxt('spec-name', hotel.hotelName);
-  setTxt('spec-legal', hotel.legalEntity, 'Не указано');
-  setTxt('spec-region', hotel.region, 'Узбекистан');
-  setTxt('spec-address', hotel.address, 'Не указан');
-
-  // Категория
-  const starsEl = document.getElementById('spec-stars');
-  if (starsEl) {
-    const num = parseInt(hotel.stars, 10);
-    starsEl.textContent = (!isNaN(num) && num > 0) ? `${num}★` : (hotel.stars || 'Без категории');
-  }
-
-  // Статус в карточке
-  const specStatusBadge = document.getElementById('spec-status-badge');
-  if (specStatusBadge) {
-    const s = (hotel.status || 'active').toLowerCase();
-    if (s === 'active') {
-      specStatusBadge.textContent = '● Активный';
-      specStatusBadge.className = 'cover-status-badge cover-status-badge--active';
-    } else if (s === 'pending') {
-      specStatusBadge.textContent = '⏳ На проверке';
-      specStatusBadge.className = 'cover-status-badge cover-status-badge--pending';
-    } else {
-      specStatusBadge.textContent = '📝 Черновик';
-      specStatusBadge.className = 'cover-status-badge cover-status-badge--draft';
-    }
-  }
-
-  // Формат сделки в карточке
-  const specDealEl = document.getElementById('spec-deal-type');
-  if (specDealEl) {
-    const d = typeof window.getHotelDealConfig === 'function'
-      ? window.getHotelDealConfig(hotel)
-      : { label: 'Прямая продажа', icon: '💼' };
-    specDealEl.textContent = `${d.icon} ${d.label}`;
-  }
-
-  // Презентация в карточке
-  const specPresEl = document.getElementById('spec-presentation');
-  if (specPresEl) {
-    const hasPres = Boolean(hotel.presentationFile || hotel.presentationUrl || hotel.hasPresentation);
-    if (hasPres) {
-      specPresEl.innerHTML = `<button type="button" class="btn-download-trigger" style="background:none;border:none;padding:0;color:var(--color-accent);font-weight:600;text-decoration:underline;cursor:pointer;font-family:inherit;font-size:inherit;">📄 Скачать презентацию</button>`;
-      specPresEl.querySelector('.btn-download-trigger')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        downloadPresentation();
-      });
-    } else {
-      specPresEl.textContent = 'Предоставляется по запросу';
-    }
-  }
-
-  // Контакт в карточке
-  const specContact = document.getElementById('spec-contact');
-  if (specContact) {
-    if (hotel.managerContact) {
-      specContact.innerHTML = `<a href="tel:${esc(hotel.managerContact)}" style="color:var(--color-accent);font-weight:600;text-decoration:none">📞 ${esc(hotel.managerContact)}</a>`;
-    } else {
-      specContact.textContent = 'По запросу через платформу';
-    }
-  }
-
-  // Площади
-  const showOptional = (rowId, valId, val) => {
-    const row = document.getElementById(rowId);
-    const el = document.getElementById(valId);
-    if (row && el) {
-      const str = String(val || '').trim();
-      if (str) {
-        el.textContent = str;
-        row.style.display = 'flex';
-      } else {
-        row.style.display = 'none';
-      }
-    }
-  };
-  showOptional('spec-land-row', 'spec-land', hotel.landArea);
-  showOptional('spec-building-row', 'spec-building', hotel.buildingArea);
-
-  const hasMin = hotel.minRoomArea !== null && hotel.minRoomArea !== undefined && hotel.minRoomArea !== '';
-  const hasMax = hotel.maxRoomArea !== null && hotel.maxRoomArea !== undefined && hotel.maxRoomArea !== '';
-  const roomAreaRow = document.getElementById('spec-roomarea-row');
-  const roomAreaEl = document.getElementById('spec-roomarea');
-  if (roomAreaRow && roomAreaEl) {
-    if (hasMin && hasMax) {
-      roomAreaEl.textContent = `от ${hotel.minRoomArea} до ${hotel.maxRoomArea} м²`;
-      roomAreaRow.style.display = 'flex';
-    } else if (hasMin) {
-      roomAreaEl.textContent = `от ${hotel.minRoomArea} м²`;
-      roomAreaRow.style.display = 'flex';
-    } else if (hasMax) {
-      roomAreaEl.textContent = `до ${hotel.maxRoomArea} м²`;
-      roomAreaRow.style.display = 'flex';
-    } else {
-      roomAreaRow.style.display = 'none';
-    }
-  }
+function updatePhotoCount(n) {
+  const el = $id('cover-photo-count');
+  if (el) el.textContent = n ? `${n} ${plural(n, 'фото', 'фото', 'фото')}` : 'Фото';
+  const sub = $id('pp-photo-sub');
+  if (sub) sub.textContent = n ? `· ${n}` : 'объекта';
 }
 
-/* ── Маппинг иконок для удобств ────────────────────── */
-const AMENITY_ICONS = {
-  'ресторан': '🍽️', 'restaurant': '🍽️', 'бар': '🍷', 'кафе': '☕', 'кафе-бар': '🍷',
-  'бассейн': '🏊', 'pool': '🏊', 'фитнес': '🏋️', 'спа': '🛀', 'spa': '🛀', 'сауна': '🧖',
-  'конференц': '🏢', 'конгресс': '🏢', 'conference': '🏢', 'бизнес-центр': '🏢',
-  'парков': '🅿️', 'паркинг': '🅿️', 'гараж': '🅿️', 'valet': '🚗',
-  'лифт': '🔼', 'ви-фи': '📡', 'wifi': '📡', 'интернет': '🌐',
-  'прачечная': '🏥', 'прачечное': '🏥',
-  'шопинг': '🛍️', 'магазин': '🛍️', 'бутик': '🛍️',
-  'лаундри': '🚀', 'ХИМчистка': '🚀',
-  'детский': '👶', 'клуб для детей': '👶',
-  'экскурсия': '🗺️', 'тур': '🗺️',
-  'якузи': '🍣', 'румсервис': '🍽️',
-  'терраса': '☀️', 'открытый': '☀️', 'панорам': '🌅',
-  'сейф': '🛡️', 'хранение': '🛡️',
-};
-
-function getAmenityIcon(text) {
-  const lower = text.toLowerCase();
-  for (const [key, icon] of Object.entries(AMENITY_ICONS)) {
-    if (lower.includes(key)) return icon;
-  }
-  return '✓';
-}
-
-/* ── Рендеринг секции «Экономика» ──────────────────────────── */
+/* ── Экономика ─────────────────────────────────────────────── */
 function renderEconomicsSection(hotel) {
-  const section   = document.getElementById('economics');
-  const tocLink   = document.getElementById('toc-economics');
-  if (!section) return;
+  const section = $id('economics');
+  const toc = $id('toc-economics');
+  const Calc = window.EconomicsCalc, Schema = window.EconomicsSchema;
+  if (!section || !Calc || !Schema) { if (toc) toc.hidden = true; return; }
 
-  const Calc = window.EconomicsCalc;
-  const Fmt  = window.EconomicsFmt;
-  const Schema = window.EconomicsSchema;
-  if (!Calc || !Fmt || !Schema) return;
+  const e = Calc.recalcAll(Schema.get(hotel), hotel);
+  const any = [e.occupancy, e.adr, e.revpar, e.ebitda, e.valuation, e.irr, e.totalRevenue, e.gop].some(has);
+  if (!any) { section.hidden = true; if (toc) toc.hidden = true; return; }
+  section.hidden = false;
+  if (toc) toc.hidden = false;
 
-  const eco = Schema.get(hotel);
-  const ecoCalc = Calc.recalcAll(eco, hotel);
-
-  // Проверяем, есть ли хоть какие-то значимые данные
-  const hasData = [
-    ecoCalc.occupancy, ecoCalc.adr, ecoCalc.revpar,
-    ecoCalc.ebitda, ecoCalc.valuation, ecoCalc.irr,
-    ecoCalc.totalRevenue, ecoCalc.gop
-  ].some(v => v !== null && v !== undefined);
-
-  if (!hasData) {
-    section.style.display = 'none';
-    if (tocLink) tocLink.style.display = 'none';
-    return;
+  // Период и статус данных
+  const meta = $id('eco-period-meta');
+  if (meta) {
+    const type = { fact: ['Факт', ''], forecast: ['Прогноз', 'pp-chip--est'], estimate: ['Оценка', 'pp-chip--est'] }[e.dataType] || null;
+    const ver = { committee: 'Проверено Комитетом', audited: 'Аудировано' }[e.verificationStatus];
+    meta.innerHTML = [
+      e.period ? `<span class="pp-chip">${ICON.cal}${esc(e.period)}</span>` : '',
+      type ? `<span class="pp-chip ${type[1]}">${type[0]}</span>` : '',
+      ver ? `<span class="pp-chip pp-chip--ok">${ICON.ok}${ver}</span>` : '<span class="pp-chip">Не проверено</span>'
+    ].join('');
   }
 
-  section.style.display = 'block';
-  if (tocLink) tocLink.style.display = 'flex';
-
-  // ── Период и метаданные ──
-  const periodMeta = document.getElementById('eco-period-meta');
-  if (periodMeta) {
-    const parts = [];
-    if (ecoCalc.period) parts.push(`<span class="eco-meta-item">📅 ${esc(ecoCalc.period)}</span>`);
-    if (ecoCalc.dataType) parts.push(Fmt.dataTypeBadge(ecoCalc.dataType));
-    if (ecoCalc.verificationStatus) parts.push(Fmt.verificationBadge(ecoCalc.verificationStatus));
-    periodMeta.innerHTML = parts.join('<span class="eco-meta-sep">·</span>');
-  }
-
-  // ── KPI bar ──
-  const kpiBar = document.getElementById('eco-kpi-bar');
+  // KPI-плитки
+  const kpis = [
+    ['Загрузка', fmt.pct(e.occupancy, 0), 'в среднем за год', 'Occupancy — доля проданных номеро-ночей'],
+    ['Средний тариф', fmt.usd(e.adr), 'ADR за ночь', 'ADR — средняя цена проданного номера'],
+    ['RevPAR', fmt.usd(e.revpar, 1), 'на доступный номер', 'RevPAR = ADR × загрузка'],
+    ['EBITDA', fmt.pct(e.ebitdaMargin, 1), 'рентабельность', 'EBITDA ÷ выручка × 100'],
+    ['Окупаемость', fmt.years(e.payback), 'стоимость ÷ EBITDA', 'Payback = оценочная стоимость ÷ EBITDA'],
+    ['IRR', fmt.pct(e.irr, 1), `горизонт ${e.irrHorizon || 10} лет`, 'Внутренняя норма доходности']
+  ].filter((k) => k[1]);
+  const kpiBar = $id('eco-kpi-bar');
   if (kpiBar) {
-    const kpis = [];
-    if (ecoCalc.occupancy !== null) kpis.push({ label: 'OCCUPANCY', val: Fmt.pct(ecoCalc.occupancy), sub: 'загрузка' });
-    if (ecoCalc.adr !== null) kpis.push({ label: 'ADR', val: Fmt.usd(ecoCalc.adr), sub: 'ср. тариф / номер' });
-    if (ecoCalc.revpar !== null) kpis.push({ label: 'REVPAR', val: Fmt.usd(ecoCalc.revpar, 1), sub: 'доход / доступный номер' });
-    if (ecoCalc.ebitdaMargin !== null) kpis.push({ label: 'EBITDA MARGIN', val: Fmt.pct(ecoCalc.ebitdaMargin), sub: 'рентабельность' });
-    if (ecoCalc.payback !== null) kpis.push({ label: 'PAYBACK', val: Fmt.years(ecoCalc.payback), sub: 'срок окупаемости' });
-    if (ecoCalc.irr !== null) kpis.push({ label: 'IRR', val: Fmt.pct(ecoCalc.irr), sub: `${ecoCalc.irrHorizon || 10} лет горизонт` });
-
-    kpiBar.innerHTML = kpis.map(k => `
-      <div class="eco-kpi-item">
-        <span class="eco-kpi-label">${esc(k.label)}
-          ${k.label === 'REVPAR' ? '<span class="eco-tooltip-trigger" title="RevPAR = ADR × Occupancy / 100">?</span>' : ''}
-          ${k.label === 'EBITDA MARGIN' ? '<span class="eco-tooltip-trigger" title="EBITDA / Total Revenue × 100">?</span>' : ''}
-          ${k.label === 'PAYBACK' ? '<span class="eco-tooltip-trigger" title="Valuation / EBITDA">?</span>' : ''}
-        </span>
-        <span class="eco-kpi-value">${k.val}</span>
-        <span class="eco-kpi-sub">${esc(k.sub)}</span>
+    kpiBar.innerHTML = kpis.map((k, i) => `
+      <div class="pp-kpi${k[0] === 'IRR' || (i === kpis.length - 1 && !kpis.some((x) => x[0] === 'IRR')) ? ' pp-kpi--hot' : ''}">
+        <span class="pp-kpi-label">${esc(k[0])}${info(k[3])}</span>
+        <div><div class="pp-kpi-value">${k[1]}</div><div class="pp-kpi-sub">${esc(k[2])}</div></div>
       </div>`).join('');
+    kpiBar.style.gridTemplateColumns = kpis.length < 6 && window.innerWidth > 1100 ? `repeat(${Math.max(kpis.length, 1)}, minmax(0, 1fr))` : '';
   }
 
-  // Helper для поля
-  const field = (label, val, mono = true, tooltip = '') => {
-    const cls = mono ? 'eco-field-value eco-field-value--mono' : 'eco-field-value';
-    const tip = tooltip ? `<span class="eco-tooltip-trigger" title="${esc(tooltip)}">?</span>` : '';
-    return `
-      <div class="eco-field">
-        <span class="eco-field-label">${esc(label)}${tip}</span>
-        <span class="${cls} ${val === 'Н/Д' ? 'eco-field-value--muted' : ''}">${val}</span>
-      </div>`;
-  };
-
-  // ── Операционные показатели ──
-  const opFields = document.getElementById('eco-op-fields');
-  const opBadge  = document.getElementById('eco-op-badge');
-  if (opBadge && ecoCalc.dataType) opBadge.innerHTML = Fmt.dataTypeBadge(ecoCalc.dataType);
-  if (opFields) {
-    opFields.innerHTML =
-      field('Occupancy', Fmt.pct(ecoCalc.occupancy)) +
-      field('ADR', Fmt.usd(ecoCalc.adr), true, 'Average Daily Rate — средняя цена за занятый номер') +
-      field('RevPAR', Fmt.usd(ecoCalc.revpar, 1), true, 'Revenue Per Available Room = ADR × Occupancy') +
-      (ecoCalc.trevpar !== null ? field('TRevPAR', Fmt.usd(ecoCalc.trevpar, 1), true, 'Total Revenue / доступных номеро-ночей') : '') +
-      (ecoCalc.alos !== null ? field('ALOS', Fmt.num(ecoCalc.alos, 1) + ' дн.', false, 'Average Length of Stay') : '');
+  // Операции
+  const op = $id('eco-op-fields');
+  if (op) {
+    op.innerHTML =
+      row('Загрузка', fmt.pct(e.occupancy), 'Occupancy') +
+      row('Средний тариф (ADR)', fmt.usd(e.adr), 'Средняя цена за проданный номер') +
+      row('RevPAR', fmt.usd(e.revpar, 1), 'ADR × загрузка') +
+      row('TRevPAR', fmt.usd(e.trevpar, 1), 'Вся выручка ÷ доступные номеро-ночи') +
+      row('Средний срок проживания', has(e.alos) ? fmt.num(e.alos, 1) + ' дн.' : null, 'ALOS');
+    $id('eco-card-operational').hidden = !op.innerHTML.trim();
   }
 
-  // ── Выручка ──
-  const revChart = document.getElementById('eco-revenue-chart');
-  if (revChart) {
-    const totalRev = ecoCalc.totalRevenue || 0;
-    const rooms = +(ecoCalc.revRooms || 0);
-    const fb    = +(ecoCalc.revFB || 0);
-    const other = +(ecoCalc.revOther || 0);
-    const hasRevDetail = rooms > 0 || fb > 0 || other > 0;
-
-    if (totalRev > 0 || hasRevDetail) {
-      const pct = v => totalRev > 0 ? Math.round(v / totalRev * 100) : 0;
-      revChart.innerHTML = `
-        <div class="eco-field eco-field--wide" style="margin-bottom:12px">
-          <span class="eco-field-label">TOTAL REVENUE</span>
-          <span class="eco-field-value eco-field-value--mono" style="font-size:1.4rem">${Fmt.money(totalRev, true)}</span>
-        </div>
-        ${hasRevDetail ? `
-        <div class="eco-revenue-chart">
-          ${rooms > 0 ? `
-          <div class="eco-rev-row">
-            <div class="eco-rev-row-header">
-              <span>🛏 Номерной фонд</span>
-              <span>${Fmt.money(rooms, true)} · ${pct(rooms)}%</span>
-            </div>
-            <div class="eco-rev-bar-wrap"><div class="eco-rev-bar eco-rev-bar--rooms" style="width:${pct(rooms)}%"></div></div>
-          </div>` : ''}
-          ${fb > 0 ? `
-          <div class="eco-rev-row">
-            <div class="eco-rev-row-header">
-              <span>🍽 F&amp;B</span>
-              <span>${Fmt.money(fb, true)} · ${pct(fb)}%</span>
-            </div>
-            <div class="eco-rev-bar-wrap"><div class="eco-rev-bar eco-rev-bar--fb" style="width:${pct(fb)}%"></div></div>
-          </div>` : ''}
-          ${other > 0 ? `
-          <div class="eco-rev-row">
-            <div class="eco-rev-row-header">
-              <span>📦 Прочее</span>
-              <span>${Fmt.money(other, true)} · ${pct(other)}%</span>
-            </div>
-            <div class="eco-rev-bar-wrap"><div class="eco-rev-bar eco-rev-bar--other" style="width:${pct(other)}%"></div></div>
-          </div>` : ''}
-        </div>` : ''}`;
+  // Выручка
+  const rev = $id('eco-revenue-chart');
+  if (rev) {
+    const total = +e.totalRevenue || 0;
+    const parts = [
+      ['Номерной фонд', +e.revRooms || 0, '#1C1B1A'],
+      ['Ресторан и бар (F&B)', +e.revFB || 0, '#FF7A1A'],
+      ['Прочее', +e.revOther || 0, '#C9BBAC']
+    ].filter((p) => p[1] > 0);
+    const base = total || parts.reduce((s, p) => s + p[1], 0);
+    if (base > 0) {
+      const pct = (v) => Math.round((v / base) * 100);
+      rev.innerHTML = `
+        <div class="pp-total"><span>Выручка за год</span><b>${fmt.money(base)}</b></div>
+        ${parts.length ? `<div class="pp-bar" aria-hidden="true">${parts.map((p) => `<i style="flex:${p[1]};background:${p[2]}"></i>`).join('')}</div>
+        <ul class="pp-legend">${parts.map((p) => `<li><i style="background:${p[2]}"></i><span>${esc(p[0])}</span><b>${fmt.money(p[1])}</b><em>${pct(p[1])}%</em></li>`).join('')}</ul>` : ''}`;
     } else {
-      revChart.innerHTML = '<p class="eco-field-value eco-field-value--muted">Данные не предоставлены</p>';
+      $id('eco-card-revenue').hidden = true;
     }
   }
 
-  // ── Прибыль и рентабельность ──
-  const profitFields = document.getElementById('eco-profit-fields');
-  if (profitFields) {
-    profitFields.innerHTML =
-      (ecoCalc.gop !== null ? field('GOP', Fmt.money(ecoCalc.gop, true), true, 'Gross Operating Profit = Revenue − OPEX') : '') +
-      (ecoCalc.gopMargin !== null ? field('GOP Margin', Fmt.pct(ecoCalc.gopMargin), true, 'GOP / Total Revenue × 100') : '') +
-      (ecoCalc.goppar !== null ? field('GOPPAR', Fmt.usd(ecoCalc.goppar, 1), true, 'GOP / Available Room Nights') : '') +
-      field('EBITDA', Fmt.money(ecoCalc.ebitda, true)) +
-      (ecoCalc.ebitdaMargin !== null ? field('EBITDA Margin', Fmt.pct(ecoCalc.ebitdaMargin), true, 'EBITDA / Total Revenue × 100') : '') +
-      (ecoCalc.noi !== null ? field('NOI', Fmt.money(ecoCalc.noi, true), true, 'Net Operating Income') : '') +
-      (ecoCalc.netIncome !== null ? field('Чистая прибыль', Fmt.money(ecoCalc.netIncome, true)) : '');
+  // Прибыль
+  const pr = $id('eco-profit-fields');
+  if (pr) {
+    pr.innerHTML =
+      row('Валовая операционная прибыль (GOP)', fmt.money(e.gop), 'Выручка − операционные расходы') +
+      row('Маржа GOP', fmt.pct(e.gopMargin), 'GOP ÷ выручка') +
+      row('GOPPAR', fmt.usd(e.goppar, 1), 'GOP на доступный номер') +
+      row('EBITDA', fmt.money(e.ebitda)) +
+      row('Маржа EBITDA', fmt.pct(e.ebitdaMargin), 'EBITDA ÷ выручка') +
+      row('Чистый операционный доход (NOI)', fmt.money(e.noi)) +
+      row('Чистая прибыль', fmt.money(e.netIncome));
+    $id('eco-card-profit').hidden = !pr.innerHTML.trim();
   }
 
-  // ── Инвестиционные показатели ──
-  const investFields = document.getElementById('eco-invest-fields');
-  if (investFields) {
-    investFields.innerHTML =
-      (ecoCalc.valuation !== null ? field('Оценочная стоимость', Fmt.money(ecoCalc.valuation, true)) : '') +
-      (ecoCalc.askingPrice !== null ? field('Запрашиваемая цена', Fmt.money(ecoCalc.askingPrice, true)) : '') +
-      (ecoCalc.capex !== null ? `
-        <div class="eco-field">
-          <span class="eco-field-label">CAPEX</span>
-          <span class="eco-field-value eco-field-value--mono">${Fmt.money(ecoCalc.capex, true)}</span>
-          ${ecoCalc.capexDescription ? `<span class="eco-field-auto">${esc(ecoCalc.capexDescription)}</span>` : ''}
-        </div>` : '') +
-      (ecoCalc.pricePerKey !== null ? field('Price per Key', Fmt.money(ecoCalc.pricePerKey, true), true, 'Valuation / количество номеров') : '') +
-      (ecoCalc.pricePerSqm !== null ? field('Price per m²', Fmt.money(ecoCalc.pricePerSqm, true), true, 'Valuation / площадь строения') : '') +
-      (ecoCalc.payback !== null ? field('Payback', Fmt.years(ecoCalc.payback), true, 'Valuation / EBITDA') : '') +
-      (ecoCalc.irr !== null ? field(`IRR (${ecoCalc.irrHorizon || 10} лет)`, Fmt.pct(ecoCalc.irr)) : '') +
-      (ecoCalc.roi !== null ? field('ROI', Fmt.pct(ecoCalc.roi), true, 'EBITDA / Valuation × 100') : '') +
-      (ecoCalc.capRate !== null ? field('Cap Rate', Fmt.pct(ecoCalc.capRate), true, 'NOI (или EBITDA) / Valuation × 100') : '') +
-      (ecoCalc.npv !== null ? `
-        <div class="eco-field">
-          <span class="eco-field-label">NPV ${ecoCalc.discountRate ? '(ставка ' + ecoCalc.discountRate + '%)' : ''}</span>
-          <span class="eco-field-value eco-field-value--mono">${Fmt.money(ecoCalc.npv, true)}</span>
-        </div>` : '') +
-      (ecoCalc.dividendYield !== null ? field('Дивид. доходность', Fmt.pct(ecoCalc.dividendYield)) : '');
+  // Инвестиции
+  const inv = $id('eco-invest-fields');
+  if (inv) {
+    inv.innerHTML =
+      row('Оценочная стоимость', fmt.money(e.valuation)) +
+      row('Запрашиваемая цена', fmt.money(e.askingPrice)) +
+      row('CAPEX', fmt.money(e.capex), '', e.capexDescription ? `<small>${esc(e.capexDescription)}</small>` : '') +
+      row('Цена за номер', fmt.money(e.pricePerKey), 'Стоимость ÷ количество номеров') +
+      row('Цена за м²', fmt.money(e.pricePerSqm), 'Стоимость ÷ площадь строения') +
+      row('Окупаемость', fmt.years(e.payback), 'Стоимость ÷ EBITDA') +
+      row(`IRR, ${e.irrHorizon || 10} лет`, fmt.pct(e.irr)) +
+      row('ROI', fmt.pct(e.roi), 'EBITDA ÷ стоимость') +
+      row('Cap Rate', fmt.pct(e.capRate), 'NOI (или EBITDA) ÷ стоимость') +
+      row(`NPV${e.discountRate ? `, ставка ${ru(e.discountRate)}%` : ''}`, fmt.money(e.npv)) +
+      row('Дивидендная доходность', fmt.pct(e.dividendYield));
+    $id('eco-card-invest').hidden = !inv.innerHTML.trim();
   }
 
-  // ── Условия сделки ──
-  const dealCard   = document.getElementById('eco-card-deal');
-  const dealFields = document.getElementById('eco-deal-fields');
-  const dealConfig = typeof window.getHotelDealConfig === 'function'
-    ? window.getHotelDealConfig(hotel) : null;
-  const dealType = dealConfig ? dealConfig.key : 'sale';
-
-  const hasDealData = [ecoCalc.equityOffered, ecoCalc.minInvestment, ecoCalc.leaseRate, ecoCalc.baseFee, ecoCalc.incentiveFee]
-    .some(v => v !== null);
-  if (dealCard && dealFields && hasDealData) {
-    dealCard.style.display = 'block';
-    let df = '';
-    if (dealType === 'invest' && ecoCalc.equityOffered !== null) df += field('Предлагаемая доля', Fmt.pct(ecoCalc.equityOffered));
-    if (ecoCalc.minInvestment !== null) df += field('Минимальный вход', Fmt.money(ecoCalc.minInvestment, true));
-    if (dealType === 'rent' && ecoCalc.leaseRate !== null) df += field('Ставка аренды', Fmt.money(ecoCalc.leaseRate, true) + '/год');
-    if ((dealType === 'franchise') && ecoCalc.baseFee !== null) df += field('Base fee', Fmt.pct(ecoCalc.baseFee));
-    if ((dealType === 'franchise') && ecoCalc.incentiveFee !== null) df += field('Incentive fee', Fmt.pct(ecoCalc.incentiveFee));
-    dealFields.innerHTML = df;
-  } else if (dealCard) {
-    dealCard.style.display = 'none';
+  // Сделка
+  const dealCfg = typeof window.getHotelDealConfig === 'function' ? window.getHotelDealConfig(hotel) : null;
+  const dealKey = dealCfg ? dealCfg.key : 'sale';
+  const df = $id('eco-deal-fields');
+  if (df) {
+    df.innerHTML =
+      (dealKey === 'invest' ? row('Предлагаемая доля', fmt.pct(e.equityOffered)) : '') +
+      row('Минимальный вход', fmt.money(e.minInvestment)) +
+      (dealKey === 'rent' ? row('Ставка аренды', fmt.money(e.leaseRate) ? fmt.money(e.leaseRate) + ' в год' : null) : '') +
+      (dealKey === 'franchise' ? row('Base fee', fmt.pct(e.baseFee)) + row('Incentive fee', fmt.pct(e.incentiveFee)) : '');
+    $id('eco-card-deal').hidden = !df.innerHTML.trim();
   }
 
-  // ── Сравнение с рынком ──
-  const compCard   = document.getElementById('eco-card-compset');
-  const compFields = document.getElementById('eco-compset-fields');
-  if (compCard && compFields && (ecoCalc.rgi || ecoCalc.mpi || ecoCalc.ari)) {
-    compCard.style.display = 'block';
-    compFields.innerHTML =
-      (ecoCalc.rgi !== null ? field('RGI (RevPAR Index)', Fmt.num(ecoCalc.rgi, 2)) : '') +
-      (ecoCalc.mpi !== null ? field('MPI (Occupancy Index)', Fmt.num(ecoCalc.mpi, 2)) : '') +
-      (ecoCalc.ari !== null ? field('ARI (ADR Index)', Fmt.num(ecoCalc.ari, 2)) : '') +
-      (ecoCalc.compsetDescription ? `
-        <div class="eco-field eco-field--wide">
-          <span class="eco-field-label">Конкурентное окружение</span>
-          <span class="eco-field-value" style="font-size:13px">${esc(ecoCalc.compsetDescription)}</span>
-        </div>` : '');
-  } else if (compCard) {
-    compCard.style.display = 'none';
+  // Рынок
+  const cs = $id('eco-compset-fields');
+  if (cs && (has(e.rgi) || has(e.mpi) || has(e.ari))) {
+    const idx = (label, sub, v) => {
+      if (!has(v)) return '';
+      const w = Math.max(4, Math.min(100, (+v / 2) * 100));
+      return `<div class="pp-index"><span class="k">${label} <small>${sub}</small></span><span class="v${+v >= 1 ? ' up' : ''}">${fmt.num(v, 2)}</span><span class="track"><i style="width:${w}%"></i><b></b></span></div>`;
+    };
+    cs.innerHTML =
+      idx('RGI', 'по доходу на номер', e.rgi) +
+      idx('MPI', 'по загрузке', e.mpi) +
+      idx('ARI', 'по тарифу', e.ari) +
+      (e.compsetDescription ? `<p class="pp-compset-desc">${esc(e.compsetDescription)}</p>` : '');
+    $id('eco-card-compset').hidden = false;
   }
 
-  // ── История и динамика ──
-  const histCard = document.getElementById('eco-card-history');
-  const histWrap = document.getElementById('eco-history-table-wrap');
-  const chartSvg = document.getElementById('eco-chart-svg');
-  if (histCard && Array.isArray(ecoCalc.history) && ecoCalc.history.length >= 1) {
-    histCard.style.display = 'block';
-    const rows = ecoCalc.history;
-
-    // SVG Chart (RevPAR line)
-    if (chartSvg && rows.length >= 2) {
-      const revpars = rows.map(r => r.revpar || 0);
-      const ebitdas = rows.map(r => r.ebitda || 0);
-      const W = 800, H = 140;
-      const maxR = Math.max(...revpars) * 1.2 || 1;
-      const maxE = Math.max(...ebitdas) * 1.2 || 1;
-      const px = i => (i / (rows.length - 1)) * W;
-      const pyR = v => H - (v / maxR) * H;
-      const pyE = v => H - (v / maxE) * H;
-
-      const pathR = revpars.map((v, i) => (i === 0 ? 'M' : 'L') + px(i).toFixed(1) + ',' + pyR(v).toFixed(1)).join(' ');
-      const pathE = ebitdas.filter(v => v > 0).length >= 2
-        ? ebitdas.map((v, i) => (i === 0 ? 'M' : 'L') + px(i).toFixed(1) + ',' + pyE(v).toFixed(1)).join(' ')
-        : '';
-
-      const areaR = `M${px(0)},${H} ${pathR.slice(1)} L${px(rows.length - 1)},${H} Z`;
-
-      chartSvg.innerHTML = `
-        <defs>
-          <linearGradient id="gRevpar" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#8B6F4E" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="#8B6F4E" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <path d="${areaR}" fill="url(#gRevpar)" class="eco-chart-area"/>
-        <path d="${pathR}" stroke="#8B6F4E" class="eco-chart-line"/>
-        ${pathE ? `<path d="${pathE}" stroke="#5a8fb8" stroke-dasharray="4,2" class="eco-chart-line"/>` : ''}
-        ${rows.map((r, i) => `
-          <text x="${px(i).toFixed(1)}" y="${H + 14}" text-anchor="middle" fill="#9D978E" font-size="11" font-family="Golos Text, sans-serif">${r.year || ''}</text>
-        `).join('')}
-      `;
-    }
-
-    // Таблица
-    if (histWrap) {
-      histWrap.innerHTML = `
-        <table class="eco-table">
-          <thead>
-            <tr>
-              <th>Год</th><th>Тип</th><th>Occ%</th><th>ADR</th>
-              <th>RevPAR</th><th>Total Rev.</th><th>GOP</th><th>EBITDA</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${rows.map(r => {
-              const isFC = r.dataType === 'forecast' || r.dataType === 'estimate';
-              const tdClass = isFC ? 'is-forecast' : '';
-              return `<tr>
-                <td><strong>${r.year || ''}</strong></td>
-                <td>${r.dataType ? Fmt.dataTypeBadge(r.dataType) : ''}</td>
-                <td class="mono ${tdClass}">${r.occupancy != null ? Fmt.pct(r.occupancy) : '—'}</td>
-                <td class="mono ${tdClass}">${r.adr != null ? Fmt.usd(r.adr) : '—'}</td>
-                <td class="mono ${tdClass}">${r.revpar != null ? Fmt.usd(r.revpar, 1) : '—'}</td>
-                <td class="mono ${tdClass}">${r.totalRevenue != null ? Fmt.money(r.totalRevenue, true) : '—'}</td>
-                <td class="mono ${tdClass}">${r.gop != null ? Fmt.money(r.gop, true) : '—'}</td>
-                <td class="mono ${tdClass}">${r.ebitda != null ? Fmt.money(r.ebitda, true) : '—'}</td>
-              </tr>`;
-            }).join('')}
-          </tbody>
-        </table>`;
-    }
-  } else if (histCard) {
-    histCard.style.display = 'none';
+  // История
+  const hist = Array.isArray(e.history) ? e.history : [];
+  if (hist.length) {
+    $id('eco-card-history').hidden = false;
+    const t = { fact: 'Факт', forecast: 'Прогноз', estimate: 'Оценка' };
+    $id('eco-history-table-wrap').innerHTML = `
+      <table class="pp-table"><thead><tr><th>Год</th><th>Тип</th><th>Загрузка</th><th>ADR</th><th>RevPAR</th><th>Выручка</th><th>GOP</th><th>EBITDA</th></tr></thead>
+      <tbody>${hist.map((r) => {
+        const fc = r.dataType === 'forecast' || r.dataType === 'estimate' ? ' class="is-forecast"' : '';
+        return `<tr><td><b>${esc(r.year || '')}</b></td><td>${t[r.dataType] || ''}</td>
+          <td${fc}>${fmt.pct(r.occupancy) || '—'}</td><td${fc}>${fmt.usd(r.adr) || '—'}</td><td${fc}>${fmt.usd(r.revpar, 1) || '—'}</td>
+          <td${fc}>${fmt.money(r.totalRevenue) || '—'}</td><td${fc}>${fmt.money(r.gop) || '—'}</td><td${fc}>${fmt.money(r.ebitda) || '—'}</td></tr>`;
+      }).join('')}</tbody></table>`;
   }
 
-  // ── Метабар ──
-  const metaBar = document.getElementById('eco-meta-bar');
-  if (metaBar) {
-    const parts = [];
-    if (ecoCalc.period) parts.push(`<span class="eco-meta-item">📅 Период: <strong>${esc(ecoCalc.period)}</strong></span>`);
-    parts.push(`<span class="eco-meta-item">💵 Валюта: <strong>${esc(ecoCalc.currency || 'USD')}</strong></span>`);
-    parts.push(Fmt.verificationBadge(ecoCalc.verificationStatus));
-    if (ecoCalc.updatedAt) parts.push(`<span class="eco-meta-item">🕒 Обновлено: ${esc(ecoCalc.updatedAt)}</span>`);
-    parts.push('<span class="eco-meta-item" style="margin-left:auto;font-size:11px">Методология: STR Global / USALI</span>');
-    metaBar.innerHTML = parts.join('<span class="eco-meta-sep"> · </span>');
+  // Сноска
+  const foot = $id('eco-meta-bar');
+  if (foot) {
+    const upd = fmt.date(e.updatedAt);
+    foot.innerHTML = [
+      `Валюта: <b>${esc(e.currency || 'USD')}</b>`,
+      upd ? `обновлено ${upd}` : '',
+      'методология STR Global / USALI'
+    ].filter(Boolean).join(' · ');
   }
 }
 
-/* ── Рендеринг удобств и инфраструктуры ───────────────── */
+/* ── Объект ────────────────────────────────────────────────── */
+function renderObject(hotel) {
+  const rows = $id('pp-obj-rows');
+  const stars = parseInt(hotel.stars, 10);
+  let roomArea = null;
+  if (has(hotel.minRoomArea) && has(hotel.maxRoomArea)) roomArea = `от ${hotel.minRoomArea} до ${hotel.maxRoomArea} м²`;
+  else if (has(hotel.minRoomArea)) roomArea = `от ${hotel.minRoomArea} м²`;
+  else if (has(hotel.maxRoomArea)) roomArea = `до ${hotel.maxRoomArea} м²`;
+  const deal = typeof window.getHotelDealConfig === 'function' ? window.getHotelDealConfig(hotel).label : null;
+  if (rows) {
+    rows.innerHTML =
+      row('Наименование', esc(hotel.hotelName)) +
+      row('Собственник', has(hotel.legalEntity) ? esc(hotel.legalEntity) : '<span class="is-muted">Не указан</span>') +
+      row('Категория', stars > 0 ? `${stars} ${plural(stars, 'звезда', 'звезды', 'звёзд')}` : esc(hotel.stars || 'Без категории')) +
+      row('Регион', esc(hotel.region)) +
+      row('Адрес', esc(hotel.address)) +
+      row('Формат сделки', deal ? esc(deal) : null) +
+      row('Площадь участка', esc(hotel.landArea || '')) +
+      row('Площадь строения', esc(hotel.buildingArea || '')) +
+      row('Площадь номеров', roomArea);
+  }
+
+  const note = $id('loc-notes-row');
+  if (note) {
+    const t = String(hotel.notes || '').trim();
+    note.hidden = !t;
+    if (t) $id('loc-notes').textContent = t;
+  }
+
+  const pres = $id('spec-presentation');
+  const btn = $id('btn-obj-download');
+  const hasPres = Boolean(hotel.presentationFile || hotel.presentationUrl || hotel.hasPresentation);
+  if (pres) pres.textContent = hasPres ? (hotel.presentationFileName || 'Презентация объекта · PDF') : 'Предоставляется по запросу. Можно скачать печатную версию паспорта.';
+  if (btn) btn.querySelector('.pp-btn-text').textContent = hasPres ? 'Скачать' : 'Печатная версия';
+}
+
+/* ── Удобства ──────────────────────────────────────────────── */
 function renderAmenitiesSection(hotel) {
-  const section = document.getElementById('amenities-section');
-  const cloud = document.getElementById('passport-amenities-cloud');
-  const tocLink = document.getElementById('toc-amenities');
+  const section = $id('amenities-section');
+  const cloud = $id('passport-amenities-cloud');
+  const toc = $id('toc-amenities');
   if (!section || !cloud) return;
-
-  const parseFn = window.parseAmenities || function(input) {
-    if (!input) return [];
-    return String(input).split(/[,;\n]+/).map(s => s.trim()).filter(Boolean);
-  };
-
-  const amenitiesList = parseFn(hotel.amenities);
-
-  if (!amenitiesList.length) {
-    section.style.display = 'none';
-    if (tocLink) tocLink.style.display = 'none';
-    return;
-  }
-
-  section.style.display = 'block';
-  if (tocLink) tocLink.style.display = 'flex';
-
-  // Чипы с иконками
-  cloud.innerHTML = amenitiesList.map(item => {
-    const icon = getAmenityIcon(item);
-    return `
-      <div class="amenity-chip">
-        <span class="amenity-icon">${icon}</span>
-        <span>${esc(item)}</span>
-      </div>`;
-  }).join('');
-
-  // Заполняем боковую карточку контактов
-  const contactEl = document.getElementById('amenities-contact-value');
-  const regionEl = document.getElementById('amenities-region-value');
-  const addressEl = document.getElementById('amenities-address-value');
-  if (contactEl) {
-    if (hotel.managerContact) {
-      contactEl.innerHTML = `<a href="tel:${esc(hotel.managerContact)}" style="color:var(--color-accent);font-weight:600;text-decoration:none">📞 ${esc(hotel.managerContact)}</a>`;
-    } else {
-      contactEl.textContent = 'По запросу через платформу';
-    }
-  }
-  if (regionEl) regionEl.textContent = hotel.region || '—';
-  if (addressEl) addressEl.textContent = hotel.address || '—';
+  const parse = window.parseAmenities || ((s) => (s ? String(s).split(/[,;\n]+/).map((x) => x.trim()).filter(Boolean) : []));
+  const list = parse(hotel.amenities);
+  if (!list.length) { section.hidden = true; if (toc) toc.hidden = true; return; }
+  cloud.innerHTML = list.map((item) => `
+    <span class="pp-amen-item"><span class="pp-circle" aria-hidden="true">${amenityIcon(item)}</span>${esc(item)}</span>`).join('');
 }
 
-/* ── Рендеринг фотогалереи ────────────────────────── */
+/* ── Локация и контакты ─────────────────────────────────────── */
+function renderLocation(hotel) {
+  setTxt('loc-region', hotel.region, 'Узбекистан');
+  setTxt('loc-address', hotel.address, 'Адрес уточняется');
+  setTxt('map-tag-hotel-name', hotel.hotelName);
+  setTxt('map-tag-hotel-region', hotel.address || hotel.region, 'Узбекистан');
+  const c = $id('loc-contact'), call = $id('loc-call');
+  const contact = String(hotel.managerContact || '').trim();
+  if (c) c.textContent = contact || 'По запросу через платформу';
+  const digits = contact.replace(/[^\d+]/g, '');
+  if (call && digits.replace(/\D/g, '').length >= 7) {
+    const tel = digits.startsWith('+') ? digits : (digits.length === 9 ? '+998' + digits : digits);
+    call.href = 'tel:' + tel;
+    call.hidden = false;
+  }
+  const note = $id('pp-map-note');
+  if (note) note.hidden = Boolean(hotel.coords);
+}
+
+/* ── Фото ──────────────────────────────────────────────────── */
 function renderPhotoGallery(hotel) {
-  const masonry = document.getElementById('passport-gallery-masonry');
-  if (!masonry) return;
-
-  // Поддержка как массива строк (legacy), так и массива {src, caption}
-  const rawPhotos = Array.isArray(hotel.photos) ? hotel.photos.filter(Boolean) : [];
-  const photos = rawPhotos.map(p => {
-    if (typeof p === 'object' && p !== null && p.src) {
-      return { src: p.src, caption: p.caption || '' };
-    }
-    return { src: String(p), caption: '' };
-  });
-
+  const box = $id('passport-gallery-masonry');
+  if (!box) return;
+  const photos = photosOf(hotel);
+  box.dataset.n = String(Math.min(photos.length, 4));
   if (!photos.length) {
-    masonry.innerHTML = `
-      <div class="photo-empty-state" style="grid-column: 1 / -1;">
-        <p style="font-size:var(--text-md);margin-bottom:8px">📷 Фотоматериалы готовятся к публикации</p>
-        <p style="font-size:var(--text-xs);color:var(--color-text-muted)">Фотографии гостиничного комплекса будут загружены после проведения верификации.</p>
-      </div>
-    `;
+    box.innerHTML = '<div class="pp-empty lg2">Фотографии объекта появятся после проверки паспорта.</div>';
     return;
   }
-
-  masonry.innerHTML = photos.map((p, idx) => {
-    let itemClass = 'photo-item';
-    if (idx === 0) itemClass += ' photo-item--tall';
-    else if (idx === 3) itemClass += ' photo-item--wide';
-
-    const captionHtml = p.caption && p.caption.trim()
-      ? `<figcaption class="photo-caption">${esc(p.caption.trim())}</figcaption>`
-      : '';
-
-    return `
-      <figure class="${itemClass}" role="listitem" data-src="${esc(p.src)}">
-        <img src="${esc(p.src)}" alt="${esc(p.caption || hotel.hotelName + ' — фото ' + (idx + 1))}" class="photo-img" loading="lazy" />
-        ${captionHtml}
-      </figure>
-    `;
-  }).join('');
-
-  // Привязка лайтбокса к кликам по фото
-  masonry.querySelectorAll('.photo-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const src = item.dataset.src;
-      openLightbox(src, hotel.hotelName);
-    });
-  });
-}
-
-/* ── Состояние «Отель не найден» ────────────────────────────── */
-function renderNotFound() {
-  const main = document.querySelector('main') || document.body;
-  const cover = document.getElementById('cover');
-  if (cover) {
-    cover.innerHTML = `
-      <div style="grid-column:1/-1;padding:80px var(--grid-margin-desktop);text-align:center;">
-        <h1 style="font-size:var(--text-3xl);margin-bottom:16px">🏨 Объект не найден</h1>
-        <p style="color:var(--color-text-muted);margin-bottom:24px">Запрошенный паспорт отеля отсутствует в каталоге или был снят с публикации.</p>
-        <a href="portfolio.html" class="btn btn--teal">Вернуться в каталог объектов</a>
-      </div>
-    `;
+  const item = (p, i, cls = '') => `
+    <figure class="pp-photo ${cls}" role="listitem" data-src="${esc(p.src)}" tabindex="0">
+      <img src="${esc(p.src)}" alt="${esc(p.caption || `${hotel.hotelName} — фото ${i + 1}`)}" loading="lazy" />
+      ${p.caption && p.caption.trim() ? `<figcaption>${esc(p.caption.trim())}</figcaption>` : ''}
+    </figure>`;
+  const infoCard = (n) => `
+    <div class="pp-photo-info lg2">
+      <div><b>${n}</b><span>${plural(n, 'фотография', 'фотографии', 'фотографий')} от владельца</span></div>
+      <p>Полный фотоотчёт, планировки и документы — в презентации объекта.</p>
+      <div class="pp-actions"><button type="button" class="pp-btn" data-download>
+        <span class="pp-btn-text">Презентация</span><span class="pp-btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v12M6 12l6 6 6-6"/></svg></span>
+      </button></div>
+    </div>`;
+  if (photos.length <= 2) {
+    box.innerHTML = photos.map((p, i) => item(p, i)).join('') + infoCard(photos.length);
+  } else {
+    box.innerHTML = photos.map((p, i) => item(p, i, i === 0 && photos.length > 3 ? 'pp-photo--lead' : '')).join('');
   }
-  const sections = document.querySelectorAll('#summary, #amenities-section, #location, #gallery');
-  sections.forEach(s => s.style.display = 'none');
+  box.querySelectorAll('.pp-photo').forEach((el) => {
+    const open = () => openLightbox(el.dataset.src, hotel.hotelName);
+    el.addEventListener('click', open);
+    el.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') open(); });
+  });
+  box.querySelectorAll('[data-download]').forEach(attachDownload);
 }
 
-/* ── Интерактивная карта (Leaflet.js) ────────────────────────── */
+/* ── Не найден ─────────────────────────────────────────────── */
+function renderNotFound() {
+  const hero = $id('cover');
+  if (hero) {
+    hero.innerHTML = `
+      <div class="pp-hero-copy" style="grid-column:1/-1;align-items:flex-start;padding:60px 0">
+        <h1 class="pp-title">Объект не найден<span class="pp-title-sub">или снят с публикации</span></h1>
+        <a href="portfolio.html" class="pp-btn"><span class="pp-btn-text">В каталог объектов</span><span class="pp-btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></a>
+      </div>`;
+  }
+  document.querySelectorAll('#economics, #summary, #amenities-section, #location, #gallery, #download, #passport-toc').forEach((s) => { s.hidden = true; });
+}
+
+/* ── Карта (Leaflet + открытые тайлы OpenStreetMap) ──────────── */
+function getRegionCoords(key) {
+  const m = {
+    'tashkent': [41.2995, 69.2401], 'tashkent-region': [41.6318, 70.0435], 'samarkand': [39.6542, 66.9597],
+    'bukhara': [39.7747, 64.4286], 'khorezm': [41.3783, 60.3639], 'fergana': [40.3842, 71.7843],
+    'namangan': [40.9983, 71.6726], 'andijan': [40.7821, 72.3442], 'kashkadarya': [38.8612, 65.7847],
+    'surkhandarya': [37.2242, 67.2783], 'jizzakh': [40.1158, 67.8422], 'syrdarya': [40.4933, 68.7844],
+    'navoi': [40.0844, 65.3792], 'karakalpakstan': [42.4602, 59.6166]
+  };
+  return m[key] || m.tashkent;
+}
 function initPassportMap(hotel) {
-  const mapContainer = document.getElementById('interactive-hotel-map');
-  if (!mapContainer || typeof L === 'undefined') return;
-
-  const hotelCoords = (hotel && hotel.coords)
-    ? hotel.coords
-    : getRegionCoords(hotel ? hotel.regionKey : 'tashkent');
-
+  const el = $id('interactive-hotel-map');
+  if (!el || typeof L === 'undefined') return;
+  const coords = hotel.coords || getRegionCoords(hotel.regionKey);
   try {
-    const map = L.map('interactive-hotel-map', {
-      center: hotelCoords,
-      zoom: 13,
-      zoomControl: true,
-      scrollWheelZoom: false
-    });
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap &copy; CARTO',
-      subdomains: 'abcd',
-      maxZoom: 19
+    const map = L.map(el, { center: coords, zoom: hotel.coords ? 15 : 12, zoomControl: true, scrollWheelZoom: false, attributionControl: true });
+    map.zoomControl.setPosition('topright');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap', subdomains: 'abc', maxZoom: 19
     }).addTo(map);
-
-    const hotelIcon = L.divIcon({
-      className: 'custom-hotel-pin',
-      html: `
-        <div class="hotel-pin-wrapper">
-          <div class="hotel-pin-ring"></div>
-          <div class="hotel-pin-core">★</div>
-        </div>
-      `,
-      iconSize: [36, 36],
-      iconAnchor: [18, 18],
-      popupAnchor: [0, -18]
-    });
-
-    const hotelName = hotel ? hotel.hotelName : 'Гостиничный объект';
-    const hotelStars = hotel ? (hotel.stars ? `${hotel.stars}★` : '') : '';
-    const hotelAddress = hotel ? (hotel.address || hotel.region || '') : '';
-
-    const hotelMarker = L.marker(hotelCoords, { icon: hotelIcon }).addTo(map);
-    hotelMarker.bindPopup(`
-      <div class="map-popup-card">
-        <h4 class="popup-title">${esc(hotelName)}</h4>
-        <p class="popup-sub">${esc(hotelStars)} · ${esc(hotel.region || '')}</p>
-        <p class="popup-kpi">${esc(hotelAddress)}</p>
-      </div>
-    `).openPopup();
-
+    const icon = L.divIcon({ className: '', html: '<div class="pp-pin"></div>', iconSize: [44, 44], iconAnchor: [22, 22] });
+    L.marker(coords, { icon, title: hotel.hotelName || '' }).addTo(map);
     setTimeout(() => map.invalidateSize(), 400);
   } catch (err) {
-    console.warn('Map initialization note:', err);
+    console.warn('Map init:', err);
   }
 }
 
-/* ── Lightbox для просмотра полноразмерных фото ─────────────── */
+/* ── Лайтбокс ──────────────────────────────────────────────── */
 function openLightbox(src, title) {
-  const lightbox = document.getElementById('passport-lightbox');
-  const img = document.getElementById('passport-lightbox-img');
-  if (!lightbox || !img) return;
-
+  const lb = $id('passport-lightbox'), img = $id('passport-lightbox-img');
+  if (!lb || !img) return;
   img.src = src;
   img.alt = title || 'Фото объекта';
-  lightbox.classList.add('is-open');
-  lightbox.setAttribute('aria-hidden', 'false');
+  lb.classList.add('is-open');
+  lb.setAttribute('aria-hidden', 'false');
 }
-
 function closeLightbox() {
-  const lightbox = document.getElementById('passport-lightbox');
-  if (!lightbox) return;
-  lightbox.classList.remove('is-open');
-  lightbox.setAttribute('aria-hidden', 'true');
+  const lb = $id('passport-lightbox');
+  if (!lb) return;
+  lb.classList.remove('is-open');
+  lb.setAttribute('aria-hidden', 'true');
 }
-
 function initLightbox() {
-  const lightbox = document.getElementById('passport-lightbox');
-  const closeBtn = document.getElementById('btn-lightbox-close');
-  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-  }
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-  });
+  const lb = $id('passport-lightbox');
+  $id('btn-lightbox-close')?.addEventListener('click', closeLightbox);
+  lb?.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 }
 
-/* ── Навигация TOC (scrollspy) ──────────────────────────────── */
+/* ── Навигация по разделам ─────────────────────────────────── */
 function initTocSpy() {
-  const tocLinks = document.querySelectorAll('.toc-link[href^="#"]');
-  const passportSections = document.querySelectorAll(
-    '#cover, #summary, #economics, #amenities-section, #location, #gallery, #download'
-  );
-
-  if (!tocLinks.length || !passportSections.length) return;
-
-  const headerH = 68;
-  const tocH = 44;
-  const offset = headerH + tocH + 20;
-
-  const tocObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          tocLinks.forEach((link) => {
-            link.classList.toggle(
-              'toc-link--active',
-              link.getAttribute('href') === `#${id}`
-            );
-          });
-        }
-      });
-    },
-    { rootMargin: `-${offset}px 0px -55% 0px`, threshold: 0 }
-  );
-
-  passportSections.forEach((s) => tocObserver.observe(s));
+  const links = [...document.querySelectorAll('.pp-tabs .toc-link[href^="#"]')];
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  const bar = document.querySelector('.pp-tabs-inner');
+  const setActive = (id) => links.forEach((a) => {
+    const on = a.getAttribute('href') === '#' + id;
+    a.classList.toggle('toc-link--active', on);
+    if (on && bar) {
+      const l = a.offsetLeft - (bar.clientWidth - a.offsetWidth) / 2;
+      bar.scrollTo({ left: l, behavior: 'smooth' });
+    }
+  });
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) setActive(en.target.id);
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach((a) => { const s = document.querySelector(a.getAttribute('href')); if (s) io.observe(s); });
 }
 
-/* ── Скачивание презентации объекта ────────────────────────── */
+/* ── Появление блоков ──────────────────────────────────────── */
+function initReveal() {
+  const els = document.querySelectorAll('.pp-section > *, .pp-docs-stage');
+  els.forEach((el) => el.classList.add('pp-reveal'));
+  if (!('IntersectionObserver' in window)) { els.forEach((el) => el.classList.add('is-in')); return; }
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+  }), { threshold: 0.08 });
+  els.forEach((el) => io.observe(el));
+}
+
+/* ── Скачивание презентации ─────────────────────────────────── */
 async function downloadPresentation() {
   const hotel = currentHotelData;
   if (!hotel) return;
-
   let file = hotel.presentationFile || hotel.presentationUrl;
   let filename = hotel.presentationFileName || `${hotel.hotelName || 'hotel'}-presentation.pdf`;
-
-  // Проверяем наличие файла в IndexedDB (SriDB)
   if ((!file || !file.startsWith('data:')) && window.SriDB && hotel.id) {
     try {
       const doc = await window.SriDB.get('pres_' + hotel.id);
-      if (doc && doc.data) {
-        file = doc.data;
-        if (doc.name) filename = doc.name;
-      }
-    } catch (err) {
-      console.warn('Error reading presentation from SriDB:', err);
-    }
+      if (doc && doc.data) { file = doc.data; if (doc.name) filename = doc.name; }
+    } catch (err) { console.warn('SriDB:', err); }
   }
-
   if (file) {
     const a = document.createElement('a');
     a.href = file;
-    const hasExt = /\.(pdf|pptx|docx|zip|rar)$/i.test(filename);
-    a.download = hasExt ? filename : `${filename}.pdf`;
-    if (!file.startsWith('data:')) {
-      a.target = '_blank';
-    }
+    a.download = /\.(pdf|pptx|docx|zip|rar)$/i.test(filename) ? filename : `${filename}.pdf`;
+    if (!file.startsWith('data:')) a.target = '_blank';
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
+    a.remove();
     return;
   }
-
-  // Fallback: формирование официального инвестиционного паспорта через печать браузера
   window.print();
 }
-
+function attachDownload(btn) {
+  if (!btn || btn.dataset.bound) return;
+  btn.dataset.bound = '1';
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const t = btn.querySelector('.pp-btn-text');
+    const orig = t ? t.textContent : '';
+    if (t) t.textContent = 'Загрузка…';
+    btn.disabled = true;
+    try { await downloadPresentation(); } catch (err) { console.warn(err); }
+    finally { setTimeout(() => { if (t) t.textContent = orig; btn.disabled = false; }, 800); }
+  });
+}
 function initPdfButton() {
-  const btnPdf = document.getElementById('btn-download-pdf');
-  const btnCover = document.getElementById('btn-cover-download');
-
-  const attachDownload = (btn) => {
-    if (!btn) return;
-    btn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const origHtml = btn.innerHTML;
-      btn.innerHTML = '<span>⏳ Загрузка...</span>';
-      btn.disabled = true;
-      try {
-        await downloadPresentation();
-      } catch (err) {
-        console.warn('Download error:', err);
-      } finally {
-        setTimeout(() => {
-          btn.innerHTML = origHtml;
-          btn.disabled = false;
-        }, 800);
-      }
-    });
-  };
-
-  attachDownload(btnPdf);
-  attachDownload(btnCover);
+  ['btn-download-pdf', 'btn-cover-download', 'btn-obj-download'].forEach((id) => attachDownload($id(id)));
 }

@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="design-tokens.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/base.css?v=spatial_2" />
@@ -17,10 +17,8 @@
   <link rel="stylesheet" href="styles/megamenu.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/spatial-dock.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/passport.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/economics.css?v=spatial_2" />
-  <link rel="stylesheet" href="css/certification.css?v=spatial_2" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles/passport-v2.css?v=pp2_1" />
 </head>
 <body class="page-passport">
 
@@ -164,464 +162,253 @@
   </div>
 
 
-  <!-- ═══════════════════════════════════════════
-       PASSPORT TOC — Навигация по разделам
-  ═══════════════════════════════════════════ -->
-  <nav class="passport-toc" id="passport-toc" aria-label="Разделы паспорта">
-    <div class="passport-toc-inner">
-      <a href="#cover" class="toc-link toc-link--active" id="toc-cover">Обложка</a>
-      <a href="#summary" class="toc-link" id="toc-summary">Характеристики</a>
-      <a href="#economics" class="toc-link" id="toc-economics" style="display:none">Экономика</a>
-      <a href="#amenities-section" class="toc-link" id="toc-amenities">Инфраструктура</a>
-      <a href="#location" class="toc-link" id="toc-location">Локация</a>
-      <a href="#gallery" class="toc-link" id="toc-gallery">Фотоматериалы</a>
-      <a href="#download" class="toc-link toc-link--cta" id="toc-download">Скачать презентацию</a>
-    </div>
-  </nav>
+  <!-- ═══════════════════════════════════════════════════════════
+       ПАСПОРТ ОТЕЛЯ · v2 (soft glass)
+       Все поля заполняет js/passport.js по данным HotelStore.
+  ════════════════════════════════════════════════════════════ -->
+  <main class="pp" id="main-content">
 
-  <!-- ═══════════════════════════════════════════
-       COVER — Обложка паспорта (Luxury Editorial)
-  ═══════════════════════════════════════════ -->
-  <section class="passport-cover" id="cover" aria-label="Обложка инвестиционного паспорта">
-    <div class="passport-cover-inner">
+    <!-- 1 · ОБЗОР -->
+    <section class="pp-hero" id="cover" aria-labelledby="passport-hotel-name">
+      <div class="pp-glow" aria-hidden="true"></div>
 
-      <!-- Левая колонка: данные объекта -->
-      <div class="cover-data">
-        <nav class="breadcrumb cover-breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html" class="breadcrumb-link">Главная</a>
-          <span class="breadcrumb-sep" aria-hidden="true">/</span>
-          <a href="portfolio.html" class="breadcrumb-link">Каталог</a>
-          <span class="breadcrumb-sep" aria-hidden="true">/</span>
-          <span class="breadcrumb-current" id="passport-breadcrumb-name">Отель</span>
+      <div class="pp-hero-copy">
+        <nav class="pp-crumbs" aria-label="Навигационная цепочка">
+          <a href="index.html">Главная</a><span>/</span><a href="portfolio.html">Каталог</a><span>/</span><b id="passport-breadcrumb-name">Отель</b>
         </nav>
 
-        <!-- Престижный статус паспорта -->
-        <div class="cover-prestige-tag">
-          <span class="prestige-dot"></span>
-          <span class="prestige-text">HOTEL INVESTMENT PASSPORT · РЕСПУБЛИКА УЗБЕКИСТАН</span>
-          <span class="prestige-verified">✓ Реестр SRI</span>
-          <a href="certificate.html?no=UZ.TSM.TK.000123" id="passport-cert-badge-link" class="prestige-verified" style="background:#F0F5F1;color:#2E5E3F;border-color:rgba(46,94,63,0.3);text-decoration:none;margin-left:6px;" title="Проверить сертификат соответствия">
-            🛡 Сертифицирован · <span id="passport-cert-no">UZ.TSM.TK.000123</span> · до 10.2029
+        <div class="pp-tags">
+          <span class="pp-tag pp-tag--status" id="passport-status-badge"><i></i>Активный объект</span>
+          <span class="pp-tag" id="passport-deal-badge">Прямая продажа</span>
+          <a class="pp-tag pp-tag--cert" id="passport-cert-badge-link" href="certificate.html?no=UZ.TSM.TK.000123" title="Проверить сертификат соответствия">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span id="passport-cert-no">UZ.TSM.TK.000123</span>
           </a>
         </div>
 
-        <!-- Название объекта -->
-        <h1 class="cover-hotel-name" id="passport-hotel-name">Grand Tashkent Hotel</h1>
+        <h1 class="pp-title"><span id="passport-hotel-name">Отель</span><span class="pp-title-sub" id="passport-region-sub">Узбекистан</span></h1>
 
-        <!-- Звёзды и адрес в единой строке -->
-        <div class="cover-meta-bar">
-          <div class="cover-stars" id="passport-stars" aria-label="Категория"></div>
-          <span class="cover-meta-divider" aria-hidden="true">·</span>
-          <span class="cover-location-tag" id="passport-location">📍 г. Ташкент, Узбекистан</span>
-        </div>
-
-        <!-- Статус публикации объекта и Формат предложения -->
-        <div class="cover-models">
-          <span class="cover-status-badge cover-status-badge--active" id="passport-status-badge">
-            ● Активный объект
-          </span>
-          <span class="cover-status-badge" id="passport-deal-badge" style="background:#FAF8F5;border:1px solid #D9CBB8;color:#3B2A20;font-weight:600;">
-            💼 Прямая продажа
-          </span>
-        </div>
-
-        <!-- Ключевые инвестиционные показатели (Премиальная стеклянная панель) -->
-        <div class="cover-stats-glass">
-          <div class="cover-spec-card">
-            <span class="cover-spec-val" id="cover-rooms-count">—</span>
-            <span class="cover-spec-label">Номеров</span>
-          </div>
-          <div class="cover-spec-card">
-            <span class="cover-spec-val" id="cover-places-count">—</span>
-            <span class="cover-spec-label">Мест</span>
-          </div>
-          <div class="cover-spec-card">
-            <span class="cover-spec-val" id="cover-floors-count">—</span>
-            <span class="cover-spec-label">Этажей</span>
-          </div>
-          <div class="cover-spec-card">
-            <span class="cover-spec-val" id="cover-year-commissioned">—</span>
-            <span class="cover-spec-label">Год ввода</span>
-          </div>
-        </div>
-
-        <!-- Быстрые действия и инфо инвестора -->
-        <div class="cover-actions-row">
-          <button type="button" class="btn-cover-primary" id="btn-cover-download" style="border:none;cursor:pointer;">
-            <span>📥 Скачать презентацию</span>
-          </button>
-          <a href="#gallery" class="btn-cover-secondary" id="cover-btn-photos">
-            <span>📷 Фотогалерея</span>
-          </a>
-          <div class="cover-owner-chip">
-            <span class="owner-icon">🏛️</span>
-            <span class="owner-text">Собственник: <strong id="cover-legal-entity">—</strong></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Правая колонка: фото-шоукейс с элегантным обрамлением -->
-      <div class="cover-photo-col" role="img" aria-label="Фасад отеля">
-        <div class="cover-photo-frame">
-          <img
-            src="./assets/hotel-hero.png"
-            alt="Отель — фасад"
-            class="cover-photo"
-            id="passport-cover-photo"
-          />
-          <a href="#gallery" class="cover-photo-badge" id="cover-photo-count-badge">
-            <span>📷 Смотреть фото</span>
-          </a>
-          <div class="cover-photo-caption">
-            <span class="cover-photo-title" id="cover-photo-title">Отель</span>
-            <span class="cover-photo-sub">Гостиничный актив · Silk Route Invest</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
-       ХАРАКТЕРИСТИКИ ОБЪЕКТА
-  ═══════════════════════════════════════════ -->
-  <section class="exec-summary" id="summary" aria-label="Основные характеристики объекта">
-    <div class="exec-inner">
-      <div class="exec-header appear">
-        <span class="exec-kicker">ПАСПОРТ ОБЪЕКТА</span>
-        <h2 class="exec-title">Характеристики</h2>
-      </div>
-
-      <!-- Блок 1: Крупные числовые показатели -->
-      <div class="passport-stat-grid appear" id="specs-stat-grid">
-        <div class="passport-stat-item">
-          <span class="passport-stat-num" id="spec-rooms">—</span>
-          <span class="passport-stat-label">Номеров</span>
-        </div>
-        <div class="passport-stat-item">
-          <span class="passport-stat-num" id="spec-places">—</span>
-          <span class="passport-stat-label">Мест</span>
-        </div>
-        <div class="passport-stat-item">
-          <span class="passport-stat-num" id="spec-floors">—</span>
-          <span class="passport-stat-label">Этажей</span>
-        </div>
-        <div class="passport-stat-item">
-          <span class="passport-stat-num" id="spec-year">—</span>
-          <span class="passport-stat-label">Год ввода</span>
-        </div>
-      </div>
-
-      <!-- Блок 2: Две карточки рядом -->
-      <div class="specs-cards-grid appear" style="margin-top:var(--space-4)">
-
-        <!-- Карточка «Основное» -->
-        <div class="passport-card">
-          <div class="passport-card-header">
-            <span class="passport-card-icon">🏢</span>
-            <span class="passport-card-title">Основная информация</span>
-          </div>
-          <div class="passport-fields-grid">
-            <div class="passport-field passport-field--wide">
-              <span class="passport-field-label">Наименование объекта</span>
-              <span class="passport-field-value" id="spec-name">—</span>
-            </div>
-            <div class="passport-field passport-field--wide">
-              <span class="passport-field-label">Юридическое лицо / собственник</span>
-              <span class="passport-field-value" id="spec-legal">—</span>
-            </div>
-            <div class="passport-field">
-              <span class="passport-field-label">Регион</span>
-              <span class="passport-field-value" id="spec-region">—</span>
-            </div>
-            <div class="passport-field">
-              <span class="passport-field-label">Категория</span>
-              <span class="passport-field-value" id="spec-stars">—</span>
-            </div>
-            <div class="passport-field passport-field--wide">
-              <span class="passport-field-label">Юридический адрес</span>
-              <span class="passport-field-value" id="spec-address">—</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Карточка «Статус и контакт» -->
-        <div class="passport-card">
-          <div class="passport-card-header">
-            <span class="passport-card-icon">📋</span>
-            <span class="passport-card-title">Статус и контакты</span>
-          </div>
-          <div class="passport-fields-grid">
-            <div class="passport-field passport-field--wide">
-              <span class="passport-field-label">Статус публикации</span>
-              <div class="passport-status-row">
-                <span id="spec-status-badge">—</span>
-                <span id="spec-pres-badge" style="display:none"></span>
-              </div>
-            </div>
-            <div class="passport-field passport-field--wide">
-              <span class="passport-field-label">Формат сделки / Предложение</span>
-              <span class="passport-field-value" id="spec-deal-type" style="font-weight:600;color:var(--color-accent);">—</span>
-            </div>
-            <div class="passport-field passport-field--wide" id="spec-contact-row">
-              <span class="passport-field-label">Контакт управляющего</span>
-              <span class="passport-field-value" id="spec-contact">По запросу через платформу</span>
-            </div>
-            <div class="passport-field passport-field--wide">
-              <span class="passport-field-label">Официальная презентация</span>
-              <span class="passport-field-value" id="spec-presentation">—</span>
-            </div>
-            <!-- Площади — показываются только если есть данные -->
-            <div class="passport-field" id="spec-land-row" style="display:none">
-              <span class="passport-field-label">Площадь участка</span>
-              <span class="passport-field-value" id="spec-land">—</span>
-            </div>
-            <div class="passport-field" id="spec-building-row" style="display:none">
-              <span class="passport-field-label">Площадь строения</span>
-              <span class="passport-field-value" id="spec-building">—</span>
-            </div>
-            <div class="passport-field" id="spec-roomarea-row" style="display:none">
-              <span class="passport-field-label">Площадь номеров</span>
-              <span class="passport-field-value" id="spec-roomarea">—</span>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /specs-cards-grid -->
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
-       ЭКОНОМИЧЕСКИЕ ПОКАЗАТЕЛИ
-  ═══════════════════════════════════════════ -->
-  <section class="economics-section" id="economics" aria-label="Экономические показатели объекта" style="display:none">
-    <div class="economics-inner">
-
-      <div class="economics-header appear">
-        <span class="exec-kicker">ЭКОНОМИКА</span>
-        <h2 class="amenities-title" style="margin-bottom:8px">Экономические показатели</h2>
-        <div id="eco-period-meta" style="font-size:13px;color:var(--color-text-muted);display:flex;gap:12px;flex-wrap:wrap;"></div>
-      </div>
-
-      <!-- KPI Bar -->
-      <div class="eco-kpi-bar appear" id="eco-kpi-bar">
-        <!-- заполняется passport.js -->
-      </div>
-
-      <!-- Карточки -->
-      <div class="eco-cards-grid appear">
-
-        <!-- Операционные показатели -->
-        <div class="eco-card" id="eco-card-operational">
-          <div class="eco-card-header">
-            <span class="eco-card-icon">📊</span>
-            <span class="eco-card-title">Операционные показатели</span>
-            <span class="eco-badge" id="eco-op-badge"></span>
-          </div>
-          <div class="eco-fields-grid" id="eco-op-fields"></div>
-        </div>
-
-        <!-- Выручка -->
-        <div class="eco-card" id="eco-card-revenue">
-          <div class="eco-card-header">
-            <span class="eco-card-icon">💰</span>
-            <span class="eco-card-title">Структура выручки</span>
-          </div>
-          <div id="eco-revenue-chart"></div>
-        </div>
-
-        <!-- Прибыль и рентабельность -->
-        <div class="eco-card" id="eco-card-profit">
-          <div class="eco-card-header">
-            <span class="eco-card-icon">📈</span>
-            <span class="eco-card-title">Прибыль и рентабельность</span>
-          </div>
-          <div class="eco-fields-grid" id="eco-profit-fields"></div>
-        </div>
-
-        <!-- Инвестиционные показатели -->
-        <div class="eco-card" id="eco-card-invest">
-          <div class="eco-card-header">
-            <span class="eco-card-icon">🏦</span>
-            <span class="eco-card-title">Инвестиционные показатели</span>
-          </div>
-          <div class="eco-fields-grid" id="eco-invest-fields"></div>
-        </div>
-
-        <!-- Условия сделки (показывается по типу сделки) -->
-        <div class="eco-card" id="eco-card-deal" style="display:none">
-          <div class="eco-card-header">
-            <span class="eco-card-icon">📋</span>
-            <span class="eco-card-title">Условия сделки</span>
-          </div>
-          <div class="eco-fields-grid" id="eco-deal-fields"></div>
-        </div>
-
-        <!-- Сравнение с рынком (если есть) -->
-        <div class="eco-card" id="eco-card-compset" style="display:none">
-          <div class="eco-card-header">
-            <span class="eco-card-icon">🏆</span>
-            <span class="eco-card-title">Сравнение с рынком</span>
-          </div>
-          <div class="eco-fields-grid" id="eco-compset-fields"></div>
-        </div>
-
-        <!-- Динамика по годам -->
-        <div class="eco-card eco-card-wide" id="eco-card-history" style="display:none">
-          <div class="eco-card-header">
-            <span class="eco-card-icon">📉</span>
-            <span class="eco-card-title">Динамика показателей</span>
-          </div>
-          <div class="eco-chart-wrap" id="eco-chart-wrap">
-            <svg class="eco-chart-svg" id="eco-chart-svg" viewBox="0 0 800 160" preserveAspectRatio="none"></svg>
-          </div>
-          <div class="eco-table-wrap" id="eco-history-table-wrap"></div>
-        </div>
-
-      </div>
-
-      <!-- Метабар -->
-      <div class="eco-meta-bar" id="eco-meta-bar"></div>
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
-       УДОБСТВА И ИНФРАСТРУКТУРА
-  ═══════════════════════════════════════════ -->
-  <section class="amenities-section" id="amenities-section" aria-label="Удобства и сервисы">
-    <div class="amenities-inner">
-      <div class="amenities-header appear">
-        <span class="exec-kicker">ИНФРАСТРУКТУРА</span>
-        <h2 class="amenities-title">Удобства и сервисы</h2>
-      </div>
-      <!-- Двухколонная компоновка: чипы удобств + карточка контактов -->
-      <div class="amenities-layout appear">
-        <div class="amenities-cloud" id="passport-amenities-cloud">
-          <!-- Чипы удобств с иконками -->
-        </div>
-        <!-- Контактная карточка рядом с удобствами -->
-        <div class="amenities-contact-card" id="amenities-contact-card">
-          <div class="amenities-contact-title">Контакты объекта</div>
-          <div class="amenities-contact-row">
-            <span class="amenities-contact-label">Управляющий / отдел инвестиций</span>
-            <span class="amenities-contact-value" id="amenities-contact-value">По запросу через платформу</span>
-          </div>
-          <div class="amenities-contact-row">
-            <span class="amenities-contact-label">Регион</span>
-            <span class="amenities-contact-value" id="amenities-region-value">—</span>
-          </div>
-          <div class="amenities-contact-row">
-            <span class="amenities-contact-label">Адрес</span>
-            <span class="amenities-contact-value" id="amenities-address-value">—</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
-       ЛОКАЦИЯ
-  ═══════════════════════════════════════════ -->
-  <section class="location-section" id="location" aria-label="Location Analysis — локация объекта">
-    <div class="location-inner">
-      <div class="location-header appear">
-        <span class="exec-kicker">ЛОКАЦИЯ</span>
-        <h2 class="location-title">Расположение объекта</h2>
-      </div>
-
-      <div class="location-grid">
-        <!-- Интерактивная карта -->
-        <div class="location-map-col appear">
-          <div class="interactive-map-container" aria-label="Интерактивная карта расположения объекта">
-            <div id="interactive-hotel-map" class="interactive-hotel-map"></div>
-            <div class="map-hotel-floating-tag">
-              <span class="m-tag-hotel" id="map-tag-hotel-name">Отель</span>
-              <span class="m-tag-sub" id="map-tag-hotel-region">Регион</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Данные локации и контакты -->
-        <div class="location-data-col appear">
-          <div class="location-details-box">
-            <div class="location-field-row">
-              <span class="location-field-label">Регион</span>
-              <span class="location-field-value" id="loc-region">—</span>
-            </div>
-            <div class="location-field-row">
-              <span class="location-field-label">Юридический адрес</span>
-              <span class="location-field-value" id="loc-address">—</span>
-            </div>
-            <div class="location-field-row" id="loc-contact-row">
-              <span class="location-field-label">Контактное лицо / Управление</span>
-              <span class="location-field-value" id="loc-contact">—</span>
-            </div>
-            <div class="location-field-row" id="loc-notes-row" style="display:none">
-              <span class="location-field-label">Примечания</span>
-              <span class="location-field-value" id="loc-notes">—</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
-       ФОТОГАЛЕРЕЯ
-  ═══════════════════════════════════════════ -->
-  <section class="gallery-section" id="gallery" aria-label="Фотогалерея объекта">
-    <div class="gallery-inner">
-      <div class="gallery-header appear">
-        <span class="exec-kicker">ФОТОМАТЕРИАЛЫ</span>
-        <h2 class="gallery-title">Галерея гостиничного комплекса</h2>
-      </div>
-
-      <!-- Динамическая сетка фотографий -->
-      <div class="photo-masonry appear" id="passport-gallery-masonry" role="list" aria-label="Фотографии объекта">
-        <!-- Генерируются фото из hotel.photos -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Лайтбокс для просмотра фото -->
-  <div class="passport-lightbox" id="passport-lightbox" aria-hidden="true" role="dialog">
-    <button class="passport-lightbox-close" id="btn-lightbox-close" aria-label="Закрыть">✕</button>
-    <img id="passport-lightbox-img" src="" alt="Увеличенное фото" />
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       СКАЧАТЬ PDF / ДЕЙСТВИЯ
-  ═══════════════════════════════════════════ -->
-  <section class="download-cta" id="download" aria-label="Скачать инвестиционный паспорт">
-    <div class="download-inner">
-      <div class="download-ornament" aria-hidden="true">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-          <rect x="0.5" y="0.5" width="79" height="79" stroke="#8B6F4E" stroke-opacity="0.4"/>
-          <rect x="10.5" y="10.5" width="59" height="59" stroke="#8B6F4E" stroke-opacity="0.25"/>
-          <rect x="20.5" y="20.5" width="39" height="39" stroke="#8B6F4E" stroke-opacity="0.15"/>
-        </svg>
-      </div>
-      <div class="download-content appear">
-        <p class="kicker kicker--light">HOTEL INVESTMENT PRESENTATION · PDF</p>
-        <h2 class="download-title">Скачать презентацию объекта</h2>
-        <p class="download-desc">
-          Официальная презентация гостиничного актива сформирована для квалифицированных инвесторов и содержит подробные технико-экономические показатели.
+        <p class="pp-meta">
+          <span class="pp-stars" id="passport-stars" aria-label="Категория"></span>
+          <span class="pp-dot" aria-hidden="true"></span>
+          <span id="passport-location">Республика Узбекистан</span>
         </p>
-        <div class="download-actions">
-          <button type="button" class="btn btn--teal btn--lg" id="btn-download-pdf">
-            Скачать презентацию
+
+        <dl class="pp-stats lg2">
+          <div><dt>Номеров</dt><dd id="cover-rooms-count">—</dd></div>
+          <div><dt>Мест</dt><dd id="cover-places-count">—</dd></div>
+          <div><dt>Этажей</dt><dd id="cover-floors-count">—</dd></div>
+          <div><dt>Год ввода</dt><dd id="cover-year-commissioned">—</dd></div>
+        </dl>
+
+        <a href="#economics" class="pp-price" id="pp-price">
+          <span class="pp-price-label" id="pp-price-label">Запрашиваемая цена</span>
+          <span class="pp-price-value" id="pp-price-value">По запросу</span>
+          <span class="pp-price-sub" id="pp-price-sub">Экономика объекта</span>
+          <span class="pp-circle pp-circle--light" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <div class="pp-actions">
+          <button type="button" class="pp-btn" id="btn-cover-download">
+            <span class="pp-btn-text">Скачать презентацию</span>
+            <span class="pp-btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v12M6 12l6 6 6-6"/></svg></span>
           </button>
-          <a href="certificate.html?no=UZ.TSM.TK.000123" class="btn btn--ghost btn--lg" id="btn-view-cert" style="text-decoration:none;">
-            📄 Сертификат соответствия O'z DSt 3220:2017
-          </a>
-          <a href="portfolio.html" class="btn btn--ghost btn--lg" id="btn-back-catalog">
-            &larr; Вернуться в каталог
+          <a href="#gallery" class="pp-btn-ghost" id="cover-btn-photos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+            <span id="cover-photo-count">Фото</span>
           </a>
         </div>
       </div>
-    </div>
-  </section>
+
+      <figure class="pp-hero-photo">
+        <img src="./assets/hotel-hero.png" alt="" id="passport-cover-photo" fetchpriority="high" />
+        <figcaption class="pp-owner lg2">
+          <span class="pp-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg></span>
+          <span><small>Собственник</small><b id="cover-legal-entity">—</b></span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- Навигация по паспорту -->
+    <nav class="pp-tabs" id="passport-toc" aria-label="Разделы паспорта">
+      <div class="pp-tabs-inner lg2">
+        <a href="#cover" class="toc-link toc-link--active">Обзор</a>
+        <a href="#economics" class="toc-link" id="toc-economics">Экономика</a>
+        <a href="#summary" class="toc-link">Объект</a>
+        <a href="#amenities-section" class="toc-link" id="toc-amenities">Удобства</a>
+        <a href="#location" class="toc-link">Локация</a>
+        <a href="#gallery" class="toc-link">Фото</a>
+        <a href="#download" class="toc-link">Документы</a>
+      </div>
+    </nav>
+
+    <!-- 2 · ЭКОНОМИКА -->
+    <section class="pp-section" id="economics" aria-labelledby="eco-title" hidden>
+      <header class="pp-head">
+        <h2 class="pp-h2" id="eco-title">Экономика <span>объекта</span></h2>
+        <div class="pp-chips" id="eco-period-meta"></div>
+      </header>
+
+      <div class="pp-kpis" id="eco-kpi-bar"></div>
+
+      <div class="pp-grid2">
+        <article class="pp-card" id="eco-card-operational">
+          <h3 class="pp-card-title">Операционные показатели</h3>
+          <ul class="pp-rows" id="eco-op-fields"></ul>
+        </article>
+        <article class="pp-card" id="eco-card-revenue">
+          <h3 class="pp-card-title">Структура выручки</h3>
+          <div id="eco-revenue-chart"></div>
+        </article>
+        <article class="pp-card" id="eco-card-profit">
+          <h3 class="pp-card-title">Прибыль и рентабельность</h3>
+          <ul class="pp-rows" id="eco-profit-fields"></ul>
+        </article>
+        <article class="pp-card" id="eco-card-invest">
+          <h3 class="pp-card-title">Инвестиционные показатели</h3>
+          <ul class="pp-rows" id="eco-invest-fields"></ul>
+        </article>
+        <article class="pp-card" id="eco-card-deal" hidden>
+          <h3 class="pp-card-title">Условия сделки</h3>
+          <ul class="pp-rows" id="eco-deal-fields"></ul>
+        </article>
+        <article class="pp-card" id="eco-card-compset" hidden>
+          <h3 class="pp-card-title">Сравнение с рынком</h3>
+          <p class="pp-card-note">Индекс 1,00 — уровень конкурентов. Выше — объект работает лучше рынка.</p>
+          <div id="eco-compset-fields"></div>
+        </article>
+        <article class="pp-card pp-card--wide" id="eco-card-history" hidden>
+          <h3 class="pp-card-title">Динамика по годам</h3>
+          <div class="pp-table-wrap" id="eco-history-table-wrap"></div>
+        </article>
+      </div>
+
+      <p class="pp-footnote" id="eco-meta-bar"></p>
+    </section>
+
+    <!-- 3 · ОБЪЕКТ -->
+    <section class="pp-section" id="summary" aria-labelledby="obj-title">
+      <header class="pp-head">
+        <h2 class="pp-h2" id="obj-title">Объект <span>и документы</span></h2>
+      </header>
+      <div class="pp-obj">
+        <article class="pp-card pp-card--solid">
+          <ul class="pp-rows pp-rows--obj" id="pp-obj-rows"></ul>
+        </article>
+        <aside class="pp-obj-side">
+          <article class="pp-card pp-note" id="loc-notes-row" hidden>
+            <span class="pp-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg></span>
+            <div><small>Комментарий владельца</small><p id="loc-notes"></p></div>
+          </article>
+          <article class="pp-card pp-black">
+            <small>Презентация объекта</small>
+            <p id="spec-presentation">Предоставляется по запросу</p>
+            <button type="button" class="pp-btn pp-btn--light" id="btn-obj-download">
+              <span class="pp-btn-text">Скачать</span>
+              <span class="pp-btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v12M6 12l6 6 6-6"/></svg></span>
+            </button>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 4 · УДОБСТВА -->
+    <section class="pp-section" id="amenities-section" aria-labelledby="am-title">
+      <header class="pp-head">
+        <h2 class="pp-h2" id="am-title">Удобства <span>и сервисы</span></h2>
+      </header>
+      <div class="pp-amen" id="passport-amenities-cloud"></div>
+    </section>
+
+    <!-- 5 · ЛОКАЦИЯ И КОНТАКТЫ -->
+    <section class="pp-section" id="location" aria-labelledby="loc-title">
+      <header class="pp-head">
+        <h2 class="pp-h2" id="loc-title">Локация <span>и контакты</span></h2>
+      </header>
+      <div class="pp-loc">
+        <div class="pp-map">
+          <div id="interactive-hotel-map" class="pp-map-canvas" aria-label="Карта расположения объекта"></div>
+          <div class="pp-map-tag lg2">
+            <b id="map-tag-hotel-name">Отель</b>
+            <span id="map-tag-hotel-region">Регион</span>
+          </div>
+          <p class="pp-map-note" id="pp-map-note" hidden>Точка — центр региона. Точный адрес — в карточке справа.</p>
+        </div>
+        <article class="pp-card pp-contact">
+          <div class="pp-contact-head">
+            <h3>Связаться</h3>
+            <span>Отдел инвестиций</span>
+          </div>
+          <div class="pp-field" id="loc-contact-row">
+            <span class="pp-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+            <span class="pp-field-text" id="loc-contact">По запросу через платформу</span>
+            <a class="pp-mini" id="loc-call" href="#" hidden>Позвонить</a>
+          </div>
+          <div class="pp-field">
+            <span class="pp-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+            <span class="pp-field-text" id="loc-address">—</span>
+          </div>
+          <div class="pp-field">
+            <span class="pp-circle" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></span>
+            <span class="pp-field-text" id="loc-region">—</span>
+          </div>
+          <p class="pp-legal">Контакты указаны владельцем объекта.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6 · ФОТО -->
+    <section class="pp-section" id="gallery" aria-labelledby="ph-title">
+      <header class="pp-head">
+        <h2 class="pp-h2" id="ph-title">Фото <span id="pp-photo-sub">объекта</span></h2>
+      </header>
+      <div class="pp-gallery" id="passport-gallery-masonry" role="list"></div>
+    </section>
+
+    <!-- 7 · ДОКУМЕНТЫ -->
+    <section class="pp-docs" id="download" aria-labelledby="docs-title">
+      <div class="pp-docs-stage">
+        <article class="pp-docs-card lg2">
+          <div class="pp-docs-top"><span>Silk Route Invest</span><span>PDF</span></div>
+          <h2 class="pp-docs-title" id="docs-title">Презентация<br />объекта</h2>
+          <p>Официальная презентация для квалифицированных инвесторов: технико-экономические показатели, фото и документы.</p>
+          <div class="pp-actions">
+            <button type="button" class="pp-btn" id="btn-download-pdf">
+              <span class="pp-btn-text">Скачать</span>
+              <span class="pp-btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v12M6 12l6 6 6-6"/></svg></span>
+            </button>
+          </div>
+          <p class="pp-legal">Если файл не приложен, откроется печатная версия паспорта.</p>
+        </article>
+
+        <a class="pp-cert" id="btn-view-cert" href="certificate.html?no=UZ.TSM.TK.000123">
+          <div class="pp-cert-panel">
+            <b>O'z DSt</b>
+            <span>3220:2017</span>
+            <small>Сертификат соответствия</small>
+          </div>
+          <div class="pp-cert-side">
+            <span class="pp-cert-meta">Центр сертификации<br />туристских услуг</span>
+            <span class="pp-orb" aria-hidden="true"></span>
+            <span class="pp-cert-no"><span id="pp-cert-no-2">UZ.TSM.TK.000123</span><br /><span id="pp-cert-valid">действует до 10.2029</span></span>
+            <span class="pp-cert-go">Проверить <span class="pp-circle pp-circle--dark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></span>
+          </div>
+        </a>
+      </div>
+      <a href="portfolio.html" class="pp-back" id="btn-back-catalog">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Вернуться в каталог
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Просмотр фото -->
+  <div class="pp-lightbox" id="passport-lightbox" aria-hidden="true" role="dialog" aria-label="Просмотр фото">
+    <button class="pp-lightbox-close" id="btn-lightbox-close" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <img id="passport-lightbox-img" src="" alt="" />
+  </div>
 
 
   <!-- ═══ FOOTER ════════════════════════════════ -->
@@ -681,8 +468,8 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
   <script src="js/hotels-data.js"></script>
-  <script src="js/economics.js"></script>
-  <script src="js/passport.js"></script>
+  <script src="js/economics.js?v=pp2_1"></script>
+  <script src="js/passport.js?v=pp2_1"></script>
   <script src="js/megamenu.js?v=nav_inv_1"></script>
 </body>
 </html>
