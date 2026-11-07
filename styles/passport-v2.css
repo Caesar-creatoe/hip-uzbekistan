@@ -512,3 +512,49 @@ a.pp-tag--cert:hover { background: #fff; }
   .pp-actions .pp-btn-ghost { flex: 1 1 100%; justify-content: center; }
   .pp-kpi-value { margin-top: 12px; }
 }
+
+/* ═══ Фоны из Flow ═══════════════════════════════════════════ */
+.pp-docs-stage {
+  --pp-docs-img: image-set(url('../assets/passport/docs-1400.webp') 1x, url('../assets/passport/docs-2400.webp') 2x);
+  background:
+    var(--pp-docs-img) 70% 100% / cover no-repeat,
+    linear-gradient(160deg, #F6EFE7, #E7D8C8);
+  grid-template-columns: minmax(0, 560px);
+  min-height: 640px;
+  padding: 48px clamp(18px, 4vw, 56px);
+  align-content: center;
+}
+.pp-docs-card { background: rgba(255, 248, 240, 0.42); }
+.pp-cert { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr); }
+.pp-cert-side { min-height: 230px; }
+.pp-cert-panel small { padding-top: 34px; }
+
+.pp-photo-info {
+  position: relative; overflow: hidden;
+  background: #F3EDE6 url('../assets/passport/arch-700.webp') 50% 100% / cover no-repeat;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.pp-photo-info > div:first-child, .pp-photo-info > p {
+  position: relative; z-index: 1;
+}
+.pp-photo-info > div:first-child {
+  padding: 14px 16px; border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%);
+}
+.pp-photo-info > p { display: none; }
+.pp-photo-info > div:first-child p { margin-top: 10px !important; font-size: 13.5px; line-height: 1.5; color: var(--pp-ink-2) !important; }
+
+@media (max-width: 960px) {
+  .pp-docs-stage {
+    background:
+      url('../assets/passport/docs-m-900.webp') 50% 100% / 100% auto no-repeat,
+      linear-gradient(180deg, #F3E9DF, #EBD9C6);
+    min-height: 0; padding: 22px 14px 70vw; grid-template-columns: 1fr;
+  }
+  .pp-photo-info { min-height: 380px; }
+}
+@media (max-width: 960px) {
+  .pp-gallery .pp-photo-info { grid-row: span 2; min-height: 0; }
+}
+@media (max-width: 640px) { .pp-orb { display: none; } }

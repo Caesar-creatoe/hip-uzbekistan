@@ -467,8 +467,7 @@ function renderPhotoGallery(hotel) {
     </figure>`;
   const infoCard = (n) => `
     <div class="pp-photo-info lg2">
-      <div><b>${n}</b><span>${plural(n, 'фотография', 'фотографии', 'фотографий')} от владельца</span></div>
-      <p>Полный фотоотчёт, планировки и документы — в презентации объекта.</p>
+      <div><b>${n}</b><span>${plural(n, 'фотография', 'фотографии', 'фотографий')} от владельца</span><p>Полный фотоотчёт, планировки и документы — в презентации объекта.</p></div>
       <div class="pp-actions"><button type="button" class="pp-btn" data-download>
         <span class="pp-btn-text">Презентация</span><span class="pp-btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v12M6 12l6 6 6-6"/></svg></span>
       </button></div>
