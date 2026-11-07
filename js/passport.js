@@ -517,8 +517,8 @@ function initPassportMap(hotel) {
   try {
     const map = L.map(el, { center: coords, zoom: hotel.coords ? 15 : 12, zoomControl: true, scrollWheelZoom: false, attributionControl: true });
     map.zoomControl.setPosition('topright');
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap', subdomains: 'abc', maxZoom: 19
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap', maxZoom: 19
     }).addTo(map);
     const icon = L.divIcon({ className: '', html: '<div class="pp-pin"></div>', iconSize: [44, 44], iconAnchor: [22, 22] });
     L.marker(coords, { icon, title: hotel.hotelName || '' }).addTo(map);
