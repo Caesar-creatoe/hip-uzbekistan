@@ -428,15 +428,15 @@ const DEFAULT_HOTELS = [
         "caption": ""
       },
       {
-        "src": "/assets/hotels/khiva-residence-2.webp",
-        "caption": ""
-      },
-      {
-        "src": "https://cdn.worldota.net/t/1024x768/content/47/79/47796e4909157c6c3277ffc3b8923fbf21a1e1cc.jpeg",
-        "caption": ""
-      },
-      {
         "src": "https://cdn.worldota.net/t/1024x768/content/ac/c0/acc0408aade5ce21e530aac30b5a47bdb9ac0212.jpeg",
+        "caption": ""
+      },
+      {
+        "src": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/25/ff/78/khiva-residence.jpg",
+        "caption": ""
+      },
+      {
+        "src": "https://images.trvl-media.com/lodging/85000000/84160000/84151800/84151727/b748add5.jpg",
         "caption": ""
       }
     ],
