@@ -23,6 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
     currentHotelData = hotel;
     renderPassport(hotel);
     initPassportMap(hotel);
+    // Свежие данные с сервера: если фото изменились — перерисовать
+    window.addEventListener('sri_hotels_updated', (ev) => {
+      const list = Array.isArray(ev.detail) ? ev.detail : [];
+      const fresh = list.find((h) => h && h.id === hotel.id);
+      if (!fresh || JSON.stringify(fresh.photos || []) === JSON.stringify(currentHotelData.photos || [])) return;
+      currentHotelData.photos = fresh.photos;
+      const ph = photosOf(fresh);
+      const cover = $id('passport-cover-photo');
+      if (cover && ph[0]) cover.src = ph[0].src;
+      updatePhotoCount(ph.length);
+      renderPhotoGallery(currentHotelData);
+    });
   } else {
     renderNotFound();
   }
