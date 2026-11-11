@@ -112,7 +112,7 @@
 
     const stars = hotels.map(starsOf).filter(Boolean);
     const sub = document.getElementById('hotel-sub');
-    if (sub && stars.length) sub.textContent = `${Math.min(...stars)}★–${Math.max(...stars)}★ · курорты, бутик-отели, городские`;
+    if (sub && stars.length) sub.textContent = `${Math.min(...stars)}★–${Math.max(...stars)}★ · готовые и строящиеся`;
 
     /* слайды — сначала узнаваемые объекты, потом остальные с фото */
     const byId = new Map(hotels.map((h) => [h.id, h]));

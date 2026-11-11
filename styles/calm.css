@@ -1,0 +1,103 @@
+/* ============================================================
+   CALM.CSS — облегчение разделов меню («Для инвесторов»,
+   «Для бизнеса», «Услуги», «О платформе»).
+   Дизайн тот же, только: мельче масштаб, без стеклянных плашек
+   поверх фото, без второго плавающего меню.
+   Подключается последним, после investors.css и css страницы.
+   ============================================================ */
+
+/* ── 1. Второе плавающее меню убрано (наезжало на шапку) ── */
+.inv-subnav { display: none !important; }
+
+/* ── 2. Масштаб: меньше шапка, заголовки и отступы ──────── */
+.inv-hero-frame { min-height: min(calc(100vh - 24px), 540px); }
+.inv-hero-title { font-size: clamp(28px, 2.7vw, 38px); }
+.inv-hero-lead { font-size: 15px; max-width: 470px; }
+.inv-section { padding-top: 56px; }
+.inv-head { margin-bottom: 20px; }
+.inv-h2 { font-size: clamp(22px, 2vw, 28px); }
+.inv-lead { font-size: 14.5px; }
+.inv-final { padding-top: 56px; }
+.inv-final-frame { min-height: 300px; }
+.inv-bento { grid-auto-rows: 150px; }
+
+/* ── 3. Без стеклянных рамок поверх фото ─────────────────
+   Текст лежит прямо на фото, читаемость даёт затемнение снизу. */
+.tile-panel.lg,
+.obj-panel.lg,
+.obj-chip.lg,
+.inv-hero-stats.lg,
+.inv-final-card.lg,
+.role-tag.lg {
+  background: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+.tile-panel.lg::before,
+.obj-panel.lg::before,
+.obj-chip.lg::before,
+.inv-hero-stats.lg::before,
+.inv-final-card.lg::before,
+.role-tag.lg::before { display: none !important; }
+
+/* плитки активов: подпись снизу на затемнении */
+.tile-panel { padding: 0; display: block; }
+.tile-panel .tile-go { display: inline-flex; margin-top: 8px; padding-top: 0; border-top: 0; }
+.tile-shade {
+  background: linear-gradient(180deg, rgba(10, 7, 5, .45) 0%, rgba(10, 7, 5, 0) 28%, rgba(10, 7, 5, 0) 45%, rgba(10, 7, 5, .78) 100%);
+}
+
+/* карточки объектов: цена и название на затемнении */
+.obj-panel { padding: 0 2px; }
+.obj::after { background: linear-gradient(180deg, rgba(10, 7, 5, .3) 0%, rgba(10, 7, 5, 0) 30%, rgba(10, 7, 5, 0) 50%, rgba(10, 7, 5, .82) 100%) !important; }
+.obj-chip { padding: 3px 0; font-weight: 600; text-shadow: 0 1px 4px rgba(0, 0, 0, .45); }
+
+/* цифры в шапке: просто строка цифр, без плашки */
+.inv-hero-stats { border-radius: 0; min-width: 0; }
+.inv-hero-stats > div { padding: 6px 18px 6px 0; }
+.inv-hero-stats > div::before, .inv-hero-stats > div::after { display: none !important; }
+
+/* финальный блок: текст на затемнённом фото */
+.inv-final-frame::after {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(15, 10, 6, .35), rgba(15, 10, 6, .62));
+}
+.inv-final-card { color: #fff !important; padding: 0 !important; }
+.inv-final-card h2 { color: #fff !important; }
+.inv-final-card p { color: rgba(255, 255, 255, .86) !important; }
+.inv-final-card .inv-btn--ghost { color: #fff !important; border: 1px solid rgba(255, 255, 255, .55) !important; background: transparent !important; }
+
+@media (max-width: 760px) {
+  .inv-hero-title { font-size: 28px; }
+  .inv-section { padding-top: 44px; }
+  .inv-final-frame { min-height: 260px; }
+}
+
+/* ── «Для бизнеса» ─────────────────────────────────────── */
+.biz-hero { grid-template-columns: minmax(0, 1fr); min-height: min(calc(100vh - 24px), 540px); }
+.biz-hero .inv-hero-copy { max-width: 620px; }
+.reg-photo img { border-radius: inherit; }
+.extras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cert { grid-template-columns: minmax(0, 1fr) 380px; }
+.cert-art { position: relative; }
+@media (max-width: 900px) {
+  .extras, .cert { grid-template-columns: 1fr; }
+}
+.role-tag { color: #fff; font-weight: 600; text-shadow: 0 1px 6px rgba(0, 0, 0, .55); }
+
+/* ── «Услуги» ──────────────────────────────────────────── */
+.svc-title { font-size: clamp(28px, 2.7vw, 38px); }
+.svc-h2 { font-size: clamp(22px, 2vw, 28px); }
+.svc-art { min-height: 300px; }
+@media (max-width: 760px) { .svc-art { min-height: 220px; } }
+
+/* ── «О платформе» ─────────────────────────────────────── */
+.plat-title { font-size: clamp(28px, 2.7vw, 38px); }
+.plat-owner { color: rgba(255, 255, 255, .8) !important; }
+.princ-photo img { border-radius: inherit; }
+.vol { min-height: 150px; }
+.biz-hero .inv-hero-shade { background: linear-gradient(90deg, rgba(15, 10, 6, .8) 0%, rgba(15, 10, 6, .55) 45%, rgba(15, 10, 6, .15) 100%) !important; }
+@media (max-width: 760px) {
+  .biz-hero .inv-hero-shade, .inv-hero-shade { background: rgba(15, 10, 6, .55) !important; }
+}

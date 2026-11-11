@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/investors.css?v=inv_3" />
   <link rel="stylesheet" href="styles/business.css?v=biz_2" />
+  <link rel="stylesheet" href="styles/calm.css?v=calm_1" />
 </head>
 <body class="page-investors page-business">
 
@@ -145,17 +146,19 @@
     <!-- 1 · HERO -->
     <section class="inv-hero" aria-labelledby="biz-title">
       <div class="inv-hero-frame biz-hero">
-        <div class="biz-hero-pattern" aria-hidden="true"></div>
-        <div class="biz-hero-glow" aria-hidden="true"></div>
+        <picture class="inv-hero-media">
+          <img src="assets/invest/photo/night-1400.webp" alt="Фасад гостиницы вечером (иллюстрация)" fetchpriority="high" />
+        </picture>
+        <div class="inv-hero-shade" aria-hidden="true"></div>
 
         <div class="inv-hero-copy">
           <p class="inv-eyebrow inv-eyebrow--light">Для бизнеса</p>
           <h1 class="inv-hero-title" id="biz-title">
-            Внесите свой объект в&nbsp;государственный реестр.
+            Внесите свой объект в&nbsp;госреестр.
             <span>Инвесторы увидят его с&nbsp;проверенными цифрами.</span>
           </h1>
           <p class="inv-hero-lead">
-            Отели и рестораны получают инвестиционный паспорт, сертификат и личный кабинет, куда приходят заявки от инвесторов.
+            Вы получите паспорт объекта и кабинет, куда приходят заявки инвесторов.
           </p>
           <div class="inv-hero-actions">
             <a href="form.html" class="inv-btn inv-btn--light">Подать заявку: отель</a>
@@ -166,61 +169,14 @@
           </p>
         </div>
 
-        <!-- Иллюстрация: паспорт поверх сертификата (заполняет js) -->
-        <div class="biz-docs" aria-hidden="true">
-          <div class="doc-cert">
-            <div class="doc-cert-head">
-              <span>O'z DSt 3220:2017</span>
-              <span class="doc-cert-no">UZ.TSM.TK.000123</span>
-            </div>
-            <p class="doc-cert-title">Сертификат соответствия</p>
-            <p class="doc-cert-stars">★★★★</p>
-            <svg class="doc-cert-seal" viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="52" />
-              <circle cx="60" cy="60" r="42" />
-              <path d="M42 61 L55 73 L79 47" />
-            </svg>
-          </div>
-          <div class="doc-pass lg">
-            <div class="doc-pass-photo" id="hero-pass-photo"></div>
-            <div class="doc-pass-body">
-              <p class="doc-pass-kicker">Hotel Investment Passport</p>
-              <p class="doc-pass-name" id="hero-pass-name">Bakh Mir Palace</p>
-              <p class="doc-pass-meta" id="hero-pass-meta">4★ · 50 номеров</p>
-              <dl class="doc-pass-kpi" id="hero-pass-kpi">
-                <div><dt>ADR</dt><dd>$74</dd></div>
-                <div><dt>Загрузка</dt><dd>69%</dd></div>
-                <div><dt>RevPAR</dt><dd>$51</dd></div>
-                <div><dt>EBITDA</dt><dd>35%</dd></div>
-              </dl>
-              <div class="doc-pass-iri" id="hero-pass-ver"><span id="hero-pass-period">Данные за 2025 FY</span><b>Проверено</b></div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
-
-    <!-- Локальная навигация -->
-    <nav class="inv-subnav" aria-label="Разделы страницы">
-      <div class="inv-subnav-inner lg">
-        <span class="inv-subnav-title">Для бизнеса</span>
-        <div class="inv-subnav-links">
-          <a href="#roles">Отель и ресторан</a>
-          <a href="#registry">Попасть в реестр</a>
-          <a href="#passports">Паспорта</a>
-          <a href="#cert">Сертификация</a>
-          <a href="#support">Поддержка</a>
-        </div>
-        <a href="form.html" class="inv-subnav-cta">Подать заявку</a>
-      </div>
-    </nav>
 
     <!-- 2 · ОТЕЛЬ И РЕСТОРАН -->
     <section class="inv-section" id="roles" aria-labelledby="roles-title">
       <header class="inv-head">
         <p class="inv-eyebrow">Отель и ресторан</p>
-        <h2 class="inv-h2" id="roles-title">Свой путь для каждого формата.</h2>
-        <p class="inv-lead">Заявка, кабинет и паспорт — отдельно для гостиниц и для ресторанов.</p>
+        <h2 class="inv-h2" id="roles-title">Выберите свой формат.</h2>
       </header>
 
       <div class="roles">
@@ -232,15 +188,15 @@
           <ul class="role-list">
             <li><a href="form.html">
               <span class="role-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-              <span class="role-t"><b>Подать заявку на включение</b><small>Smart Investment Form · Том III</small></span>
+              <span class="role-t"><b>Подать заявку</b><small>Онлайн-форма для отеля</small></span>
             </a></li>
             <li><a href="cabinet-hotel.html">
               <span class="role-ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16M10 10v10"/></svg></span>
-              <span class="role-t"><b>Кабинет отеля</b><small>Объект, заявки инвесторов, KQI, документы</small></span>
+              <span class="role-t"><b>Кабинет отеля</b><small>Объект, заявки инвесторов, документы</small></span>
             </a></li>
             <li><a href="passport.html">
               <span class="role-ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span>
-              <span class="role-t"><b>Hotel Investment Passport</b><small>Стандарт USALI, финмодель · Том II</small></span>
+              <span class="role-t"><b>Пример паспорта отеля</b><small>Как объект видят инвесторы</small></span>
             </a></li>
           </ul>
         </article>
@@ -253,15 +209,15 @@
           <ul class="role-list">
             <li><a href="restaurant-form.html">
               <span class="role-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
-              <span class="role-t"><b>Подать заявку на включение</b><small>Restaurant Smart Form · 4 шага</small></span>
+              <span class="role-t"><b>Подать заявку</b><small>Онлайн-форма для ресторана, 4 шага</small></span>
             </a></li>
             <li><a href="cabinet-restaurant.html">
               <span class="role-ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16M10 10v10"/></svg></span>
-              <span class="role-t"><b>Кабинет ресторатора</b><small>Управление проектом и документами</small></span>
+              <span class="role-t"><b>Кабинет ресторатора</b><small>Проект и документы</small></span>
             </a></li>
             <li><a href="restaurant-passport.html">
               <span class="role-ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span>
-              <span class="role-t"><b>Restaurant Passport</b><small>F&amp;B метрики, comp-set · Том VI</small></span>
+              <span class="role-t"><b>Пример паспорта ресторана</b><small>Как проект видят инвесторы</small></span>
             </a></li>
           </ul>
         </article>
@@ -271,7 +227,7 @@
     <!-- 3 · КАК ПОПАСТЬ В РЕЕСТР + КАЛЬКУЛЯТОР -->
     <section class="inv-section" id="registry" aria-labelledby="registry-title">
       <header class="inv-head">
-        <p class="inv-eyebrow">Smart Investment Form</p>
+        <p class="inv-eyebrow">Заявка онлайн</p>
         <h2 class="inv-h2" id="registry-title">Как объект попадает в реестр.</h2>
       </header>
 
@@ -279,35 +235,27 @@
         <div class="reg-steps">
         <figure class="reg-photo" data-reveal>
           <img src="assets/invest/photo/laptop-1400.webp" alt="Заявка на включение в реестр заполняется на ноутбуке" loading="lazy" />
-          <figcaption class="lg"><span>Вся заявка — онлайн, без визита в офис</span></figcaption>
         </figure>
         <ol class="path path--col" data-reveal>
           <li class="path-step">
             <span class="path-n">01</span>
             <div>
               <h3>Заполните форму</h3>
-              <p>Характеристики объекта, номерной фонд, операционные KPI и комплект документов.</p>
+              <p>Данные объекта, номера и документы.</p>
             </div>
           </li>
           <li class="path-step">
             <span class="path-n">02</span>
             <div>
-              <h3>Система посчитает показатели</h3>
-              <p>ADR, RevPAR и EBITDA рассчитываются автоматически по методике USALI.</p>
+              <h3>Система посчитает цифры</h3>
+              <p>Загрузку, доход и прибыль — автоматически.</p>
             </div>
           </li>
           <li class="path-step">
             <span class="path-n">03</span>
             <div>
-              <h3>Объект получает индекс IRI</h3>
-              <p>Investment Readiness Index показывает инвестору, насколько объект готов к сделке.</p>
-            </div>
-          </li>
-          <li class="path-step">
-            <span class="path-n">04</span>
-            <div>
-              <h3>Паспорт публикуется в каталоге</h3>
-              <p>Заявки инвесторов приходят в кабинет отеля.</p>
+              <h3>Объект появится в каталоге</h3>
+              <p>Заявки инвесторов приходят в ваш кабинет.</p>
             </div>
           </li>
         </ol>
@@ -326,7 +274,7 @@
               <input type="range" id="calc-rooms" min="5" max="400" step="5" value="60" />
             </label>
             <label class="calc-field">
-              <span>Средняя цена номера (ADR), $</span>
+              <span>Цена номера за ночь, $</span>
               <output id="calc-adr-out">80</output>
               <input type="range" id="calc-adr" min="20" max="400" step="5" value="80" />
             </label>
@@ -337,58 +285,11 @@
             </label>
           </div>
           <div class="calc-res">
-            <div><span>RevPAR</span><b id="calc-revpar">$52</b><small id="calc-cmp">в среднем по реестру —</small></div>
-            <div><span>Выручка от номеров в год</span><b id="calc-rev">$1,1 млн</b><small>RevPAR × номера × 365</small></div>
+            <div><span>Доход на номер в сутки</span><b id="calc-revpar">$52</b><small id="calc-cmp">в среднем по реестру —</small></div>
+            <div><span>Выручка за год</span><b id="calc-rev">$1,1 млн</b><small>от продажи номеров</small></div>
           </div>
-          <a href="form.html" class="calc-go tile-go">Полный расчёт в Smart Investment Form</a>
+          <a href="form.html" class="calc-go tile-go">Полный расчёт в форме заявки</a>
         </div>
-      </div>
-    </section>
-
-    <!-- 4 · ПАСПОРТА -->
-    <section class="inv-section" id="passports" aria-labelledby="pass-title">
-      <header class="inv-head">
-        <p class="inv-eyebrow">Инвестиционные паспорта</p>
-        <h2 class="inv-h2" id="pass-title">Один документ вместо десятка запросов.</h2>
-        <p class="inv-lead">Паспорт собирает всё, что инвестор спрашивает первым делом. Ниже — фрагменты реальных паспортов из реестра.</p>
-      </header>
-
-      <div class="passes">
-        <a class="pass" id="pass-hotel" href="passport.html" data-reveal>
-          <div class="pass-paper">
-            <div class="pass-top">
-              <span>Hotel Investment Passport</span><span>Том II · USALI</span>
-            </div>
-            <div class="pass-id">
-              <img id="ph-img" src="" alt="" loading="lazy" />
-              <div>
-                <p class="pass-name" id="ph-name">—</p>
-                <p class="pass-meta" id="ph-meta">—</p>
-              </div>
-            </div>
-            <dl class="pass-grid" id="ph-kpi"></dl>
-            <div class="pass-bar"><span>Цена объекта</span><b id="ph-price">—</b></div>
-          </div>
-          <span class="tile-go">Открыть паспорт отеля</span>
-        </a>
-
-        <a class="pass pass--rest" id="pass-rest" href="restaurant-passport.html" data-reveal>
-          <div class="pass-paper">
-            <div class="pass-top">
-              <span>Restaurant Passport</span><span>Том VI · F&amp;B</span>
-            </div>
-            <div class="pass-id">
-              <span class="pass-rating" id="pr-rating">A+</span>
-              <div>
-                <p class="pass-name" id="pr-name">—</p>
-                <p class="pass-meta" id="pr-meta">—</p>
-              </div>
-            </div>
-            <dl class="pass-grid" id="pr-kpi"></dl>
-            <div class="pass-bar"><span>Инвестиции</span><b id="pr-price">—</b></div>
-          </div>
-          <span class="tile-go">Открыть паспорт ресторана</span>
-        </a>
       </div>
     </section>
 
@@ -396,36 +297,15 @@
     <section class="inv-section" id="cert" aria-labelledby="cert-title">
       <div class="cert lg" data-reveal>
         <div class="cert-copy">
-          <p class="inv-eyebrow inv-eyebrow--light">Сертификация средства размещения</p>
-          <h2 class="cert-h2" id="cert-title">Сертификат — онлайн, без бумаги и визитов.</h2>
-          <p class="cert-lead">Электронная заявка по стандарту O'z DSt 3220:2017: от выбора категории до подписи E-IMZO и статуса рассмотрения.</p>
-          <ol class="cert-steps">
-            <li><b>1–2</b>Тип объекта, категория и реквизиты</li>
-            <li><b>3–4</b>Расчёт и оплата сбора</li>
-            <li><b>5–6</b>Электронный чек-лист и самооценка</li>
-            <li><b>7–8</b>Подпись E-IMZO и статус заявки</li>
-          </ol>
+          <p class="inv-eyebrow inv-eyebrow--light">Сертификация</p>
+          <h2 class="cert-h2" id="cert-title">Сертификат категории — онлайн.</h2>
+          <p class="cert-lead">Подтвердите звёздность отеля без бумаги и визитов: заявка, оплата и подпись E-IMZO — на сайте.</p>
           <div class="inv-hero-actions">
             <a href="certification-apply.html" class="inv-btn inv-btn--light">Подать заявку на сертификацию</a>
           </div>
         </div>
         <div class="cert-art" aria-hidden="true">
           <img class="cert-photo" src="assets/invest/photo/inspector2-1400.webp" alt="" loading="lazy" />
-          <div class="doc-cert doc-cert--big">
-            <div class="doc-cert-head">
-              <span>O'z DSt 3220:2017</span>
-              <span class="doc-cert-no">UZ.TSM.TK.000123</span>
-            </div>
-            <p class="doc-cert-title">Сертификат соответствия</p>
-            <p class="doc-cert-sub">средства размещения</p>
-            <p class="doc-cert-stars">★★★★★</p>
-            <div class="doc-cert-lines"><i></i><i></i><i></i></div>
-            <svg class="doc-cert-seal" viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="52" />
-              <circle cx="60" cy="60" r="42" />
-              <path d="M42 61 L55 73 L79 47" />
-            </svg>
-          </div>
         </div>
       </div>
     </section>
@@ -442,25 +322,8 @@
           <div class="extra-num"><span data-stat="support">16</span></div>
           <div class="extra-body">
             <h3>Калькулятор господдержки</h3>
-            <p>Подберёт субсидии, компенсации и льготы по нормативным актам — под ваш объект.</p>
-            <ul class="support-kinds support-kinds--paper" id="support-kinds"></ul>
+            <p>Покажет, какие субсидии и льготы положены вашему объекту.</p>
             <span class="tile-go">Рассчитать поддержку</span>
-          </div>
-        </a>
-
-        <a href="form.html" class="extra extra--form" data-reveal>
-          <div class="extra-art" aria-hidden="true">
-            <div class="mini-form">
-              <span class="mf-row"><i style="width:62%"></i></span>
-              <span class="mf-row"><i style="width:44%"></i></span>
-              <span class="mf-kpis"><b>ADR</b><b>RevPAR</b><b>EBITDA</b><b>IRR</b></span>
-              <span class="mf-bar"><i></i></span>
-            </div>
-          </div>
-          <div class="extra-body">
-            <h3>Smart Investment Form</h3>
-            <p>Экспресс-расчёт ADR, RevPAR, EBITDA и IRR по данным вашего объекта.</p>
-            <span class="tile-go">Открыть форму</span>
           </div>
         </a>
 
@@ -468,8 +331,7 @@
           <span class="partner-badge">Сервис партнёра · платно</span>
           <div class="extra-body">
             <h3>Инструменты для отельеров</h3>
-            <p>Excel-модели, чек-листы, шаблоны презентаций и AI-промпты от SRI Toolkit.</p>
-            <ul class="partner-list" id="partner-list"></ul>
+            <p>Готовые модели, чек-листы и шаблоны от партнёра.</p>
             <span class="tile-go">Смотреть инструменты</span>
           </div>
         </a>
@@ -482,7 +344,7 @@
         <img src="assets/invest/photo/handshake-1400.webp" alt="" loading="lazy" class="inv-final-img" />
         <div class="inv-final-card lg">
           <h2 id="biz-final-title">Готовы показать объект инвесторам?</h2>
-          <p>Начните с заявки: дальше — паспорт объекта, сертификат и кабинет с заявками инвесторов.</p>
+          <p>Начните с заявки — всё делается онлайн.</p>
           <div class="inv-hero-actions">
             <a href="form.html" class="inv-btn inv-btn--dark">Заявка: отель</a>
             <a href="restaurant-form.html" class="inv-btn inv-btn--ghost">Заявка: ресторан</a>
@@ -557,6 +419,6 @@
   <script src="js/hotels-data.js"></script>
   <script src="js/megamenu.js?v=nav_inv_1"></script>
   <script src="js/support-core.js"></script>
-  <script src="js/business.js?v=biz_2"></script>
+  <script src="js/business.js?v=calm_1"></script>
 </body>
 </html>
