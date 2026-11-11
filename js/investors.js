@@ -319,32 +319,34 @@
     const rest = withPhoto.filter((h) => !priceOf(h)).sort((a, b) => starsOf(b) - starsOf(a));
     const pick = priced.concat(rest).slice(0, 9);
 
-    const CITY = (h) => {
-      const a = String(h.address || '');
-      const m = a.match(/(Ташкент|Самарканд|Бухара|Хива|Ургенч|Шахрисабз|Карши|Джизак|Навои|Наманган|Фергана|Андижан|Нукус|Термез)/i);
-      return m ? m[1] : (REGIONS[h.regionKey] ? REGIONS[h.regionKey].name : (h.region || ''));
-    };
+    const DEAL = { sale: 'Продажа', rent: 'Аренда', franchise: 'Франшиза', invest: 'Соинвестирование' };
     rail.innerHTML = pick.map((h) => {
       const price = money(priceOf(h));
       const st = starsOf(h);
+      const deal = DEAL[String(h.dealType || '').toLowerCase()] || '';
+      const region = REGIONS[h.regionKey] ? REGIONS[h.regionKey].name : (h.region || '');
       const rooms = parseInt(h.roomsCount, 10);
-      return `<a role="listitem" class="card obj" href="passport.html?hotel=${encodeURIComponent(h.slug || h.id)}">
-        <div class="card-img"><img src="${esc(cardSrc(photoOf(h)))}" alt="${esc(h.hotelName)}" loading="lazy" decoding="async" />${st ? `<span class="obj-stars">${'★'.repeat(st)}</span>` : ''}</div>
-        <div class="card-body">
+      return `<a role="listitem" class="obj" href="passport.html?hotel=${encodeURIComponent(h.slug || h.id)}">
+        <img src="${esc(cardSrc(photoOf(h)))}" alt="${esc(h.hotelName)}" loading="lazy" decoding="async" />
+        <div class="obj-top">
+          ${st ? `<span class="obj-chip lg"><span>${'★'.repeat(st)}</span></span>` : '<span></span>'}
+          ${deal ? `<span class="obj-chip lg"><span>${esc(deal)}</span></span>` : ''}
+        </div>
+        <div class="obj-panel lg">
           <p class="obj-price">${price ? esc(price) : 'Цена по запросу'}</p>
-          <h3>${esc(h.hotelName)}</h3>
-          <p>${esc(CITY(h))}${rooms ? ` · ${rooms} ${plural(rooms, 'номер|номера|номеров')}` : ''}</p>
+          <p class="obj-name">${esc(h.hotelName)}</p>
+          <p class="obj-meta">${esc(region)}${rooms ? ` · ${rooms} ${plural(rooms, 'номер|номера|номеров')}` : ''}</p>
         </div>
       </a>`;
     }).join('') + (hotels.length > pick.length ? `
-      <a role="listitem" class="card obj obj--more" href="portfolio.html">
-        <b>+${hotels.length - pick.length}</b>
-        <p>${plural(hotels.length - pick.length, 'объект|объекта|объектов')} ещё в каталоге</p>
-        <span class="more">Весь каталог</span>
+      <a role="listitem" class="obj obj--more" href="portfolio.html">
+        <span class="more-n">+${hotels.length - pick.length}</span>
+        <p>${plural(hotels.length - pick.length, 'объект|объекта|объектов')} в каталоге — с фильтрами и сравнением.</p>
+        <span class="tile-go">Весь каталог</span>
       </a>` : '');
 
     const btns = document.querySelectorAll('[data-rail]');
-    const step = () => { const c = rail.querySelector('.obj'); return c ? c.getBoundingClientRect().width + 16 : 300; };
+    const step = () => { const c = rail.querySelector('.obj'); return c ? c.getBoundingClientRect().width + 20 : 320; };
     btns.forEach((b) => b.addEventListener('click', () => rail.scrollBy({ left: step() * Number(b.dataset.rail) * 2, behavior: 'smooth' })));
     const sync = () => {
       const max = rail.scrollWidth - rail.clientWidth - 4;
