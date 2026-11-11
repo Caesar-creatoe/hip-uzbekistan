@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="styles/verticals.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/investors.css?v=inv_3" />
+  <link rel="stylesheet" href="styles/calm.css?v=calm_1" />
 </head>
 <body class="page-investors">
 
@@ -159,7 +160,7 @@
             <span>С данными, которым можно доверять.</span>
           </h1>
           <p class="inv-hero-lead">
-            Отели, рестораны и земельные участки из государственного реестра — с инвестиционными паспортами по USALI, финансовыми моделями и мерами господдержки.
+            Отели, рестораны и участки из государственного реестра — с ценой и проверенными цифрами.
           </p>
           <div class="inv-hero-actions">
             <a href="portfolio.html" class="inv-btn inv-btn--light">Смотреть объекты</a>
@@ -176,27 +177,11 @@
       </div>
     </section>
 
-    <!-- Локальная навигация по странице -->
-    <nav class="inv-subnav" id="inv-subnav" aria-label="Разделы страницы">
-      <div class="inv-subnav-inner lg">
-        <span class="inv-subnav-title">Для инвесторов</span>
-        <div class="inv-subnav-links">
-          <a href="#assets">Активы</a>
-          <a href="#geo">География</a>
-          <a href="#featured">Объекты</a>
-          <a href="#path">Путь инвестора</a>
-          <a href="#tools">Инструменты</a>
-        </div>
-        <a href="cabinet-investor.html" class="inv-subnav-cta">Кабинет</a>
-      </div>
-    </nav>
-
     <!-- 2 · КЛАССЫ АКТИВОВ -->
     <section class="inv-section" id="assets" aria-labelledby="assets-title">
       <header class="inv-head">
         <p class="inv-eyebrow">Классы активов</p>
         <h2 class="inv-h2" id="assets-title">Выберите, во что вложить.</h2>
-        <p class="inv-lead">Каждый объект проходит проверку и получает паспорт с ключевыми показателями — до того, как попадает на витрину.</p>
       </header>
 
       <div class="inv-bento">
@@ -211,13 +196,8 @@
           <div class="tile-panel lg">
             <div class="tile-panel-main">
               <p class="tile-big"><span data-stat="hotels">32</span> <small data-forms="объект|объекта|объектов" data-of="hotels">объекта</small></p>
-              <p class="tile-sub" id="hotel-sub">3★–5★ · курорты, бутик-отели, городские</p>
+              <p class="tile-sub" id="hotel-sub">3★–5★ · готовые и строящиеся</p>
             </div>
-            <dl class="tile-facts">
-              <div><dt>Регионов</dt><dd data-stat="hotel-regions">7</dd></div>
-              <div><dt>Номеров</dt><dd data-stat="rooms">—</dd></div>
-              <div><dt>Цена</dt><dd data-stat="price-range">по запросу</dd></div>
-            </dl>
             <span class="tile-go">Открыть каталог</span>
           </div>
         </a>
@@ -232,12 +212,8 @@
           <div class="tile-panel lg">
             <div class="tile-panel-main">
               <p class="tile-big"><span data-stat="restaurants">6</span> <small data-forms="проект|проекта|проектов" data-of="restaurants">проектов</small></p>
-              <p class="tile-sub">F&amp;B · fine dining, франшизы, MICE</p>
+              <p class="tile-sub">Проекты с расчётом окупаемости</p>
             </div>
-            <dl class="tile-facts">
-              <div><dt>IRR</dt><dd data-stat="rest-irr">—</dd></div>
-              <div><dt>Вход</dt><dd data-stat="rest-min">—</dd></div>
-            </dl>
             <span class="tile-go">Смотреть проекты</span>
           </div>
         </a>
@@ -252,12 +228,8 @@
           <div class="tile-panel lg">
             <div class="tile-panel-main">
               <p class="tile-big"><span data-stat="land">8</span> <small data-forms="лот|лота|лотов" data-of="land">лотов</small></p>
-              <p class="tile-sub">Аренда на 49 лет, E-Auksion, ГЧП</p>
+              <p class="tile-sub">Под строительство, аренда на 49 лет</p>
             </div>
-            <dl class="tile-facts">
-              <div><dt>Площадь</dt><dd data-stat="land-area">—</dd></div>
-              <div><dt>Старт</dt><dd data-stat="land-min">—</dd></div>
-            </dl>
             <span class="tile-go">Выбрать участок</span>
           </div>
         </a>
@@ -269,30 +241,8 @@
           </div>
           <p class="support-num"><span data-stat="support">17</span></p>
           <p class="support-cap"><span data-forms="действующая мера|действующие меры|действующих мер" data-of="support">действующих мер</span> для инвесторов и операторов</p>
-          <ul class="support-kinds" id="support-kinds" aria-label="Виды поддержки"></ul>
           <span class="tile-go tile-go--light">Рассчитать поддержку</span>
         </a>
-      </div>
-
-      <div class="formats" data-reveal>
-        <div class="formats-head">
-          <h3>Какие форматы гостиниц вы найдёте</h3>
-          <span>Иллюстрации форматов</span>
-        </div>
-        <div class="formats-grid">
-          <a href="portfolio.html" class="fmt">
-            <img src="assets/invest/photo/lobby-800.webp" alt="Лобби городского отеля с резными колоннами" loading="lazy" />
-            <div class="fmt-body"><b>Городской отель</b><span>Крупный объект в Ташкенте или областном центре: лобби, рестораны, конференц-залы.</span></div>
-          </a>
-          <a href="portfolio.html" class="fmt">
-            <img src="assets/invest/photo/courtyard-800.webp" alt="Внутренний дворик бутик-отеля с айваном и гранатовым деревом" loading="lazy" />
-            <div class="fmt-body"><b>Бутик-отель</b><span>Небольшой отель в историческом квартале Бухары, Хивы или Самарканда.</span></div>
-          </a>
-          <a href="portfolio.html" class="fmt">
-            <img src="assets/invest/photo/room-800.webp" alt="Номер отеля с балконом и видом на Регистан" loading="lazy" />
-            <div class="fmt-body"><b>Отель у памятников</b><span>Номера с видом на объекты наследия — то, за что туристы платят больше.</span></div>
-          </a>
-        </div>
       </div>
     </section>
 
@@ -301,7 +251,7 @@
       <header class="inv-head">
         <p class="inv-eyebrow">География</p>
         <h2 class="inv-h2" id="geo-title">Объекты в <span data-stat="all-regions">10</span> <span data-forms="регионе|регионах|регионах" data-of="all-regions">регионах</span> страны.</h2>
-        <p class="inv-lead">Наведите на регион, чтобы увидеть, что там есть. Нажмите — откроется каталог с фильтром по региону.</p>
+        <p class="inv-lead">Нажмите на регион — откроется каталог его объектов.</p>
       </header>
 
       <div class="geo lg" data-reveal>
@@ -340,7 +290,7 @@
       <header class="inv-head inv-head--row">
         <div>
           <p class="inv-eyebrow">Из реестра</p>
-          <h2 class="inv-h2" id="featured-title">Объекты с ценой и паспортом.</h2>
+          <h2 class="inv-h2" id="featured-title">Объекты в каталоге.</h2>
         </div>
         <div class="rail-ctrl">
           <button type="button" class="rail-btn lg" data-rail="-1" aria-label="Назад"><svg viewBox="0 0 20 20"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
@@ -354,32 +304,32 @@
     <section class="inv-section" id="path" aria-labelledby="path-title">
       <header class="inv-head">
         <p class="inv-eyebrow">Путь инвестора</p>
-        <h2 class="inv-h2" id="path-title">От первого просмотра до доступа к данным.</h2>
+        <h2 class="inv-h2" id="path-title">Как это работает.</h2>
       </header>
 
       <ol class="path" data-reveal>
         <li class="path-step">
           <span class="path-n">01</span>
           <h3>Выберите объект</h3>
-          <p>Фильтры по региону, звёздности, модели сделки и окупаемости.</p>
+          <p>Фильтры по городу, цене и звёздам.</p>
           <a href="portfolio.html">Каталог отелей</a>
         </li>
         <li class="path-step">
           <span class="path-n">02</span>
           <h3>Изучите паспорт</h3>
-          <p>Hotel Investment Passport: финмодель, ADR, RevPAR, EBITDA по стандарту USALI.</p>
+          <p>Цена, загрузка, доход и окупаемость на одной странице.</p>
           <a href="passport.html">Пример паспорта</a>
         </li>
         <li class="path-step">
           <span class="path-n">03</span>
           <h3>Посчитайте поддержку</h3>
-          <p>Калькулятор подберёт субсидии и компенсации, положенные проекту.</p>
+          <p>Калькулятор покажет, какие субсидии положены проекту.</p>
           <a href="support.html">Калькулятор</a>
         </li>
         <li class="path-step">
           <span class="path-n">04</span>
-          <h3>Сохраните и запросите</h3>
-          <p>Избранное, заявки и доступ к Data Room — в кабинете инвестора.</p>
+          <h3>Запросите документы</h3>
+          <p>Отправьте заявку и получите документы в кабинете.</p>
           <a href="cabinet-investor.html">Кабинет инвестора</a>
         </li>
       </ol>
@@ -389,21 +339,18 @@
     <section class="inv-section" id="tools" aria-labelledby="tools-title">
       <header class="inv-head">
         <p class="inv-eyebrow">Инструменты инвестора</p>
-        <h2 class="inv-h2" id="tools-title">Всё под рукой.</h2>
+        <h2 class="inv-h2" id="tools-title">Полезное инвестору.</h2>
       </header>
 
       <div class="tools">
         <!-- Кабинет -->
         <a href="cabinet-investor.html" class="tool" data-reveal>
-          <div class="tool-art tool-art--cabinet" aria-hidden="true">
-            <div class="mini lg">
-              <div class="mini-head"><span>Избранное</span><span class="mini-badge">Data Room</span></div>
-              <ul class="mini-list" id="mini-fav"></ul>
-            </div>
+          <div class="tool-art tool-art--photo" aria-hidden="true">
+            <img src="assets/invest/photo/lobby2-1400.webp" alt="" loading="lazy" />
           </div>
           <div class="tool-body">
             <h3>Кабинет инвестора</h3>
-            <p>Избранные объекты, ваши заявки и доступ к Data Room.</p>
+            <p>Избранные объекты и ваши заявки.</p>
             <span class="tool-go">Открыть кабинет</span>
           </div>
         </a>
@@ -420,7 +367,7 @@
           </div>
           <div class="tool-body">
             <h3>Виды туризма</h3>
-            <p>Шесть направлений: где какой спрос и какие объекты под них подходят.</p>
+            <p>Где какой спрос и какие объекты под него подходят.</p>
             <span class="tool-go">Изучить направления</span>
           </div>
         </a>
@@ -432,7 +379,7 @@
           </div>
           <div class="tool-body">
             <h3>Проверить сертификат отеля</h3>
-            <p>Введите номер сертификата или отсканируйте QR-код на документе.</p>
+            <p>Введите номер с сертификата.</p>
             <form class="verify" action="certification-registry.html" method="get" id="verify-form">
               <label class="visually-hidden" for="verify-no">Номер сертификата</label>
               <input id="verify-no" name="no" type="text" placeholder="UZ.TSM.TK.000123" autocomplete="off" spellcheck="false" required />
@@ -449,7 +396,7 @@
         <img src="assets/invest/photo/bukhara-2400.webp" srcset="assets/invest/photo/bukhara-1400.webp 1400w, assets/invest/photo/bukhara-2400.webp 2400w" sizes="100vw" alt="" loading="lazy" class="inv-final-img" />
         <div class="inv-final-card lg">
           <h2 id="final-title">Начните с каталога.</h2>
-          <p><span data-stat="hotels">32</span> <span data-forms="отель|отеля|отелей" data-of="hotels">отеля</span>, <span data-stat="restaurants">6</span> <span data-forms="ресторанный проект|ресторанных проекта|ресторанных проектов" data-of="restaurants">ресторанных проектов</span> и <span data-stat="land">8</span> <span data-forms="земельный лот|земельных лота|земельных лотов" data-of="land">земельных лотов</span> — с данными, открытыми для инвестора.</p>
+          <p>Все объекты — с ценой, фото и паспортом.</p>
           <div class="inv-hero-actions">
             <a href="portfolio.html" class="inv-btn inv-btn--dark">Смотреть объекты</a>
             <a href="cabinet-investor.html" class="inv-btn inv-btn--ghost">Кабинет инвестора</a>
@@ -524,6 +471,6 @@
   <script src="js/hotels-data.js"></script>
   <script src="js/megamenu.js?v=nav_inv_1"></script>
   <script src="js/support-core.js"></script>
-  <script src="js/investors.js?v=inv_3"></script>
+  <script src="js/investors.js?v=calm_1"></script>
 </body>
 </html>

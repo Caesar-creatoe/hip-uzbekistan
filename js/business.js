@@ -68,7 +68,8 @@
     const byId = new Map(withPhoto.map((h) => [h.id, h]));
     const hero = HERO_PICK.map((id) => byId.get(id)).find(Boolean) || withPhoto[0];
 
-    /* макет паспорта в hero */
+    /* макет паспорта в hero (если блок есть на странице) */
+    if ($('hero-pass-name')) {
     const e = hero.economics || {};
     const st = parseInt(hero.stars, 10) || 0;
     const rooms = parseInt(hero.roomsCount, 10) || 0;
@@ -84,6 +85,7 @@
     $('hero-pass-period').textContent = e.period ? `Данные ${e.period}` : 'Данные объекта';
     if (e.verificationStatus !== 'committee') $('hero-pass-ver').querySelector('b').textContent = 'На проверке';
     else $('hero-pass-ver').querySelector('b').textContent = 'Проверено комитетом';
+    }
 
     /* фото в карточке «Отель» — другой объект */
     const roleImg = $('role-hotel-img');
@@ -91,6 +93,7 @@
     if (roleImg) roleImg.src = photoOf(roleHotel);
 
     /* паспорт отеля: объект с полной экономикой */
+    if ($('pass-hotel')) {
     const ph = withPhoto.find((h) => h.economics.askingPrice && h.economics.irr && h !== hero) || hero;
     const pe = ph.economics;
     const pst = parseInt(ph.stars, 10) || 0;
@@ -108,6 +111,7 @@
       ['Окупаемость', pe.payback ? String(pe.payback).replace('.', ',') + ' г.' : '—']
     ].map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
     $('ph-price').textContent = money(pe.askingPrice || pe.valuation) || 'по запросу';
+    }
 
     /* средние по реестру — для калькулятора */
     const ec = hotels.map((h) => h.economics).filter((x) => x && x.adr && x.occupancy);
@@ -140,7 +144,7 @@
       if (reg && reg.revpar) {
         const d = Math.round((revpar / reg.revpar - 1) * 100);
         $('calc-cmp').textContent = `в среднем по реестру $${Math.round(reg.revpar)}` + (Math.abs(d) >= 1 ? ` · у вас ${d > 0 ? '+' : ''}${d}%` : '');
-      } else $('calc-cmp').textContent = 'ADR × загрузка';
+      } else $('calc-cmp').textContent = 'цена × загрузка';
     };
     [rooms, adr, occ].forEach((el) => el.addEventListener('input', run));
     run();
@@ -150,7 +154,7 @@
   function renderRestaurants(list) {
     setStat('restaurants', list.length);
     const r = list.find((x) => x.rating === 'A+') || list[0];
-    if (!r) return;
+    if (!r || !$('pass-rest')) return;
     $('pass-rest').href = `restaurant-passport.html?id=${encodeURIComponent(r.id)}`;
     $('pr-rating').textContent = r.rating || '—';
     $('pr-name').textContent = r.name;
