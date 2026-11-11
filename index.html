@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="styles/spatial-dock.css?v=arch_2" />
   <!-- Home V2 Architectural Stylesheet (Visual Reference @kozyuk.design) -->
   <link rel="stylesheet" href="css/home-v2.css?v=oculus_v5" />
+  <link rel="stylesheet" href="css/hero-city.css?v=city_1" />
 </head>
 <body class="home-v2">
 
@@ -140,102 +141,38 @@
   ═══════════════════════════════════════════ -->
   <main class="arch-site-frame" id="main-content">
 
-    <!-- ── SECTION B, C & D: ARCHITECTURAL HERO (Centerpiece Image & Atmospheric Lighting) ── -->
-    <section class="arch-hero" id="hero" aria-label="Главный экран платформы">
-      
-      <!-- Главная архитектурная панорама (Фокусный визуальный якорь) -->
-      <div class="arch-hero__bg" role="img" aria-label="Архитектурный павильон Silk Route Invest">
-        <img
-          src="./assets/media-pavilion.jpg"
-          alt="Silk Route Invest — Современная архитектура и инвестиционные активы Узбекистана"
-          id="hero-main-bg"
-        />
-        <div class="arch-hero__overlay"></div>
+    <!-- ── HERO: ночной Самарканд, отели загораются, на них появляются цены ──
+         Картинка — иллюстрация (сгенерирована во Flow). Цены и параметры
+         в метках берутся из реальных объектов каталога (js/hero-city.js). -->
+    <section class="city-hero" id="hero" aria-labelledby="city-hero-title">
+      <div class="ch-stage" aria-hidden="true">
+        <img class="ch-base" src="assets/hero/city-1600.webp" srcset="assets/hero/city-960.webp 960w, assets/hero/city-1600.webp 1600w, assets/hero/city-2560.webp 2560w" sizes="(max-width: 760px) 260vw, 100vw" alt="" fetchpriority="high" />
+        <img class="ch-lit" data-k="b" src="assets/hero/city-1600.webp" srcset="assets/hero/city-960.webp 960w, assets/hero/city-1600.webp 1600w, assets/hero/city-2560.webp 2560w" sizes="(max-width: 760px) 260vw, 100vw" alt="" style="-webkit-mask: radial-gradient(closest-side, #000 62%, transparent 100%) 60.39% 87.83% / 23.37% 25.01% no-repeat; mask: radial-gradient(closest-side, #000 62%, transparent 100%) 60.39% 87.83% / 23.37% 25.01% no-repeat" />
+        <span class="ch-glow" data-k="b" style="left:57.96%;top:78.37%;width:25.97%;height:27.59%"></span>
+        <img class="ch-lit" data-k="a" src="assets/hero/city-1600.webp" srcset="assets/hero/city-960.webp 960w, assets/hero/city-1600.webp 1600w, assets/hero/city-2560.webp 2560w" sizes="(max-width: 760px) 260vw, 100vw" alt="" style="-webkit-mask: radial-gradient(closest-side, #000 62%, transparent 100%) 7.25% 71.53% / 16.51% 20.07% no-repeat; mask: radial-gradient(closest-side, #000 62%, transparent 100%) 7.25% 71.53% / 16.51% 20.07% no-repeat" />
+        <span class="ch-glow" data-k="a" style="left:14.31%;top:67.21%;width:18.34%;height:22.14%"></span>
+        <img class="ch-lit" data-k="c" src="assets/hero/city-1600.webp" srcset="assets/hero/city-960.webp 960w, assets/hero/city-1600.webp 1600w, assets/hero/city-2560.webp 2560w" sizes="(max-width: 760px) 260vw, 100vw" alt="" style="-webkit-mask: radial-gradient(closest-side, #000 62%, transparent 100%) 95.08% 73.25% / 15.04% 20.87% no-repeat; mask: radial-gradient(closest-side, #000 62%, transparent 100%) 95.08% 73.25% / 15.04% 20.87% no-repeat" />
+        <span class="ch-glow" data-k="c" style="left:88.30%;top:68.39%;width:16.71%;height:23.03%"></span>
+        <img class="ch-lit" data-k="d" src="assets/hero/city-1600.webp" srcset="assets/hero/city-960.webp 960w, assets/hero/city-1600.webp 1600w, assets/hero/city-2560.webp 2560w" sizes="(max-width: 760px) 260vw, 100vw" alt="" style="-webkit-mask: radial-gradient(closest-side, #000 62%, transparent 100%) 83.83% 55.37% / 10.27% 8.77% no-repeat; mask: radial-gradient(closest-side, #000 62%, transparent 100%) 83.83% 55.37% / 10.27% 8.77% no-repeat" />
+        <span class="ch-glow" data-k="d" style="left:80.36%;top:54.90%;width:11.41%;height:9.68%"></span>
+        <img class="ch-lit" data-k="e" src="assets/hero/city-1600.webp" srcset="assets/hero/city-960.webp 960w, assets/hero/city-1600.webp 1600w, assets/hero/city-2560.webp 2560w" sizes="(max-width: 760px) 260vw, 100vw" alt="" style="-webkit-mask: radial-gradient(closest-side, #000 62%, transparent 100%) 62.02% 50.04% / 8.28% 6.76% no-repeat; mask: radial-gradient(closest-side, #000 62%, transparent 100%) 62.02% 50.04% / 8.28% 6.76% no-repeat" />
+        <span class="ch-glow" data-k="e" style="left:61.02%;top:50.03%;width:9.20%;height:7.45%"></span>
+        <span class="ch-fog ch-fog--1"></span>
+        <span class="ch-fog ch-fog--2"></span>
+        <div class="ch-pin" data-k="b" style="left:57.96%;top:69.75%"><b class="ch-pin-price">—</b><span class="ch-pin-meta"></span></div>
+        <div class="ch-pin" data-k="a" style="left:14.31%;top:60.29%"><b class="ch-pin-price">—</b><span class="ch-pin-meta"></span></div>
+        <div class="ch-pin" data-k="c" style="left:88.30%;top:61.20%"><b class="ch-pin-price">—</b><span class="ch-pin-meta"></span></div>
       </div>
+      <div class="ch-shade" aria-hidden="true"></div>
 
-      <!-- Атмосферная световая диффузия (Шампань и мягкое золото) -->
-      <div class="arch-hero__atmosphere" aria-hidden="true">
-        <div class="arch-hero__ambient arch-hero__ambient--champagne"></div>
-        <div class="arch-hero__ambient arch-hero__ambient--gold"></div>
-      </div>
-
-      <!-- Пространство под плавающий глобальный хедер -->
-      <div class="arch-hero__nav-spacer" style="height: 64px; pointer-events: none;" aria-hidden="true"></div>
-
-      <!-- Масштабная архитектурная типографика (Apple-style глубокий эспрессо) -->
-      <div class="arch-hero__oversized">
-        <h1 class="arch-hero__giant-heading">
-          <span class="arch-hero__giant-row">ИНВЕСТИЦИИ.</span>
-          <span class="arch-hero__giant-row">НОВЫЙ ВЗГЛЯД.</span>
-        </h1>
-      </div>
-
-      <!-- Нижняя композиция Hero: левый контент, аватары инвесторов, редакционные превью -->
-      <div class="arch-hero__bottom">
-        
-        <!-- Левый блок: дескриптор и первичный CTA -->
-        <div class="arch-hero__editorial-left">
-          <span class="arch-hero__eyebrow">— SILK ROUTE INVEST · ОФИЦИАЛЬНАЯ ПЛАТФОРМА</span>
-          <h2 class="arch-hero__subheadline">
-            Инвестиции в гостеприимство, меняющее города
-          </h2>
-          <p class="arch-hero__copy">
-            Перспективные отели, рестораны и земельные ресурсы Узбекистана. Проверенные данные USALI, готовые инвестиционные паспорта и доступ к институциональным льготам.
-          </p>
-          <a href="#about" class="arch-btn-pill-espresso" id="hero-primary-cta">
-            <span>Смотреть объекты</span>
-            <span class="arrow">↗</span>
-          </a>
+      <div class="ch-copy">
+        <h1 class="ch-title" id="city-hero-title">Купить отель в&nbsp;Узбекистане<span>Проверенные объекты с&nbsp;ценой и&nbsp;паспортом</span></h1>
+        <p class="ch-lead"><b data-ch="count">32</b>&nbsp;<span data-ch="count-word">отеля</span> из государственного реестра: продажа, франшиза, аренда и&nbsp;соинвестирование.</p>
+        <div class="ch-actions">
+          <a href="portfolio.html" class="ch-btn ch-btn--light">Смотреть отели</a>
+          <a href="investors.html#path" class="ch-btn ch-btn--ghost">Как это работает</a>
         </div>
-
-        <!-- Центральный блок: Аватары инвесторов (Минималистичный инлайн-стиль) -->
-        <div class="arch-hero__center">
-          <div class="arch-avatar-stack">
-            <div class="arch-avatars">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Investor" class="arch-avatar" />
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Investor" class="arch-avatar" />
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Investor" class="arch-avatar" />
-            </div>
-            <div class="arch-avatar-text">
-              <span class="arch-avatar-label">Инвесторы &amp; Отельеры</span>
-              <span class="arch-avatar-sub">SRI Private Desk</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Правый блок: Компактные редакционные ссылки и легкая типографическая метрика -->
-        <div class="arch-hero__right">
-          <div class="arch-previews-stack">
-            <a href="passport.html?hotel=bakh-mir" class="arch-preview-link" title="Bakh Mir Palace">
-              <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=" alt="Bakh Mir" class="arch-preview-thumb" />
-              <div class="arch-preview-info">
-                <span class="arch-preview-title">Bakh Mir Palace <span class="arch-preview-arrow">↗</span></span>
-                <span class="arch-preview-meta">5★ Самарканд · USALI A+</span>
-              </div>
-            </a>
-            <a href="passport.html?hotel=grand-tashkent" class="arch-preview-link" title="Grand Tashkent Hotel">
-              <img src="./assets/hotel-hero.png" alt="Grand Tashkent" class="arch-preview-thumb" />
-              <div class="arch-preview-info">
-                <span class="arch-preview-title">Grand Tashkent <span class="arch-preview-arrow">↗</span></span>
-                <span class="arch-preview-meta">258 номеров · Ташкент</span>
-              </div>
-            </a>
-          </div>
-
-          <!-- Легкая типографическая плашка метрики -->
-          <div class="arch-stat-tile">
-            <div class="arch-stat-header">
-              <span class="arch-stat-num">32</span>
-              <span class="arch-stat-badge">В реестре</span>
-            </div>
-            <p class="arch-stat-desc">
-              Объекта с подтвержденными показателями USALI и финансовыми моделями.
-            </p>
-          </div>
-        </div>
-
       </div>
-
     </section>
 
 
@@ -811,6 +748,7 @@
   <script src="js/verticals.js"></script>
   <script src="js/main.js"></script>
   <script src="js/home-v2.js?v=unified_nav_1"></script>
+  <script src="js/hero-city.js?v=city_1"></script>
   <script src="js/support-core.js"></script>
 </body>
 </html>
