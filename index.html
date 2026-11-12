@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="styles/spatial-dock.css?v=arch_2" />
   <!-- Home V2 Architectural Stylesheet (Visual Reference @kozyuk.design) -->
   <link rel="stylesheet" href="css/home-v2.css?v=oculus_v5" />
+  <link rel="stylesheet" href="css/hero-silk.css?v=silk_1" />
 </head>
 <body class="home-v2">
 
@@ -140,102 +141,68 @@
   ═══════════════════════════════════════════ -->
   <main class="arch-site-frame" id="main-content">
 
-    <!-- ── SECTION B, C & D: ARCHITECTURAL HERO (Centerpiece Image & Atmospheric Lighting) ── -->
-    <section class="arch-hero" id="hero" aria-label="Главный экран платформы">
-      
-      <!-- Главная архитектурная панорама (Фокусный визуальный якорь) -->
-      <div class="arch-hero__bg" role="img" aria-label="Архитектурный павильон Silk Route Invest">
-        <img
-          src="./assets/media-pavilion.jpg"
-          alt="Silk Route Invest — Современная архитектура и инвестиционные активы Узбекистана"
-          id="hero-main-bg"
-        />
-        <div class="arch-hero__overlay"></div>
+    <!-- ── HERO: Шёлковый путь. По золотой дороге течёт свет, отели
+         загораются, когда свет до них доходит, над ними — регионы и цены
+         из каталога (js/hero-silk.js). Картинка — иллюстрация из Flow. -->
+    <section class="silk-hero" id="hero" aria-labelledby="silk-hero-title">
+      <div class="sr-stage" aria-hidden="true">
+        <img class="sr-base" src="assets/hero/silk-dim-1600.webp" srcset="assets/hero/silk-dim-960.webp 960w, assets/hero/silk-dim-1600.webp 1600w, assets/hero/silk-dim-2560.webp 2560w" sizes="(max-width: 760px) 300vw, 100vw" alt="" fetchpriority="high" />
+        <img class="sr-lit" data-k="khiva" src="assets/hero/silk-dim-1600.webp" srcset="assets/hero/silk-dim-960.webp 960w, assets/hero/silk-dim-1600.webp 1600w, assets/hero/silk-dim-2560.webp 2560w" sizes="(max-width: 760px) 300vw, 100vw" alt="" style="-webkit-mask: radial-gradient(closest-side, #000 55%, transparent 100%) 20.98% 87.68% / 33.39% 30.60% no-repeat; mask: radial-gradient(closest-side, #000 55%, transparent 100%) 20.98% 87.68% / 33.39% 30.60% no-repeat" />
+        <img class="sr-lit" data-k="samarkand" src="assets/hero/silk-dim-1600.webp" srcset="assets/hero/silk-dim-960.webp 960w, assets/hero/silk-dim-1600.webp 1600w, assets/hero/silk-dim-2560.webp 2560w" sizes="(max-width: 760px) 300vw, 100vw" alt="" style="-webkit-mask: radial-gradient(closest-side, #000 55%, transparent 100%) 72.96% 72.25% / 29.50% 27.82% no-repeat; mask: radial-gradient(closest-side, #000 55%, transparent 100%) 72.96% 72.25% / 29.50% 27.82% no-repeat" />
+        <img class="sr-lit" data-k="bukhara" src="assets/hero/silk-dim-1600.webp" srcset="assets/hero/silk-dim-960.webp 960w, assets/hero/silk-dim-1600.webp 1600w, assets/hero/silk-dim-2560.webp 2560w" sizes="(max-width: 760px) 300vw, 100vw" alt="" style="-webkit-mask: radial-gradient(closest-side, #000 55%, transparent 100%) 60.98% 48.81% / 23.29% 18.08% no-repeat; mask: radial-gradient(closest-side, #000 55%, transparent 100%) 60.98% 48.81% / 23.29% 18.08% no-repeat" />
+        <img class="sr-lit" data-k="tashkent" src="assets/hero/silk-dim-1600.webp" srcset="assets/hero/silk-dim-960.webp 960w, assets/hero/silk-dim-1600.webp 1600w, assets/hero/silk-dim-2560.webp 2560w" sizes="(max-width: 760px) 300vw, 100vw" alt="" style="-webkit-mask: radial-gradient(closest-side, #000 55%, transparent 100%) 90.83% 21.97% / 12.81% 20.86% no-repeat; mask: radial-gradient(closest-side, #000 55%, transparent 100%) 90.83% 21.97% / 12.81% 20.86% no-repeat" />
+        <svg class="sr-road" viewBox="0 0 2576 1438" preserveAspectRatio="none">
+          <defs>
+            <filter id="srBlur8" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="8" /></filter>
+            <filter id="srBlur18" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="18" /></filter>
+            <filter id="srBlur4"><feGaussianBlur stdDeviation="3" /></filter>
+            <mask id="srReveal" maskUnits="userSpaceOnUse" x="0" y="0" width="2576" height="1438">
+              <path class="sr-reveal" d="M3 1259 C12 1256 41 1249 60 1242 C79 1235 96 1224 115 1215 C134 1206 153 1200 171 1191 C189 1182 203 1168 221 1159 C239 1150 260 1146 277 1135 C294 1124 308 1106 325 1095 C342 1084 360 1076 378 1066 C396 1056 400 1046 430 1035 C460 1024 515 1010 560 1000 C605 990 655 982 700 975 C745 968 789 961 830 955 C871 949 914 942 947 940 C980 938 1003 942 1031 944 C1059 946 1087 949 1115 950 C1143 951 1171 951 1199 949 C1227 947 1260 943 1283 940 C1306 937 1320 934 1339 930 C1358 926 1376 920 1395 914 C1414 908 1434 900 1452 891 C1470 882 1488 870 1506 860 C1524 850 1541 842 1559 833 C1577 824 1596 815 1614 808 C1632 801 1651 795 1670 789 C1689 783 1707 778 1726 772 C1745 766 1769 757 1782 750 C1795 743 1802 736 1803 728 C1804 720 1794 709 1787 701 C1780 693 1771 686 1764 679 C1757 672 1751 666 1744 659 C1737 652 1729 644 1722 638 C1715 632 1703 627 1702 621 C1701 615 1710 609 1718 604 C1726 599 1737 595 1752 590 C1767 585 1792 578 1808 572 C1824 566 1825 560 1845 555 C1865 550 1903 544 1930 540 C1957 536 1985 535 2006 531 C2027 527 2044 522 2058 516 C2072 510 2089 504 2090 497 C2091 490 2072 478 2064 471 C2056 464 2043 460 2045 456 C2047 452 2058 451 2074 449 C2090 447 2130 446 2141 445" pathLength="1000" fill="none" stroke="#fff" stroke-width="150" stroke-linecap="round" filter="url(#srBlur8)" />
+            </mask>
+            <mask id="srFort" maskUnits="userSpaceOnUse" x="0" y="0" width="2576" height="1438">
+              <rect width="2576" height="1438" fill="#fff" />
+              <polygon points="420,1000 640,935 800,915 1000,960 1150,990 1160,1080 940,1290 420,1120" fill="#000" filter="url(#srBlur4)" />
+            </mask>
+          </defs>
+          <image class="sr-road-img" width="2576" height="1438" preserveAspectRatio="none" mask="url(#srReveal)" />
+          <g mask="url(#srFort)">
+            <g mask="url(#srReveal)">
+              <path class="sr-halo" d="M3 1259 C12 1256 41 1249 60 1242 C79 1235 96 1224 115 1215 C134 1206 153 1200 171 1191 C189 1182 203 1168 221 1159 C239 1150 260 1146 277 1135 C294 1124 308 1106 325 1095 C342 1084 360 1076 378 1066 C396 1056 400 1046 430 1035 C460 1024 515 1010 560 1000 C605 990 655 982 700 975 C745 968 789 961 830 955 C871 949 914 942 947 940 C980 938 1003 942 1031 944 C1059 946 1087 949 1115 950 C1143 951 1171 951 1199 949 C1227 947 1260 943 1283 940 C1306 937 1320 934 1339 930 C1358 926 1376 920 1395 914 C1414 908 1434 900 1452 891 C1470 882 1488 870 1506 860 C1524 850 1541 842 1559 833 C1577 824 1596 815 1614 808 C1632 801 1651 795 1670 789 C1689 783 1707 778 1726 772 C1745 766 1769 757 1782 750 C1795 743 1802 736 1803 728 C1804 720 1794 709 1787 701 C1780 693 1771 686 1764 679 C1757 672 1751 666 1744 659 C1737 652 1729 644 1722 638 C1715 632 1703 627 1702 621 C1701 615 1710 609 1718 604 C1726 599 1737 595 1752 590 C1767 585 1792 578 1808 572 C1824 566 1825 560 1845 555 C1865 550 1903 544 1930 540 C1957 536 1985 535 2006 531 C2027 527 2044 522 2058 516 C2072 510 2089 504 2090 497 C2091 490 2072 478 2064 471 C2056 464 2043 460 2045 456 C2047 452 2058 451 2074 449 C2090 447 2130 446 2141 445" fill="none" stroke-width="54" stroke-linecap="round" filter="url(#srBlur18)" />
+              <path class="sr-flow sr-flow--slow" d="M3 1259 C12 1256 41 1249 60 1242 C79 1235 96 1224 115 1215 C134 1206 153 1200 171 1191 C189 1182 203 1168 221 1159 C239 1150 260 1146 277 1135 C294 1124 308 1106 325 1095 C342 1084 360 1076 378 1066 C396 1056 400 1046 430 1035 C460 1024 515 1010 560 1000 C605 990 655 982 700 975 C745 968 789 961 830 955 C871 949 914 942 947 940 C980 938 1003 942 1031 944 C1059 946 1087 949 1115 950 C1143 951 1171 951 1199 949 C1227 947 1260 943 1283 940 C1306 937 1320 934 1339 930 C1358 926 1376 920 1395 914 C1414 908 1434 900 1452 891 C1470 882 1488 870 1506 860 C1524 850 1541 842 1559 833 C1577 824 1596 815 1614 808 C1632 801 1651 795 1670 789 C1689 783 1707 778 1726 772 C1745 766 1769 757 1782 750 C1795 743 1802 736 1803 728 C1804 720 1794 709 1787 701 C1780 693 1771 686 1764 679 C1757 672 1751 666 1744 659 C1737 652 1729 644 1722 638 C1715 632 1703 627 1702 621 C1701 615 1710 609 1718 604 C1726 599 1737 595 1752 590 C1767 585 1792 578 1808 572 C1824 566 1825 560 1845 555 C1865 550 1903 544 1930 540 C1957 536 1985 535 2006 531 C2027 527 2044 522 2058 516 C2072 510 2089 504 2090 497 C2091 490 2072 478 2064 471 C2056 464 2043 460 2045 456 C2047 452 2058 451 2074 449 C2090 447 2130 446 2141 445" pathLength="1000" fill="none" stroke-width="16" stroke-linecap="round" filter="url(#srBlur8)" />
+              <path class="sr-flow" d="M3 1259 C12 1256 41 1249 60 1242 C79 1235 96 1224 115 1215 C134 1206 153 1200 171 1191 C189 1182 203 1168 221 1159 C239 1150 260 1146 277 1135 C294 1124 308 1106 325 1095 C342 1084 360 1076 378 1066 C396 1056 400 1046 430 1035 C460 1024 515 1010 560 1000 C605 990 655 982 700 975 C745 968 789 961 830 955 C871 949 914 942 947 940 C980 938 1003 942 1031 944 C1059 946 1087 949 1115 950 C1143 951 1171 951 1199 949 C1227 947 1260 943 1283 940 C1306 937 1320 934 1339 930 C1358 926 1376 920 1395 914 C1414 908 1434 900 1452 891 C1470 882 1488 870 1506 860 C1524 850 1541 842 1559 833 C1577 824 1596 815 1614 808 C1632 801 1651 795 1670 789 C1689 783 1707 778 1726 772 C1745 766 1769 757 1782 750 C1795 743 1802 736 1803 728 C1804 720 1794 709 1787 701 C1780 693 1771 686 1764 679 C1757 672 1751 666 1744 659 C1737 652 1729 644 1722 638 C1715 632 1703 627 1702 621 C1701 615 1710 609 1718 604 C1726 599 1737 595 1752 590 C1767 585 1792 578 1808 572 C1824 566 1825 560 1845 555 C1865 550 1903 544 1930 540 C1957 536 1985 535 2006 531 C2027 527 2044 522 2058 516 C2072 510 2089 504 2090 497 C2091 490 2072 478 2064 471 C2056 464 2043 460 2045 456 C2047 452 2058 451 2074 449 C2090 447 2130 446 2141 445" pathLength="1000" fill="none" stroke-width="5" stroke-linecap="round" />
+            </g>
+            <path class="sr-trail" d="M3 1259 C12 1256 41 1249 60 1242 C79 1235 96 1224 115 1215 C134 1206 153 1200 171 1191 C189 1182 203 1168 221 1159 C239 1150 260 1146 277 1135 C294 1124 308 1106 325 1095 C342 1084 360 1076 378 1066 C396 1056 400 1046 430 1035 C460 1024 515 1010 560 1000 C605 990 655 982 700 975 C745 968 789 961 830 955 C871 949 914 942 947 940 C980 938 1003 942 1031 944 C1059 946 1087 949 1115 950 C1143 951 1171 951 1199 949 C1227 947 1260 943 1283 940 C1306 937 1320 934 1339 930 C1358 926 1376 920 1395 914 C1414 908 1434 900 1452 891 C1470 882 1488 870 1506 860 C1524 850 1541 842 1559 833 C1577 824 1596 815 1614 808 C1632 801 1651 795 1670 789 C1689 783 1707 778 1726 772 C1745 766 1769 757 1782 750 C1795 743 1802 736 1803 728 C1804 720 1794 709 1787 701 C1780 693 1771 686 1764 679 C1757 672 1751 666 1744 659 C1737 652 1729 644 1722 638 C1715 632 1703 627 1702 621 C1701 615 1710 609 1718 604 C1726 599 1737 595 1752 590 C1767 585 1792 578 1808 572 C1824 566 1825 560 1845 555 C1865 550 1903 544 1930 540 C1957 536 1985 535 2006 531 C2027 527 2044 522 2058 516 C2072 510 2089 504 2090 497 C2091 490 2072 478 2064 471 C2056 464 2043 460 2045 456 C2047 452 2058 451 2074 449 C2090 447 2130 446 2141 445" pathLength="1000" fill="none" stroke-width="22" stroke-linecap="round" filter="url(#srBlur8)" />
+            <path class="sr-trail sr-trail--core" d="M3 1259 C12 1256 41 1249 60 1242 C79 1235 96 1224 115 1215 C134 1206 153 1200 171 1191 C189 1182 203 1168 221 1159 C239 1150 260 1146 277 1135 C294 1124 308 1106 325 1095 C342 1084 360 1076 378 1066 C396 1056 400 1046 430 1035 C460 1024 515 1010 560 1000 C605 990 655 982 700 975 C745 968 789 961 830 955 C871 949 914 942 947 940 C980 938 1003 942 1031 944 C1059 946 1087 949 1115 950 C1143 951 1171 951 1199 949 C1227 947 1260 943 1283 940 C1306 937 1320 934 1339 930 C1358 926 1376 920 1395 914 C1414 908 1434 900 1452 891 C1470 882 1488 870 1506 860 C1524 850 1541 842 1559 833 C1577 824 1596 815 1614 808 C1632 801 1651 795 1670 789 C1689 783 1707 778 1726 772 C1745 766 1769 757 1782 750 C1795 743 1802 736 1803 728 C1804 720 1794 709 1787 701 C1780 693 1771 686 1764 679 C1757 672 1751 666 1744 659 C1737 652 1729 644 1722 638 C1715 632 1703 627 1702 621 C1701 615 1710 609 1718 604 C1726 599 1737 595 1752 590 C1767 585 1792 578 1808 572 C1824 566 1825 560 1845 555 C1865 550 1903 544 1930 540 C1957 536 1985 535 2006 531 C2027 527 2044 522 2058 516 C2072 510 2089 504 2090 497 C2091 490 2072 478 2064 471 C2056 464 2043 460 2045 456 C2047 452 2058 451 2074 449 C2090 447 2130 446 2141 445" pathLength="1000" fill="none" stroke-width="6" stroke-linecap="round" />
+            <circle class="sr-comet-halo" r="46" filter="url(#srBlur18)" />
+            <circle class="sr-comet" r="9" />
+          </g>
+          <path class="sr-path" d="M3 1259 C12 1256 41 1249 60 1242 C79 1235 96 1224 115 1215 C134 1206 153 1200 171 1191 C189 1182 203 1168 221 1159 C239 1150 260 1146 277 1135 C294 1124 308 1106 325 1095 C342 1084 360 1076 378 1066 C396 1056 400 1046 430 1035 C460 1024 515 1010 560 1000 C605 990 655 982 700 975 C745 968 789 961 830 955 C871 949 914 942 947 940 C980 938 1003 942 1031 944 C1059 946 1087 949 1115 950 C1143 951 1171 951 1199 949 C1227 947 1260 943 1283 940 C1306 937 1320 934 1339 930 C1358 926 1376 920 1395 914 C1414 908 1434 900 1452 891 C1470 882 1488 870 1506 860 C1524 850 1541 842 1559 833 C1577 824 1596 815 1614 808 C1632 801 1651 795 1670 789 C1689 783 1707 778 1726 772 C1745 766 1769 757 1782 750 C1795 743 1802 736 1803 728 C1804 720 1794 709 1787 701 C1780 693 1771 686 1764 679 C1757 672 1751 666 1744 659 C1737 652 1729 644 1722 638 C1715 632 1703 627 1702 621 C1701 615 1710 609 1718 604 C1726 599 1737 595 1752 590 C1767 585 1792 578 1808 572 C1824 566 1825 560 1845 555 C1865 550 1903 544 1930 540 C1957 536 1985 535 2006 531 C2027 527 2044 522 2058 516 C2072 510 2089 504 2090 497 C2091 490 2072 478 2064 471 C2056 464 2043 460 2045 456 C2047 452 2058 451 2074 449 C2090 447 2130 446 2141 445" fill="none" stroke="none" />
+        </svg>
+        <span class="sr-glow" data-k="khiva" style="left:30.67%;top:76.15%;width:36.72%;height:33.66%"></span>
+        <span class="sr-glow" data-k="samarkand" style="left:66.19%;top:66.06%;width:32.45%;height:30.60%"></span>
+        <span class="sr-glow" data-k="bukhara" style="left:58.42%;top:49.03%;width:25.62%;height:19.89%"></span>
+        <span class="sr-glow" data-k="tashkent" style="left:85.60%;top:27.82%;width:14.09%;height:22.95%"></span>
+        <span class="sr-sun"></span>
+        <span class="sr-haze sr-haze--1"></span>
+        <span class="sr-haze sr-haze--2"></span>
+        <span class="sr-stars"><i style="left:62%;top:3%;animation-delay:0s"></i><i style="left:68%;top:7%;animation-delay:1.3s"></i><i style="left:73%;top:2.5%;animation-delay:2.1s"></i><i style="left:77%;top:9%;animation-delay:0.6s"></i><i style="left:81%;top:4%;animation-delay:3s"></i><i style="left:86%;top:8%;animation-delay:1.8s"></i><i style="left:90%;top:2%;animation-delay:2.6s"></i><i style="left:94%;top:6%;animation-delay:0.3s"></i><i style="left:97%;top:11%;animation-delay:1.1s"></i><i style="left:71%;top:12%;animation-delay:2.9s"></i><i style="left:88%;top:13%;animation-delay:0.9s"></i><i style="left:65%;top:10%;animation-delay:3.4s"></i></span>
+        <svg class="sr-birds" viewBox="0 0 120 40"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path class="sr-bird" d="M10 20 q5 -6 10 0 q5 -6 10 0" /><path class="sr-bird" style="animation-delay:-.3s" d="M38 12 q4 -5 8 0 q4 -5 8 0" /><path class="sr-bird" style="animation-delay:-.6s" d="M60 26 q4 -5 8 0 q4 -5 8 0" /><path class="sr-bird" style="animation-delay:-.15s" d="M82 16 q3 -4 6 0 q3 -4 6 0" /><path class="sr-bird" style="animation-delay:-.45s" d="M100 28 q3 -4 6 0 q3 -4 6 0" /></g></svg>
+        <div class="sr-pin" data-k="khiva" style="left:32.22%;top:62.93%"><b class="sr-pin-name"></b><span class="sr-pin-meta"></span></div>
+        <div class="sr-pin" data-k="samarkand" style="left:73.37%;top:57.16%"><b class="sr-pin-name"></b><span class="sr-pin-meta"></span></div>
+        <div class="sr-pin" data-k="bukhara" style="left:58.23%;top:41.59%"><b class="sr-pin-name"></b><span class="sr-pin-meta"></span></div>
+        <div class="sr-pin" data-k="tashkent" style="left:85.60%;top:20.72%"><b class="sr-pin-name"></b><span class="sr-pin-meta"></span></div>
       </div>
+      <canvas class="sr-dust" aria-hidden="true"></canvas>
+      <div class="sr-veil" aria-hidden="true"></div>
 
-      <!-- Атмосферная световая диффузия (Шампань и мягкое золото) -->
-      <div class="arch-hero__atmosphere" aria-hidden="true">
-        <div class="arch-hero__ambient arch-hero__ambient--champagne"></div>
-        <div class="arch-hero__ambient arch-hero__ambient--gold"></div>
-      </div>
-
-      <!-- Пространство под плавающий глобальный хедер -->
-      <div class="arch-hero__nav-spacer" style="height: 64px; pointer-events: none;" aria-hidden="true"></div>
-
-      <!-- Масштабная архитектурная типографика (Apple-style глубокий эспрессо) -->
-      <div class="arch-hero__oversized">
-        <h1 class="arch-hero__giant-heading">
-          <span class="arch-hero__giant-row">ИНВЕСТИЦИИ.</span>
-          <span class="arch-hero__giant-row">НОВЫЙ ВЗГЛЯД.</span>
-        </h1>
-      </div>
-
-      <!-- Нижняя композиция Hero: левый контент, аватары инвесторов, редакционные превью -->
-      <div class="arch-hero__bottom">
-        
-        <!-- Левый блок: дескриптор и первичный CTA -->
-        <div class="arch-hero__editorial-left">
-          <span class="arch-hero__eyebrow">— SILK ROUTE INVEST · ОФИЦИАЛЬНАЯ ПЛАТФОРМА</span>
-          <h2 class="arch-hero__subheadline">
-            Инвестиции в гостеприимство, меняющее города
-          </h2>
-          <p class="arch-hero__copy">
-            Перспективные отели, рестораны и земельные ресурсы Узбекистана. Проверенные данные USALI, готовые инвестиционные паспорта и доступ к институциональным льготам.
-          </p>
-          <a href="#about" class="arch-btn-pill-espresso" id="hero-primary-cta">
-            <span>Смотреть объекты</span>
-            <span class="arrow">↗</span>
-          </a>
+      <div class="sr-copy">
+        <h1 class="sr-title" id="silk-hero-title">Купить отель в&nbsp;Узбекистане<span>Проверенные объекты с&nbsp;ценой и&nbsp;паспортом</span></h1>
+        <p class="sr-lead"><b data-sr="count">32</b>&nbsp;<span data-sr="count-word">отеля</span> из государственного реестра — от&nbsp;Хорезма до&nbsp;Ташкента. Продажа, франшиза, аренда и&nbsp;соинвестирование.</p>
+        <div class="sr-actions">
+          <a href="portfolio.html" class="sr-btn sr-btn--dark">Смотреть отели</a>
+          <a href="investors.html#path" class="sr-btn sr-btn--ghost">Как это работает</a>
         </div>
-
-        <!-- Центральный блок: Аватары инвесторов (Минималистичный инлайн-стиль) -->
-        <div class="arch-hero__center">
-          <div class="arch-avatar-stack">
-            <div class="arch-avatars">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Investor" class="arch-avatar" />
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Investor" class="arch-avatar" />
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Investor" class="arch-avatar" />
-            </div>
-            <div class="arch-avatar-text">
-              <span class="arch-avatar-label">Инвесторы &amp; Отельеры</span>
-              <span class="arch-avatar-sub">SRI Private Desk</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Правый блок: Компактные редакционные ссылки и легкая типографическая метрика -->
-        <div class="arch-hero__right">
-          <div class="arch-previews-stack">
-            <a href="passport.html?hotel=bakh-mir" class="arch-preview-link" title="Bakh Mir Palace">
-              <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=" alt="Bakh Mir" class="arch-preview-thumb" />
-              <div class="arch-preview-info">
-                <span class="arch-preview-title">Bakh Mir Palace <span class="arch-preview-arrow">↗</span></span>
-                <span class="arch-preview-meta">5★ Самарканд · USALI A+</span>
-              </div>
-            </a>
-            <a href="passport.html?hotel=grand-tashkent" class="arch-preview-link" title="Grand Tashkent Hotel">
-              <img src="./assets/hotel-hero.png" alt="Grand Tashkent" class="arch-preview-thumb" />
-              <div class="arch-preview-info">
-                <span class="arch-preview-title">Grand Tashkent <span class="arch-preview-arrow">↗</span></span>
-                <span class="arch-preview-meta">258 номеров · Ташкент</span>
-              </div>
-            </a>
-          </div>
-
-          <!-- Легкая типографическая плашка метрики -->
-          <div class="arch-stat-tile">
-            <div class="arch-stat-header">
-              <span class="arch-stat-num">32</span>
-              <span class="arch-stat-badge">В реестре</span>
-            </div>
-            <p class="arch-stat-desc">
-              Объекта с подтвержденными показателями USALI и финансовыми моделями.
-            </p>
-          </div>
-        </div>
-
       </div>
-
     </section>
 
 
@@ -811,6 +778,7 @@
   <script src="js/verticals.js"></script>
   <script src="js/main.js"></script>
   <script src="js/home-v2.js?v=unified_nav_1"></script>
+  <script src="js/hero-silk.js?v=silk_1"></script>
   <script src="js/support-core.js"></script>
 </body>
 </html>
