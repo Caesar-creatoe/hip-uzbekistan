@@ -83,7 +83,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 28,
     "dealType": "franchise",
     "amenities": "Открытый бассейн, Спортплощадка, Живописный сад, Ресторан, Лифт",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -193,7 +193,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 24,
     "dealType": "invest",
     "amenities": "Закрытый бассейн, 3 конференц-зала, 3 ресторана, Фитнес-зал, 3 лифта",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -308,7 +308,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 32,
     "dealType": "sale",
     "amenities": "2 ресторана, 2 бассейна, Спортзал, Клуб, Бар, Казино",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -419,7 +419,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 32,
     "dealType": "rent",
     "amenities": "Открытый бассейн, СПА, Сауна, Спортплощадка, Ресторан, Детский игровой комплекс",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -534,7 +534,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 31,
     "dealType": "franchise",
     "amenities": "Закрытый бассейн, Сауна, Спортплощадка, Ресторан, Детский игровой комплекс",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -648,7 +648,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 23,
     "dealType": "sale",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка, Детский игровой комплекс",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -759,7 +759,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 18,
     "dealType": "rent",
     "amenities": "Ресторан",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -874,7 +874,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 27,
     "dealType": "invest",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -985,7 +985,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 30,
     "dealType": "franchise",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -1100,7 +1100,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 16,
     "dealType": "invest",
     "amenities": "Ресторан",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -1211,7 +1211,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 26,
     "dealType": "sale",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -1322,7 +1322,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 22,
     "dealType": "rent",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -1433,7 +1433,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 25,
     "dealType": "invest",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -1544,7 +1544,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 22,
     "dealType": "sale",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -1655,7 +1655,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 25,
     "dealType": "rent",
     "amenities": "Ресторан, Закрытый бассейн, Сауна",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -1766,7 +1766,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 22,
     "dealType": "invest",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -1877,7 +1877,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 30,
     "dealType": "sale",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -1991,7 +1991,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 35,
     "dealType": "sale",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -2101,7 +2101,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 15,
     "dealType": "rent",
     "amenities": "Ресторан, Открытый бассейн, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -2215,7 +2215,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 9,
     "dealType": "invest",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -2329,7 +2329,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 110,
     "dealType": "invest",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -2443,7 +2443,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 14,
     "dealType": "franchise",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -2553,7 +2553,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 14,
     "dealType": "rent",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -2663,7 +2663,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 21,
     "dealType": "franchise",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -2773,7 +2773,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 10,
     "dealType": "invest",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -2883,7 +2883,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 21,
     "dealType": "franchise",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -2993,7 +2993,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 20,
     "dealType": "rent",
     "amenities": "Ресторан, Лифт, Сауна",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -3103,7 +3103,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 0,
     "dealType": "invest",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -3217,7 +3217,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 38,
     "dealType": "franchise",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -3327,7 +3327,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 29,
     "dealType": "invest",
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": true,
     "photos": [
@@ -3441,7 +3441,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 12,
     "dealType": "rent",
     "amenities": "Ресторан, Лифт, Сауна",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
@@ -3551,7 +3551,7 @@ const DEFAULT_HOTELS = [
     "minRoomArea": 14,
     "dealType": "invest",
     "amenities": "Ресторан, Лифт, Сауна",
-    "managerContact": "Мирагзам 77-448-77-88",
+    "managerContact": "",
     "status": "active",
     "hasPresentation": false,
     "photos": [
