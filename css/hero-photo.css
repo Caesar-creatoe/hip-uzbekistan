@@ -1,0 +1,157 @@
+/* ============================================================
+   HERO-PHOTO.CSS — главный экран: одно понятное фото.
+   Бухара на закате, огромное слово UZBEKISTAN в небе,
+   минарет Калян стоит перед буквами (второй слой без неба).
+   Внизу слева — заголовок и кнопки, справа — две карточки.
+   ============================================================ */
+
+.photo-hero {
+  --ink: #1A1412;
+  --cream: #F7F1E8;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  height: clamp(620px, calc(100svh - 28px), 900px);
+  border-radius: 20px;
+  background: #CBB29C;
+  container-type: size;
+  color: #fff;
+}
+
+/* фото «cover», прижато к низу кадра; оба слоя — одна геометрия */
+.ph-stage {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: max(100cqw, calc(100cqh * 1.5));
+  aspect-ratio: 3 / 2;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+}
+.ph-stage--fg { z-index: 2; }
+.ph-img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.ph-fg { position: absolute; left: 0; top: 0; width: 100%; height: auto; display: block; }
+
+/* огромное слово в небе — за минаретом */
+.ph-word {
+  position: absolute;
+  z-index: 1;
+  left: 0; right: 0;
+  top: clamp(84px, 11cqh, 112px);
+  margin: 0;
+  text-align: center;
+  font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 15.6cqw;
+  line-height: .9;
+  letter-spacing: -.035em;
+  color: #FFF8EF;
+  text-shadow: 0 2px 40px rgba(120, 70, 40, .18);
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* затемнение снизу — под белый текст */
+.ph-shade {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(0deg, rgba(28, 17, 10, .66) 0%, rgba(28, 17, 10, .32) 24%, rgba(28, 17, 10, 0) 46%);
+}
+
+/* ── Низ: текст слева, карточки справа ─────────────────── */
+.ph-bottom {
+  position: absolute;
+  z-index: 4;
+  left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 0 clamp(24px, 3.4cqw, 48px) clamp(24px, 3.4cqw, 44px);
+}
+.ph-copy { max-width: 600px; }
+.ph-lead {
+  margin: 0 0 14px;
+  max-width: 440px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, .86);
+}
+.ph-lead b { color: #fff; font-weight: 700; }
+.ph-title {
+  margin: 0;
+  font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(36px, 4.2cqw, 60px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.ph-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.ph-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 48px; padding: 0 8px 0 22px; border-radius: 999px;
+  font-size: 15px; font-weight: 600; letter-spacing: -.01em;
+  text-decoration: none;
+  transition: background .2s ease, transform .2s ease, color .2s ease;
+}
+.ph-btn:active { transform: scale(.97); }
+.ph-btn--light { background: var(--cream); color: var(--ink); }
+.ph-btn--light:hover { background: #fff; }
+.ph-btn-ico {
+  display: inline-grid; place-items: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--ink); color: #fff;
+}
+.ph-btn-ico svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ph-btn--ghost { padding: 0 22px; color: #fff; border: 1px solid rgba(255, 255, 255, .5); }
+.ph-btn--ghost:hover { background: rgba(255, 255, 255, .12); }
+
+.ph-cards { display: flex; gap: 12px; }
+.ph-card {
+  display: flex; flex-direction: column;
+  width: 200px;
+  padding: 18px 18px 16px;
+  border-radius: 18px;
+  background: var(--cream);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform .25s ease, background .25s ease;
+}
+.ph-card:hover { transform: translateY(-3px); background: #fff; }
+.ph-card b { font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -.02em; line-height: 1.05; }
+.ph-card span { margin-top: 2px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #8B6F4E; }
+.ph-card p { margin: 10px 0 0; font-size: 13px; line-height: 1.4; color: #5A4636; }
+
+/* появление */
+.ph-word { animation: phWord 1.4s cubic-bezier(.2, .7, .2, 1) both; }
+.ph-copy > *, .ph-card { animation: phRise .9s cubic-bezier(.2, .7, .2, 1) both; }
+.ph-copy > :nth-child(2) { animation-delay: .1s; }
+.ph-copy > :nth-child(3) { animation-delay: .2s; }
+.ph-card { animation-delay: .3s; }
+.ph-card + .ph-card { animation-delay: .4s; }
+@keyframes phWord { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+@keyframes phRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* ── Планшет ───────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .ph-cards { display: none; }
+}
+
+/* ── Телефон ───────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .photo-hero { height: clamp(600px, calc(100svh - 16px), 780px); border-radius: 16px; }
+  .ph-stage { width: calc(100cqh * 1.5); transform: translateX(-52%); }
+  .ph-word { top: 196px; font-size: 15cqw; letter-spacing: -.03em; }
+  .ph-shade { background: linear-gradient(0deg, rgba(28, 17, 10, .8) 0%, rgba(28, 17, 10, .5) 32%, rgba(28, 17, 10, 0) 58%); }
+  .ph-bottom { padding: 0 20px 22px; }
+  .ph-title { font-size: 34px; }
+  .ph-lead { font-size: 14px; }
+  .ph-btn { height: 44px; font-size: 14.5px; }
+  .ph-btn-ico { width: 30px; height: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-word, .ph-copy > *, .ph-card { animation: none !important; }
+}
