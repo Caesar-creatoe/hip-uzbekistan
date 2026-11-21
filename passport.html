@@ -5,7 +5,7 @@
   <link rel="icon" type="image/png" href="./assets/logo-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Hotel Investment Passport — Grand Tashkent Hotel, 5★, Ташкент. Инвестиционный паспорт гостиничного объекта: KPI, Location Analysis, Investment Readiness A+." />
-  <title>Grand Tashkent Hotel — Investment Passport · Silk Route Invest</title>
+  <title>Инвестиционный паспорт отеля · Silk Route Invest</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,6 +19,14 @@
   <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="styles/passport-v2.css?v=pp2_3" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Silk Route Invest" />
+  <meta property="og:title" content="Инвестиционный паспорт отеля — Silk Route Invest" />
+  <meta property="og:description" content="Фото, номерной фонд, доходность и документы объекта." />
+  <meta property="og:image" content="https://silkroute-invest.vercel.app/assets/hero/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body class="page-passport">
 
@@ -79,8 +87,13 @@
       <!-- Основная навигация -->
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
 
+        <!-- 0. Каталог отелей -->
+        <div class="nav-item" data-page="portfolio" data-also="passport">
+          <a href="portfolio.html" class="nav-trigger">Каталог отелей</a>
+        </div>
+
         <!-- 1. Для инвесторов -->
-        <div class="nav-item" data-page="investors" data-also="portfolio restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry passport">
+        <div class="nav-item" data-page="investors" data-also="restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry">
           <a href="investors.html" class="nav-trigger">Для инвесторов</a>
         </div>
 
@@ -100,7 +113,9 @@
         </div>
 
         <!-- 4. B2B Cooperation (в последнюю очередь) -->
-        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+        <div class="nav-item" data-page="b2b">
+          <a href="b2b.html" class="nav-trigger">Партнёрам</a>
+        </div>
 
       </nav>
 
@@ -128,36 +143,34 @@
   <!-- Мобильная навигация -->
   <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Для инвесторов</span>
-      <a href="portfolio.html">🏨 Каталог объектов</a>
-      <a href="tourism-types.html">🗺️ Виды туризма</a>
-      <a href="certification-registry.html#verify">✔ Проверить сертификат отеля</a>
-      <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
+      <span class="mobile-nav-label">Инвесторам</span>
+      <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
+      <a href="investors.html">Для инвесторов — обзор раздела</a>
+      <a href="restaurants.html">Ресторанные проекты</a>
+      <a href="land.html">Земельные участки</a>
+      <a href="support.html">Государственная поддержка</a>
+      <a href="certification-registry.html">Проверить сертификат отеля</a>
+      <a href="cabinet-investor.html">Кабинет инвестора</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для бизнеса</span>
+      <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
+      <a href="form.html" class="mobile-nav-cta">Подать отель в реестр</a>
+      <a href="restaurant-form.html">Подать ресторан в реестр</a>
+      <a href="cabinet-hotel.html">Кабинет отеля</a>
+      <a href="certification-apply.html">Заявка на сертификацию</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Услуги</span>
       <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
-      <a href="certification.html">🛡 Сертификация</a>
-      <a href="quality.html">⭐ Quality Management</a>
-      <a href="economics-ratings.html">📈 Economics Ratings</a>
-      <a href="events-app.html">🏛️ Государственные мероприятия</a>
-    </div>
-    <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Для отельеров</span>
-      <a href="form.html" class="mobile-nav-cta">✨ Подать заявку на включение</a>
-      <a href="form.html">⚡ Smart Investment Form</a>
-      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
-      <a href="passport.html">📄 Инвестиционный паспорт</a>
-      <a href="certification-apply.html">🛡 Заявка на сертификацию</a>
-      <a href="registries.html">📋 Реестры и субсидии</a>
+      <a href="certification.html">Сертификация</a>
+      <a href="quality.html">Оценка качества</a>
+      <a href="economics-ratings.html">Рейтинг отелей</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">О платформе</span>
-      <a href="platform.html" class="mobile-nav-hub">О платформе — обзор раздела</a>
-      <a href="about.html">📖 О системе</a>
-      <a href="tech-spec.html">🛠️ Tech Specification</a>
-      <a href="certification.html#methodology">🛡 Том VIII. Сертификация</a>
-      <a href="b2b.html">🤝 B2B Cooperation</a>
+      <a href="platform.html" class="mobile-nav-hub">О платформе</a>
+      <a href="b2b.html">Партнёрам</a>
     </div>
   </div>
 
@@ -180,7 +193,7 @@
         <div class="pp-tags">
           <span class="pp-tag pp-tag--status" id="passport-status-badge"><i></i>Активный объект</span>
           <span class="pp-tag" id="passport-deal-badge">Прямая продажа</span>
-          <a class="pp-tag pp-tag--cert" id="passport-cert-badge-link" href="certificate.html?no=UZ.TSM.TK.000123" title="Проверить сертификат соответствия">
+          <a class="pp-tag pp-tag--cert" id="passport-cert-badge-link" hidden href="certificate.html" title="Проверить сертификат соответствия">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
             <span id="passport-cert-no">UZ.TSM.TK.000123</span>
           </a>
@@ -381,7 +394,7 @@
           <p class="pp-legal">Если файл не приложен, откроется печатная версия паспорта.</p>
         </article>
 
-        <a class="pp-cert" id="btn-view-cert" href="certificate.html?no=UZ.TSM.TK.000123">
+        <a class="pp-cert" id="btn-view-cert" hidden href="certificate.html">
           <div class="pp-cert-panel">
             <b>O'z DSt</b>
             <span>3220:2017</span>
@@ -432,17 +445,16 @@
             <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
             <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
             <a href="registries.html"         class="footer-nav-link">Реестры</a>
-            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+            <a href="form.html"               class="footer-nav-link">Форма заявки</a>
             <a href="certification.html" class="footer-nav-link">Сертификация</a>
             <a href="certification-registry.html" class="footer-nav-link">Реестр сертифицированных</a>
           </div>
           <div class="footer-nav-col">
-            <p class="footer-nav-heading">Документы</p>
-            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
-            <a href="passport.html"  class="footer-nav-link">Том II. Investment Passport</a>
-            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
-            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
-            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
+            <p class="footer-nav-heading">Разделы</p>
+            <a href="about.html"     class="footer-nav-link">Методика расчёта</a>
+            <a href="passport.html"  class="footer-nav-link">Investment Passport</a>
+            <a href="form.html"      class="footer-nav-link">Форма заявки</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Сертификация</a>
           </div>
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Контакты</p>

@@ -292,7 +292,7 @@ const DEFAULT_HOTELS = [
   {
     "id": "samarqand-universal-bouilding",
     "slug": "samarqand-universal-bouilding",
-    "hotelName": "Samarqand Universal Bouilding",
+    "hotelName": "Samarqand Universal Building",
     "legalEntity": "Samarqand Universal Bouilding MCHJ",
     "region": "Самаркандская область",
     "regionKey": "samarkand",

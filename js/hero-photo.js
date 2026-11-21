@@ -36,7 +36,6 @@
     }
 
     const prices = list
-      .filter((h) => String(h.dealType || '').toLowerCase() === 'sale')
       .map((h) => Number(h.economics && h.economics.askingPrice) || 0)
       .filter(Boolean);
     if (prices.length) set('min', 'от ' + money(Math.min(...prices)));

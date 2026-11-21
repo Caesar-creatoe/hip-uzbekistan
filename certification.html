@@ -32,8 +32,13 @@
       </a>
 
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <!-- 0. Каталог отелей -->
+        <div class="nav-item" data-page="portfolio" data-also="passport">
+          <a href="portfolio.html" class="nav-trigger">Каталог отелей</a>
+        </div>
+
         <!-- 1. Для инвесторов -->
-        <div class="nav-item" data-page="investors" data-also="portfolio restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry passport">
+        <div class="nav-item" data-page="investors" data-also="restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry">
           <a href="investors.html" class="nav-trigger">Для инвесторов</a>
         </div>
 
@@ -52,7 +57,9 @@
           <a href="platform.html" class="nav-trigger">О платформе</a>
         </div>
 
-        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+        <div class="nav-item" data-page="b2b">
+          <a href="b2b.html" class="nav-trigger">Партнёрам</a>
+        </div>
       </nav>
 
       <div class="header-right">
@@ -76,18 +83,34 @@
   <!-- Мобильная навигация -->
   <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Сертификация</span>
-      <a href="certification.html">🛡 Хаб сертификации</a>
-      <a href="certification-apply.html">✍ Подать заявку онлайн</a>
-      <a href="certification-registry.html">🏛 Публичный реестр</a>
-      <a href="certification-registry.html#verify">✔ Проверить сертификат</a>
+      <span class="mobile-nav-label">Инвесторам</span>
+      <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
+      <a href="investors.html">Для инвесторов — обзор раздела</a>
+      <a href="restaurants.html">Ресторанные проекты</a>
+      <a href="land.html">Земельные участки</a>
+      <a href="support.html">Государственная поддержка</a>
+      <a href="certification-registry.html">Проверить сертификат отеля</a>
+      <a href="cabinet-investor.html">Кабинет инвестора</a>
     </div>
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Для отельеров</span>
-      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
-      <a href="cabinet-inspector.html">🛡 Кабинет Центра</a>
-      <a href="quality.html">⭐ Quality Management</a>
-      <a href="passport.html">📄 Инвестиционный паспорт</a>
+      <span class="mobile-nav-label">Для бизнеса</span>
+      <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
+      <a href="form.html" class="mobile-nav-cta">Подать отель в реестр</a>
+      <a href="restaurant-form.html">Подать ресторан в реестр</a>
+      <a href="cabinet-hotel.html">Кабинет отеля</a>
+      <a href="certification-apply.html">Заявка на сертификацию</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
+      <a href="certification.html">Сертификация</a>
+      <a href="quality.html">Оценка качества</a>
+      <a href="economics-ratings.html">Рейтинг отелей</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">О платформе</span>
+      <a href="platform.html" class="mobile-nav-hub">О платформе</a>
+      <a href="b2b.html">Партнёрам</a>
     </div>
   </div>
 
@@ -138,14 +161,14 @@
               </p>
               <div class="cert-hero-card__form">
                 <div class="cert-input-group">
-                  <input type="text" id="hero-cert-input" class="cert-input-text" placeholder="UZ.TSM.TK.000123" aria-label="Номер сертификата" />
+                  <input type="text" id="hero-cert-input" class="cert-input-text" placeholder="UZ.TSM.TK.000101" aria-label="Номер сертификата" />
                   <button type="button" id="hero-cert-btn" class="btn-cert-primary" style="padding:11px 18px;">
                     Проверить
                   </button>
                 </div>
                 <div class="cert-hero-card__quick-samples">
                   Примеры номеров:
-                  <button type="button" class="hero-sample-btn" data-no="UZ.TSM.TK.000123">000123 (5★)</button>,
+                  <button type="button" class="hero-sample-btn" data-no="UZ.TSM.TK.000101">000101 (5★)</button>,
                   <button type="button" class="hero-sample-btn" data-no="UZ.TSM.SM.000204">000204 (4★)</button>,
                   <button type="button" class="hero-sample-btn" data-no="UZ.TSM.BU.000318">000318 (3★)</button>
                 </div>
@@ -417,7 +440,7 @@
             <div><strong>🌐 Трёхъязычный формуляр:</strong> официальные реквизиты на узбекском (латиница), русском и английском языках.</div>
           </div>
           <div style="margin-top:16px;text-align:center;">
-            <a href="certificate.html?no=UZ.TSM.TK.000123" class="btn-cert-primary" style="padding:9px 20px;font-size:12px;">
+            <a href="certificate.html?no=UZ.TSM.TK.000101" class="btn-cert-primary" style="padding:9px 20px;font-size:12px;">
               📄 Открыть полную страницу сертификата с печатью A4
             </a>
           </div>
@@ -662,7 +685,7 @@
           <details class="cert-faq-item">
             <summary class="cert-faq-summary">Как проверить подлинность сертификата любого отеля?</summary>
             <div class="cert-faq-content">
-              Вы можете ввести номер сертификата (например, <code>UZ.TSM.TK.000123</code>) в поле проверки на этой странице или в разделе <a href="certification-registry.html#verify">«Реестр»</a>, либо отсканировать QR-код на бланке отеля камерой смартфона. Система покажет текущий юридический статус, присвоенную категорию и срок действия из первоисточника.
+              Вы можете ввести номер сертификата (например, <code>UZ.TSM.TK.000101</code>) в поле проверки на этой странице или в разделе <a href="certification-registry.html#verify">«Реестр»</a>, либо отсканировать QR-код на бланке отеля камерой смартфона. Система покажет текущий юридический статус, присвоенную категорию и срок действия из первоисточника.
             </div>
           </details>
 
@@ -743,14 +766,13 @@
             <p class="footer-nav-heading">Для отелей</p>
             <a href="cabinet-hotel.html" class="footer-nav-link">Кабинет отеля</a>
             <a href="passport.html" class="footer-nav-link">Инвест-паспорт</a>
-            <a href="quality.html" class="footer-nav-link">Quality Management</a>
+            <a href="quality.html" class="footer-nav-link">Оценка качества</a>
             <a href="registries.html" class="footer-nav-link">Госреестры</a>
           </div>
           <div class="footer-nav-col">
-            <p class="footer-nav-heading">Документы</p>
-            <a href="about.html" class="footer-nav-link">Том I. О системе</a>
-            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Spec</a>
-            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
+            <p class="footer-nav-heading">Разделы</p>
+            <a href="about.html" class="footer-nav-link">О системе</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Сертификация</a>
           </div>
         </nav>
       </div>
@@ -796,7 +818,7 @@
 
       // 3. Рендер образца сертификата в секции «Образец»
       CertAPI.ready().then(function (api) {
-        var cert = api.getCertificate('UZ.TSM.TK.000123');
+        var cert = api.getCertificate('UZ.TSM.TK.000101');
         var container = document.getElementById('cert-preview-container');
         if (cert && container) {
           CertUI.renderCertificate(cert, container);

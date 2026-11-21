@@ -53,6 +53,8 @@
   </header>
 
   <main id="main-content" style="padding: 32px 0 64px;">
+<div class="demo-note" role="note" style="max-width:1200px;margin:96px auto 0;padding:10px 16px;border-radius:12px;background:#F3E9DA;border:1px solid #D6C7AE;color:#5A4636;font:500 13.5px/1.45 'Plus Jakarta Sans',system-ui,sans-serif;">Демонстрационный режим: так будет работать электронный реестр сертификатов. Объекты и номера в примере условные.</div>
+
     <div class="cert-container">
 
       <!-- Панель управления и крошки (скрывается при печати) -->
@@ -133,10 +135,16 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var params = new URLSearchParams(window.location.search);
-      var no = params.get('no') || 'UZ.TSM.TK.000123';
+      var no = params.get('no') || 'UZ.TSM.TK.000101';
 
       CertAPI.ready().then(function (api) {
-        var cert = api.getCertificate(no);
+        return api.getCertificate(no);
+      }).then(function (raw) {
+        // новый формат полей API → поля страницы
+        var cert = raw ? Object.assign({}, raw, {
+          number: raw.no, hotelName: raw.name, issueDate: raw.issued, expiryDate: raw.expires,
+          lastInspectionDate: raw.lastInspection
+        }) : null;
         var target = document.getElementById('certificate-target');
 
         if (!cert) {

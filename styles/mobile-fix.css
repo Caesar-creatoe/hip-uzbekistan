@@ -1,0 +1,17 @@
+/* ============================================================
+   MOBILE-FIX.CSS — страховка для старых страниц на телефоне:
+   ничего не уезжает вбок, широкие таблицы и вкладки
+   прокручиваются внутри своего блока.
+   ============================================================ */
+@media (max-width: 760px) {
+  html, body { max-width: 100%; overflow-x: clip; }
+  .vertical-switcher__inner { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .vertical-switcher__inner::-webkit-scrollbar { display: none; }
+  .vs-tab { flex: 0 0 auto; }
+  table.npa-table, table.cert-table, table.q-rating-table, .et-table, .registry-table {
+    display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  img, video, iframe, canvas { max-width: 100%; }
+  .form-header-main, .form-header-badges { max-width: 100%; flex-wrap: wrap; }
+  .step-nav, .form-steps-nav { overflow-x: auto; }
+}

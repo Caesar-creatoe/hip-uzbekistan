@@ -17,6 +17,14 @@
   <link rel="stylesheet" href="styles/megamenu.css" />
   <link rel="stylesheet" href="styles/portal.css" />
   <link rel="stylesheet" href="styles/b2b.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Silk Route Invest" />
+  <meta property="og:title" content="Партнёрам — Silk Route Invest" />
+  <meta property="og:description" content="Сотрудничество для операторов, фондов, консультантов и девелоперов." />
+  <meta property="og:image" content="https://silkroute-invest.vercel.app/assets/hero/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body class="page-b2b">
 
@@ -38,8 +46,13 @@
       <!-- Основная навигация -->
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
 
+        <!-- 0. Каталог отелей -->
+        <div class="nav-item" data-page="portfolio" data-also="passport">
+          <a href="portfolio.html" class="nav-trigger">Каталог отелей</a>
+        </div>
+
         <!-- 1. Для инвесторов -->
-        <div class="nav-item" data-page="investors" data-also="portfolio restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry passport">
+        <div class="nav-item" data-page="investors" data-also="restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry">
           <a href="investors.html" class="nav-trigger">Для инвесторов</a>
         </div>
 
@@ -59,7 +72,9 @@
         </div>
 
         <!-- 4. B2B Cooperation (в последнюю очередь) -->
-        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+        <div class="nav-item" data-page="b2b">
+          <a href="b2b.html" class="nav-trigger">Партнёрам</a>
+        </div>
 
       </nav>
 
@@ -87,36 +102,34 @@
   <!-- Мобильная навигация -->
   <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Для инвесторов</span>
-      <a href="portfolio.html">🏨 Каталог объектов</a>
-      <a href="tourism-types.html">🗺️ Виды туризма</a>
-      <a href="certification-registry.html#verify">✔ Проверить сертификат отеля</a>
-      <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
+      <span class="mobile-nav-label">Инвесторам</span>
+      <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
+      <a href="investors.html">Для инвесторов — обзор раздела</a>
+      <a href="restaurants.html">Ресторанные проекты</a>
+      <a href="land.html">Земельные участки</a>
+      <a href="support.html">Государственная поддержка</a>
+      <a href="certification-registry.html">Проверить сертификат отеля</a>
+      <a href="cabinet-investor.html">Кабинет инвестора</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для бизнеса</span>
+      <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
+      <a href="form.html" class="mobile-nav-cta">Подать отель в реестр</a>
+      <a href="restaurant-form.html">Подать ресторан в реестр</a>
+      <a href="cabinet-hotel.html">Кабинет отеля</a>
+      <a href="certification-apply.html">Заявка на сертификацию</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Услуги</span>
       <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
-      <a href="certification.html">🛡 Сертификация</a>
-      <a href="quality.html">⭐ Quality Management</a>
-      <a href="economics-ratings.html">📈 Economics Ratings</a>
-      <a href="events-app.html">🏛️ Государственные мероприятия</a>
-    </div>
-    <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Для отельеров</span>
-      <a href="form.html" class="mobile-nav-cta">✨ Подать заявку на включение</a>
-      <a href="form.html">⚡ Smart Investment Form</a>
-      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
-      <a href="passport.html">📄 Инвестиционный паспорт</a>
-      <a href="certification-apply.html">🛡 Заявка на сертификацию</a>
-      <a href="registries.html">📋 Реестры и субсидии</a>
+      <a href="certification.html">Сертификация</a>
+      <a href="quality.html">Оценка качества</a>
+      <a href="economics-ratings.html">Рейтинг отелей</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">О платформе</span>
-      <a href="platform.html" class="mobile-nav-hub">О платформе — обзор раздела</a>
-      <a href="about.html">📖 О системе</a>
-      <a href="tech-spec.html">🛠️ Tech Specification</a>
-      <a href="certification.html#methodology">🛡 Том VIII. Сертификация</a>
-      <a href="b2b.html">🤝 B2B Cooperation</a>
+      <a href="platform.html" class="mobile-nav-hub">О платформе</a>
+      <a href="b2b.html">Партнёрам</a>
     </div>
   </div>
 
@@ -125,26 +138,26 @@
   ═══════════════════════════════════════════ -->
   <section class="b2b-hero" id="b2b-hero">
     <div class="b2b-hero-inner">
-      <p class="kicker kicker--light">B2B COOPERATION · ПЛАТФОРМА HIP</p>
-      <h1 class="b2b-hero-title">Партнёрство<br>мирового уровня</h1>
-      <p class="b2b-hero-desc">Официальная B2B-платформа для управляющих компаний, гостиничных операторов, инвестиционных фондов и консалтинговых групп. Прямой доступ к 150+ инвестиционным объектам Узбекистана.</p>
+      <p class="kicker kicker--light">ПАРТНЁРАМ · SILK ROUTE INVEST</p>
+      <h1 class="b2b-hero-title">Партнёрам<br>платформы</h1>
+      <p class="b2b-hero-desc">Для управляющих компаний, гостиничных операторов, инвестиционных фондов и консультантов. В каталоге — 32 отеля, ресторанные проекты и земельные лоты Узбекистана.</p>
       <div class="b2b-hero-actions">
         <a href="#b2b-apply" class="btn btn--teal btn--lg" id="b2b-cta-apply">Стать партнёром</a>
-        <a href="#b2b-partners" class="btn btn--ghost btn--lg" id="b2b-cta-partners">Каталог партнёров</a>
+        <a href="portfolio.html" class="btn btn--ghost btn--lg" id="b2b-cta-partners">Смотреть каталог</a>
       </div>
       <div class="b2b-hero-stats">
         <div class="b2b-stat">
-          <span class="b2b-stat-num">40+</span>
-          <span class="b2b-stat-label">Активных партнёров</span>
+          <span class="b2b-stat-num">32</span>
+          <span class="b2b-stat-label">Отеля в каталоге</span>
         </div>
         <div class="b2b-stat-sep"></div>
         <div class="b2b-stat">
-          <span class="b2b-stat-num">$4.2B</span>
-          <span class="b2b-stat-label">Инвестиционный портфель</span>
+          <span class="b2b-stat-num">$306 млн</span>
+          <span class="b2b-stat-label">Стоимость объектов</span>
         </div>
         <div class="b2b-stat-sep"></div>
         <div class="b2b-stat">
-          <span class="b2b-stat-num">14</span>
+          <span class="b2b-stat-num">7</span>
           <span class="b2b-stat-label">Регионов Узбекистана</span>
         </div>
         <div class="b2b-stat-sep"></div>
@@ -212,7 +225,7 @@
               <li>✓ Всё из Silver</li>
               <li>✓ Data Room — полный доступ</li>
               <li>✓ Эксклюзивные объекты (pre-market)</li>
-              <li>✓ Участие в roadshow Комитета</li>
+              <li>✓ Приглашения на инвестиционные мероприятия</li>
               <li>✓ Логотип в каталоге партнёров</li>
             </ul>
             <div class="b2b-tier-price">По соглашению</div>
@@ -227,7 +240,7 @@
             <ul class="b2b-tier-features">
               <li>✓ Всё из Gold</li>
               <li>✓ Аккредитация HMA / Franchise</li>
-              <li>✓ Сопровождение сделок государством</li>
+              <li>✓ Сопровождение сделки платформой</li>
               <li>✓ Приоритетное рассмотрение заявок</li>
               <li>✓ Совместный маркетинг</li>
             </ul>
@@ -245,138 +258,50 @@
     <section class="b2b-section b2b-section--dark" id="b2b-partners">
       <div class="b2b-container">
         <div class="b2b-section-header">
-          <p class="kicker kicker--light">КАТАЛОГ ПАРТНЁРОВ</p>
-          <h2 class="b2b-section-title b2b-section-title--light">Аккредитованные B2B партнёры</h2>
-        </div>
-
-        <!-- Фильтр партнёров -->
-        <div class="b2b-filter-bar" role="group" aria-label="Фильтр партнёров">
-          <button class="b2b-filter-btn b2b-filter-btn--active" data-filter="all" id="filter-all">Все</button>
-          <button class="b2b-filter-btn" data-filter="operator" id="filter-operator">Операторы</button>
-          <button class="b2b-filter-btn" data-filter="consultant" id="filter-consultant">Консультанты</button>
-          <button class="b2b-filter-btn" data-filter="developer" id="filter-developer">Девелоперы</button>
-          <button class="b2b-filter-btn" data-filter="fund" id="filter-fund">Фонды</button>
+          <p class="kicker kicker--light">С КЕМ МЫ РАБОТАЕМ</p>
+          <h2 class="b2b-section-title b2b-section-title--light">Кого мы приглашаем к сотрудничеству</h2>
         </div>
 
         <div class="b2b-partners-grid" id="b2b-partners-grid">
 
           <div class="b2b-partner-card" data-category="operator">
             <div class="b2b-partner-logo-wrap">
-              <div class="b2b-partner-logo-placeholder">M</div>
+              <div class="b2b-partner-logo-placeholder">О</div>
             </div>
             <div class="b2b-partner-info">
-              <h4 class="b2b-partner-name">Marriott International</h4>
-              <span class="b2b-partner-cat b2b-partner-cat--operator">Оператор</span>
-              <p class="b2b-partner-desc">Официальная аккредитация HMA / Franchise для объектов Узбекистана под брендами Marriott, Sheraton, Westin, Courtyard.</p>
-              <div class="b2b-partner-meta">
-                <span class="b2b-partner-tier b2b-partner-tier--platinum">💎 Platinum</span>
-                <span class="b2b-partner-geo">🌐 Global</span>
-              </div>
+              <h4 class="b2b-partner-name">Гостиничные операторы и бренды</h4>
+              <span class="b2b-partner-cat b2b-partner-cat--operator">Управление · франшиза</span>
+              <p class="b2b-partner-desc">Объекты под управление или франшизу: строящиеся отели, которым нужен оператор, и работающие отели, готовые к ребрендингу.</p>
             </div>
           </div>
-
-          <div class="b2b-partner-card" data-category="operator">
-            <div class="b2b-partner-logo-wrap">
-              <div class="b2b-partner-logo-placeholder">H</div>
-            </div>
-            <div class="b2b-partner-info">
-              <h4 class="b2b-partner-name">Hilton Hotels & Resorts</h4>
-              <span class="b2b-partner-cat b2b-partner-cat--operator">Оператор</span>
-              <p class="b2b-partner-desc">Аккредитованный оператор для Hilton, DoubleTree, Hampton, Curio Collection в Центральной Азии.</p>
-              <div class="b2b-partner-meta">
-                <span class="b2b-partner-tier b2b-partner-tier--platinum">💎 Platinum</span>
-                <span class="b2b-partner-geo">🌐 Global</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="b2b-partner-card" data-category="consultant">
-            <div class="b2b-partner-logo-wrap">
-              <div class="b2b-partner-logo-placeholder">J</div>
-            </div>
-            <div class="b2b-partner-info">
-              <h4 class="b2b-partner-name">JLL Hotels & Hospitality</h4>
-              <span class="b2b-partner-cat b2b-partner-cat--consultant">Консультант</span>
-              <p class="b2b-partner-desc">Инвестиционный консалтинг, M&A сделки, операторский поиск. Global Tier 1. Представительство в Ташкенте.</p>
-              <div class="b2b-partner-meta">
-                <span class="b2b-partner-tier b2b-partner-tier--gold">🥇 Gold</span>
-                <span class="b2b-partner-geo">🌐 Global</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="b2b-partner-card" data-category="consultant">
-            <div class="b2b-partner-logo-wrap">
-              <div class="b2b-partner-logo-placeholder">C</div>
-            </div>
-            <div class="b2b-partner-info">
-              <h4 class="b2b-partner-name">CBRE Capital Markets</h4>
-              <span class="b2b-partner-cat b2b-partner-cat--consultant">Консультант</span>
-              <p class="b2b-partner-desc">Оценка гостиничных активов (RICS), андеррайтинг, финансовое моделирование. Big 4 партнёр Silk Route Invest.</p>
-              <div class="b2b-partner-meta">
-                <span class="b2b-partner-tier b2b-partner-tier--gold">🥇 Gold</span>
-                <span class="b2b-partner-geo">🌐 Global</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="b2b-partner-card" data-category="consultant">
-            <div class="b2b-partner-logo-wrap">
-              <div class="b2b-partner-logo-placeholder">P</div>
-            </div>
-            <div class="b2b-partner-info">
-              <h4 class="b2b-partner-name">PwC / KPMG Uzbekistan</h4>
-              <span class="b2b-partner-cat b2b-partner-cat--consultant">Аудит</span>
-              <p class="b2b-partner-desc">Финансовый аудит USALI/МСФО, налоговое структурирование, Due Diligence сопровождение сделок.</p>
-              <div class="b2b-partner-meta">
-                <span class="b2b-partner-tier b2b-partner-tier--gold">🥇 Gold</span>
-                <span class="b2b-partner-geo">🇺🇿 Узбекистан</span>
-              </div>
-            </div>
-          </div>
-
           <div class="b2b-partner-card" data-category="fund">
             <div class="b2b-partner-logo-wrap">
-              <div class="b2b-partner-logo-placeholder">E</div>
+              <div class="b2b-partner-logo-placeholder">Ф</div>
             </div>
             <div class="b2b-partner-info">
-              <h4 class="b2b-partner-name">EBRD / IFC</h4>
-              <span class="b2b-partner-cat b2b-partner-cat--fund">Фонд</span>
-              <p class="b2b-partner-desc">Финансирование гостиничных проектов по стандартам IFC Performance Standards. ESG-совместимые инвестиции.</p>
-              <div class="b2b-partner-meta">
-                <span class="b2b-partner-tier b2b-partner-tier--platinum">💎 Platinum</span>
-                <span class="b2b-partner-geo">🌐 International</span>
-              </div>
+              <h4 class="b2b-partner-name">Фонды, банки и частные инвесторы</h4>
+              <span class="b2b-partner-cat b2b-partner-cat--fund">Капитал</span>
+              <p class="b2b-partner-desc">Покупка и соинвестирование: 32 отеля с ценой, расчётом доходности и паспортом объекта, плюс меры господдержки.</p>
             </div>
           </div>
-
+          <div class="b2b-partner-card" data-category="consultant">
+            <div class="b2b-partner-logo-wrap">
+              <div class="b2b-partner-logo-placeholder">К</div>
+            </div>
+            <div class="b2b-partner-info">
+              <h4 class="b2b-partner-name">Консультанты и оценщики</h4>
+              <span class="b2b-partner-cat b2b-partner-cat--consultant">Сопровождение</span>
+              <p class="b2b-partner-desc">Оценка, проверка объектов и сопровождение сделок для иностранных инвесторов, которые выходят на рынок Узбекистана.</p>
+            </div>
+          </div>
           <div class="b2b-partner-card" data-category="developer">
             <div class="b2b-partner-logo-wrap">
-              <div class="b2b-partner-logo-placeholder">T</div>
+              <div class="b2b-partner-logo-placeholder">Д</div>
             </div>
             <div class="b2b-partner-info">
-              <h4 class="b2b-partner-name">Tashkent City Development</h4>
-              <span class="b2b-partner-cat b2b-partner-cat--developer">Девелопер</span>
-              <p class="b2b-partner-desc">Ключевой девелопер флагманских объектов Ташкента. Tashkent City, Silk Road Hotel Tower, Congress Centre.</p>
-              <div class="b2b-partner-meta">
-                <span class="b2b-partner-tier b2b-partner-tier--gold">🥇 Gold</span>
-                <span class="b2b-partner-geo">🇺🇿 Узбекистан</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="b2b-partner-card" data-category="operator">
-            <div class="b2b-partner-logo-wrap">
-              <div class="b2b-partner-logo-placeholder">A</div>
-            </div>
-            <div class="b2b-partner-info">
-              <h4 class="b2b-partner-name">Accor / Wyndham</h4>
-              <span class="b2b-partner-cat b2b-partner-cat--operator">Оператор</span>
-              <p class="b2b-partner-desc">Аккредитованные франшизные операторы для 3–4★ сегмента: Ibis, Novotel, Mercure, Ramada. Центральная Азия.</p>
-              <div class="b2b-partner-meta">
-                <span class="b2b-partner-tier b2b-partner-tier--silver">🥈 Silver</span>
-                <span class="b2b-partner-geo">🌐 Regional</span>
-              </div>
+              <h4 class="b2b-partner-name">Девелоперы и подрядчики</h4>
+              <span class="b2b-partner-cat b2b-partner-cat--developer">Строительство</span>
+              <p class="b2b-partner-desc">Земельные лоты под туристические объекты и достройка отелей, которые сейчас в стадии строительства.</p>
             </div>
           </div>
 
@@ -434,7 +359,7 @@
               <div class="b2b-form-row">
                 <div class="b2b-form-group">
                   <label class="b2b-form-label" for="b2b-company">Компания / Организация *</label>
-                  <input type="text" id="b2b-company" class="b2b-form-input" placeholder="Marriott International" required />
+                  <input type="text" id="b2b-company" class="b2b-form-input" placeholder="Название компании" required />
                 </div>
                 <div class="b2b-form-group">
                   <label class="b2b-form-label" for="b2b-type">Тип партнёрства *</label>
@@ -548,19 +473,19 @@
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Для инвесторов</p>
             <a href="portfolio.html" class="footer-nav-link">Каталог объектов</a>
-            <a href="form.html" class="footer-nav-link">Smart Form</a>
-            <a href="b2b.html" class="footer-nav-link">B2B Cooperation</a>
+            <a href="form.html" class="footer-nav-link">Форма заявки</a>
+            <a href="b2b.html" class="footer-nav-link">Партнёрам</a>
             <a href="cabinet-investor.html" class="footer-nav-link">Кабинет инвестора</a>
           </div>
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Для отелей</p>
             <a href="passport.html" class="footer-nav-link">Инвест-паспорт</a>
-            <a href="quality.html" class="footer-nav-link">Quality Management</a>
+            <a href="quality.html" class="footer-nav-link">Оценка качества</a>
             <a href="cabinet-hotel.html" class="footer-nav-link">Кабинет отеля</a>
           </div>
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Регуляторика</p>
-            <a href="registries.html" class="footer-nav-link">Реестры и НПА</a>
+            <a href="registries.html" class="footer-nav-link">Реестры</a>
             <a href="tourism-types.html" class="footer-nav-link">Виды туризма</a>
             <a href="about.html" class="footer-nav-link">О системе</a>
           </div>
