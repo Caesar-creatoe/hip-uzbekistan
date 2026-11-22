@@ -603,6 +603,13 @@
   };
 
   /* ── 14. ВСПОМОГАТЕЛЬНЫЕ TOAST-УВЕДОМЛЕНИЯ ─────────────────── */
+  /* Бейдж статуса сертификата (используется в реестре и на странице сертификата) */
+  CertUI.renderStatusBadge = function (status) {
+    var st = String(status || '—');
+    var tone = /действ/i.test(st) ? ['#E7F3EA', '#2E6B3F'] : /приостан|провер|ожида/i.test(st) ? ['#FBF0DC', '#8A5A12'] : ['#F8E4E0', '#8E3A2B'];
+    return '<span style="display:inline-block;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:600;background:' + tone[0] + ';color:' + tone[1] + ';">' + st + '</span>';
+  };
+
   CertUI.showToast = function (msg, tone) {
     var toast = document.createElement('div');
     var bg = tone === 'ok' ? '#2E5E3F' : tone === 'warn' ? '#B7791F' : tone === 'danger' ? '#8B3A2F' : '#2B2A3A';

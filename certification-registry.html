@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="styles/megamenu.css" />
   <link rel="stylesheet" href="styles/portal.css" />
   <link rel="stylesheet" href="css/certification.css" />
+  <link rel="stylesheet" href="styles/mobile-fix.css?v=1">
 </head>
 <body data-vertical="certification" class="page-certification-registry">
 
@@ -33,8 +34,13 @@
       </a>
 
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <!-- 0. Каталог отелей -->
+        <div class="nav-item" data-page="portfolio" data-also="passport">
+          <a href="portfolio.html" class="nav-trigger">Каталог отелей</a>
+        </div>
+
         <!-- 1. Для инвесторов -->
-        <div class="nav-item" data-page="investors" data-also="portfolio restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry passport">
+        <div class="nav-item" data-page="investors" data-also="restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry">
           <a href="investors.html" class="nav-trigger">Для инвесторов</a>
         </div>
 
@@ -53,7 +59,9 @@
           <a href="platform.html" class="nav-trigger">О платформе</a>
         </div>
 
-        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+        <div class="nav-item" data-page="b2b">
+          <a href="b2b.html" class="nav-trigger">Партнёрам</a>
+        </div>
       </nav>
 
       <div class="header-right">
@@ -77,22 +85,40 @@
   <!-- Мобильная навигация -->
   <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Сертификация</span>
-      <a href="certification.html">🛡 Хаб сертификации</a>
-      <a href="certification-apply.html">✍ Подать заявку онлайн</a>
-      <a href="certification-registry.html">🏛 Публичный реестр</a>
-      <a href="certification-registry.html#verify">✔ Проверить сертификат</a>
+      <span class="mobile-nav-label">Инвесторам</span>
+      <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
+      <a href="investors.html">Для инвесторов — обзор раздела</a>
+      <a href="restaurants.html">Ресторанные проекты</a>
+      <a href="land.html">Земельные участки</a>
+      <a href="support.html">Государственная поддержка</a>
+      <a href="certification-registry.html">Проверить сертификат отеля</a>
+      <a href="cabinet-investor.html">Кабинет инвестора</a>
     </div>
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Для отельеров</span>
-      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
-      <a href="cabinet-inspector.html">🛡 Кабинет Центра</a>
-      <a href="quality.html">⭐ Quality Management</a>
-      <a href="passport.html">📄 Инвестиционный паспорт</a>
+      <span class="mobile-nav-label">Для бизнеса</span>
+      <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
+      <a href="form.html" class="mobile-nav-cta">Подать отель в реестр</a>
+      <a href="restaurant-form.html">Подать ресторан в реестр</a>
+      <a href="cabinet-hotel.html">Кабинет отеля</a>
+      <a href="certification-apply.html">Заявка на сертификацию</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
+      <a href="certification.html">Сертификация</a>
+      <a href="quality.html">Оценка качества</a>
+      <a href="economics-ratings.html">Рейтинг отелей</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">О платформе</span>
+      <a href="platform.html" class="mobile-nav-hub">О платформе</a>
+      <a href="b2b.html">Партнёрам</a>
     </div>
   </div>
 
   <main id="main-content" style="padding: 40px 0 80px;">
+<div class="demo-note" role="note" style="max-width:1200px;margin:96px auto 0;padding:10px 16px;border-radius:12px;background:#F3E9DA;border:1px solid #D6C7AE;color:#5A4636;font:500 13.5px/1.45 'Plus Jakarta Sans',system-ui,sans-serif;">Демонстрационный режим: так будет работать электронный реестр сертификатов. Объекты и номера в примере условные.</div>
+
     <div class="cert-container">
 
       <div class="cert-breadcrumbs">
@@ -139,7 +165,7 @@
 
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <div style="flex:1;min-width:260px;display:flex;gap:8px;">
-            <input type="text" id="reg-verify-input" class="cert-input-text" placeholder="Введите номер, например UZ.TSM.TK.000123" />
+            <input type="text" id="reg-verify-input" class="cert-input-text" placeholder="Введите номер, например UZ.TSM.TK.000101" />
             <button type="button" id="reg-verify-btn" class="btn-cert-primary" style="padding:10px 22px;">
               Проверить
             </button>
@@ -282,14 +308,13 @@
             <p class="footer-nav-heading">Для отелей</p>
             <a href="cabinet-hotel.html" class="footer-nav-link">Кабинет отеля</a>
             <a href="passport.html" class="footer-nav-link">Инвест-паспорт</a>
-            <a href="quality.html" class="footer-nav-link">Quality Management</a>
+            <a href="quality.html" class="footer-nav-link">Оценка качества</a>
             <a href="registries.html" class="footer-nav-link">Госреестры</a>
           </div>
           <div class="footer-nav-col">
-            <p class="footer-nav-heading">Документы</p>
-            <a href="about.html" class="footer-nav-link">Том I. О системе</a>
-            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Spec</a>
-            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
+            <p class="footer-nav-heading">Разделы</p>
+            <a href="about.html" class="footer-nav-link">О системе</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Сертификация</a>
           </div>
         </nav>
       </div>
@@ -326,16 +351,27 @@
 
       document.getElementById('reg-scan-qr-btn').addEventListener('click', function () {
         // Симуляция сканирования QR или запуск камеры
-        var sample = 'UZ.TSM.TK.000123';
+        var sample = 'UZ.TSM.TK.000101';
         document.getElementById('reg-verify-input').value = sample;
         document.getElementById('reg-verify-btn').click();
         CertUI.showToast('QR-код распознан: ' + sample, 'ok');
       });
 
       // 2. Загрузка данных реестра
+      // API возвращает промис {items:[...]} в новом формате полей — приводим к полям страницы
+      function toRow(c) {
+        return Object.assign({}, c, {
+          number: c.no, hotelName: c.name, category: String(c.stars || '0'),
+          issueDate: c.issued, expiryDate: c.expires, lastInspectionDate: c.lastInspection
+        });
+      }
       CertAPI.ready().then(function (api) {
-        allCertificates = api.listCertificates();
-        renderRegistry();
+        return api.listCertificates({ pageSize: 10000, page: 1 }).then(function (r) {
+          allCertificates = (r && r.items ? r.items : []).map(toRow);
+          renderRegistry();
+          return api;
+        });
+      }).then(function (api) {
 
         // Проверка URL хэша или параметра ?no=
         var urlParams = new URLSearchParams(window.location.search);
@@ -343,7 +379,7 @@
         if (noParam) {
           document.getElementById('reg-verify-input').value = noParam;
           document.getElementById('reg-verify-btn').click();
-          var found = api.getCertificate(noParam);
+          var found = allCertificates.find(function (x) { return x.number === noParam; });
           if (found) openDrawer(found);
         }
       });

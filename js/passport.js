@@ -168,14 +168,31 @@ function renderPassport(hotel) {
   }
   setTxt('passport-location', hotel.address || hotel.region, 'Республика Узбекистан');
 
-  // Статус и формат сделки
-  const status = String(hotel.status || 'active').toLowerCase();
+  // Статус объекта: строится / работает (по заметкам и типу данных)
+  const stage = stageOf(hotel);
   const st = $id('passport-status-badge');
   if (st) {
-    const map = { active: ['Активный объект', ''], pending: ['На проверке', 'pp-tag--pending'] };
-    const [label, cls] = map[status] || ['Черновик', 'pp-tag--draft'];
-    st.className = `pp-tag pp-tag--status ${cls}`.trim();
-    st.innerHTML = `<i></i>${label}`;
+    if (stage.label) {
+      st.hidden = false;
+      st.className = `pp-tag pp-tag--status ${stage.building ? 'pp-tag--pending' : ''}`.trim();
+      st.innerHTML = `<i></i>${esc(stage.label)}`;
+    } else {
+      st.hidden = true;
+    }
+  }
+  // Сертификат показываем только если у объекта есть свой номер
+  const certNo = String(hotel.certificateNo || '').trim();
+  const certBadge = $id('passport-cert-badge-link'), certCard = $id('btn-view-cert');
+  if (certNo) {
+    const href = `certificate.html?no=${encodeURIComponent(certNo)}`;
+    if (certBadge) { certBadge.href = href; certBadge.hidden = false; }
+    if (certCard) { certCard.href = href; certCard.hidden = false; }
+    setTxt('passport-cert-no', certNo);
+    setTxt('pp-cert-no-2', certNo);
+    if (hotel.certificateValid) setTxt('pp-cert-valid', `действует до ${hotel.certificateValid}`);
+  } else {
+    if (certBadge) certBadge.hidden = true;
+    if (certCard) certCard.hidden = true;
   }
   const deal = typeof window.getHotelDealConfig === 'function' ? window.getHotelDealConfig(hotel) : { label: 'Прямая продажа' };
   setTxt('passport-deal-badge', deal.label);
@@ -229,6 +246,20 @@ function updatePhotoCount(n) {
   if (sub) sub.textContent = n ? `· ${n}` : 'объекта';
 }
 
+/* ── Стадия объекта: строится или работает ───────────────────
+   «Незавершённое строительство» / «85% завершён» в заметках → строится;
+   данные типа «факт» → работающий отель; иначе статус не показываем. */
+function stageOf(hotel) {
+  const n = String(hotel.notes || '');
+  const pct = n.match(/(\d{1,3})\s*%\s*заверш/i);
+  if (/незаверш[её]нное строительство/i.test(n) || pct) {
+    return { building: true, label: pct ? `Строится · готовность ${pct[1]}%` : 'Строится' };
+  }
+  const e = hotel.economics || {};
+  if (e.dataType === 'fact') return { building: false, label: 'Работающий отель' };
+  return { building: false, label: '' };
+}
+
 /* ── Экономика ─────────────────────────────────────────────── */
 function renderEconomicsSection(hotel) {
   const section = $id('economics');
@@ -245,12 +276,15 @@ function renderEconomicsSection(hotel) {
   // Период и статус данных
   const meta = $id('eco-period-meta');
   if (meta) {
-    const type = { fact: ['Факт', ''], forecast: ['Прогноз', 'pp-chip--est'], estimate: ['Оценка', 'pp-chip--est'] }[e.dataType] || null;
-    const ver = { committee: 'Проверено Комитетом', audited: 'Аудировано' }[e.verificationStatus];
+    const stage = stageOf(hotel);
+    const type = stage.building
+      ? ['Прогноз после ввода', 'pp-chip--est']
+      : ({ fact: ['Факт', ''], forecast: ['Прогноз', 'pp-chip--est'], estimate: ['Оценка платформы', 'pp-chip--est'] }[e.dataType] || null);
+    const ver = e.verificationStatus === 'audited' ? 'Аудировано' : '';
     meta.innerHTML = [
-      e.period ? `<span class="pp-chip">${ICON.cal}${esc(e.period)}</span>` : '',
+      e.period && !stage.building ? `<span class="pp-chip">${ICON.cal}${esc(e.period)}</span>` : '',
       type ? `<span class="pp-chip ${type[1]}">${type[0]}</span>` : '',
-      ver ? `<span class="pp-chip pp-chip--ok">${ICON.ok}${ver}</span>` : '<span class="pp-chip">Не проверено</span>'
+      ver ? `<span class="pp-chip pp-chip--ok">${ICON.ok}${ver}</span>` : ''
     ].join('');
   }
 

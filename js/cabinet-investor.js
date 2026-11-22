@@ -16,7 +16,7 @@ const DEMO_USER = {
 };
 
 const DEMO_WATCHLIST = [
-  { id: 1, hotel_name: 'Samarqand Universal Bouilding', region: 'Самарканд', stars: 5, iri_score: 'A+', added_at: '2026-08-10' },
+  { id: 1, hotel_name: 'Samarqand Universal Building', region: 'Самарканд', stars: 5, iri_score: 'A+', added_at: '2026-08-10' },
   { id: 2, hotel_name: 'ASMALD', region: 'Ташкент', stars: 4, iri_score: 'A', added_at: '2026-08-12' },
   { id: 3, hotel_name: 'Silk Road Resort & Spa', region: 'Чарвак', stars: 4, iri_score: 'B+', added_at: '2026-08-15' },
 ];

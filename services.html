@@ -43,8 +43,13 @@
       <!-- Основная навигация -->
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
 
+        <!-- 0. Каталог отелей -->
+        <div class="nav-item" data-page="portfolio" data-also="passport">
+          <a href="portfolio.html" class="nav-trigger">Каталог отелей</a>
+        </div>
+
         <!-- 1. Для инвесторов -->
-        <div class="nav-item" data-page="investors" data-also="portfolio restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry passport">
+        <div class="nav-item" data-page="investors" data-also="restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry">
           <a href="investors.html" class="nav-trigger">Для инвесторов</a>
         </div>
 
@@ -64,7 +69,9 @@
         </div>
 
         <!-- 4. B2B Cooperation (в последнюю очередь) -->
-        <a href="b2b.html" class="nav-link">B2B Cooperation</a>
+        <div class="nav-item" data-page="b2b">
+          <a href="b2b.html" class="nav-trigger">Партнёрам</a>
+        </div>
 
       </nav>
 
@@ -93,46 +100,34 @@
   <!-- Мобильная навигация -->
   <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Классы активов</span>
-      <a href="investors.html" class="mobile-nav-hub">Для инвесторов — обзор раздела</a>
-      <a href="portfolio.html">🏨 Гостиничные объекты</a>
-      <a href="restaurants.html">🍽 Ресторанные проекты</a>
-      <a href="land.html">🗺 Земельные участки</a>
-      <a href="support.html">🏛 Государственная поддержка</a>
-    </div>
-    <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Инструменты инвестора</span>
-      <a href="cabinet-investor.html">👤 Кабинет инвестора</a>
-      <a href="tourism-types.html">📍 Виды туризма</a>
-      <a href="certification-registry.html#verify">✔ Проверить сертификат отеля</a>
-    </div>
-    <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Услуги</span>
-      <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
-      <a href="certification.html">🛡 Сертификация</a>
-      <a href="quality.html">⭐ Quality Management</a>
-      <a href="economics-ratings.html">📈 Economics Ratings</a>
-      <a href="events-app.html">🏛️ Государственные мероприятия</a>
+      <span class="mobile-nav-label">Инвесторам</span>
+      <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
+      <a href="investors.html">Для инвесторов — обзор раздела</a>
+      <a href="restaurants.html">Ресторанные проекты</a>
+      <a href="land.html">Земельные участки</a>
+      <a href="support.html">Государственная поддержка</a>
+      <a href="certification-registry.html">Проверить сертификат отеля</a>
+      <a href="cabinet-investor.html">Кабинет инвестора</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Для бизнеса</span>
       <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
-      <a href="form.html" class="mobile-nav-cta">✨ Подать отель в реестр</a>
-      <a href="restaurant-form.html" class="mobile-nav-cta" style="background:var(--v-restaurants);border-color:var(--v-restaurants);margin-top:6px;">🍽 Подать ресторан в реестр</a>
-      <a href="form.html">⚡ Smart Investment Form</a>
-      <a href="cabinet-hotel.html">🏨 Кабинет отеля</a>
-      <a href="cabinet-restaurant.html">🍽 Кабинет ресторатора</a>
-      <a href="passport.html">📄 Hotel Investment Passport</a>
-      <a href="restaurant-passport.html">📊 Restaurant Passport</a>
-      <a href="certification-apply.html">🛡 Заявка на сертификацию</a>
-      </div>
+      <a href="form.html" class="mobile-nav-cta">Подать отель в реестр</a>
+      <a href="restaurant-form.html">Подать ресторан в реестр</a>
+      <a href="cabinet-hotel.html">Кабинет отеля</a>
+      <a href="certification-apply.html">Заявка на сертификацию</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
+      <a href="certification.html">Сертификация</a>
+      <a href="quality.html">Оценка качества</a>
+      <a href="economics-ratings.html">Рейтинг отелей</a>
+    </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">О платформе</span>
-      <a href="platform.html" class="mobile-nav-hub">О платформе — обзор раздела</a>
-      <a href="about.html">📖 О системе (Том I)</a>
-      <a href="tech-spec.html">🛠️ Tech Specification (Том IV)</a>
-      <a href="certification.html#methodology">🛡 Том VIII. Сертификация</a>
-      <a href="b2b.html">🤝 B2B Cooperation</a>
+      <a href="platform.html" class="mobile-nav-hub">О платформе</a>
+      <a href="b2b.html">Партнёрам</a>
     </div>
   </div>
 
@@ -282,20 +277,19 @@
             <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
             <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
             <a href="registries.html"         class="footer-nav-link">Реестры</a>
-            <a href="form.html"               class="footer-nav-link">Smart Form</a>
+            <a href="form.html"               class="footer-nav-link">Форма заявки</a>
             <a href="certification.html" class="footer-nav-link">Сертификация</a>
             <a href="certification-registry.html" class="footer-nav-link">Реестр сертифицированных</a>
           </div>
           <div class="footer-nav-col">
-            <p class="footer-nav-heading">Документы</p>
-            <a href="about.html"     class="footer-nav-link">Том I. Методические рекомендации</a>
-            <a href="passport.html"  class="footer-nav-link">Том II. Hotel Investment Passport</a>
-            <a href="form.html"      class="footer-nav-link">Том III. Smart Form</a>
-            <a href="tech-spec.html" class="footer-nav-link">Том IV. Tech Specification</a>
-            <a href="support.html"   class="footer-nav-link">Том V. Государственная поддержка</a>
-            <a href="restaurants.html" class="footer-nav-link">Том VI. Ресторанные инвестиции</a>
-            <a href="land.html"      class="footer-nav-link">Том VII. Земельные участки</a>
-            <a href="certification.html#methodology" class="footer-nav-link">Том VIII. Сертификация</a>
+            <p class="footer-nav-heading">Разделы</p>
+            <a href="about.html"     class="footer-nav-link">Методика расчёта</a>
+            <a href="passport.html"  class="footer-nav-link">Пример паспорта отеля</a>
+            <a href="form.html"      class="footer-nav-link">Форма заявки</a>
+            <a href="support.html"   class="footer-nav-link">Господдержка</a>
+            <a href="restaurants.html" class="footer-nav-link">Рестораны</a>
+            <a href="land.html"      class="footer-nav-link">Земельные участки</a>
+            <a href="certification.html#methodology" class="footer-nav-link">Сертификация</a>
           </div>
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Контакты</p>

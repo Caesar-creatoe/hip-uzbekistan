@@ -16,57 +16,60 @@
   <link rel="stylesheet" href="styles/spatial-dock.css?v=spatial_2">
   <link rel="stylesheet" href="styles/verticals.css?v=spatial_2">
   <link rel="stylesheet" href="styles/restaurants.css?v=spatial_2">
+  <link rel="stylesheet" href="styles/mobile-fix.css?v=1">
 </head>
 <body data-vertical="restaurants">
 
   <!-- Floating Spatial Dock (Reference-matching vertical capsule) -->
-  <aside class="spatial-dock" aria-label="Быстрая навигация">
-    <a href="index.html" class="spatial-dock-item" aria-label="Главная">
-      <span>⌂</span>
-      <span class="spatial-dock-tooltip">Главная</span>
-    </a>
-    <a href="portfolio.html" class="spatial-dock-item" aria-label="Каталог отелей">
-      <span>🏨</span>
-      <span class="spatial-dock-tooltip">Отели (32)</span>
-    </a>
-    <a href="restaurants.html" class="spatial-dock-item is-active" aria-label="Ресторанные проекты">
-      <span>🍽</span>
-      <span class="spatial-dock-tooltip">Рестораны F&amp;B</span>
-    </a>
-    <a href="land.html" class="spatial-dock-item" aria-label="Земельные участки">
-      <span>🗺</span>
-      <span class="spatial-dock-tooltip">Земля (8 лотов)</span>
-    </a>
-    <a href="support.html" class="spatial-dock-item" aria-label="Государственная поддержка">
-      <span>🏛</span>
-      <span class="spatial-dock-tooltip">Господдержка</span>
-    </a>
-    <a href="cabinet-investor.html" class="spatial-dock-item" aria-label="Кабинет инвестора">
-      <div class="spatial-dock-avatar">
-        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=" alt="Bakh Mir Palace" />
-        <span class="spatial-dock-pulse" title="Активный статус"></span>
-      </div>
-      <span class="spatial-dock-tooltip">Инвестор Desk</span>
-    </a>
-    <div class="spatial-dock-divider"></div>
-    <a href="index.html#about" class="spatial-dock-btn-video" id="dock-btn-video" aria-label="Смотреть обзор платформы">
-      <div class="play-circle">▶</div>
-      <span>Обзор</span>
-    </a>
-  </aside>
 
   <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
-      <a href="index.html" class="header-logo">
-        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38">
-        <div class="logo-text"><span class="logo-title">SILK ROUTE</span><span class="logo-subtitle">INVEST</span></div>
+
+      <!-- Логотип -->
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
       </a>
-      <nav class="header-nav">
-        <a href="portfolio.html" class="nav-trigger" style="padding:0 14px;font-size:13px;font-weight:600;color:var(--color-text-muted);text-decoration:none;">🏨 Отели</a>
-        <a href="restaurants.html" class="nav-trigger" style="padding:0 14px;font-size:13px;font-weight:600;color:var(--v-restaurants);text-decoration:none;">🍽 Рестораны</a>
-        <a href="land.html" class="nav-trigger" style="padding:0 14px;font-size:13px;font-weight:600;color:var(--color-text-muted);text-decoration:none;">🗺 Земля</a>
-        <a href="support.html" class="nav-trigger" style="padding:0 14px;font-size:13px;font-weight:600;color:var(--color-text-muted);text-decoration:none;">🏛 Господдержка</a>
+
+      <!-- Основная навигация -->
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+
+        <!-- 0. Каталог отелей -->
+        <div class="nav-item" data-page="portfolio" data-also="passport">
+          <a href="portfolio.html" class="nav-trigger">Каталог отелей</a>
+        </div>
+
+        <!-- 1. Для инвесторов -->
+        <div class="nav-item" data-page="investors" data-also="restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry">
+          <a href="investors.html" class="nav-trigger">Для инвесторов</a>
+        </div>
+
+        <!-- 2. Для бизнеса -->
+        <div class="nav-item" data-page="business" data-also="form restaurant-form cabinet-hotel cabinet-restaurant certification-apply tools">
+          <a href="business.html" class="nav-trigger">Для бизнеса</a>
+        </div>
+
+        <!-- 3. Услуги -->
+        <div class="nav-item" data-page="services" data-also="certification certificate quality economics-ratings events-app cabinet-inspector">
+          <a href="services.html" class="nav-trigger">Услуги</a>
+        </div>
+
+        <!-- 4. О платформе -->
+        <div class="nav-item" data-page="platform" data-also="about tech-spec registries">
+          <a href="platform.html" class="nav-trigger">О платформе</a>
+        </div>
+
+        <!-- 5. B2B Cooperation (прямой переход) -->
+        <div class="nav-item" data-page="b2b">
+          <a href="b2b.html" class="nav-trigger">Партнёрам</a>
+        </div>
+
       </nav>
+
+      <!-- Правый блок -->
       <div class="header-right">
         <div class="lang-switcher" role="group" aria-label="Выбор языка">
           <button class="lang-btn lang-btn--active" data-lang="ru" aria-pressed="true">RU</button>
@@ -78,8 +81,48 @@
           <span class="btn-login-icon">→</span>
         </a>
       </div>
+
+      <!-- Мобильный гамбургер -->
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
     </div>
   </header>
+
+  <!-- Мобильная навигация -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Инвесторам</span>
+      <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
+      <a href="investors.html">Для инвесторов — обзор раздела</a>
+      <a href="restaurants.html">Ресторанные проекты</a>
+      <a href="land.html">Земельные участки</a>
+      <a href="support.html">Государственная поддержка</a>
+      <a href="certification-registry.html">Проверить сертификат отеля</a>
+      <a href="cabinet-investor.html">Кабинет инвестора</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Для бизнеса</span>
+      <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
+      <a href="form.html" class="mobile-nav-cta">Подать отель в реестр</a>
+      <a href="restaurant-form.html">Подать ресторан в реестр</a>
+      <a href="cabinet-hotel.html">Кабинет отеля</a>
+      <a href="certification-apply.html">Заявка на сертификацию</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Услуги</span>
+      <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
+      <a href="certification.html">Сертификация</a>
+      <a href="quality.html">Оценка качества</a>
+      <a href="economics-ratings.html">Рейтинг отелей</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">О платформе</span>
+      <a href="platform.html" class="mobile-nav-hub">О платформе</a>
+      <a href="b2b.html">Партнёрам</a>
+    </div>
+  </div>
 
   <nav class="vertical-switcher">
     <div class="vertical-switcher__inner">
@@ -94,9 +137,9 @@
   <section class="v-hero" style="background:var(--v-restaurants-bg);">
     <div class="v-hero__inner">
       <div>
-        <p class="v-hero__kicker" style="color:var(--v-restaurants);">🍽 Гастрономический сектор · Том VI</p>
+        <p class="v-hero__kicker" style="color:var(--v-restaurants);">🍽 Гастрономический сектор</p>
         <h1 class="v-hero__title">Гастрономические активы.<br>Инвестиции со вкусом.</h1>
-        <p class="v-hero__desc">Инвестиционные проекты F&amp;B-индустрии Узбекистана: панорамные ресторанные комплексы, международные франшизы и верифицированные метрики оборачиваемости по стандарту Тома VI.</p>
+        <p class="v-hero__desc">Инвестиционные проекты F&amp;B-индустрии Узбекистана: панорамные ресторанные комплексы, международные франшизы и верифицированные метрики оборачиваемости по единому стандарту.</p>
         <div class="v-hero__stats">
           <div class="v-hstat"><span class="v-hstat__num" style="color:var(--v-restaurants);">6</span><span class="v-hstat__label">Проектов в каталоге</span></div>
           <div class="v-hstat"><span class="v-hstat__num" style="color:var(--v-restaurants);">+42%</span><span class="v-hstat__label">Рост F&B год к году</span></div>
@@ -206,5 +249,8 @@
   <script src="js/verticals.js"></script>
   <script src="js/restaurants.js"></script>
   <script src="js/support-core.js"></script>
+  <script src="js/megamenu.js?v=nav_inv_1"></script>
+  <script src="js/main.js"></script>
+<div class="demo-note" role="note" style="position:fixed;left:16px;bottom:16px;z-index:60;max-width:380px;padding:10px 14px;border-radius:12px;background:#F3E9DA;border:1px solid #D6C7AE;box-shadow:0 6px 20px rgba(40,22,10,.15);color:#5A4636;font:500 13px/1.45 'Plus Jakarta Sans',system-ui,sans-serif;">Демонстрационный раздел: проекты в примере условные. Реальные объекты добавляются после проверки.</div>
 </body>
 </html>
