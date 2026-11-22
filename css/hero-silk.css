@@ -1,328 +1,283 @@
 /* ============================================================
-   HERO-SILK.CSS — главный экран «Шёлковый путь».
-   Реальные символы семи регионов вдоль золотой дороги.
-   Свет зажигает дорогу, искры текут по ней с перспективой
-   (ближе — крупнее и быстрее), символы загораются, над ними —
-   метки регионов из каталога. Плюс: блики на Чарваке, отблеск
-   на снегу Чимгана, огонёк телебашни, облака, птицы, пыль,
-   мягкий наезд камеры и объём при движении мыши.
+   HERO-SILK.CSS — главный экран «Шёлковый путь» (версия 3).
+   Сцена рисуется шейдером WebGL (js/hero-silk.js):
+   карта глубины даёт объём, камера пролетает по маршруту,
+   по дороге течёт свет, на Чарваке рябь, в долине туман.
+   Здесь — раскладка, текст, маршрут-навигация и метка.
+   Без WebGL / при «уменьшить движение» видна обычная картинка.
    ============================================================ */
 
 .silk-hero {
-  --ar: 2576 / 1438;
-  --ink: #1A1412;
-  --ink-2: #3B2A20;
-  --cream: #F5EFE3;
+  --gold: #E9C27B;
+  --gold-2: #F6DDA6;
+  --paper: #FFF7EC;
+  --night: #16110F;
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  height: clamp(620px, calc(100svh - 28px), 880px);
+  height: clamp(640px, calc(100svh - 28px), 900px);
   border-radius: 20px;
-  background: #DCD6CC;
-  container-type: size;
-  color: var(--ink);
+  background: #241C1B;
+  color: var(--paper);
 }
 
-/* ── Камера: вступительный «отъезд» + объём от мыши ───── */
-.sr-par {
-  position: absolute; inset: 0;
-  translate: var(--px, 0px) var(--py, 0px);
-  scale: 1;
-  animation: srIntro 3.4s cubic-bezier(.16, .84, .24, 1) both;
-  transition: translate .9s cubic-bezier(.2, .7, .2, 1);
-  will-change: translate, scale;
-}
-@keyframes srIntro { from { scale: 1.09; opacity: .0; } 18% { opacity: 1; } to { scale: 1; opacity: 1; } }
-
-/* ── Сцена: картинка «cover»; всё привязано к ней в % ─── */
-.sr-stage {
-  position: absolute;
-  left: 50%; top: 50%;
-  width: max(101cqw, calc(101cqh * 2576 / 1438));
-  aspect-ratio: var(--ar);
-  transform: translate(-50%, -50%) scale(1.01);
-  transform-origin: 66% 46%;
-  animation: srPush 34s ease-in-out 3.4s infinite alternate;
-  will-change: transform;
-}
-@keyframes srPush {
-  from { transform: translate(-50%, -50%) scale(1.01); }
-  to   { transform: translate(-51%, -50.4%) scale(1.065); }
-}
-.sr-base, .sr-lit {
+/* ── Сцена ─────────────────────────────────────────────── */
+.sx-scene { position: absolute; inset: 0; z-index: 0; }
+.sx-img, .sx-gl {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   display: block;
-  user-select: none;
 }
-.sr-base { filter: saturate(1.02) contrast(1.03); }
+.sx-img { object-fit: cover; object-position: 50% 50%; user-select: none; }
+.sx-gl { opacity: 0; transition: opacity .9s ease; }
+.silk-hero.is-gl .sx-gl { opacity: 1; }
 
-/* символ региона «загорается» — тот же кадр, ярче и теплее */
-.sr-lit {
-  opacity: 0;
-  filter: brightness(1.16) saturate(1.14) contrast(1.03) sepia(.06);
-  transition: opacity 1.8s cubic-bezier(.2, .7, .2, 1);
-}
-.sr-lit.is-on { opacity: 1; }
-
-.sr-glow {
-  position: absolute;
-  transform: translate(-50%, -50%) scale(.6);
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255, 206, 130, .3), rgba(255, 180, 95, .09) 55%, transparent 75%);
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  transition: opacity 2s ease, transform 2s cubic-bezier(.2, .7, .2, 1);
-}
-.sr-glow.is-on { opacity: .85; transform: translate(-50%, -50%) scale(1); }
-.sr-glow.is-hit { animation: srHit 2.4s ease-out; }
-@keyframes srHit {
-  0%   { opacity: .85; }
-  22%  { opacity: 1; transform: translate(-50%, -50%) scale(1.14); }
-  100% { opacity: .85; transform: translate(-50%, -50%) scale(1); }
-}
-
-/* ── Золотая дорога ───────────────────────────────────── */
-.sr-road { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.sr-reveal { stroke-dasharray: 1000 1000; stroke-dashoffset: 1000; }
-
-/* сама дорога из картинки — «дышит» светом */
-.sr-road-img { animation: srBreath 5.5s ease-in-out infinite; }
-@keyframes srBreath { 0%, 100% { filter: brightness(1) saturate(1); } 50% { filter: brightness(1.14) saturate(1.12); } }
-
-/* искры: размер, шаг и скорость зависят от перспективы (--s) */
-.sr-seg {
-  fill: none;
-  stroke: #FFF5D6;
-  stroke-linecap: round;
-  stroke-width: calc(var(--s) * 9px);
-  stroke-dasharray: calc(var(--s) * 3px) calc(var(--s) * 62px);
-  opacity: .95;
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 calc(var(--s) * 9px) rgba(255, 200, 100, .95));
-  animation: srFlow 5.2s linear infinite;
-}
-@keyframes srFlow { to { stroke-dashoffset: calc(var(--s) * -650px); } }
-
-/* «караван света» — голова и хвост (толщина задаётся из JS) */
-.sr-trail { stroke: #FFCF7A; stroke-dasharray: 0 1000; opacity: 0; mix-blend-mode: screen; }
-.sr-trail--core { stroke: #FFF9E8; }
-.sr-comet { fill: #FFFCF0; opacity: 0; }
-.sr-comet-halo { fill: #FFC86E; opacity: 0; mix-blend-mode: screen; }
-
-/* ── Живые детали пейзажа ─────────────────────────────── */
-/* блики на воде Чарвака */
-.sr-lake {
-  position: absolute; left: 77.5%; top: 22.6%; width: 23%; height: 10.4%;
-  pointer-events: none; mix-blend-mode: screen; opacity: .55;
-  background:
-    radial-gradient(5px 1px at 30% 40%, rgba(255, 255, 255, .95), transparent 100%),
-    radial-gradient(8px 1px at 70% 75%, rgba(255, 248, 230, .85), transparent 100%),
-    radial-gradient(4px 1px at 55% 15%, rgba(255, 255, 255, .8), transparent 100%);
-  background-size: 46px 9px, 74px 13px, 38px 7px;
-  -webkit-mask: radial-gradient(60% 55% at 45% 55%, #000 30%, transparent 75%);
-  mask: radial-gradient(60% 55% at 45% 55%, #000 30%, transparent 75%);
-  animation: srLake 7s linear infinite;
-}
-@keyframes srLake { to { background-position: 46px 0, -74px 0, 76px 0; } }
-
-/* отблеск солнца, пробегающий по снегу Чимгана */
-.sr-snow {
-  position: absolute; left: 75%; top: 5%; width: 25%; height: 13%;
-  pointer-events: none; mix-blend-mode: screen;
-  background: linear-gradient(105deg, transparent 35%, rgba(255, 246, 225, .75) 48%, transparent 60%);
-  background-size: 260% 100%;
-  background-position: 100% 0;
-  -webkit-mask: radial-gradient(70% 80% at 55% 60%, #000 35%, transparent 80%);
-  mask: radial-gradient(70% 80% at 55% 60%, #000 35%, transparent 80%);
-  animation: srSnow 9s ease-in-out 4s infinite;
-}
-@keyframes srSnow { 0% { background-position: 100% 0; } 45%, 100% { background-position: 0% 0; } }
-
-/* огонёк на вершине телебашни */
-.sr-beacon {
-  position: absolute; width: .32%; aspect-ratio: 1; border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: #FF5A4A;
-  box-shadow: 0 0 6px 2px rgba(255, 90, 74, .85), 0 0 18px 6px rgba(255, 90, 74, .35);
-  animation: srBeacon 2.4s steps(1, end) infinite;
-}
-@keyframes srBeacon { 0%, 58% { opacity: 1; } 60%, 100% { opacity: .15; } }
-
-/* облака */
-.sr-clouds {
-  position: absolute; left: -15%; right: -15%; top: 2%; height: 30%;
-  pointer-events: none; opacity: .5;
-  background:
-    radial-gradient(22% 30% at 18% 45%, rgba(255, 255, 255, .55), transparent 70%),
-    radial-gradient(18% 24% at 46% 30%, rgba(255, 255, 255, .45), transparent 70%),
-    radial-gradient(26% 28% at 74% 50%, rgba(255, 250, 240, .4), transparent 70%);
-  animation: srClouds 60s ease-in-out infinite alternate;
-}
-@keyframes srClouds { from { transform: translateX(-4%); } to { transform: translateX(4%); } }
-
-.sr-stars { position: absolute; inset: 0 0 auto 0; height: 16%; pointer-events: none; }
-.sr-stars i {
-  position: absolute; width: 2px; height: 2px; border-radius: 50%;
-  background: #fff; box-shadow: 0 0 4px rgba(255, 255, 255, .9);
-  opacity: 0; animation: srTwinkle 4.6s ease-in-out infinite;
-}
-@keyframes srTwinkle { 0%, 100% { opacity: 0; } 50% { opacity: .55; } }
-
-.sr-birds {
-  position: absolute; left: 100%; top: 9%;
-  width: 6%; color: rgba(40, 30, 24, .55);
-  pointer-events: none;
-  animation: srBirds 48s linear 6s infinite;
-}
-@keyframes srBirds {
-  0%   { transform: translate(0, 0); }
-  50%  { transform: translate(-70cqw, 4cqh); }
-  100% { transform: translate(-140cqw, -1cqh); }
-}
-.sr-bird { transform-box: fill-box; transform-origin: 50% 70%; animation: srFlap .9s ease-in-out infinite alternate; }
-@keyframes srFlap { from { transform: scaleY(1); } to { transform: scaleY(.35); } }
-
-.sr-haze { position: absolute; left: -20%; right: -20%; pointer-events: none; mix-blend-mode: screen; }
-.sr-haze--1 {
-  top: 40%; height: 24%;
-  background: radial-gradient(45% 50% at 30% 50%, rgba(255, 238, 215, .12), transparent 70%),
-              radial-gradient(40% 45% at 76% 55%, rgba(255, 238, 215, .09), transparent 70%);
-  animation: srHaze 40s ease-in-out infinite alternate;
-}
-.sr-haze--2 {
-  top: 54%; height: 26%;
-  background: radial-gradient(38% 50% at 58% 50%, rgba(255, 230, 200, .08), transparent 70%),
-              radial-gradient(30% 40% at 10% 60%, rgba(255, 230, 200, .08), transparent 70%);
-  animation: srHaze 52s ease-in-out infinite alternate-reverse;
-}
-@keyframes srHaze { from { transform: translateX(-5%); } to { transform: translateX(5%); } }
-
-/* ── Метки регионов ───────────────────────────────────── */
-.sr-pin {
-  position: absolute;
-  z-index: 3;
-  transform: translate(-50%, calc(-100% - 12px)) scale(.85);
-  transform-origin: 50% 100%;
-  display: flex; flex-direction: column; align-items: center;
-  padding: 6px 12px;
-  border-radius: 10px;
-  background: var(--cream);
-  color: var(--ink);
-  box-shadow: 0 8px 22px rgba(40, 22, 10, .26);
-  white-space: nowrap;
-  opacity: 0;
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-  transition: opacity .6s ease, transform .6s cubic-bezier(.2, .8, .2, 1.25), background .45s ease, color .45s ease, padding .45s ease;
-}
-.sr-pin::after {
-  content: '';
-  position: absolute; left: 50%; bottom: -5px;
-  width: 10px; height: 10px;
-  transform: translateX(-50%) rotate(45deg);
-  background: inherit;
-  border-radius: 2px;
-}
-.sr-pin.is-on { opacity: 1; transform: translate(-50%, calc(-100% - 12px)) scale(1); }
-.sr-pin-name { position: relative; z-index: 1; font-size: 13px; font-weight: 700; letter-spacing: -.01em; line-height: 1.2; }
-.sr-pin-meta {
-  position: relative; z-index: 1;
-  max-height: 0; max-width: 0; overflow: hidden; opacity: 0;
-  font-size: 11.5px; font-weight: 500; line-height: 1.3;
-  transition: max-height .45s ease, max-width .45s ease, opacity .45s ease, margin .45s ease;
-}
-.sr-pin.is-active { background: var(--ink); color: var(--cream); padding: 8px 14px; z-index: 4; }
-.sr-pin.is-active .sr-pin-name { color: #F3C886; font-size: 14px; }
-.sr-pin.is-active .sr-pin-meta { max-height: 20px; max-width: 280px; opacity: .88; margin-top: 2px; }
-
-/* правые метки раскрываются влево, чтобы не уходить за край */
-.sr-pin--right { transform: translate(-82%, calc(-100% - 12px)) scale(.85); }
-.sr-pin--right.is-on { transform: translate(-82%, calc(-100% - 12px)) scale(1); }
-.sr-pin--right::after { left: 82%; }
-.sr-pin--left { transform: translate(-22%, calc(-100% - 12px)) scale(.85); }
-.sr-pin--left.is-on { transform: translate(-22%, calc(-100% - 12px)) scale(1); }
-.sr-pin--left::after { left: 22%; }
-
-/* ── Пыль в лучах ─────────────────────────────────────── */
-.sr-dust { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; mix-blend-mode: screen; }
-
-/* мягкая вуаль под текст слева сверху — в цвет сайта */
-.sr-veil {
+/* затемнение под текст и под маршрут — кинематографично, не «пеленой» */
+.sx-shade {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    radial-gradient(48% 66% at 0% 0%, rgba(244, 238, 230, .86) 0%, rgba(244, 238, 230, .5) 45%, rgba(244, 238, 230, 0) 78%),
-    linear-gradient(180deg, rgba(244, 238, 230, .3) 0%, rgba(244, 238, 230, 0) 18%);
+    radial-gradient(62% 78% at 0% 0%, rgba(18, 12, 12, .80) 0%, rgba(18, 12, 12, .52) 42%, rgba(18, 12, 12, 0) 76%),
+    linear-gradient(0deg, rgba(14, 10, 10, .78) 0%, rgba(14, 10, 10, .34) 15%, rgba(14, 10, 10, 0) 30%),
+    linear-gradient(180deg, rgba(14, 10, 10, .42) 0%, rgba(14, 10, 10, 0) 16%);
 }
 
 /* ── Текст ─────────────────────────────────────────────── */
-.sr-copy {
-  position: relative; z-index: 2;
-  max-width: 520px;
-  padding: clamp(108px, 14cqh, 132px) 0 0 clamp(28px, 5cqw, 72px);
+.sx-copy {
+  position: relative; z-index: 3;
+  max-width: 620px;
+  padding: clamp(124px, 15.5vh, 156px) 0 0 clamp(28px, 4.6vw, 72px);
 }
-.sr-title {
+.sx-eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  margin: 0 0 22px;
+  font: 500 12px/1 'JetBrains Mono', ui-monospace, monospace;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold);
+}
+.sx-eyebrow-line { width: 44px; height: 1px; background: linear-gradient(90deg, var(--gold), rgba(233, 194, 123, 0)); transform-origin: 0 50%; }
+.sx-title {
   margin: 0;
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-  font-size: clamp(30px, 3.1vw, 44px);
-  line-height: 1.06;
-  font-weight: 700;
-  letter-spacing: -.03em;
-  color: var(--ink);
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  font-size: clamp(38px, 4.3vw, 66px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -.035em;
+  color: var(--paper);
   text-wrap: balance;
 }
-.sr-title span { display: block; margin-top: 10px; font-size: .5em; line-height: 1.25; letter-spacing: -.01em; color: #8B6F4E; font-weight: 600; }
-.sr-lead { margin: 14px 0 0; max-width: 440px; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
-.sr-lead b { color: var(--ink); font-weight: 700; }
-.sr-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-.sr-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  height: 44px; padding: 0 22px; border-radius: 999px;
-  font-size: 15px; font-weight: 600; letter-spacing: -.01em;
-  text-decoration: none; transition: background .2s ease, transform .2s ease;
+.sx-title em, .sx-js .sx-title em .w > span {
+  background: linear-gradient(100deg, #F8E2B0 0%, #E7B868 45%, #F6D99B 70%, #D9A04F 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.sr-btn:active { transform: scale(.97); }
-.sr-btn--dark { background: var(--ink); color: var(--cream); }
-.sr-btn--dark:hover { background: #3B2A20; }
-.sr-btn--ghost { color: var(--ink); border: 1px solid rgba(26, 20, 18, .32); background: rgba(245, 239, 227, .5); }
-.sr-btn--ghost:hover { background: rgba(245, 239, 227, .85); }
+.sx-js .sx-title em { background: none; }
+.sx-title em {
+  font-family: 'Cormorant Garamond', 'PT Serif', Georgia, serif;
+  font-style: italic; font-weight: 500;
+  font-size: 1.12em; letter-spacing: -.015em;
+}
+.sx-lead {
+  margin: 22px 0 0; max-width: 470px;
+  font-size: 16.5px; line-height: 1.55;
+  color: rgba(255, 247, 236, .78);
+}
+.sx-lead b { color: var(--paper); font-weight: 700; }
+.sx-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.sx-btn {
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 50px; padding: 0 26px; border-radius: 999px;
+  font: 600 15px/1 'Manrope', system-ui, sans-serif; letter-spacing: -.005em;
+  text-decoration: none;
+  transition: transform .35s cubic-bezier(.2, .7, .2, 1), background .3s ease, border-color .3s ease, box-shadow .35s ease;
+}
+.sx-btn svg { width: 16px; height: 16px; transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+.sx-btn:hover svg { transform: translateX(3px); }
+.sx-btn:active { transform: scale(.97); }
+.sx-btn--gold {
+  color: #1A1412;
+  background: linear-gradient(180deg, #F7DDA4 0%, #E3B260 100%);
+  box-shadow: 0 10px 30px -10px rgba(233, 176, 90, .65), inset 0 1px 0 rgba(255, 255, 255, .6);
+}
+.sx-btn--gold::after {   /* блик пробегает по кнопке */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, .55) 48%, transparent 66%);
+  transform: translateX(-120%);
+  animation: sxShine 5.5s ease-in-out 4.8s infinite;
+}
+.sx-btn--gold:hover { box-shadow: 0 14px 36px -10px rgba(233, 176, 90, .85), inset 0 1px 0 rgba(255, 255, 255, .6); }
+@keyframes sxShine { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+.sx-btn--ghost {
+  color: var(--paper);
+  border: 1px solid rgba(255, 247, 236, .32);
+  background: rgba(255, 247, 236, .06);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.sx-btn--ghost:hover { background: rgba(255, 247, 236, .14); border-color: rgba(255, 247, 236, .55); }
 
-.sr-copy > * { animation: srRise 1s cubic-bezier(.2, .7, .2, 1) both; animation-delay: .5s; }
-.sr-copy > :nth-child(2) { animation-delay: .62s; }
-.sr-copy > :nth-child(3) { animation-delay: .74s; }
-@keyframes srRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+/* ── Появление текста (только когда работает JS) ───────── */
+.sx-js .sx-title .w { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em .02em .14em; margin: -.06em -.02em -.14em; }
+.sx-js .sx-title .w > span {
+  display: inline-block;
+  transform: translateY(108%) rotate(4deg);
+  transform-origin: 0 100%;
+  transition: transform 1.15s cubic-bezier(.19, 1, .22, 1);
+  transition-delay: var(--d, 0s);
+}
+.sx-js .sx-eyebrow-line { transform: scaleX(0); transition: transform 1.1s cubic-bezier(.19, 1, .22, 1) .1s; }
+.sx-js .sx-eyebrow span { display: inline-block; opacity: 0; letter-spacing: .5em; transition: opacity 1s ease .25s, letter-spacing 1.4s cubic-bezier(.19, 1, .22, 1) .25s; }
+.sx-js .sx-lead, .sx-js .sx-actions {
+  opacity: 0; transform: translateY(18px); filter: blur(8px);
+  transition: opacity 1s ease, transform 1.2s cubic-bezier(.19, 1, .22, 1), filter 1s ease;
+}
+.sx-js .sx-lead { transition-delay: .55s; }
+.sx-js .sx-actions { transition-delay: .72s; }
+.sx-js.is-in .sx-title .w > span { transform: none; }
+.sx-js.is-in .sx-eyebrow-line { transform: none; }
+.sx-js.is-in .sx-eyebrow span { opacity: 1; letter-spacing: .22em; }
+.sx-js.is-in .sx-lead, .sx-js.is-in .sx-actions { opacity: 1; transform: none; filter: none; }
 
-/* ── Телефон ───────────────────────────────────────────── */
+/* ── Маршрут: навигация по регионам ────────────────────── */
+.sx-route {
+  position: absolute; z-index: 3;
+  left: clamp(28px, 4.6vw, 72px); right: clamp(28px, 4.6vw, 72px); bottom: clamp(22px, 3.4vh, 34px);
+  display: flex; align-items: flex-end; gap: 28px;
+}
+.sx-route-label {
+  flex: none; padding-bottom: 4px;
+  font: 500 11px/1.4 'JetBrains Mono', ui-monospace, monospace;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255, 247, 236, .55);
+}
+.sx-route-label b { display: block; color: var(--gold); font-weight: 500; }
+.sx-route ol { flex: 1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
+.sx-stop a {
+  position: relative; display: block;
+  padding: 14px 0 2px;
+  color: rgba(255, 247, 236, .62);
+  text-decoration: none;
+  transition: color .4s ease;
+}
+.sx-stop a::before, .sx-stop a::after {  /* шкала и её заполнение */
+  content: ""; position: absolute; left: 0; top: 0; height: 2px; border-radius: 2px;
+}
+.sx-stop a::before { right: 0; background: rgba(255, 247, 236, .2); }
+.sx-stop a::after {
+  width: 100%;
+  background: linear-gradient(90deg, #E3B260, #F7DDA4);
+  box-shadow: 0 0 12px rgba(240, 190, 100, .7);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--f, 0));
+}
+.sx-n { display: block; font: 500 11px/1 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .12em; color: rgba(233, 194, 123, .7); }
+.sx-stop b { display: block; margin-top: 8px; font: 600 15px/1.2 'Manrope', system-ui, sans-serif; letter-spacing: -.01em; color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sx-stop small { display: block; margin-top: 3px; font-size: 12.5px; line-height: 1.3; color: rgba(255, 247, 236, .5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sx-meta {
+  display: block; height: 0; overflow: hidden;
+  font: 600 12.5px/1.3 'Manrope', system-ui, sans-serif; font-style: normal;
+  color: var(--gold-2);
+  opacity: 0; transform: translateY(4px);
+  transition: height .45s cubic-bezier(.19, 1, .22, 1), opacity .4s ease, transform .45s cubic-bezier(.19, 1, .22, 1);
+}
+.sx-stop.is-lit a { color: rgba(255, 247, 236, .86); }
+.sx-stop.is-active a, .sx-stop a:hover, .sx-stop a:focus-visible { color: #fff; }
+.sx-stop.is-active .sx-meta { height: 22px; padding-top: 5px; opacity: 1; transform: none; }
+.sx-stop a:focus-visible { outline: 2px solid var(--gold); outline-offset: 6px; border-radius: 4px; }
+
+/* ── Метка над символом региона ────────────────────────── */
+.sx-marker {
+  position: absolute; left: 0; top: 0; z-index: 2;
+  pointer-events: none;
+  opacity: 0; transition: opacity .5s ease;
+  will-change: transform;
+}
+.sx-marker.is-on { opacity: 1; }
+.sx-marker-dot {
+  position: absolute; left: -6px; top: -6px; width: 12px; height: 12px; border-radius: 50%;
+  background: radial-gradient(circle, #FFF3D6 0 35%, #E9B660 36% 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .5), 0 0 18px 4px rgba(240, 186, 96, .75);
+}
+.sx-marker-dot::before, .sx-marker-dot::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 50%;
+  border: 1px solid rgba(247, 221, 164, .85);
+  animation: sxRing 2.4s cubic-bezier(.2, .7, .2, 1) infinite;
+}
+.sx-marker-dot::after { animation-delay: 1.2s; }
+@keyframes sxRing { from { transform: scale(.6); opacity: 1; } to { transform: scale(3.4); opacity: 0; } }
+.sx-marker-stem { position: absolute; left: 0; bottom: 10px; width: 1px; height: 34px; background: linear-gradient(0deg, rgba(247, 221, 164, .9), rgba(247, 221, 164, 0)); transform-origin: 50% 100%; }
+.sx-marker-tag {
+  position: absolute; left: 0; bottom: 48px;
+  transform: translateX(-50%);
+  padding: 7px 12px 8px; border-radius: 10px;
+  white-space: nowrap;
+  font: 600 13px/1.2 'Manrope', system-ui, sans-serif; letter-spacing: -.005em;
+  color: #fff;
+  background: rgba(22, 16, 14, .58);
+  border: 1px solid rgba(247, 221, 164, .28);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3); backdrop-filter: blur(12px) saturate(1.3);
+}
+.sx-marker-tag small { display: block; margin-top: 2px; font-weight: 500; font-size: 11.5px; color: rgba(255, 247, 236, .65); }
+.sx-marker.is-swap .sx-marker-tag { animation: sxTag .6s cubic-bezier(.19, 1, .22, 1); }
+.sx-marker.is-swap .sx-marker-stem { animation: sxStem .6s cubic-bezier(.19, 1, .22, 1); }
+@keyframes sxTag { from { opacity: 0; transform: translate(-50%, 8px); filter: blur(4px); } to { opacity: 1; transform: translate(-50%, 0); filter: none; } }
+@keyframes sxStem { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+/* подпись сбоку от точки — когда сверху мешает текст или край кадра */
+.sx-marker[data-al="r"] .sx-marker-stem, .sx-marker[data-al="l"] .sx-marker-stem { bottom: -.5px; width: 26px; height: 1px; left: 10px; background: linear-gradient(90deg, rgba(247, 221, 164, .9), rgba(247, 221, 164, .2)); transform-origin: 0 50%; }
+.sx-marker[data-al="l"] .sx-marker-stem { left: auto; right: 10px; background: linear-gradient(270deg, rgba(247, 221, 164, .9), rgba(247, 221, 164, .2)); transform-origin: 100% 50%; }
+.sx-marker[data-al="r"] .sx-marker-tag { left: 36px; bottom: auto; top: 0; transform: translate(0, -50%); }
+.sx-marker[data-al="l"] .sx-marker-tag { left: auto; right: 36px; bottom: auto; top: 0; transform: translate(0, -50%); }
+.sx-marker[data-al="r"].is-swap .sx-marker-tag, .sx-marker[data-al="l"].is-swap .sx-marker-tag { animation-name: sxTagS; }
+.sx-marker[data-al="r"].is-swap .sx-marker-stem, .sx-marker[data-al="l"].is-swap .sx-marker-stem { animation-name: sxStemS; }
+@keyframes sxTagS { from { opacity: 0; transform: translate(0, -50%) translateX(-6px); filter: blur(4px); } to { opacity: 1; transform: translate(0, -50%); filter: none; } }
+@keyframes sxStemS { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ── Ноутбуки пониже ───────────────────────────────────── */
+@media (max-height: 760px) and (min-width: 761px) {
+  .sx-copy { padding-top: 112px; }
+  .sx-title { font-size: clamp(34px, 3.7vw, 54px); }
+  .sx-lead { margin-top: 16px; font-size: 15.5px; }
+  .sx-actions { margin-top: 22px; }
+  .sx-stop small { display: none; }
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .sx-route-label { display: none; }
+  .sx-stop small { display: none; }
+}
+
+/* ── Телефон: сцена внизу, текст на «сумеречном небе» ──── */
 @media (max-width: 760px) {
-  .silk-hero { height: clamp(600px, calc(100svh - 16px), 780px); border-radius: 16px; background: #EFE8DE; }
-  .sr-stage {
-    top: auto; bottom: 0;
-    width: calc(62cqh * 2576 / 1438);
-    transform: translate(-56%, 0) scale(1.01);
-    transform-origin: 56% 70%;
-    animation-name: srPushM;
+  .silk-hero {
+    height: max(680px, calc(100svh - 16px));
+    border-radius: 16px;
+    background: linear-gradient(180deg, #1C1820 0%, #2B2229 38%, #5A4440 58%, #8B6A5C 70%);
   }
-  @keyframes srPushM {
-    from { transform: translate(-56%, 0) scale(1.01); }
-    to   { transform: translate(-57.5%, 0) scale(1.06); }
+  .sx-scene {
+    top: auto; height: 60%;
+    -webkit-mask: linear-gradient(180deg, transparent 0%, #000 22%);
+    mask: linear-gradient(180deg, transparent 0%, #000 22%);
   }
-  .sr-veil { background: linear-gradient(180deg, rgba(239, 232, 222, 1) 0%, rgba(239, 232, 222, 1) 38%, rgba(239, 232, 222, .5) 47%, rgba(239, 232, 222, 0) 56%); }
-  .sr-copy { padding: 96px 22px 0; }
-  .sr-title { font-size: 29px; }
-  .sr-lead { font-size: 14px; }
-  .sr-actions .sr-btn { height: 42px; padding: 0 18px; font-size: 14.5px; }
-  .sr-pin { padding: 5px 9px; }
-  .sr-pin-name { font-size: 11.5px; }
-  .sr-pin.is-active .sr-pin-name { font-size: 12px; }
-  .sr-pin.is-active .sr-pin-meta { font-size: 10.5px; }
-  .sr-pin[data-k="khiva"], .sr-pin[data-k="bukhara"], .sr-pin[data-k="kokand"], .sr-pin[data-k="toshobl"], .sr-pin[data-k="jizzakh"] { display: none; }
-  .sr-birds { width: 16%; }
+  .sx-img { object-position: 30% 50%; }
+  .sx-shade { background: linear-gradient(0deg, rgba(14, 10, 10, .82) 0%, rgba(14, 10, 10, .2) 22%, rgba(14, 10, 10, 0) 34%); }
+  .sx-copy { padding: 100px 22px 0; }
+  .sx-eyebrow { margin-bottom: 16px; font-size: 10.5px; }
+  .sx-title { font-size: clamp(32px, 9vw, 40px); }
+  .sx-lead { margin-top: 14px; font-size: 14.5px; }
+  .sx-actions { margin-top: 20px; gap: 10px; }
+  .sx-btn { height: 46px; padding: 0 20px; font-size: 14.5px; }
+  .sx-route { left: 0; right: 0; bottom: 16px; }
+  .sx-route-label { display: none; }
+  .sx-route ol {
+    display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 0 22px; scroll-padding-inline: 22px; scrollbar-width: none;
+  }
+  .sx-route ol::-webkit-scrollbar { display: none; }
+  .sx-stop { flex: 0 0 132px; scroll-snap-align: start; }
+  .sx-stop small { display: none; }
+  .sx-marker-tag { font-size: 12px; }
 }
 
 /* ── Без анимации ──────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .sr-par, .sr-stage, .sr-road-img, .sr-seg, .sr-lake, .sr-snow, .sr-beacon, .sr-clouds, .sr-stars i, .sr-birds, .sr-bird, .sr-haze, .sr-copy > *, .sr-glow.is-hit { animation: none !important; }
-  .sr-birds, .sr-seg { display: none; }
-  .sr-lit, .sr-glow, .sr-pin, .sr-par { transition: none !important; }
-  .sr-reveal { stroke-dashoffset: 0; }
+  .sx-js .sx-title .w > span, .sx-js .sx-eyebrow-line, .sx-js .sx-eyebrow span, .sx-js .sx-lead, .sx-js .sx-actions { transition: none !important; }
+  .sx-btn--gold::after, .sx-marker-dot::before, .sx-marker-dot::after { animation: none !important; display: none; }
 }
