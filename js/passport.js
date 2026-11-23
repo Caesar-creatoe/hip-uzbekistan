@@ -184,7 +184,7 @@ function renderPassport(hotel) {
   const certNo = String(hotel.certificateNo || '').trim();
   const certBadge = $id('passport-cert-badge-link'), certCard = $id('btn-view-cert');
   if (certNo) {
-    const href = `certificate.html?no=${encodeURIComponent(certNo)}`;
+    const href = "#cover"; // реестр сертификатов будет подключён отдельно
     if (certBadge) { certBadge.href = href; certBadge.hidden = false; }
     if (certCard) { certCard.href = href; certCard.hidden = false; }
     setTxt('passport-cert-no', certNo);
@@ -485,7 +485,7 @@ function renderLocation(hotel) {
   setTxt('map-tag-hotel-region', hotel.address || hotel.region, 'Узбекистан');
   const c = $id('loc-contact'), call = $id('loc-call');
   const contact = String(hotel.managerContact || '').trim();
-  if (c) c.textContent = contact || 'По запросу через платформу';
+  if (c) c.textContent = contact || 'Через платформу — оставьте заявку';
   const digits = contact.replace(/[^\d+]/g, '');
   if (call && digits.replace(/\D/g, '').length >= 7) {
     const tel = digits.startsWith('+') ? digits : (digits.length === 9 ? '+998' + digits : digits);

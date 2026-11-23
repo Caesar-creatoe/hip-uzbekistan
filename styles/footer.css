@@ -1,0 +1,140 @@
+/* FOOTER.CSS — подвал сайта (вынесен из portal.css для новых страниц) */
+.site-footer {
+  background-color: var(--color-header-bg);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-16) 0 var(--space-10);
+}
+
+.footer-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--grid-margin-desktop);
+}
+
+/* Верхняя часть: бренд + навигация */
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  gap: var(--space-20);
+  padding-bottom: var(--space-12);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-8);
+}
+
+/* Бренд-блок */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  text-decoration: none;
+}
+
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  max-width: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.footer-brand-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--lh-body);
+  max-width: 34ch;
+}
+
+/* Навигационная сетка footer */
+.footer-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-10);
+}
+
+.footer-nav-heading {
+  font-family: var(--font-body);
+  font-size: var(--text-2xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.footer-nav-link {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin-bottom: var(--space-2);
+  transition: color var(--transition-fast);
+  line-height: 1.5;
+}
+.footer-nav-link:hover {
+  color: var(--color-text-primary);
+}
+
+.footer-contact-item {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: var(--space-2);
+}
+
+/* Нижняя часть: копирайт + языки */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.footer-legal {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  max-width: 68ch;
+}
+
+.footer-lang-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.footer-lang-link {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.footer-lang-link:hover,
+.footer-lang-link--active {
+  color: var(--color-text-primary);
+}
+
+/* Адаптив footer */
+@media (max-width: 1200px) {
+  .footer-inner   { padding: 0 var(--grid-margin-tablet); }
+  .footer-top     { grid-template-columns: 1fr; gap: var(--space-12); }
+  .footer-nav-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 680px) {
+  .footer-inner   { padding: 0 var(--grid-margin-mobile); }
+  .footer-nav-grid { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  .footer-bottom  { flex-direction: column; align-items: flex-start; }
+}
+
+/* Атрибуция фото в hero */

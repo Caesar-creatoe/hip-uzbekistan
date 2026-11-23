@@ -1,26 +1,37 @@
-# ROLLBACK — Home Redesign
+# Возврат к прошлой версии
 
-## Резервная копия
-- Файл: `backup/index.html.bak`
-- Git tag: `backup-before-home-redesign`
-- Branch: `redesign-home`
+## Полная версия платформы (до упрощения, 23.11.2026)
 
-## Что изменено
-- `index.html` — полная визуальная переработка главной страницы
-- `css/home-v2.css` — новые стили (только главная страница)
-- `js/home-v2.js` — новый JS (только главная страница)
+Перед упрощением сайта вся прежняя версия сохранена в ветке
+**`archive/full-platform`** (коммит `363f083`). В ней есть всё, что было убрано:
 
-## Откат одной командой
+- кабинеты инвестора, отеля, ресторатора и Центра сертификации;
+- модуль сертификации (заявка, реестр, сертификат, кабинет инспектора);
+- Smart Investment Form, реестры, оценка качества KQI, «Услуги»;
+- «Партнёрам» (B2B), государственные мероприятия (events-app);
+- тома документации, «Виды туризма», рестораны и земельные участки;
+- старая страница господдержки с калькулятором.
+
+### Вернуть всё целиком
 ```bash
-git checkout backup-before-home-redesign -- index.html
-# или
-cp backup/index.html.bak index.html
+git checkout main
+git reset --hard archive/full-platform   # или: git revert <коммиты упрощения>
+git push --force-with-lease origin main
 ```
 
-## НЕ изменялось
-- Все остальные страницы (portfolio.html, passport.html и др.)
-- Общие файлы стилей (design-tokens.css, styles/*.css)
-- JS файлы (js/megamenu.js, js/hotels-data.js, js/main.js, js/verticals.js)
-- Логика администратора (js/admin.js, admin.html)
-- API файлы (api/)
-- Данные (data/hotels.json)
+### Вернуть один модуль (пример — сертификация)
+```bash
+git checkout archive/full-platform -- certification.html certification-apply.html \
+  certification-registry.html certificate.html cabinet-inspector.html \
+  js/cert-api.js js/cert-ui.js css/certification.css styles/certification.css \
+  data/cert-demo.json data/cert-checklist-template.json
+```
+После возврата страниц убрать их адреса из блока `redirects` в `vercel.json`.
+
+## Что изменилось в упрощённой версии
+- Меню: Каталог · Рынок · Льготы · Как купить · О платформе + «Разместить объект».
+- Новые страницы: `market.html`, `incentives.html`; переписаны `investors.html`
+  («Как купить»), `business.html` («Разместить объект»), `platform.html` («О платформе»).
+- Заявки со всех форм идут в `api/lead.js` → Telegram и/или почта
+  (ключи в Vercel: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `RESEND_API_KEY`, `LEAD_EMAIL_TO`).
+- Старые адреса перенаправляются (`vercel.json` → `redirects`).

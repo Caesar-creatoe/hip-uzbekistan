@@ -25,5 +25,247 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/about",
+      "destination": "/platform#method",
+      "permanent": false
+    },
+    {
+      "source": "/about.html",
+      "destination": "/platform#method",
+      "permanent": false
+    },
+    {
+      "source": "/tech-spec",
+      "destination": "/platform",
+      "permanent": false
+    },
+    {
+      "source": "/tech-spec.html",
+      "destination": "/platform",
+      "permanent": false
+    },
+    {
+      "source": "/tourism-types",
+      "destination": "/market",
+      "permanent": false
+    },
+    {
+      "source": "/tourism-types.html",
+      "destination": "/market",
+      "permanent": false
+    },
+    {
+      "source": "/registries",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/registries.html",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/form",
+      "destination": "/business",
+      "permanent": false
+    },
+    {
+      "source": "/form.html",
+      "destination": "/business",
+      "permanent": false
+    },
+    {
+      "source": "/certification",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/certification.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/certification-apply",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/certification-apply.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/certification-registry",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/certification-registry.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/certificate",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/certificate.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/cabinet-hotel",
+      "destination": "/business",
+      "permanent": false
+    },
+    {
+      "source": "/cabinet-hotel.html",
+      "destination": "/business",
+      "permanent": false
+    },
+    {
+      "source": "/cabinet-inspector",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/cabinet-inspector.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/cabinet-investor",
+      "destination": "/investors",
+      "permanent": false
+    },
+    {
+      "source": "/cabinet-investor.html",
+      "destination": "/investors",
+      "permanent": false
+    },
+    {
+      "source": "/cabinet-restaurant",
+      "destination": "/business",
+      "permanent": false
+    },
+    {
+      "source": "/cabinet-restaurant.html",
+      "destination": "/business",
+      "permanent": false
+    },
+    {
+      "source": "/quality",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/quality.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/services",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/services.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/b2b",
+      "destination": "/platform",
+      "permanent": false
+    },
+    {
+      "source": "/b2b.html",
+      "destination": "/platform",
+      "permanent": false
+    },
+    {
+      "source": "/events-app",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/events-app.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/restaurants",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/restaurants.html",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/restaurant-form",
+      "destination": "/business",
+      "permanent": false
+    },
+    {
+      "source": "/restaurant-form.html",
+      "destination": "/business",
+      "permanent": false
+    },
+    {
+      "source": "/restaurant-passport",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/restaurant-passport.html",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/land",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/land.html",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/land-lot",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/land-lot.html",
+      "destination": "/portfolio",
+      "permanent": false
+    },
+    {
+      "source": "/economics-ratings",
+      "destination": "/portfolio?sort=roi-desc",
+      "permanent": false
+    },
+    {
+      "source": "/economics-ratings.html",
+      "destination": "/portfolio?sort=roi-desc",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "destination": "/incentives",
+      "permanent": false
+    },
+    {
+      "source": "/support.html",
+      "destination": "/incentives",
+      "permanent": false
+    }
   ]
 }

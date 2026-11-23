@@ -1092,12 +1092,24 @@ window.addEventListener('storage', (e) => {
   }
 });
 
-/* ?region=samarkand — переход с карты на странице «Для инвесторов» */
-(function applyRegionFromUrl() {
-  const key = new URLSearchParams(location.search).get('region');
+/* Фильтры из адреса: ?region=samarkand · ?deal=sale|rent|franchise|invest · ?sort=roi-desc */
+(function applyFiltersFromUrl() {
+  const q = new URLSearchParams(location.search);
+  const key = q.get('region');
   if (key && regionSelect && regionSelect.querySelector(`option[value="${CSS.escape(key)}"]`)) {
     regionSelect.value = key;
     filterState.region = key;
+  }
+  const deal = q.get('deal');
+  if (deal && ['sale', 'rent', 'franchise', 'invest'].includes(deal)) {
+    filterState.dealType = deal;
+    if (dealSelect) dealSelect.value = deal;
+    document.querySelectorAll('button[data-deal]').forEach((b) => b.classList.toggle('is-active', b.dataset.deal === deal));
+  }
+  const sort = q.get('sort');
+  if (sort && sortSelect && sortSelect.querySelector(`option[value="${CSS.escape(sort)}"]`)) {
+    sortSelect.value = sort;
+    filterState.sort = sort;
   }
 })();
 

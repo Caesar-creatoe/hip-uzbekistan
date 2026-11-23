@@ -4,34 +4,29 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="./assets/logo-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="О платформе Silk Route Invest: как объект попадает в каталог, восемь томов документации с поиском, принципы подготовки паспортов, технологии и защита данных." />
+  <meta name="description" content="Silk Route Invest — каталог гостиничных объектов Узбекистана для инвесторов. Как мы собираем объекты, считаем показатели по USALI и связываем инвестора с владельцем." />
   <meta name="theme-color" content="#F5F2EC" />
-  <title>О платформе — Silk Route Invest · Комитет по туризму РУз</title>
-
+  <title>О платформе — Silk Route Invest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=PT+Serif:wght@400;700&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="design-tokens.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/base.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/header.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/megamenu.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/verticals.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/investors.css?v=inv_3" />
-  <link rel="stylesheet" href="styles/platform.css?v=plat_1" />
-  <link rel="stylesheet" href="styles/calm.css?v=calm_1" />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="design-tokens.css?v=site_1" />
+  <link rel="stylesheet" href="styles/base.css?v=site_1" />
+  <link rel="stylesheet" href="styles/header.css?v=site_1" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=site_1" />
+  <link rel="stylesheet" href="styles/footer.css?v=site_1" />
+  <link rel="stylesheet" href="styles/site.css?v=site_1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Silk Route Invest" />
+  <meta property="og:title" content="О платформе — Silk Route Invest" />
+  <meta property="og:description" content="Каталог гостиничных объектов Узбекистана: единый паспорт, показатели по USALI, связь с владельцем." />
+  <meta property="og:image" content="https://silkroute-invest.vercel.app/assets/hero/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
-<body class="page-investors page-platform">
+<body class="sx-page page-platform">
 
-  <!-- ═══ C-01 · SITE HEADER ════════════════════ -->
-    <!-- ═══════════════════════════════════════════
-       C-01 · SITE HEADER — Мегаменю
-  ═══════════════════════════════════════════ -->
-    <header class="site-header" id="site-header" role="banner">
+  <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
-
-      <!-- Логотип -->
       <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
         <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
         <div class="logo-text">
@@ -39,361 +34,234 @@
           <span class="logo-subtitle">INVEST</span>
         </div>
       </a>
-
-      <!-- Основная навигация -->
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
-
-        <!-- 0. Каталог отелей -->
-        <div class="nav-item" data-page="portfolio" data-also="passport">
-          <a href="portfolio.html" class="nav-trigger">Каталог отелей</a>
-        </div>
-
-        <!-- 1. Для инвесторов -->
-        <div class="nav-item" data-page="investors" data-also="restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry">
-          <a href="investors.html" class="nav-trigger">Для инвесторов</a>
-        </div>
-
-        <!-- 2. Для бизнеса -->
-        <div class="nav-item" data-page="business" data-also="form restaurant-form cabinet-hotel cabinet-restaurant certification-apply tools">
-          <a href="business.html" class="nav-trigger">Для бизнеса</a>
-        </div>
-
-                <!-- 3. Услуги -->
-        <div class="nav-item" data-page="services" data-also="certification certificate quality economics-ratings events-app cabinet-inspector">
-          <a href="services.html" class="nav-trigger">Услуги</a>
-        </div>
-
-        <!-- 4. О платформе -->
-        <div class="nav-item" data-page="platform" data-also="about tech-spec registries">
-          <a href="platform.html" class="nav-trigger">О платформе</a>
-        </div>
-
-        <!-- 4. B2B Cooperation (в последнюю очередь) -->
-        <div class="nav-item" data-page="b2b">
-          <a href="b2b.html" class="nav-trigger">Партнёрам</a>
-        </div>
-
+        <div class="nav-item" data-page="portfolio" data-also="passport"><a href="portfolio.html" class="nav-trigger">Каталог отелей</a></div>
+        <div class="nav-item" data-page="market"><a href="market.html" class="nav-trigger">Рынок</a></div>
+        <div class="nav-item" data-page="incentives"><a href="incentives.html" class="nav-trigger">Льготы</a></div>
+        <div class="nav-item" data-page="investors"><a href="investors.html" class="nav-trigger">Как купить</a></div>
+        <div class="nav-item" data-page="platform"><a href="platform.html" class="nav-trigger">О платформе</a></div>
       </nav>
-
-      <!-- Правый блок -->
       <div class="header-right">
-        <div class="lang-switcher" role="group" aria-label="Выбор языка">
-          <button class="lang-btn lang-btn--active" data-lang="ru" aria-pressed="true">RU</button>
-          <button class="lang-btn" data-lang="uz" aria-pressed="false">UZ</button>
-          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
-        </div>
-        <a href="cabinet-investor.html" class="btn-login" id="header-login">
-          <span>Кабинет</span>
+        <a href="business.html" class="btn-login" id="header-login">
+          <span>Разместить объект</span>
           <span class="btn-login-icon">→</span>
         </a>
       </div>
-
-      <!-- Мобильный гамбургер -->
       <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-
     </div>
   </header>
-
-
-  <!-- Мобильная навигация -->
   <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Инвесторам</span>
+      <span class="mobile-nav-label">Инвестору</span>
       <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
-      <a href="investors.html">Для инвесторов — обзор раздела</a>
-      <a href="restaurants.html">Ресторанные проекты</a>
-      <a href="land.html">Земельные участки</a>
-      <a href="support.html">Государственная поддержка</a>
-      <a href="certification-registry.html">Проверить сертификат отеля</a>
-      <a href="cabinet-investor.html">Кабинет инвестора</a>
+      <a href="market.html">Рынок Узбекистана</a>
+      <a href="incentives.html">Льготы для инвестора</a>
+      <a href="investors.html">Как купить отель</a>
     </div>
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Для бизнеса</span>
-      <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
-      <a href="form.html" class="mobile-nav-cta">Подать отель в реестр</a>
-      <a href="restaurant-form.html">Подать ресторан в реестр</a>
-      <a href="cabinet-hotel.html">Кабинет отеля</a>
-      <a href="certification-apply.html">Заявка на сертификацию</a>
+      <span class="mobile-nav-label">Владельцам</span>
+      <a href="business.html" class="mobile-nav-cta">Разместить объект</a>
     </div>
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Услуги</span>
-      <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
-      <a href="certification.html">Сертификация</a>
-      <a href="quality.html">Оценка качества</a>
-      <a href="economics-ratings.html">Рейтинг отелей</a>
-    </div>
-    <div class="mobile-nav-section">
-      <span class="mobile-nav-label">О платформе</span>
-      <a href="platform.html" class="mobile-nav-hub">О платформе</a>
-      <a href="b2b.html">Партнёрам</a>
+      <span class="mobile-nav-label">Платформа</span>
+      <a href="platform.html">О платформе</a>
+      <a href="platform.html#method">Как считаются показатели</a>
     </div>
   </div>
 
-  <!-- ═══ О ПЛАТФОРМЕ ══════════════════════════════════════════
-       Раздел верхнего меню «О платформе». Задача — простым языком:
-       что это за система, как она работает, где лежат правила
-       (8 томов документации, с поиском), на каких принципах
-       и технологиях она построена и кто за неё отвечает.
-  ════════════════════════════════════════════════════════════ -->
-  <main class="inv plat" id="main-content">
+  <main id="main-content">
 
-    <!-- 1 · HERO: что это + полка из 8 томов -->
-    <section class="inv-hero" aria-labelledby="plat-title">
-      <div class="plat-hero">
-        <div class="plat-hero-pattern" aria-hidden="true"></div>
-        <div class="plat-hero-copy">
-          <p class="inv-eyebrow inv-eyebrow--light">О платформе</p>
-          <h1 class="plat-title" id="plat-title">Одна система для гостиничных инвестиций.<br /><span>Правила открыты для всех.</span></h1>
-          <p class="plat-lead">Официальная платформа Комитета по туризму. Здесь описано, как объект попадает в каталог, как считаются цифры и кто их проверяет.</p>
-          <div class="inv-hero-actions">
-            <a href="#docs" class="inv-btn inv-btn--light">Открыть документацию</a>
-            <a href="#how" class="inv-btn inv-btn--glass">Как это работает</a>
-          </div>
-        </div>
-
-        <nav class="shelf" aria-label="Восемь томов документации">
-          <a href="about.html" class="spine" style="--c:#C8913F;--h:96%"><b>I</b><span>Методика</span></a>
-          <a href="passport.html" class="spine" style="--c:#A9722A;--h:88%"><b>II</b><span>Паспорт отеля</span></a>
-          <a href="form.html" class="spine" style="--c:#7A9C69;--h:92%"><b>III</b><span>Форма заявки</span></a>
-          <a href="tech-spec.html" class="spine" style="--c:#6F8DAE;--h:100%"><b>IV</b><span>Тех. описание</span></a>
-          <a href="support.html" class="spine" style="--c:#D07A5D;--h:86%"><b>V</b><span>Господдержка</span></a>
-          <a href="restaurants.html" class="spine" style="--c:#94442D;--h:94%"><b>VI</b><span>Рестораны</span></a>
-          <a href="land.html" class="spine" style="--c:#3E6034;--h:90%"><b>VII</b><span>Земля</span></a>
-          <a href="certification.html#methodology" class="spine" style="--c:#36506F;--h:98%"><b>VIII</b><span>Сертификация</span></a>
-        </nav>
-
-        <dl class="plat-facts">
-          <div><dt>Томов документации</dt><dd>8</dd></div>
-          <div><dt>Объектов в каталоге</dt><dd><span data-stat="all-objects">46</span></dd></div>
+    <section class="pg-hero pg-hero--plain" aria-labelledby="about-title">
+      <div class="pg-wrap pg-hero__inner">
+        <p class="pg-eyebrow">О платформе</p>
+        <h1 id="about-title">Один каталог гостиничных объектов страны</h1>
+        <p class="pg-hero__lead">Silk Route Invest собирает отели Узбекистана, которые ищут покупателя, соинвестора или оператора, и показывает их инвесторам в едином формате — с ценой, показателями и паспортом объекта.</p>
+        <dl class="pg-hero__facts">
+          <div><dt>объектов в каталоге</dt><dd data-p="count">32</dd></div>
+          <div><dt>регионов</dt><dd data-p="regions">7</dd></div>
+          <div><dt>номеров</dt><dd data-p="rooms">3 396</dd></div>
+          <div><dt>общая стоимость</dt><dd data-p="value">$306 млн</dd></div>
         </dl>
       </div>
     </section>
 
-    <!-- 2 · КАК ЭТО РАБОТАЕТ -->
-    <section class="inv-section" id="how" aria-labelledby="how-title">
-      <header class="inv-head">
-        <p class="inv-eyebrow">Как это работает</p>
-        <h2 class="inv-h2" id="how-title">Путь объекта до инвестора.</h2>
-      </header>
-
-      <ol class="flow" data-reveal>
-        <li class="flow-step">
-          <span class="flow-n">1</span>
-          <p class="flow-who">Владелец отеля</p>
-          <h3>Заполняет онлайн-форму</h3>
-          <p>Данные объекта, номера, выручка и документы.</p>
-          <a href="form.html" class="flow-vol"><b>Том III</b> Форма заявки</a>
-        </li>
-        <li class="flow-step">
-          <span class="flow-n">2</span>
-          <p class="flow-who">Система</p>
-          <h3>Считает показатели</h3>
-          <p>По единым формулам для всех объектов.</p>
-          <a href="about.html" class="flow-vol"><b>Том I</b> Методика и формулы</a>
-        </li>
-        <li class="flow-step">
-          <span class="flow-n">3</span>
-          <p class="flow-who">Центр сертификации</p>
-          <h3>Подтверждает категорию</h3>
-          <p>Объект получает паспорт и электронный сертификат.</p>
-          <a href="certification.html#methodology" class="flow-vol"><b>Том VIII</b> Сертификация</a>
-        </li>
-        <li class="flow-step">
-          <span class="flow-n">4</span>
-          <p class="flow-who">Инвестор</p>
-          <h3>Находит и изучает</h3>
-          <p>Каталог и паспорт, а после NDA — закрытые документы.</p>
-          <a href="passport.html" class="flow-vol"><b>Том II</b> Паспорт отеля</a>
-        </li>
-      </ol>
-    </section>
-
-    <!-- 3 · ДОКУМЕНТАЦИЯ: 8 томов с поиском -->
-    <section class="inv-section" id="docs" aria-labelledby="docs-title">
-      <header class="inv-head inv-head--row">
-        <div>
-          <p class="inv-eyebrow">Документация</p>
-          <h2 class="inv-h2" id="docs-title">Документы платформы.</h2>
+    <section class="pg-section" aria-labelledby="what-title">
+      <div class="pg-wrap">
+        <header class="pg-head">
+          <p class="pg-eyebrow">Что мы делаем</p>
+          <h2 class="pg-h2" id="what-title">Между владельцем и инвестором</h2>
+        </header>
+        <div class="pg-grid pg-grid--3">
+          <div class="pg-card" data-reveal>
+            <span class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>
+            <h3>Собираем объекты</h3>
+            <p>Владельцы отелей, курортов и участков присылают заявки. Мы проверяем данные и документы.</p>
+          </div>
+          <div class="pg-card" data-reveal>
+            <span class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+            <h3>Считаем показатели</h3>
+            <p>Готовим паспорт объекта: загрузка, тариф, выручка, EBITDA, окупаемость — по одной методике для всех.</p>
+          </div>
+          <div class="pg-card" data-reveal>
+            <span class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11l3 3 7-7"/><path d="M21 12a9 9 0 1 1-6.2-8.6"/></svg></span>
+            <h3>Связываем стороны</h3>
+            <p>Передаём заявку инвестора владельцу, организуем NDA, показ объекта и помогаем с господдержкой.</p>
+          </div>
         </div>
-      </header>
-
-      <div class="vols" id="vols">
-        <a href="about.html" class="vol" data-k="методика рекомендации принципы usali kpi adr revpar загрузка iri data room сделки глоссарий формулы инвестор отель разработчик все" style="--c:#C8913F">
-          <span class="vol-n">I</span>
-          <div class="vol-body">
-            <h3>Методические рекомендации</h3>
-            <p>Правила и формулы расчёта.</p>
-            <span class="vol-for">Для всех · начните с него</span>
-          </div>
-        </a>
-        <a href="passport.html" class="vol" data-k="паспорт passport финмодель объект номерной фонд инвестор отель" style="--c:#A9722A">
-          <span class="vol-n">II</span>
-          <div class="vol-body">
-            <h3>Паспорт отеля</h3>
-            <p>Что инвестор видит об объекте.</p>
-            <span class="vol-for">Инвестору и отелю</span>
-          </div>
-        </a>
-        <a href="form.html" class="vol" data-k="smart form форма заявка adr revpar ebitda irr расчёт отель" style="--c:#7A9C69">
-          <span class="vol-n">III</span>
-          <div class="vol-body">
-            <h3>Форма заявки</h3>
-            <p>Как отель подаёт данные.</p>
-            <span class="vol-for">Отелю</span>
-          </div>
-        </a>
-        <a href="tech-spec.html" class="vol" data-k="tech specification api архитектура база данных er схема pdf безопасность data room разработчик" style="--c:#6F8DAE">
-          <span class="vol-n">IV</span>
-          <div class="vol-body">
-            <h3>Техническое описание</h3>
-            <p>Устройство системы и API.</p>
-            <span class="vol-for">Разработчику и партнёру</span>
-          </div>
-        </a>
-        <a href="support.html" class="vol" data-k="государственная поддержка субсидии компенсации гранты льготы налог калькулятор инвестор отель" style="--c:#D07A5D">
-          <span class="vol-n">V</span>
-          <div class="vol-body">
-            <h3>Государственная поддержка</h3>
-            <p><span data-stat="support">16</span> <span data-forms="действующая мера|действующие меры|действующих мер" data-of="support">действующих мер</span> и калькулятор.</p>
-            <span class="vol-for">Инвестору и отелю</span>
-          </div>
-        </a>
-        <a href="restaurants.html" class="vol" data-k="ресторан f&b стандарты рестораны ресторанные инвестиции паспорт ресторана инвестор" style="--c:#94442D">
-          <span class="vol-n">VI</span>
-          <div class="vol-body">
-            <h3>Рестораны</h3>
-            <p><span data-stat="restaurants">6</span> <span data-forms="проект|проекта|проектов" data-of="restaurants">проектов</span> и стандарты.</p>
-            <span class="vol-for">Инвестору и ресторатору</span>
-          </div>
-        </a>
-        <a href="land.html" class="vol" data-k="земля земельные участки лоты аукцион e-auksion кластеры аренда гчп инвестор" style="--c:#3E6034">
-          <span class="vol-n">VII</span>
-          <div class="vol-body">
-            <h3>Земельные участки</h3>
-            <p><span data-stat="land">8</span> <span data-forms="лот|лота|лотов" data-of="land">лотов</span> под строительство.</p>
-            <span class="vol-for">Инвестору</span>
-          </div>
-        </a>
-        <a href="certification.html#methodology" class="vol" data-k="сертификация сертификат стандарт o'z dst 3220 реестр категория звёзды отель инвестор" style="--c:#36506F">
-          <span class="vol-n">VIII</span>
-          <div class="vol-body">
-            <h3>Сертификация</h3>
-            <p>Как подтверждается категория.</p>
-            <span class="vol-for">Отелю и инвестору</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="docs-more">
-        <span>Ещё в открытом доступе:</span>
-        <a href="registries.html">Реестры</a>
-        <a href="certification-registry.html">Реестр сертифицированных отелей</a>
-        <a href="tourism-types.html">Виды туризма</a>
       </div>
     </section>
 
-    <!-- 4 · ПРИНЦИПЫ -->
-    <section class="inv-section" id="principles" aria-labelledby="pr-title">
-      <div class="princ">
-        <div class="princ-side" data-reveal>
-          <p class="inv-eyebrow">Принципы</p>
-          <h2 class="inv-h2" id="pr-title">Чему можно доверять.</h2>
-          <figure class="princ-photo">
-            <img src="assets/invest/photo/lobby2-1400.webp" alt="" loading="lazy" />
-          </figure>
+    <section class="pg-section" id="method" aria-labelledby="method-title">
+      <div class="pg-wrap">
+        <header class="pg-head">
+          <p class="pg-eyebrow">Методика</p>
+          <h2 class="pg-h2" id="method-title">Как считаются показатели</h2>
+          <p class="pg-lead">Для всех объектов — единые формулы по стандарту отельной отчётности USALI. Так отели можно сравнивать между собой.</p>
+        </header>
+        <div class="pg-table-wrap" data-reveal>
+          <table class="pg-table">
+            <thead><tr><th>Показатель</th><th>Что значит</th><th>Как считаем</th></tr></thead>
+            <tbody>
+              <tr><td><b>Загрузка</b></td><td>Доля проданных номеров</td><td>Проданные номеро-ночи ÷ доступные номеро-ночи</td></tr>
+              <tr><td><b>ADR</b></td><td>Средняя цена проданного номера за ночь</td><td>Выручка от номеров ÷ проданные номеро-ночи</td></tr>
+              <tr><td><b>RevPAR</b></td><td>Выручка на каждый номер отеля за ночь</td><td>ADR × загрузка</td></tr>
+              <tr><td><b>GOP</b></td><td>Валовая операционная прибыль</td><td>Общая выручка − операционные расходы</td></tr>
+              <tr><td><b>EBITDA</b></td><td>Прибыль до процентов, налогов и амортизации</td><td>GOP − управленческие и постоянные расходы</td></tr>
+              <tr><td><b>Окупаемость</b></td><td>За сколько лет вернутся вложения</td><td>Цена объекта ÷ EBITDA</td></tr>
+              <tr><td><b>ROI</b></td><td>Годовая доходность на вложенный капитал</td><td>EBITDA ÷ цена объекта</td></tr>
+              <tr><td><b>Cap Rate</b></td><td>Ставка капитализации</td><td>NOI (или EBITDA) ÷ цена объекта</td></tr>
+              <tr><td><b>IRR</b></td><td>Внутренняя норма доходности</td><td>По денежным потокам на 10 лет с продажей в конце</td></tr>
+              <tr><td><b>NPV</b></td><td>Сегодняшняя ценность будущих потоков</td><td>Потоки на 10 лет, дисконтированные по ставке объекта (обычно 12%)</td></tr>
+            </tbody>
+          </table>
         </div>
-        <ol class="princ-list" data-reveal>
-          <li><span>I</span><div><b>Проверенные цифры</b><p>Данные подтверждены кадастром, отчётностью и техпаспортами.</p></div></li>
-          <li><span>II</span><div><b>Одни правила для всех</b><p>Отель в Бухаре можно честно сравнить с отелем в Ташкенте.</p></div></li>
-          <li><span>III</span><div><b>Ничего не скрыто</b><p>Кредиты, обременения и дефекты указываются в паспорте.</p></div></li>
-          <li><span>IV</span><div><b>Свежие данные</b><p>Обновляются не реже раза в полгода.</p></div></li>
-        </ol>
+        <div class="pg-grid pg-grid--2" style="margin-top:14px">
+          <div class="pg-card" data-reveal>
+            <span class="pg-tag pg-tag--ok" style="align-self:flex-start">Факт</span>
+            <h3>По отчётности объекта</h3>
+            <p>Цифры из финансовой отчётности за полный год. Сейчас так отмечено <b data-p="fact">3</b> из <b data-p="count2">32</b> объектов.</p>
+          </div>
+          <div class="pg-card" data-reveal>
+            <span class="pg-tag pg-tag--gold" style="align-self:flex-start">Оценка</span>
+            <h3>Расчёт платформы</h3>
+            <p>Для новых и строящихся объектов, а также когда отчётность ещё не передана: расчёт по номерному фонду, категории и показателям рынка региона. Подтверждённые цифры инвестор получает после NDA.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 6 · КОНТАКТЫ / ФИНАЛ -->
-    <section class="inv-final" id="contacts" aria-labelledby="plat-final-title">
-      <div class="inv-final-frame">
-        <img src="assets/invest/photo/registan-2400.webp" srcset="assets/invest/photo/registan-1400.webp 1400w, assets/invest/photo/registan-2400.webp 2400w" sizes="100vw" alt="" loading="lazy" class="inv-final-img" />
-        <div class="inv-final-card lg">
-          <p class="plat-owner">Комитет по туризму Республики Узбекистан</p>
-          <h2 id="plat-final-title">Вопросы и сотрудничество.</h2>
-          <p>Вопросы о платформе и предложения о сотрудничестве.</p>
-          <div class="inv-hero-actions">
-            <a href="b2b.html" class="inv-btn inv-btn--dark">B2B-сотрудничество</a>
-            <a href="https://uzbektourism.uz" class="inv-btn inv-btn--ghost" target="_blank" rel="noopener">uzbektourism.uz</a>
-          </div>
+    <section class="pg-section" aria-labelledby="contact-title">
+      <div class="pg-wrap pg-grid pg-grid--2 pg-grid--top">
+        <header class="pg-head pg-sticky">
+          <p class="pg-eyebrow">Контакты</p>
+          <h2 class="pg-h2" id="contact-title">Есть вопрос или предложение?</h2>
+          <p class="pg-lead">Банкам, управляющим компаниям, консультантам и отельным сетям — пишите, обсудим сотрудничество.</p>
+          <ul class="pg-list" style="margin-top:20px">
+            <li>Комитет по туризму Республики Узбекистан, Ташкент</li>
+            <li><a href="mailto:info@uzbektourism.uz">info@uzbektourism.uz</a></li>
+            <li><a href="https://uzbektourism.uz" target="_blank" rel="noopener">uzbektourism.uz</a></li>
+          </ul>
+        </header>
+        <div class="pg-panel">
+          <form class="pg-form" data-lead="question" novalidate>
+            <div class="pg-form__row">
+              <label class="pg-field"><span>Имя <i>*</i></span><input name="name" autocomplete="name" required></label>
+              <label class="pg-field"><span>Компания</span><input name="company" autocomplete="organization"></label>
+            </div>
+            <div class="pg-form__row">
+              <label class="pg-field"><span>Телефон</span><input name="phone" type="tel" autocomplete="tel" placeholder="+998 …"></label>
+              <label class="pg-field"><span>E-mail</span><input name="email" type="email" autocomplete="email"></label>
+            </div>
+            <label class="pg-field"><span>Сообщение <i>*</i></span><textarea name="message" rows="4" required></textarea></label>
+            <input class="pg-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="pg-form__status" role="status" aria-live="polite"></div>
+            <div class="pg-form__foot">
+              <button type="submit" class="pg-btn pg-btn--dark">Отправить</button>
+              <p class="pg-note">Укажите телефон или e-mail.</p>
+            </div>
+            <div class="pg-success" role="status">
+              <div class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+              <h3>Сообщение отправлено</h3>
+              <p>Спасибо! Ответим в течение рабочего дня.</p>
+            </div>
+          </form>
         </div>
       </div>
     </section>
 
   </main>
 
-
-  <!-- ═══ FOOTER ════════════════════════════════ -->
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
           <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
             <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
-        <div class="logo-text">
-          <span class="logo-title">SILK ROUTE</span>
-          <span class="logo-subtitle">INVEST</span>
-        </div>
+            <div class="logo-text">
+              <span class="logo-title">SILK ROUTE</span>
+              <span class="logo-subtitle">INVEST</span>
+            </div>
           </a>
           <p class="footer-brand-desc">
-            Silk Route Invest&nbsp;— официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.
+            Каталог гостиничных объектов Узбекистана для инвесторов: цена, финансовые показатели и паспорт каждого объекта.
           </p>
         </div>
-        <nav class="footer-nav-grid" aria-label="Навигация footer">
+        <nav class="footer-nav-grid" aria-label="Навигация в подвале">
           <div class="footer-nav-col">
-            <p class="footer-nav-heading">Платформа</p>
-            <a href="about.html"             class="footer-nav-link">О системе</a>
-            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
-            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
-            <a href="registries.html"         class="footer-nav-link">Реестры</a>
-            <a href="form.html"               class="footer-nav-link">Форма заявки</a>
-            <a href="certification.html" class="footer-nav-link">Сертификация</a>
-            <a href="certification-registry.html" class="footer-nav-link">Реестр сертифицированных</a>
+            <p class="footer-nav-heading">Инвестору</p>
+            <a href="portfolio.html" class="footer-nav-link">Каталог отелей</a>
+            <a href="market.html" class="footer-nav-link">Рынок Узбекистана</a>
+            <a href="incentives.html" class="footer-nav-link">Льготы для инвестора</a>
+            <a href="investors.html" class="footer-nav-link">Как купить отель</a>
           </div>
           <div class="footer-nav-col">
-            <p class="footer-nav-heading">Разделы</p>
-            <a href="about.html"     class="footer-nav-link">Методика расчёта</a>
-            <a href="passport.html"  class="footer-nav-link">Пример паспорта отеля</a>
-            <a href="form.html"      class="footer-nav-link">Форма заявки</a>
-            <a href="support.html"   class="footer-nav-link">Господдержка</a>
-            <a href="restaurants.html" class="footer-nav-link">Рестораны</a>
-            <a href="land.html"      class="footer-nav-link">Земельные участки</a>
-            <a href="certification.html#methodology" class="footer-nav-link">Сертификация</a>
+            <p class="footer-nav-heading">Владельцам</p>
+            <a href="business.html" class="footer-nav-link">Разместить объект</a>
+            <a href="platform.html#method" class="footer-nav-link">Как считаются показатели</a>
+            <a href="platform.html" class="footer-nav-link">О платформе</a>
           </div>
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Контакты</p>
             <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="mailto:info@uzbektourism.uz" class="footer-nav-link">info@uzbektourism.uz</a>
             <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
           </div>
         </nav>
       </div>
       <div class="footer-bottom">
         <p class="footer-legal">
-          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
-          Данные носят иллюстративный характер. Методология: STR Global / USALI / IFC.
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан.
+          Финансовые показатели объектов&nbsp;— оценка платформы по&nbsp;методике USALI, если не&nbsp;отмечено иное.
         </p>
-        <div class="footer-lang-group" role="group" aria-label="Язык">
-          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
-          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
-          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
-        </div>
       </div>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
   <script src="js/hotels-data.js"></script>
-  <script src="js/megamenu.js?v=nav_inv_1"></script>
-  <script src="js/support-core.js"></script>
-  <script src="js/platform.js?v=plat_1"></script>
+  <script src="js/megamenu.js?v=site_1"></script>
+  <script src="js/site.js?v=site_1"></script>
+  <script>
+  (function () {
+    var nf = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+    var set = function (k, v) { document.querySelectorAll('[data-p="' + k + '"]').forEach(function (e) { e.textContent = v; }); };
+    async function load() {
+      var list = [];
+      try { if (window.HotelStore) list = HotelStore.getAll() || []; } catch (e) {}
+      if (!list.length) { try { list = await (await fetch('data/hotels.json')).json(); } catch (e) {} }
+      return list.filter(function (h) { return h.status !== 'draft'; });
+    }
+    load().then(function (l) {
+      if (!l.length) return;
+      var regions = {}; l.forEach(function (h) { regions[h.regionKey || h.region] = 1; });
+      var rooms = l.reduce(function (s, h) { return s + (parseInt(h.roomsCount, 10) || 0); }, 0);
+      var value = l.reduce(function (s, h) { var e = h.economics || {}; return s + (Number(e.askingPrice || e.valuation) || 0); }, 0);
+      set('count', l.length); set('count2', l.length); set('regions', Object.keys(regions).length); set('rooms', nf(rooms));
+      set('value', '$' + Math.round(value / 1e6) + ' млн');
+      set('fact', l.filter(function (h) { return (h.economics || {}).dataType === 'fact'; }).length);
+    });
+  })();
+  </script>
 </body>
 </html>

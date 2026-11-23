@@ -15,11 +15,11 @@
   <link rel="stylesheet" href="styles/base.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/header.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/megamenu.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/spatial-dock.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/verticals.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/catalog.css?v=glass_catalog_4" />
   <link rel="stylesheet" href="styles/economics.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/site.css?v=site_1" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Silk Route Invest" />
   <meta property="og:title" content="Каталог отелей Узбекистана — Silk Route Invest" />
@@ -32,40 +32,7 @@
 <body class="page-portfolio" data-vertical="hotels">
 
   <!-- Floating Spatial Dock (Reference-matching vertical capsule) -->
-  <aside class="spatial-dock" aria-label="Быстрая навигация">
-    <a href="index.html" class="spatial-dock-item" aria-label="Главная">
-      <span>⌂</span>
-      <span class="spatial-dock-tooltip">Главная</span>
-    </a>
-    <a href="portfolio.html" class="spatial-dock-item is-active" aria-label="Каталог отелей">
-      <span>🏨</span>
-      <span class="spatial-dock-tooltip">Отели (32)</span>
-    </a>
-    <a href="restaurants.html" class="spatial-dock-item" aria-label="Ресторанные проекты">
-      <span>🍽</span>
-      <span class="spatial-dock-tooltip">Рестораны F&amp;B</span>
-    </a>
-    <a href="land.html" class="spatial-dock-item" aria-label="Земельные участки">
-      <span>🗺</span>
-      <span class="spatial-dock-tooltip">Земля (8 лотов)</span>
-    </a>
-    <a href="support.html" class="spatial-dock-item" aria-label="Государственная поддержка">
-      <span>🏛</span>
-      <span class="spatial-dock-tooltip">Господдержка</span>
-    </a>
-    <a href="cabinet-investor.html" class="spatial-dock-item" aria-label="Кабинет инвестора">
-      <div class="spatial-dock-avatar">
-        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=" alt="Bakh Mir Palace" />
-        <span class="spatial-dock-pulse" title="Активный статус"></span>
-      </div>
-      <span class="spatial-dock-tooltip">Инвестор Desk</span>
-    </a>
-    <div class="spatial-dock-divider"></div>
-    <a href="index.html#about" class="spatial-dock-btn-video" id="dock-btn-video" aria-label="Смотреть обзор платформы">
-      <div class="play-circle">▶</div>
-      <span>Обзор</span>
-    </a>
-  </aside>
+  
 
   <!-- ═══ C-01 · SITE HEADER ════════════════════ -->
     <!-- ═══════════════════════════════════════════
@@ -73,8 +40,6 @@
   ═══════════════════════════════════════════ -->
     <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
-
-      <!-- Логотип -->
       <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
         <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
         <div class="logo-text">
@@ -82,104 +47,45 @@
           <span class="logo-subtitle">INVEST</span>
         </div>
       </a>
-
-      <!-- Основная навигация -->
       <nav class="header-nav" role="navigation" aria-label="Основная навигация">
-
-        <!-- 0. Каталог отелей -->
-        <div class="nav-item" data-page="portfolio" data-also="passport">
-          <a href="portfolio.html" class="nav-trigger">Каталог отелей</a>
-        </div>
-
-        <!-- 1. Для инвесторов -->
-        <div class="nav-item" data-page="investors" data-also="restaurants restaurant-passport land land-lot support cabinet-investor tourism-types certification-registry">
-          <a href="investors.html" class="nav-trigger">Для инвесторов</a>
-        </div>
-
-        <!-- 2. Для бизнеса -->
-        <div class="nav-item" data-page="business" data-also="form restaurant-form cabinet-hotel cabinet-restaurant certification-apply tools">
-          <a href="business.html" class="nav-trigger">Для бизнеса</a>
-        </div>
-
-                <!-- 3. Услуги -->
-        <div class="nav-item" data-page="services" data-also="certification certificate quality economics-ratings events-app cabinet-inspector">
-          <a href="services.html" class="nav-trigger">Услуги</a>
-        </div>
-
-        <!-- 4. О платформе -->
-        <div class="nav-item" data-page="platform" data-also="about tech-spec registries">
-          <a href="platform.html" class="nav-trigger">О платформе</a>
-        </div>
-
-        <!-- 4. B2B Cooperation (в последнюю очередь) -->
-        <div class="nav-item" data-page="b2b">
-          <a href="b2b.html" class="nav-trigger">Партнёрам</a>
-        </div>
-
+        <div class="nav-item" data-page="portfolio" data-also="passport"><a href="portfolio.html" class="nav-trigger">Каталог отелей</a></div>
+        <div class="nav-item" data-page="market"><a href="market.html" class="nav-trigger">Рынок</a></div>
+        <div class="nav-item" data-page="incentives"><a href="incentives.html" class="nav-trigger">Льготы</a></div>
+        <div class="nav-item" data-page="investors"><a href="investors.html" class="nav-trigger">Как купить</a></div>
+        <div class="nav-item" data-page="platform"><a href="platform.html" class="nav-trigger">О платформе</a></div>
       </nav>
-
-      <!-- Правый блок -->
       <div class="header-right">
-        <div class="lang-switcher" role="group" aria-label="Выбор языка">
-          <button class="lang-btn lang-btn--active" data-lang="ru" aria-pressed="true">RU</button>
-          <button class="lang-btn" data-lang="uz" aria-pressed="false">UZ</button>
-          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
-        </div>
-        <a href="cabinet-investor.html" class="btn-login" id="header-login">
-          <span>Кабинет</span>
+        <a href="business.html" class="btn-login" id="header-login">
+          <span>Разместить объект</span>
           <span class="btn-login-icon">→</span>
         </a>
       </div>
-
-      <!-- Мобильный гамбургер -->
       <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-
     </div>
   </header>
 
   <!-- VERTICAL SWITCHER -->
-  <nav class="vertical-switcher" aria-label="Классы активов">
-    <div class="vertical-switcher__inner">
-      <a href="portfolio.html" class="vs-tab is-active" data-v="hotels"><span class="vs-tab__icon">🏨</span> Отели <span class="vs-tab__count">32</span></a>
-      <a href="restaurants.html" class="vs-tab" data-v="restaurants"><span class="vs-tab__icon">🍽</span> Рестораны <span class="vs-tab__count">6</span></a>
-      <a href="land.html" class="vs-tab" data-v="land"><span class="vs-tab__icon">🗺</span> Земельные участки <span class="vs-tab__count">8</span></a>
-      <a href="support.html" class="vs-tab" data-v="support"><span class="vs-tab__icon">🏛</span> Господдержка <span class="vs-tab__count" data-support="count">—</span></a>
-    </div>
-  </nav>
+  
 
   <!-- Мобильная навигация -->
   <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Инвесторам</span>
+      <span class="mobile-nav-label">Инвестору</span>
       <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
-      <a href="investors.html">Для инвесторов — обзор раздела</a>
-      <a href="restaurants.html">Ресторанные проекты</a>
-      <a href="land.html">Земельные участки</a>
-      <a href="support.html">Государственная поддержка</a>
-      <a href="certification-registry.html">Проверить сертификат отеля</a>
-      <a href="cabinet-investor.html">Кабинет инвестора</a>
+      <a href="market.html">Рынок Узбекистана</a>
+      <a href="incentives.html">Льготы для инвестора</a>
+      <a href="investors.html">Как купить отель</a>
     </div>
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Для бизнеса</span>
-      <a href="business.html" class="mobile-nav-hub">Для бизнеса — обзор раздела</a>
-      <a href="form.html" class="mobile-nav-cta">Подать отель в реестр</a>
-      <a href="restaurant-form.html">Подать ресторан в реестр</a>
-      <a href="cabinet-hotel.html">Кабинет отеля</a>
-      <a href="certification-apply.html">Заявка на сертификацию</a>
+      <span class="mobile-nav-label">Владельцам</span>
+      <a href="business.html" class="mobile-nav-cta">Разместить объект</a>
     </div>
     <div class="mobile-nav-section">
-      <span class="mobile-nav-label">Услуги</span>
-      <a href="services.html" class="mobile-nav-hub">Услуги — обзор раздела</a>
-      <a href="certification.html">Сертификация</a>
-      <a href="quality.html">Оценка качества</a>
-      <a href="economics-ratings.html">Рейтинг отелей</a>
-    </div>
-    <div class="mobile-nav-section">
-      <span class="mobile-nav-label">О платформе</span>
-      <a href="platform.html" class="mobile-nav-hub">О платформе</a>
-      <a href="b2b.html">Партнёрам</a>
+      <span class="mobile-nav-label">Платформа</span>
+      <a href="platform.html">О платформе</a>
+      <a href="platform.html#method">Как считаются показатели</a>
     </div>
   </div>
 
@@ -397,53 +303,42 @@
         <div class="footer-brand">
           <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
             <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
-        <div class="logo-text">
-          <span class="logo-title">SILK ROUTE</span>
-          <span class="logo-subtitle">INVEST</span>
-        </div>
+            <div class="logo-text">
+              <span class="logo-title">SILK ROUTE</span>
+              <span class="logo-subtitle">INVEST</span>
+            </div>
           </a>
           <p class="footer-brand-desc">
-            Silk Route Invest&nbsp;— официальная цифровая платформа инвестиционных паспортов гостиничных объектов Республики Узбекистан.
+            Каталог гостиничных объектов Узбекистана для инвесторов: цена, финансовые показатели и паспорт каждого объекта.
           </p>
         </div>
-        <nav class="footer-nav-grid" aria-label="Навигация footer">
+        <nav class="footer-nav-grid" aria-label="Навигация в подвале">
           <div class="footer-nav-col">
-            <p class="footer-nav-heading">Платформа</p>
-            <a href="about.html"             class="footer-nav-link">О системе</a>
-            <a href="tourism-types.html"      class="footer-nav-link">Виды туризма</a>
-            <a href="portfolio.html"          class="footer-nav-link">Каталог объектов</a>
-            <a href="registries.html"         class="footer-nav-link">Реестры</a>
-            <a href="form.html"               class="footer-nav-link">Форма заявки</a>
-            <a href="certification.html" class="footer-nav-link">Сертификация</a>
-            <a href="certification-registry.html" class="footer-nav-link">Реестр сертифицированных</a>
+            <p class="footer-nav-heading">Инвестору</p>
+            <a href="portfolio.html" class="footer-nav-link">Каталог отелей</a>
+            <a href="market.html" class="footer-nav-link">Рынок Узбекистана</a>
+            <a href="incentives.html" class="footer-nav-link">Льготы для инвестора</a>
+            <a href="investors.html" class="footer-nav-link">Как купить отель</a>
           </div>
           <div class="footer-nav-col">
-            <p class="footer-nav-heading">Разделы</p>
-            <a href="about.html"     class="footer-nav-link">Методика расчёта</a>
-            <a href="passport.html"  class="footer-nav-link">Пример паспорта отеля</a>
-            <a href="form.html"      class="footer-nav-link">Форма заявки</a>
-            <a href="support.html"   class="footer-nav-link">Господдержка</a>
-            <a href="restaurants.html" class="footer-nav-link">Рестораны</a>
-            <a href="land.html"      class="footer-nav-link">Земельные участки</a>
-            <a href="certification.html#methodology" class="footer-nav-link">Сертификация</a>
+            <p class="footer-nav-heading">Владельцам</p>
+            <a href="business.html" class="footer-nav-link">Разместить объект</a>
+            <a href="platform.html#method" class="footer-nav-link">Как считаются показатели</a>
+            <a href="platform.html" class="footer-nav-link">О платформе</a>
           </div>
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Контакты</p>
             <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="mailto:info@uzbektourism.uz" class="footer-nav-link">info@uzbektourism.uz</a>
             <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
           </div>
         </nav>
       </div>
       <div class="footer-bottom">
         <p class="footer-legal">
-          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан. Версия 1.0 (Проект).
-          Данные носят иллюстративный характер. Методология: STR Global / USALI / IFC.
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан.
+          Финансовые показатели объектов&nbsp;— оценка платформы по&nbsp;методике USALI, если не&nbsp;отмечено иное.
         </p>
-        <div class="footer-lang-group" role="group" aria-label="Язык">
-          <button type="button" class="footer-lang-link footer-lang-link--active" data-lang="ru" lang="ru">RU</button>
-          <button type="button" class="footer-lang-link" data-lang="uz" lang="uz" hreflang="uz">UZ</button>
-          <button type="button" class="footer-lang-link" data-lang="en" lang="en" hreflang="en">EN</button>
-        </div>
       </div>
     </div>
   </footer>
@@ -451,9 +346,9 @@
   <script src="js/main.js"></script>
   <script src="js/hotels-data.js"></script>
   <script src="js/economics.js"></script>
-  <script src="js/catalog.js?v=glass_catalog_5"></script>
+  <script src="js/catalog.js?v=glass_catalog_6"></script>
   <script src="js/verticals.js"></script>
   <script src="js/megamenu.js?v=nav_inv_1"></script>
-  <script src="js/support-core.js"></script>
+  <script src="js/site.js?v=site_1"></script>
 </body>
 </html>

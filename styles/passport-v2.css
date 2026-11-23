@@ -566,3 +566,10 @@ a.pp-tag--cert:hover { background: #fff; }
   .pp-gallery[data-n="3"] .pp-photo:first-child, .pp-gallery .pp-photo--lead { grid-column: 1 / -1; grid-row: span 2; }
   .pp-gallery[data-n="4"] .pp-photo:last-child { grid-column: 1 / -1; }
 }
+
+/* ── Заявка с паспорта (обновление сайта) ─────────────── */
+.pp-btn--gold { color: #1A1412; }
+.pp-btn--gold .pp-btn-text, .pp-btn--gold .pp-btn-arrow { background: #EBC27A; }
+.pp-btn--gold:hover .pp-btn-text, .pp-btn--gold:hover .pp-btn-arrow { background: #F0CB8A; }
+button.pp-btn-ghost { border: 0; background: transparent; cursor: pointer; }
+.pp-btn-ghost svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
