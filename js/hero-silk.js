@@ -10,8 +10,7 @@
      свет «зажигает» дорогу, потом по ней течёт золотой поток;
    • silk3-map-b.png: R — вода Чарвака (рябь, блики), G — снег
      Чимгана (искры), B — ореол дороги;
-   • картинка берётся бикубически (чётче обычного сглаживания);
-     без тумана и зерна — чистая чёткая сцена.
+   • туман в долине, мягкая виньетка, плёночное зерно.
    Маршрут внизу — навигация по регионам с цифрами из каталога.
    Без WebGL или при «уменьшить движение» остаётся картинка.
    ============================================================ */
@@ -146,33 +145,12 @@ varying vec2 vUv;
 uniform sampler2D uImg, uA, uB;
 uniform vec2 uRes;
 uniform float uImgAR, uTime, uProg, uExpo, uFlow, uFocusR;
-uniform vec2 uTexSize;
 uniform vec3 uCam, uFocus;
 uniform vec2 uPar;
 
 float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
 float noise(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
   return mix(mix(hash(i), hash(i + vec2(1., 0.)), f.x), mix(hash(i + vec2(0., 1.)), hash(i + vec2(1., 1.)), f.x), f.y); }
-/* бикубическая выборка (Catmull-Rom, 9 обращений) — без «мыла» при увеличении */
-vec3 sharpTex(sampler2D tex, vec2 uv, vec2 ts){
-  vec2 sp = uv * ts, t1 = floor(sp - .5) + .5, f = sp - t1;
-  vec2 w0 = f * (-.5 + f * (1. - .5 * f));
-  vec2 w1 = 1. + f * f * (-2.5 + 1.5 * f);
-  vec2 w2 = f * (.5 + f * (2. - 1.5 * f));
-  vec2 w3 = f * f * (-.5 + .5 * f);
-  vec2 w12 = w1 + w2;
-  vec2 t0 = (t1 - 1.) / ts, t3 = (t1 + 2.) / ts, t12 = (t1 + w2 / w12) / ts;
-  vec3 r = texture2D(tex, vec2(t0.x, t0.y)).rgb * w0.x * w0.y
-         + texture2D(tex, vec2(t12.x, t0.y)).rgb * w12.x * w0.y
-         + texture2D(tex, vec2(t3.x, t0.y)).rgb * w3.x * w0.y
-         + texture2D(tex, vec2(t0.x, t12.y)).rgb * w0.x * w12.y
-         + texture2D(tex, vec2(t12.x, t12.y)).rgb * w12.x * w12.y
-         + texture2D(tex, vec2(t3.x, t12.y)).rgb * w3.x * w12.y
-         + texture2D(tex, vec2(t0.x, t3.y)).rgb * w0.x * w3.y
-         + texture2D(tex, vec2(t12.x, t3.y)).rgb * w12.x * w3.y
-         + texture2D(tex, vec2(t3.x, t3.y)).rgb * w3.x * w3.y;
-  return clamp(r, 0., 1.);
-}
 float fbm(vec2 p){ float v = 0., a = .5; for (int i = 0; i < 4; i++) { v += a * noise(p); p = p * 2.03 + 7.1; a *= .5; } return v; }
 
 void main(){
@@ -198,10 +176,18 @@ void main(){
     wuv.x += (noise(vec2(uv.x * 160., uv.y * 900. - uTime * .9)) - .5) * .0022 * water;
     wuv.y += (noise(vec2(uv.x * 90. + uTime * .25, uv.y * 520.)) - .5) * .0010 * water;
   }
-  vec3 col = sharpTex(uImg, wuv, uTexSize);
+  vec3 col = texture2D(uImg, wuv).rgb;
   if (water > .01) {
     float g = pow(noise(vec2(uv.x * 620. + uTime * .4, uv.y * 2400. + uTime * 1.4)), 16.);
     col += vec3(1., .93, .8) * g * water * 1.5;
+  }
+
+  /* туман в долине слева — медленно течёт */
+  float fw = smoothstep(.17, .30, uv.y) * (1. - smoothstep(.50, .68, uv.y)) * (1. - smoothstep(.40, .74, uv.x)) * (1. - d * .55);
+  if (fw > .001) {
+    vec2 fp = vec2(uv.x * 3.4 + uTime * .012, uv.y * 7.5);
+    float fog = fbm(fp + vec2(fbm(fp * 1.6 - vec2(uTime * .025, 0.)), 0.));
+    col = mix(col, vec3(.95, .85, .78), smoothstep(.45, .88, fog) * fw * .22);
   }
 
   /* солнце у горизонта дышит */
@@ -241,12 +227,13 @@ void main(){
     col += vec3(1., .78, .5) * fl * uFocus.z * .045;
   }
 
-  /* экспозиция и виньетка */
+  /* экспозиция, виньетка, зерно */
   vec2 vq = s - .5;
   float l2 = dot(col, vec3(.299, .587, .114));
   col = mix(vec3(l2), col, 1.07);
   col = (col - .5) * 1.04 + .5;
   col *= uExpo * (1. - dot(vq, vq) * .32);
+  col += (hash(gl_FragCoord.xy + fract(uTime) * 91.) - .5) * .018;
   gl_FragColor = vec4(col, 1.);
 }`;
 
@@ -269,7 +256,7 @@ void main(){
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
     const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     const U = {};
-    ['uImg', 'uA', 'uB', 'uRes', 'uTexSize', 'uImgAR', 'uTime', 'uProg', 'uExpo', 'uFlow', 'uFocusR', 'uCam', 'uFocus', 'uPar'].forEach((n) => { U[n] = gl.getUniformLocation(pr, n); });
+    ['uImg', 'uA', 'uB', 'uRes', 'uImgAR', 'uTime', 'uProg', 'uExpo', 'uFlow', 'uFocusR', 'uCam', 'uFocus', 'uPar'].forEach((n) => { U[n] = gl.getUniformLocation(pr, n); });
     return { gl, U };
   }
 
@@ -336,13 +323,13 @@ void main(){
       camT.x = s.fu; camT.y = .5; camT.z = 1.03;
     } else if (hover >= 0) {
       const s = STOPS[hover];
-      camT.x = lerp(.5, s.fu, .55); camT.y = lerp(.5, s.fv, .5); camT.z = 1.12;
+      camT.x = lerp(.5, s.fu, .55); camT.y = lerp(.5, s.fv, .5); camT.z = 1.16;
     } else {
       /* общий план, лёгкое «дыхание» и наклон к активному региону */
       const s = active >= 0 ? STOPS[active] : null;
-      camT.x = .5 + (s ? (s.fu - .5) * .06 : 0) + .004 * Math.sin(tt * .07);
-      camT.y = .5 + (s ? (s.fv - .5) * .05 : 0) + .003 * Math.sin(tt * .05);
-      camT.z = 1.018 + .006 * Math.sin(tt * .045);
+      camT.x = .5 + (s ? (s.fu - .5) * .06 : 0) + .006 * Math.sin(tt * .07);
+      camT.y = .5 + (s ? (s.fv - .5) * .05 : 0) + .004 * Math.sin(tt * .05);
+      camT.z = 1.045 + .012 * Math.sin(tt * .045);
     }
     if (sel >= 0) { const s = STOPS[sel]; focusT.x = s.fu; focusT.y = s.fv; focusT.r = s.fr; focusT.s = hover >= 0 ? 1 : .75; }
     else focusT.s = 0;
@@ -359,7 +346,6 @@ void main(){
       texture(gl, 0, im); texture(gl, 1, ma); texture(gl, 2, mb);
       gl.uniform1i(U.uImg, 0); gl.uniform1i(U.uA, 1); gl.uniform1i(U.uB, 2);
       gl.uniform1f(U.uImgAR, IMG_AR);
-      gl.uniform2f(U.uTexSize, im.naturalWidth, im.naturalHeight);
       glOn = true;
       run(ctx);
     }).catch(() => { introText(); finishIntro(performance.now()); });
@@ -368,7 +354,7 @@ void main(){
   let W = 0, H = 0, visible = true, raf = 0, last = 0, t0 = 0;
   function resize() {
     const r = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, mobileMQ.matches ? 1.5 : 1.75);
     W = Math.max(1, Math.round(r.width * dpr)); H = Math.max(1, Math.round(r.height * dpr));
     if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
   }
@@ -408,7 +394,7 @@ void main(){
         const [hx, hy] = headPoint(prog);
         const zk = easeIO(clamp((e - .3) / 6.8, 0, 1));
         if (mobileMQ.matches) { camT.x = hx; camT.y = .5; camT.z = lerp(1.12, 1.03, zk); }
-        else { camT.x = lerp(hx, .5, zk * zk); camT.y = lerp(hy, .5, zk * zk); camT.z = lerp(1.26, 1.018, zk); }
+        else { camT.x = lerp(hx, .5, zk * zk); camT.y = lerp(hy, .5, zk * zk); camT.z = lerp(1.34, 1.045, zk); }
         clampCam(camT, w, h);
         STOPS.forEach((s, i) => {
           const lo = i ? STOPS[i - 1].t : 0;
@@ -434,7 +420,7 @@ void main(){
       focus.x = damp(focus.x, focusT.x, 4, dt); focus.y = damp(focus.y, focusT.y, 4, dt);
       focus.s = damp(focus.s, focusT.s, 3, dt); focus.r = damp(focus.r, focusT.r, 4, dt);
       /* объём: медленный «облёт» + мышь */
-      const tt = now / 1000, amp = mobileMQ.matches ? .006 : .008;
+      const tt = now / 1000, amp = mobileMQ.matches ? .010 : .014;
       par.x = damp(par.x, amp * Math.sin(tt * .23) * .6 + mouse.x * amp, 3, dt);
       par.y = damp(par.y, amp * Math.cos(tt * .19) * .35 + mouse.y * amp * .6, 3, dt);
 
