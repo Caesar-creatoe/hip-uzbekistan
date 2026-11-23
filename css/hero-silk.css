@@ -12,14 +12,23 @@
   --gold-2: #F6DDA6;
   --paper: #FFF7EC;
   --night: #16110F;
+  /* поля текста: на широких экранах — по краю меню */
+  --sx-side: max(clamp(28px, 4.6vw, 72px), calc((100vw - 1360px) / 2 + 44px));
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  height: clamp(640px, calc(100svh - 28px), 900px);
-  border-radius: 20px;
+  /* на всю ширину и высоту экрана — выходим из рамки страницы */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: -14px;
+  height: max(620px, 100svh);
+  border-radius: 0;
   background: #241C1B;
   color: var(--paper);
 }
+
+body.home-v2 { overflow-x: clip; }
+@media (max-width: 1200px) { .silk-hero { margin-top: -10px; } }
 
 /* ── Сцена ─────────────────────────────────────────────── */
 .sx-scene { position: absolute; inset: 0; z-index: 0; }
@@ -44,8 +53,8 @@
 /* ── Текст ─────────────────────────────────────────────── */
 .sx-copy {
   position: relative; z-index: 3;
-  max-width: 780px;
-  padding: clamp(124px, 15.5vh, 156px) 0 0 clamp(28px, 4.6vw, 72px);
+  max-width: calc(780px + var(--sx-side));
+  padding: clamp(124px, 15.5vh, 156px) 0 0 var(--sx-side);
 }
 .sx-eyebrow {
   display: flex; align-items: center; gap: 14px;
@@ -123,7 +132,7 @@
 /* ── Маршрут: навигация по регионам ────────────────────── */
 .sx-route {
   position: absolute; z-index: 3;
-  left: clamp(28px, 4.6vw, 72px); right: clamp(28px, 4.6vw, 72px); bottom: clamp(22px, 3.4vh, 34px);
+  left: var(--sx-side); right: var(--sx-side); bottom: clamp(22px, 3.4vh, 34px);
   display: flex; align-items: flex-end; gap: 28px;
 }
 .sx-route-label {
@@ -231,8 +240,9 @@
 /* ── Телефон: сцена внизу, текст на «сумеречном небе» ──── */
 @media (max-width: 760px) {
   .silk-hero {
-    height: max(680px, calc(100svh - 16px));
-    border-radius: 16px;
+    height: max(680px, 100svh);
+    margin-top: -6px;
+    border-radius: 0;
     background: linear-gradient(180deg, #1C1820 0%, #2B2229 38%, #5A4440 58%, #8B6A5C 70%);
   }
   .sx-scene {
