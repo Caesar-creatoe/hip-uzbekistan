@@ -2,13 +2,13 @@
    HERO-SILK.JS — главный экран «Шёлковый путь» (версия 3).
 
    Сцену рисует один шейдер WebGL поверх картинки:
-   • объём — карта глубины (silk3-map-a.png, канал R): ближние планы
+   • объём — карта глубины (silk4-map-a.png, канал R): ближние планы
      смещаются сильнее дальних (приём «fake 3D» с картой глубины);
    • пролёт камеры — на входе камера летит за светом от Хивы
      к Чарваку и отъезжает на общий план;
    • дорога — канал G (маска дороги) и B (позиция вдоль маршрута 0…1):
      свет «зажигает» дорогу, потом по ней течёт золотой поток;
-   • silk3-map-b.png: R — вода Чарвака (рябь, блики), G — снег
+   • silk4-map-b.png: R — вода Чарвака (рябь, блики), G — снег
      Чимгана (искры), B — ореол дороги;
    • туман в долине, мягкая виньетка, плёночное зерно.
    Маршрут внизу — навигация по регионам с цифрами из каталога.
@@ -35,12 +35,12 @@
   /* Символы регионов: t — где на дороге, (u,v) — точка метки,
      (fu,fv,fr) — центр и радиус «подсветки», d — глубина метки. */
   const STOPS = [
-    { k: 'khiva',     t: .17, u: .335, v: .690, al: 'r', fu: .30, fv: .74, fr: .15, d: .78, name: 'Хорезм',    place: 'Ичан-Кала, Хива',            test: /хорезм/i },
-    { k: 'bukhara',   t: .44, u: .430, v: .545, al: 'r', fu: .44, fv: .56, fr: .11, d: .60, name: 'Бухара',    place: 'Крепость Арк',               test: /бухар/i },
-    { k: 'samarkand', t: .60, u: .625, v: .575, fu: .64, fv: .66, fr: .12, d: .74, name: 'Самарканд', place: 'Комплекс Имама аль-Бухари',  test: /самарканд/i },
-    { k: 'jizzakh',   t: .70, u: .858, v: .478, al: 'l', fu: .86, fv: .55, fr: .12, d: .58, name: 'Джизак',    place: 'Зомин',                      test: /джизак/i },
-    { k: 'tashkent',  t: .89, u: .708, v: .245, fu: .74, fv: .28, fr: .10, d: .29, name: 'Ташкент',   place: 'Центр исламской цивилизации', test: /ташкент\s*\(город\)|^ташкент$/i },
-    { k: 'toshobl',   t: .99, u: .895, v: .262, al: 'l', fu: .91, fv: .26, fr: .10, d: .20, name: 'Ташкентская обл.', place: 'Чарвак · Чимган',  test: /ташкентская/i }
+    { k: 'khiva',     t: .20, u: .150, v: .668, al: 'r', fu: .20, fv: .79, fr: .16, d: .88, name: 'Хорезм',    place: 'Ичан-Кала, Хива',            test: /хорезм/i },
+    { k: 'bukhara',   t: .35, u: .270, v: .583, al: 'r', fu: .28, fv: .53, fr: .12, d: .59, name: 'Бухара',    place: 'Крепость Арк',               test: /бухар/i },
+    { k: 'samarkand', t: .56, u: .556, v: .480, fu: .55, fv: .56, fr: .12, d: .66, name: 'Самарканд', place: 'Комплекс Имама аль-Бухари',  test: /самарканд/i },
+    { k: 'jizzakh',   t: .78, u: .850, v: .480, al: 'l', fu: .85, fv: .53, fr: .12, d: .56, name: 'Джизак',    place: 'Зомин',                      test: /джизак/i },
+    { k: 'tashkent',  t: .91, u: .556, v: .264, al: 'r', fu: .58, fv: .30, fr: .10, d: .32, name: 'Ташкент',   place: 'Центр исламской цивилизации', test: /ташкент\s*\(город\)|^ташкент$/i },
+    { k: 'toshobl',   t: .99, u: .850, v: .285, al: 'l', fu: .85, fv: .30, fr: .10, d: .27, name: 'Ташкентская обл.', place: 'Чарвак · Чимган',  test: /ташкентская/i }
   ];
 
   const money = (n) => {
@@ -342,7 +342,7 @@ void main(){
   function boot(ctx) {
     const { gl, U } = ctx;
     const src = img.currentSrc || img.src;
-    Promise.all([loadImage(src), loadImage('assets/hero/silk3-map-a.png'), loadImage('assets/hero/silk3-map-b.png')]).then(([im, ma, mb]) => {
+    Promise.all([loadImage(src), loadImage('assets/hero/silk4-map-a.png'), loadImage('assets/hero/silk4-map-b.png')]).then(([im, ma, mb]) => {
       texture(gl, 0, im); texture(gl, 1, ma); texture(gl, 2, mb);
       gl.uniform1i(U.uImg, 0); gl.uniform1i(U.uA, 1); gl.uniform1i(U.uB, 2);
       gl.uniform1f(U.uImgAR, IMG_AR);
