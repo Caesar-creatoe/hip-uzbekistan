@@ -5,7 +5,7 @@
  * ============================================================
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   --arch-canvas:        #F4EFEA;
@@ -22,9 +22,9 @@
   --arch-line:          rgba(59, 42, 32, 0.08);
   --arch-line-light:    rgba(255, 255, 255, 0.22);
   
-  --font-hero:          'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-editorial:     'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-ui:            'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-hero:          'Golos Text', system-ui, sans-serif;
+  --font-editorial:     'Golos Text', system-ui, sans-serif;
+  --font-ui:            'Golos Text', system-ui, sans-serif;
   --font-mono:          'JetBrains Mono', monospace;
 
   --r-frame:            32px;

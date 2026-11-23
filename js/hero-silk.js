@@ -119,7 +119,7 @@
     const s = STOPS[i];
     tag.innerHTML = '';
     tag.append(s.name);
-    const sm = document.createElement('small'); sm.textContent = s.meta ? `${s.place} · ${s.meta}` : s.place;
+    const sm = document.createElement('small'); sm.textContent = s.place;
     tag.appendChild(sm);
     marker.dataset.al = mobileMQ.matches ? 'u' : (s.al || 'u');
     if (swap) { marker.classList.remove('is-swap'); void marker.offsetWidth; marker.classList.add('is-swap'); }

@@ -80,9 +80,9 @@
   --header-bg:               var(--color-header-bg);
 
   /* ── ШРИФТЫ (Apple-grade Architectural Typography) ────── */
-  --font-display:       'Outfit', 'Plus Jakarta Sans', 'Manrope', system-ui, sans-serif;
-  --font-architectural: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-body:          'Plus Jakarta Sans', 'Manrope', 'Golos Text', system-ui, sans-serif;
+  --font-display:       'Golos Text', system-ui, sans-serif;
+  --font-architectural: 'Golos Text', system-ui, sans-serif;
+  --font-body:          'Golos Text', system-ui, sans-serif;
   --font-mono:          'JetBrains Mono', 'Courier New', monospace;
 
   /* ── ШКАЛА РАЗМЕРОВ ───────────────────────── */
