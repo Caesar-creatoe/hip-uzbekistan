@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="styles/megamenu.css?v=site_1" />
   <link rel="stylesheet" href="styles/footer.css?v=site_1" />
   <link rel="stylesheet" href="styles/site.css?v=site_1" />
+  <link rel="stylesheet" href="styles/pages.css?v=lx_1" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Silk Route Invest" />
   <meta property="og:title" content="Как купить отель в Узбекистане — Silk Route Invest" />
@@ -23,7 +24,7 @@
   <meta property="og:image" content="https://silkroute-invest.vercel.app/assets/hero/og.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 </head>
-<body class="sx-page page-investors-buy">
+<body class="sx-page lx page-investors-buy">
 
   <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
@@ -73,157 +74,241 @@
 
   <main id="main-content">
 
-    <section class="pg-hero" aria-labelledby="buy-title">
-      <div class="pg-hero__media"><img src="assets/invest/photo/handshake-1400.webp" alt="Деловая встреча" /></div>
-      <div class="pg-wrap pg-hero__inner">
-        <p class="pg-eyebrow">Как купить отель</p>
-        <h1 id="buy-title">От выбора объекта до сделки — с сопровождением</h1>
-        <p class="pg-hero__lead">Выберите отель в каталоге и оставьте заявку. Мы свяжем вас с владельцем, передадим документы после NDA и поможем оформить господдержку.</p>
+    <!-- Первый экран -->
+    <section class="lx-hero" aria-labelledby="buy-title">
+      <div class="pg-wrap lx-hero__top">
+        <span class="lx-pill">Как купить отель</span>
+        <h1 class="lx-h1" id="buy-title">От выбора <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></span> до сделки — <span class="lx-acc">с сопровождением</span></h1>
+        <p class="lx-sub">Выберите отель в каталоге и оставьте заявку. Мы свяжем вас с владельцем, передадим документы после NDA и поможем оформить господдержку.</p>
         <div class="pg-actions">
-          <a href="portfolio.html" class="pg-btn pg-btn--gold">Выбрать отель <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a href="#request" class="pg-btn pg-btn--glass">Оставить заявку</a>
+          <a href="portfolio.html" class="pg-btn pg-btn--dark">Выбрать отель <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#request" class="pg-btn pg-btn--ghost">Оставить заявку</a>
+        </div>
+      </div>
+      <div class="pg-wrap">
+        <div class="lx-stage">
+          <div class="lx-stage__ill"><img src="assets/ill/key.webp" width="1000" height="746" alt="Ключ на подписанном договоре" /></div>
+          <a class="lx-float" href="portfolio.html?deal=sale" style="left:3%;top:10%"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></i><div><b>Покупка</b><span data-deal-count="sale">объекты в каталоге</span></div></a>
+          <a class="lx-float lx-float--dark" href="portfolio.html?deal=invest" style="right:3%;top:6%"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.4c-.5-.9-1.6-1.4-2.8-1.4-1.6 0-2.8.8-2.8 2 0 2.9 5.8 1.5 5.8 4.2 0 1.3-1.3 2.1-3 2.1-1.3 0-2.5-.6-3-1.5M12 6.3V8M12 16.3V18"/></svg></i><div><b>Доля в проекте</b><span data-deal-count="invest">объекты в каталоге</span></div></a>
+          <a class="lx-float" href="portfolio.html?deal=rent" style="left:7%;bottom:22%"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></i><div><b>Аренда</b><span data-deal-count="rent">объекты в каталоге</span></div></a>
+          <a class="lx-float" href="portfolio.html?deal=franchise" style="right:6%;bottom:28%"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></i><div><b>Франшиза</b><span data-deal-count="franchise">объекты в каталоге</span></div></a>
         </div>
       </div>
     </section>
 
     <!-- Форматы -->
-    <section class="pg-section" id="deals" aria-labelledby="deals-title">
+    <section class="lx-sec" id="deals" aria-labelledby="deals-title">
       <div class="pg-wrap">
-        <header class="pg-head">
-          <p class="pg-eyebrow">Форматы сделки</p>
-          <h2 class="pg-h2" id="deals-title">Четыре способа войти в проект</h2>
-          <p class="pg-lead">У каждого объекта в каталоге указан формат, который предлагает владелец. Нажмите на формат — откроются подходящие отели.</p>
+        <header class="lx-head">
+          <span class="lx-pill">Форматы сделки</span>
+          <h2 class="lx-h2" id="deals-title">Четыре способа <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span> <span class="lx-acc">войти в проект</span></h2>
+          <p class="lx-sub">У каждого объекта указан формат, который предлагает владелец. Нажмите на карточку — откроются подходящие отели.</p>
         </header>
-        <div class="pg-grid pg-grid--4">
-          <a class="pg-card" href="portfolio.html?deal=sale" data-reveal>
-            <span class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>
-            <h3>Покупка</h3><p>Отель целиком: здание, земля и действующий бизнес.</p>
-            <div class="pg-card__foot"><span class="pg-tag pg-tag--gold" data-deal-count="sale">—</span></div>
+        <div class="lx-bento lx-bento--4">
+          <a class="lx-card" href="portfolio.html?deal=sale" data-reveal>
+            <span class="lx-ico lx-ico--gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span>
+            <h3 style="margin-top:10px">Покупка</h3><p>Отель целиком: здание, земля и действующий бизнес.</p>
+            <div class="lx-card__ui"><div class="ui-list" data-deal-list="sale"></div><span class="lx-more" style="margin-top:14px">Смотреть <span data-deal-n="sale"></span> <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
           </a>
-          <a class="pg-card" href="portfolio.html?deal=invest" data-reveal>
-            <span class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M17 7.5c0-1.9-2.2-3-5-3s-5 1.1-5 3 2.2 2.8 5 3.4 5 1.6 5 3.6-2.2 3-5 3-5-1.1-5-3"/></svg></span>
-            <h3>Доля в проекте</h3><p>Соинвестирование: деньги в строительство или расширение за долю в бизнесе.</p>
-            <div class="pg-card__foot"><span class="pg-tag pg-tag--gold" data-deal-count="invest">—</span></div>
+          <a class="lx-card" href="portfolio.html?deal=invest" data-reveal>
+            <span class="lx-ico lx-ico--gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.4c-.5-.9-1.6-1.4-2.8-1.4-1.6 0-2.8.8-2.8 2 0 2.9 5.8 1.5 5.8 4.2 0 1.3-1.3 2.1-3 2.1-1.3 0-2.5-.6-3-1.5M12 6.3V8M12 16.3V18"/></svg></span>
+            <h3 style="margin-top:10px">Доля в проекте</h3><p>Деньги в строительство или расширение за долю в бизнесе.</p>
+            <div class="lx-card__ui"><div class="ui-list" data-deal-list="invest"></div><span class="lx-more" style="margin-top:14px">Смотреть <span data-deal-n="invest"></span> <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
           </a>
-          <a class="pg-card" href="portfolio.html?deal=rent" data-reveal>
-            <span class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></span>
-            <h3>Долгосрочная аренда</h3><p>Отель в управление на годы: вы ведёте бизнес, владелец получает аренду.</p>
-            <div class="pg-card__foot"><span class="pg-tag pg-tag--gold" data-deal-count="rent">—</span></div>
+          <a class="lx-card" href="portfolio.html?deal=rent" data-reveal>
+            <span class="lx-ico lx-ico--gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></span>
+            <h3 style="margin-top:10px">Долгосрочная аренда</h3><p>Вы ведёте бизнес, владелец получает арендную плату.</p>
+            <div class="lx-card__ui"><div class="ui-list" data-deal-list="rent"></div><span class="lx-more" style="margin-top:14px">Смотреть <span data-deal-n="rent"></span> <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
           </a>
-          <a class="pg-card" href="portfolio.html?deal=franchise" data-reveal>
-            <span class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>
-            <h3>Франшиза и управление</h3><p>Для сетей и операторов: вывести отель под свой бренд.</p>
-            <div class="pg-card__foot"><span class="pg-tag pg-tag--gold" data-deal-count="franchise">—</span></div>
+          <a class="lx-card" href="portfolio.html?deal=franchise" data-reveal>
+            <span class="lx-ico lx-ico--gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>
+            <h3 style="margin-top:10px">Франшиза и управление</h3><p>Для сетей и операторов: вывести отель под свой бренд.</p>
+            <div class="lx-card__ui"><div class="ui-list" data-deal-list="franchise"></div><span class="lx-more" style="margin-top:14px">Смотреть <span data-deal-n="franchise"></span> <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
           </a>
         </div>
       </div>
     </section>
 
     <!-- Шаги -->
-    <section class="pg-section" id="path" aria-labelledby="path-title">
+    <section class="lx-sec" id="path" aria-labelledby="path-title">
       <div class="pg-wrap">
-        <header class="pg-head">
-          <p class="pg-eyebrow">Как проходит сделка</p>
-          <h2 class="pg-h2" id="path-title">Пять шагов</h2>
+        <header class="lx-head">
+          <span class="lx-pill">Как проходит сделка</span>
+          <h2 class="lx-h2" id="path-title">Пять шагов <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 19H16a3.5 3.5 0 0 0 0-7H8a3.5 3.5 0 0 1 0-7h7.5"/></svg></span> <span class="lx-acc">до ключей</span></h2>
         </header>
-        <ol class="pg-steps pg-steps--5">
-          <li class="pg-step" data-reveal><h3>Выберите объект</h3><p>В каталоге — цена, номерной фонд, загрузка, доход и окупаемость каждого отеля.</p><small>Каталог · паспорт объекта</small></li>
-          <li class="pg-step" data-reveal><h3>Оставьте заявку</h3><p>Кнопка есть в паспорте каждого отеля. Специалист платформы свяжется с вами.</p><small>Ответ в течение рабочего дня</small></li>
-          <li class="pg-step" data-reveal><h3>Подпишите NDA</h3><p>После соглашения о конфиденциальности передаём финмодель, документы и данные о долге.</p><small>Закрытые документы</small></li>
-          <li class="pg-step" data-reveal><h3>Посетите объект</h3><p>Организуем показ и встречу с владельцем, поможем с проверкой объекта.</p><small>Показ и due diligence</small></li>
-          <li class="pg-step" data-reveal><h3>Заключите сделку</h3><p>Договор — напрямую с владельцем. Подскажем, на какие льготы претендует проект.</p><small><a href="incentives.html">Льготы для инвестора</a></small></li>
+        <ol class="lx-steps">
+          <li class="lx-step" data-reveal>
+            <div class="lx-step__txt">
+              <span class="lx-step__n">Шаг 1</span>
+              <h3>Выберите объект</h3>
+              <p>В каталоге у каждого отеля — цена, номерной фонд, загрузка, доход и окупаемость. Фильтруйте по региону, бюджету и формату сделки.</p>
+              <small><a href="portfolio.html">Открыть каталог →</a></small>
+            </div>
+            <div class="lx-step__vis"><div class="lx-ill"><img src="assets/ill/search.webp" width="1000" height="746" loading="lazy" alt="Лупа над карточкой отеля" /></div></div>
+          </li>
+          <li class="lx-step" data-reveal>
+            <div class="lx-step__txt">
+              <span class="lx-step__n">Шаг 2</span>
+              <h3>Оставьте заявку</h3>
+              <p>Кнопка «Оставить заявку» есть в паспорте каждого отеля. Специалист платформы свяжется с вами в течение рабочего дня.</p>
+              <small>Ответ в течение рабочего дня</small>
+            </div>
+            <div class="lx-step__vis">
+              <div class="lx-ui ui-list">
+                <div class="ui-item ui-item--fade"><span class="ui-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span><div><b>Паспорт объекта</b><span>Самарканд · 4★ · 120 номеров</span></div></div>
+                <div class="ui-item"><span class="ui-dot ui-dot--ink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></span><div><b>Заявка инвестора</b><span>Покупка · бюджет $10–30 млн</span></div><em>сейчас</em></div>
+                <div class="ui-item"><span class="ui-dot ui-dot--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Заявка принята</b><span>Специалист свяжется с вами</span></div><em>✓</em></div>
+              </div>
+            </div>
+          </li>
+          <li class="lx-step" data-reveal>
+            <div class="lx-step__txt">
+              <span class="lx-step__n">Шаг 3</span>
+              <h3>Подпишите NDA</h3>
+              <p>После соглашения о конфиденциальности передаём финансовую модель, документы на здание и землю, данные о кредитах и залогах.</p>
+              <small>Закрытые документы</small>
+            </div>
+            <div class="lx-step__vis"><div class="lx-ill"><img src="assets/ill/nda.webp" width="1000" height="746" loading="lazy" alt="Папка с золотым замком и перьевая ручка" /></div></div>
+          </li>
+          <li class="lx-step" data-reveal>
+            <div class="lx-step__txt">
+              <span class="lx-step__n">Шаг 4</span>
+              <h3>Посетите объект</h3>
+              <p>Организуем показ и встречу с владельцем, поможем с проверкой объекта: документы, техническое состояние, финансы.</p>
+              <small>Показ и due diligence</small>
+            </div>
+            <div class="lx-step__vis">
+              <div class="lx-ui ui-box" style="background:#fff">
+                <div class="ui-item" style="box-shadow:none;padding:4px 2px 12px;border-bottom:1px solid var(--line);border-radius:0"><span class="ui-dot ui-dot--ink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><div><b>Показ объекта</b><span>Встреча с владельцем на месте</span></div></div>
+                <div class="ui-list" style="margin-top:10px;gap:6px">
+                  <div class="ui-item" style="box-shadow:none;background:var(--soft)"><span class="ui-dot ui-dot--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Право собственности</b></div></div>
+                  <div class="ui-item" style="box-shadow:none;background:var(--soft)"><span class="ui-dot ui-dot--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Техническое состояние</b></div></div>
+                  <div class="ui-item" style="box-shadow:none;background:var(--soft)"><span class="ui-dot ui-dot--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Отчётность и долги</b></div></div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="lx-step" data-reveal>
+            <div class="lx-step__txt">
+              <span class="lx-step__n">Шаг 5</span>
+              <h3>Заключите сделку</h3>
+              <p>Договор — напрямую с владельцем. Подскажем, на какие льготы претендует проект: субсидии за номер, франшиза, налоги.</p>
+              <small><a href="incentives.html">Льготы для инвестора →</a></small>
+            </div>
+            <div class="lx-step__vis">
+              <div class="lx-ui ui-box" style="background:#fff">
+                <div class="ui-item" style="box-shadow:none;padding:4px 2px 12px;border-bottom:1px solid var(--line);border-radius:0"><span class="ui-dot" style="background:linear-gradient(150deg,#F1D296,#C9973F);color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><div><b>Договор подписан</b><span>Инвестор и владелец</span></div><em>✓</em></div>
+                <div class="ui-tags" style="margin-top:12px"><span class="ui-tag ui-tag--gold">Субсидия за номер</span><span class="ui-tag ui-tag--gold">Франшиза</span><span class="ui-tag">−90% налог на имущество</span></div>
+              </div>
+            </div>
+          </li>
         </ol>
       </div>
     </section>
 
     <!-- Что открыто -->
-    <section class="pg-section" aria-labelledby="docs-title">
-      <div class="pg-wrap pg-grid pg-grid--2">
-        <div class="pg-panel" data-reveal>
-          <p class="pg-eyebrow">Открыто всем</p>
-          <h3 id="docs-title">В паспорте объекта</h3>
-          <ul class="pg-list">
-            <li>Фото, адрес, категория, номера, этажность, год ввода</li>
-            <li>Цена или оценочная стоимость, цена за номер</li>
-            <li>Загрузка, ADR, RevPAR, выручка, EBITDA</li>
-            <li>Окупаемость, IRR, NPV, ROI — по методике USALI</li>
-          </ul>
-        </div>
-        <div class="pg-panel" data-reveal>
-          <p class="pg-eyebrow">После NDA</p>
-          <h3>По запросу</h3>
-          <ul class="pg-list">
-            <li>Финансовая модель и отчётность объекта</li>
-            <li>Правоустанавливающие документы на здание и землю</li>
-            <li>Кредиты, залоги и обязательства</li>
-            <li>Контакты владельца и условия сделки</li>
-          </ul>
+    <section class="lx-sec" aria-labelledby="docs-title">
+      <div class="pg-wrap">
+        <div class="lx-compare-wrap">
+          <header class="lx-head lx-head--left" style="margin-bottom:0">
+            <span class="lx-pill">Данные об объекте</span>
+            <h2 class="lx-h2" id="docs-title">Что видно <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span> сразу, <span class="lx-acc">а что — после NDA</span></h2>
+            <p class="lx-sub">Ключевые цифры открыты в паспорте каждого отеля. Подтверждающие документы и контакты владельца — после соглашения о конфиденциальности.</p>
+            <div class="pg-actions" style="margin-top:26px"><a href="portfolio.html" class="pg-btn pg-btn--dark">Открыть паспорт отеля <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+          </header>
+          <div class="lx-compare" data-reveal>
+            <table>
+              <thead><tr><th>Что</th><th>Сразу</th><th class="is-hl">После NDA</th></tr></thead>
+              <tbody>
+                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5-8 8.5"/></svg>Фото, адрес, категория, номера</span></td><td><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
+                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.4c-.5-.9-1.6-1.4-2.8-1.4-1.6 0-2.8.8-2.8 2 0 2.9 5.8 1.5 5.8 4.2 0 1.3-1.3 2.1-3 2.1-1.3 0-2.5-.6-3-1.5M12 6.3V8M12 16.3V18"/></svg>Цена и цена за номер</span></td><td><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
+                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Загрузка, ADR, выручка, EBITDA</span></td><td><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
+                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Окупаемость, IRR, NPV, ROI</span></td><td><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
+                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 14.5h.01M12 14.5h.01M15.5 14.5h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg>Финансовая модель и отчётность</span></td><td><span class="lx-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
+                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Документы на здание и землю</span></td><td><span class="lx-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
+                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></svg>Кредиты, залоги, обязательства</span></td><td><span class="lx-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
+                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.3-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.5c2.4.2 4 1.8 4.5 4.5"/></svg>Контакты владельца, условия</span></td><td><span class="lx-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Вопросы -->
-    <section class="pg-section" aria-labelledby="faq-title">
+    <section class="lx-sec" aria-labelledby="faq-title">
       <div class="pg-wrap">
-        <header class="pg-head"><p class="pg-eyebrow">Вопросы</p><h2 class="pg-h2" id="faq-title">Частые вопросы</h2></header>
-        <div class="pg-faq">
+        <header class="lx-head">
+          <span class="lx-pill">Вопросы</span>
+          <h2 class="lx-h2" id="faq-title">Частые <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span> <span class="lx-acc">вопросы</span></h2>
+        </header>
+        <div class="lx-faq">
           <details><summary>Кто продаёт объекты?</summary><p>Владельцы отелей — компании, указанные в паспорте каждого объекта. Платформа проверяет данные, готовит паспорт и связывает инвестора с владельцем.</p></details>
-          <details><summary>Насколько точны цифры в паспорте?</summary><p>У каждого показателя указан тип: «факт» — по отчётности объекта, «оценка» — расчёт платформы по данным объекта и рынка. Подтверждённые цифры передаём после NDA вместе с документами. <a href="platform.html#method">Как считаем показатели</a>.</p></details>
+          <details><summary>Насколько точны цифры в паспорте?</summary><p>У каждого показателя указан тип: «факт» — по отчётности объекта, «оценка» — расчёт платформы по данным объекта и рынка. Подтверждённые цифры передаём после NDA. <a href="platform.html#method">Как считаем</a>.</p></details>
           <details><summary>Можно ли купить долю, а не отель целиком?</summary><p>Да, если владелец предлагает соинвестирование — такие объекты отмечены в каталоге. Размер доли и условия обсуждаются с владельцем.</p></details>
           <details><summary>Можно ли посмотреть объект до сделки?</summary><p>Да. После заявки и NDA организуем показ и встречу с владельцем.</p></details>
-          <details><summary>Какие льготы есть у инвестора?</summary><p>Субсидии на строительство и оснащение номеров, софинансирование международной франшизы, сниженные налоги на землю и имущество для новых отелей. <a href="incentives.html">Все меры поддержки</a>.</p></details>
+          <details><summary>Какие льготы есть у инвестора?</summary><p>Субсидии на строительство и оснащение номеров, софинансирование международной франшизы, сниженные налоги на землю и имущество. <a href="incentives.html">Все меры поддержки</a>.</p></details>
+          <details><summary>С кем заключается договор?</summary><p>Напрямую с владельцем объекта. Платформа сопровождает сделку до подписания: передаёт документы, организует встречи, подсказывает по господдержке.</p></details>
         </div>
       </div>
     </section>
 
     <!-- Заявка -->
-    <section class="pg-section" id="request" aria-labelledby="req-title">
-      <div class="pg-wrap pg-grid pg-grid--2 pg-grid--top">
-        <header class="pg-head pg-sticky">
-          <p class="pg-eyebrow">Заявка</p>
-          <h2 class="pg-h2" id="req-title">Расскажите, что ищете</h2>
-          <p class="pg-lead">Регион, бюджет, формат — подберём объекты из каталога и тех, что ещё готовятся к публикации.</p>
-        </header>
-        <div class="pg-panel">
-          <form class="pg-form" data-lead="invest" novalidate>
-            <div class="pg-form__row">
-              <label class="pg-field"><span>Имя <i>*</i></span><input name="name" autocomplete="name" required></label>
-              <label class="pg-field"><span>Компания</span><input name="company" autocomplete="organization"></label>
-            </div>
-            <div class="pg-form__row">
-              <label class="pg-field"><span>Телефон или WhatsApp</span><input name="phone" type="tel" autocomplete="tel" placeholder="+998 …"></label>
-              <label class="pg-field"><span>E-mail</span><input name="email" type="email" autocomplete="email" placeholder="name@company.com"></label>
-            </div>
-            <div class="pg-form__row">
-              <label class="pg-field"><span>Регион</span>
-                <select name="region"><option value="">Любой</option><option>Ташкент</option><option>Самарканд</option><option>Бухара</option><option>Хорезм (Хива)</option><option>Ташкентская обл. (Чимган, Чарвак)</option><option>Джизак (Зомин)</option><option>Кашкадарья (Шахрисабз)</option><option>Другой</option></select>
-              </label>
-              <label class="pg-field"><span>Бюджет</span>
-                <select name="budget"><option value="">Не определён</option><option>до $3 млн</option><option>$3–10 млн</option><option>$10–30 млн</option><option>более $30 млн</option></select>
-              </label>
-            </div>
-            <div class="pg-field"><span>Формат</span><div class="pg-choice">
-              <label><input type="radio" name="interest" value="Покупка" checked><span>Покупка</span></label>
-              <label><input type="radio" name="interest" value="Доля"><span>Доля</span></label>
-              <label><input type="radio" name="interest" value="Аренда"><span>Аренда</span></label>
-              <label><input type="radio" name="interest" value="Франшиза / управление"><span>Франшиза</span></label>
-            </div></div>
-            <label class="pg-field"><span>Комментарий</span><textarea name="message" rows="3" placeholder="Категория, число номеров, сроки"></textarea></label>
-            <input class="pg-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <div class="pg-form__status" role="status" aria-live="polite"></div>
-            <div class="pg-form__foot">
-              <button type="submit" class="pg-btn pg-btn--dark">Отправить заявку</button>
-              <p class="pg-note">Укажите телефон или e-mail. Контакты получит только команда платформы.</p>
-            </div>
-            <div class="pg-success" role="status">
-              <div class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-              <h3>Заявка отправлена</h3>
-              <p>Спасибо! Свяжемся с вами в течение рабочего дня.</p>
-            </div>
-          </form>
+    <section class="lx-sec" id="request" aria-labelledby="req-title">
+      <div class="pg-wrap">
+        <div class="lx-band">
+          <div>
+            <span class="lx-pill">Заявка инвестора</span>
+            <h2 class="lx-h2" id="req-title">Расскажите, <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></span> <span class="lx-acc">что ищете</span></h2>
+            <p class="lx-sub">Регион, бюджет, формат — подберём объекты из каталога и тех, что ещё готовятся к публикации.</p>
+            <ul class="lx-band__list">
+              <li>Ответим в течение рабочего дня</li>
+              <li>Покажем подходящие отели, включая ещё не опубликованные</li>
+              <li>Контакты получит только команда платформы</li>
+            </ul>
+          </div>
+          <div class="lx-sheet">
+            <form class="pg-form" data-lead="invest" novalidate style="margin-top:0">
+              <div class="pg-form__row">
+                <label class="pg-field"><span>Имя <i>*</i></span><input name="name" autocomplete="name" required></label>
+                <label class="pg-field"><span>Компания</span><input name="company" autocomplete="organization"></label>
+              </div>
+              <div class="pg-form__row">
+                <label class="pg-field"><span>Телефон или WhatsApp</span><input name="phone" type="tel" autocomplete="tel" placeholder="+998 …"></label>
+                <label class="pg-field"><span>E-mail</span><input name="email" type="email" autocomplete="email" placeholder="name@company.com"></label>
+              </div>
+              <div class="pg-form__row">
+                <label class="pg-field"><span>Регион</span>
+                  <select name="region"><option value="">Любой</option><option>Ташкент</option><option>Самарканд</option><option>Бухара</option><option>Хорезм (Хива)</option><option>Ташкентская обл. (Чимган, Чарвак)</option><option>Джизак (Зомин)</option><option>Кашкадарья (Шахрисабз)</option><option>Другой</option></select>
+                </label>
+                <label class="pg-field"><span>Бюджет</span>
+                  <select name="budget"><option value="">Не определён</option><option>до $3 млн</option><option>$3–10 млн</option><option>$10–30 млн</option><option>более $30 млн</option></select>
+                </label>
+              </div>
+              <div class="pg-field"><span>Формат</span><div class="pg-choice">
+                <label><input type="radio" name="interest" value="Покупка" checked><span>Покупка</span></label>
+                <label><input type="radio" name="interest" value="Доля"><span>Доля</span></label>
+                <label><input type="radio" name="interest" value="Аренда"><span>Аренда</span></label>
+                <label><input type="radio" name="interest" value="Франшиза / управление"><span>Франшиза</span></label>
+              </div></div>
+              <label class="pg-field"><span>Комментарий</span><textarea name="message" rows="3" placeholder="Категория, число номеров, сроки"></textarea></label>
+              <input class="pg-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <div class="pg-form__status" role="status" aria-live="polite"></div>
+              <div class="pg-form__foot">
+                <button type="submit" class="pg-btn pg-btn--dark">Отправить заявку</button>
+                <p class="pg-note">Укажите телефон или e-mail.</p>
+              </div>
+              <div class="pg-success" role="status">
+                <div class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+                <h3>Заявка отправлена</h3>
+                <p>Спасибо! Свяжемся с вами в течение рабочего дня.</p>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
+    <div class="lx-mark" aria-hidden="true" style="margin-top:110px">SILK ROUTE</div>
 
   </main>
 
@@ -279,6 +364,9 @@
   <script>
   (function () {
     var plural = function (n) { var a = n % 100, b = n % 10; return a > 10 && a < 20 ? 'объектов' : b > 1 && b < 5 ? 'объекта' : b === 1 ? 'объект' : 'объектов'; };
+    var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var city = function (h) { var a = String(h.address || ''); var m = a.match(/г\.\s*([^,]+)/); return m ? m[1].trim() : String(h.region || '').replace(' область', ' обл.'); };
+    var photo = function (h) { var p = (h.photos || []).map(function (x) { return x && x.src; }).filter(Boolean); var loc = p.filter(function (s) { return s.charAt(0) === '/' || s.indexOf('assets/') === 0; }); return loc[0] || p[0] || ''; };
     async function load() {
       var list = [];
       try { if (window.HotelStore) list = HotelStore.getAll() || []; } catch (e) {}
@@ -286,9 +374,19 @@
       return list.filter(function (h) { return h.status !== 'draft'; });
     }
     load().then(function (list) {
-      var n = { sale: 0, invest: 0, rent: 0, franchise: 0 };
-      list.forEach(function (h) { var k = window.getHotelDealConfig ? getHotelDealConfig(h).key : h.dealType; if (k in n) n[k]++; });
-      document.querySelectorAll('[data-deal-count]').forEach(function (el) { var c = n[el.dataset.dealCount] || 0; el.textContent = c + ' ' + plural(c) + ' в каталоге'; });
+      var by = { sale: [], invest: [], rent: [], franchise: [] };
+      list.forEach(function (h) { var k = window.getHotelDealConfig ? getHotelDealConfig(h).key : h.dealType; if (by[k]) by[k].push(h); });
+      Object.keys(by).forEach(function (k) {
+        var hs = by[k], c = hs.length;
+        document.querySelectorAll('[data-deal-count="' + k + '"]').forEach(function (el) { el.textContent = c + ' ' + plural(c) + ' в каталоге'; });
+        document.querySelectorAll('[data-deal-n="' + k + '"]').forEach(function (el) { el.textContent = c + ' ' + plural(c); });
+        var box = document.querySelector('[data-deal-list="' + k + '"]');
+        if (box) box.innerHTML = hs.slice().sort(function (a, b) { return (b.roomsCount || 0) - (a.roomsCount || 0); }).slice(0, 2).map(function (h) {
+          var src = photo(h);
+          return '<div class="ui-item">' + (src ? '<img class="ui-thumb" src="' + esc(src) + '" alt="" loading="lazy">' : '<span class="ui-dot"></span>') +
+            '<div><b>' + esc(h.hotelName) + '</b><span>' + esc(city(h)) + ' · ' + (h.stars ? h.stars + '★ · ' : '') + (h.roomsCount || '—') + ' ном.</span></div></div>';
+        }).join('');
+      });
     });
   })();
   </script>
