@@ -29,7 +29,7 @@
   const easeIO = (t) => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 
-  const IMG_AR = 2576 / 1438;
+  const IMG_AR = 2752 / 1536;
   const DWELL = 5200; // сколько держим регион в автотуре, мс
 
   /* Символы регионов: t — где на дороге, (u,v) — точка метки,
@@ -354,7 +354,7 @@ void main(){
   let W = 0, H = 0, visible = true, raf = 0, last = 0, t0 = 0;
   function resize() {
     const r = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, mobileMQ.matches ? 1.5 : 1.75);
+    const dpr = Math.min(window.devicePixelRatio || 1, mobileMQ.matches ? 1.5 : 2);
     W = Math.max(1, Math.round(r.width * dpr)); H = Math.max(1, Math.round(r.height * dpr));
     if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
   }
