@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <script src="js/i18n.js?v=i18n_1"></script>
   <link rel="icon" type="image/png" href="./assets/logo-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Официальная инвестиционная платформа туристической отрасли Узбекистана. Гостиницы, рестораны, земельные участки, государственные преференции и стандартизированные паспорта по методологии USALI/STR." />
@@ -14,7 +15,7 @@
   <link rel="stylesheet" href="design-tokens.css?v=arch_2" />
   <link rel="stylesheet" href="styles/base.css?v=arch_2" />
   <link rel="stylesheet" href="styles/header.css?v=arch_2" />
-  <link rel="stylesheet" href="styles/megamenu.css?v=unified_nav_3" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=lang_1" />
   <!-- Home V2 Architectural Stylesheet (Visual Reference @kozyuk.design) -->
   <link rel="stylesheet" href="css/home-v2.css?v=oculus_v5" />
   <link rel="stylesheet" href="styles/site.css?v=site_1" />
@@ -52,6 +53,10 @@
         <div class="nav-item" data-page="platform"><a href="platform.html" class="nav-trigger">О платформе</a></div>
       </nav>
       <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Язык сайта">
+          <button type="button" class="lang-btn" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
+          <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">EN</button>
+        </div>
         <a href="business.html" class="btn-login" id="header-login">
           <span>Разместить объект</span>
           <span class="btn-login-icon">→</span>
@@ -77,6 +82,13 @@
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Владельцам</span>
       <a href="business.html" class="mobile-nav-cta">Разместить объект</a>
+    </div>
+    <div class="mobile-nav-section mobile-nav-lang">
+      <span class="mobile-nav-label">Язык сайта</span>
+      <div class="lang-switcher" role="group" aria-label="Язык сайта">
+        <button type="button" class="lang-btn" data-lang="ru" lang="ru" aria-pressed="true" data-i18n-skip>Русский</button>
+        <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">English</button>
+      </div>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Платформа</span>
@@ -141,7 +153,7 @@
           <div class="pg-stat pg-stat--dark" data-reveal><b>11,7 млн</b><span>иностранных туристов в 2025 году</span><em>+46,8% к 2024</em></div>
           <div class="pg-stat" data-reveal><b>$4,8 млрд</b><span>экспорт туристических услуг в 2025 году</span><em>рекорд</em></div>
           <div class="pg-stat" data-reveal><b>10,3 млн</b><span>туристов за 9 месяцев 2026 года</span><em>+20,4% к 2025</em></div>
-          <div class="pg-stat" data-reveal><b>51</b><span>отель международных брендов: Hilton, Wyndham, Accor, Hyatt, Marriott</span><em>+27,5% с начала 2026</em></div>
+          <div class="pg-stat" data-reveal><b>53</b><span>отеля международных брендов: Hilton, Wyndham, Accor, Hyatt, Marriott</span><em>+32,5% с начала 2026</em></div>
         </div>
         <p class="pg-note" style="margin-top:12px">Данные Госкомстата и Комитета по туризму. <a href="market.html">Источники и подробности</a>.</p>
       </div>
@@ -572,12 +584,12 @@
     </div>
   </footer>
 
-  <script src="js/megamenu.js?v=nav_inv_1"></script>
+  <script src="js/megamenu.js?v=lang_1"></script>
   <script src="js/hotels-data.js?v=photos8"></script>
   <script src="js/verticals.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=lang_1"></script>
   <script src="js/home-v2.js?v=unified_nav_1"></script>
-  <script src="js/hero-silk.js?v=silk_10"></script>
+  <script src="js/hero-silk.js?v=silk_11"></script>
   <script src="js/site.js?v=site_1"></script>
 </body>
 </html>

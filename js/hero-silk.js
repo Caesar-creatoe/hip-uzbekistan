@@ -86,6 +86,7 @@
   function splitTitle() {
     const h = q('.sx-title');
     if (!h) return;
+    if (window.SITE_LANG === 'en' && window.t) { const tt = window.t(h.textContent); if (tt !== h.textContent) h.textContent = tt; }
     let i = 0;
     const wrap = (node) => {
       [...node.childNodes].forEach((n) => {

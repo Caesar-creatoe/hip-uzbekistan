@@ -97,20 +97,16 @@
 
   /* ── Языковой переключатель ─────────────────────────────── */
   const langBtns = document.querySelectorAll('.lang-btn');
-  const savedLang = localStorage.getItem('hip_lang') || 'ru';
-
-  function applyLang(lang) {
-    langBtns.forEach(btn => {
-      btn.classList.toggle('lang-btn--active', btn.dataset.lang === lang);
-      btn.setAttribute('aria-pressed', btn.dataset.lang === lang);
-    });
-    localStorage.setItem('hip_lang', lang);
-  }
-
+  const curLang = window.SITE_LANG || 'ru';
   langBtns.forEach(btn => {
-    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    const on = btn.dataset.lang === curLang;
+    btn.classList.toggle('lang-btn--active', on);
+    btn.setAttribute('aria-pressed', on);
+    btn.addEventListener('click', () => {
+      if (btn.dataset.lang === curLang) return;
+      if (window.setSiteLang) window.setSiteLang(btn.dataset.lang);
+    });
   });
-  applyLang(savedLang);
 
   /* ── Активный пункт навигации ───────────────────────────── */
   const currentPath = (window.location.pathname.split('/').pop() || 'index.html').split('?')[0];

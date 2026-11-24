@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <script src="js/i18n.js?v=i18n_1"></script>
   <link rel="icon" type="image/png" href="./assets/logo-icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Hotel Investment Passport — Grand Tashkent Hotel, 5★, Ташкент. Инвестиционный паспорт гостиничного объекта: KPI, Location Analysis, Investment Readiness A+." />
@@ -14,7 +15,7 @@
   <link rel="stylesheet" href="design-tokens.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/base.css?v=spatial_2" />
   <link rel="stylesheet" href="styles/header.css?v=spatial_2" />
-  <link rel="stylesheet" href="styles/megamenu.css?v=spatial_2" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=lang_1" />
   <link rel="stylesheet" href="styles/portal.css?v=spatial_2" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="styles/passport-v2.css?v=pp2_6" />
@@ -58,6 +59,10 @@
         <div class="nav-item" data-page="platform"><a href="platform.html" class="nav-trigger">О платформе</a></div>
       </nav>
       <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Язык сайта">
+          <button type="button" class="lang-btn" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
+          <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">EN</button>
+        </div>
         <a href="business.html" class="btn-login" id="header-login">
           <span>Разместить объект</span>
           <span class="btn-login-icon">→</span>
@@ -83,6 +88,13 @@
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Владельцам</span>
       <a href="business.html" class="mobile-nav-cta">Разместить объект</a>
+    </div>
+    <div class="mobile-nav-section mobile-nav-lang">
+      <span class="mobile-nav-label">Язык сайта</span>
+      <div class="lang-switcher" role="group" aria-label="Язык сайта">
+        <button type="button" class="lang-btn" data-lang="ru" lang="ru" aria-pressed="true" data-i18n-skip>Русский</button>
+        <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">English</button>
+      </div>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Платформа</span>
@@ -413,11 +425,11 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=lang_1"></script>
   <script src="js/hotels-data.js?v=photos8"></script>
   <script src="js/economics.js?v=pp2_1"></script>
   <script src="js/passport.js?v=pp2_6"></script>
-  <script src="js/megamenu.js?v=nav_inv_1"></script>
+  <script src="js/megamenu.js?v=lang_1"></script>
   <script src="js/site.js?v=site_1"></script>
 </body>
 </html>

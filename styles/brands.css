@@ -270,3 +270,4 @@
   .bx-marquee__track { -webkit-mask-image: none; mask-image: none; }
   .bx-net::details-content { transition: none; }
 }
+html[lang="en"] .bx-tbl td:nth-child(3)::after { content: " rooms"; }

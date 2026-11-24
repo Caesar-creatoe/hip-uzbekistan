@@ -7,6 +7,8 @@
 import re
 import sys
 
+I18N = 'i18n_1'   # версия переводчика: поменять, если изменился js/i18n.js
+
 HEADER = '''<header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
       <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
@@ -26,6 +28,10 @@ HEADER = '''<header class="site-header" id="site-header" role="banner">
         <div class="nav-item" data-page="platform"><a href="platform.html" class="nav-trigger">О платформе</a></div>
       </nav>
       <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Язык сайта">
+          <button type="button" class="lang-btn" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
+          <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">EN</button>
+        </div>
         <a href="business.html" class="btn-login" id="header-login">
           <span>Разместить объект</span>
           <span class="btn-login-icon">→</span>
@@ -50,6 +56,13 @@ MOBILE = '''<div class="mobile-nav" id="mobile-nav" role="navigation" aria-label
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Владельцам</span>
       <a href="business.html" class="mobile-nav-cta">Разместить объект</a>
+    </div>
+    <div class="mobile-nav-section mobile-nav-lang">
+      <span class="mobile-nav-label">Язык сайта</span>
+      <div class="lang-switcher" role="group" aria-label="Язык сайта">
+        <button type="button" class="lang-btn" data-lang="ru" lang="ru" aria-pressed="true" data-i18n-skip>Русский</button>
+        <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">English</button>
+      </div>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Платформа</span>
@@ -134,6 +147,8 @@ def apply(path):
     s, d = replace_block(s, r'<aside class="spatial-dock"', 'aside', '')
     s, _ = replace_block(s, r'<nav class="vertical-switcher"', 'nav', '')
     s = re.sub(r'\s*<script src="js/support-core\.js[^"]*"></script>', '', s)
+    s = re.sub(r'\s*<script src="js/i18n\.js[^"]*"></script>', '', s)
+    s = s.replace('<meta charset="UTF-8" />', '<meta charset="UTF-8" />\n  <script src="js/i18n.js?v=' + I18N + '"></script>', 1)
     s = re.sub(r'\s*<link rel="stylesheet" href="styles/spatial-dock\.css[^>]*>', '', s)
     open(path, 'w', encoding='utf-8').write(s)
     print(f'{path}: header={h} mobile={m} footer={f} dock={d}')

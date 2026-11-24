@@ -703,3 +703,24 @@
   }
 }
 
+
+/* ── Переключатель языка: место в шапке ─────────────────── */
+@media (min-width: 1201px) and (max-width: 1440px) {
+  .header-nav { gap: 2px; }
+  .nav-link, .nav-trigger { padding: 8px 12px; }
+}
+@media (max-width: 992px) {
+  .header-right .lang-switcher { display: none; }   /* на телефоне — в мобильном меню */
+}
+.mobile-nav-lang .lang-switcher { display: inline-flex; margin-top: 6px; }
+.mobile-nav-lang .lang-btn { font-size: 13px; letter-spacing: 0; text-transform: none; padding: 8px 16px; border-radius: 16px; }
+@media (min-width: 993px) and (max-width: 1200px) {
+  .header-inner { gap: 8px; padding: 0 14px 0 18px; }
+  .header-nav { gap: 0; }
+  .nav-link, .nav-trigger { padding: 6px 8px; }
+  .header-right { gap: 8px; }
+  .header-right .lang-btn { padding: 4px 7px; }
+}
+@media (min-width: 993px) and (max-width: 1100px) {
+  .site-header .header-logo .logo-text { display: none; }   /* остаётся эмблема */
+}
