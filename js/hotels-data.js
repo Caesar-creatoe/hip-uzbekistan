@@ -88,15 +88,11 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/683448160.jpg?k=a10b1d60c35f934449e75fdfd31b24689107f8e4b580effd080552b31dfb3930&o=",
+        "src": "/assets/hotels/bakh-mir-palace-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/683453848.jpg?k=f37111a7304891acacb978d6afd296d6d9eea8837b1cc360def87e6023ca2003&o=",
-        "caption": ""
-      },
-      {
-        "src": "/assets/hotels/bakh-mir-palace-3.webp",
+        "src": "/assets/hotels/bakh-mir-palace-p2.webp",
         "caption": ""
       }
     ],
@@ -198,20 +194,20 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/somoniy-hotel-bukhara-1.webp",
+        "src": "/assets/hotels/somoniy-hotel-bukhara-p1.webp",
         "caption": ""
       },
       {
-        "src": "/assets/hotels/somoniy-hotel-bukhara-2.webp",
+        "src": "/assets/hotels/somoniy-hotel-bukhara-p2.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Poi%20Kalon%20Ensemble%2C%20Bukhara%20%284933989373%29.jpg?width=1600",
-        "caption": "Бухара, ансамбль Пои-Калян — исторический центр · фото: Wikimedia Commons"
+        "src": "/assets/hotels/somoniy-hotel-bukhara-p3.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Kalan%20Minaret%2002.jpg?width=1600",
-        "caption": "Бухара, минарет Калян · фото: Wikimedia Commons"
+        "src": "/assets/hotels/somoniy-hotel-bukhara-p4.webp",
+        "caption": ""
       }
     ],
     "notes": "Незавершённое строительство. 8 этажей, 35000 м².",
@@ -313,16 +309,8 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/samarqand-universal-bouilding-1.webp",
+        "src": "/assets/hotels/samarqand-universal-bouilding-p1.webp",
         "caption": ""
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Registan%20square%202014.JPG?width=1600",
-        "caption": "Самарканд, площадь Регистан · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%A1%D0%B0%D0%BC%D0%B0%D1%80%D0%BA%D0%B0%D0%BD%D0%B4.%20%D0%9F%D0%BB%D0%BE%D1%89%D0%B0%D0%B4%D1%8C-%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D0%B0%D0%BD.jpg?width=1600",
-        "caption": "Самарканд, Регистан вечером · фото: Wikimedia Commons"
       }
     ],
     "notes": "Незавершённое строительство. 9 этажей, 279 номеров.",
@@ -424,19 +412,23 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/khiva-residence-1.webp",
+        "src": "/assets/hotels/khiva-residence-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://cdn.worldota.net/t/1024x768/content/ac/c0/acc0408aade5ce21e530aac30b5a47bdb9ac0212.jpeg",
+        "src": "/assets/hotels/khiva-residence-p2.webp",
         "caption": ""
       },
       {
-        "src": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/25/ff/78/khiva-residence.jpg",
+        "src": "/assets/hotels/khiva-residence-p3.webp",
         "caption": ""
       },
       {
-        "src": "https://images.trvl-media.com/lodging/85000000/84160000/84151800/84151727/b748add5.jpg",
+        "src": "/assets/hotels/khiva-residence-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/khiva-residence-p5.webp",
         "caption": ""
       }
     ],
@@ -539,19 +531,31 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/17/26/4b/farovon-khiva-hotel.jpg?w=900&h=-1&s=1",
+        "src": "/assets/hotels/farovon-khiva-p1.webp",
         "caption": ""
       },
       {
-        "src": "/assets/hotels/farovon-khiva-2.webp",
+        "src": "/assets/hotels/farovon-khiva-p2.webp",
         "caption": ""
       },
       {
-        "src": "https://pics.tui.com/pics/pics1600x1200/tui/4/4fff1f46fb748389a691c33a7314ec4d_ocpprod.jpg",
+        "src": "/assets/hotels/farovon-khiva-p3.webp",
         "caption": ""
       },
       {
-        "src": "https://www.advantour.com/img/uzbekistan/hotels/khiva/farovon/courtyard.jpg",
+        "src": "/assets/hotels/farovon-khiva-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/farovon-khiva-p5.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/farovon-khiva-p6.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/farovon-khiva-p7.webp",
         "caption": ""
       }
     ],
@@ -653,16 +657,24 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/asmald-1.webp",
+        "src": "/assets/hotels/asmald-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Minor%20Mosque%20Tashkent.jpg?width=1600",
-        "caption": "Ташкент, мечеть Минор — рядом с районом объекта · фото: Wikimedia Commons"
+        "src": "/assets/hotels/asmald-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Hazrat%20imam%20complex%20panoramic%20view.jpg?width=1600",
-        "caption": "Ташкент, площадь Хазрати Имам · фото: Wikimedia Commons"
+        "src": "/assets/hotels/asmald-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/asmald-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/asmald-p5.webp",
+        "caption": ""
       }
     ],
     "notes": "Незавершённое строительство. 5 этажей, 94 номера, 9100 м².",
@@ -764,20 +776,28 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/farovon-tashkent-1.webp",
+        "src": "/assets/hotels/farovon-tashkent-p1.webp",
         "caption": ""
       },
       {
-        "src": "/assets/hotels/farovon-tashkent-2.webp",
+        "src": "/assets/hotels/farovon-tashkent-p2.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Hazrat%20Imam%2001.jpg?width=1600",
-        "caption": "Ташкент, комплекс Хазрати Имам — рядом с ул. Қорасарой · фото: Wikimedia Commons"
+        "src": "/assets/hotels/farovon-tashkent-p3.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Hazrat%20imam%20complex%20panoramic%20view.jpg?width=1600",
-        "caption": "Ташкент, площадь Хазрати Имам · фото: Wikimedia Commons"
+        "src": "/assets/hotels/farovon-tashkent-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/farovon-tashkent-p5.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/farovon-tashkent-p6.webp",
+        "caption": ""
       }
     ],
     "notes": "Лицензия до 2030. 2 этажа, 56 номеров.",
@@ -879,16 +899,24 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/novza-metro-hotel-1.webp",
+        "src": "/assets/hotels/novza-metro-hotel-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Modern%20Tashkent.%20Skyline.jpg?width=1600",
-        "caption": "Ташкент · фото: Wikimedia Commons"
+        "src": "/assets/hotels/novza-metro-hotel-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Tashkent%20City%20Park%20at%20night%202019.jpg?width=1600",
-        "caption": "Ташкент, парк Tashkent City · фото: Wikimedia Commons"
+        "src": "/assets/hotels/novza-metro-hotel-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/novza-metro-hotel-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/novza-metro-hotel-p5.webp",
+        "caption": ""
       }
     ],
     "notes": "Незавершённое строительство. 8 этажей, 100 номеров.",
@@ -990,19 +1018,27 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/movenpick-tashkent-1.webp",
+        "src": "/assets/hotels/movenpick-tashkent-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://www.ahstatic.com/photos/c5k7_ho_03_p_2048x1536.jpg",
+        "src": "/assets/hotels/movenpick-tashkent-p2.webp",
         "caption": ""
       },
       {
-        "src": "https://media.iceportal.com/187844/photos/99760678_4K.jpg",
+        "src": "/assets/hotels/movenpick-tashkent-p3.webp",
         "caption": ""
       },
       {
-        "src": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/d7/d0/47/exterior.jpg",
+        "src": "/assets/hotels/movenpick-tashkent-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/movenpick-tashkent-p5.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/movenpick-tashkent-p6.webp",
         "caption": ""
       }
     ],
@@ -1105,16 +1141,24 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/yangi-uzbekiston-complex-1.webp",
+        "src": "/assets/hotels/yangi-uzbekiston-complex-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Tashkent%20City%20Park%20at%20night%202019.jpg?width=1600",
-        "caption": "Ташкент, парк Tashkent City · фото: Wikimedia Commons"
+        "src": "/assets/hotels/yangi-uzbekiston-complex-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20from%20Hotel%20Uzbekistan%20in%20Tashkent%202.jpg?width=1600",
-        "caption": "Ташкент, вид на центр города · фото: Wikimedia Commons"
+        "src": "/assets/hotels/yangi-uzbekiston-complex-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/yangi-uzbekiston-complex-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/yangi-uzbekiston-complex-p5.webp",
+        "caption": ""
       }
     ],
     "notes": "2025 год. 5 этажей, 62 номера.",
@@ -1216,16 +1260,24 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/t-city-parkinmall-1.webp",
+        "src": "/assets/hotels/t-city-parkinmall-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/TashkentCity.jpg?width=1600",
-        "caption": "Ташкент, деловой район Tashkent City — рядом с объектом · фото: Wikimedia Commons"
+        "src": "/assets/hotels/t-city-parkinmall-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Tashkent%20City%20Park%20Lake.jpg?width=1600",
-        "caption": "Ташкент, парк Tashkent City · фото: Wikimedia Commons"
+        "src": "/assets/hotels/t-city-parkinmall-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/t-city-parkinmall-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/t-city-parkinmall-p5.webp",
+        "caption": ""
       }
     ],
     "notes": "Незавершённое строительство. 10 этажей, 172 номера.",
@@ -1327,16 +1379,8 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/gidromet-hotel-1.webp",
+        "src": "/assets/hotels/gidromet-hotel-p1.webp",
         "caption": ""
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20from%20Hotel%20Uzbekistan%20in%20Tashkent%202.jpg?width=1600",
-        "caption": "Ташкент, вид на центр города · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Modern%20Tashkent.%20Skyline.jpg?width=1600",
-        "caption": "Ташкент · фото: Wikimedia Commons"
       }
     ],
     "notes": "2026 год. 9 этажей, 65 номеров.",
@@ -1438,16 +1482,8 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/glinka-hotel-1.webp",
+        "src": "/assets/hotels/glinka-hotel-p1.webp",
         "caption": ""
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Modern%20Tashkent.%20Skyline.jpg?width=1600",
-        "caption": "Ташкент · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20from%20Hotel%20Uzbekistan%20in%20Tashkent%202.jpg?width=1600",
-        "caption": "Ташкент, вид на центр города · фото: Wikimedia Commons"
       }
     ],
     "notes": "85% завершён. 9 этажей, 79 номеров.",
@@ -1549,16 +1585,24 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/kushbegi-hotel-1.webp",
+        "src": "/assets/hotels/kushbegi-hotel-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Tashkent%20City%20Park%20at%20night%202019.jpg?width=1600",
-        "caption": "Ташкент, парк Tashkent City · фото: Wikimedia Commons"
+        "src": "/assets/hotels/kushbegi-hotel-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20from%20Hotel%20Uzbekistan%20in%20Tashkent%202.jpg?width=1600",
-        "caption": "Ташкент, вид на центр города · фото: Wikimedia Commons"
+        "src": "/assets/hotels/kushbegi-hotel-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/kushbegi-hotel-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/kushbegi-hotel-p5.webp",
+        "caption": ""
       }
     ],
     "notes": "30% завершён. 8 этажей, 180 номеров.",
@@ -1660,16 +1704,8 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/rakat-hotel-1.webp",
+        "src": "/assets/hotels/rakat-hotel-p1.webp",
         "caption": ""
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Modern%20Tashkent.%20Skyline.jpg?width=1600",
-        "caption": "Ташкент · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Tashkent%20City%20Park%20at%20night%202019.jpg?width=1600",
-        "caption": "Ташкент, парк Tashkent City · фото: Wikimedia Commons"
       }
     ],
     "notes": "2026 год. 3 этажа, 65 номеров.",
@@ -1771,16 +1807,8 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/airport-hotel-tashkent-1.webp",
+        "src": "/assets/hotels/airport-hotel-tashkent-p1.webp",
         "caption": ""
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Tashkent%20International%20Airport%20backlight.jpg?width=1600",
-        "caption": "Международный аэропорт Ташкента — рядом с объектом · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Modern%20Tashkent.%20Skyline.jpg?width=1600",
-        "caption": "Ташкент · фото: Wikimedia Commons"
       }
     ],
     "notes": "50% завершён. 6 этажей, 70 номеров.",
@@ -1882,20 +1910,12 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/new-hotel-yakkasaray-1.webp",
+        "src": "/assets/hotels/new-hotel-yakkasaray-p1.webp",
         "caption": ""
       },
       {
-        "src": "/assets/hotels/new-hotel-yakkasaray-2.webp",
+        "src": "/assets/hotels/new-hotel-yakkasaray-p2.webp",
         "caption": ""
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Modern%20Tashkent.%20Skyline.jpg?width=1600",
-        "caption": "Ташкент · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20from%20Hotel%20Uzbekistan%20in%20Tashkent%202.jpg?width=1600",
-        "caption": "Ташкент, вид на центр города · фото: Wikimedia Commons"
       }
     ],
     "notes": "Незавершённое строительство. 9 этажей, 79 номеров.",
@@ -1996,16 +2016,12 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/zarbofit-landmark-1.webp",
+        "src": "/assets/hotels/zarbofit-landmark-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Memorial%20complex%20%22Registan%22%20in%20Samarkand%20%280%29.jpg?width=1600",
-        "caption": "Самарканд, Регистан — главный туристический поток региона · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Registan%2001.jpg?width=1600",
-        "caption": "Самарканд, медресе Регистана · фото: Wikimedia Commons"
+        "src": "/assets/hotels/zarbofit-landmark-p2.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. Крупный инвестиционный проект.",
@@ -2106,20 +2122,12 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/camp-aydar-1.webp",
+        "src": "/assets/hotels/camp-aydar-p1.webp",
         "caption": ""
       },
       {
-        "src": "/assets/hotels/camp-aydar-2.webp",
+        "src": "/assets/hotels/camp-aydar-p2.webp",
         "caption": ""
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Kazakh%20yurts%20at%20night%20in%20the%20Kyzylkum%20desert%2C%20Uzbekistan.jpg?width=1600",
-        "caption": "Пустыня Кызылкум — формат юрточного лагеря · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%9D%D1%83%D1%80%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D1%85%D1%80%D0%B5%D0%B1%D0%B5%D1%82.jpg?width=1600",
-        "caption": "Нуратинский хребет — район объекта · фото: Wikimedia Commons"
       }
     ],
     "notes": "Эко-кемпинг в пустыне Кызылкум. 106 юрт, 18.3 га.",
@@ -2220,20 +2228,28 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/aydarkul-resort-1.webp",
+        "src": "/assets/hotels/aydarkul-resort-p1.webp",
         "caption": ""
       },
       {
-        "src": "/assets/hotels/aydarkul-resort-2.webp",
+        "src": "/assets/hotels/aydarkul-resort-p2.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%97%D0%B0%D0%BA%D0%B0%D1%82%20%D0%BD%D0%B0%20%D0%BE%D0%B7%D0%B5%D1%80%D0%B5%20%D0%90%D0%B9%D0%B4%D0%B0%D1%80%D0%BA%D1%83%D0%BB%D1%8C.jpg?width=1600",
-        "caption": "Озеро Айдаркуль — район объекта · фото: Wikimedia Commons"
+        "src": "/assets/hotels/aydarkul-resort-p3.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%97%D0%B0%D0%BA%D0%B0%D1%82%20%D0%BD%D0%B0%20%D0%B1%D0%B5%D1%80%D0%B5%D0%B3%D1%83%20%D0%90%D0%B9%D0%B4%D0%B0%D1%80%D0%BA%D1%83%D0%BB%D1%8F.jpg?width=1600",
-        "caption": "Берег Айдаркуля · фото: Wikimedia Commons"
+        "src": "/assets/hotels/aydarkul-resort-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/aydarkul-resort-p5.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/aydarkul-resort-p6.webp",
+        "caption": ""
       }
     ],
     "notes": "235 номеров, 23.8 га. Туристический комплекс на оз. Айдаркуль.",
@@ -2334,20 +2350,12 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/suffa-shale-1.webp",
+        "src": "/assets/hotels/suffa-shale-p1.webp",
         "caption": ""
       },
       {
-        "src": "/assets/hotels/suffa-shale-2.webp",
+        "src": "/assets/hotels/suffa-shale-p2.webp",
         "caption": ""
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Landscape%20of%20the%20Zaamin%20National%20park.jpg?width=1600",
-        "caption": "Зааминский национальный парк — район объекта · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%20landscape%20at%20the%20Zaamin%20National%20Park.jpg?width=1600",
-        "caption": "Зааминские горы · фото: Wikimedia Commons"
       }
     ],
     "notes": "2026 год. 77 номеров, 6.2 га.",
@@ -2448,16 +2456,16 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/arda-khiva-lot2-1.webp",
+        "src": "/assets/hotels/arda-khiva-lot2-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://lwwhymkwazfxckhcrwuf.supabase.co/storage/v1/object/public/content/uploads/1787038708979-5v38u6kn14s.jpg",
-        "caption": "Отель Arda Turan в том же комплексе · фото с сайта arda-xiva.uz"
+        "src": "/assets/hotels/arda-khiva-lot2-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://arda-xiva.uz/assets/hero-banner-DBffPeVT.png",
-        "caption": "Туристический комплекс Arda Khiva · фото с сайта arda-xiva.uz"
+        "src": "/assets/hotels/arda-khiva-lot2-p3.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 96 номеров. Arda Khiva.",
@@ -2558,16 +2566,24 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/hastimom-samarkand-1.webp",
+        "src": "/assets/hotels/hastimom-samarkand-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Hazrat%20Imam%2001.jpg?width=1600",
-        "caption": "Ташкент, комплекс Хазрати Имам — рядом с ул. Қорасарой · фото: Wikimedia Commons"
+        "src": "/assets/hotels/hastimom-samarkand-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Minor%20Mosque%20Tashkent.jpg?width=1600",
-        "caption": "Ташкент, мечеть Минор · фото: Wikimedia Commons"
+        "src": "/assets/hotels/hastimom-samarkand-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/hastimom-samarkand-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/hastimom-samarkand-p5.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 3 этажа, 30 номеров.",
@@ -2668,16 +2684,12 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/karvonsaroy-arda-khiva-1.webp",
+        "src": "/assets/hotels/karvonsaroy-arda-khiva-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://lwwhymkwazfxckhcrwuf.supabase.co/storage/v1/object/public/content/uploads/1787038754848-ooyhhar8gxq.jpg",
-        "caption": "Arda Karvon Saroy · фото с сайта arda-xiva.uz"
-      },
-      {
-        "src": "https://arda-xiva.uz/assets/hero-banner-DBffPeVT.png",
-        "caption": "Туристический комплекс Arda Khiva · фото с сайта arda-xiva.uz"
+        "src": "/assets/hotels/karvonsaroy-arda-khiva-p2.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 37 номеров. Arda Khiva.",
@@ -2778,16 +2790,24 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/zomin-miracle-1.webp",
+        "src": "/assets/hotels/zomin-miracle-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%97%D0%B0%D0%B0%D0%BC%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%B0%D1%80%D0%BA.jpg?width=1600",
-        "caption": "Зааминский национальный парк — район объекта · фото: Wikimedia Commons"
+        "src": "/assets/hotels/zomin-miracle-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Zaamin%20National%20Park%2C%20Uzbekistan.jpg?width=1600",
-        "caption": "Зааминские горы · фото: Wikimedia Commons"
+        "src": "/assets/hotels/zomin-miracle-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/zomin-miracle-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/zomin-miracle-p5.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 336 номеров, 600-местный ресторан.",
@@ -2888,16 +2908,20 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/miraki-hotel-1.webp",
+        "src": "/assets/hotels/miraki-hotel-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Ak%20Sarai%20palace.JPG?width=1600",
-        "caption": "Шахрисабз, дворец Ак-Сарай · фото: Wikimedia Commons"
+        "src": "/assets/hotels/miraki-hotel-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Landscape%20of%20mountain%20regions%20of%20Shahrisabz%20district%2C%20Kashkadarya%20region.jpg?width=1600",
-        "caption": "Горы Шахрисабзского района — район объекта · фото: Wikimedia Commons"
+        "src": "/assets/hotels/miraki-hotel-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/miraki-hotel-p4.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 150 номеров. Шахрисабз.",
@@ -2998,16 +3022,20 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/miraki-hostel-1.webp",
+        "src": "/assets/hotels/miraki-hostel-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Ko%CA%BBk%20Gumbaz%201.jpg?width=1600",
-        "caption": "Шахрисабз, мечеть Кок-Гумбаз · фото: Wikimedia Commons"
+        "src": "/assets/hotels/miraki-hostel-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Landscape%20of%20mountain%20regions%20of%20Shahrisabz%20district%2C%20Kashkadarya%20region%2C%20Uzbekistan.jpg?width=1600",
-        "caption": "Горы Шахрисабзского района — район объекта · фото: Wikimedia Commons"
+        "src": "/assets/hotels/miraki-hostel-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/miraki-hostel-p4.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 75 номеров. Хостел в Шахрисабзе.",
@@ -3108,19 +3136,23 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/kumushkon-hotel-1.webp",
+        "src": "/assets/hotels/kumushkon-hotel-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://kumushkonresort.uz/wp-content/uploads/2025/08/photo_2025-07-27_20-41-50.jpg",
+        "src": "/assets/hotels/kumushkon-hotel-p2.webp",
         "caption": ""
       },
       {
-        "src": "https://kumushkonresort.uz/wp-content/uploads/2025/08/photo_2025-07-21_20-11-01.jpg",
+        "src": "/assets/hotels/kumushkon-hotel-p3.webp",
         "caption": ""
       },
       {
-        "src": "https://kumushkonresort.uz/wp-content/uploads/2025/08/photo_2025-07-27_20-42-17.jpg",
+        "src": "/assets/hotels/kumushkon-hotel-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/kumushkon-hotel-p5.webp",
         "caption": ""
       }
     ],
@@ -3222,16 +3254,12 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "https://www.silkroad-samarkand.com/upload/heads/al-buhari-0-head.jpg",
+        "src": "/assets/hotels/imam-bukhari-hotel-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Memorial%20complex%20of%20Imam%20al-Bukhari.jpg?width=1600",
-        "caption": "Мемориальный комплекс Имама аль-Бухари — рядом с объектом · фото: Wikimedia Commons"
-      },
-      {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/AlBukhari%20mausoleum.jpg?width=1600",
-        "caption": "Мавзолей Имама аль-Бухари · фото: Wikimedia Commons"
+        "src": "/assets/hotels/imam-bukhari-hotel-p2.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 124 номера. Комплекс Имам аль-Бухари.",
@@ -3332,20 +3360,20 @@ const DEFAULT_HOTELS = [
     "hasPresentation": true,
     "photos": [
       {
-        "src": "/assets/hotels/chimgan-apart-1.webp",
+        "src": "/assets/hotels/chimgan-apart-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Chimgan%20Mountains.jpg?width=1600",
-        "caption": "Горы Чимган — район объекта · фото: Wikimedia Commons"
+        "src": "/assets/hotels/chimgan-apart-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Greater%20Chimgan%20Mountain.JPG?width=1600",
-        "caption": "Большой Чимган · фото: Wikimedia Commons"
+        "src": "/assets/hotels/chimgan-apart-p3.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Charvak%20Reservoir%20%282%29.jpg?width=1600",
-        "caption": "Чарвакское водохранилище, 20 минут · фото: Wikimedia Commons"
+        "src": "/assets/hotels/chimgan-apart-p4.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 75 номеров, 6 этажей. Горный тур. комплекс Чимён.",
@@ -3446,16 +3474,20 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/turon-plaza-tashkent-1.webp",
+        "src": "/assets/hotels/turon-plaza-tashkent-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Minor%20Mosque%20Tashkent.jpg?width=1600",
-        "caption": "Ташкент, мечеть Минор — рядом с объектом · фото: Wikimedia Commons"
+        "src": "/assets/hotels/turon-plaza-tashkent-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Hazrat%20Imam%2001.jpg?width=1600",
-        "caption": "Ташкент, комплекс Хазрати Имам · фото: Wikimedia Commons"
+        "src": "/assets/hotels/turon-plaza-tashkent-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/turon-plaza-tashkent-p4.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 20 номеров.",
@@ -3556,16 +3588,24 @@ const DEFAULT_HOTELS = [
     "hasPresentation": false,
     "photos": [
       {
-        "src": "/assets/hotels/maydanak-shale-1.webp",
+        "src": "/assets/hotels/maydanak-shale-p1.webp",
         "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Maydanak%20telescopes.JPG?width=1600",
-        "caption": "Обсерватория Майданак — плато Майданак · фото: Wikimedia Commons"
+        "src": "/assets/hotels/maydanak-shale-p2.webp",
+        "caption": ""
       },
       {
-        "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Mountain%20vegetation%20landscape%20of%20Kashkadarya%20region.jpg?width=1600",
-        "caption": "Горы Кашкадарьинской области · фото: Wikimedia Commons"
+        "src": "/assets/hotels/maydanak-shale-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/maydanak-shale-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/maydanak-shale-p5.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 20 номеров. Плато Майданак.",
@@ -3700,7 +3740,7 @@ let _lastCloudFetch = 0;
  * Синхронизирует данные между всеми вкладками и GitHub
  */
 const HotelStore = {
-  KEY: 'sri_hotels_cache',
+  KEY: 'sri_hotels_cache_v2',
 
   /** Быстрое локальное чтение */
   _localCache() {
