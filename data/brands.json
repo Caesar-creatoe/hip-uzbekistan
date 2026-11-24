@@ -1,0 +1,742 @@
+{
+ "asof": "2026-11-01",
+ "source": "Центр сертификации туристских услуг",
+ "cities": {
+  "tashkent": {
+   "name": "Ташкент",
+   "region": "tashkent",
+   "lat": 41.3111,
+   "lng": 69.2797
+  },
+  "samarkand": {
+   "name": "Самарканд",
+   "region": "samarkand",
+   "lat": 39.6542,
+   "lng": 66.9597
+  },
+  "bukhara": {
+   "name": "Бухара",
+   "region": "bukhara",
+   "lat": 39.7747,
+   "lng": 64.4286
+  },
+  "khiva": {
+   "name": "Хива",
+   "region": "khorezm",
+   "lat": 41.3783,
+   "lng": 60.3639
+  },
+  "nukus": {
+   "name": "Нукус",
+   "region": "karakalpakstan",
+   "lat": 42.4531,
+   "lng": 59.6103
+  },
+  "termez": {
+   "name": "Термез",
+   "region": "surkhandarya",
+   "lat": 37.2242,
+   "lng": 67.2783
+  },
+  "namangan": {
+   "name": "Наманган",
+   "region": "namangan",
+   "lat": 40.9983,
+   "lng": 71.6726
+  },
+  "qarshi": {
+   "name": "Карши",
+   "region": "kashkadarya",
+   "lat": 38.8606,
+   "lng": 65.7891
+  },
+  "kokand": {
+   "name": "Коканд",
+   "region": "fergana",
+   "lat": 40.5286,
+   "lng": 70.9425
+  },
+  "fergana": {
+   "name": "Фергана",
+   "region": "fergana",
+   "lat": 40.3842,
+   "lng": 71.7843
+  },
+  "chorvoq": {
+   "name": "Чарвак",
+   "region": "tashkent-region",
+   "lat": 41.625,
+   "lng": 70.036
+  },
+  "chimgan": {
+   "name": "Чимган",
+   "region": "tashkent-region",
+   "lat": 41.542,
+   "lng": 70.016
+  },
+  "beldersay": {
+   "name": "Белдерсай",
+   "region": "tashkent-region",
+   "lat": 41.565,
+   "lng": 70.07
+  }
+ },
+ "networks": [
+  {
+   "id": "wyndham-hotels-resorts",
+   "name": "Wyndham Hotels & Resorts",
+   "brands": [
+    {
+     "name": "Wyndham",
+     "hotels": [
+      {
+       "name": "Wyndham Tashkent",
+       "legal": "«IPAK YO‘LI-TURIZM INVEST» MChJ QK",
+       "rooms": 206,
+       "places": 306,
+       "stars": 4,
+       "city": "tashkent"
+      },
+      {
+       "name": "Wyndham Bukhara",
+       "legal": "CULTURAL LANDMARK HOTEL MCHJ",
+       "rooms": 212,
+       "places": 424,
+       "stars": null,
+       "city": "bukhara"
+      }
+     ]
+    },
+    {
+     "name": "Wyndham Garden",
+     "hotels": [
+      {
+       "name": "Wyndham Garden Chorvoq Darvozasi",
+       "legal": "«CHORVOQ HOTEL COMPLEX» MChJ",
+       "rooms": 131,
+       "places": 262,
+       "stars": null,
+       "city": "chorvoq"
+      },
+      {
+       "name": "Wyndham Garden Tashkent",
+       "legal": "«REGAL STAY GRAND» AJ",
+       "rooms": 103,
+       "places": 206,
+       "stars": 4,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Ramada by Wyndham",
+     "hotels": [
+      {
+       "name": "Ramada by Wyndham Nukus",
+       "legal": "KARAKALPAK PALACE HOTEL MChJ",
+       "rooms": 120,
+       "places": 240,
+       "stars": 5,
+       "city": "nukus"
+      }
+     ]
+    },
+    {
+     "name": "Ramada Encore by Wyndham",
+     "hotels": [
+      {
+       "name": "Ramada Encore by Wyndham Tashkent",
+       "legal": "«OPTIMUM INVEST CORP» MCHJ",
+       "rooms": 105,
+       "places": 210,
+       "stars": 3,
+       "city": "tashkent"
+      },
+      {
+       "name": "Ramada Encore by Wyndham Bukhara",
+       "legal": "INTERNATIONAL HOTEL SERVICES MChJ",
+       "rooms": 112,
+       "places": 224,
+       "stars": 3,
+       "city": "bukhara"
+      }
+     ]
+    },
+    {
+     "name": "Ramada Plaza by Wyndham",
+     "hotels": [
+      {
+       "name": "Ramada Plaza by Wyndham Tashkent",
+       "legal": "«UNICAP LIVING» MChJ",
+       "rooms": 120,
+       "places": 240,
+       "stars": 5,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "TRYP by Wyndham",
+     "hotels": [
+      {
+       "name": "TRYP by Wyndham Chimyon",
+       "legal": "«CHIMYON RESORT» MChJ",
+       "rooms": 160,
+       "places": 320,
+       "stars": null,
+       "city": "chimgan"
+      },
+      {
+       "name": "TRYP by Wyndham Tashkent Olympic City",
+       "legal": "«TRYP TASHKENT OLYMPIC CITY» MChJ",
+       "rooms": 62,
+       "places": 124,
+       "stars": null,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Ramada",
+     "hotels": [
+      {
+       "name": "Ramada Tashkent",
+       "legal": "«SUNSHINE-TURON INTERNATIONAL LTD» MChJ XK",
+       "rooms": 119,
+       "places": 237,
+       "stars": 4,
+       "city": "tashkent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hilton",
+   "name": "Hilton",
+   "brands": [
+    {
+     "name": "Hilton",
+     "hotels": [
+      {
+       "name": "Hilton Samarkand Regency",
+       "legal": "«Samarkand Touristic Centre» MCHJ",
+       "rooms": 232,
+       "places": 464,
+       "stars": 5,
+       "city": "samarkand"
+      },
+      {
+       "name": "Hilton Tashkent City",
+       "legal": "«AKFA DREAM WORLD» MChJ",
+       "rooms": 258,
+       "places": 516,
+       "stars": 5,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Hilton Garden Inn",
+     "hotels": [
+      {
+       "name": "Hilton Garden Inn Samarkand Afrosiyob",
+       "legal": "«Samarkand Touristic Centre» MCHJ",
+       "rooms": 91,
+       "places": 182,
+       "stars": 4,
+       "city": "samarkand"
+      },
+      {
+       "name": "Hilton Garden Inn Samarkand",
+       "legal": "«MIRONKUL GROUP TOWER» MCHJ",
+       "rooms": 163,
+       "places": 326,
+       "stars": 4,
+       "city": "samarkand"
+      },
+      {
+       "name": "Hilton Garden Inn Samarkand Sogd",
+       "legal": "«Samarkand Touristic Centre» MCHJ",
+       "rooms": 92,
+       "places": 184,
+       "stars": 4,
+       "city": "samarkand"
+      },
+      {
+       "name": "Hilton Garden Inn Termez Airitom",
+       "legal": "«ONE TEAM HOSPITALITY» MChJ",
+       "rooms": 98,
+       "places": 196,
+       "stars": null,
+       "city": "termez"
+      }
+     ]
+    },
+    {
+     "name": "Hampton by Hilton",
+     "hotels": [
+      {
+       "name": "Hampton by Hilton Tashkent",
+       "legal": "«ASIA STAR PLAZA» MChJ",
+       "rooms": 175,
+       "places": 350,
+       "stars": null,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "DoubleTree by Hilton",
+     "hotels": [
+      {
+       "name": "DoubleTree by Hilton Tashkent",
+       "legal": "SADKO INTERNATIONAL HOSPITALITY MChJ",
+       "rooms": 165,
+       "places": 330,
+       "stars": 5,
+       "city": "tashkent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "reikartz",
+   "name": "Reikartz",
+   "brands": [
+    {
+     "name": "Reikartz",
+     "hotels": [
+      {
+       "name": "Reikartz Amar Samarkand",
+       "legal": "«HMC U» MCHJ",
+       "rooms": 19,
+       "places": 38,
+       "stars": null,
+       "city": "samarkand"
+      },
+      {
+       "name": "Reikartz Namangan",
+       "legal": "«HMC U» MCHJ",
+       "rooms": 38,
+       "places": 78,
+       "stars": null,
+       "city": "namangan"
+      },
+      {
+       "name": "Reikartz Qarshi",
+       "legal": "«HMC U» MCHJ",
+       "rooms": 37,
+       "places": 74,
+       "stars": null,
+       "city": "qarshi"
+      },
+      {
+       "name": "Reikartz Sote Tashkent",
+       "legal": "«HMC U» MCHJ",
+       "rooms": 25,
+       "places": 48,
+       "stars": null,
+       "city": "tashkent"
+      },
+      {
+       "name": "Reikartz Kokand",
+       "legal": "«HMC U» MCHJ",
+       "rooms": 31,
+       "places": 49,
+       "stars": null,
+       "city": "kokand"
+      },
+      {
+       "name": "Reikartz Bahor Bukhara",
+       "legal": "«HMC U» MCHJ",
+       "rooms": 48,
+       "places": 96,
+       "stars": null,
+       "city": "bukhara"
+      },
+      {
+       "name": "Meridian Plaza by Reikartz",
+       "legal": "«HMC U» MCHJ",
+       "rooms": 42,
+       "places": 84,
+       "stars": null,
+       "city": "samarkand"
+      },
+      {
+       "name": "Reikartz Fergana",
+       "legal": "HMC U MChJ",
+       "rooms": 36,
+       "places": 87,
+       "stars": null,
+       "city": "fergana"
+      },
+      {
+       "name": "Reikartz Abis Tashkent",
+       "legal": "«HMC U» MChJ",
+       "rooms": 50,
+       "places": 100,
+       "stars": null,
+       "city": "tashkent"
+      },
+      {
+       "name": "Reikartz Grand Kokand",
+       "legal": "«HMC U» MChJ",
+       "rooms": 48,
+       "places": 100,
+       "stars": null,
+       "city": "kokand"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accor",
+   "name": "Accor",
+   "brands": [
+    {
+     "name": "Mercure",
+     "hotels": [
+      {
+       "name": "Mercure Tashkent",
+       "legal": "«LUMIERE» MChJ",
+       "rooms": 126,
+       "places": 252,
+       "stars": 4,
+       "city": "tashkent"
+      },
+      {
+       "name": "Mercure Tashkent North",
+       "legal": "THE GLOBUS HOTEL MChJ QK",
+       "rooms": 122,
+       "places": 169,
+       "stars": 4,
+       "city": "tashkent"
+      },
+      {
+       "name": "Mercure Bukhara Old Town",
+       "legal": "«AYVAN PALACE» MCHJ",
+       "rooms": 57,
+       "places": 115,
+       "stars": null,
+       "city": "bukhara"
+      },
+      {
+       "name": "Mercure Khiva",
+       "legal": "«KAZ DEVELOPMENT INVEST GROUP» MChJ XK",
+       "rooms": 145,
+       "places": 290,
+       "stars": 4,
+       "city": "khiva"
+      }
+     ]
+    },
+    {
+     "name": "ibis",
+     "hotels": [
+      {
+       "name": "ibis Tashkent",
+       "legal": "«ONE TEAM HOSPITALITY» MChJ",
+       "rooms": 120,
+       "places": 240,
+       "stars": 3,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Swissôtel",
+     "hotels": [
+      {
+       "name": "Swissôtel Tashkent",
+       "legal": "CHINA Chet el sho’basi",
+       "rooms": 182,
+       "places": 364,
+       "stars": 5,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Mövenpick",
+     "hotels": [
+      {
+       "name": "Mövenpick Samarkand",
+       "legal": "«REGISTON PLAZA» MCHJ",
+       "rooms": 162,
+       "places": 324,
+       "stars": 5,
+       "city": "samarkand"
+      },
+      {
+       "name": "Mövenpick Tashkent Old City",
+       "legal": "WANLI MChJ XK",
+       "rooms": 120,
+       "places": 240,
+       "stars": 4,
+       "city": "tashkent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ihg-hotels-resorts",
+   "name": "IHG Hotels & Resorts",
+   "brands": [
+    {
+     "name": "InterContinental",
+     "hotels": [
+      {
+       "name": "InterContinental Tashkent",
+       "legal": "«UZTUR INVESTMENT AND DEVELOPMENT» MCHJ XK",
+       "rooms": 216,
+       "places": 267,
+       "stars": 5,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Crowne Plaza",
+     "hotels": [
+      {
+       "name": "Crowne Plaza Tashkent",
+       "legal": "«YANIS CPH» MCHJ",
+       "rooms": 100,
+       "places": 200,
+       "stars": 4,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Holiday Inn",
+     "hotels": [
+      {
+       "name": "Holiday Inn Tashkent City",
+       "legal": "«HITC» MCHJ XK",
+       "rooms": 272,
+       "places": 350,
+       "stars": 4,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Hotel Indigo",
+     "hotels": [
+      {
+       "name": "Hotel Indigo Bukhara",
+       "legal": "«1001 NIGHTS» MCHJ",
+       "rooms": 100,
+       "places": 200,
+       "stars": null,
+       "city": "bukhara"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "radisson-hotel-group",
+   "name": "Radisson Hotel Group",
+   "brands": [
+    {
+     "name": "Radisson Blu",
+     "hotels": [
+      {
+       "name": "Radisson Blu Hotel Tashkent",
+       "legal": "«AYSEL-INVEST» MChJ",
+       "rooms": 111,
+       "places": 222,
+       "stars": null,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Radisson Individuals",
+     "hotels": [
+      {
+       "name": "Panarams Tashkent Hotel, a member of Radisson Individuals",
+       "legal": "«BIZNES UNITED» MChJ QK",
+       "rooms": 105,
+       "places": 200,
+       "stars": 4,
+       "city": "tashkent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hyatt",
+   "name": "Hyatt",
+   "brands": [
+    {
+     "name": "Hyatt Regency",
+     "hotels": [
+      {
+       "name": "Hyatt Regency Tashkent",
+       "legal": "«POYTAXT QURILISH VA XIZMATI» MCHJ",
+       "rooms": 300,
+       "places": 375,
+       "stars": 5,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Destination by Hyatt",
+     "hotels": [
+      {
+       "name": "Beldersoy Resort and Spa, Destination by Hyatt",
+       "legal": "«BELDERSOY RESORT» MChJ",
+       "rooms": 145,
+       "places": 176,
+       "stars": 5,
+       "city": "beldersay"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "marriott-international",
+   "name": "Marriott International",
+   "brands": [
+    {
+     "name": "Courtyard by Marriott",
+     "hotels": [
+      {
+       "name": "Courtyard by Marriott Tashkent",
+       "legal": "«AVESTA HOSPITALITY» MChJ",
+       "rooms": 131,
+       "places": 200,
+       "stars": 4,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "JW Marriott",
+     "hotels": [
+      {
+       "name": "JW Marriott Hotel Tashkent",
+       "legal": "ALLIANCE HOLDING MChJ",
+       "rooms": 284,
+       "places": 568,
+       "stars": 5,
+       "city": "tashkent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lotte-hotels-resorts",
+   "name": "Lotte Hotels & Resorts",
+   "brands": [
+    {
+     "name": "Lotte City Hotels",
+     "hotels": [
+      {
+       "name": "Lotte City Hotel Tashkent Palace",
+       "legal": "«TASHKENT PALACE NEW» MChJ",
+       "rooms": 232,
+       "places": 297,
+       "stars": null,
+       "city": "tashkent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "azimut-hotels",
+   "name": "Azimut Hotels",
+   "brands": [
+    {
+     "name": "Azimut",
+     "hotels": [
+      {
+       "name": "Azimut Moderno Hotel Tashkent",
+       "legal": "MODERNO PALACE MChJ",
+       "rooms": 50,
+       "places": 100,
+       "stars": null,
+       "city": "tashkent"
+      }
+     ]
+    },
+    {
+     "name": "Azimut Grand",
+     "hotels": [
+      {
+       "name": "Azimut Grand Hotel Tashkent",
+       "legal": "«INTERHOTEL» MChJ",
+       "rooms": 174,
+       "places": 348,
+       "stars": null,
+       "city": "tashkent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "minyoun-hospitality-group",
+   "name": "Minyoun Hospitality Group",
+   "brands": [
+    {
+     "name": "Minyoun",
+     "hotels": [
+      {
+       "name": "Silk Road by Minyoun",
+       "legal": "«Samarkand Touristic Centre» MCHJ",
+       "rooms": 241,
+       "places": 482,
+       "stars": 5,
+       "city": "samarkand"
+      }
+     ]
+    },
+    {
+     "name": "LIA! by Minyoun",
+     "hotels": [
+      {
+       "name": "LIA! by Minyoun Stars of Ulugbek",
+       "legal": "«Samarkand Touristic Centre» MCHJ",
+       "rooms": 170,
+       "places": 340,
+       "stars": 4,
+       "city": "samarkand"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sahid-hotels-resorts",
+   "name": "Sahid Hotels & Resorts",
+   "brands": [
+    {
+     "name": "Sahid",
+     "hotels": [
+      {
+       "name": "Sahid Zarafshon",
+       "legal": "«DEVEL ECO GROUP» MChJ",
+       "rooms": 146,
+       "places": 264,
+       "stars": 4,
+       "city": "bukhara"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

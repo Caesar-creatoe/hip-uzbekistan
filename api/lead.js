@@ -14,7 +14,8 @@ const TYPES = {
   docs: 'Запрос документов (NDA)',
   list: 'Размещение объекта',
   question: 'Вопрос',
-  meeting: 'Запрос B2B-встречи'
+  meeting: 'Запрос B2B-встречи',
+  brand: 'Запрос от гостиничной сети'
 };
 
 const clean = (v, n = 600) => String(v == null ? '' : v).replace(/[\u0000-\u0008\u000B-\u001F]/g, '').trim().slice(0, n);
@@ -46,7 +47,7 @@ const LABELS = {
   country: 'Страна', interest: 'Интерес', budget: 'Бюджет', message: 'Сообщение',
   objectType: 'Тип объекта', objectName: 'Название объекта', region: 'Регион', city: 'Город / адрес',
   rooms: 'Номеров', stars: 'Категория', deal: 'Что нужно', price: 'Цена', year: 'Год ввода', status: 'Состояние', link: 'Ссылка на материалы',
-  partner: 'Участник', format: 'Формат встречи', hotels: 'Объекты для встречи'
+  partner: 'Участник', format: 'Формат встречи', hotels: 'Объекты для встречи', segment: 'Сегмент'
 };
 
 function textMessage(l) {

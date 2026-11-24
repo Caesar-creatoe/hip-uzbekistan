@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Гостиничные сети и бренды в Узбекистане: 12 сетей, 32 бренда, 53 действующих отеля. Где бренды уже есть, где их нет и какие объекты каталога подходят под франшизу и управление." />
+  <meta name="theme-color" content="#F5F2EC" />
+  <title>Гостиничные бренды в Узбекистане — Silk Route Invest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="design-tokens.css?v=site_1" />
+  <link rel="stylesheet" href="styles/base.css?v=site_1" />
+  <link rel="stylesheet" href="styles/header.css?v=site_1" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=site_1" />
+  <link rel="stylesheet" href="styles/footer.css?v=site_1" />
+  <link rel="stylesheet" href="styles/site.css?v=site_1" />
+  <link rel="stylesheet" href="styles/pages.css?v=sr_2" />
+  <link rel="stylesheet" href="styles/brands.css?v=bx_1" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Silk Route Invest" />
+  <meta property="og:title" content="Гостиничные бренды в Узбекистане — Silk Route Invest" />
+  <meta property="og:description" content="12 сетей, 32 бренда и 53 отеля: кто уже работает в стране и где бренд может стать первым." />
+  <meta property="og:image" content="https://silkroute-invest.vercel.app/assets/hero/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body class="sx-page sr page-brands">
+
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+      </a>
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <div class="nav-item" data-page="portfolio" data-also="passport"><a href="portfolio.html" class="nav-trigger">Каталог отелей</a></div>
+        <div class="nav-item" data-page="market"><a href="market.html" class="nav-trigger">Рынок</a></div>
+        <div class="nav-item" data-page="brands"><a href="brands.html" class="nav-trigger">Бренды</a></div>
+        <div class="nav-item" data-page="incentives"><a href="incentives.html" class="nav-trigger">Льготы</a></div>
+        <div class="nav-item" data-page="investors"><a href="investors.html" class="nav-trigger">Как купить</a></div>
+        <div class="nav-item" data-page="b2b"><a href="b2b.html" class="nav-trigger">B2B-встречи</a></div>
+        <div class="nav-item" data-page="platform"><a href="platform.html" class="nav-trigger">О платформе</a></div>
+      </nav>
+      <div class="header-right">
+        <a href="business.html" class="btn-login" id="header-login">
+          <span>Разместить объект</span>
+          <span class="btn-login-icon">→</span>
+        </a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Инвестору</span>
+      <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
+      <a href="market.html">Рынок Узбекистана</a>
+      <a href="brands.html">Гостиничные бренды</a>
+      <a href="incentives.html">Льготы для инвестора</a>
+      <a href="investors.html">Как купить отель</a>
+      <a href="b2b.html">B2B-встречи с владельцами</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Владельцам</span>
+      <a href="business.html" class="mobile-nav-cta">Разместить объект</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Платформа</span>
+      <a href="platform.html">О платформе</a>
+      <a href="platform.html#method">Как считаются показатели</a>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- Первый экран -->
+    <section class="sr-hero bx-hero" aria-labelledby="bx-title">
+      <div class="sr-hero__panel">
+        <div class="sr-hero__grid">
+          <div>
+            <a class="sr-trust" href="#map"><span class="sr-trust__faces"><img src="assets/pages/lobby-s.webp" alt=""><img src="assets/pages/registan-s.webp" alt=""><img src="assets/pages/khiva-s.webp" alt=""></span><span><span data-b="hotels">53</span>&nbsp;брендовых отеля в&nbsp;<span data-b="cities">13</span>&nbsp;городах</span></a>
+            <h1 class="sr-h1" id="bx-title">Мировые гостиничные сети уже работают в&nbsp;Узбекистане</h1>
+            <p class="sr-lead">Здесь собраны все действующие брендовые отели страны: сети, бренды, владельцы и номерной фонд. И объекты каталога, которые могут стать следующими.</p>
+            <div class="sr-actions">
+              <a href="#networks" class="sr-btn">Смотреть сети <i>↓</i></a>
+              <a href="#for-brands" class="sr-link">Гостиничным сетям</a>
+            </div>
+          </div>
+          <div class="bx-art" aria-hidden="true">
+            <div class="bx-arch"><img src="assets/pages/lobby.webp" width="1200" height="794" alt=""></div>
+            <div class="bx-plates" data-plates></div>
+            <div class="sr-ui sr-ui--a bx-ui-a"><small>Номеров под брендами</small><b data-b="rooms">6 909</b><em>12 678 мест</em></div>
+            <div class="sr-ui sr-ui--dark bx-ui-b"><small>Ташкент</small><b data-b="tash-share">58%</b><em>брендовых номеров</em></div>
+          </div>
+        </div>
+        <div class="bx-marquee" aria-label="Бренды в Узбекистане">
+          <p>32 бренда, которые уже работают в стране</p>
+          <div class="bx-marquee__track"><ul data-marquee></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Цифры -->
+    <section class="sr-sec" aria-labelledby="bx-numbers">
+      <div class="sr-wrap">
+        <h2 class="bx-hidden" id="bx-numbers">Брендовые отели в цифрах</h2>
+        <div class="sr-stats sr-stats--4">
+          <div class="sr-stat" data-reveal><small>Гостиничных сетей</small><b data-count="12">12</b><p>От InterContinental и Hyatt до Reikartz и Azimut.</p></div>
+          <div class="sr-stat" data-reveal><small>Брендов</small><b data-count="32">32</b><p>Люкс, апскейл, мидскейл и эконом — все сегменты.</p></div>
+          <div class="sr-stat" data-reveal><small>Отелей</small><b data-count="53">53</b><p><span data-b="cities">13</span> городов, больше половины — в Ташкенте.</p></div>
+          <div class="sr-stat" data-reveal><small>Номеров</small><b data-count="6909">6 909</b><p>12 678 мест. В среднем <span data-b="avg">130</span> номеров на отель.</p></div>
+        </div>
+        <p class="sr-note">Действующие отели по данным Центра сертификации туристских услуг на <span data-b="asof">01.11.2026</span>.</p>
+      </div>
+    </section>
+
+    <!-- Сети -->
+    <section class="sr-sec" id="networks" aria-labelledby="bx-nets">
+      <div class="sr-wrap">
+        <div class="sr-sec__head">
+          <div>
+            <h2 class="sr-h2" id="bx-nets">Двенадцать сетей,<br>тридцать два бренда</h2>
+            <p class="sr-lead">Откройте сеть — появятся её бренды и отели: город, номерной фонд, категория и юридическое лицо владельца.</p>
+          </div>
+          <div class="sr-sec__side">
+            <div class="bx-chips" role="group" aria-label="Город" data-city-filter></div>
+          </div>
+        </div>
+        <div class="bx-nets" data-nets></div>
+      </div>
+    </section>
+
+    <!-- Карта и пробелы -->
+    <section class="sr-sec" id="map" aria-labelledby="bx-map">
+      <div class="sr-stage">
+        <div class="sr-stage__split bx-mapsplit">
+          <div class="bx-map" data-reveal>
+            <div class="bx-map__canvas" id="brands-map" role="img" aria-label="Карта брендовых отелей Узбекистана"></div>
+            <div class="bx-map__legend"><span><i class="is-brand"></i>Брендовые отели</span><span><i class="is-cat"></i>Объекты каталога</span></div>
+          </div>
+          <div class="sr-stage__text">
+            <span class="sr-tag">Где бренд будет первым</span>
+            <h2 class="sr-h2" id="bx-map">Бренды стоят в&nbsp;13&nbsp;городах. В&nbsp;четырёх областях их&nbsp;нет&nbsp;совсем</h2>
+            <p class="sr-lead"><span data-b="tash-share2">58%</span> брендовых номеров — в Ташкенте. В регионах, куда растёт турпоток, международного отеля пока нет или он один. Для сети это свободный рынок, для владельца — шанс стать первым.</p>
+            <div class="sr-card bx-gaps" data-gaps><div class="sr-card__top"><h3>Регионы каталога</h3><span>брендов · объектов</span></div><div class="sr-list" data-gap-list></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Сегменты -->
+    <section class="sr-sec" aria-labelledby="bx-seg">
+      <div class="sr-wrap">
+        <div class="sr-sec__head">
+          <div>
+            <h2 class="sr-h2" id="bx-seg">Какие отели<br>выбирают сети</h2>
+            <p class="sr-lead">Чаще всего — 4★ и 5★ на 100–250 номеров. У 22 отелей категория в реестре пока не указана.</p>
+          </div>
+        </div>
+        <div class="sr-bento">
+          <div class="sr-panel sr-c7" data-reveal>
+            <div class="sr-panel__aside">
+              <div>
+                <h3 class="sr-h3">Категории</h3>
+                <p>Сколько брендовых отелей в каждой категории по реестру.</p>
+              </div>
+            </div>
+            <div class="sr-card" style="flex:1">
+              <div class="sr-card__top"><h3>Отелей по категориям</h3><span>из 53</span></div>
+              <div class="sr-pills" data-cat-pills></div>
+            </div>
+          </div>
+          <div class="sr-card sr-c5" data-reveal>
+            <div class="sr-card__top"><h3>Крупнейшие сети</h3><span>номеров</span></div>
+            <div class="bx-bars" data-net-bars></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Для сетей -->
+    <section class="sr-sec" id="for-brands" aria-labelledby="bx-for">
+      <div class="sr-dark bx-for">
+        <div class="sr-dark__photo"><img src="assets/pages/b2b-meeting.webp" alt="" loading="lazy"></div>
+        <div>
+          <span class="sr-tag">Гостиничным сетям и операторам</span>
+          <h2 class="sr-h2" id="bx-for">Объекты под ваш следующий бренд</h2>
+          <p class="sr-lead">В каталоге — отели и стройки с паспортом по стандарту USALI. Подберите объект под управление или франшизу, а мы организуем встречу с владельцем.</p>
+          <ul>
+            <li>Стройки можно доводить по стандартам бренда — до отделки и мебели</li>
+            <li>Государство доплачивает за международную франшизу: <a href="incentives.html">$200–600 за номер в год, 3 года</a></li>
+            <li>Встречи с владельцами — <a href="b2b.html">на инвестфоруме или онлайн</a></li>
+          </ul>
+          <div class="sr-actions">
+            <a href="#brand-form" class="sr-btn bx-btn-light">Оставить запрос <i>↗</i></a>
+            <a href="portfolio.html" class="sr-link">Весь каталог</a>
+          </div>
+        </div>
+        <div class="sr-sheet bx-pick">
+          <div class="sr-card__top"><h3>Объекты для бренда</h3><span data-pick-n></span></div>
+          <div class="sr-seg" role="radiogroup" aria-label="Подборка">
+            <label><input type="radio" name="bxpick" value="franchise" checked><span>Франшиза</span></label>
+            <label><input type="radio" name="bxpick" value="build"><span>Новые проекты</span></label>
+            <label><input type="radio" name="bxpick" value="big"><span>100+ номеров</span></label>
+          </div>
+          <div class="bx-pick__list" data-pick-list></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Форма -->
+    <section class="sr-sec" id="brand-form" aria-labelledby="bx-form">
+      <div class="sr-wrap">
+        <div class="bx-formwrap">
+          <div>
+            <h2 class="sr-h2" id="bx-form">Запрос от сети</h2>
+            <p class="sr-lead">Расскажите, какой сегмент и регионы вам интересны, — пришлём подборку объектов и свяжем с владельцами.</p>
+            <ul class="bx-ticks">
+              <li>Ответ в течение рабочего дня</li>
+              <li>Документы по объектам — после NDA</li>
+              <li>Контакты видит только команда платформы</li>
+            </ul>
+          </div>
+          <div class="sr-sheet bx-glass bx-glass--form">
+            <form class="pg-form" data-lead="brand" novalidate style="margin-top:0">
+              <div class="pg-form__row">
+                <label class="pg-field"><span>Имя <i>*</i></span><input name="name" autocomplete="name" required></label>
+                <label class="pg-field"><span>Сеть / бренд</span><input name="company" autocomplete="organization"></label>
+              </div>
+              <div class="pg-form__row">
+                <label class="pg-field"><span>Должность</span><input name="role" autocomplete="organization-title"></label>
+                <label class="pg-field"><span>Страна</span><input name="country" autocomplete="country-name"></label>
+              </div>
+              <div class="pg-form__row">
+                <label class="pg-field"><span>Телефон или WhatsApp</span><input name="phone" type="tel" autocomplete="tel" placeholder="+998 …"></label>
+                <label class="pg-field"><span>E-mail</span><input name="email" type="email" autocomplete="email" placeholder="name@company.com"></label>
+              </div>
+              <div class="pg-field"><span>Сегмент</span><div class="pg-choice">
+                <label><input type="radio" name="segment" value="Люкс"><span>Люкс</span></label>
+                <label><input type="radio" name="segment" value="Апскейл" checked><span>Апскейл</span></label>
+                <label><input type="radio" name="segment" value="Мидскейл"><span>Мидскейл</span></label>
+                <label><input type="radio" name="segment" value="Эконом"><span>Эконом</span></label>
+              </div></div>
+              <label class="pg-field"><span>Регионы и формат</span><input name="region" placeholder="Например: Самарканд, Хива; франшиза или управление"></label>
+              <label class="pg-field"><span>Комментарий</span><textarea name="message" rows="3" placeholder="Требования к объекту, сроки"></textarea></label>
+              <input class="pg-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <div class="pg-form__status" role="status" aria-live="polite"></div>
+              <div class="pg-form__foot">
+                <button type="submit" class="pg-btn pg-btn--dark">Отправить запрос</button>
+                <p class="pg-note">Укажите телефон или e-mail.</p>
+              </div>
+              <div class="pg-success" role="status">
+                <div class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+                <h3>Запрос отправлен</h3>
+                <p>Спасибо! Подготовим подборку объектов и ответим в течение рабочего дня.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Финал -->
+    <section class="sr-sec">
+      <div class="sr-final">
+        <img src="assets/pages/courtyard.webp" alt="" loading="lazy">
+        <div>
+          <h2 class="sr-h2">Следующий брендовый отель может быть вашим</h2>
+          <p class="sr-lead">Объекты с ценой и паспортом — в каталоге. Меры поддержки для франшизы — в разделе «Льготы».</p>
+          <div class="sr-actions">
+            <a href="portfolio.html" class="sr-btn">Открыть каталог <i>↗</i></a>
+            <a href="incentives.html" class="sr-link">Льготы для инвестора</a>
+          </div>
+        </div>
+      </div>
+      <div class="sr-wrap">
+        <p class="sr-note bx-disclaimer">Источник: Центр сертификации туристских услуг при Комитете по туризму, данные на <span data-b="asof">01.11.2026</span>. Названия сетей и брендов приведены для информации и принадлежат их владельцам; сети не являются партнёрами платформы.</p>
+      </div>
+      <div class="sr-end"></div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+            <div class="logo-text">
+              <span class="logo-title">SILK ROUTE</span>
+              <span class="logo-subtitle">INVEST</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Каталог гостиничных объектов Узбекистана для инвесторов: цена, финансовые показатели и паспорт каждого объекта.
+          </p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация в подвале">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Инвестору</p>
+            <a href="portfolio.html" class="footer-nav-link">Каталог отелей</a>
+            <a href="market.html" class="footer-nav-link">Рынок Узбекистана</a>
+            <a href="brands.html" class="footer-nav-link">Гостиничные бренды</a>
+            <a href="incentives.html" class="footer-nav-link">Льготы для инвестора</a>
+            <a href="investors.html" class="footer-nav-link">Как купить отель</a>
+            <a href="b2b.html" class="footer-nav-link">B2B-встречи</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Владельцам</p>
+            <a href="business.html" class="footer-nav-link">Разместить объект</a>
+            <a href="brands.html#for-brands" class="footer-nav-link">Гостиничным сетям</a>
+            <a href="platform.html#method" class="footer-nav-link">Как считаются показатели</a>
+            <a href="platform.html" class="footer-nav-link">О платформе</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="mailto:info@uzbektourism.uz" class="footer-nav-link">info@uzbektourism.uz</a>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан.
+          Финансовые показатели объектов&nbsp;— оценка платформы по&nbsp;методике USALI, если не&nbsp;отмечено иное.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/hotels-data.js?v=photos8"></script>
+  <script src="js/megamenu.js?v=site_1"></script>
+  <script src="js/site.js?v=site_2"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/brands.js?v=bx_1"></script>
+</body>
+</html>
