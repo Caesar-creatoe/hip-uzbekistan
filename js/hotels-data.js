@@ -917,6 +917,14 @@ const DEFAULT_HOTELS = [
       {
         "src": "/assets/hotels/novza-metro-hotel-p5.webp",
         "caption": ""
+      },
+      {
+        "src": "/assets/hotels/novza-metro-hotel-p6.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/novza-metro-hotel-p7.webp",
+        "caption": ""
       }
     ],
     "notes": "Незавершённое строительство. 8 этажей, 100 номеров.",
@@ -2128,6 +2136,22 @@ const DEFAULT_HOTELS = [
       {
         "src": "/assets/hotels/camp-aydar-p2.webp",
         "caption": ""
+      },
+      {
+        "src": "/assets/hotels/camp-aydar-p3.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/camp-aydar-p4.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/camp-aydar-p5.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/camp-aydar-p6.webp",
+        "caption": ""
       }
     ],
     "notes": "Эко-кемпинг в пустыне Кызылкум. 106 юрт, 18.3 га.",
@@ -3154,6 +3178,14 @@ const DEFAULT_HOTELS = [
       {
         "src": "/assets/hotels/kumushkon-hotel-p5.webp",
         "caption": ""
+      },
+      {
+        "src": "/assets/hotels/kumushkon-hotel-p6.webp",
+        "caption": ""
+      },
+      {
+        "src": "/assets/hotels/kumushkon-hotel-p7.webp",
+        "caption": ""
       }
     ],
     "notes": "2026 год. 98 номеров. Горный р-н Паркент.",
@@ -3740,7 +3772,7 @@ let _lastCloudFetch = 0;
  * Синхронизирует данные между всеми вкладками и GitHub
  */
 const HotelStore = {
-  KEY: 'sri_hotels_cache_v2',
+  KEY: 'sri_hotels_cache_v3',
 
   /** Быстрое локальное чтение */
   _localCache() {
