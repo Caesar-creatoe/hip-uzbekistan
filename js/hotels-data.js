@@ -2144,14 +2144,6 @@ const DEFAULT_HOTELS = [
       {
         "src": "/assets/hotels/camp-aydar-p4.webp",
         "caption": ""
-      },
-      {
-        "src": "/assets/hotels/camp-aydar-p5.webp",
-        "caption": ""
-      },
-      {
-        "src": "/assets/hotels/camp-aydar-p6.webp",
-        "caption": ""
       }
     ],
     "notes": "Эко-кемпинг в пустыне Кызылкум. 106 юрт, 18.3 га.",
@@ -2269,10 +2261,6 @@ const DEFAULT_HOTELS = [
       },
       {
         "src": "/assets/hotels/aydarkul-resort-p5.webp",
-        "caption": ""
-      },
-      {
-        "src": "/assets/hotels/aydarkul-resort-p6.webp",
         "caption": ""
       }
     ],
@@ -3772,7 +3760,7 @@ let _lastCloudFetch = 0;
  * Синхронизирует данные между всеми вкладками и GitHub
  */
 const HotelStore = {
-  KEY: 'sri_hotels_cache_v3',
+  KEY: 'sri_hotels_cache_v4',
 
   /** Быстрое локальное чтение */
   _localCache() {
