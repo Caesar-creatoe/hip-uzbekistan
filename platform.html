@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="styles/megamenu.css?v=site_1" />
   <link rel="stylesheet" href="styles/footer.css?v=site_1" />
   <link rel="stylesheet" href="styles/site.css?v=site_1" />
-  <link rel="stylesheet" href="styles/pages.css?v=lx_2" />
+  <link rel="stylesheet" href="styles/pages.css?v=sr_1" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Silk Route Invest" />
   <meta property="og:title" content="О платформе — Silk Route Invest" />
@@ -24,7 +24,7 @@
   <meta property="og:image" content="https://silkroute-invest.vercel.app/assets/hero/og.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 </head>
-<body class="sx-page lx page-platform">
+<body class="sx-page sr page-platform">
 
   <header class="site-header" id="site-header" role="banner">
     <div class="header-inner">
@@ -74,102 +74,115 @@
 
   <main id="main-content">
 
-    <!-- Первый экран -->
-    <section class="lx-hero" aria-labelledby="about-title">
-      <div class="pg-wrap lx-hero__top">
-        <span class="lx-pill">О платформе</span>
-        <h1 class="lx-h1" id="about-title">Отели страны <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span> для инвестора — <span class="lx-acc">в одном каталоге</span></h1>
-        <p class="lx-sub">Silk Route Invest собирает отели Узбекистана, которые ищут покупателя, соинвестора или оператора, и показывает их в едином формате — с ценой, показателями и паспортом объекта.</p>
-        <div class="pg-actions">
-          <a href="portfolio.html" class="pg-btn pg-btn--dark">Открыть каталог <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a href="#method" class="pg-btn pg-btn--ghost">Как считаем показатели</a>
+    <section class="sr-hero" aria-labelledby="pl-title">
+      <div class="sr-hero__panel">
+        <div class="sr-hero__grid">
+          <div>
+            <a class="sr-trust" href="portfolio.html"><span class="sr-trust__faces" data-faces></span>Проект Комитета по туризму</a>
+            <h1 class="sr-h1" id="pl-title">Отели Узбекистана для инвестора — в одном каталоге</h1>
+            <p class="sr-lead">Silk Route Invest собирает отели Узбекистана, которые ищут покупателя, соинвестора или оператора, и показывает их в одном формате — с ценой, показателями и паспортом объекта.</p>
+            <div class="sr-actions">
+              <a href="portfolio.html" class="sr-btn">Открыть каталог <i>↗</i></a>
+              <a href="#method" class="sr-link">Как считаем показатели</a>
+            </div>
+          </div>
+          <div class="sr-hero__art">
+            <img src="assets/pages/hero-platform.webp" width="1024" height="1024" alt="Аналитик с ноутбуком на фоне бумажного коллажа из трёх отелей">
+            <div class="sr-ui sr-ui--a"><small>Объектов в каталоге</small><b data-p="count">32</b><em data-p="regions-t">в 7 регионах</em></div>
+            <div class="sr-ui sr-ui--dark sr-ui--b"><small>Общая стоимость</small><b data-p="value">$306 млн</b><em data-p="rooms-t">3 396 номеров</em></div>
+            <a class="sr-ui sr-ui--pill sr-ui--c" href="#method"><span>10</span>показателей по USALI</a>
+          </div>
         </div>
-      </div>
-      <div class="pg-wrap">
-        <div class="lx-stage">
-          <div class="lx-stage__ill"><img src="assets/ill/platform.webp" width="1000" height="746" alt="Три отеля на подиумах, связанные с золотым центром" /></div>
-          <div class="lx-float lx-float--dark" style="left:3%;top:12%"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></i><div><b data-p="count">32</b><span>объекта в каталоге</span></div></div>
-          <div class="lx-float" style="right:3%;top:8%"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></i><div><b data-p="regions">7</b><span>регионов страны</span></div></div>
-          <div class="lx-float" style="left:8%;bottom:22%"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></i><div><b data-p="rooms">3 396</b><span>номеров</span></div></div>
-          <div class="lx-float lx-float--ok" style="right:6%;bottom:28%"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.4c-.5-.9-1.6-1.4-2.8-1.4-1.6 0-2.8.8-2.8 2 0 2.9 5.8 1.5 5.8 4.2 0 1.3-1.3 2.1-3 2.1-1.3 0-2.5-.6-3-1.5M12 6.3V8M12 16.3V18"/></svg></i><div><b data-p="value">$306 млн</b><span>общая стоимость</span></div></div>
+        <div class="sr-strip">
+          <p>Что есть у каждого объекта</p>
+          <ul><li>Паспорт</li><li>Цена</li><li>Загрузка</li><li>EBITDA</li><li>Окупаемость</li><li>Документы</li></ul>
         </div>
       </div>
     </section>
 
     <!-- Что делаем -->
-    <section class="lx-sec" aria-labelledby="what-title">
-      <div class="pg-wrap">
-        <header class="lx-head">
-          <span class="lx-pill">Что мы делаем</span>
-          <h2 class="lx-h2" id="what-title">Между владельцем <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3.2-3.2a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3.2 3.2a4 4 0 0 0 5.7 5.7l1-1"/></svg></span> <span class="lx-acc">и инвестором</span></h2>
-          <p class="lx-sub">Проект Комитета по туризму Республики Узбекистан.</p>
-        </header>
-        <div class="lx-bento">
-          <article class="lx-card" data-reveal>
-            <h3>Собираем объекты</h3>
-            <p>Владельцы отелей, курортов и участков присылают заявки. Мы проверяем данные и документы.</p>
-            <div class="lx-card__ui">
-              <div class="ui-box ui-list">
-                <div class="ui-item"><span class="ui-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span><div><b>Отель 4★, Бухара</b><span>Новая заявка владельца</span></div><em>2 мин</em></div>
-                <div class="ui-item"><span class="ui-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5-8 8.5"/></svg></span><div><b>12 фото, документы</b><span>Проверка данных</span></div><em>1 ч</em></div>
-                <div class="ui-item ui-item--fade"><span class="ui-dot ui-dot--ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Опубликован в каталоге</b><span>Паспорт готов</span></div></div>
+    <section class="sr-sec" aria-labelledby="pl-what">
+      <div class="sr-wrap">
+        <div class="sr-sec__head">
+          <div>
+            <h2 class="sr-h2" id="pl-what">Между владельцем<br>и инвестором</h2>
+            <p class="sr-lead">Три задачи платформы: собрать объекты, посчитать их по одной методике и свести стороны.</p>
+          </div>
+          <div class="sr-sec__side"><a href="business.html" class="sr-btn sr-btn--sm">Разместить объект <i>↗</i></a><a class="sr-link" href="investors.html">Как купить отель</a></div>
+        </div>
+        <div class="sr-bento">
+          <div class="sr-c4" data-reveal style="display:flex;flex-direction:column;gap:14px">
+            <div class="sr-photo" style="min-height:220px"><img src="assets/pages/courtyard.webp" alt="Двор бутик-отеля в Бухаре" loading="lazy"><div class="sr-photo__cap"><span class="sr-tag">01 · Собираем</span></div></div>
+            <div class="sr-card"><h3 class="sr-h3" style="font-size:18px">Собираем объекты</h3><p style="margin-top:6px">Владельцы отелей, курортов и участков присылают заявку с фото и документами. Мы проверяем данные.</p></div>
+          </div>
+          <div class="sr-c4" data-reveal style="display:flex;flex-direction:column;gap:14px">
+            <div class="sr-photo" style="min-height:220px"><img src="assets/pages/desk.webp" alt="Ноутбук с графиками и план гостиницы" loading="lazy"><div class="sr-photo__cap"><span class="sr-tag">02 · Считаем</span></div></div>
+            <div class="sr-card"><h3 class="sr-h3" style="font-size:18px">Считаем показатели</h3><p style="margin-top:6px">Паспорт объекта: загрузка, тариф, выручка, EBITDA, окупаемость — по одной методике для всех.</p></div>
+          </div>
+          <div class="sr-c4" data-reveal style="display:flex;flex-direction:column;gap:14px">
+            <div class="sr-photo" style="min-height:220px"><img src="assets/pages/visit.webp" alt="Инвестор и владелец на галерее отеля" loading="lazy"><div class="sr-photo__cap"><span class="sr-tag">03 · Связываем</span></div></div>
+            <div class="sr-card"><h3 class="sr-h3" style="font-size:18px">Связываем стороны</h3><p style="margin-top:6px">Передаём заявку инвестора владельцу, организуем NDA, показ объекта и подсказываем по господдержке.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Паспорт + цифры -->
+    <section class="sr-sec" aria-labelledby="pl-pass">
+      <div class="sr-stage">
+        <div class="sr-stage__split">
+          <div class="sr-stage__mock" data-reveal>
+            <div class="sr-card">
+              <div class="sr-card__top"><h3>Паспорт объекта</h3><span data-pp="type">оценка платформы</span></div>
+              <div class="sr-list"><div class="sr-li" data-pp="row"><span class="sr-mono"></span><div><b>Загружаем…</b><span>&nbsp;</span></div></div></div>
+            </div>
+            <div class="sr-card" style="margin-top:12px">
+              <div class="sr-split" style="margin:0">
+                <div><small>Цена</small><b data-pp="price">—</b><i style="--c:#E9C990"></i></div>
+                <div><small>Загрузка</small><b data-pp="occ">—</b><i style="--c:#D9B9A0"></i></div>
+                <div><small>Окупаемость</small><b data-pp="pb">—</b><i style="--c:#C9D9CC"></i></div>
               </div>
             </div>
-          </article>
-          <article class="lx-card" data-reveal>
-            <h3>Считаем показатели</h3>
-            <p>Паспорт объекта: загрузка, тариф, выручка, EBITDA, окупаемость — по одной методике для всех.</p>
-            <div class="lx-card__ui">
-              <div class="ui-box">
-                <div class="ui-metrics">
-                  <div class="ui-metric"><span>Загрузка</span><b>72%</b></div>
-                  <div class="ui-metric"><span>ADR</span><b>$95</b></div>
-                  <div class="ui-metric"><span>EBITDA</span><b>$1,2 млн</b></div>
-                  <div class="ui-metric"><span>Окупаемость</span><b>7,5 г.<em>оценка</em></b></div>
-                </div>
-              </div>
-              <p class="lx-src">Пример паспорта, цифры условные</p>
-            </div>
-          </article>
-          <article class="lx-card" data-reveal>
-            <h3>Связываем стороны</h3>
-            <p>Передаём заявку инвестора владельцу, организуем NDA, показ объекта и помогаем с господдержкой.</p>
-            <div class="lx-card__ui">
-              <div class="ui-box">
-                <div class="ui-flow">
-                  <div class="ui-flow__n"><span class="ui-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.3-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.5c2.4.2 4 1.8 4.5 4.5"/></svg></span><b>Инвестор</b>заявка</div>
-                  <i></i>
-                  <div class="ui-flow__n ui-flow__n--hub"><span class="ui-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></svg></span><b>Платформа</b>NDA, показ</div>
-                  <i></i>
-                  <div class="ui-flow__n"><span class="ui-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></span><b>Владелец</b>сделка</div>
-                </div>
-              </div>
-            </div>
-          </article>
+          </div>
+          <div class="sr-stage__text">
+            <span class="sr-tag sr-tag--light">Паспорт объекта</span>
+            <h2 class="sr-h2" id="pl-pass">Один формат для всех отелей — их можно сравнивать</h2>
+            <p class="sr-lead">Фото, номерной фонд, цена и десять финансовых показателей. У каждой цифры отмечено, факт это из отчётности или оценка платформы.</p>
+            <div class="sr-actions"><a href="portfolio.html" class="sr-btn sr-btn--sm" data-pp="link">Открыть паспорт <i>↗</i></a></div>
+          </div>
+        </div>
+
+        <div class="sr-stage__sub">
+          <h2 class="sr-h2">Каталог сегодня</h2>
+          <p class="sr-lead">Цифры считаются по опубликованным объектам и обновляются вместе с каталогом.</p>
+        </div>
+        <div class="sr-stats">
+          <div class="sr-stat" data-reveal><small>Объектов</small><b data-p="count2">32</b><p data-p="regions-p">В 7 регионах: от Ташкента до Хивы и гор Чимгана.</p></div>
+          <div class="sr-stat" data-reveal><small>Номеров</small><b data-p="rooms">3 396</b><p>Суммарный номерной фонд опубликованных объектов.</p></div>
+          <div class="sr-stat" data-reveal><small>Общая стоимость</small><b data-p="value2">$306<sup>млн</sup></b><p>Сумма цен, которые указали владельцы.</p></div>
         </div>
       </div>
     </section>
 
     <!-- Сравнение -->
-    <section class="lx-sec" aria-labelledby="why-title">
-      <div class="pg-wrap">
-        <div class="lx-compare-wrap">
-          <header class="lx-head lx-head--left" style="margin-bottom:0">
-            <span class="lx-pill">Почему через платформу</span>
-            <h2 class="lx-h2" id="why-title">Сравнивать отели <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 6.5a3.2 3.2 0 0 0 6 0zM19 7l-3 6.5a3.2 3.2 0 0 0 6 0z"/></svg></span> <span class="lx-acc">проще и быстрее</span></h2>
-            <p class="lx-sub">Без платформы инвестору приходится собирать данные по каждому отелю отдельно, в разном виде и без единой методики.</p>
-            <div class="pg-actions" style="margin-top:26px"><a href="portfolio.html" class="pg-btn pg-btn--dark">Сравнить отели в каталоге <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9.5M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          </header>
-          <div class="lx-compare" data-reveal>
+    <section class="sr-sec" aria-labelledby="pl-why">
+      <div class="sr-wrap">
+        <div class="sr-bento" style="align-items:center">
+          <div class="sr-c5">
+            <h2 class="sr-h2" id="pl-why">Зачем искать через платформу</h2>
+            <p class="sr-lead">Без платформы данные по каждому отелю приходится собирать отдельно — в разном виде и без единой методики.</p>
+            <div class="sr-actions"><a href="portfolio.html" class="sr-btn sr-btn--sm">Сравнить отели <i>↗</i></a></div>
+          </div>
+          <div class="sr-table sr-c7" data-reveal>
             <table>
-              <thead><tr><th></th><th>Поиск самостоятельно</th><th class="is-hl">Silk Route Invest</th></tr></thead>
+              <thead><tr><th></th><th>Поиск самостоятельно</th><th class="hl">Silk Route Invest</th></tr></thead>
               <tbody>
-                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>Все объекты в одном месте</span></td><td><span class="lx-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
-                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Паспорт в едином формате</span></td><td><span class="lx-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
-                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Показатели по методике USALI</span></td><td><span class="lx-txt">как посчитает продавец</span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
-                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></svg>Отметка «факт» или «оценка»</span></td><td><span class="lx-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
-                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Документы после NDA</span></td><td><span class="lx-txt">у каждого владельца</span></td><td class="is-hl"><span class="lx-txt">через одного оператора</span></td></tr>
-                <tr><td><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.4c-.5-.9-1.6-1.4-2.8-1.4-1.6 0-2.8.8-2.8 2 0 2.9 5.8 1.5 5.8 4.2 0 1.3-1.3 2.1-3 2.1-1.3 0-2.5-.6-3-1.5M12 6.3V8M12 16.3V18"/></svg>Подсказка по господдержке</span></td><td><span class="lx-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"/></svg></span></td><td class="is-hl"><span class="lx-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></td></tr>
+                <tr><td>Все объекты в одном месте</td><td><span class="sr-no">—</span></td><td class="hl"><span class="sr-yes">Да</span></td></tr>
+                <tr><td>Паспорт в едином формате</td><td><span class="sr-no">—</span></td><td class="hl"><span class="sr-yes">Да</span></td></tr>
+                <tr><td>Показатели по методике USALI</td><td>как посчитает продавец</td><td class="hl"><span class="sr-yes">Да</span></td></tr>
+                <tr><td>Отметка «факт» или «оценка»</td><td><span class="sr-no">—</span></td><td class="hl"><span class="sr-yes">Да</span></td></tr>
+                <tr><td>Документы после NDA</td><td>у каждого владельца</td><td class="hl">через одного оператора</td></tr>
+                <tr><td>Подсказка по господдержке</td><td><span class="sr-no">—</span></td><td class="hl"><span class="sr-yes">Да</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -178,91 +191,86 @@
     </section>
 
     <!-- Методика -->
-    <section class="lx-sec" id="method" aria-labelledby="method-title">
-      <div class="pg-wrap">
-        <header class="lx-head">
-          <span class="lx-pill">Методика</span>
-          <h2 class="lx-h2" id="method-title">Как <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span> считаются <span class="lx-acc">показатели</span></h2>
-          <p class="lx-sub">Для всех объектов — единые формулы по стандарту отельной отчётности USALI. Поэтому отели можно сравнивать между собой.</p>
-        </header>
-        <div class="lx-bento" style="align-items:start">
-          <article class="lx-card lx-card--ill" data-reveal>
-            <div class="lx-ill"><img src="assets/ill/method.webp" width="1000" height="746" loading="lazy" alt="Планшет с графиками, калькулятор и линейка" /></div>
-            <div class="lx-card__body">
-              <span class="lx-tag-row" style="display:flex;gap:8px;flex-wrap:wrap"><span class="pg-tag pg-tag--ok">Факт</span><span class="pg-tag pg-tag--gold">Оценка</span></span>
-              <h3>У каждой цифры — её тип</h3>
-              <p><b style="color:var(--ink)">Факт</b> — из финансовой отчётности объекта за полный год. Так отмечено <b data-p="fact">3</b> из <b data-p="count2">32</b> объектов.</p>
-              <p><b style="color:var(--ink)">Оценка</b> — расчёт платформы по номерному фонду, категории и рынку региона: для новых и строящихся отелей и когда отчётность ещё не передана. Подтверждённые цифры инвестор получает после NDA.</p>
+    <section class="sr-sec" id="method" aria-labelledby="pl-method">
+      <div class="sr-wrap">
+        <div class="sr-sec__head">
+          <div>
+            <h2 class="sr-h2" id="pl-method">Как считаются<br>показатели</h2>
+            <p class="sr-lead">Для всех объектов — одни формулы по стандарту отельной отчётности USALI. «Факт» — из отчётности объекта за полный год (так отмечено <b data-p="fact">3</b> из <b data-p="count3">32</b> объектов). «Оценка» — расчёт платформы по номерному фонду, категории и рынку региона.</p>
+          </div>
+        </div>
+        <div class="sr-bento">
+          <div class="sr-photo sr-c4" style="min-height:360px"><img src="assets/pages/lobby.webp" alt="Лобби гостиницы в Ташкенте" loading="lazy"><div class="sr-photo__cap"><span class="sr-tag">USALI — стандарт отельной отчётности</span></div></div>
+          <div class="sr-card sr-c8" data-reveal>
+            <div class="sr-method">
+              <div class="sr-f"><b>Загрузка</b><span>Доля проданных номеров</span><code>проданные номеро-ночи ÷ доступные</code></div>
+              <div class="sr-f"><b>ADR</b><span>Средняя цена номера за ночь</span><code>выручка от номеров ÷ проданные ночи</code></div>
+              <div class="sr-f"><b>RevPAR</b><span>Выручка на номер за ночь</span><code>ADR × загрузка</code></div>
+              <div class="sr-f"><b>GOP</b><span>Валовая операционная прибыль</span><code>выручка − операционные расходы</code></div>
+              <div class="sr-f"><b>EBITDA</b><span>Прибыль до процентов, налогов, амортизации</span><code>GOP − управленческие и постоянные расходы</code></div>
+              <div class="sr-f"><b>Окупаемость</b><span>За сколько лет вернутся вложения</span><code>цена объекта ÷ EBITDA</code></div>
+              <div class="sr-f"><b>ROI</b><span>Годовая доходность</span><code>EBITDA ÷ цена объекта</code></div>
+              <div class="sr-f"><b>Cap Rate</b><span>Ставка капитализации</span><code>NOI (или EBITDA) ÷ цена</code></div>
+              <div class="sr-f"><b>IRR</b><span>Внутренняя норма доходности</span><code>потоки на 10 лет с продажей в конце</code></div>
+              <div class="sr-f"><b>NPV</b><span>Ценность будущих потоков сегодня</span><code>потоки на 10 лет, ставка обычно 12%</code></div>
             </div>
-          </article>
-          <div class="lx-span2 lx-method" data-reveal>
-            <div class="lx-formula"><b>Загрузка</b><span>Доля проданных номеров</span><code>проданные номеро-ночи ÷ доступные номеро-ночи</code></div>
-            <div class="lx-formula"><b>ADR</b><span>Средняя цена номера за ночь</span><code>выручка от номеров ÷ проданные номеро-ночи</code></div>
-            <div class="lx-formula"><b>RevPAR</b><span>Выручка на каждый номер за ночь</span><code>ADR × загрузка</code></div>
-            <div class="lx-formula"><b>GOP</b><span>Валовая операционная прибыль</span><code>общая выручка − операционные расходы</code></div>
-            <div class="lx-formula"><b>EBITDA</b><span>Прибыль до процентов, налогов, амортизации</span><code>GOP − управленческие и постоянные расходы</code></div>
-            <div class="lx-formula"><b>Окупаемость</b><span>За сколько лет вернутся вложения</span><code>цена объекта ÷ EBITDA</code></div>
-            <div class="lx-formula"><b>ROI</b><span>Годовая доходность на капитал</span><code>EBITDA ÷ цена объекта</code></div>
-            <div class="lx-formula"><b>Cap Rate</b><span>Ставка капитализации</span><code>NOI (или EBITDA) ÷ цена объекта</code></div>
-            <div class="lx-formula"><b>IRR</b><span>Внутренняя норма доходности</span><code>денежные потоки на 10 лет с продажей в конце</code></div>
-            <div class="lx-formula"><b>NPV</b><span>Сегодняшняя ценность будущих потоков</span><code>потоки на 10 лет по ставке объекта, обычно 12%</code></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Калькулятор -->
-    <section class="lx-sec" id="calc" aria-labelledby="calc-title">
-      <div class="pg-wrap">
-        <div class="lx-band" data-reveal>
-          <div>
-            <span class="lx-pill">Калькулятор</span>
-            <h2 class="lx-h2" id="calc-title">Прикиньте <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 14.5h.01M12 14.5h.01M15.5 14.5h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg></span> <span class="lx-acc">окупаемость сами</span></h2>
-            <p class="lx-sub">Упрощённый расчёт по тем же формулам, что в паспорте: выручка от номеров, EBITDA по заданной марже, окупаемость и ROI.</p>
-            <ul class="lx-band__list">
-              <li>Выручка от номеров = номера × 365 × загрузка × ADR</li>
-              <li>EBITDA = выручка × маржа EBITDA</li>
-              <li>Окупаемость = цена ÷ EBITDA, ROI = EBITDA ÷ цена</li>
-            </ul>
-            <p class="lx-band__note">Без учёта ресторана, конференц-залов и других доходов, налогов и долга. Полная модель объекта — в паспорте и после NDA.</p>
-          </div>
-          <div class="lx-sheet">
-            <h3>Ваш отель</h3>
-            <p>Подвиньте ползунки</p>
-            <form class="lx-calc" id="roi-calc" onsubmit="return false">
-              <div class="lx-range"><div class="lx-range__top"><label for="rc-price">Цена объекта</label><output data-o="price">$6 млн</output></div><input type="range" id="rc-price" name="price" min="1" max="50" step="0.5" value="6"></div>
-              <div class="lx-range"><div class="lx-range__top"><label for="rc-rooms">Номеров</label><output data-o="rooms">100</output></div><input type="range" id="rc-rooms" name="rooms" min="20" max="400" step="5" value="100"></div>
-              <div class="lx-range"><div class="lx-range__top"><label for="rc-adr">ADR, средняя цена за ночь</label><output data-o="adr">$90</output></div><input type="range" id="rc-adr" name="adr" min="30" max="300" step="5" value="90"></div>
-              <div class="lx-range"><div class="lx-range__top"><label for="rc-occ">Загрузка</label><output data-o="occ">65%</output></div><input type="range" id="rc-occ" name="occ" min="30" max="95" step="1" value="65"></div>
-              <div class="lx-range"><div class="lx-range__top"><label for="rc-mg">Маржа EBITDA</label><output data-o="mg">35%</output></div><input type="range" id="rc-mg" name="mg" min="15" max="55" step="1" value="35"></div>
-              <div class="lx-res" aria-live="polite">
-                <div><span>Выручка от номеров в год</span><b data-c="rev">—</b></div>
-                <div><span>EBITDA в год</span><b data-c="ebitda">—</b></div>
-                <div class="is-main"><span>Окупаемость</span><b data-c="pb">—</b></div>
-                <div><span>ROI</span><b data-c="roi">—</b></div>
-              </div>
-            </form>
-          </div>
+    <section class="sr-sec" id="calc" aria-labelledby="pl-calc">
+      <div class="sr-dark">
+        <div class="sr-dark__photo"><img src="assets/pages/room.webp" alt="" loading="lazy"></div>
+        <div>
+          <span class="sr-tag">Калькулятор</span>
+          <h2 class="sr-h2" id="pl-calc">Прикиньте окупаемость сами</h2>
+          <p class="sr-lead">Упрощённый расчёт по тем же формулам, что в паспорте.</p>
+          <ul>
+            <li>Выручка от номеров = номера × 365 × загрузка × ADR</li>
+            <li>EBITDA = выручка × маржа EBITDA</li>
+            <li>Окупаемость = цена ÷ EBITDA, ROI = EBITDA ÷ цена</li>
+          </ul>
+          <p class="sr-note">Без учёта ресторана, залов и других доходов, налогов и долга. Полная модель объекта — в паспорте и после NDA.</p>
+        </div>
+        <div class="sr-sheet">
+          <h3>Ваш отель</h3>
+          <p>Подвиньте ползунки</p>
+          <form class="sr-calc" id="roi-calc" onsubmit="return false">
+            <div class="sr-range"><div class="sr-range__top"><label for="rc-price">Цена объекта</label><output data-o="price">$6 млн</output></div><input type="range" id="rc-price" name="price" min="1" max="50" step="0.5" value="6"></div>
+            <div class="sr-range"><div class="sr-range__top"><label for="rc-rooms">Номеров</label><output data-o="rooms">100</output></div><input type="range" id="rc-rooms" name="rooms" min="20" max="400" step="5" value="100"></div>
+            <div class="sr-range"><div class="sr-range__top"><label for="rc-adr">ADR, цена за ночь</label><output data-o="adr">$90</output></div><input type="range" id="rc-adr" name="adr" min="30" max="300" step="5" value="90"></div>
+            <div class="sr-range"><div class="sr-range__top"><label for="rc-occ">Загрузка</label><output data-o="occ">65%</output></div><input type="range" id="rc-occ" name="occ" min="30" max="95" step="1" value="65"></div>
+            <div class="sr-range"><div class="sr-range__top"><label for="rc-mg">Маржа EBITDA</label><output data-o="mg">35%</output></div><input type="range" id="rc-mg" name="mg" min="15" max="55" step="1" value="35"></div>
+            <div class="sr-res" aria-live="polite">
+              <div><span>Выручка от номеров в год</span><b data-c="rev">—</b></div>
+              <div><span>EBITDA в год</span><b data-c="ebitda">—</b></div>
+              <div class="is-main"><span>Окупаемость</span><b data-c="pb">—</b></div>
+              <div><span>ROI</span><b data-c="roi">—</b></div>
+            </div>
+          </form>
         </div>
       </div>
     </section>
 
     <!-- Контакты -->
-    <section class="lx-sec" id="contact" aria-labelledby="contact-title">
-      <div class="pg-wrap">
-        <div class="lx-compare-wrap" style="align-items:start">
-          <header class="lx-head lx-head--left" style="margin-bottom:0">
-            <span class="lx-pill">Контакты</span>
-            <h2 class="lx-h2" id="contact-title">Есть вопрос <span class="lx-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span> <span class="lx-acc">или предложение?</span></h2>
-            <p class="lx-sub">Банкам, управляющим компаниям, консультантам и отельным сетям — пишите, обсудим сотрудничество.</p>
-            <div class="ui-list" style="margin-top:26px;width:100%;max-width:420px">
-              <div class="ui-item"><span class="ui-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span><div><b>Комитет по туризму</b><span>Республика Узбекистан, Ташкент</span></div></div>
-              <a class="ui-item" href="mailto:info@uzbektourism.uz" style="text-decoration:none"><span class="ui-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></span><div><b>info@uzbektourism.uz</b><span>Почта</span></div></a>
-              <a class="ui-item" href="https://uzbektourism.uz" target="_blank" rel="noopener" style="text-decoration:none"><span class="ui-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg></span><div><b>uzbektourism.uz</b><span>Сайт</span></div></a>
+    <section class="sr-sec" id="contact" aria-labelledby="pl-contact">
+      <div class="sr-wrap">
+        <div class="sr-bento" style="align-items:start">
+          <div class="sr-c5">
+            <h2 class="sr-h2" id="pl-contact">Есть вопрос или предложение?</h2>
+            <p class="sr-lead">Банкам, управляющим компаниям, консультантам и отельным сетям — пишите, обсудим сотрудничество.</p>
+            <div class="sr-card sr-card--flat" style="margin-top:26px">
+              <div class="sr-list">
+                <div class="sr-li"><span class="sr-mono">КТ</span><div><b>Комитет по туризму</b><span>Республика Узбекистан, Ташкент</span></div></div>
+                <a class="sr-li" href="mailto:info@uzbektourism.uz" style="text-decoration:none"><span class="sr-mono">@</span><div><b>info@uzbektourism.uz</b><span>Почта</span></div></a>
+                <a class="sr-li" href="https://uzbektourism.uz" target="_blank" rel="noopener" style="text-decoration:none"><span class="sr-mono">www</span><div><b>uzbektourism.uz</b><span>Сайт</span></div></a>
+              </div>
             </div>
-          </header>
-          <div class="lx-card" style="padding:28px">
-            <form class="pg-form" data-lead="question" novalidate>
+          </div>
+          <div class="sr-card sr-c7" style="padding:26px">
+            <form class="pg-form" data-lead="question" novalidate style="margin-top:0">
               <div class="pg-form__row">
                 <label class="pg-field"><span>Имя <i>*</i></span><input name="name" autocomplete="name" required></label>
                 <label class="pg-field"><span>Компания</span><input name="company" autocomplete="organization"></label>
@@ -288,7 +296,7 @@
         </div>
       </div>
     </section>
-    <div class="lx-mark" aria-hidden="true" style="margin-top:110px">SILK ROUTE</div>
+    <div class="sr-end"></div>
 
   </main>
 
@@ -344,7 +352,12 @@
   <script>
   (function () {
     var nf = function (n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
-    var set = function (k, v) { document.querySelectorAll('[data-p="' + k + '"]').forEach(function (e) { e.textContent = v; }); };
+    var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var set = function (k, v, html) { document.querySelectorAll('[data-p="' + k + '"]').forEach(function (e) { if (html) e.innerHTML = v; else e.textContent = v; }); };
+    var pp = function (k) { return document.querySelector('[data-pp="' + k + '"]'); };
+    var photo = function (h) { var p = (h.photos || []).map(function (x) { return x && x.src; }).filter(Boolean); var loc = p.filter(function (s) { return s.charAt(0) === '/' || s.indexOf('assets/') === 0; }); return loc[0] || p[0] || ''; };
+    var city = function (h) { var a = String(h.address || ''); var m = a.match(/г\.\s*([^,]+)/); return m ? m[1].trim() : String(h.region || '').replace(' область', ' обл.'); };
+    var plural = function (n, f) { var a = n % 100, b = n % 10; return a > 10 && a < 20 ? f[2] : b > 1 && b < 5 ? f[1] : b === 1 ? f[0] : f[2]; };
     async function load() {
       var list = [];
       try { if (window.HotelStore) list = HotelStore.getAll() || []; } catch (e) {}
@@ -354,11 +367,30 @@
     load().then(function (l) {
       if (!l.length) return;
       var regions = {}; l.forEach(function (h) { regions[h.regionKey || h.region] = 1; });
+      var nr = Object.keys(regions).length;
       var rooms = l.reduce(function (s, h) { return s + (parseInt(h.roomsCount, 10) || 0); }, 0);
       var value = l.reduce(function (s, h) { var e = h.economics || {}; return s + (Number(e.askingPrice || e.valuation) || 0); }, 0);
-      set('count', l.length); set('count2', l.length); set('regions', Object.keys(regions).length); set('rooms', nf(rooms));
-      set('value', '$' + Math.round(value / 1e6) + ' млн');
+      ['count', 'count2', 'count3'].forEach(function (k) { set(k, l.length); });
+      set('regions-t', 'в ' + nr + ' ' + plural(nr, ['регионе', 'регионах', 'регионах']));
+      set('regions-p', 'В ' + nr + ' ' + plural(nr, ['регионе', 'регионах', 'регионах']) + ': от Ташкента до Хивы и гор Чимгана.');
+      set('rooms', nf(rooms)); set('rooms-t', nf(rooms) + ' ' + plural(rooms, ['номер', 'номера', 'номеров']));
+      set('value', '$' + Math.round(value / 1e6) + ' млн'); set('value2', '$' + Math.round(value / 1e6) + '<sup>млн</sup>', true);
       set('fact', l.filter(function (h) { return (h.economics || {}).dataType === 'fact'; }).length);
+      var wp = l.filter(function (h) { return photo(h); });
+      var faces = document.querySelector('[data-faces]');
+      if (faces) faces.innerHTML = wp.slice(0, 3).map(function (h) { return '<img src="' + esc(photo(h)) + '" alt="">'; }).join('');
+      /* пример паспорта — объект с фактическими данными, если есть */
+      var h = wp.filter(function (x) { return (x.economics || {}).dataType === 'fact'; })[0] || wp[0];
+      if (h) {
+        var e = h.economics || {};
+        pp('row').innerHTML = '<img class="sr-thumb" src="' + esc(photo(h)) + '" alt="" style="width:64px;height:52px">' +
+          '<div><b>' + esc(h.hotelName) + '</b><span>' + esc(city(h)) + ' · ' + (h.stars ? h.stars + '★ · ' : '') + (h.roomsCount || '—') + ' номеров</span></div>';
+        pp('type').textContent = e.dataType === 'fact' ? 'факт по отчётности' : 'оценка платформы';
+        if (e.askingPrice) pp('price').textContent = '$' + (e.askingPrice / 1e6).toFixed(1).replace('.0', '').replace('.', ',') + ' млн';
+        if (e.occupancy) pp('occ').textContent = Math.round(e.occupancy) + '%';
+        if (e.payback) pp('pb').textContent = String(Number(e.payback).toFixed(1)).replace('.', ',') + ' года';
+        if (h.slug || h.id) pp('link').href = 'passport.html?hotel=' + encodeURIComponent(h.slug || h.id);
+      }
     });
 
     /* Калькулятор окупаемости */
