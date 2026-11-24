@@ -21,6 +21,7 @@ HEADER = '''<header class="site-header" id="site-header" role="banner">
         <div class="nav-item" data-page="market"><a href="market.html" class="nav-trigger">Рынок</a></div>
         <div class="nav-item" data-page="incentives"><a href="incentives.html" class="nav-trigger">Льготы</a></div>
         <div class="nav-item" data-page="investors"><a href="investors.html" class="nav-trigger">Как купить</a></div>
+        <div class="nav-item" data-page="b2b"><a href="b2b.html" class="nav-trigger">B2B-встречи</a></div>
         <div class="nav-item" data-page="platform"><a href="platform.html" class="nav-trigger">О платформе</a></div>
       </nav>
       <div class="header-right">
@@ -42,6 +43,7 @@ MOBILE = '''<div class="mobile-nav" id="mobile-nav" role="navigation" aria-label
       <a href="market.html">Рынок Узбекистана</a>
       <a href="incentives.html">Льготы для инвестора</a>
       <a href="investors.html">Как купить отель</a>
+      <a href="b2b.html">B2B-встречи с владельцами</a>
     </div>
     <div class="mobile-nav-section">
       <span class="mobile-nav-label">Владельцам</span>
@@ -76,6 +78,7 @@ FOOTER = '''<footer class="site-footer" role="contentinfo">
             <a href="market.html" class="footer-nav-link">Рынок Узбекистана</a>
             <a href="incentives.html" class="footer-nav-link">Льготы для инвестора</a>
             <a href="investors.html" class="footer-nav-link">Как купить отель</a>
+            <a href="b2b.html" class="footer-nav-link">B2B-встречи</a>
           </div>
           <div class="footer-nav-col">
             <p class="footer-nav-heading">Владельцам</p>

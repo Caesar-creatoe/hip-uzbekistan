@@ -111,7 +111,7 @@
   }
 
   function mailtoLink(type, fields, hotel) {
-    const titles = { invest: 'Заявка инвестора', docs: 'Запрос документов', list: 'Размещение объекта', question: 'Вопрос' };
+    const titles = { invest: 'Заявка инвестора', docs: 'Запрос документов', list: 'Размещение объекта', question: 'Вопрос', meeting: 'Запрос B2B-встречи' };
     const body = Object.entries(fields).map(([k, v]) => `${k}: ${v}`).join('\n') + (hotel ? `\nОбъект: ${hotel}` : '');
     return `mailto:${CONTACT.email}?subject=${encodeURIComponent((titles[type] || 'Заявка') + (hotel ? ' — ' + hotel : ''))}&body=${encodeURIComponent(body)}`;
   }

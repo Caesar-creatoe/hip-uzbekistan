@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./assets/logo-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="B2B-встречи с владельцами гостиниц Узбекистана: выберите объекты из каталога, и платформа организует встречу на инвестфоруме, онлайн или на объекте." />
+  <meta name="theme-color" content="#F5F2EC" />
+  <title>B2B-встречи с владельцами гостиниц — Silk Route Invest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="design-tokens.css?v=site_1" />
+  <link rel="stylesheet" href="styles/base.css?v=site_1" />
+  <link rel="stylesheet" href="styles/header.css?v=site_1" />
+  <link rel="stylesheet" href="styles/megamenu.css?v=site_1" />
+  <link rel="stylesheet" href="styles/footer.css?v=site_1" />
+  <link rel="stylesheet" href="styles/site.css?v=site_1" />
+  <link rel="stylesheet" href="styles/pages.css?v=sr_2" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Silk Route Invest" />
+  <meta property="og:title" content="B2B-встречи с владельцами гостиниц — Silk Route Invest" />
+  <meta property="og:description" content="Инвесторы, отельные бренды, банки и консультанты встречаются с собственниками гостиниц Узбекистана при сопровождении платформы." />
+  <meta property="og:image" content="https://silkroute-invest.vercel.app/assets/hero/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body class="sx-page sr page-b2b">
+
+  <header class="site-header" id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Silk Route Invest — Главная">
+        <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+        <div class="logo-text">
+          <span class="logo-title">SILK ROUTE</span>
+          <span class="logo-subtitle">INVEST</span>
+        </div>
+      </a>
+      <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+        <div class="nav-item" data-page="portfolio" data-also="passport"><a href="portfolio.html" class="nav-trigger">Каталог отелей</a></div>
+        <div class="nav-item" data-page="market"><a href="market.html" class="nav-trigger">Рынок</a></div>
+        <div class="nav-item" data-page="incentives"><a href="incentives.html" class="nav-trigger">Льготы</a></div>
+        <div class="nav-item" data-page="investors"><a href="investors.html" class="nav-trigger">Как купить</a></div>
+        <div class="nav-item" data-page="b2b"><a href="b2b.html" class="nav-trigger">B2B-встречи</a></div>
+        <div class="nav-item" data-page="platform"><a href="platform.html" class="nav-trigger">О платформе</a></div>
+      </nav>
+      <div class="header-right">
+        <a href="business.html" class="btn-login" id="header-login">
+          <span>Разместить объект</span>
+          <span class="btn-login-icon">→</span>
+        </a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Мобильное меню">
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Инвестору</span>
+      <a href="portfolio.html" class="mobile-nav-hub">Каталог отелей</a>
+      <a href="market.html">Рынок Узбекистана</a>
+      <a href="incentives.html">Льготы для инвестора</a>
+      <a href="investors.html">Как купить отель</a>
+      <a href="b2b.html">B2B-встречи с владельцами</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Владельцам</span>
+      <a href="business.html" class="mobile-nav-cta">Разместить объект</a>
+    </div>
+    <div class="mobile-nav-section">
+      <span class="mobile-nav-label">Платформа</span>
+      <a href="platform.html">О платформе</a>
+      <a href="platform.html#method">Как считаются показатели</a>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <section class="sr-hero" aria-labelledby="bb-title">
+      <div class="sr-hero__panel">
+        <div class="sr-hero__grid">
+          <div>
+            <a class="sr-trust" href="#pick"><span class="sr-trust__faces" data-faces></span><span data-total>39</span>&nbsp;объектов открыты для встреч</a>
+            <h1 class="sr-h1" id="bb-title">B2B-встречи с владельцами гостиниц</h1>
+            <p class="sr-lead">Отметьте интересные объекты — организуем встречу с собственником: на инвестиционном форуме, онлайн или на самом объекте. На каждой встрече — представитель платформы.</p>
+            <div class="sr-actions">
+              <a href="#pick" class="sr-btn">Выбрать объекты <i>↗</i></a>
+              <a href="#how" class="sr-link">Как проходит встреча</a>
+            </div>
+          </div>
+          <div class="sr-hero__art">
+            <img src="assets/pages/hero-b2b.webp" width="1024" height="1024" alt="Инвестор и владелец гостиницы пожимают руки на фоне бумажного коллажа: арка, купол и фасад отеля">
+            <a class="sr-ui sr-ui--a" href="#pick"><small>Объектов для встреч</small><b data-total>39</b><em data-regions>в 7 регионах</em></a>
+            <div class="sr-ui sr-ui--dark sr-ui--b"><small>Подтверждение встречи</small><b>1 день</b><em>рабочий</em></div>
+            <a class="sr-ui sr-ui--pill sr-ui--c" href="#how"><span>3</span>формата: форум, онлайн, объект</a>
+          </div>
+        </div>
+        <div class="sr-strip">
+          <p>Кто встречается на платформе</p>
+          <ul><li>Инвесторы</li><li>Фонды</li><li>Отельные бренды</li><li>Владельцы</li><li>Банки</li><li>Консультанты</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Кто с кем -->
+    <section class="sr-sec" id="who" aria-labelledby="bb-who">
+      <div class="sr-wrap">
+        <div class="sr-sec__head">
+          <div>
+            <h2 class="sr-h2" id="bb-who">С кем вы встретитесь</h2>
+            <p class="sr-lead">Владельцы объектов из каталога готовы к переговорам. Выберите, кто вы, — подберём собеседников и формат.</p>
+          </div>
+          <div class="sr-sec__side"><a href="#request" class="sr-btn sr-btn--sm">Запросить встречу <i>↗</i></a></div>
+        </div>
+        <div class="sr-bento">
+          <div class="sr-panel sr-c7" data-reveal>
+            <div class="sr-panel__aside">
+              <div>
+                <h3 class="sr-h3">Инвесторам и фондам</h3>
+                <p>Переговоры с собственником о покупке отеля, доле в проекте или аренде. Финансы и документы — после NDA.</p>
+              </div>
+              <a class="sr-tag sr-tag--light" href="#request" data-role="Инвестор / фонд">Встреча с владельцем ↗</a>
+            </div>
+            <div class="sr-card" style="flex:1">
+              <div class="sr-card__top"><h3>Крупные объекты</h3><span>по цене</span></div>
+              <div class="sr-list" data-list="top"></div>
+            </div>
+          </div>
+          <div class="sr-photo sr-c5" style="min-height:330px">
+            <img src="assets/pages/contract.webp" alt="Подписание договора и передача ключа от номера" loading="lazy">
+            <div class="sr-photo__cap"><span class="sr-tag">Договор — напрямую с владельцем</span></div>
+          </div>
+          <div class="sr-card sr-c4 sr-role" data-reveal>
+            <div class="sr-card__top"><h3>Отельным операторам и брендам</h3><span data-c="franchise">7 объектов</span></div>
+            <p>Объекты под управление и франшизу. За международный бренд государство доплачивает до $600 за номер в год.</p>
+            <a class="sr-link" href="#request" data-role="Отельный оператор / бренд">Обсудить управление</a>
+          </div>
+          <div class="sr-card sr-c4 sr-role" data-reveal>
+            <div class="sr-card__top"><h3>Банкам и лизинговым компаниям</h3><span data-c="build">23 проекта</span></div>
+            <p>Гостиницы, которым нужно финансирование стройки и оснащения: номерной фонд, стоимость, сроки ввода — в паспорте.</p>
+            <a class="sr-link" href="#request" data-role="Банк / лизинг">Предложить финансирование</a>
+          </div>
+          <div class="sr-card sr-c4 sr-role" data-reveal>
+            <div class="sr-card__top"><h3>Консультантам и оценщикам</h3><span>по запросу</span></div>
+            <p>Оценка, due diligence, проверка для получения субсидий, юридическое сопровождение сделок с иностранным капиталом.</p>
+            <a class="sr-link" href="#request" data-role="Консультант / оценщик">Предложить услуги</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Выбор объектов -->
+    <section class="sr-sec" id="pick" aria-labelledby="bb-pick">
+      <div class="sr-stage">
+        <div class="sr-stage__split sr-stage__split--top">
+          <div class="sr-stage__text">
+            <span class="sr-tag sr-tag--light">Список для встреч</span>
+            <h2 class="sr-h2" id="bb-pick">Отметьте объекты, с владельцами которых хотите встретиться</h2>
+            <p class="sr-lead">Можно выбрать несколько — согласуем встречи подряд, в один день. Цены и показатели каждого объекта — в его паспорте.</p>
+            <div class="sr-pick__sum" aria-live="polite">
+              <div><small>Выбрано</small><b data-picked-n>0</b></div>
+              <div class="sr-chips" data-picked-chips><span class="sr-chips__empty">Пока ничего — отметьте объекты в списке</span></div>
+            </div>
+            <div class="sr-actions"><a href="#request" class="sr-btn sr-btn--sm" data-picked-go>Запросить встречи <i>↗</i></a></div>
+          </div>
+          <div class="sr-stage__mock">
+            <div class="sr-sheet sr-pick">
+              <div class="sr-seg" role="radiogroup" aria-label="Формат сделки">
+                <label><input type="radio" name="pf" value="all" checked><span>Все</span></label>
+                <label><input type="radio" name="pf" value="sale"><span>Покупка</span></label>
+                <label><input type="radio" name="pf" value="invest"><span>Доля</span></label>
+                <label><input type="radio" name="pf" value="rent"><span>Аренда</span></label>
+                <label><input type="radio" name="pf" value="franchise"><span>Бренд</span></label>
+              </div>
+              <div class="sr-pick__list" data-pick-list></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sr-stage__sub" id="how">
+          <h2 class="sr-h2">Как проходит<br>встреча</h2>
+          <p class="sr-lead">От заявки до разговора с владельцем — обычно несколько дней. Во время инвестфорума — в тот же день.</p>
+        </div>
+        <div class="sr-stats sr-stats--4">
+          <div class="sr-stat" data-reveal><small>Заявка</small><b>01</b><p>Выберите объекты и удобный формат: на форуме, онлайн или визит на объект.</p></div>
+          <div class="sr-stat" data-reveal><small>Подтверждение</small><b>02</b><p>В течение рабочего дня согласуем время с владельцем и пришлём вам подтверждение.</p></div>
+          <div class="sr-stat" data-reveal><small>Встреча</small><b>03</b><p>Собственник показывает проект, вы обсуждаете условия. Представитель платформы — рядом.</p></div>
+          <div class="sr-stat" data-reveal><small>Дальше</small><b>04</b><p>NDA, финансовая модель и документы, показ объекта, расчёт господдержки.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Доверие -->
+    <section class="sr-sec" aria-labelledby="bb-trust">
+      <div class="sr-wrap">
+        <div class="sr-sec__head">
+          <div>
+            <h2 class="sr-h2" id="bb-trust">Встреча, за которой<br>стоит государство</h2>
+            <p class="sr-lead">Платформу ведёт Центр сертификации туристских услуг при Государственном комитете по развитию туризма.</p>
+          </div>
+        </div>
+        <div class="sr-bento">
+          <div class="sr-photo sr-c5" style="min-height:360px">
+            <img src="assets/pages/b2b-meeting.webp" alt="B2B-встреча инвесторов и владельца гостиницы за столом на инвестиционном форуме" loading="lazy">
+            <div class="sr-photo__cap"><span class="sr-tag">Представитель платформы на каждой встрече</span></div>
+          </div>
+          <div class="sr-c7 sr-trustgrid">
+            <div class="sr-card" data-reveal><span class="sr-mono">01</span><h3>Проверенные объекты</h3><p>Данные паспорта сверяются с документами собственника. У каждого показателя указано: факт или оценка.</p></div>
+            <div class="sr-card" data-reveal><span class="sr-mono">02</span><h3>Единое окно</h3><p>Встречи, документы, показ объекта и вопросы по льготам — через одного координатора.</p></div>
+            <div class="sr-card" data-reveal><span class="sr-mono">03</span><h3>Конфиденциальность</h3><p>Финансы, документы и контакты владельца передаются только после подписания NDA.</p></div>
+            <div class="sr-card" data-reveal><span class="sr-mono">04</span><h3>Господдержка</h3><p>Субсидия за номер, доплата за бренд, −90% налога на землю и имущество. <a href="incentives.html">Все меры</a></p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Заявка -->
+    <section class="sr-sec" id="request" aria-labelledby="bb-req">
+      <div class="sr-dark">
+        <div class="sr-dark__photo"><img src="assets/pages/lobby.webp" alt="" loading="lazy"></div>
+        <div>
+          <span class="sr-tag">Запрос B2B-встречи</span>
+          <h2 class="sr-h2" id="bb-req">Назначим встречу с владельцем</h2>
+          <p class="sr-lead">Укажите, кто вы и какой формат удобен. Объекты из списка выше уже добавлены в заявку.</p>
+          <ul>
+            <li>Подтвердим время в течение рабочего дня</li>
+            <li>Несколько объектов — встречи подряд, в один день</li>
+            <li>Контакты получит только команда платформы</li>
+          </ul>
+        </div>
+        <div class="sr-sheet">
+          <form class="pg-form" data-lead="meeting" novalidate style="margin-top:0">
+            <div class="pg-form__row">
+              <label class="pg-field"><span>Имя <i>*</i></span><input name="name" autocomplete="name" required></label>
+              <label class="pg-field"><span>Компания</span><input name="company" autocomplete="organization"></label>
+            </div>
+            <div class="pg-form__row">
+              <label class="pg-field"><span>Кто вы</span>
+                <select name="partner"><option>Инвестор / фонд</option><option>Отельный оператор / бренд</option><option>Девелопер</option><option>Банк / лизинг</option><option>Консультант / оценщик</option><option>Другое</option></select>
+              </label>
+              <label class="pg-field"><span>Страна</span><input name="country" autocomplete="country-name"></label>
+            </div>
+            <div class="pg-form__row">
+              <label class="pg-field"><span>Телефон или WhatsApp</span><input name="phone" type="tel" autocomplete="tel" placeholder="+998 …"></label>
+              <label class="pg-field"><span>E-mail</span><input name="email" type="email" autocomplete="email" placeholder="name@company.com"></label>
+            </div>
+            <div class="pg-field"><span>Формат встречи</span><div class="pg-choice">
+              <label><input type="radio" name="format" value="На инвестфоруме" checked><span>На инвестфоруме</span></label>
+              <label><input type="radio" name="format" value="Онлайн"><span>Онлайн</span></label>
+              <label><input type="radio" name="format" value="Визит на объект"><span>На объекте</span></label>
+            </div></div>
+            <div class="pg-field"><span>Объекты для встречи</span>
+              <div class="sr-chips sr-chips--form" data-form-chips><span class="sr-chips__empty">Не выбраны — <a href="#pick">отметьте в списке</a> или опишите в комментарии</span></div>
+              <input type="hidden" name="hotels" value="">
+            </div>
+            <label class="pg-field"><span>Комментарий</span><textarea name="message" rows="3" placeholder="Что хотите обсудить, удобные даты"></textarea></label>
+            <input class="pg-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="pg-form__status" role="status" aria-live="polite"></div>
+            <div class="pg-form__foot">
+              <button type="submit" class="pg-btn pg-btn--dark">Запросить встречу</button>
+              <p class="pg-note">Укажите телефон или e-mail.</p>
+            </div>
+            <div class="pg-success" role="status">
+              <div class="pg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+              <h3>Запрос отправлен</h3>
+              <p>Спасибо! Согласуем время с владельцем и подтвердим встречу в течение рабочего дня.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="sr-sec" aria-labelledby="bb-final">
+      <div class="sr-final">
+        <img src="assets/pages/courtyard.webp" alt="Внутренний двор гостиницы" loading="lazy">
+        <div>
+          <h2 class="sr-h2" id="bb-final">Вы владелец гостиницы? Встречайтесь с инвесторами</h2>
+          <p class="sr-lead">Разместите объект в каталоге — подготовим паспорт и будем приглашать вас на B2B-встречи.</p>
+          <div class="sr-actions"><a class="sr-btn" href="business.html">Разместить объект <i>↗</i></a><a class="sr-link" href="portfolio.html">Каталог отелей</a></div>
+        </div>
+      </div>
+    </section>
+    <div class="sr-end"></div>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="header-logo footer-logo" aria-label="Главная">
+            <img src="./assets/logo-icon.png" alt="Silk Route Invest" class="logo-emblem-img" width="34" height="38" />
+            <div class="logo-text">
+              <span class="logo-title">SILK ROUTE</span>
+              <span class="logo-subtitle">INVEST</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Каталог гостиничных объектов Узбекистана для инвесторов: цена, финансовые показатели и паспорт каждого объекта.
+          </p>
+        </div>
+        <nav class="footer-nav-grid" aria-label="Навигация в подвале">
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Инвестору</p>
+            <a href="portfolio.html" class="footer-nav-link">Каталог отелей</a>
+            <a href="market.html" class="footer-nav-link">Рынок Узбекистана</a>
+            <a href="incentives.html" class="footer-nav-link">Льготы для инвестора</a>
+            <a href="investors.html" class="footer-nav-link">Как купить отель</a>
+            <a href="b2b.html" class="footer-nav-link">B2B-встречи</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Владельцам</p>
+            <a href="business.html" class="footer-nav-link">Разместить объект</a>
+            <a href="platform.html#method" class="footer-nav-link">Как считаются показатели</a>
+            <a href="platform.html" class="footer-nav-link">О платформе</a>
+          </div>
+          <div class="footer-nav-col">
+            <p class="footer-nav-heading">Контакты</p>
+            <p class="footer-contact-item">Комитет по туризму<br />Республики Узбекистан</p>
+            <a href="mailto:info@uzbektourism.uz" class="footer-nav-link">info@uzbektourism.uz</a>
+            <a href="https://uzbektourism.uz" class="footer-nav-link" target="_blank" rel="noopener">uzbektourism.uz</a>
+          </div>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy;&nbsp;2026 Комитет по туризму Республики Узбекистан.
+          Финансовые показатели объектов&nbsp;— оценка платформы по&nbsp;методике USALI, если не&nbsp;отмечено иное.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/hotels-data.js?v=photos8"></script>
+  <script src="js/megamenu.js?v=site_1"></script>
+  <script src="js/site.js?v=site_1"></script>
+  <script>
+  (function () {
+    var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var plural = function (n, f) { var a = n % 100, b = n % 10; return a > 10 && a < 20 ? f[2] : b > 1 && b < 5 ? f[1] : b === 1 ? f[0] : f[2]; };
+    var city = function (h) { var a = String(h.address || ''); var m = a.match(/г\.\s*([^,]+)/); return m ? m[1].trim() : String(h.region || '').replace(' область', ' обл.'); };
+    var photo = function (h) { var p = (h.photos || []).map(function (x) { return x && x.src; }).filter(Boolean); var loc = p.filter(function (s) { return s.charAt(0) === '/' || s.indexOf('assets/') === 0; }); return loc[0] || p[0] || ''; };
+    var money = function (v) { v = Number(v) || 0; return v ? '$' + (v >= 1e6 ? (v / 1e6).toFixed(1).replace('.0', '').replace('.', ',') + ' млн' : Math.round(v / 1000) + ' тыс.') : ''; };
+    var deal = function (h) { return window.getHotelDealConfig ? getHotelDealConfig(h).key : h.dealType; };
+    var price = function (h) { return Number((h.economics || {}).askingPrice) || 0; };
+    var meta = function (h) { return city(h) + ' · ' + (h.stars ? h.stars + '★ · ' : '') + (h.roomsCount || '—') + ' ном.'; };
+    var row = function (h) {
+      var src = photo(h);
+      return '<a class="sr-li" href="passport.html?hotel=' + encodeURIComponent(h.slug || h.id) + '">' + (src ? '<img class="sr-thumb" src="' + esc(src) + '" alt="" loading="lazy">' : '<span class="sr-mono"></span>') +
+        '<div><b>' + esc(h.hotelName) + '</b><span>' + esc(meta(h)) + '</span></div>' + (price(h) ? '<em>' + money(price(h)) + '</em>' : '') + '</a>';
+    };
+
+    var picked = [];          // [{id, name}]
+    var all = [];
+    var form = document.querySelector('form[data-lead="meeting"]');
+    var hidden = form && form.querySelector('input[name="hotels"]');
+
+    function chipsHtml(empty) {
+      if (!picked.length) return '<span class="sr-chips__empty">' + empty + '</span>';
+      return picked.map(function (p) { return '<span class="sr-chip">' + esc(p.name) + '<button type="button" data-unpick="' + esc(p.id) + '" aria-label="Убрать ' + esc(p.name) + '">×</button></span>'; }).join('');
+    }
+    function sync() {
+      var n = document.querySelector('[data-picked-n]'); if (n) n.textContent = picked.length;
+      var c1 = document.querySelector('[data-picked-chips]'); if (c1) c1.innerHTML = chipsHtml('Пока ничего — отметьте объекты в списке');
+      var c2 = document.querySelector('[data-form-chips]'); if (c2) c2.innerHTML = chipsHtml('Не выбраны — <a href="#pick">отметьте в списке</a> или опишите в комментарии');
+      if (hidden) hidden.value = picked.map(function (p) { return p.name; }).join('; ');
+      var go = document.querySelector('[data-picked-go]');
+      if (go) go.firstChild.nodeValue = picked.length ? 'Запросить ' + picked.length + ' ' + plural(picked.length, ['встречу', 'встречи', 'встреч']) + ' ' : 'Запросить встречи ';
+      document.querySelectorAll('[data-pick-list] input[type="checkbox"]').forEach(function (i) { i.checked = picked.some(function (p) { return p.id === i.value; }); });
+    }
+    function toggle(id, on) {
+      var h = all.find(function (x) { return x.id === id || x.slug === id; }); if (!h) return; id = h.id;
+      var i = picked.findIndex(function (p) { return p.id === id; });
+      if (on && i < 0) picked.push({ id: id, name: h.hotelName });
+      if (!on && i >= 0) picked.splice(i, 1);
+      sync();
+    }
+    function renderList(filter) {
+      var box = document.querySelector('[data-pick-list]'); if (!box) return;
+      var list = all.filter(function (h) { return filter === 'all' || deal(h) === filter; });
+      box.innerHTML = list.map(function (h) {
+        var src = photo(h);
+        return '<label class="sr-pick__row"><input type="checkbox" value="' + esc(h.id) + '">' +
+          (src ? '<img class="sr-thumb" src="' + esc(src) + '" alt="" loading="lazy">' : '<span class="sr-thumb"></span>') +
+          '<div><b>' + esc(h.hotelName) + '</b><span>' + esc(meta(h)) + '</span></div>' +
+          (price(h) ? '<em>' + money(price(h)) + '</em>' : '') +
+          '<a class="sr-pick__pp" href="passport.html?hotel=' + encodeURIComponent(h.slug || h.id) + '" target="_blank" rel="noopener" aria-label="Паспорт: ' + esc(h.hotelName) + '">↗</a></label>';
+      }).join('') || '<p class="sr-note">Нет объектов в этом формате.</p>';
+      sync();
+    }
+
+    document.addEventListener('change', function (e) {
+      var t = e.target;
+      if (t.matches('[data-pick-list] input[type="checkbox"]')) toggle(t.value, t.checked);
+      if (t.name === 'pf') renderList(t.value);
+    });
+    document.addEventListener('click', function (e) {
+      var u = e.target.closest('[data-unpick]');
+      if (u) { e.preventDefault(); toggle(u.dataset.unpick, false); return; }
+      var r = e.target.closest('[data-role]');
+      if (r && form) { var s = form.querySelector('select[name="partner"]'); if (s) s.value = r.dataset.role; }
+    });
+
+    async function load() {
+      var list = [];
+      try { if (window.HotelStore) list = HotelStore.getAll() || []; } catch (e) {}
+      if (!list.length) { try { list = await (await fetch('data/hotels.json')).json(); } catch (e) {} }
+      return list.filter(function (h) { return h.status !== 'draft'; });
+    }
+    load().then(function (list) {
+      if (!list.length) return;
+      all = list.slice().sort(function (a, b) { return (photo(b) ? 1 : 0) - (photo(a) ? 1 : 0) || price(b) - price(a); });
+      document.querySelectorAll('[data-total]').forEach(function (e) { e.textContent = list.length; });
+      var regions = {}; list.forEach(function (h) { if (h.regionKey || h.region) regions[h.regionKey || h.region] = 1; });
+      var rn = Object.keys(regions).length;
+      document.querySelectorAll('[data-regions]').forEach(function (e) { e.textContent = 'в ' + rn + ' ' + plural(rn, ['регионе', 'регионах', 'регионах']); });
+      var faces = document.querySelector('[data-faces]');
+      if (faces) faces.innerHTML = all.slice(0, 3).map(function (h) { return '<img src="' + esc(photo(h)) + '" alt="">'; }).join('');
+      var top = document.querySelector('[data-list="top"]');
+      if (top) top.innerHTML = list.slice().sort(function (a, b) { return price(b) - price(a); }).slice(0, 4).map(row).join('');
+      var fr = list.filter(function (h) { return deal(h) === 'franchise'; }).length;
+      var bd = list.filter(function (h) { return Number(h.yearCommissioned) >= 2025; }).length;
+      document.querySelectorAll('[data-c="franchise"]').forEach(function (e) { e.textContent = fr + ' ' + plural(fr, ['объект', 'объекта', 'объектов']); });
+      document.querySelectorAll('[data-c="build"]').forEach(function (e) { e.textContent = bd + ' ' + plural(bd, ['новый проект', 'новых проекта', 'новых проектов']); });
+      renderList('all');
+      var q = new URLSearchParams(location.search).get('hotel');
+      if (q) { q.split(',').forEach(function (id) { toggle(id.trim(), true); }); }
+    });
+  })();
+  </script>
+</body>
+</html>
