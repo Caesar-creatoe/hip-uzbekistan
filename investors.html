@@ -78,7 +78,7 @@
       <div class="sr-hero__panel">
         <div class="sr-hero__grid">
           <div>
-            <a class="sr-trust" href="portfolio.html"><span class="sr-trust__faces" data-faces></span><span data-total>32</span>&nbsp;отеля ищут инвестора</a>
+            <a class="sr-trust" href="portfolio.html"><span class="sr-trust__faces" data-faces></span><span data-total>35</span>&nbsp;<span data-total-word>отелей</span> ищут инвестора</a>
             <h1 class="sr-h1" id="iv-title">Купить отель в Узбекистане — от выбора до ключей</h1>
             <p class="sr-lead">Выберите объект в каталоге и оставьте заявку. Мы свяжем вас с владельцем, передадим документы после NDA и подскажем по господдержке.</p>
             <div class="sr-actions">
@@ -357,7 +357,7 @@
     </div>
   </footer>
 
-  <script src="js/hotels-data.js?v=photos6"></script>
+  <script src="js/hotels-data.js?v=photos7"></script>
   <script src="js/megamenu.js?v=site_1"></script>
   <script src="js/site.js?v=site_1"></script>
   <script>
@@ -382,6 +382,10 @@
     load().then(function (list) {
       if (!list.length) return;
       document.querySelectorAll('[data-total]').forEach(function (e) { e.textContent = list.length; });
+      (function (n) { var m = n % 10, h = n % 100; var w = (m === 1 && h !== 11) ? 'отель ищет' : (m >= 2 && m <= 4 && (h < 12 || h > 14)) ? 'отеля ищут' : 'отелей ищут';
+        document.querySelectorAll('[data-total-word]').forEach(function (e) { e.textContent = w.split(' ')[0]; });
+        if (w.indexOf('ищет') > -1) document.querySelectorAll('[data-total-word]').forEach(function (e) { if (e.nextSibling && e.nextSibling.nodeType === 3) e.nextSibling.textContent = ' ищет инвестора'; });
+      })(list.length);
       var withPhoto = list.filter(function (h) { return photo(h); });
       var faces = document.querySelector('[data-faces]');
       if (faces) faces.innerHTML = withPhoto.slice(0, 3).map(function (h) { return '<img src="' + esc(photo(h)) + '" alt="">'; }).join('');

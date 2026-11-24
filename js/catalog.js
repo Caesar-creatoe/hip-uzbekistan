@@ -1086,7 +1086,7 @@ function initStickyFilterController() {
 /* ── Синхронизация и инициализация ──────────────────────────── */
 window.addEventListener('sri_hotels_updated', () => { applyFiltersAndSort(); });
 window.addEventListener('storage', (e) => {
-  if (e.key === 'sri_hotels_cache_v6' || e.key === 'sri_hotels_last_updated') {
+  if (e.key === 'sri_hotels_cache_v7' || e.key === 'sri_hotels_last_updated') {
     if (Store && typeof Store.reloadFromCache === 'function') Store.reloadFromCache();
     applyFiltersAndSort();
   }
