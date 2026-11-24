@@ -271,3 +271,21 @@
   .bx-net::details-content { transition: none; }
 }
 html[lang="en"] .bx-tbl td:nth-child(3)::after { content: " rooms"; }
+
+/* ── Логотипы сетей ───────────────────────────────────── */
+.bx-logo { flex: none; display: grid; place-items: center; width: 132px; height: 56px; padding: 10px 14px; border-radius: 15px; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(29, 26, 23, .06), 0 6px 16px -12px rgba(50, 35, 20, .45); }
+.bx-logo { overflow: hidden; }
+.bx-logo img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.bx-logo--dark { background: var(--night); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), 0 6px 16px -12px rgba(20, 14, 10, .6); }
+.bx-logo--sm { width: 74px; height: 34px; padding: 6px 9px; border-radius: 10px; }
+.bx-bar { grid-template-columns: 74px minmax(0, 1fr) auto; }
+.bx-logo--plate { width: 128px; height: 46px; padding: 8px 14px; border-radius: 999px; }
+.bx-plate { padding: 6px 16px 6px 6px; }
+.bx-plate > b { font-size: 13.5px; font-weight: 600; letter-spacing: -.01em; }
+@media (max-width: 760px) {
+  .bx-logo { width: 88px; height: 42px; padding: 7px 10px; border-radius: 12px; }
+  .bx-logo--plate { width: 92px; height: 34px; padding: 6px 10px; }
+  .bx-plate > b { font-size: 12px; }
+  .bx-logo--sm { width: 64px; height: 30px; }
+  .bx-bar { grid-template-columns: 64px minmax(0, 1fr) auto; }
+}

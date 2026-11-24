@@ -21,6 +21,9 @@
     'navoi': ['Навоийская обл.', 40.0844, 65.3792], 'karakalpakstan': ['Каракалпакстан', 42.4602, 59.6166]
   };
   const initials = (name) => { const w = String(name).replace(/[^A-Za-zА-Яа-я0-9 ]/g, ' ').split(/\s+/).filter(Boolean); return (w[0] || '?').charAt(0).toUpperCase() + (w[1] && /^[A-Z]/.test(w[1]) && w[0].length < 6 ? w[1].charAt(0) : ''); };
+  // Логотипы сетей — файлы от владельца платформы (assets/brands). Белые логотипы — на тёмной плашке.
+  const LOGO_DARK = { 'reikartz': 1, 'minyoun-hospitality-group': 1, 'sahid-hotels-resorts': 1 };
+  const logo = (n, cls) => `<span class="bx-logo${LOGO_DARK[n.id] ? ' bx-logo--dark' : ''}${cls ? ' ' + cls : ''}"><img src="assets/brands/${esc(n.id)}.webp?v=1" alt="${esc(n.name)}" loading="lazy" decoding="async"></span>`;
   const starsHtml = (s) => s ? '★'.repeat(s) : '<em>не указана</em>';
 
   let D = null, HOTELS = [], CATALOG = [];
@@ -46,7 +49,7 @@
     const box = $('[data-plates]'); if (!box) return;
     const pos = [[3, 24], [55, 38], [6, 50], [52, 64]];
     const top = D.networks.slice().sort((a, b) => b.hotels - a.hotels).slice(0, 4);
-    box.innerHTML = top.map((n, i) => `<div class="bx-plate bx-glass" style="left:${pos[i][0]}%;top:${pos[i][1]}%;--d:${(-i * 1.3).toFixed(1)}s"><span class="bx-mono">${esc(initials(n.name))}</span><div><b>${esc(n.short)}</b><small>${n.hotels} ${plural(n.hotels, HOT)}</small></div></div>`).join('');
+    box.innerHTML = top.map((n, i) => `<div class="bx-plate bx-glass" style="left:${pos[i][0]}%;top:${pos[i][1]}%;--d:${(-i * 1.3).toFixed(1)}s">${logo(n, 'bx-logo--plate')}<b>${n.hotels} ${plural(n.hotels, HOT)}</b></div>`).join('');
   }
 
   function marquee() {
@@ -71,7 +74,7 @@
           </tbody></table></div>`).join('');
       return `<details class="bx-net bx-glass" data-net="${esc(n.id)}" data-reveal>
         <summary>
-          <span class="bx-mono">${esc(initials(n.name))}</span>
+          ${logo(n)}
           <div class="bx-net__name"><b>${esc(n.name)}</b><span class="bx-net__meta" data-meta></span><div class="bx-net__brands">${n.brands.map((b) => `<span>${esc(b.name)}</span>`).join('')}</div></div>
           <div class="bx-num"><small>Отелей</small><b data-nh>${n.hotels}</b></div>
           <div class="bx-num"><small>Номеров</small><b data-nr>${nf(n.rooms)}</b></div>
@@ -136,7 +139,7 @@
     if (bars) {
       const top = D.networks.slice().sort((a, b) => b.rooms - a.rooms).slice(0, 6);
       const max = top[0].rooms;
-      bars.innerHTML = top.map((n, i) => `<div class="bx-bar"><span class="bx-mono bx-mono--sm">${esc(initials(n.name))}</span><div><b>${esc(n.name)}</b><i style="--w:${(n.rooms / max * 100).toFixed(1)}%;--dl:${i * 0.08}s"></i></div><em>${nf(n.rooms)}</em></div>`).join('');
+      bars.innerHTML = top.map((n, i) => `<div class="bx-bar">${logo(n, 'bx-logo--sm')}<div><b>${esc(n.name)}</b><i style="--w:${(n.rooms / max * 100).toFixed(1)}%;--dl:${i * 0.08}s"></i></div><em>${nf(n.rooms)}</em></div>`).join('');
     }
   }
 
