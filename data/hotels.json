@@ -3080,7 +3080,7 @@
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
     "managerContact": "",
     "status": "active",
-    "hasPresentation": true,
+    "hasPresentation": false,
     "photos": [
       {
         "src": "/assets/hotels/kumushkon-hotel-p1.webp",
@@ -3181,9 +3181,9 @@
       "compsetDescription": "Конкурентный пул отелей региона аналогичной категории 3-5 звёзд",
       "history": []
     },
-    "presentationFile": "./presentations/chimgan-teaser.pdf",
-    "presentationFileName": "Chimgan Beldersay Teaser.pdf",
-    "presentationUrl": "./presentations/chimgan-teaser.pdf"
+    "presentationFile": "",
+    "presentationFileName": "",
+    "presentationUrl": ""
   },
   {
     "id": "imam-bukhari-hotel",
@@ -3312,7 +3312,7 @@
     "amenities": "Ресторан, Лифт, Закрытый бассейн, Сауна, Спортплощадка",
     "managerContact": "",
     "status": "active",
-    "hasPresentation": true,
+    "hasPresentation": false,
     "photos": [
       {
         "src": "/assets/hotels/chimgan-apart-p1.webp",
@@ -3401,9 +3401,103 @@
       "compsetDescription": "Конкурентный пул отелей региона аналогичной категории 3-5 звёзд",
       "history": []
     },
-    "presentationFile": "./presentations/chimgan-beldersay-im.pdf",
-    "presentationFileName": "Chimgan Beldersay Investment Memorandum.pdf",
-    "presentationUrl": "./presentations/chimgan-beldersay-im.pdf"
+    "presentationFile": "",
+    "presentationFileName": "",
+    "presentationUrl": ""
+  },
+  {
+    "id": "chimgan-beldersay",
+    "slug": "chimgan-beldersay",
+    "hotelName": "Chimgan-Beldersay Mountain Resort",
+    "legalEntity": "Beldirsoy",
+    "region": "Ташкентская область",
+    "regionKey": "tashkent-region",
+    "address": "Ташкентская обл., Бостанлыкский р-н, мфй Чимган",
+    "roomsCount": 100,
+    "placesCount": 200,
+    "stars": 4,
+    "floors": 6,
+    "yearCommissioned": null,
+    "landArea": "18.08 га",
+    "buildingArea": "16015 м²",
+    "maxRoomArea": null,
+    "minRoomArea": null,
+    "dealType": "sale",
+    "amenities": "Ресторан, Лифт, Бассейн, СПА, Медицинский блок, Теннис, Падел, Ландшафтный парк",
+    "managerContact": "",
+    "status": "active",
+    "hasPresentation": true,
+    "photos": [
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p1.webp",
+        "caption": "Гостиница — концепция"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p2.webp",
+        "caption": "Готовый коттедж, реальное фото"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p3.webp",
+        "caption": "Участок с воздуха"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p4.webp",
+        "caption": "Каркас гостиницы: 6 этажей возведены"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p5.webp",
+        "caption": "Коттеджи"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p6.webp",
+        "caption": "Таунхаусы в стадии коробки"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p7.webp",
+        "caption": "Гостиница — концепция"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p8.webp",
+        "caption": "Крытый бассейн — концепция"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p9.webp",
+        "caption": "Ресторан на крыше гостиницы — концепция"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p10.webp",
+        "caption": "Отдельный ресторан — концепция"
+      },
+      {
+        "src": "/assets/hotels/chimgan-beldersay-p11.webp",
+        "caption": "Отдельный ресторан, вид сверху — концепция"
+      }
+    ],
+    "notes": "Незавершённое строительство. Курорт в горном коридоре Чимган–Белдерсай, ~90 км от Ташкента, рядом с Amirsoy. Гостиница 7 935 м²: 6 этажей и подвал, каркас возведён, остаются кровля, фасад, инженерия и отделка; этажи без перегородок, оператор сам задаёт номерной фонд (ориентир ~100 номеров). 8 таунхаусов по 396 м² в стадии коробки, 10 коттеджей по ~200 м² (4 готовы снаружи), ресторан, КПП. Всего зарегистрировано ~16 015 м² построек, обременений нет (выписка от 04.03.2026). Скважина ~5 м³/ч, две линии электропитания, трансформатор 250 кВА. Цена $30 млн, на достройку нужно ~$19 млн, всего ~$49 млн. Визуализации — концепция, не построенный вид.",
+    "economics": {
+      "period": "2026",
+      "dataType": "estimate",
+      "currency": "USD",
+      "verificationStatus": "owner",
+      "updatedAt": "2026-11-24T00:00:00.000Z",
+      "visibility": {
+        "operational": "public",
+        "revenue": "public",
+        "profitability": "public",
+        "investment": "registered",
+        "debt": "nda",
+        "deal": "registered"
+      },
+      "askingPrice": 30000000,
+      "valuation": null,
+      "capex": 19000000,
+      "capexDescription": "Достройка: кровля, фасад, инженерия, отделка (оценка владельца). Всего с покупкой ~$49 млн",
+      "pricePerKey": 300000,
+      "history": []
+    },
+    "presentationFile": "./presentations/chimgan-teaser.pdf",
+    "presentationFileName": "Chimgan Beldersay Teaser.pdf",
+    "presentationUrl": "./presentations/chimgan-teaser.pdf"
   },
   {
     "id": "turon-plaza-tashkent",

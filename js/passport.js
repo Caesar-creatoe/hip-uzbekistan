@@ -211,6 +211,8 @@ function renderPassport(hotel) {
     cover.src = photos[0] ? photos[0].src : './assets/hotel-hero.png';
     cover.alt = `${name} — фасад`;
   }
+  const coverNote = $id('cover-photo-note');
+  if (coverNote) coverNote.hidden = !(photos[0] && /концепц|визуализ/i.test(photos[0].caption || ''));
   updatePhotoCount(photos.length);
 
   // Цена (чёрная карточка)
@@ -268,7 +270,7 @@ function renderEconomicsSection(hotel) {
   if (!section || !Calc || !Schema) { if (toc) toc.hidden = true; return; }
 
   const e = Calc.recalcAll(Schema.get(hotel), hotel);
-  const any = [e.occupancy, e.adr, e.revpar, e.ebitda, e.valuation, e.irr, e.totalRevenue, e.gop].some(has);
+  const any = [e.occupancy, e.adr, e.revpar, e.ebitda, e.valuation, e.irr, e.totalRevenue, e.gop, e.askingPrice, e.capex].some(has);
   if (!any) { section.hidden = true; if (toc) toc.hidden = true; return; }
   section.hidden = false;
   if (toc) toc.hidden = false;
@@ -277,7 +279,8 @@ function renderEconomicsSection(hotel) {
   const meta = $id('eco-period-meta');
   if (meta) {
     const stage = stageOf(hotel);
-    const type = stage.building
+    const hasOps = [e.occupancy, e.adr, e.ebitda, e.totalRevenue].some(has);
+    const type = !hasOps ? null : stage.building
       ? ['Прогноз после ввода', 'pp-chip--est']
       : ({ fact: ['Факт', ''], forecast: ['Прогноз', 'pp-chip--est'], estimate: ['Оценка платформы', 'pp-chip--est'] }[e.dataType] || null);
     const ver = e.verificationStatus === 'audited' ? 'Аудировано' : '';
