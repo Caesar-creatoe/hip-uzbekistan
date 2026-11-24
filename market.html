@@ -238,7 +238,7 @@
         <img src="assets/pages/khiva.webp" alt="Терраса гостевого дома в Хиве на закате" loading="lazy">
         <div>
           <h2 class="sr-h2" id="mk-final">Посмотрите отели, которые уже продаются</h2>
-          <p class="sr-lead"><span data-m="count2">32</span> объекта в 7 регионах — с ценой, загрузкой и окупаемостью.</p>
+          <p class="sr-lead"><span data-m="count2">34</span> объекта в <span data-m="regions">8</span> регионах — с ценой, загрузкой и окупаемостью.</p>
           <div class="sr-actions"><a href="portfolio.html" class="sr-btn">Открыть каталог <i>↗</i></a><a class="sr-link" href="investors.html">Как купить отель</a></div>
         </div>
       </div>
@@ -293,7 +293,7 @@
     </div>
   </footer>
 
-  <script src="js/hotels-data.js?v=photos5"></script>
+  <script src="js/hotels-data.js?v=photos6"></script>
   <script src="js/megamenu.js?v=site_1"></script>
   <script src="js/site.js?v=site_1"></script>
   <script>
@@ -332,6 +332,7 @@
     }
     load().then(function (list) {
       if (list.length) document.querySelectorAll('[data-m="count"],[data-m="count2"]').forEach(function (c) { c.textContent = list.length; });
+      if (list.length) document.querySelectorAll('[data-m="regions"]').forEach(function (c) { c.textContent = new Set(list.map(function (h) { return h.regionKey || h.region; })).size; });
       var by = {};
       list.forEach(function (h) { var k = h.regionKey || 'other'; (by[k] = by[k] || []).push(h); });
       Object.keys(by).forEach(function (k) { counts[k] = by[k].length; });

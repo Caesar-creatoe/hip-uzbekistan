@@ -258,7 +258,7 @@ function stageOf(hotel) {
     return { building: true, label: pct ? `Строится · готовность ${pct[1]}%` : 'Строится' };
   }
   const e = hotel.economics || {};
-  if (e.dataType === 'fact') return { building: false, label: 'Работающий отель' };
+  if (e.dataType === 'fact' || e.dataType === 'owner') return { building: false, label: 'Работающий отель' };
   return { building: false, label: '' };
 }
 
@@ -282,7 +282,7 @@ function renderEconomicsSection(hotel) {
     const hasOps = [e.occupancy, e.adr, e.ebitda, e.totalRevenue].some(has);
     const type = !hasOps ? null : stage.building
       ? ['Прогноз после ввода', 'pp-chip--est']
-      : ({ fact: ['Факт', ''], forecast: ['Прогноз', 'pp-chip--est'], estimate: ['Оценка платформы', 'pp-chip--est'] }[e.dataType] || null);
+      : ({ fact: ['Факт', ''], owner: ['Данные владельца', 'pp-chip--est'], forecast: ['Прогноз', 'pp-chip--est'], estimate: ['Оценка платформы', 'pp-chip--est'] }[e.dataType] || null);
     const ver = e.verificationStatus === 'audited' ? 'Аудировано' : '';
     meta.innerHTML = [
       e.period && !stage.building ? `<span class="pp-chip">${ICON.cal}${esc(e.period)}</span>` : '',
@@ -465,6 +465,13 @@ function renderObject(hotel) {
   const hasPres = Boolean(hotel.presentationFile || hotel.presentationUrl || hotel.hasPresentation);
   if (pres) pres.textContent = hasPres ? (hotel.presentationFileName || 'Презентация объекта · PDF') : 'Предоставляется по запросу. Можно скачать печатную версию паспорта.';
   if (btn) btn.querySelector('.pp-btn-text').textContent = hasPres ? 'Скачать' : 'Печатная версия';
+  const langsBox = $id('pp-pres-langs');
+  const langs = Array.isArray(hotel.presentationLangs) ? hotel.presentationLangs.filter((l) => l && l.file) : [];
+  if (langsBox) {
+    langsBox.hidden = langs.length < 2;
+    langsBox.innerHTML = langs.length < 2 ? '' : '<small>Язык:</small>' + langs.map((l) =>
+      `<a href="${esc(l.file)}" target="_blank" rel="noopener" download="${esc(l.name || '')}" title="${esc(l.title || l.lang)}">${esc(l.lang)}</a>`).join('');
+  }
 }
 
 /* ── Удобства ──────────────────────────────────────────────── */

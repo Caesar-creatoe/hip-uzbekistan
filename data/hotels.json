@@ -3730,5 +3730,102 @@
     "presentationFile": null,
     "presentationFileName": null,
     "presentationUrl": ""
+  },
+  {
+    "id": "asmald-palace-kokand",
+    "slug": "asmald-palace-kokand",
+    "hotelName": "ASMALD Palace Hotel",
+    "legalEntity": "",
+    "region": "Ферганская область",
+    "regionKey": "fergana",
+    "address": "Ферганская обл., г. Коканд, ул. Янги Хаёт, 62-а",
+    "roomsCount": 46,
+    "placesCount": 92,
+    "stars": 4,
+    "floors": 2,
+    "yearCommissioned": 2018,
+    "landArea": "",
+    "buildingArea": "3386 м²",
+    "maxRoomArea": 52,
+    "minRoomArea": 16,
+    "dealType": "sale",
+    "amenities": "Рестораны и бар, Открытый бассейн, Спа (2 салона), Фитнес, 2 конференц-зала, Сад, Бесплатная парковка, Солнечная электростанция 75 кВт",
+    "managerContact": "",
+    "status": "active",
+    "hasPresentation": true,
+    "photos": [
+      {
+        "src": "/assets/hotels/asmald-palace-kokand-p1.webp",
+        "caption": "Лобби и ресепшн"
+      },
+      {
+        "src": "/assets/hotels/asmald-palace-kokand-p2.webp",
+        "caption": "Открытый бассейн во дворе"
+      },
+      {
+        "src": "/assets/hotels/asmald-palace-kokand-p3.webp",
+        "caption": "Сад с летней террасой"
+      },
+      {
+        "src": "/assets/hotels/asmald-palace-kokand-p4.webp",
+        "caption": "Ресторан и бар"
+      },
+      {
+        "src": "/assets/hotels/asmald-palace-kokand-p5.webp",
+        "caption": "Конференц-зал"
+      },
+      {
+        "src": "/assets/hotels/asmald-palace-kokand-p6.webp",
+        "caption": "Сеньор-сюит"
+      },
+      {
+        "src": "/assets/hotels/asmald-palace-kokand-p7.webp",
+        "caption": "Номер делюкс"
+      }
+    ],
+    "notes": "Действующий отель: открыт 20 октября 2018 года в здании бывшей больницы, купленном на аукционе в 2018 году. В 2025 году обновлён фасад всего здания и капитально отремонтированы 15 из 46 номеров. 46 номеров шести категорий, 16–52 м²; тарифы от $46 (стандарт) до $212 (сеньор-сюит) за ночь. По данным владельца: средняя загрузка 80%, оценка гостей на Booking.com 9,1 из 10, с отелем работают 90% туркомпаний, приезжающих в Коканд. 500 м до центра Коканда, 2 км до вокзала, 15 км до аэропорта Коканда, 81 км до аэропорта Ферганы. Продаются вместе здание 3 386 м² и гостиничный бизнес. Цена $4 млн, обсуждается.",
+    "economics": {
+      "period": null,
+      "dataType": "owner",
+      "currency": "USD",
+      "verificationStatus": "owner",
+      "updatedAt": "2026-11-24T00:00:00.000Z",
+      "visibility": {
+        "operational": "public",
+        "revenue": "public",
+        "profitability": "public",
+        "investment": "registered",
+        "debt": "nda",
+        "deal": "registered"
+      },
+      "occupancy": 80,
+      "askingPrice": 4000000,
+      "valuation": null,
+      "pricePerKey": 86957,
+      "history": []
+    },
+    "presentationFile": "./presentations/asmald-palace-kokand-ru.pdf",
+    "presentationFileName": "ASMALD Palace Hotel — тизер (RU).pdf",
+    "presentationUrl": "./presentations/asmald-palace-kokand-ru.pdf",
+    "presentationLangs": [
+      {
+        "lang": "RU",
+        "title": "Русский",
+        "file": "./presentations/asmald-palace-kokand-ru.pdf",
+        "name": "ASMALD Palace Hotel — тизер (RU).pdf"
+      },
+      {
+        "lang": "UZ",
+        "title": "O‘zbekcha",
+        "file": "./presentations/asmald-palace-kokand-uz.pdf",
+        "name": "ASMALD Palace Hotel — teaser (UZ).pdf"
+      },
+      {
+        "lang": "EN",
+        "title": "English",
+        "file": "./presentations/asmald-palace-kokand-en.pdf",
+        "name": "ASMALD Palace Hotel — teaser (EN).pdf"
+      }
+    ]
   }
 ]
