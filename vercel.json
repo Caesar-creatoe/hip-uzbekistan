@@ -178,16 +178,6 @@
       "permanent": false
     },
     {
-      "source": "/b2b",
-      "destination": "/platform",
-      "permanent": false
-    },
-    {
-      "source": "/b2b.html",
-      "destination": "/platform",
-      "permanent": false
-    },
-    {
       "source": "/events-app",
       "destination": "/",
       "permanent": false
